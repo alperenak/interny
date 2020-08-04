@@ -1,20 +1,39 @@
 {
-  "name": "interny",
+  "name": "IandP",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/plugin-transform-arrow-functions": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.10.5",
+    "@babel/polyfill": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-minify-dead-code-elimination": "^0.5.1",
+    "css-loader": "^3.6.0",
+    "express": "latest",
+    "file-loader": "^6.0.0",
+    "node-sass": "^4.14.1",
+    "prop-types": "latest",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "sass-loader": "^9.0.2",
+    "webpack": "latest",
+    "webpack-dev-middleware": "latest"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "webpack --display-error-details --config webpack.config.js",
+    "serve": "node server.js",
+    "watch": "NODE_ENV=development yarn serve",
+    "watch_windows": "set NODE_ENV=development&&yarn serve",
+    "start_production": "NODE_ENV=production yarn build && yarn serve",
+    "start_production_windows": "set NODE_ENV=production&&yarn build&&yarn serve"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -29,6 +48,19 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "babel-plugin-react-directives": "^1.1.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "cors": "^2.8.5",
+    "express-static-gzip": "^2.0.7",
+    "html-webpack-plugin": "^4.3.0",
+    "webpack-hot-middleware": "^2.25.0"
+  },
+  "rnpm": {
+    "assets": [
+      "./src/assets"
     ]
   }
 }

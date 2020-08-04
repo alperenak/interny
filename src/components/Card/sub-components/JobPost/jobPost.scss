@@ -1,0 +1,105 @@
+.jobPost {
+  position: relative;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
+
+  & .multiplePost {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    padding: 16px 0;
+
+    & .postButton {
+      top: 36px;
+    }
+  }
+
+  & .singlePost {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 100%;
+  }
+
+  & .postHeaderWrapper {
+    display: flex;
+    grid-column: span 3;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    & .postHeader {
+      font-family: "Noto Sans Bold";
+      font-size: 15px;
+      font-weight: bolder;
+      font-stretch: normal;
+      font-style: normal;
+      letter-spacing: 0.3px;
+      color: #2b4970;
+      grid-column: span 2;
+    }
+    & .postDate {
+      font-size: 12px;
+      font-weight: lighter;
+      font-stretch: normal;
+      font-style: normal;
+      letter-spacing: -0.24px;
+      color: #949494;
+      grid-column: span 1;
+      margin-right: 6px;
+    }
+  }
+  & .postCompany {
+    font-size: 15px;
+    margin: 4px 0 0;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.28px;
+    color: #2c567e;
+    width: calc(100% - 124px);
+    grid-column: span 2;
+  }
+  & .postLocation {
+    display: flex;
+    margin: 4px 0 0;
+    font-size: 13px;
+    font-weight: lighter;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.24px;
+    color: #949494;
+    width: calc(100% - 124px);
+    grid-column: span 2;
+
+    & img {
+      height: 18px;
+      width: 11px;
+      margin-right: 4px;
+    }
+  }
+  & .postButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    width: fit-content;
+    height: fit-content;
+    grid-column: span 1;
+    grid-row: span 4;
+    margin-left: auto;
+  }
+  & .postNote {
+    margin: 12px 0 0;
+    font-size: 13px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.24px;
+    color: #949494;
+    width: calc(100% - 124px);
+    grid-column: span 2;
+  }
+}

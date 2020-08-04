@@ -1,0 +1,39 @@
+.boxWrapper {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 8px 0;
+
+  &.disabled {
+    cursor: not-allowed;
+
+    & label {
+      cursor: not-allowed;
+    }
+    & input {
+      cursor: not-allowed;
+    }
+  }
+
+  & label {
+    color: black;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 0 1px;
+  }
+
+
+  & input {
+    outline: none;
+    border: none;
+    margin: 0 8px 0 1px;
+    padding: 0;
+    background: transparent;
+    color: #2b4970;
+    font-size: 12px;
+  }
+}

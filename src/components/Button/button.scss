@@ -1,0 +1,106 @@
+$primary: (background-color:#2b4970,color:white,border:solid 1px #2b4970);
+$secondary: (background-color:#ff8104,color:#fff,border:solid 1px transparent);
+$ghost: (background-color:white,color:#2b4970,border:solid 1px #ddd);
+$link: (background-color:transparent,color:#484848,border:solid 1px transparent);
+$icons: ("large":24px, "default":24px, "small":20px, "tiny":16px);
+$icon-margins: ("large":12px, "default":8px, "small":8px, "tiny":4px);
+
+$variants:(
+  //primary variants
+        primary-hover: (background-color:#1d3f6b,color:white,border:solid 1px #1d3f6b),
+        primary-focus: (background-color:#003670,color:white,border:solid 1px #003670),
+        primary-disable: (background-color:#cccccc,color:#919191,border:solid 1px #cccccc),
+  //secondary variants
+        secondary-hover: (background-color:rgba(#ff8104,0.2),color:#ff8104,border:solid 1px transparent),
+        secondary-focus: (background-color:#ff8104,color:white,border:solid 1px #ff8104),
+        secondary-disable: (background-color:#cccccc,color:#919191,border:solid 1px #cccccc),
+  //ghost variants
+        ghost-hover: (background-color:white,color:#2b4970,border:solid 1px #2b4970),
+        ghost-focus: (background-color:rgba(#2b4970,0.08),color:#003670,border:solid 1px #003670),
+        ghost-disable: (background-color:white,color:#919191,border:solid 1px #cccccc),
+  //link variants
+        link-hover: (background-color:transparent,color:#2b4970,border:solid 1px transparent),
+        link-focus: (background-color:transparent,color:#003670,border:solid 1px transparent),
+        link-disable: (background-color:transparent,color:#919191,border:solid 1px transparent),
+);
+
+// size variants
+$large: (padding:12px 36px,font-size:14px);
+$default: (padding:8px 24px,font-size:14px);
+$small: (padding:8px 24px,font-size:12px);
+$tiny: (padding:4px 12px,font-size:10px);
+
+$types: ("primary":$primary,"secondary":$secondary,"ghost":$ghost,"link":$link);
+$sizes: ("large":$large, "default":$default, "small":$small, "tiny":$tiny);
+.btn{
+  border-radius: 4px;
+  border:none;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 6px;
+  @each $typeName,$type in $types {
+    &.#{$typeName}
+    {
+      @each $key,$value in $type{
+        #{$key}:$value;
+      }
+      &.disabled{
+        @each $key,$value in map-get($variants, #{$typeName}#{-disable}){
+          #{$key}:$value;
+        }
+        cursor: not-allowed;
+      }
+      &:not(.disabled):hover{
+        @each $key,$value in map-get($variants, #{$typeName}#{-hover}){
+          #{$key}:$value;
+        }
+      }
+      &:not(.disabled):active{
+        @each $key,$value in map-get($variants, #{$typeName}#{-focus}){
+          #{$key}:$value;
+        }
+      }
+      &:focus, &:active{
+        outline: none;
+      }
+    }
+  }
+  @each $sizeName,$size in $sizes{
+    @each $key,$value in $size{
+      &.#{$sizeName} {
+        #{$key}:$value;
+        & img{
+          &:not(.autoWidth){
+            width: map_get($icons,#{$sizeName});
+          }
+          &.hoverIcon{
+            display: none;
+          }
+          &.left-icon{
+            margin-right: map_get($icon-margins,#{$sizeName});
+          }
+          &.right-icon{
+            margin-left: map_get($icon-margins,#{$sizeName});
+          }
+        }
+        &:hover img.hoverIcon{
+          display: block;
+        }
+        &:hover img:not(.hoverIcon){
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+

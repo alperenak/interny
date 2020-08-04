@@ -1,0 +1,168 @@
+.auth {
+  display: grid;
+  grid-template-columns: 136px 296px 16px 296px 136px;
+
+  & .switchButtons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    grid-column: span 5;
+    color: #2b4970;
+    font-family: "Noto Sans";
+    font-size: 12px;
+    margin-top: 20px;
+    & .switchButton {
+      cursor: pointer;
+      padding: 8px 96px;
+      border: 1px solid #efefef;
+      &:hover {
+        background-color: #2b4970;
+        color: white;
+      }
+      &.internButton {
+        border-right: 0.5px;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+      }
+      &.employerButton {
+        border-left: 0.5px;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
+      &.activeButton {
+        background-color: rgba(#bbb, 0.2);
+        &:hover {
+          background-color: rgba(#2b4970, 0.8);
+          color: white;
+        }
+      }
+    }
+  }
+
+  & .authHeader {
+    grid-column-start: 2;
+    grid-column-end: span 3;
+    & .headerText {
+      margin: 32px 0 8px;
+      font-family: "Noto Sans Bold";
+      font-size: 24px;
+      font-weight: 700;
+      font-stretch: normal;
+      font-style: normal;
+      letter-spacing: -0.17px;
+      color: #2b4970;
+    }
+    & .description {
+      font-family: "Noto Sans";
+      font-size: 14px;
+    }
+  }
+
+  & .authButtonContainer {
+    &:nth-child(even) {
+      grid-column-start: 4;
+    }
+    &:nth-child(odd) {
+      grid-column-start: 2;
+    }
+    grid-column-end: span 1;
+
+    & .authButton{
+      border: 1px solid #2b4970;
+      cursor: pointer;
+      color: #2b4970;
+      border-radius: 4px;
+      padding: 10px 12px;
+      margin: 32px 0 16px;
+      text-align: center;
+      font-size: 12px;
+      -webkit-box-shadow: 0px 0px 18px 0px rgba(0,0,0,0.06);
+      -moz-box-shadow: 0px 0px 18px 0px rgba(0,0,0,0.06);
+      box-shadow: 0px 0px 18px 0px rgba(0,0,0,0.06);
+
+      &:hover {
+        background-color: #2b4970;
+        color: white;
+      }
+      &:active {
+        background-color: rgba(#2b4970, 0.8);
+        color: white;
+      }
+    }
+  }
+
+  & .inputsContainer {
+    &:nth-child(odd) {
+      grid-column-start: 2;
+    }
+    &:nth-child(even) {
+      grid-column-start: 4;
+    }
+    grid-column-end: span 1;
+    &:nth-child(9){
+      grid-column-end: span 3;
+    }
+  }
+
+  & .saveButtonContainer {
+    grid-column-start: 4;
+    grid-column-end: span 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 32px;
+
+    & button {
+      margin-right: 0;
+    }
+  }
+
+  & .imgContainer {
+    & .shadow {
+      position: absolute;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      background-color: rgba(#2b4970, 0.09);
+      height: 100%;
+      & img {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        height: 100%;
+      }
+    }
+  }
+
+  &.login {
+    grid-template-columns: 396px 96px 170px 16px 170px 96px;
+    & .authHeader {
+      grid-column-start: 3;
+      grid-column-end: span 6;
+      margin: 0 0 32px;
+    }
+    & .authButtonContainer {
+      &:nth-child(even) {
+        grid-column-start: 3;
+      }
+      &:nth-child(odd) {
+        grid-column-start: 5;
+      }
+      grid-column-end: span 1;
+      & .authButton {
+        margin: 0 0 32px;
+      }
+    }
+    & .inputsContainer {
+      grid-column-start: 3;
+      grid-column-end: span 3;
+    }
+    & .saveButtonContainer {
+      grid-column-start: 1;
+      grid-column-end: span 5;
+    }
+  }
+}

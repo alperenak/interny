@@ -1,0 +1,42 @@
+.dropDownHeader {
+  width: 100%;
+  font-size: 16px;
+  font-family: "Noto Sans Bold";
+  list-style: none;
+  color: #2b4970;
+  border-radius: 4px;
+  padding: 6px 8px;
+}
+
+.dropDownWrapper {
+  position: relative;
+  margin: 0;
+  padding: 0;
+
+  & li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    list-style: none;
+    color: #2b4970;
+    border-radius: 4px;
+    padding: 6px 8px;
+
+    &:hover {
+      background-color: rgba(#2b4970, 0.08);
+      color: #2b4970;
+      font-weight: 100;
+    }
+    &.selected {
+      font-family: "Noto Sans Bold";
+      background-color: rgba(#2b4970, 0.08);
+      color: #2b4970;
+    }
+
+    & .icon {
+
+    }
+  }
+}

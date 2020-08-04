@@ -1,0 +1,29 @@
+.Card {
+  position: relative;
+  padding: 16px 32px;
+  margin: 32px;
+  border-radius: 10px;
+  max-width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #efefef;
+
+  &.authCards {
+    margin: 32px auto;
+    width: fit-content;
+  }
+
+  & .cardHeader {
+    margin-bottom: 16px;
+    font-family: "Noto Sans Bold";
+    font-size: 24px;
+    font-weight: 700;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.17px;
+    color: #2b4970;
+
+    &.start {text-align: start}
+    &.end {text-align: end}
+    &.center {text-align: center}
+  }
+}

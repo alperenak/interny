@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<!--    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+<!--    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />-->
+<!--    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />-->
+    <title>I&P</title>
+    <style>
+      html {
+        overflow: hidden;
+        height: 100%;
+      }
+
+      body {
+        height: 100%;
+        overflow: auto;
+      }
+
+      #root{
+        position: relative;
+        background-color: #fbfbfb;
+        overflow-y: auto;
+        overflow-x: hidden;
+        z-index: 1;
+        height: 100vh;
+        transition: margin-left .5s ease-out;
+        -webkit-transition: margin-left .5s ease-out;
+        -o-transition: margin-left .5s ease-out;
+        transition-duration: .5s;
+        transition-property: margin-left;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
