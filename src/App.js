@@ -18,6 +18,15 @@ class App extends React.Component {
 
         this.state = {
             value: "",
+            profile: {
+                image: selectIcon,
+                header: 'Ekrem Şanslı',
+                location: 'Istanbul - Turkey',
+                sector: 'Software',
+                jobType: 'Full Time',
+                education: 'Graduate',
+                status: 'active'
+            },
             buttons: [
                 {
                     multiple: true,
@@ -130,6 +139,10 @@ class App extends React.Component {
     render() {
         return (
             <div className={styles.App}>
+                <Card
+                    type={"profile"}
+                    profileObject={this.state.profile}
+                />
                 <Card
                     type={"auth"}
                     title={"Create Account"}

@@ -2,13 +2,22 @@
   position: relative;
   padding: 16px 32px;
   margin: 32px;
-  border-radius: 10px;
+  border-radius: 16px;
   max-width: 100%;
   background-color: #ffffff;
   border: 1px solid #efefef;
 
-  &.authCards {
+  &.auth {
     margin: 32px auto;
+    width: fit-content;
+  }
+  &.login {
+    margin: 32px auto;
+    width: fit-content;
+  }
+  &.profile {
+    margin: 32px auto;
+    padding: 56px 24px 48px;
     width: fit-content;
   }
 

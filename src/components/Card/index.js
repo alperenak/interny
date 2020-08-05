@@ -15,7 +15,7 @@ class Card extends Component {
     render() {
         let {type, header} = this.props;
         return (
-            <div className={`${styles.Card} ${type==='auth' || type==='login' ? styles.authCards : ''}`}>
+            <div className={`${styles.Card} ${styles[type]}`}>
                 <div v-if={header} className={`${styles.cardHeader} ${styles[header.position]}`}>{header.text}</div>
                 <JobPost v-if={type==="jobPost"} {...this.props}/>
                 <Profile v-if={type==="profile"} {...this.props}/>
@@ -32,12 +32,14 @@ export default Card;
 Card.propTypes = {
   type: PropTypes.string,
   externalData: PropTypes.array,
+  posts: PropTypes.array,
   header: PropTypes.string,
   title: PropTypes.string,
 };
 
 Card.defaultProps = {
   type: '',
+  posts: [],
   externalData: [],
   header: '',
   title: '',
