@@ -4,6 +4,11 @@
   height: calc(100% - 144px);
   padding: 112px 64px 32px 144px;
 
+  &.fullScreen {
+    width: unset;
+    padding: 112px 64px 32px 64px;
+  }
+
   & .temp {
     display: flex;
     justify-content: space-between;

@@ -16,7 +16,7 @@ class PlainInput extends Component {
     };
 
     render() {
-        let {name, label, type, disabled, defaultValue, placeholder, size, errorList, className} = this.props;
+        let {name, label, type, disabled, icon, defaultValue, placeholder, size, errorList, className} = this.props;
         let {value} = this.state;
         return (
             <div className={`${styles.inputWrapper} ${disabled ? styles.disabled : ''} ${className}`}>
@@ -47,6 +47,7 @@ class PlainInput extends Component {
                         ${styles[size]} ${errorList.length > 0 ? styles.error : ''}`
                     }
                 >
+                    <img v-if={icon && icon.position === 'left'} src={icon.src} alt={'icon'} className={`${styles.icon} ${styles[icon.position]}`} />
                     <input
                         name={name}
                         autoComplete={'off'}
@@ -57,6 +58,7 @@ class PlainInput extends Component {
                         defaultValue={value ? value : defaultValue}
                         placeholder={placeholder}
                     />
+                    <img v-if={icon && icon.position === 'right'} src={icon.src} alt={'icon'} className={`${styles.icon} ${styles[icon.position]}`} />
                 </div>
             </div>
         );
@@ -69,6 +71,7 @@ PlainInput.propTypes = {
   disabled: PropTypes.bool,
   label: PropTypes.string,
   name: PropTypes.string,
+  icon: PropTypes.object,
   onChange: PropTypes.any,
   type: PropTypes.string,
   defaultValue: PropTypes.string,

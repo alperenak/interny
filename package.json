@@ -56,6 +56,7 @@
     "cors": "^2.8.5",
     "express-static-gzip": "^2.0.7",
     "html-webpack-plugin": "^4.3.0",
+    "react-router-dom": "^5.2.0",
     "webpack-hot-middleware": "^2.25.0"
   },
   "rnpm": {

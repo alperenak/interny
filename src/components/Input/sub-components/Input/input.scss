@@ -71,6 +71,18 @@
       }
     }
 
+    & .icon {
+      width: 15px;
+      height: 15px;
+
+      &.right {
+        margin-left: 8px;
+      }
+      &.left {
+        margin-right: 8px;
+      }
+    }
+
     & input {
       outline: none;
       border: none;

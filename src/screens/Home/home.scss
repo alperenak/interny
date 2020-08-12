@@ -1,0 +1,265 @@
+.Home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  & .searchSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+
+    & .slogan {
+      font-family: "Noto Sans Bold";
+      font-size: 24px;
+      color: #2b4970;
+    }
+    & .subSlogan {
+      font-family: "Noto Sans";
+      font-size: 22px;
+      margin-top: 5px;
+      color: #2b4970;
+    }
+    & .searchBars {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      width: 100%;
+      margin-top: 24px;
+
+      & .keyword {
+        margin: 6px;
+        width: 37%;
+        & > div {
+          -webkit-box-shadow: 0px 43px 45px 0px rgba(43, 73, 112, 0.1);
+          -moz-box-shadow: 0px 43px 45px 0px rgba(43, 73, 112, 0.1);
+          box-shadow: 0px 43px 45px 0px rgba(43, 73, 112, 0.1);
+        }
+      }
+      & .location {
+        margin: 6px;
+        width: 37%;
+        & > div {
+          -webkit-box-shadow: 0px 43px 45px 0px rgba(43, 73, 112, 0.1);
+          -moz-box-shadow: 0px 43px 45px 0px rgba(43, 73, 112, 0.1);
+          box-shadow: 0px 43px 45px 0px rgba(43, 73, 112, 0.1);
+        }
+      }
+
+      & .findJob {
+        margin: 9px 0;
+        width: fit-content;
+      }
+    }
+
+    & .prepareCv {
+      font-family: "Noto Sans";
+      font-size: 10px;
+      color: #484848;
+      margin-top: 16px;
+
+      & .underlined {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+  & .popularSearchSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+    background-color: white;
+    width: 100vw;
+    padding: 64px;
+
+    & .popularSearchTitle {
+      font-family: "Noto Sans Bold";
+      font-size: 24px;
+      color: #2b4970;
+    }
+
+    & .cities {
+      width: 50%;
+      margin-top: 32px;
+      height: fit-content;
+      text-align: center;
+
+      & .city {
+        font-family: "Noto Sans";
+        cursor: pointer;
+        display: inline-block;
+        font-size: 12px;
+        color: #646464;
+        padding: 6px 12px;
+        margin: 4px;
+        width: fit-content;
+        max-width: 150px;
+        background-color: rgba(43, 73, 112, 0.07);
+        border-radius: 30px;
+        text-align: center;
+        list-style-type: none;
+      }
+    }
+
+  }
+  & .postsSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+    & .postsTitle {
+      font-family: "Noto Sans Bold";
+      font-size: 24px;
+      color: #2b4970;
+    }
+    & .postsSubTitle {
+      font-family: "Noto Sans";
+      font-size: 18px;
+      margin-top: 5px;
+      color: #484848;
+    }
+    & .cards {
+      margin-top: 30px;
+    }
+    & .discoverBtn {
+      margin-bottom: 50px;
+    }
+  }
+  & .companiesSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+    background-color: white;
+    width: 100vw;
+    padding: 64px;
+    & .companiesTitle {
+      font-family: "Noto Sans Bold";
+      font-size: 24px;
+      color: #2b4970;
+    }
+    & .companiesSubTitle {
+      font-family: "Noto Sans";
+      font-size: 18px;
+      margin-top: 5px;
+      color: #484848;
+    }
+    & .companiesImages {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 60%;
+      margin-top: 60px;
+      margin-bottom: 60px;
+
+      & img {
+        width: 75px;
+        height: 75px;
+      }
+    }
+  }
+  & .browseJobsSection {
+    position: relative;
+    width: 100vw;
+
+    & .jobsTitle {
+      font-family: "Noto Sans Bold";
+      font-size: 36px;
+      color: white;
+      z-index: 1;
+      padding: 150px 0 0 150px;
+      width: 50%;
+      position: absolute;
+      & .prepareCv {
+        font-family: "Noto Sans";
+        font-size: 16px;
+        color: white;
+        width: fit-content;
+        padding: 0 0 6px;
+        margin-top: 20px;
+        border-bottom: 1px solid white;
+        cursor: pointer;
+        z-index: 1;
+      }
+    }
+
+
+    & img {
+      width: 100%;
+    }
+  }
+  & .howItWorksSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    width: 100vw;
+    height: fit-content;
+    background-color: white;
+    line-height: 2.2em;
+    padding: 60px 0 0;
+
+    & .howItWorksTitle {
+      font-family: "Noto Sans Bold";
+      font-size: 24px;
+      color: #000;
+      padding: 0 144px;
+      width: 27%;
+    }
+    & .howItWorksSubTitle {
+      font-family: "Noto Sans";
+      font-size: 18px;
+      color: #484848;
+      padding: 0 144px;
+      width: 27%;
+    }
+
+    & .divisions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 144px;
+      margin: 60px 0;
+
+      & .division {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        width: 20%;
+        & .icon {
+          width: 60px;
+        }
+        & .title {
+          font-family: "Noto Sans Bold";
+          font-size: 16px;
+          color: #000;
+          line-height: 1.5em;
+          margin-top: 20px;
+        }
+        & .description {
+          font-family: "Noto Sans";
+          margin-top: 20px;
+          font-size: 12px;
+          color: #484848;
+          line-height: 1.5em;
+        }
+      }
+    }
+  }
+  & .internsSaysSection {
+    position: relative;
+  }
+  & .packagesSection {
+    position: relative;
+  }
+  & .footerSection {
+    position: relative;
+  }
+}

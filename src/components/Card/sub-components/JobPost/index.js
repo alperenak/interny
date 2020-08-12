@@ -37,13 +37,16 @@ class JobPost extends Component {
         return (
             <Fragment>
                 <div className={`${multiple ? styles.multiplePost : styles.singlePost}`}>
+                    <div v-if={pst.image} className={styles.itemImage}>
+                        <img src={pst.image} alt={'image'}/>
+                    </div>
                     <div className={styles.postHeaderWrapper}>
                         <div className={styles.postHeader}>{pst.header}</div>
                         <div className={styles.postDate}>{pst.date}</div>
                     </div>
                     <div className={styles.postCompany}>{pst.company}</div>
                     {pst.buttons && this.renderPostButtons(pst.buttons)}
-                    <div className={styles.postLocation}>
+                    <div v-if={pst.location} className={styles.postLocation}>
                         <img src={locationIcon} alt={'location'}/>
                         {pst.location}
                     </div>
