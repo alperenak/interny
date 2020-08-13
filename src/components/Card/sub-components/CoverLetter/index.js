@@ -36,7 +36,8 @@ class CoverLetter extends Component {
                 <Input type={'textarea'}  />
                 <div className={styles.buttonContainer}>
                     <Button
-                        v-for={btn in buttons}
+                        v-for={(btn, i) in buttons}
+                        key={i}
                         type={btn.type}
                         disabled={btn.disabled}
                         sizeName={btn.sizeName}

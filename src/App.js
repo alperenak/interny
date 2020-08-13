@@ -7,9 +7,12 @@ import SideBar from "./components/SideBar";
 
 /*** Screens ***/
 import Home from "./screens/Home";
+import SignUp from "./screens/SignUp";
+import Posts from "./screens/Posts";
 
 /*** Styles ***/
 import styles from './app.scss';
+import Login from "./screens/Login";
 
 /*** Icon ***/
 
@@ -22,16 +25,23 @@ class App extends React.Component {
         let {isAuthorized} = this.state;
         return (
             <div className={`${styles.App} ${!isAuthorized ? styles.fullScreen : ''}`}>
-                <TopBar isAuthorized={isAuthorized} />
-                <SideBar v-if={isAuthorized} />
                 <Router>
-                    <div>
-                        <Switch>
-                            <Route exact path="/">
-                                <Home />
-                            </Route>
-                        </Switch>
-                    </div>
+                    <TopBar isAuthorized={isAuthorized} />
+                    <SideBar v-if={isAuthorized} />
+                    <Switch>
+                        <Route exact path="/">
+                            <Home />
+                        </Route>
+                        <Route path="/signUp">
+                            <SignUp />
+                        </Route>
+                        <Route path="/logIn">
+                            <Login />
+                        </Route>
+                        <Route path="/Posts">
+                            <Posts />
+                        </Route>
+                    </Switch>
                 </Router>
             </div>
         );

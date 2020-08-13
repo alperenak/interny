@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from "react-router-dom";
 
 /*** Components ***/
 import Button from "../Button";
@@ -10,21 +11,26 @@ import styles from './topBar.scss';
 import internyLogo from '../../assets/interny-logo.png'
 
 class TopBar extends Component {
-    state = {
-
-    };
+    renderPackagesLink() {
+        return <div onClick={() => {
+            if (window.location.pathname.length > 1) document.location.pathname = '/';
+            document.getElementById('packages-section').scrollIntoView({behavior: "smooth"});
+        }}>
+            Our Packages
+        </div>
+    }
 
     render() {
         let {isAuthorized} = this.props;
         return (
             <div className={`${styles.TopBar} ${!isAuthorized ? styles.fullScreen : ''}`}>
-                <div className={styles.logo}><img src={internyLogo} alt={'logo'} /></div>
+                <div className={styles.logo}><Link to={'/'}><img src={internyLogo} alt={'logo'} /></Link></div>
                 <div className={styles.links}>
-                    <div>Home</div>
-                    <div>Browse Internships</div>
-                    <div>Our Packages</div>
-                    <Button type={'ghost'} sizeName={'small'} text={'Join Us'} />
-                    <Button type={'secondary'} sizeName={'small'} text={'Sign In'} />
+                    <div><Link to={'/'}>Home</Link></div>
+                    <div><Link to={'/Posts'}>Browse Internships</Link></div>
+                    {this.renderPackagesLink()}
+                    <Button to="/logIn" type={'ghost'} sizeName={'small'} text={'Login'} />
+                    <Button to="/signUp" type={'secondary'} sizeName={'small'} text={'Sign Up'} />
                 </div>
             </div>
         );

@@ -14,7 +14,7 @@ import styles from './card.scss';
 
 class Card extends Component {
     render() {
-        let {type, header} = this.props;
+        let {type, header, children} = this.props;
         return (
             <div className={`${styles.Card} ${styles[type]}`}>
                 <div v-if={header} className={`${styles.cardHeader} ${styles[header.position]}`}>{header.text}</div>
@@ -24,6 +24,7 @@ class Card extends Component {
                 <DropDown v-if={type==="dropDown"} {...this.props}/>
                 <CoverLetter v-if={type==="coverLetter"} {...this.props}/>
                 <Authentication v-if={type==='auth' || type==='login' } {...this.props}/>
+                {children}
             </div>
         );
     }

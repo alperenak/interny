@@ -38,6 +38,7 @@ $sizes: ("large":$large, "default":$default, "small":$small, "tiny":$tiny);
   font-weight: normal;
   display: flex;
   align-items: center;
+  justify-content: center;
   cursor: pointer;
   margin: 6px;
   @each $typeName,$type in $types {

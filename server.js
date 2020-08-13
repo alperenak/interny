@@ -53,15 +53,15 @@ app.get('*', function (req, res) {
             res.set('content-type', 'text/html');
             res.send(result);
             res.end();
-            console.log("I&P app loaded");
+            console.log("Interny app loaded");
         });
     } else {
         let indexHtml = fs.readFileSync(path.join(contentPath, 'index.html'), 'utf8');
-        console.log("I&P app loaded");
+        console.log("Interny app loaded");
         res.send(indexHtml)
     }
 });
 
 app.listen(port, function () {
-    console.log("I&P app is listening on port " + port + "!");
+    console.log("Interny app is listening on port " + port + "!");
 });

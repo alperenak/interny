@@ -10,15 +10,30 @@ import Input from "../../../Input";
 /*** Icons ***/
 import loginImage from '../../../../assets/login.png';
 
+/*** Utils ***/
+import authStore from '../../../../services/Authentication'
+import {setCookie} from "../../../../utils/cookie";
+
 class Authentication extends Component {
     state = {
         page: 'Intern',
+        submitObject: {},
         buttons: [
             {
                 disabled: false,
                 sizeName: 'default',
                 text: this.props.type === 'auth' ? 'Create Account' : 'Login',
-                type: 'secondary'
+                type: 'secondary',
+                onButtonClick: async () => {
+                    if (this.props.type === 'auth') {
+                        await authStore.internSignUp(this.state.submitObject);
+                    } else {
+                        let res = await authStore.internLogin(this.state.submitObject);
+                        if (res && res.data.token) {
+                            setCookie("token", res.data.token, {});
+                        }
+                    }
+                }
             }
         ],
         authButtons: [
@@ -35,14 +50,16 @@ class Authentication extends Component {
                 placeholder: "Enter e-mail address",
                 errorList: [],
                 type: 'text',
-                sizeName: 'half'
+                sizeName: 'half',
+                onChange: (value) => this.setState({submitObject: {...this.state.submitObject, email: value}})
             },
             {
                 label: "Password",
                 placeholder: "Enter password",
                 errorList: [],
                 type: 'password',
-                sizeName: 'half'
+                sizeName: 'half',
+                onChange: (value) => this.setState({submitObject: {...this.state.submitObject, password: value}})
             },
             {
                 label: "Remember me",
@@ -56,39 +73,47 @@ class Authentication extends Component {
                 placeholder: "Enter name",
                 errorList: [],
                 type: 'text',
-                sizeName: 'half'
+                sizeName: 'half',
+                value: '',
+                onChange: (value) => this.setState({submitObject: {...this.state.submitObject, name: value}})
             },
             {
                 label: "Surname",
                 placeholder: "Enter surname",
                 errorList: [],
                 type: 'text',
-                sizeName: 'half'
+                sizeName: 'half',
+                value: '',
+                onChange: (value) => this.setState({submitObject: {...this.state.submitObject, surname: value}})
             },
             {
                 label: "E-mail addrees",
                 placeholder: "Enter e-mail address",
                 errorList: [],
                 type: 'text',
-                sizeName: 'half'
+                sizeName: 'half',
+                value: '',
+                onChange: (value) => this.setState({submitObject: {...this.state.submitObject, email: value}})
             },
             {
                 label: "Password",
                 placeholder: "Enter password",
                 errorList: [],
                 type: 'password',
-                sizeName: 'half'
+                sizeName: 'half',
+                value: '',
+                onChange: (value) => this.setState({submitObject: {...this.state.submitObject, password: value}})
             },
             {
                 label: "By joining you agree to the Terms, Privacy and Policy",
                 type: 'checkbox',
-                sizeName: 'full'
+                sizeName: 'full',
             }
         ],
     };
 
     onSwitchPage = (page) => {
-        this.setState({page: page});
+        this.setState({page: page, submitObject: {}});
     };
 
     render() {
@@ -110,30 +135,34 @@ class Authentication extends Component {
                     <div className={styles.headerText}>{type === 'auth' ? page : 'Log In'}</div>
                     <div className={styles.description}>New to Interny? Create free account</div>
                 </div>
-                <div v-if={type === 'auth'} v-for={btn in authButtons} className={styles.authButtonContainer}>
+                <div v-if={type === 'auth'} v-for={(btn, i) in authButtons} key={i} className={styles.authButtonContainer}>
                     <div className={styles.authButton}>
                         {btn.text}
                     </div>
                 </div>
                 <Input
                     className={`${styles.inputsContainer}`}
-                    v-for={inp in (type === 'login' ? loginInputs : authInputs)}
+                    v-for={(inp, i) in (type === 'login' ? loginInputs : authInputs)}
                     sizeName={inp.sizeName}
+                    key={i}
                     label={inp.label}
                     placeholder={inp.placeholder}
                     errorList={inp.errorList}
                     type={inp.type}
+                    onChange={inp.onChange}
                 />
                 <div className={styles.saveButtonContainer}>
                     <Button
-                        v-for={btn in buttons}
+                        v-for={(btn, i) in buttons}
+                        key={i}
                         type={btn.type}
                         disabled={btn.disabled}
                         sizeName={btn.sizeName}
                         text={btn.text}
+                        onButtonClick={btn.onButtonClick}
                     />
                 </div>
-                <div v-for={btn in authButtons} v-if={type === 'login'} className={styles.authButtonContainer}>
+                <div v-for={(btn, i) in authButtons} key={i} v-if={type === 'login'} className={styles.authButtonContainer}>
                     <div className={styles.authButton}>
                         {btn.text}
                     </div>

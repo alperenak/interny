@@ -26,6 +26,8 @@ class JobPost extends Component {
                                 sizeName={btn.sizeName}
                                 text={btn.text}
                                 type={btn.type}
+                                width={btn.width}
+                                to={btn.to}
                             />
                     );
                 })}

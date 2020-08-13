@@ -12,7 +12,7 @@ class PlainInput extends Component {
     onChange = (event) => {
         let { onChange } = this.props;
         this.setState({value: event.target.value});
-        onChange(event.target.value);
+        if (onChange) onChange(event.target.value);
     };
 
     render() {

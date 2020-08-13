@@ -1,5 +1,6 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
+import {Link} from "react-router-dom";
 
 /***Styles**/
 import styles from './button.scss';
@@ -11,18 +12,32 @@ class Button extends Component {
             onButtonClick();
     };
 
-    render() {
-        let {disabled, hoverIcon, icon, iconAutoWidth, iconPosition, sizeName, text, type} = this.props;
+    renderContent() {
+        let {disabled, hoverIcon, icon, iconAutoWidth, iconPosition, text} = this.props;
         return (
-            <button onClick={this.onClick} className={`${styles.btn} ${styles[sizeName]} ${styles[type]} ${(disabled?styles.disabled:'')}`}>
+            <Fragment>
                 {(icon && iconPosition.includes('left')) && <img src={icon} alt="" className={`${styles[iconPosition+'-icon']} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
                 {(icon && iconPosition.includes('left') && !disabled) && <img src={hoverIcon} alt="" className={`${styles[iconPosition+'-icon']} ${styles.hoverIcon} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
                 {(icon && iconPosition.includes('left')) && <img src={icon} alt="" className={`${styles[iconPosition+'-icon']} ${styles.hoverIcon} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
-                    {text}
+                {text}
                 {(icon && iconPosition.includes('right')) && <img src={icon} alt="" className={`${styles[iconPosition+'-icon']} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
                 {(icon && iconPosition.includes('right') && !disabled) && <img src={hoverIcon} alt="" className={`${styles[iconPosition+'-icon']} ${styles.hoverIcon} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
                 {(icon && iconPosition.includes('right')) && <img src={icon} alt="" className={`${styles[iconPosition+'-icon']} ${styles.hoverIcon} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
-            </button>
+            </Fragment>
+        );
+    }
+
+    render() {
+        let {disabled, to, onButtonClick, width, sizeName, type} = this.props;
+        return (
+            <Fragment>
+                <Link style={{width: width}} v-if={to} to={to} className={`${styles.btn} ${styles[sizeName]} ${styles[type]} ${(disabled?styles.disabled:'')}`}>
+                    {this.renderContent()}
+                </Link>
+                <button style={{width: width}} v-if={!to} onClick={onButtonClick} className={`${styles.btn} ${styles[sizeName]} ${styles[type]} ${(disabled?styles.disabled:'')}`}>
+                    {this.renderContent()}
+                </button>
+            </Fragment>
         );
     }
 }
@@ -36,9 +51,11 @@ Button.propTypes = {
   iconAutoWidth: PropTypes.bool,
   iconPosition: PropTypes.string,
   onButtonClick: PropTypes.any,
+  to: PropTypes.string,
   sizeName: PropTypes.string,
   text: PropTypes.string,
-  type: PropTypes.string
+  type: PropTypes.string,
+  width: PropTypes.string
 };
 
 Button.defaultProps = {
@@ -49,5 +66,5 @@ Button.defaultProps = {
   iconPosition: "",
   sizeName: "default",
   text: "Button",
-  type: "primary"
+  type: "primary",
 };
