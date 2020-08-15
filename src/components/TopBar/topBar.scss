@@ -12,6 +12,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
 
   &.fullScreen {
     width: 100%;
@@ -36,6 +40,7 @@
     }
 
     & .img {
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -45,6 +50,12 @@
       padding: 10px;
       margin: 0 4px;
       background-color: #f0f0f0;
+
+      & .cardContainer {
+        position: absolute;
+        top: 42px;
+        right: 0;
+      }
 
       & > img {
         height: 100%;
@@ -59,16 +70,20 @@
       font-size: 12px;
       color: #2b4970;
 
+      &.packages:hover {
+        text-decoration: underline;
+      }
+
       & > a {
         font-family: "Noto Sans";
         font-weight: 100;
         font-size: 12px;
         color: #2b4970;
+        &:hover {
+          text-decoration: underline;
+        }
       }
 
-      &:hover {
-        text-decoration: underline;
-      }
     }
   }
 }

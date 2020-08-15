@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {Link} from "react-router-dom";
 
 /*** Styles ***/
 import styles from "./dropdown.scss";
@@ -23,7 +24,7 @@ class DropDown extends Component {
         let {externalData, title} = this.props;
         return (
             <>
-                <div className={styles.dropDownHeader}>{title}</div>
+                <div v-if={title} className={styles.dropDownHeader}>{title}</div>
                 <ul
                     className={styles.dropDownWrapper}
                     onClick={(e) => {
@@ -32,16 +33,18 @@ class DropDown extends Component {
                     }}
                 >
                     {externalData.map(el => {
-                            return <li
-                                key={el.key}
-                                onClick={() => this.onClickListItem(el.key)}
-                                className={`${el.selected ? styles.selected: ''}`}
-                            >
-                                <div>{el.value}</div>
-                                <img v-if={el.icon} className={styles.icon} src={el.icon}/>
-                            </li>
-                        })
-                    }
+                        return <Link
+                            key={el.key}
+                            onClick={() => !el.disabled && this.onClickListItem(el.key)}
+                            className={`${el.selected ? styles.selected: ''}`}
+                            to={el.to}
+                        >
+                            <div>{el.value}</div>
+                            <div v-if={el.icon} className={styles.icon}>
+                                <img src={el.icon} alt={'icon'}/>
+                            </div>
+                        </Link>
+                    })}
                 </ul>
             </>
         );
@@ -57,5 +60,4 @@ DropDown.propTypes = {
 
 DropDown.defaultProps = {
   externalData: [],
-  header: ''
 };

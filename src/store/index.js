@@ -40,6 +40,14 @@ let store = {
         };
         return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
     },
+    async getIntern(id) {
+        let baseUrl = config.baseUrl;
+        let path = `/intern/${id}`;
+        let tokenCookieName = "token";
+        let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+
+        return res.data;
+    },
     async getPosts(offset, limit) {
         let baseUrl = config.baseUrl;
         let path = `/job?offset=${offset}&limit=${limit}`;
@@ -51,6 +59,22 @@ let store = {
     async getPost(id) {
         let baseUrl = config.baseUrl;
         let path = `/job/${id}`;
+        let tokenCookieName = "token";
+        let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+
+        return res.data;
+    },
+    async getCV(id) {
+        let baseUrl = config.baseUrl;
+        let path = `/cv/${id}`;
+        let tokenCookieName = "token";
+        let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+
+        return res.data;
+    },
+    async getCVs(id) {
+        let baseUrl = config.baseUrl;
+        let path = `/intern/${id}/cv`;
         let tokenCookieName = "token";
         let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
 

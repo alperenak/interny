@@ -50,7 +50,7 @@ class Home extends Component {
         let {items} = this.state;
         return (
             <div className={styles.Home}>
-                <SearchSection page={'userHome'} />
+                <SearchSection page={'home'} />
                 <div className={styles.popularSearchSection}>
                     <div className={styles.popularSearchTitle}>Popular Searches</div>
                     <ul className={styles.cities}>

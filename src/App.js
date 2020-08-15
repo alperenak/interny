@@ -10,6 +10,7 @@ import Home from "./screens/Home";
 import SignUp from "./screens/SignUp";
 import Posts from "./screens/Posts";
 import UserHome from "./screens/UserHome";
+import CV from "./screens/CV";
 
 /*** Styles ***/
 import styles from './app.scss';
@@ -18,14 +19,20 @@ import Login from "./screens/Login";
 /*** Utils ***/
 import {getCookie} from "./utils/cookie";
 import PostDetail from "./screens/PostDetail";
+import store from "./store";
 
 class App extends React.Component {
     state = {
-        isAuthorized: false
+        isAuthorized: false,
+        user: {}
     };
 
-    componentDidMount() {
+    async componentDidMount() {
         if (getCookie('token')) {
+            if (getCookie('user') === 'intern') {
+                let intern = await store.getIntern(getCookie('user_id'));
+                this.setState({user: intern});
+            }
             this.setState({isAuthorized: true});
         } else {
             this.setState({isAuthorized: false});
@@ -33,12 +40,11 @@ class App extends React.Component {
     }
 
     render() {
-        let {isAuthorized} = this.state;
+        let {isAuthorized, user} = this.state;
         return (
-            <div className={`${styles.App} ${!isAuthorized ? styles.fullScreen : ''}`}>
+            <div className={`${styles.App} ${styles.fullScreen}`}>
                 <Router>
-                    <TopBar isAuthorized={isAuthorized} />
-                    <SideBar v-if={isAuthorized} />
+                    <TopBar isAuthorized={isAuthorized} user={user} />
                     <Switch>
                         <Route v-if={!isAuthorized} exact path="/">
                             <Home />
@@ -57,6 +63,9 @@ class App extends React.Component {
                         </Route>
                         <Route path="/PostDetail/:id">
                             <PostDetail />
+                        </Route>
+                        <Route path="/CV">
+                            <CV user={user}/>
                         </Route>
                     </Switch>
                 </Router>

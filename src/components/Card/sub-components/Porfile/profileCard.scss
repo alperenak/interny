@@ -6,10 +6,12 @@
 
   & .profileImage {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 104px;
     height: 104px;
     border-radius: 32px;
-    background-color: grey;
     border: 1px solid #eee;
     -webkit-box-shadow: 0px 18px 18px 0px rgba(#2b4970,0.1);
     -moz-box-shadow: 0px 18px 18px 0px rgba(#2b4970,0.1);
