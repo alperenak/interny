@@ -3,7 +3,7 @@ import axios from 'axios';
 export default {
 
 	makeGetRequest(url, baseUrl, tokenCookieName, errorMessageBuilder,headersOptions={}) {
-		let token = "Token " + localStorage.getItem(tokenCookieName);
+		let token = "Bearer " + localStorage.getItem(tokenCookieName);
 		const headers = {
 			"Accept": "application/json",
 			"Cache-Control": "no-cache",
@@ -28,7 +28,7 @@ export default {
 	},
 
 	makePostRequest(url, baseUrl, tokenCookieName, postBody, errorMessageBuilder, formData = false, onProgress = () => { }, onCancelTokenAdded = () => { }) {
-		let token = "Token " + localStorage.getItem(tokenCookieName);
+		let token = "Bearer " + localStorage.getItem(tokenCookieName);
 		let headers = {
 			"Content-Type": "application/json",
 			Authorization: token
@@ -73,7 +73,7 @@ export default {
 	},
 
 	makeDeleteRequest(url, baseUrl, tokenCookieName, errorMessageBuilder) {
-		let token = "Token " + localStorage.getItem(tokenCookieName);
+		let token = "Bearer " + localStorage.getItem(tokenCookieName);
 		const headers = {
 			"Content-Type": "application/json",
 			Authorization: token
@@ -98,7 +98,7 @@ export default {
 	makePutRequest(url, baseUrl, tokenCookieName, postBody, errorMessageBuilder, onProgress = () => {
 	}, onCancelTokenAdded = () => {
 	}) {
-		let token = "Token " + localStorage.getItem(tokenCookieName);
+		let token = "Bearer " + localStorage.getItem(tokenCookieName);
 		const headers = {
 			"Content-Type": "application/json",
 			Authorization: token

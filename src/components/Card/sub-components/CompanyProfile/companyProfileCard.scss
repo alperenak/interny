@@ -1,0 +1,103 @@
+.companyProfileCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  max-width: 250px;
+
+  @media only screen and (max-width: 1400px) {
+    max-width: 150px;
+  }
+
+  & .profileImage {
+    position: relative;
+    margin: 20px 0;
+    width: 84px;
+    height: 84px;
+    padding: 4px;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & img {
+      width: 100%;
+      align-self: center;
+    }
+
+    & img {
+      width: 100%;
+      align-self: center;
+    }
+  }
+
+  & .headerText {
+    font-family: "Noto Sans Bold";
+    font-size: 15px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.17px;
+    color: #2b4970;
+    margin-bottom: 6px;
+  }
+
+  & .location {
+    display: flex;
+    font-size: 10px;
+    font-weight: lighter;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.24px;
+    color: #484848;
+    margin-bottom: 20px;
+
+    & img {
+      height: 15px;
+      width: 10px;
+      margin-right: 4px;
+    }
+  }
+
+  & .sections {
+    width: 100%;
+    display: flex;
+    margin: 12px 0 0;
+    font-size: 11px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.24px;
+    color: #949494;
+    grid-column: span 2;
+
+    & .title {
+      width: 125px;
+      color: #2b4970;
+
+      @media only screen and (max-width: 1400px) {
+        width: 75px;
+      }
+    }
+    & .text {
+      width: 125px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      @media only screen and (max-width: 1400px) {
+        width: 75px;
+      }
+    }
+  }
+  & .description {
+    margin: 32px 0 32px;
+    font-size: 11px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.24px;
+    color: #949494;
+    grid-column: span 2;
+  }
+}

@@ -8,6 +8,7 @@ class Login extends Component {
         return (
             <Card
                 type={'login'}
+                {...this.props}
             />
         );
     }

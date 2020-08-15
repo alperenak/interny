@@ -93,6 +93,11 @@
   }
 
   & .inputsContainer {
+    & > button {
+      padding: 0;
+      margin: 0;
+      text-decoration: underline;
+    }
     &:nth-child(odd) {
       grid-column-start: 2;
     }

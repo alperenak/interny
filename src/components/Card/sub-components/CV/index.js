@@ -18,7 +18,7 @@ class CV extends Component {
                                 return (
                                     <div className={styles.item}>
                                         <div  className={styles.itemImage}>
-                                            <img src={item.image} alt={'image'}/>
+                                            <img v-if={item.image} src={item.image} alt={'image'}/>
                                         </div>
                                         <div className={styles.itemDetail}>
                                             <div className={styles.itemTitle}>{item.title}</div>

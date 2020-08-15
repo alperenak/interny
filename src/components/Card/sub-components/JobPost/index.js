@@ -52,6 +52,7 @@ class JobPost extends Component {
                         <img src={locationIcon} alt={'location'}/>
                         {pst.location}
                     </div>
+                    <div className={styles.postNote}>{pst.description}</div>
                     <div className={styles.postNote}>{pst.note}</div>
                 </div>
             </Fragment>

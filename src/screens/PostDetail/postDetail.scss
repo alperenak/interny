@@ -1,0 +1,13 @@
+.postDetail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0 80px;
+
+  & .cards {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+  }
+}

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Redirect} from "react-router-dom";
 
 /*** Components ***/
 import Button from "../../../Button";
@@ -11,7 +12,7 @@ import Input from "../../../Input";
 import loginImage from '../../../../assets/login.png';
 
 /*** Utils ***/
-import authStore from '../../../../services/Authentication'
+import store from '../../../../store'
 import {setCookie} from "../../../../utils/cookie";
 
 class Authentication extends Component {
@@ -26,11 +27,14 @@ class Authentication extends Component {
                 type: 'secondary',
                 onButtonClick: async () => {
                     if (this.props.type === 'auth') {
-                        await authStore.internSignUp(this.state.submitObject);
+                        await store.internSignUp(this.state.submitObject);
                     } else {
-                        let res = await authStore.internLogin(this.state.submitObject);
+                        let res = await store.internLogin(this.state.submitObject);
                         if (res && res.data.token) {
                             setCookie("token", res.data.token, {});
+                            setCookie("user", this.state.page.toLowerCase(), {});
+                            setCookie("user_id", res.data.id, {});
+                            window.location.pathname = `/`;
                         }
                     }
                 }
@@ -62,9 +66,10 @@ class Authentication extends Component {
                 onChange: (value) => this.setState({submitObject: {...this.state.submitObject, password: value}})
             },
             {
-                label: "Remember me",
-                type: 'checkbox',
-                sizeName: 'full'
+                disabled: false,
+                sizeName: 'small',
+                text: 'Forgot your password?',
+                type: 'link',
             }
         ],
         authInputs: [
@@ -135,26 +140,53 @@ class Authentication extends Component {
                     <div className={styles.headerText}>{type === 'auth' ? page : 'Log In'}</div>
                     <div className={styles.description}>New to Interny? Create free account</div>
                 </div>
-                <div v-if={type === 'auth'} v-for={(btn, i) in authButtons} key={i} className={styles.authButtonContainer}>
+                <div v-if={type === 'auth'} v-for={(btn, i) in authButtons} key={'authBtn'+i} className={styles.authButtonContainer}>
                     <div className={styles.authButton}>
                         {btn.text}
                     </div>
                 </div>
-                <Input
-                    className={`${styles.inputsContainer}`}
-                    v-for={(inp, i) in (type === 'login' ? loginInputs : authInputs)}
-                    sizeName={inp.sizeName}
-                    key={i}
-                    label={inp.label}
-                    placeholder={inp.placeholder}
-                    errorList={inp.errorList}
-                    type={inp.type}
-                    onChange={inp.onChange}
-                />
+                {type === 'login' ? loginInputs.map((inp, i) => {
+                    if (inp.type === 'link') {
+                        return <div key={i} className={styles.inputsContainer}>
+                            <Button
+                                className={`${styles.inputsContainer}`}
+                                type={inp.type}
+                                disabled={inp.disabled}
+                                sizeName={inp.sizeName}
+                                text={inp.text}
+                            />
+                        </div>
+                    }
+                    return <Input
+                        className={`${styles.inputsContainer}`}
+                        v-if={inp.type !== 'link'}
+                        sizeName={inp.sizeName}
+                        key={i}
+                        label={inp.label}
+                        placeholder={inp.placeholder}
+                        errorList={inp.errorList}
+                        type={inp.type}
+                        onChange={inp.onChange}
+                    />
+                }) :
+                    authInputs.map((inp, i) => {
+                        return <Input
+                            className={`${styles.inputsContainer}`}
+                            v-if={inp.type !== 'link'}
+                            sizeName={inp.sizeName}
+                            key={i}
+                            label={inp.label}
+                            placeholder={inp.placeholder}
+                            errorList={inp.errorList}
+                            type={inp.type}
+                            onChange={inp.onChange}
+                        />
+                    })
+                }
                 <div className={styles.saveButtonContainer}>
                     <Button
                         v-for={(btn, i) in buttons}
-                        key={i}
+                        key={'btn'+i}
                         type={btn.type}
                         disabled={btn.disabled}
                         sizeName={btn.sizeName}
@@ -162,7 +194,7 @@ class Authentication extends Component {
                         onButtonClick={btn.onButtonClick}
                     />
                 </div>
-                <div v-for={(btn, i) in authButtons} key={i} v-if={type === 'login'} className={styles.authButtonContainer}>
+                <div v-for={(btn, i) in authButtons} key={'loginBtn'+i} v-if={type === 'login'} className={styles.authButtonContainer}>
                     <div className={styles.authButton}>
                         {btn.text}
                     </div>

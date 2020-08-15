@@ -1,46 +1,12 @@
-.jobPost {
+.jobDetail {
   position: relative;
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-start;
   width: 100%;
-
-  & .multiplePost {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    width: 100%;
-    border-bottom: 1px solid #eee;
-    padding: 16px 0;
-
-    & .postButton {
-      top: 36px;
-    }
-  }
-
-  & .singlePost {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    width: 100%;
-  }
-
-  & .itemImage {
-    width: 84px;
-    height: 84px;
-    padding: 4px;
-    border-radius: 12px;
-    border: 1px solid #eee;
-    margin-right: 20px;
-    grid-column: span 1;
-    grid-row: span 5;
-    display: flex;
-    align-self: center;
-    align-items: center;
-    justify-content: center;
-    & img {
-      width: 100%;
-      align-self: center;
-    }
-  }
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  padding: 20px 0 32px;
 
   & .postHeaderWrapper {
     display: flex;
@@ -70,25 +36,14 @@
     }
   }
   & .postCompany {
-    font-size: 15px;
+    display: flex;
+    font-size: 13px;
     margin: 4px 0 0;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
     letter-spacing: -0.28px;
     color: #2c567e;
-    width: calc(100% - 124px);
-    grid-column: span 2;
-  }
-  & .postLocation {
-    display: flex;
-    margin: 4px 0 0;
-    font-size: 13px;
-    font-weight: lighter;
-    font-stretch: normal;
-    font-style: normal;
-    letter-spacing: -0.24px;
-    color: #949494;
     width: calc(100% - 124px);
     grid-column: span 2;
 
@@ -101,27 +56,35 @@
   & .postButton {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    align-self: center;
+    align-self: start;
     justify-content: center;
+    margin-top: 20px;
     width: fit-content;
     height: fit-content;
     grid-column: span 1;
-    grid-row: span 4;
+    grid-row: span 10;
     margin-left: auto;
   }
+  & .postDescription {
+    font-family: "Noto Sans Bold";
+    margin: 35px 0 5px;
+    font-size: 13px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.24px;
+    color: #484848;
+    width: calc(100% - 124px);
+    grid-column: span 2;
+  }
   & .postNote {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
     margin: 12px 0 0;
     font-size: 13px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
     letter-spacing: -0.24px;
-    color: #949494;
+    color: #484848;
     width: calc(100% - 124px);
     grid-column: span 2;
   }

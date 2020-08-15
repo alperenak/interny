@@ -41,6 +41,7 @@ $sizes: ("large":$large, "default":$default, "small":$small, "tiny":$tiny);
   justify-content: center;
   cursor: pointer;
   margin: 6px;
+  font-family: "Noto Sans";
   @each $typeName,$type in $types {
     &.#{$typeName}
     {

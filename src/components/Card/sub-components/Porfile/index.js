@@ -32,7 +32,7 @@ class Profile extends Component {
                     </div>
                     <div className={styles.stroke}/>
                     <div className={styles.propertyContainer}>
-                        <div className={styles.property}>{profileObject.jobType}</div>
+                        <div className={styles.property}>{profileObject.position}</div>
                         <div className={styles.propertyTitle}>Job Type</div>
                     </div>
                     <div className={styles.stroke}/>
