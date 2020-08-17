@@ -15,6 +15,8 @@ import mailIcon from '../../icons/email-closed-outlined-back-envelope-interface-
 import bellIcon from '../../icons/notification-bell-outline-interface-symbol.svg';
 import coverLetterIcon from '../../icons/file-rounded-outlined-symbol.svg';
 import CVIcon from '../../icons/file-rounded-empty-sheet.svg';
+import logOutIcon from '../../icons/logout.svg';
+import {eraseCookie} from "../../utils/cookie";
 
 class TopBar extends Component {
     constructor(props) {
@@ -48,26 +50,41 @@ class TopBar extends Component {
             {
                 key: 'myAccount',
                 value: 'My Account',
-                selected: false,
+                selected: window.location.pathname === '/myAccount',
                 icon: userIcon,
-                to: '/',
-                onChange: (e) => this.handleClickOutside(e)
+                to: '/myAccount'
             },
             {
                 key: 'coverLetter',
                 value: 'Cover Letter',
-                selected: false,
+                selected: window.location.pathname === '/coverletters',
                 icon: coverLetterIcon,
-                to: '/',
-                onChange: (e) => this.handleClickOutside(e)
+                to: '/coverletters'
             },
             {
-                key: 'CV',
-                value: 'CV',
-                selected: window.location.pathname === '/CV',
+                key: 'CVs',
+                value: 'CVs',
+                selected: window.location.pathname === '/CVs',
                 icon: CVIcon,
-                to: '/CV',
-                onChange: (e) => this.handleClickOutside(e)
+                to: '/CVs'
+            },
+            {
+                key: 'myJobs',
+                value: 'My Jobs',
+                selected: window.location.pathname === '/myJobs',
+                icon: CVIcon,
+                to: '/myJobs'
+            },
+            {
+                key: 'Log Out',
+                value: 'Log Out',
+                selected: false,
+                icon: logOutIcon,
+                to: '/',
+                onChange: () => {
+                    eraseCookie(['token', 'user', 'user_id']);
+                    window.location.pathname = '/';
+                }
             },
         ],
         icons: {
@@ -136,13 +153,13 @@ class TopBar extends Component {
                 <div className={styles.links}>
                     <Fragment v-if={!isAuthorized}>
                         <div><Link to={'/'}>Home</Link></div>
-                        <div><Link to={'/Posts'}>Browse Internships</Link></div>
+                        <div><Link to={'/posts'}>Browse Internships</Link></div>
                         {this.renderPackagesLink()}
-                        <Button to="/logIn" type={'ghost'} sizeName={'small'} text={'Login'} />
-                        <Button to="/signUp" type={'secondary'} sizeName={'small'} text={'Sign Up'} />
+                        <Button to="/login" type={'ghost'} sizeName={'small'} text={'Login'} />
+                        <Button to="/signup" type={'secondary'} sizeName={'small'} text={'Sign Up'} />
                     </Fragment>
                     <Fragment v-else>
-                        <div>Welcome, <span className={styles.userName}>{user.name} {user.surname}</span></div>
+                        <div style={{cursor: 'default'}}>Welcome, <span className={styles.userName}>{user.name} {user.surname}</span></div>
                         {this.renderIcon('mail')}
                         {this.renderIcon('bell')}
                         {this.renderIcon('user')}

@@ -1,52 +1,45 @@
 import React, {Component} from 'react';
-
-/*** Components ***/
 import Card from "../../components/Card";
-import SearchSection from "../../components/SearchSection";
 
 /*** Utils ***/
 import store from '../../store';
-import {getCookie} from "../../utils/cookie";
 
 /*** Styles ***/
-import styles from './cv.scss';
+import styles from './coverletters.scss';
+import SearchSection from "../../components/SearchSection";
+import {getCookie} from "../../utils/cookie";
 
-class CV extends Component {
+class CoverLetters extends Component {
     state = {
-        sections: []
+      coverLetters: []
     };
 
     async componentDidMount() {
         let id = getCookie('user_id');
-        let res = await store.getCVs(id);
-        let sections = res.map(sects => Object.keys(sects).map(sect => {
+        let res = await store.getCoverLetters(id);
+        let coverLetters = res.map(cl => {
             return {
-                title: sect.replace(/\w+/g,
-                    function(w){return w[0].toUpperCase() + w.slice(1).toLowerCase();}),
-                items: [
-                    {
-                        title: sects[sect],
-                        location: 'Istanbul - Turkey',
-                        date: '',
-                    }
-                ]
-            }
-        }));
-        this.setState({ sections: [...sections] });
+                "title": cl.title,
+                "text": cl.text
+            };
+        });
+
+        this.setState({ coverLetters });
     }
 
     render() {
+        let {coverLetters} = this.state;
         let {user} = this.props;
-        let {sections} = this.state;
         return (
-            <div className={styles.CV}>
+            <div className={styles.CoverLetters}>
                 <SearchSection />
                 <div className={styles.cards}>
-                    <div className={styles.CVs}>
+                    <div className={styles.CoverLettersWrapper}>
                         <Card
-                            type={'section'}
-                            v-for={(section, i) in sections}
-                            sections={section}
+                            type={'coverLetter'}
+                            v-for={(coverLetter, i) in coverLetters}
+                            header={{text: coverLetter.title, position: 'center'}}
+                            coverLetter={coverLetter}
                             key={i}
                         />
                     </div>
@@ -68,4 +61,4 @@ class CV extends Component {
     }
 }
 
-export default CV;
+export default CoverLetters;

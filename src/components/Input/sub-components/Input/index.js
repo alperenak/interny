@@ -16,13 +16,16 @@ class PlainInput extends Component {
     };
 
     render() {
-        let {name, label, type, disabled, icon, defaultValue, placeholder, size, errorList, className} = this.props;
+        let {name, label, labelDescription, type, disabled, icon, defaultValue, placeholder, size, errorList, className} = this.props;
         let {value} = this.state;
         return (
             <div className={`${styles.inputWrapper} ${disabled ? styles.disabled : ''} ${className}`}>
                 <label v-if={label} htmlFor={name}>
                     {label}
                 </label>
+                <div v-if={labelDescription} className={styles.labelDescription}>
+                    {labelDescription}
+                </div>
                 <textarea
                     v-if={type === 'textarea'}
                     className={`
@@ -70,6 +73,7 @@ export default PlainInput;
 PlainInput.propTypes = {
   disabled: PropTypes.bool,
   label: PropTypes.string,
+  labelDescription: PropTypes.string,
   name: PropTypes.string,
   icon: PropTypes.object,
   onChange: PropTypes.any,

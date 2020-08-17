@@ -46,15 +46,24 @@ class UserHome extends Component {
                     type:'primary',
                     text:'Apply Now',
                     sizeName:'small',
-                    to: '/SignUp',
-                    width: '85px'
+                    width:'85px',
+                    to:`/jobApplication/${pst.id}`
                 },
                 {
                     type:'ghost',
-                    text:'Save Ad',
+                    text:'Save Post',
                     sizeName:'small',
-                    to: '/SignUp',
-                    width: '85px'
+                    width:'85px',
+                    onButtonClick: async () => {
+                        let res = await store.savePost(getCookie('user_id'), pst.id)
+                        if (res.status && res.status === 203) {
+                            let res = await store.getPosts(this.state.offset, this.state.limit);
+                            let posts = res.map(pst => {
+                                return this.fillPosts(pst);
+                            });
+                            this.setState({ posts });
+                        }
+                    }
                 }
             ],
             description: pst.description,
@@ -76,12 +85,12 @@ class UserHome extends Component {
         return (
             <div className={styles.UserHome}>
                 <SearchSection />
-                <Link v-for={(pst, i) in posts} key={i} to={`/PostDetail/${pst[0].id}`}>
-                    <Card
-                        type={'jobPost'}
-                        posts={pst}
-                    />
-                </Link>
+                <Card
+                    v-for={(pst, i) in posts}
+                    key={i}
+                    type={'jobPost'}
+                    posts={pst}
+                />
                 <Button
                     type={'ghost'}
                     text={'Load More'}

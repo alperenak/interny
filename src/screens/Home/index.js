@@ -50,7 +50,6 @@ class Home extends Component {
         let {items} = this.state;
         return (
             <div className={styles.Home}>
-                <SearchSection page={'home'} />
                 <div className={styles.popularSearchSection}>
                     <div className={styles.popularSearchTitle}>Popular Searches</div>
                     <ul className={styles.cities}>
@@ -86,7 +85,7 @@ class Home extends Component {
                         />
                     </div>
                     <div className={styles.discoverBtn}>
-                        <Button to={'/Posts'} type={'ghost'} text={'Discover'} sizeName={'large'} />
+                        <Button to={'/posts'} type={'ghost'} text={'Discover'} sizeName={'large'} />
                     </div>
                 </div>
                 <div className={styles.companiesSection}>
@@ -102,7 +101,7 @@ class Home extends Component {
                 <div className={styles.browseJobsSection}>
                     <div className={styles.jobsTitle}>
                         <div>Use thousands of jobs from anywhere here</div>
-                        <Link to={'signUp'} className={styles.prepareCv}>Prepare your CV -></Link>
+                        <Link to={'signup'} className={styles.prepareCv}>Prepare your CVs -></Link>
                     </div>
                     <img src={workingStudentImage} alt={'image'} />
                 </div>
@@ -141,7 +140,7 @@ class Home extends Component {
                 </div>
                 <div id={'packages-section'} className={styles.packagesSection}>
                     <div className={styles.packagesTitle}>See Our Internship Packages</div>
-                    <div className={styles.packagesSubTitle}>Click to see our all packages</div>
+                    <div className={styles.packagesSubTitle}>Click to detail of packages</div>
                     <div className={styles.packagesCards}>
                         <Card>
                             <div className={styles.packageCard}>

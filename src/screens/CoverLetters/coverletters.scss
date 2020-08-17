@@ -1,9 +1,8 @@
-.CV {
+.CoverLetters {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 0 80px;
 
   & .cards {
     display: flex;
@@ -11,7 +10,7 @@
     align-items: start;
     width: 100%;
 
-    & .CVs {
+    & .CoverLettersWrapper {
       width: 100%;
     }
   }

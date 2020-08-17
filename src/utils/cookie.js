@@ -25,12 +25,12 @@ export function getCookie(name) {
   return null;
 }
 
-export function eraseCookie(name, {domain = null, path = "/"}) {
-  if (domain) {
-    domain = `domain=${domain};path=${path}`
+export function eraseCookie(name) {
+  if(Array.isArray(name)) {
+    name.map(n => {
+      document.cookie = n + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    });
+  } else {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   }
-  else {
-    domain = `path=${path}`
-  }
-  document.cookie = name + '=; Max-Age=-99999999;' + domain;
 }

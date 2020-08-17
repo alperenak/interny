@@ -19,21 +19,16 @@ class CoverLetter extends Component {
                 sizeName: 'default',
                 text: 'SAVE',
                 type: 'secondary'
-            },
-            {
-                disabled: false,
-                sizeName: 'default',
-                text: 'CANCEL',
-                type: 'ghost'
-            },
+            }
         ]
     };
 
     render() {
+        let {coverLetter} = this.props;
         let {buttons} = this.state;
         return (
             <div className={styles.coverLetterWrapper}>
-                <Input type={'textarea'}  />
+                <Input type={'textarea'} defaultValue={coverLetter.text}  />
                 <div className={styles.buttonContainer}>
                     <Button
                         v-for={(btn, i) in buttons}

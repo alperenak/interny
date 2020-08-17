@@ -33,22 +33,24 @@ class SearchSection extends Component {
                     <div className={styles.keyword}>
                         <Input
                             type={'text'}
-                            placeholder={'Enter position, keyword or company'}
+                            placeholder={'Software Developer'}
                             icon={{src: searchIcon, position: 'right'}}
+                            labelDescription={'Enter position name, keyword or company name'}
                             label={'Keyword'} />
                     </div>
                     <div className={styles.location}>
                         <Input
                             type={'text'}
-                            placeholder={'Enter location'}
+                            placeholder={'Istanbul, Turkey'}
                             icon={{src: locationIcon, position: 'right'}}
+                            labelDescription={'Enter city name, country or state name'}
                             label={'Location'} />
                     </div>
                     <div className={styles.findJob}>
                         <Button type={'secondary'} text={'Find Job'} sizeName={'large'} />
                     </div>
                 </div>
-                <div v-if={this.props.page === 'home'} className={styles.prepareCv}><Link to={'SignUp'} className={styles.underlined}>Prepare your CV</Link> - Easily apply to thousands of jobs from anywhere</div>
+                <div v-if={this.props.page === 'home'} className={styles.prepareCv}><Link to={'SignUp'} className={styles.underlined}>Prepare your CVs</Link> - Easily apply to thousands of jobs from anywhere</div>
                 <Fragment v-else>
                     <ul className={styles.cities}>
                         {this.state.cities.map((city, i) => {

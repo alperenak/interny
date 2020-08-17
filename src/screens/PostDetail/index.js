@@ -10,6 +10,7 @@ import store from "../../store";
 /*** Styles ***/
 import styles from "./postDetail.scss";
 import SearchSection from "../../components/SearchSection";
+import {getCookie} from "../../utils/cookie";
 
 
 const PostDetail = () => {
@@ -31,8 +32,8 @@ const PostDetail = () => {
                             type:'primary',
                             text:'Apply Now',
                             sizeName:'small',
-                            to: '/SignUp',
-                            width: '85px'
+                            width:'85px',
+                            to: `/jobapplication/${pst.id}`
                         }
                     ],
                     description: pst.description,

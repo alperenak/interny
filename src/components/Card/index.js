@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from "prop-types";
 
 /*** Components ***/
+import List from "./sub-components/List";
 import Section from "./sub-components/Section";
 import JobPost from "./sub-components/JobPost";
 import Profile from "./sub-components/Porfile";
@@ -20,6 +21,7 @@ class Card extends Component {
         return (
             <div className={`${styles.Card} ${styles[type]}`}>
                 <div v-if={header} className={`${styles.cardHeader} ${styles[header.position]}`}>{header.text}</div>
+                <List v-if={type==="list"} {...this.props}/>
                 <Section v-if={type==="section"} {...this.props}/>
                 <JobPost v-if={type==="jobPost"} {...this.props}/>
                 <Profile v-if={type==="profile"} {...this.props}/>

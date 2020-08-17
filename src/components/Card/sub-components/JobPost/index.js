@@ -8,6 +8,7 @@ import styles from "./jobPost.scss";
 
 /*** Icons ***/
 import locationIcon from "../../../../icons/location.svg";
+import {Link} from "react-router-dom";
 
 class JobPost extends Component {
     renderPostButtons(buttons) {
@@ -39,21 +40,21 @@ class JobPost extends Component {
         return (
             <Fragment>
                 <div className={`${multiple ? styles.multiplePost : styles.singlePost}`}>
-                    <div v-if={pst.image} className={styles.itemImage}>
+                    <Link to={`/postdetail/${pst.id}`} v-if={pst.image} className={styles.itemImage}>
                         <img src={pst.image} alt={'image'}/>
-                    </div>
-                    <div className={styles.postHeaderWrapper}>
+                    </Link>
+                    <Link to={`/postdetail/${pst.id}`} className={styles.postHeaderWrapper}>
                         <div className={styles.postHeader}>{pst.header}</div>
                         <div className={styles.postDate}>{pst.date}</div>
-                    </div>
-                    <div className={styles.postCompany}>{pst.company}</div>
+                    </Link>
+                    <Link to={`/postdetail/${pst.id}`} className={styles.postCompany}>{pst.company}</Link>
                     {pst.buttons && this.renderPostButtons(pst.buttons)}
-                    <div v-if={pst.location} className={styles.postLocation}>
+                    <Link to={`/postdetail/${pst.id}`} v-if={pst.location} className={styles.postLocation}>
                         <img src={locationIcon} alt={'location'}/>
                         {pst.location}
-                    </div>
-                    <div className={styles.postNote}>{pst.description}</div>
-                    <div className={styles.postNote}>{pst.note}</div>
+                    </Link>
+                    <Link to={`/postdetail/${pst.id}`} className={styles.postNote}>{pst.description}</Link>
+                    <Link to={`/postdetail/${pst.id}`} className={styles.postNote}>{pst.note}</Link>
                 </div>
             </Fragment>
         );

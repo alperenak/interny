@@ -24,6 +24,7 @@ export default Input;
 Input.propTypes = {
     disabled: PropTypes.bool,
     label: PropTypes.string,
+    labelDescription: PropTypes.string,
     name: PropTypes.string,
     onChange: PropTypes.any,
     type: PropTypes.string,

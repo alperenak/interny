@@ -15,11 +15,21 @@
   }
 
   & label {
+    font-family: "Noto Sans Bold";
     font-size: 12px;
     font-weight: 700;
     color: #2b4970;
     letter-spacing: 0.5px;
     padding: 0 1px;
+  }
+
+  & .labelDescription {
+    font-family: "Noto Sans";
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 0 1px;
+    margin: 4px 0 0;
   }
 
   & .inputContainer {
@@ -51,6 +61,7 @@
     &.textarea {
       min-width: 234px;
       min-height: 234px;
+      resize: none;
       color: #2b4970;
       font-size: 12px;
       &::placeholder {

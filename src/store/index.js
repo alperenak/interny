@@ -44,6 +44,12 @@ let store = {
         let baseUrl = config.baseUrl;
         let path = `/intern/${id}`;
         let tokenCookieName = "token";
+        return await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+    },
+    async getLandingPosts(offset, limit) {
+        let baseUrl = config.baseUrl;
+        let path = `/jobs?offset=${offset}&limit=${limit}`;
+        let tokenCookieName = "token";
         let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
 
         return res.data;
@@ -64,6 +70,51 @@ let store = {
 
         return res.data;
     },
+    async getSavedPost(id) {
+        let baseUrl = config.baseUrl;
+        let path = `/intern/${id}/save`;
+        let tokenCookieName = "token";
+        let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+
+        return res.data;
+    },
+    async savePost(id, job_id) {
+        let baseUrl = config.baseUrl;
+        let tokenCookieName = "token";
+        let path = `/intern/${id}/save`;
+        let payload = {
+            "id": job_id
+        };
+        return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+    },
+    async removePost(id, job_id) {
+        let baseUrl = config.baseUrl;
+        let tokenCookieName = "token";
+        let path = `/intern/${id}/save`;
+        let payload = {
+            "id": job_id
+        };
+        return await http.makeDeleteRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+    },
+    async getAppliedPost(id) {
+        let baseUrl = config.baseUrl;
+        let path = `/intern/${id}/apply`;
+        let tokenCookieName = "token";
+        let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+
+        return res.data;
+    },
+    async applyPost(id, job_id, CV_id, CL) {
+        let baseUrl = config.baseUrl;
+        let tokenCookieName = "token";
+        let path = `/intern/${id}/apply`;
+        let payload = {
+            "id": job_id,
+            "cv_id": CV_id,
+            "coverletter": CL,
+        };
+        return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+    },
     async getCV(id) {
         let baseUrl = config.baseUrl;
         let path = `/cv/${id}`;
@@ -75,6 +126,14 @@ let store = {
     async getCVs(id) {
         let baseUrl = config.baseUrl;
         let path = `/intern/${id}/cv`;
+        let tokenCookieName = "token";
+        let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+
+        return res.data;
+    },
+    async getCoverLetters(id) {
+        let baseUrl = config.baseUrl;
+        let path = `/intern/${id}/coverletter`;
         let tokenCookieName = "token";
         let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
 

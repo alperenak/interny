@@ -31,10 +31,12 @@ class Button extends Component {
         let {disabled, to, onButtonClick, width, sizeName, type} = this.props;
         return (
             <Fragment>
-                <Link style={{width: width}} v-if={to} to={to} className={`${styles.btn} ${styles[sizeName]} ${styles[type]} ${(disabled?styles.disabled:'')}`}>
+                <Link style={{width: width}} v-if={to} to={to}
+                    className={`${styles.btn} ${styles[sizeName]} ${styles[type]} ${(disabled?styles.disabled:'')}`}>
                     {this.renderContent()}
                 </Link>
-                <button style={{width: width}} v-if={!to} onClick={onButtonClick} className={`${styles.btn} ${styles[sizeName]} ${styles[type]} ${(disabled?styles.disabled:'')}`}>
+                <button style={{width: width}} v-if={!to} onClick={onButtonClick}
+                    className={`${styles.btn} ${styles[sizeName]} ${styles[type]} ${(disabled?styles.disabled:'')}`}>
                     {this.renderContent()}
                 </button>
             </Fragment>

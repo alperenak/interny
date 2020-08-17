@@ -3,17 +3,27 @@ import PropTypes from 'prop-types';
 import {Link} from "react-router-dom";
 
 /*** Styles ***/
-import styles from "./dropdown.scss";
+import styles from "./list.scss";
 
-class DropDown extends Component {
+class List extends Component {
     state = {
         externalData: this.props.externalData
     };
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.externalData.length <= 0 && this.props.externalData.length > 0) {
+            this.setState({ externalData: this.props.externalData })
+        } else if (this.state.externalData > 0) {
+            if (this.state.externalData[0].key !== this.props.externalData[0].key) {
+                this.setState({ externalData: this.props.externalData })
+            }
+        }
+    }
+
     onClickListItem = (key) => {
         let { value } = this.props;
 
-        let tempSource = this.state.externalData.map(el => {el.selected = (key === el.key); return el;});
+        let tempSource = this.props.externalData.map(el => {el.selected = (key === el.key); return el;});
         let tempSelectedItem = tempSource.find(el => el.selected);
         this.setState({externalData: [...tempSource], selectedValue: tempSelectedItem});
 
@@ -24,9 +34,9 @@ class DropDown extends Component {
         let {externalData, title} = this.props;
         return (
             <>
-                <div v-if={title} className={styles.dropDownHeader}>{title}</div>
+                <div v-if={title} className={styles.listHeader}>{title}</div>
                 <ul
-                    className={styles.dropDownWrapper}
+                    className={styles.listWrapper}
                     onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
@@ -51,13 +61,13 @@ class DropDown extends Component {
     }
 }
 
-export default DropDown;
+export default List;
 
-DropDown.propTypes = {
+List.propTypes = {
   externalData: PropTypes.array,
   title: PropTypes.string
 };
 
-DropDown.defaultProps = {
+List.defaultProps = {
   externalData: [],
 };

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {getCookie} from "./cookie";
+import {eraseCookie, getCookie} from "./cookie";
 
 export default {
 
@@ -73,7 +73,7 @@ export default {
 		});
 	},
 
-	makeDeleteRequest(url, baseUrl, tokenCookieName, errorMessageBuilder) {
+	makeDeleteRequest(url, baseUrl, tokenCookieName, postBody, errorMessageBuilder) {
 		let token = "Bearer " + getCookie(tokenCookieName);
 		const headers = {
 			"Content-Type": "application/json",
@@ -86,11 +86,11 @@ export default {
 			timeout: 60000
 		});
 
-		return instance.delete(url).catch(error => {
+		return instance.delete(url, {data: JSON.stringify(postBody)}).catch(error => {
 			return this.getErrorResponse(
 				error,
 				errorMessageBuilder,
-				() => this.makeDeleteRequest(url, baseUrl, tokenCookieName, errorMessageBuilder),
+				() => this.makeDeleteRequest(url, baseUrl, tokenCookieName, postBody, errorMessageBuilder),
 				tokenCookieName
 			);
 		});
@@ -134,18 +134,9 @@ export default {
 		let response = {errorData: {message: error.message}};
 
 		if (error.response) {
-			if (error.response.status == 401) {
-				let event = new CustomEvent("GlobalEvent__RefreshToken", {detail:{tokenCookieName: tokenCookieName.split(":")[1]}}); // (2)
-				window.dispatchEvent(event);
-				return new Promise(function (resolve, reject) {
-					window.addEventListener("GlobalEvent__TokenRefreshed", (e) => {
-						retryFunction().then((response) => {
-							resolve(response);
-						}).catch((error) => {
-							reject(error);
-						});
-					}, {once: true});
-				});
+			if (error.response.status === 401) {
+				eraseCookie(['token', 'user', 'user_id']);
+				window.location.pathname = '/';
 			}
 			response = error.response;
 			response.errorData = error.response.data;

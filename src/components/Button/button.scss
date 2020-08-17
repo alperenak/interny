@@ -34,6 +34,7 @@ $types: ("primary":$primary,"secondary":$secondary,"ghost":$ghost,"link":$link);
 $sizes: ("large":$large, "default":$default, "small":$small, "tiny":$tiny);
 .btn{
   border-radius: 4px;
+  box-sizing: unset;
   border:none;
   font-weight: normal;
   display: flex;
