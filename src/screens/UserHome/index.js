@@ -44,18 +44,23 @@ class UserHome extends Component {
             buttons:[
                 {
                     type:'primary',
-                    text:'Apply Now',
+                    text:pst.isApplied?'Withdraw':'Apply Now',
                     sizeName:'small',
                     width:'85px',
                     to:`/jobApplication/${pst.id}`
                 },
                 {
                     type:'ghost',
-                    text:'Save Post',
+                    text:pst.isSaved?'Remove Post':'Save Post',
                     sizeName:'small',
                     width:'85px',
                     onButtonClick: async () => {
-                        let res = await store.savePost(getCookie('user_id'), pst.id)
+                        let res = {};
+                        if (pst.isSaved) {
+                            res = await store.removePost(getCookie('user_id'), pst.id);
+                        } else {
+                            res = await store.savePost(getCookie('user_id'), pst.id);
+                        }
                         if (res.status && res.status === 203) {
                             let res = await store.getPosts(this.state.offset, this.state.limit);
                             let posts = res.map(pst => {
