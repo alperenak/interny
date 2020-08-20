@@ -73,13 +73,13 @@
     }
   }
 
-  & .cities {
+  & .searches {
     width: 75%;
     margin-top: 32px;
     height: fit-content;
     text-align: center;
 
-    & .city {
+    & .searchedWord {
       font-family: "Noto Sans";
       cursor: pointer;
       display: inline-block;

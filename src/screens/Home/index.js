@@ -54,7 +54,7 @@ class Home extends Component {
                     <div className={styles.popularSearchTitle}>Popular Searches</div>
                     <ul className={styles.cities}>
                         {this.state.cities.map((city, i) => {
-                            return <li key={'city'+i} className={styles.city}>{city}</li>
+                            return <Link to={`/search/null/${city}`} key={'city'+i} className={styles.city}>{city}</Link>
                         })}
                     </ul>
                 </div>
@@ -85,7 +85,7 @@ class Home extends Component {
                         />
                     </div>
                     <div className={styles.discoverBtn}>
-                        <Button to={'/posts'} type={'ghost'} text={'Discover'} sizeName={'large'} />
+                        <Button to={'/search/null/null'} type={'ghost'} text={'Discover'} sizeName={'large'} />
                     </div>
                 </div>
                 <div className={styles.companiesSection}>

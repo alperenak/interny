@@ -103,7 +103,7 @@ class TopBar extends Component {
     }
 
     handleClickOutside = (event) => {
-        if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
+        if (this.wrapperRef.current && !this.wrapperRef.current.contains(event.target)) {
             this.setState({
                 mailDropDown: false,
                 bellDropDown: false,

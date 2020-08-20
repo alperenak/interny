@@ -1,0 +1,22 @@
+.LandingPageSearch {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0 40px;
+
+  & .noResult {
+    font-family: "Noto Sans Bold";
+    font-size: 20px;
+    margin: 50px;
+    text-align: center;
+    color: #2b4970;
+
+    & .description {
+      font-family: "Noto Sans";
+      font-size: 14px;
+      margin: 12px;
+      color: #2b4970;
+    }
+  }
+}

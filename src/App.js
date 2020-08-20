@@ -1,8 +1,9 @@
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 /*** Components ***/
 import TopBar from "./components/TopBar";
+import SearchSection from "./components/SearchSection";
 
 /*** Screens ***/
 import Home from "./screens/Home";
@@ -12,6 +13,9 @@ import UserHome from "./screens/UserHome";
 import CVs from "./screens/CVs";
 import CoverLetters from "./screens/CoverLetters";
 import JobApplication from "./screens/JobApplication";
+import LandingPageSearch from "./screens/LandingPageSearch";
+import MyJobs from "./screens/MyJobs";
+import PostDetail from "./screens/PostDetail";
 
 /*** Styles ***/
 import styles from './app.scss';
@@ -19,10 +23,7 @@ import Login from "./screens/Login";
 
 /*** Utils ***/
 import {eraseCookie, getCookie} from "./utils/cookie";
-import PostDetail from "./screens/PostDetail";
 import store from "./store";
-import SearchSection from "./components/SearchSection";
-import MyJobs from "./screens/MyJobs";
 
 class App extends React.Component {
     state = {
@@ -58,6 +59,10 @@ class App extends React.Component {
                             <SearchSection v-if={!isAuthorized} page={'home'} />
                             <Home />
                         </Route>
+                        <Route
+                            path="/search/:keyword/:location"
+                            render={props => <LandingPageSearch {...props} />}
+                        />
                         <Route path="/signup">
                             <SignUp />
                         </Route>
@@ -67,9 +72,10 @@ class App extends React.Component {
                         <Route path="/posts">
                             <Posts />
                         </Route>
-                        <Route path="/postdetail/:id">
-                            <PostDetail />
-                        </Route>
+                        <Route
+                            path="/postdetail/:id"
+                            render={props => <PostDetail {...props} />}
+                        />
                         <Route path="/CVs">
                             <CVs user={user}/>
                         </Route>

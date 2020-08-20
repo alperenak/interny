@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
+
+/*** Components ***/
+import Card from "../../components/Card";
+import SearchSection from "../../components/SearchSection";
 
 /*** Utils ***/
 import {getCookie} from "../../utils/cookie";
@@ -8,9 +11,7 @@ import store from '../../store';
 /*** Styles ***/
 import styles from './userhome.scss';
 
-/*** Icons ***/import siemens from "../../assets/siemens.png";
-import Card from "../../components/Card";
-import SearchSection from "../../components/SearchSection";
+/*** Icons ***/
 import Button from "../../components/Button";
 
 class UserHome extends Component {
@@ -25,7 +26,7 @@ class UserHome extends Component {
         let userType = getCookie('user');
         let userId = getCookie('userId');
         if (userType === 'intern') {
-            let res = await store.getPosts(offset, limit);
+            let res = await store.getPosts('','', offset, limit);
             let posts = res.map(pst => {
                 return this.fillPosts(pst);
             });
@@ -62,7 +63,7 @@ class UserHome extends Component {
                             res = await store.savePost(getCookie('user_id'), pst.id);
                         }
                         if (res.status && res.status === 203) {
-                            let res = await store.getPosts(this.state.offset, this.state.limit);
+                            let res = await store.getPosts('', '', this.state.offset, this.state.limit);
                             let posts = res.map(pst => {
                                 return this.fillPosts(pst);
                             });
@@ -78,7 +79,7 @@ class UserHome extends Component {
 
     onLoadMore = async () => {
         let {offset, limit} = this.state;
-        let res = await store.getPosts(offset + limit, limit);
+        let res = await store.getPosts('', '', offset + limit, limit);
         let posts = res.map(pst => {
             return this.fillPosts(pst);
         });

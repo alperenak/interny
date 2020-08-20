@@ -46,17 +46,17 @@ let store = {
         let tokenCookieName = "token";
         return await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
     },
-    async getLandingPosts(offset, limit) {
+    async getLandingPosts(keyword, location, offset, limit) {
         let baseUrl = config.baseUrl;
-        let path = `/jobs?offset=${offset}&limit=${limit}`;
+        let path = `/jobs?keyword=${keyword}&location=${location}&offset=${offset}&limit=${limit}`;
         let tokenCookieName = "token";
         let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
 
         return res.data;
     },
-    async getPosts(offset, limit) {
+    async getPosts(keyword, location, offset, limit) {
         let baseUrl = config.baseUrl;
-        let path = `/job?offset=${offset}&limit=${limit}`;
+        let path = `/job?keyword=${keyword}&location=${location}&offset=${offset}&limit=${limit}`;
         let tokenCookieName = "token";
         let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
 

@@ -16,7 +16,8 @@ class PlainInput extends Component {
     };
 
     render() {
-        let {name, label, labelDescription, type, disabled, icon, defaultValue, placeholder, size, errorList, className} = this.props;
+        let {name, label, labelDescription, type, disabled, icon, rValue,
+            defaultValue, placeholder, size, errorList, className} = this.props;
         let {value} = this.state;
         return (
             <div className={`${styles.inputWrapper} ${disabled ? styles.disabled : ''} ${className}`}>
@@ -39,7 +40,7 @@ class PlainInput extends Component {
                     type={type}
                     disabled={disabled}
                     onChange={(e) => this.onChange(e)}
-                    defaultValue={value ? value : defaultValue}
+                    value={value ? value : defaultValue}
                     placeholder={placeholder}
                 />
                 <div
@@ -58,7 +59,7 @@ class PlainInput extends Component {
                         type={type}
                         disabled={disabled}
                         onChange={(e) => this.onChange(e)}
-                        defaultValue={value ? value : defaultValue}
+                        value={value ? value : defaultValue}
                         placeholder={placeholder}
                     />
                     <img v-if={icon && icon.position === 'right'} src={icon.src} alt={'icon'} className={`${styles.icon} ${styles[icon.position]}`} />
@@ -78,6 +79,7 @@ PlainInput.propTypes = {
   icon: PropTypes.object,
   onChange: PropTypes.any,
   type: PropTypes.string,
+  rValue: PropTypes.string,
   defaultValue: PropTypes.string,
   placeholder: PropTypes.string,
   size: PropTypes.string,

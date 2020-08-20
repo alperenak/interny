@@ -14,17 +14,37 @@ import locationIcon from '../../icons/colorfulLocation.svg';
 
 class SearchSection extends Component {
     state = {
-        cities: [
-            'Salary',
-            'Job Types',
-            'Skills',
-            'Education Level',
-            'Location',
-            'Company',
-            'Experience Level',
+        keyword: '',
+        location: '',
+        searches: [
+            'Manchester',
+            'London',
+            'Oxford',
+            'Newcastle',
+            'Birmingham',
+            'Norwich',
+            'Bath',
+            'Bristol',
         ],
     };
+
+    componentDidMount() {
+        let {defaultKeyword, defaultLocation} = this.props;
+        this.setState({keyword: defaultKeyword, location: defaultLocation});
+    }
+
+    componentDidUpdate(prevProps) {
+        let {defaultKeyword, defaultLocation} = this.props;
+        if (!Object.is(prevProps.defaultKeyword, defaultKeyword)) {
+            this.setState({ keyword: defaultKeyword });
+        }
+        if (!Object.is(prevProps.defaultLocation, defaultLocation)) {
+            this.setState({ location: defaultLocation });
+        }
+    }
+
     render() {
+        let {keyword, location} = this.state;
         return (
             <div className={`${styles.searchSection}`}>
                 <div v-if={this.props.page === 'home'} className={styles.slogan}>The Easiest Way to Get Your New Internship</div>
@@ -36,6 +56,8 @@ class SearchSection extends Component {
                             placeholder={'Software Developer'}
                             icon={{src: searchIcon, position: 'right'}}
                             labelDescription={'Enter position name, keyword or company name'}
+                            defaultValue={keyword !== 'null' ? keyword : ''}
+                            onChange={(value) => this.setState({keyword: value})}
                             label={'Keyword'} />
                     </div>
                     <div className={styles.location}>
@@ -44,17 +66,30 @@ class SearchSection extends Component {
                             placeholder={'Istanbul, Turkey'}
                             icon={{src: locationIcon, position: 'right'}}
                             labelDescription={'Enter city name, country or state name'}
+                            defaultValue={location !== 'null' ? location : ''}
+                            onChange={(value) => this.setState({location: value})}
                             label={'Location'} />
                     </div>
                     <div className={styles.findJob}>
-                        <Button type={'secondary'} text={'Find Job'} sizeName={'large'} />
+                        <Button
+                            type={'secondary'}
+                            text={'Find Job'}
+                            sizeName={'large'}
+                            to={`/search/${keyword ? keyword : null}/${location ? location : null}`}
+                        />
                     </div>
                 </div>
                 <div v-if={this.props.page === 'home'} className={styles.prepareCv}><Link to={'SignUp'} className={styles.underlined}>Prepare your CVs</Link> - Easily apply to thousands of jobs from anywhere</div>
                 <Fragment v-else>
-                    <ul className={styles.cities}>
-                        {this.state.cities.map((city, i) => {
-                            return <li key={'city'+i} className={styles.city}>{city}</li>
+                    <ul className={styles.searches}>
+                        {this.state.searches.map((searchedWord, i) => {
+                            return <Link
+                                        to={`/search/${keyword ? keyword : null}/${searchedWord}`}
+                                        key={'searchedWord'+i}
+                                        className={styles.searchedWord}
+                            >
+                                {searchedWord}
+                            </Link>
                         })}
                     </ul>
                 </Fragment>
