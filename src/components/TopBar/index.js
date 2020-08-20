@@ -50,28 +50,28 @@ class TopBar extends Component {
             {
                 key: 'myAccount',
                 value: 'My Account',
-                selected: window.location.pathname === '/myAccount',
+                selected: false,
                 icon: userIcon,
                 to: '/myAccount'
             },
             {
                 key: 'coverLetter',
                 value: 'Cover Letter',
-                selected: window.location.pathname === '/coverletters',
+                selected: false,
                 icon: coverLetterIcon,
                 to: '/coverletters'
             },
             {
                 key: 'CVs',
                 value: 'CVs',
-                selected: window.location.pathname === '/CVs',
+                selected: false,
                 icon: CVIcon,
                 to: '/CVs'
             },
             {
                 key: 'myJobs',
                 value: 'My Jobs',
-                selected: window.location.pathname === '/myJobs',
+                selected: false,
                 icon: CVIcon,
                 to: '/myJobs'
             },
@@ -80,7 +80,7 @@ class TopBar extends Component {
                 value: 'Log Out',
                 selected: false,
                 icon: logOutIcon,
-                to: '/',
+                to: '/logout',
                 onChange: () => {
                     eraseCookie(['token', 'user', 'user_id']);
                     window.location.pathname = '/';
@@ -96,6 +96,15 @@ class TopBar extends Component {
 
     componentDidMount() {
         document.addEventListener('mousedown', this.handleClickOutside);
+        this.state.userSource.map(e => e.selected = e.to === this.props.location.pathname);
+        this.setState({ userSource: this.state.userSource });
+    }
+
+    componentDidUpdate(prevProps) {
+        if (!Object.is(prevProps.location.pathname, this.props.location.pathname)) {
+            this.state.userSource.map(e => e.selected = e.to === this.props.location.pathname);
+            this.setState({ userSource: this.state.userSource });
+        }
     }
 
     componentWillUnmount() {

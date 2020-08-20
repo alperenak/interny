@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 /*** Components ***/
 import TopBar from "./components/TopBar";
 import SearchSection from "./components/SearchSection";
+import Modal from "./components/Modal";
 
 /*** Screens ***/
 import Home from "./screens/Home";
@@ -16,10 +17,11 @@ import JobApplication from "./screens/JobApplication";
 import LandingPageSearch from "./screens/LandingPageSearch";
 import MyJobs from "./screens/MyJobs";
 import PostDetail from "./screens/PostDetail";
+import Error from "./screens/Error";
+import Login from "./screens/Login";
 
 /*** Styles ***/
 import styles from './app.scss';
-import Login from "./screens/Login";
 
 /*** Utils ***/
 import {eraseCookie, getCookie} from "./utils/cookie";
@@ -28,7 +30,12 @@ import store from "./store";
 class App extends React.Component {
     state = {
         isAuthorized: true,
-        user: {}
+        user: {},
+        modal: {
+            header: '',
+            declaration: '',
+            visibility: false
+        }
     };
 
     async componentDidMount() {
@@ -45,12 +52,29 @@ class App extends React.Component {
         }
     }
 
+    createModal = ({ header, declaration }) => {
+        this.setState({ modal: {header: header, declaration: declaration, visibility: true}});
+    };
+
+    closeModal = () => {
+        this.setState( { modal: {header: '', declaration: '', visibility: false} });
+    };
+
     render() {
-        let {isAuthorized, user} = this.state;
+        let {isAuthorized, user, modal} = this.state;
         return (
             <div className={`${styles.App} ${styles.fullScreen}`}>
                 <Router>
-                    <TopBar isAuthorized={isAuthorized} user={user} />
+                    <Route
+                        path="/"
+                        render={props => <TopBar isAuthorized={isAuthorized} user={user} {...props} />}
+                    />
+                    <Modal
+                        v-if={modal.visibility}
+                        header={modal.header}
+                        declaration={modal.declaration}
+                        closeModal={this.closeModal}
+                    />
                     <Switch>
                         <Route v-if={isAuthorized} exact path="/">
                             <UserHome />
@@ -63,12 +87,14 @@ class App extends React.Component {
                             path="/search/:keyword/:location"
                             render={props => <LandingPageSearch {...props} />}
                         />
-                        <Route path="/signup">
-                            <SignUp />
-                        </Route>
-                        <Route path="/login">
-                            <Login />
-                        </Route>
+                        <Route
+                            path="/signup"
+                            render={props => <SignUp {...props} />}
+                        />
+                        <Route
+                            path="/login"
+                            render={props => <Login createModal={this.createModal} {...props} />}
+                        />
                         <Route path="/posts">
                             <Posts />
                         </Route>
@@ -88,6 +114,10 @@ class App extends React.Component {
                         <Route
                             path="/jobapplication/:jobId"
                             render={props => <JobApplication {...props} />}
+                        />
+                        <Route
+                            path="/error"
+                            render={props => <Error {...props} />}
                         />
                     </Switch>
                 </Router>

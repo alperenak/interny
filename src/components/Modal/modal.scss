@@ -1,0 +1,41 @@
+.Modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0, 0.4);
+  z-index: 2345;
+
+  & .modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    width: 250px;
+
+    & .header {
+      font-family: "Noto Sans Bold";
+      font-size: 20px;
+      color: #2b4970;
+      margin-bottom: 30px;
+    }
+
+    & .declaration {
+      font-family: "Noto Sans";
+      font-size: 15px;
+      color: #2b4970;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      margin-bottom: 30px;
+    }
+
+    & .buttons {
+      align-self: flex-end;
+    }
+  }
+}

@@ -31,10 +31,14 @@ class Authentication extends Component {
                     } else {
                         let res = await store.internLogin(this.state.submitObject);
                         if (res && res.data.token) {
-                            setCookie("token", res.data.token, {});
-                            setCookie("user", this.state.page.toLowerCase(), {});
-                            setCookie("user_id", res.data.id, {});
-                            window.location.pathname = `/`;
+                            if (res.status) {
+                                setCookie("token", res.data.token, {});
+                                setCookie("user", this.state.page.toLowerCase(), {});
+                                setCookie("user_id", res.data.id, {});
+                                window.location.pathname = `/`;
+                            }
+                        } else {
+                            this.props.createModal({ header: res.data.title, declaration: res.data.message });
                         }
                     }
                 }

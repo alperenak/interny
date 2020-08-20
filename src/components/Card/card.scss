@@ -3,10 +3,15 @@
   padding: 16px 32px;
   margin: 32px;
   border-radius: 16px;
-  width: 80%;
   background-color: #ffffff;
   border: 1px solid #efefef;
 
+  &.modal {
+    border-radius: 4px;
+  }
+  &.jobPost {
+    width: 100%;
+  }
   &.auth {
     margin: 32px auto;
     width: fit-content;

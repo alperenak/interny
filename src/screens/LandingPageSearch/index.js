@@ -100,7 +100,11 @@ class LandingPageSearch extends Component {
                 <div className={styles.noResult} v-if={posts.length <= 0}>
                     No results found...
                     <div className={styles.description}>
-                        Your search for "{keyword}" in "{location}" did not return any result
+                        Your search for
+                        {keyword === 'null' ? '' : ' "'+keyword+'" '}
+                        {keyword === 'null' || location === 'null' ? '' : 'in'}
+                        {location === 'null' ? '' : ' "'+location+'" '}
+                        did not return any result
                     </div>
                 </div>
                 <Card
