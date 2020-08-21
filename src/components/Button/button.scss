@@ -43,6 +43,21 @@ $sizes: ("large":$large, "default":$default, "small":$small, "tiny":$tiny);
   cursor: pointer;
   margin: 6px;
   font-family: "Noto Sans";
+
+  &.loading {
+    pointer-events: none;
+    & img {
+      width: 19px!important;
+    }
+
+    &:hover {
+      & img {
+        width: 19px!important;
+        display: block!important;
+      }
+    }
+  }
+
   @each $typeName,$type in $types {
     &.#{$typeName}
     {

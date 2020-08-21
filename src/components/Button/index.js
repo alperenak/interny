@@ -2,8 +2,11 @@ import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from "react-router-dom";
 
-/***Styles**/
+/*** Styles ***/
 import styles from './button.scss';
+
+/*** Icons **/
+import loadingIcon from '../../icons/loading.svg';
 
 class Button extends Component {
     onClick = () => {
@@ -13,13 +16,14 @@ class Button extends Component {
     };
 
     renderContent() {
-        let {disabled, hoverIcon, icon, iconAutoWidth, iconPosition, text} = this.props;
+        let {disabled, hoverIcon, loading, icon, iconAutoWidth, iconPosition, text} = this.props;
         return (
             <Fragment>
                 {(icon && iconPosition.includes('left')) && <img src={icon} alt="" className={`${styles[iconPosition+'-icon']} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
                 {(icon && iconPosition.includes('left') && !disabled) && <img src={hoverIcon} alt="" className={`${styles[iconPosition+'-icon']} ${styles.hoverIcon} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
                 {(icon && iconPosition.includes('left')) && <img src={icon} alt="" className={`${styles[iconPosition+'-icon']} ${styles.hoverIcon} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
-                {text}
+                <img hidden={!loading} src={loadingIcon} alt={'loading'} />
+                {!loading && text}
                 {(icon && iconPosition.includes('right')) && <img src={icon} alt="" className={`${styles[iconPosition+'-icon']} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
                 {(icon && iconPosition.includes('right') && !disabled) && <img src={hoverIcon} alt="" className={`${styles[iconPosition+'-icon']} ${styles.hoverIcon} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
                 {(icon && iconPosition.includes('right')) && <img src={icon} alt="" className={`${styles[iconPosition+'-icon']} ${styles.hoverIcon} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
@@ -28,15 +32,15 @@ class Button extends Component {
     }
 
     render() {
-        let {disabled, to, onButtonClick, width, sizeName, type} = this.props;
+        let {disabled, to, onButtonClick, loading, width, sizeName, type} = this.props;
         return (
             <Fragment>
                 <Link style={{width: width}} v-if={to} to={to}
-                    className={`${styles.btn} ${styles[sizeName]} ${styles[type]} ${(disabled?styles.disabled:'')}`}>
+                    className={`${styles.btn} ${loading ? styles.loading : ''} ${styles[sizeName]} ${styles[type]} ${(disabled?styles.disabled:'')}`}>
                     {this.renderContent()}
                 </Link>
                 <button style={{width: width}} v-if={!to} onClick={onButtonClick}
-                    className={`${styles.btn} ${styles[sizeName]} ${styles[type]} ${(disabled?styles.disabled:'')}`}>
+                    className={`${styles.btn} ${loading ? styles.loading : ''} ${styles[sizeName]} ${styles[type]} ${(disabled?styles.disabled:'')}`}>
                     {this.renderContent()}
                 </button>
             </Fragment>
@@ -48,6 +52,7 @@ export default Button;
 
 Button.propTypes = {
   disabled: PropTypes.bool,
+  loading: PropTypes.bool,
   hoverIcon: PropTypes.string,
   icon: PropTypes.string,
   iconAutoWidth: PropTypes.bool,
@@ -62,6 +67,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   disabled: false,
+  loading: false,
   hoverIcon: "",
   icon: "",
   iconAutoWidth: false,

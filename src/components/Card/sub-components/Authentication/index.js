@@ -24,8 +24,13 @@ class Authentication extends Component {
                 disabled: false,
                 sizeName: 'default',
                 text: this.props.type === 'auth' ? 'Create Account' : 'Login',
+                loading: false,
                 type: 'secondary',
                 onButtonClick: async () => {
+                    this.setState(state => {
+                        state.buttons.map(btn => {btn.loading = true; return btn;});
+                        return state;
+                    });
                     if (this.props.type === 'auth') {
                         await store.internSignUp(this.state.submitObject);
                     } else {
@@ -194,7 +199,9 @@ class Authentication extends Component {
                         type={btn.type}
                         disabled={btn.disabled}
                         sizeName={btn.sizeName}
+                        loading={btn.loading}
                         text={btn.text}
+                        width={'50px'}
                         onButtonClick={btn.onButtonClick}
                     />
                 </div>
