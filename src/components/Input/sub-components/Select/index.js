@@ -129,7 +129,7 @@ class Select extends Component {
                             </li>
                         })
                             :
-                        <li>Sonuç Bulunamadı...</li>
+                        <li>No results found...</li>
                         }
                 </ul>
             </div>

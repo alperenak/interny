@@ -37,10 +37,10 @@ class LandingPageSearch extends Component {
         if (!Object.is(prevProps.match.params.keyword, keyword) ||
             !Object.is(prevProps.match.params.location, location)) {
             let res = await this.returnPostRequest();
-            let posts = res.map(pst => {
+            let posts = res.results.map(pst => {
                 return this.fillPosts(pst);
             });
-            this.setState({ posts });
+            this.setState({ posts, totalPostCount: res.total });
         }
     }
 

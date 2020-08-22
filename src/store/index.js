@@ -131,6 +131,12 @@ let store = {
 
         return res.data;
     },
+    async createCV(payload) {
+        let baseUrl = config.baseUrl;
+        let tokenCookieName = "token";
+        let path = `/cv`;
+        return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+    },
     async getCoverLetters(id) {
         let baseUrl = config.baseUrl;
         let path = `/intern/${id}/coverletter`;

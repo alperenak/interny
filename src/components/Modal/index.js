@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 /*** Components ***/
 import Card from "../Card";
@@ -9,29 +10,47 @@ import styles from './modal.scss';
 
 class Modal extends Component {
     render() {
+        let {closeModal, width, header, declaration, content, buttons} = this.props;
         return (
-            <div className={styles.Modal} onClick={() => this.props.closeModal()}>
-                <Card type={'modal'}>
-                    <div className={styles.modal}>
-                        <div v-if={this.props.header} className={styles.header}>
-                            {this.props.header}
+            <div className={styles.Modal} onClick={() => closeModal()}>
+                <div onClick={(e) => {e.preventDefault(); e.stopPropagation()}}>
+                    <Card type={'modal'}>
+                        <div style={{ width: width }} className={styles.modal}>
+                            <div v-if={header} className={styles.header}>
+                                {header}
+                            </div>
+                            <div v-if={declaration} className={styles.declaration}>
+                                {declaration}
+                            </div>
+                            <div v-if={content} className={styles.content}>
+                                {content()}
+                            </div>
+                            <div v-if={buttons} className={styles.buttons}>
+                                {buttons.map(btn => {
+                                    return <Button
+                                        type={btn.type}
+                                        text={btn.text}
+                                        sizeName={btn.sizeName}
+                                        width={btn.width}
+                                        onButtonClick={btn.onButtonClick}
+                                    />;
+                                })}
+                            </div>
                         </div>
-                        <div v-if={this.props.declaration} className={styles.declaration}>
-                            {this.props.declaration}
-                        </div>
-                        <div className={styles.buttons}>
-                            <Button
-                                type={'primary'}
-                                text={'OK'}
-                                sizeName={'default'}
-                                onButtonClick={() => this.props.closeModal()}
-                            />
-                        </div>
-                    </div>
-                </Card>
+                    </Card>
+                </div>
             </div>
         );
     }
 }
 
 export default Modal;
+
+Modal.propTypes = {
+  closeModal: PropTypes.func,
+  content: PropTypes.any,
+  buttons: PropTypes.array,
+  declaration: PropTypes.string,
+  header: PropTypes.string,
+  width: PropTypes.string
+};

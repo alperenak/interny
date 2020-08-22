@@ -27,7 +27,7 @@ class UserHome extends Component {
         let userId = getCookie('userId');
         if (userType === 'intern') {
             let res = await store.getPosts('','', offset, limit);
-            let posts = res.map(pst => {
+            let posts = res.results.map(pst => {
                 return this.fillPosts(pst);
             });
             this.setState({ posts });
@@ -64,7 +64,7 @@ class UserHome extends Component {
                         }
                         if (res.status && res.status === 203) {
                             let res = await store.getPosts('', '', this.state.offset, this.state.limit);
-                            let posts = res.map(pst => {
+                            let posts = res.results.map(pst => {
                                 return this.fillPosts(pst);
                             });
                             this.setState({ posts });
@@ -80,7 +80,7 @@ class UserHome extends Component {
     onLoadMore = async () => {
         let {offset, limit} = this.state;
         let res = await store.getPosts('', '', offset + limit, limit);
-        let posts = res.map(pst => {
+        let posts = res.results.map(pst => {
             return this.fillPosts(pst);
         });
         this.setState({ posts: [...this.state.posts, ...posts], offset: offset + limit });

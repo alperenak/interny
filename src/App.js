@@ -34,6 +34,8 @@ class App extends React.Component {
         modal: {
             header: '',
             declaration: '',
+            content: {},
+            buttons: [],
             visibility: false
         }
     };
@@ -52,8 +54,8 @@ class App extends React.Component {
         }
     }
 
-    createModal = ({ header, declaration }) => {
-        this.setState({ modal: {header: header, declaration: declaration, visibility: true}});
+    createModal = ({ header, declaration, content, buttons }) => {
+        this.setState({ modal: {header, declaration, content, buttons, visibility: true}});
     };
 
     closeModal = () => {
@@ -74,6 +76,8 @@ class App extends React.Component {
                         header={modal.header}
                         declaration={modal.declaration}
                         closeModal={this.closeModal}
+                        content={modal.content}
+                        buttons={modal.buttons}
                     />
                     <Switch>
                         <Route v-if={isAuthorized} exact path="/">
@@ -93,7 +97,7 @@ class App extends React.Component {
                         />
                         <Route
                             path="/login"
-                            render={props => <Login createModal={this.createModal} {...props} />}
+                            render={props => <Login closeModal={this.closeModal} createModal={this.createModal} {...props} />}
                         />
                         <Route path="/posts">
                             <Posts />
@@ -102,9 +106,9 @@ class App extends React.Component {
                             path="/postdetail/:id"
                             render={props => <PostDetail {...props} />}
                         />
-                        <Route path="/CVs">
-                            <CVs user={user}/>
-                        </Route>
+                        <Route path="/CVs"
+                               render={props => <CVs user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
+                        />
                         <Route path="/coverletters">
                             <CoverLetters user={user}/>
                         </Route>

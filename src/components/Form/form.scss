@@ -1,0 +1,38 @@
+.formSection {
+  position: relative;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 16px 32px 42px;
+
+  &:last-child {
+    border: none;
+  }
+
+  & .addButton {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
+  & .subSections {
+    font-family: "Noto Sans Bold";
+    position: relative;
+
+    & .subSectionTitle {
+      color: #2b4970;
+      margin: 20px 0;
+      top: 0;
+      left: 0;
+    }
+  }
+}
+
+.formButtons {
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  bottom: 0;
+  left: 32px;
+  right: 32px;
+  background-color: white;
+  z-index: 123;
+}

@@ -33,6 +33,10 @@ class Authentication extends Component {
                     });
                     if (this.props.type === 'auth') {
                         await store.internSignUp(this.state.submitObject);
+                        this.setState(state => {
+                            state.buttons.map(btn => {btn.loading = true; return btn;});
+                            return state;
+                        });
                     } else {
                         let res = await store.internLogin(this.state.submitObject);
                         if (res && res.data.token) {
@@ -43,7 +47,20 @@ class Authentication extends Component {
                                 window.location.pathname = `/`;
                             }
                         } else {
-                            this.props.createModal({ header: res.data.title, declaration: res.data.message });
+                            this.props.createModal({
+                                header: res.data.title,
+                                declaration: res.data.message,
+                                buttons: [{
+                                    type: 'primary',
+                                    text: 'OK',
+                                    sizeName: 'default',
+                                    onButtonClick: () => this.props.closeModal()
+                                }]
+                            });
+                            this.setState(state => {
+                                state.buttons.map(btn => {btn.loading = false; return btn;});
+                                return state;
+                            });
                         }
                     }
                 }

@@ -19,9 +19,10 @@ const PostDetail = () => {
     const [posts, setPosts] = useState([]);
     const [company, setCompany] = useState({});
 
-    useEffect(() => {
+    useEffect(async () => {
         async function getPost() {
-            let pst = await store.getPost(id);
+            let res = await store.getPost(id);
+            let pst = res.results;
             setPosts([
                 {
                     date: pst.startDate,
@@ -53,7 +54,7 @@ const PostDetail = () => {
             });
         }
 
-        getPost();
+        await getPost();
     }, []);
 
     return (

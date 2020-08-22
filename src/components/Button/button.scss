@@ -103,11 +103,13 @@ $sizes: ("large":$large, "default":$default, "small":$small, "tiny":$tiny);
             margin-left: map_get($icon-margins,#{$sizeName});
           }
         }
-        &:hover img.hoverIcon{
-          display: block;
-        }
-        &:hover img:not(.hoverIcon){
-          display: none;
+        &:hover {
+          & .hoverIcon{
+            display: block;
+          }
+          & img:not(.hoverIcon){
+            display: none;
+          }
         }
       }
     }
