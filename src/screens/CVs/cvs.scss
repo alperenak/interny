@@ -13,6 +13,16 @@
 
     & .CVs {
       width: 100%;
+
+      & .buttonsCV {
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        top: 8px;
+        right: 32px;
+        left: 32px;
+      }
     }
 
     & .profileSection {

@@ -102,6 +102,9 @@ $sizes: ("large":$large, "default":$default, "small":$small, "tiny":$tiny);
           &.right-icon{
             margin-left: map_get($icon-margins,#{$sizeName});
           }
+          &.center-icon{
+            margin: 0;
+          }
         }
         &:hover {
           & .hoverIcon{

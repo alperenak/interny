@@ -17,19 +17,33 @@ class CoverLetter extends Component {
             {
                 disabled: false,
                 sizeName: 'default',
+                text: 'DELETE',
+                type: 'ghost',
+                onButtonClick: this.props.onDelete
+            },
+            {
+                disabled: false,
+                sizeName: 'default',
                 text: 'SAVE',
-                type: 'secondary'
+                type: 'secondary',
+                onButtonClick: this.props.onSubmit
             }
         ]
     };
 
     render() {
-        let {coverLetter} = this.props;
+        let {coverLetter, showButtons, onChange, disabled} = this.props;
         let {buttons} = this.state;
         return (
             <div className={styles.coverLetterWrapper}>
-                <Input type={'textarea'} defaultValue={coverLetter.text}  />
-                <div className={styles.buttonContainer}>
+                <Input
+                    v-if={coverLetter}
+                    type={'textarea'}
+                    defaultValue={coverLetter?.text}
+                    onChange={onChange}
+                    disabled={disabled}
+                />
+                <div v-if={showButtons} className={styles.buttonContainer}>
                     <Button
                         v-for={(btn, i) in buttons}
                         key={i}
@@ -37,6 +51,7 @@ class CoverLetter extends Component {
                         disabled={btn.disabled}
                         sizeName={btn.sizeName}
                         text={btn.text}
+                        onButtonClick={btn.onButtonClick}
                     />
                 </div>
             </div>

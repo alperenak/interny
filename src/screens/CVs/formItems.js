@@ -1,4 +1,4 @@
-export const formItems = () => {
+export const formItems = (formInputs) => {
     let a = [
         {key: "1", value: "1", selected: false},
         {key: "2", value: "2", selected: false},
@@ -8,6 +8,84 @@ export const formItems = () => {
         {key: "6", value: "6", selected: false},
         {key: "7", value: "7", selected: false},
     ];
+    let keys = {
+        'universities': {
+            key: "University",
+            level: 'Education Level',
+            institution: 'University',
+            title: 'Department',
+            country: 'Country',
+            city: 'City',
+            startDate: 'Start Date',
+            endDate: 'End Date'
+        },
+        'highSchools': {
+            key: "High School",
+            level: 'Education Level',
+            institution: 'High School',
+            title: 'Department',
+            country: 'Country',
+            city: 'City',
+            startDate: 'Start Date',
+            endDate: 'End Date'
+        },
+        'experiences': {
+            key: "Experience",
+            level: 'Education Level',
+            institution: 'Company',
+            title: 'Position',
+            country: 'Country',
+            city: 'City',
+            startDate: 'Start Date',
+            endDate: 'End Date'
+        },
+        'skills': {key: "Skills", title: 'Skill'},
+        'languages': {key: "Languages", title: 'Language'},
+        'certificates': {key: "Certificates", title: 'Name', institution: 'Institution'},
+        'hobbies': {key: "Hobbies", title: 'Name'},
+    };
+
+    if (formInputs) {
+        let editItems = {"Title": {
+                key: 'title',
+                duplicable: false,
+                items: [[
+                    {
+                        key: 'title',
+                        type: 'text',
+                        size: 'full',
+                        label: 'Name your CV',
+                        defaultValue: formInputs.header,
+                        labelDescription: 'The name will be seen only to you',
+                        placeholder: 'Enter name',
+                    }
+                ]]
+            }};
+        Object.keys(keys).map(key => {
+            let item = formInputs.items.find(item => item.title.toLowerCase() === key.toLowerCase());
+
+            editItems[keys[key].key] = {
+                key: key,
+                duplicable: true,
+                count: item.items.length * Object.keys(item.items[0]).length,
+                items: item.items.map(it => {
+                    return Object.keys(it).map(itKey => {
+                        return {
+                            key: itKey,
+                            type: 'select',
+                            externalSource: a,
+                            size: 'full',
+                            defaultValue: it[itKey],
+                            label: keys[key][itKey],
+                            placeholder: 'Select ' + keys[key][itKey],
+                        }
+                    });
+                }),
+            };
+        });
+        return editItems;
+    }
+
     return {
         "Title": {
             key: 'title',
@@ -16,7 +94,7 @@ export const formItems = () => {
                 {
                     key: 'title',
                     type: 'text',
-                    size: 'half',
+                    size: 'full',
                     label: 'Name your CV',
                     labelDescription: 'The name will be seen only to you',
                     placeholder: 'Enter name',
@@ -26,12 +104,13 @@ export const formItems = () => {
         "University": {
             key: 'universities',
             duplicable: true,
+            count: 6,
             items: [[
                 {
                     key: 'level',
                     type: 'select',
                     externalSource: a,
-                    size: 'half',
+                    size: 'full',
                     label: 'Education Level',
                     placeholder: 'Select Education Level',
                 },
@@ -39,7 +118,7 @@ export const formItems = () => {
                     key: 'institution',
                     type: 'select',
                     externalSource: a,
-                    size: 'half',
+                    size: 'full',
                     label: 'University',
                     placeholder: 'Select University',
                 },
@@ -47,7 +126,7 @@ export const formItems = () => {
                     key: 'title',
                     type: 'select',
                     externalSource: a,
-                    size: 'half',
+                    size: 'full',
                     label: 'Department',
                     placeholder: 'Select Department',
                 },
@@ -55,7 +134,7 @@ export const formItems = () => {
                     key: 'country',
                     type: 'select',
                     externalSource: a,
-                    size: 'half',
+                    size: 'full',
                     label: 'Country',
                     placeholder: 'Select Country',
                 },
@@ -63,7 +142,7 @@ export const formItems = () => {
                     key: 'city',
                     type: 'select',
                     externalSource: a,
-                    size: 'half',
+                    size: 'full',
                     label: 'City',
                     placeholder: 'Select City',
                 },
@@ -88,12 +167,13 @@ export const formItems = () => {
         "High School": {
             key: 'highSchools',
             duplicable: true,
+            count: 5,
             items: [[
                 {
                     key: 'institution',
                     type: 'select',
                     externalSource: a,
-                    size: 'half',
+                    size: 'full',
                     label: 'High School',
                     placeholder: 'High School',
                 },
@@ -101,7 +181,7 @@ export const formItems = () => {
                     key: 'title',
                     type: 'select',
                     externalSource: a,
-                    size: 'half',
+                    size: 'full',
                     label: 'Department',
                     placeholder: 'Select Department',
                 },
@@ -109,7 +189,7 @@ export const formItems = () => {
                     key: 'country',
                     type: 'select',
                     externalSource: a,
-                    size: 'half',
+                    size: 'full',
                     label: 'Country',
                     placeholder: 'Select Country',
                 },
@@ -117,7 +197,7 @@ export const formItems = () => {
                     key: 'city',
                     type: 'select',
                     externalSource: a,
-                    size: 'half',
+                    size: 'full',
                     label: 'City',
                     placeholder: 'Select City',
                 },
@@ -142,12 +222,13 @@ export const formItems = () => {
         "Experience": {
             key: 'experiences',
             duplicable: true,
+            count: 5,
             items: [[
                 {
                     key: 'title',
                     type: 'select',
                     externalSource: a,
-                    size: 'half',
+                    size: 'full',
                     label: 'Position',
                     placeholder: 'Select Position',
                 },
@@ -155,7 +236,7 @@ export const formItems = () => {
                     key: 'institution',
                     type: 'select',
                     externalSource: a,
-                    size: 'half',
+                    size: 'full',
                     label: 'Company',
                     placeholder: 'Select Company',
                 },
@@ -163,7 +244,7 @@ export const formItems = () => {
                     key: 'country',
                     type: 'select',
                     externalSource: a,
-                    size: 'half',
+                    size: 'full',
                     label: 'Country',
                     placeholder: 'Select Country',
                 },
@@ -171,7 +252,7 @@ export const formItems = () => {
                     key: 'city',
                     type: 'select',
                     externalSource: a,
-                    size: 'half',
+                    size: 'full',
                     label: 'City',
                     placeholder: 'Select City',
                 },
@@ -196,12 +277,13 @@ export const formItems = () => {
         "Skills": {
             key: 'skills',
             duplicable: true,
+            count: 1,
             items: [[
                 {
                     key: 'title',
                     type: 'select',
                     externalSource: a,
-                    size: 'half',
+                    size: 'full',
                     label: 'Skill',
                     placeholder: 'Select your skills',
                 },
@@ -210,12 +292,13 @@ export const formItems = () => {
         "Languages": {
             key: 'languages',
             duplicable: true,
+            count: 2,
             items: [[
                 {
                     key: 'title',
                     type: 'select',
                     externalSource: a,
-                    size: 'half',
+                    size: 'full',
                     label: 'Language',
                     placeholder: 'Select Language',
                 },
@@ -223,7 +306,7 @@ export const formItems = () => {
                     key: 'level',
                     type: 'select',
                     externalSource: a,
-                    size: 'half',
+                    size: 'full',
                     label: 'Level',
                     placeholder: 'Select Language Level',
                 },
@@ -232,11 +315,12 @@ export const formItems = () => {
         "Certificates": {
             key: 'certificates',
             duplicable: true,
+            count: 2,
             items: [[
                 {
                     key: 'title',
                     type: 'text',
-                    size: 'half',
+                    size: 'full',
                     label: 'Name',
                     placeholder: 'Enter certificate name',
                 },
@@ -244,7 +328,7 @@ export const formItems = () => {
                     key: 'institution',
                     type: 'select',
                     externalSource: a,
-                    size: 'half',
+                    size: 'full',
                     label: 'Institution',
                     placeholder: 'Enter institution that certifies',
                 },
@@ -253,11 +337,12 @@ export const formItems = () => {
         "Hobbies": {
             key: 'hobbies',
             duplicable: true,
+            count: 1,
             items: [[
                 {
                     key: 'title',
                     type: 'text',
-                    size: 'half',
+                    size: 'full',
                     label: 'Name',
                     placeholder: 'Enter your hobbies',
                 }
@@ -266,7 +351,7 @@ export const formItems = () => {
     };
 };
 
-export const formButtons = () => {
+export const formButtons = (isEdit) => {
     return  [
         {
             type:'ghost',
@@ -276,7 +361,7 @@ export const formButtons = () => {
         },
         {
             type:'primary',
-            text: 'Create',
+            text: isEdit ? 'Update' : 'Create',
             sizeName:'small',
             width:'50px'
         }

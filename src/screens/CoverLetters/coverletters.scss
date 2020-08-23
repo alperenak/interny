@@ -13,5 +13,12 @@
     & .CoverLettersWrapper {
       width: 100%;
     }
+
+    & .profileSection {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
   }
 }

@@ -43,7 +43,7 @@ Card.propTypes = {
   externalData: PropTypes.array,
   posts: PropTypes.array,
   sections: PropTypes.array,
-  header: PropTypes.string,
+  header: PropTypes.object,
   title: PropTypes.string,
 };
 
@@ -52,6 +52,5 @@ Card.defaultProps = {
   posts: [],
   sections: [],
   externalData: [],
-  header: '',
   title: '',
 };

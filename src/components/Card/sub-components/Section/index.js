@@ -22,10 +22,19 @@ class Section extends Component {
                                         </div>
                                         <div className={styles.itemDetail}>
                                             <div v-if={item.title} className={styles.itemTitle}>{item.title}</div>
-                                            <div v-if={item.location} className={styles.itemLocation}>{item.location}</div>
-                                            <div v-if={item.date} className={styles.itemDate}>{item.date}</div>
+                                            <div v-if={item.level} className={styles.itemLocation}>
+                                                {item.level}
+                                            </div>
+                                            <div v-if={item.institution} className={styles.itemLocation}>
+                                                {item.institution}
+                                            </div>
+                                            <div v-if={item.city || item.country} className={styles.itemLocation}>
+                                                {item.city + " - " + item.country}
+                                            </div>
+                                            <div v-if={item.endDate || item.startDate} className={styles.itemDate}>
+                                                {item.endDate + " - " + item.startDate}
+                                            </div>
                                         </div>
-                                        {/*<div className={styles.itemButtons}>btn</div>*/}
                                     </div>
                                 );
                             })}

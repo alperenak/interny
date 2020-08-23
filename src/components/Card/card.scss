@@ -6,6 +6,16 @@
   background-color: #ffffff;
   border: 1px solid #efefef;
 
+  &.myAccount {
+    padding: 64px 92px 64px 64px;
+    width: 75%;
+    margin: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
+    -o-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
+  }
+
   &.modal {
     border-radius: 4px;
   }
@@ -41,7 +51,7 @@
   }
 
   & .cardHeader {
-    margin-bottom: 16px;
+    margin-bottom: 32px;
     font-family: "Noto Sans Bold";
     font-size: 24px;
     font-weight: 700;

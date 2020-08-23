@@ -26,8 +26,9 @@ class Modal extends Component {
                                 {content()}
                             </div>
                             <div v-if={buttons} className={styles.buttons}>
-                                {buttons.map(btn => {
+                                {buttons.map((btn, i) => {
                                     return <Button
+                                        key={i}
                                         type={btn.type}
                                         text={btn.text}
                                         sizeName={btn.sizeName}

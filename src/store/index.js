@@ -137,6 +137,21 @@ let store = {
         let path = `/cv`;
         return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
     },
+    async deleteCV(id) {
+        let baseUrl = config.baseUrl;
+        let tokenCookieName = "token";
+        let path = `/cv`;
+        let payload = {
+            "id": id,
+        };
+        return await http.makeDeleteRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+    },
+    async updateCV(payload) {
+        let baseUrl = config.baseUrl;
+        let tokenCookieName = "token";
+        let path = `/cv`;
+        return await http.makePutRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+    },
     async getCoverLetters(id) {
         let baseUrl = config.baseUrl;
         let path = `/intern/${id}/coverletter`;
@@ -144,6 +159,24 @@ let store = {
         let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
 
         return res.data;
+    },
+    async createCoverLetter(id, payload) {
+        let baseUrl = config.baseUrl;
+        let tokenCookieName = "token";
+        let path = `/intern/${id}/coverletter`;
+        return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+    },
+    async updateCoverLetter(id, payload) {
+        let baseUrl = config.baseUrl;
+        let tokenCookieName = "token";
+        let path = `/intern/${id}/coverletter`;
+        return await http.makePutRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+    },
+    async deleteCoverLetter(id, payload) {
+        let baseUrl = config.baseUrl;
+        let tokenCookieName = "token";
+        let path = `/intern/${id}/coverletter`;
+        return await http.makeDeleteRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
     },
 };
 

@@ -9,7 +9,7 @@ import Button from "../../components/Button";
 
 class JobApplication extends Component {
     state = {
-        sections: {},
+        sections: [],
         CVSource: [],
         jobId: '',
         coverLettersSource: [],
@@ -20,15 +20,18 @@ class JobApplication extends Component {
     };
 
     async componentDidMount() {
-        let id = getCookie('user_id');
         const { jobId } = this.props.match.params;
-        let res = await store.getCVs(id);
+
+        await this.getCVs();
+        await this.getCoverLetters();
+
+        this.setState({ jobId });
+    }
+
+    getCoverLetters = async () => {
+        let id = getCookie('user_id');
         let coverLetterRes = await store.getCoverLetters(id);
-
-        let sections = {};
-        let CVSource = [];
         let coverLettersSource = [];
-
         let coverLetters = coverLetterRes.map((cl, i) => {
             coverLettersSource.push({
                 key: cl._id,
@@ -43,50 +46,72 @@ class JobApplication extends Component {
                 "text": cl.text
             };
         });
-        res.map((sects, i) => {
-            sections[sects.id] = Object.keys(sects).map(sect => {
-                return {
-                    title: sect.replace(/\w+/g,
-                        function(w){return w[0].toUpperCase() + w.slice(1).toLowerCase();}),
-                    items: [
-                        {
-                            title: sects[sect],
-                            location: 'Istanbul - Turkey',
-                            date: '',
-                        }
-                    ]
-                }
-            });
+        this.setState({
+            coverLetters, coverLettersSource, selectedCL: coverLettersSource[0]?.key
+        });
+    };
+
+    getCVs = async () => {
+        let id = getCookie('user_id');
+        let res = await store.getCVs(id);
+        let CVSource = [];
+        let sections = res.map((sects, i) => {
             CVSource.push({
                 key: sects.id,
-                value: sects.id,
+                value: sects.title,
                 selected: i === 0,
                 to:`${window.location.pathname}`,
                 onChange: () => this.setState({selectedCV: sects.id})
             });
+
+            return {
+                id: sects.id,
+                header: sects.title,
+                items: Object.keys(sects).filter(s => !['id', 'sectors', 'intern', 'title', 'phone', 'photo'].includes(s)).map(sect => {
+                    return {
+                        title: sect.replace(/\w+/g,
+                            function(w){return w[0].toUpperCase() + w.slice(1).toLowerCase();}),
+                        items: Array.isArray(sects[sect]) ? sects[sect].map(e => {
+                            let {level, institution, title, startDate, endDate} = e;
+                            let country = e.location?.country;
+                            let city = e.location?.city;
+                            let section = {};
+                            level ? section.level = level : delete section.level;
+                            institution ? section.institution = institution : delete section.institution;
+                            title ? section.title = title : delete section.title;
+                            country ? section.country = country : delete section.country;
+                            city ? section.city = city : delete section.city;
+                            startDate ? section.startDate = startDate : delete section.startDate;
+                            endDate ? section.endDate = endDate : delete section.endDate;
+                            return section
+                        })  : []
+                    };
+                })
+            };
         });
-        this.setState({
-            sections: {...sections}, CVSource, selectedCV: CVSource[0].key, jobId,
-            coverLetters, coverLettersSource, selectedCL: coverLettersSource[0].key
-        });
-    }
+        this.setState({ sections: [...sections], CVSource, selectedCV: CVSource[0].key });
+    };
 
     render() {
         let {CVSource, selectedCV, sections, coverLetters, coverLettersSource, selectedCL, page, jobId} = this.state;
+        let cv = sections.find(section => section.id === selectedCV);
+        let cl = coverLetters?.find(coverLetter => coverLetter.id === selectedCL);
         return (
             <div className={styles.JobApplication}>
                 <div className={styles.cards}>
                     <div className={styles.CVs}>
                         <Card
-                            v-if={page === 0}
+                            v-if={page === 0 && cv}
                             type={'section'}
-                            sections={sections[selectedCV]}
+                            sections={cv?.items}
+                            header={{text: cv?.header, position: 'center'}}
                         />
                         <Card
-                            v-if={page === 1}
+                            v-if={page === 1 && cl}
                             type={'coverLetter'}
-                            header={{text: coverLetters.find(cl => cl.id === selectedCL).title, position: 'center'}}
-                            coverLetter={coverLetters.find(cl => cl.id === selectedCL)}
+                            disabled={true}
+                            header={{text: cl?.title, position: 'center'}}
+                            coverLetter={cl}
                         />
                     </div>
                     <div className={styles.selection}>

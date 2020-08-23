@@ -19,6 +19,7 @@ import MyJobs from "./screens/MyJobs";
 import PostDetail from "./screens/PostDetail";
 import Error from "./screens/Error";
 import Login from "./screens/Login";
+import MyAccount from "./screens/MyAccount";
 
 /*** Styles ***/
 import styles from './app.scss';
@@ -99,6 +100,10 @@ class App extends React.Component {
                             path="/login"
                             render={props => <Login closeModal={this.closeModal} createModal={this.createModal} {...props} />}
                         />
+                        <Route
+                            path="/myAccount"
+                            render={props => <MyAccount user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
+                        />
                         <Route path="/posts">
                             <Posts />
                         </Route>
@@ -109,9 +114,9 @@ class App extends React.Component {
                         <Route path="/CVs"
                                render={props => <CVs user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
                         />
-                        <Route path="/coverletters">
-                            <CoverLetters user={user}/>
-                        </Route>
+                        <Route path="/coverletters"
+                               render={props => <CoverLetters user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
+                        />
                         <Route path="/myjobs">
                             <MyJobs />
                         </Route>

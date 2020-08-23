@@ -16,8 +16,8 @@ class Select extends Component {
             externalSource: [...this.props.externalSource],
             value: '',
             selectedValue: {
-                key: '',
-                value:''
+                key: 'default',
+                value: this.props.defaultValue || ''
             }
         };
         this.wrapperRef = React.createRef();
@@ -145,6 +145,7 @@ Select.propTypes = {
     name: PropTypes.string,
     onChange: PropTypes.any,
     placeholder: PropTypes.string,
+    defaultValue: PropTypes.string,
     size: PropTypes.string,
     errorList: PropTypes.array,
     externalSource: PropTypes.array,

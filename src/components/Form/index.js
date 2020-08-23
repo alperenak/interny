@@ -4,7 +4,7 @@ import React, {Component, Fragment} from 'react';
 import Input from "../Input";
 
 /*** Utils ***/
-import {formCVData} from "../../utils/functions";
+import {formCVData, onCVFormChange} from "../../utils/functions";
 
 /*** Styles ***/
 import styles from './form.scss';
@@ -18,8 +18,12 @@ class Form extends Component {
     state = {
         formItems: this.props.formItems,
         formButtons: this.props.formButtons,
-        formData: formCVData(),
+        formData: {},
     };
+
+    componentDidMount() {
+        formCVData(this.props.formData).then(res => this.setState({ formData: res }));
+    }
 
     onAddClick = (section) => {
         this.setState((state, props) => {
@@ -30,16 +34,7 @@ class Form extends Component {
 
     onFormChange = (value, sectionKey, itemKey, index) => {
         this.setState((state) => {
-            if (sectionKey === 'title') {
-                state.formData[sectionKey] = value;
-            } else {
-                if (state.formData[sectionKey][index]) {
-                    if (value) state.formData[sectionKey][index][itemKey] = value;
-                    else delete state.formData[sectionKey][index][itemKey]
-                } else {
-                    if (value) state.formData[sectionKey].push({[itemKey]: value});
-                }
-            }
+            state.formData = onCVFormChange(value, state.formData, sectionKey, itemKey, index);
             return state;
         });
     };
@@ -73,10 +68,10 @@ class Form extends Component {
                                            v-if={
                                                i === formItems[sectionKey].items.length - 1 &&
                                                formItems[sectionKey].duplicable &&
-                                               !(formData[formItems[sectionKey].key].length > 0 ?
+                                               !(formData[formItems[sectionKey].key]?.length > 0 ?
                                                    !!formData[formItems[sectionKey].key][i] ?
                                                        !(Object.keys(formData[formItems[sectionKey].key][i]).length
-                                                           === formItems[sectionKey].items[0].length) : true : true)
+                                                           === formItems[sectionKey].count) : true : true)
                                            }
                                            className={styles.addButton}
                                        >
@@ -106,6 +101,7 @@ class Form extends Component {
                                                        placeholder={item.placeholder}
                                                        externalSource={item.externalSource}
                                                        type={item.type}
+                                                       defaultValue={item.defaultValue}
                                                        size={item.size}
                                                        onChange={(value, sValue) =>{
                                                            let vl = item.type === 'text' ? value :  sValue.value;
