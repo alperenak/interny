@@ -10,6 +10,7 @@ import Form from "../../components/Form";
 import store from '../../store';
 import {getCookie} from "../../utils/cookie";
 import {formButtons, formItems} from "./formItems";
+import {formCVData, onCVFormChange} from "../../utils/functions";
 
 /*** Styles ***/
 import styles from './cvs.scss';
@@ -80,6 +81,8 @@ class CVs extends Component {
             <Form
                 formItems={formItems()}
                 formButtons={formButtons()}
+                formDataFormatter={formCVData}
+                onFormChange={onCVFormChange}
                 onSubmit={this.onCreateFormSubmit}
                 onCancel={this.props.closeModal}
             />
@@ -95,6 +98,8 @@ class CVs extends Component {
                 formItems={formItems(section)}
                 formButtons={formButtons(isEdit)}
                 formData={section}
+                formDataFormatter={formCVData}
+                onFormChange={onCVFormChange}
                 onSubmit={this.onEditFormSubmit}
                 onCancel={this.props.closeModal}
             />

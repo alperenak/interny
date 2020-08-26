@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 
 /*** Components ***/
 import Card from "../../components/Card";
@@ -6,12 +6,16 @@ import Card from "../../components/Card";
 /*** Utils ***/
 import store from '../../store';
 import {getCookie} from "../../utils/cookie";
+import {formButtons, formItems} from "./formItems";
+import {formJobData, onJobFormChange} from "../../utils/functions";
 
 /*** Styles ***/
 import styles from './myjobs.scss';
 
 /*** Icons ***/
-import userIcon from "../../icons/02-User-Oultine.svg";
+import Button from "../../components/Button";
+import addIcon from "../../icons/add-circular-outlined-white-button.svg";
+import Form from "../../components/Form";
 
 class MyJobs extends Component {
     state = {
@@ -19,8 +23,12 @@ class MyJobs extends Component {
         savedPosts: [],
         acceptedPosts: [],
         pendingPosts: [],
+        postHistory: [],
+        acceptedInterns: [],
+        pendingInterns: [],
+        rejectedInterns: [],
         page: 0,
-        postPageSource: [
+        internPostPageSource: [
             {
                 key: 'ApplicationHistory',
                 value: 'Application History',
@@ -49,12 +57,47 @@ class MyJobs extends Component {
                 to:'/myJobs',
                 onChange: () => this.setState({page: 3})
             },
+        ],
+        employerPostPageSource: [
+            {
+                key: 'PostHistory',
+                value: 'Post History',
+                selected: true,
+                to:'/myJobs',
+                onChange: () => this.setState({page: 0})
+            },
+            {
+                key: 'AcceptedInterns',
+                value: 'Accepted Interns',
+                selected: false,
+                to:'/myJobs',
+                onChange: () => this.setState({page: 1})
+            },
+            {
+                key: 'PendingInterns',
+                value: 'Pending Interns',
+                selected: false,
+                to:'/myJobs',
+                onChange: () => this.setState({page: 2})
+            },
+            {
+                key: 'RejectedInterns',
+                value: 'Rejected Interns',
+                selected: false,
+                to:'/myJobs',
+                onChange: () => this.setState({page: 3})
+            },
         ]
     };
 
     async componentDidMount() {
-        await this.getSavedPosts();
-        await this.getPosts();
+        let userType = getCookie('user');
+        if (userType === 'intern') {
+            await this.getSavedPosts();
+            await this.getPosts();
+        } else if (userType === 'employer') {
+            await this.getJobPosts();
+        }
     }
 
     fillPosts = (pst, buttons) => {
@@ -91,6 +134,15 @@ class MyJobs extends Component {
             return this.fillPosts(pst.Job, this.pendingButtons());
         });
         this.setState({ appliedPosts, acceptedPosts, pendingPosts });
+    }
+
+    async getJobPosts() {
+        let id = getCookie('user_id');
+        let postsRes = await store.getEmployerPosts(id);
+        let posts = postsRes.map(pst => {
+            return this.fillPosts(pst, this.historyButtons());
+        });
+        this.setState({ postHistory: posts });
     }
 
     appliedButtons = () => [
@@ -145,38 +197,117 @@ class MyJobs extends Component {
         }
     ];
 
+    historyButtons = () => [
+        {
+            type:'ghost',
+            text:'Something',
+            sizeName:'small',
+            width:'85px',
+        }
+    ];
+
+    onCreateClick = async () => {
+        this.props.createModal({ header: 'Create Post', content: this.renderCreatePostForm });
+    };
+
+    onEditClick = async (id) => {
+        this.props.createModal({ header: 'Edit Post', content: () => this.renderEditPostForm(id) });
+    };
+
+    renderCreatePostForm = () => {
+        return (
+            <Form
+                formItems={formItems()}
+                formButtons={formButtons()}
+                formDataFormatter={formJobData}
+                onFormChange={onJobFormChange}
+                onSubmit={this.onCreateFormSubmit}
+                onCancel={this.props.closeModal}
+            />
+        );
+    };
+
+    renderEditPostForm = async (id) => {
+        let postData = await store.getPost(id);
+        let isEdit = true;
+        return (
+            <Form
+                formItems={formItems(postData)}
+                formButtons={formButtons(isEdit)}
+                formData={postData}
+                formDataFormatter={formJobData}
+                onFormChange={onJobFormChange}
+                onSubmit={this.onEditFormSubmit}
+                onCancel={this.props.closeModal}
+            />
+        );
+    };
+
+    onCreateFormSubmit = async (payload) => {
+        await store.createPost(payload);
+        this.props.closeModal();
+        // await this.getCVs();
+    };
+
+    onEditFormSubmit = async (payload) => {
+        await store.editPost(payload);
+        this.props.closeModal();
+    };
+
     render() {
-        let {appliedPosts, savedPosts, page, postPageSource, acceptedPosts, pendingPosts} = this.state;
+        let {appliedPosts, savedPosts, page, acceptedPosts, pendingPosts,
+            postHistory, acceptedInterns, pendingInterns, rejectedInterns,} = this.state;
+        let userType = getCookie('user');
         return (
             <div className={styles.MyJobs}>
-                <Card
-                    type={'list'}
-                    externalData={postPageSource}
-                />
-                <Card
-                    header={{text: 'Application History', position: 'center'}}
-                    v-if={page === 0}
-                    type={'jobPost'}
-                    posts={appliedPosts}
-                />
-                <Card
-                    header={{text: 'Saved Jobs', position: 'center'}}
-                    v-if={page === 1}
-                    type={'jobPost'}
-                    posts={savedPosts}
-                />
-                <Card
-                    header={{text: 'Accepted Jobs', position: 'center'}}
-                    v-if={page === 2}
-                    type={'jobPost'}
-                    posts={acceptedPosts}
-                />
-                <Card
-                    header={{text: 'Pending Jobs', position: 'center'}}
-                    v-if={page === 3}
-                    type={'jobPost'}
-                    posts={pendingPosts}
-                />
+                <div className={styles.listButtonContainer}>
+                    <Card
+                        type={'list'}
+                        externalData={this.state[`${userType}PostPageSource`]}
+                    />
+                    <Button
+                        v-if={userType === 'employer'}
+                        text={'Create new Post'}
+                        width={'60%'}
+                        icon={addIcon}
+                        iconPosition={'right'}
+                        onButtonClick={this.onCreateClick}
+                    />
+                </div>
+                <Fragment v-if={userType === 'intern'}>
+                    <Card
+                        header={{text: 'Application History', position: 'center'}}
+                        v-if={page === 0}
+                        type={'jobPost'}
+                        posts={appliedPosts}
+                    />
+                    <Card
+                        header={{text: 'Saved Jobs', position: 'center'}}
+                        v-if={page === 1}
+                        type={'jobPost'}
+                        posts={savedPosts}
+                    />
+                    <Card
+                        header={{text: 'Accepted Jobs', position: 'center'}}
+                        v-if={page === 2}
+                        type={'jobPost'}
+                        posts={acceptedPosts}
+                    />
+                    <Card
+                        header={{text: 'Pending Jobs', position: 'center'}}
+                        v-if={page === 3}
+                        type={'jobPost'}
+                        posts={pendingPosts}
+                    />
+                </Fragment>
+                <Fragment v-else-if={userType === 'employer'}>
+                    <Card
+                        header={{text: 'Post History', position: 'center'}}
+                        v-if={page === 0}
+                        type={'jobPost'}
+                        posts={postHistory}
+                    />
+                </Fragment>
             </div>
         );
     }

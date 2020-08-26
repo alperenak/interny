@@ -33,6 +33,30 @@ export const formCVData = async (formData) => {
     return payload;
 };
 
+export const formJobData = async (formData) => {
+    let id = getCookie('user_id');
+
+    let payload = {
+        "Employer": id,
+        "description": formData ? formData.description :  "",
+        "position": formData ? formData.position :  "",
+        "requirements": formData ? formData.requirements :  {},
+        "qualifications": formData ? formData.qualifications :  [],
+        "employmentType": formData ? formData.employmentType :  "",
+        "workingDays": formData ? formData.workingDays :  [],
+        "salaryInterval": formData ? formData.salaryInterval :  [],
+        "startDate": formData ? formData.startDate :  "",
+        "endDate": formData ? formData.endDate :  "",
+        "industry": formData ? formData.industry :  "",
+        "jobRole": formData ? formData.jobRole :  "",
+        "jobType": formData ? formData.jobType :  "",
+        "jobLocation": formData ? formData.jobLocation :  {},
+        "internQuota": formData ? formData.internQuota :  0
+    };
+
+    return payload;
+};
+
 export const onCVFormChange = (value, formData, sectionKey, itemKey, index) => {
     if (sectionKey === 'title')
         formData[sectionKey] = value;
@@ -61,6 +85,18 @@ export const onCVFormChange = (value, formData, sectionKey, itemKey, index) => {
                 formData[sectionKey].push({[itemKey]: value});
             }
         }
+    }
+
+    return formData;
+};
+
+export const onJobFormChange = (value, formData, sectionKey) => {
+    if (sectionKey === 'country' || sectionKey === 'city') {
+        formData['jobLocation'][sectionKey] = value;
+    } else if (sectionKey === 'education' || sectionKey === 'experiences') {
+        formData['requirements'][sectionKey] = [value];
+    } else {
+        formData[sectionKey] = value;
     }
 
     return formData;

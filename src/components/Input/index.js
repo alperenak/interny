@@ -32,6 +32,7 @@ Input.propTypes = {
     placeholder: PropTypes.string,
     size: PropTypes.string,
     errorList: PropTypes.array,
+    validations: PropTypes.object,
     externalSource: PropTypes.array,
     className: PropTypes.string
 };

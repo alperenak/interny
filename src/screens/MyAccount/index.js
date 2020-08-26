@@ -14,6 +14,8 @@ class MyAccount extends Component {
             {key: 'email', title: 'E-mail Address'},
             {key: 'password', title: 'Password'},
             {key: 'name', title: 'Name'},
+            {key: 'accountName', title: 'Account Name'},
+            {key: 'legalName', title: 'Legal Name'},
             {key: 'surname', title: 'Surname'},
             {key: 'membershipStatus', title: 'Membership'},
             {key: 'phone', title: 'Phone'},
@@ -27,7 +29,7 @@ class MyAccount extends Component {
             this.props.createModal({
                 header: `Update ${item.title}`,
                 content: () => this.renderModalContent(item.title),
-                buttons: this.renderModalButtons()
+                buttons: this.renderModalButtons(item.key)
             });
         }
     };
@@ -43,7 +45,7 @@ class MyAccount extends Component {
         );
     }
 
-    renderModalButtons = () => [
+    renderModalButtons = (key) => [
         {
             type: 'ghost',
             text: 'Cancel',
@@ -55,7 +57,7 @@ class MyAccount extends Component {
             text: 'Update',
             sizeName: 'default',
             onButtonClick: async () => {
-                console.log(this.state.value);
+                await store.editIntern(this.props.user.id, key);
                 this.props.closeModal();
                 this.setState({ value: '' });
             }

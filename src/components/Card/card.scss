@@ -15,7 +15,21 @@
     -o-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
     -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
   }
-
+  &.table {
+    width: 500px;
+    height: 155px;
+    margin: 10px 10px 20px;
+  }
+  &.numeric {
+    width: 111px;
+    height: 50px;
+    margin: 10px;
+  }
+  &.chart{
+    width: 500px;
+    height: 400px;
+    margin: 10px;
+  }
   &.modal {
     border-radius: 4px;
   }

@@ -4,7 +4,7 @@ import React, {Component, Fragment} from 'react';
 import Input from "../Input";
 
 /*** Utils ***/
-import {formCVData, onCVFormChange} from "../../utils/functions";
+import validations from "../../utils/validations";
 
 /*** Styles ***/
 import styles from './form.scss';
@@ -22,7 +22,8 @@ class Form extends Component {
     };
 
     componentDidMount() {
-        formCVData(this.props.formData).then(res => this.setState({ formData: res }));
+        let {formDataFormatter} = this.props;
+        formDataFormatter(this.props.formData).then(res => this.setState({ formData: res }));
     }
 
     onAddClick = (section) => {
@@ -33,8 +34,9 @@ class Form extends Component {
     };
 
     onFormChange = (value, sectionKey, itemKey, index) => {
+        let {onFormChange} = this.props;
         this.setState((state) => {
-            state.formData = onCVFormChange(value, state.formData, sectionKey, itemKey, index);
+            state.formData = onFormChange(value, state.formData, sectionKey, itemKey, index);
             return state;
         });
     };
@@ -100,11 +102,13 @@ class Form extends Component {
                                                        labelDescription={item.labelDescription}
                                                        placeholder={item.placeholder}
                                                        externalSource={item.externalSource}
+                                                       validations={item.validations}
                                                        type={item.type}
                                                        defaultValue={item.defaultValue}
+                                                       errorList={item.errorList}
                                                        size={item.size}
                                                        onChange={(value, sValue) =>{
-                                                           let vl = item.type === 'text' ? value :  sValue.value;
+                                                           let vl = item.type !== 'select' ? value :  sValue.value;
                                                            this.onFormChange(vl, formItems[sectionKey].key, item.key, i);
                                                        }}
                                                    />

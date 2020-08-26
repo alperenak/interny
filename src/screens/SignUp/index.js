@@ -8,6 +8,7 @@ class SignUp extends Component {
         return (
             <Card
                 type={'auth'}
+                {...this.props}
             />
         );
     }

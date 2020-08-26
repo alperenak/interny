@@ -35,14 +35,14 @@ class Button extends Component {
     }
 
     render() {
-        let {disabled, to, onButtonClick, loading, width, sizeName, type} = this.props;
+        let {disabled, to, onButtonClick, loading, width, sizeName, type, onMouseOver, onMouseLeave} = this.props;
         return (
             <Fragment>
-                <Link style={{width: width}} v-if={to} to={to}
+                <Link style={{width: width}} v-if={to} to={to} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}
                     className={`${styles.btn} ${loading ? styles.loading : ''} ${styles[sizeName]} ${styles[type]} ${(disabled?styles.disabled:'')}`}>
                     {this.renderContent()}
                 </Link>
-                <button style={{width: width}} v-if={!to} onClick={onButtonClick}
+                <button style={{width: width}} v-if={!to} onClick={onButtonClick} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}
                     className={`${styles.btn} ${loading ? styles.loading : ''} ${styles[sizeName]} ${styles[type]} ${(disabled?styles.disabled:'')}`}>
                     {this.renderContent()}
                 </button>

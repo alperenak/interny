@@ -15,46 +15,47 @@ import {getCookie} from "../../utils/cookie";
 
 const PostDetail = () => {
     let {id} = useParams();
+    let userType = getCookie('user');
 
     const [posts, setPosts] = useState([]);
     const [company, setCompany] = useState({});
 
-    useEffect(async () => {
+    useEffect( () => {
         async function getPost() {
             let res = await store.getPost(id);
-            let pst = res.results;
+            let pst = res;
             setPosts([
                 {
-                    date: pst.startDate,
-                    position: pst.position,
-                    company: `${pst.Employer.legalName} - ${pst.jobLocation.city}`,
+                    date: pst?.startDate,
+                    position: pst?.position,
+                    company: `${pst?.Employer?.legalName} - ${pst?.jobLocation?.city}`,
                     buttons:[
                         {
-                            type:'primary',
-                            text:'Apply Now',
+                            type: userType === 'intern' ? 'primary' : 'ghost',
+                            text: userType === 'intern' ? 'Apply Now' : pst?.startDate,
                             sizeName:'small',
                             width:'85px',
-                            to: `/jobapplication/${pst.id}`
+                            to: `/jobapplication/${pst?.id}`
                         }
                     ],
-                    description: pst.description,
-                    qualifications: pst.qualifications,
-                    requirements: pst.requirements,
-                    internQuota: pst.internQuota,
+                    description: pst?.description,
+                    qualifications: pst?.qualifications,
+                    requirements: pst?.requirements,
+                    internQuota: pst?.internQuota,
                 }
             ]);
             setCompany({
-                image: pst.Employer.logo,
-                header: pst.Employer.legalName,
-                location: `${pst.jobLocation.country} - ${pst.jobLocation.city}`,
-                sector: pst.industry,
-                jobType: pst.jobType,
-                empNum: pst.Employer.employeeNumber,
-                description: pst.description,
+                image: pst?.Employer.logo,
+                header: pst?.Employer.legalName,
+                location: `${pst?.jobLocation?.country} - ${pst?.jobLocation?.city}`,
+                sector: pst?.industry,
+                jobType: pst?.jobType,
+                empNum: pst?.Employer?.employeeNumber,
+                description: pst?.description,
             });
         }
 
-        await getPost();
+        getPost();
     }, []);
 
     return (

@@ -40,23 +40,57 @@ let store = {
         };
         return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
     },
+    async employerLogin({email, password}) {
+        let baseUrl = config.baseUrl;
+        let tokenCookieName = "token";
+        let path = `/login/employer`;
+        let payload = {
+            "email": email,
+            "password": password,
+        };
+        return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+    },
     async getIntern(id) {
         let baseUrl = config.baseUrl;
         let path = `/intern/${id}`;
         let tokenCookieName = "token";
         return await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
     },
-    async getLandingPosts(keyword, location, offset, limit) {
+    async editIntern(id, field) {
         let baseUrl = config.baseUrl;
-        let path = `/jobs?keyword=${keyword}&location=${location}&offset=${offset}&limit=${limit}`;
+        let path = `/intern/${id}/${field}`;
+        let tokenCookieName = "token";
+        return await http.makePutRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+    },
+    async getEmployer(id) {
+        let baseUrl = config.baseUrl;
+        let path = `/employer/${id}`;
+        let tokenCookieName = "token";
+        return await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+    },
+    async getLandingPosts({keyword, location, offset=0, limit=5}) {
+        let baseUrl = config.baseUrl;
+        let keywordPath = keyword ? `keyword=${keyword}` : '';
+        let locationPath = location ? `&location=${location}&` : '';
+        let path = `/jobs?${keywordPath}${locationPath}offset=${offset}&limit=${limit}`;
         let tokenCookieName = "token";
         let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
 
         return res.data;
     },
-    async getPosts(keyword, location, offset, limit) {
+    async getPosts({keyword, location, offset=0, limit=5}) {
         let baseUrl = config.baseUrl;
-        let path = `/job?keyword=${keyword}&location=${location}&offset=${offset}&limit=${limit}`;
+        let keywordPath = keyword ? `keyword=${keyword}` : '';
+        let locationPath = location ? `&location=${location}&` : '';
+        let path = `/job?${keywordPath}${locationPath}offset=${offset}&limit=${limit}`;
+        let tokenCookieName = "token";
+        let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+
+        return res.data;
+    },
+    async getEmployerPosts(id) {
+        let baseUrl = config.baseUrl;
+        let path = `/employer/${id}/job`;
         let tokenCookieName = "token";
         let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
 
@@ -114,6 +148,46 @@ let store = {
             "coverletter": CL,
         };
         return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+    },
+    async createPost(payload) {
+        let baseUrl = config.baseUrl;
+        let tokenCookieName = "token";
+        let path = `/job`;
+        return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+    },
+    async editPost(payload) {
+        let baseUrl = config.baseUrl;
+        let tokenCookieName = "token";
+        let path = `/job`;
+        return await http.makePutRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+    },
+    async getPostApplications(jobId) {
+        let baseUrl = config.baseUrl;
+        let path = `/job/${jobId}/application`;
+        let tokenCookieName = "token";
+        let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+
+        return res.data;
+    },
+    async getPostApplication(jobId, applicationId) {
+        let baseUrl = config.baseUrl;
+        let path = `/job/${jobId}/application/${applicationId}`;
+        let tokenCookieName = "token";
+        let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+
+        return res.data;
+    },
+    async acceptApplication(jobId, applicationId) {
+        let baseUrl = config.baseUrl;
+        let tokenCookieName = "token";
+        let path = `/job/${jobId}/application/${applicationId}/accept`;
+        return await http.makePutRequest(path, baseUrl, tokenCookieName, {}, errorMessageBuilder);
+    },
+    async rejectApplication(jobId, applicationId) {
+        let baseUrl = config.baseUrl;
+        let tokenCookieName = "token";
+        let path = `/job/${jobId}/application/${applicationId}/reject`;
+        return await http.makePutRequest(path, baseUrl, tokenCookieName, {}, errorMessageBuilder);
     },
     async getCV(id) {
         let baseUrl = config.baseUrl;

@@ -5,6 +5,9 @@ import {Link} from "react-router-dom";
 import Card from "../Card";
 import Button from "../Button";
 
+/*** Utils ***/
+import {eraseCookie, getCookie} from "../../utils/cookie";
+
 /*** Styles ***/
 import styles from './topBar.scss';
 
@@ -15,8 +18,10 @@ import mailIcon from '../../icons/email-closed-outlined-back-envelope-interface-
 import bellIcon from '../../icons/notification-bell-outline-interface-symbol.svg';
 import coverLetterIcon from '../../icons/file-rounded-outlined-symbol.svg';
 import CVIcon from '../../icons/file-rounded-empty-sheet.svg';
+import jobIcon from '../../icons/monitor-outline.svg';
+import taskIcon from '../../icons/clipboard-square-symbol.svg';
 import logOutIcon from '../../icons/logout.svg';
-import {eraseCookie} from "../../utils/cookie";
+import caret from '../../icons/selectbox-blue.svg';
 
 class TopBar extends Component {
     constructor(props) {
@@ -30,6 +35,23 @@ class TopBar extends Component {
         mailDropDown: false,
         bellDropDown: false,
         userDropDown: false,
+        loginDropDown: false,
+        loginPages: [
+            {
+                key: 'internLogin',
+                value: 'Login as Intern',
+                selected: false,
+                disabled: true,
+                to:'/login/Intern',
+            },
+            {
+                key: 'employerLogin',
+                value: 'Login as Employer',
+                selected: false,
+                disabled: true,
+                to:'/login/Employer',
+            }
+        ],
         mailSource: [
             {
                 key: 'myAccount',
@@ -46,7 +68,7 @@ class TopBar extends Component {
                 disabled: true
             },
         ],
-        userSource: [
+        internSource: [
             {
                 key: 'myAccount',
                 value: 'My Account',
@@ -67,6 +89,40 @@ class TopBar extends Component {
                 selected: false,
                 icon: CVIcon,
                 to: '/CVs'
+            },
+            {
+                key: 'myJobs',
+                value: 'My Jobs',
+                selected: false,
+                icon: jobIcon,
+                to: '/myJobs'
+            },
+            {
+                key: 'myTasks',
+                value: 'My Tasks',
+                selected: false,
+                icon: taskIcon,
+                to: '/myTasks'
+            },
+            {
+                key: 'Log Out',
+                value: 'Log Out',
+                selected: false,
+                icon: logOutIcon,
+                to: '/logout',
+                onChange: () => {
+                    eraseCookie(['token', 'user', 'user_id']);
+                    window.location.pathname = '/';
+                }
+            },
+        ],
+        employerSource: [
+            {
+                key: 'myAccount',
+                value: 'My Account',
+                selected: false,
+                icon: userIcon,
+                to: '/myAccount'
             },
             {
                 key: 'myJobs',
@@ -96,14 +152,12 @@ class TopBar extends Component {
 
     componentDidMount() {
         document.addEventListener('mousedown', this.handleClickOutside);
-        this.state.userSource.map(e => e.selected = e.to === this.props.location.pathname);
-        this.setState({ userSource: this.state.userSource });
+        this.setSelectedPage();
     }
 
     componentDidUpdate(prevProps) {
         if (!Object.is(prevProps.location.pathname, this.props.location.pathname)) {
-            this.state.userSource.map(e => e.selected = e.to === this.props.location.pathname);
-            this.setState({ userSource: this.state.userSource });
+            this.setSelectedPage();
         }
     }
 
@@ -132,18 +186,28 @@ class TopBar extends Component {
 
     renderIcon(iconName) {
         let {icons} = this.state;
+        let userType = getCookie('user');
         return (
             <div ref={this.wrapperRef} onClick={() => this.onIconClick(iconName)} className={styles.img}>
                 <img src={icons[`${iconName}Icon`]} alt={'icon'} />
                 <div v-if={this.state[`${iconName}DropDown`]} className={styles.cardContainer}>
                     <Card
                         type={'dropDown'}
-                        externalData={this.state[`${iconName}Source`]}
+                        externalData={this.state[`${iconName === 'user' ? userType : iconName}Source`]}
                     />
                 </div>
             </div>
         );
     }
+
+    setSelectedPage = () => {
+        let userType = getCookie('user');
+        if (userType) {
+            this.state[`${userType}Source`].map(e => e.selected = e.to === this.props.location.pathname);
+            this.state.loginPages.map(e => e.selected = e.to === this.props.location.pathname);
+            this.setState({ [`${userType}Source`]: this.state[`${userType}Source`], loginPages: this.state.loginPages });
+        }
+    };
 
     onIconClick = (name) => {
         let {mailDropDown, bellDropDown, userDropDown} = this.state;
@@ -156,19 +220,48 @@ class TopBar extends Component {
 
     render() {
         let {isAuthorized, user} = this.props;
+        let {loginDropDown} = this.state;
+        let userType = getCookie('user');
         return (
             <div className={`${styles.TopBar} ${styles.fullScreen}`}>
                 <div className={styles.logo}><Link to={'/'}><img src={internyLogo} alt={'logo'} /></Link></div>
                 <div className={styles.links}>
                     <Fragment v-if={!isAuthorized}>
                         <div><Link to={'/'}>Home</Link></div>
-                        <div><Link to={'/posts'}>Browse Internships</Link></div>
+                        <div><Link to={'/search'}>Browse Internships</Link></div>
                         {this.renderPackagesLink()}
-                        <Button to="/login" type={'ghost'} sizeName={'small'} text={'Login'} />
-                        <Button to="/signup" type={'secondary'} sizeName={'small'} text={'Sign Up'} />
+                        <div
+                            onMouseOver={() => this.setState({loginDropDown: true})}
+                            onMouseLeave={() => this.setState({loginDropDown: false})}
+                            className={styles.dropdownContainer}
+                        >
+                            <Button
+                                type={'ghost'}
+                                sizeName={'small'}
+                                text={'Login'}
+                                iconPosition={'left'}
+                                icon={caret}
+                            />
+                            <div v-if={loginDropDown} className={styles.dropdown}>
+                                <Card
+                                    type={'dropDown'}
+                                    externalData={this.state.loginPages}
+                                />
+                            </div>
+                        </div>
+                        <Button
+                            to="/signup"
+                            type={'secondary'}
+                            sizeName={'small'}
+                            text={'Sign Up'}
+                        />
                     </Fragment>
                     <Fragment v-else>
-                        <div style={{cursor: 'default'}}>Welcome, <span className={styles.userName}>{user.name} {user.surname}</span></div>
+                        <div style={{cursor: 'default'}}>
+                            Welcome, <span className={styles.userName}>
+                            {userType === 'intern' ? user.name : user.accountName} {userType === 'intern' && user.surname}
+                        </span>
+                        </div>
                         {this.renderIcon('mail')}
                         {this.renderIcon('bell')}
                         {this.renderIcon('user')}

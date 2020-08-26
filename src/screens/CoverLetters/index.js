@@ -111,7 +111,7 @@ class CoverLetters extends Component {
                 />
             </Fragment>
         );
-    }
+    };
 
     render() {
         let {coverLetters} = this.state;

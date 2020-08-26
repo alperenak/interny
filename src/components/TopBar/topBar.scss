@@ -39,6 +39,18 @@
       font-family: "Noto Sans Bold";
     }
 
+    & .dropdownContainer {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      & .dropdown {
+        position: absolute;
+        top: 48px;
+        left: 0;
+      }
+    }
+
     & .img {
       position: relative;
       display: flex;

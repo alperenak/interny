@@ -26,7 +26,7 @@ class LandingPageSearch extends Component {
     async componentDidMount() {
         let token = getCookie('token');
         let res = await this.returnPostRequest();
-        let posts = res.map(pst => {
+        let posts = res.results.map(pst => {
             return this.fillPosts(pst);
         });
         this.setState({ posts, isAuthorized: !!token });
@@ -50,9 +50,9 @@ class LandingPageSearch extends Component {
         let token = getCookie('token');
         let res = [];
         if (!!token) {
-            res = await store.getPosts(keyword, location, offset, limit);
+            res = await store.getPosts({keyword, location, offset, limit});
         } else {
-            res = await store.getLandingPosts(keyword, location, offset, limit);
+            res = await store.getLandingPosts({keyword, location, offset, limit});
         }
         return res;
     };
@@ -68,7 +68,7 @@ class LandingPageSearch extends Component {
             buttons:[
                 {
                     type:'ghost',
-                    text: 'Remove Post',
+                    text: pst.startDate,
                     sizeName:'small',
                     width:'85px',
                 }
@@ -89,7 +89,7 @@ class LandingPageSearch extends Component {
 
     render() {
         let {keyword, location} = this.props.match.params;
-        let {posts, isAuthorized} = this.state;
+        let {posts} = this.state;
         return (
             <div className={styles.LandingPageSearch}>
                 <SearchSection

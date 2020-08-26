@@ -9,7 +9,6 @@ import Modal from "./components/Modal";
 /*** Screens ***/
 import Home from "./screens/Home";
 import SignUp from "./screens/SignUp";
-import Posts from "./screens/Posts";
 import UserHome from "./screens/UserHome";
 import CVs from "./screens/CVs";
 import CoverLetters from "./screens/CoverLetters";
@@ -27,11 +26,13 @@ import styles from './app.scss';
 /*** Utils ***/
 import {eraseCookie, getCookie} from "./utils/cookie";
 import store from "./store";
+import Dashboard from "./screens/EmployerDashboard";
 
 class App extends React.Component {
     state = {
         isAuthorized: true,
         user: {},
+        userType: '',
         modal: {
             header: '',
             declaration: '',
@@ -43,10 +44,17 @@ class App extends React.Component {
 
     async componentDidMount() {
         if (getCookie('token')) {
-            if (getCookie('user') === 'intern') {
+            let userType = getCookie('user');
+            if (userType === 'intern') {
                 let res = await store.getIntern(getCookie('user_id'));
                 if (res.status && res.status === 200) {
-                    this.setState({user: res.data, isAuthorized: true});
+                    this.setState({user: res.data, isAuthorized: true, userType: userType});
+                }
+            }
+            else if (userType === 'employer') {
+                let res = await store.getEmployer(getCookie('user_id'));
+                if (res.status && res.status === 200) {
+                    this.setState({user: res.data, isAuthorized: true, userType: userType});
                 }
             }
         } else {
@@ -64,13 +72,19 @@ class App extends React.Component {
     };
 
     render() {
-        let {isAuthorized, user, modal} = this.state;
+        let {isAuthorized, user, modal, userType} = this.state;
         return (
             <div className={`${styles.App} ${styles.fullScreen}`}>
                 <Router>
                     <Route
                         path="/"
-                        render={props => <TopBar isAuthorized={isAuthorized} user={user} {...props} />}
+                        render={props =>
+                            <TopBar
+                                isAuthorized={isAuthorized}
+                                user={user}
+                                {...props}
+                            />
+                        }
                     />
                     <Modal
                         v-if={modal.visibility}
@@ -82,7 +96,8 @@ class App extends React.Component {
                     />
                     <Switch>
                         <Route v-if={isAuthorized} exact path="/">
-                            <UserHome />
+                            <UserHome v-if={userType === 'intern'} />
+                            <Dashboard v-if={userType === 'employer'} />
                         </Route>
                         <Route v-else exact path="/">
                             <SearchSection v-if={!isAuthorized} page={'home'} />
@@ -93,20 +108,21 @@ class App extends React.Component {
                             render={props => <LandingPageSearch {...props} />}
                         />
                         <Route
-                            path="/signup"
-                            render={props => <SignUp {...props} />}
+                            path="/search"
+                            render={props => <LandingPageSearch {...props} />}
                         />
                         <Route
-                            path="/login"
+                            path="/signup"
+                            render={props => <SignUp closeModal={this.closeModal} createModal={this.createModal} {...props} />}
+                        />
+                        <Route
+                            path="/login/:user"
                             render={props => <Login closeModal={this.closeModal} createModal={this.createModal} {...props} />}
                         />
                         <Route
                             path="/myAccount"
                             render={props => <MyAccount user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
                         />
-                        <Route path="/posts">
-                            <Posts />
-                        </Route>
                         <Route
                             path="/postdetail/:id"
                             render={props => <PostDetail {...props} />}
@@ -117,9 +133,9 @@ class App extends React.Component {
                         <Route path="/coverletters"
                                render={props => <CoverLetters user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
                         />
-                        <Route path="/myjobs">
-                            <MyJobs />
-                        </Route>
+                        <Route path="/myjobs"
+                               render={props => <MyJobs user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
+                        />
                         <Route
                             path="/jobapplication/:jobId"
                             render={props => <JobApplication {...props} />}

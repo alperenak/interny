@@ -31,7 +31,6 @@ export const formItems = (formInputs) => {
         },
         'experiences': {
             key: "Experience",
-            level: 'Education Level',
             institution: 'Company',
             title: 'Position',
             country: 'Country',

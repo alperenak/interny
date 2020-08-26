@@ -136,7 +136,7 @@ export default {
 		if (error.response) {
 			if (error.response.status === 401) {
 				eraseCookie(['token', 'user', 'user_id']);
-				window.location.pathname = '/';
+				window.location.pathname = '/error';
 			} else if (error.response.status === 500) {
 				window.location.pathname = '/error';
 			}

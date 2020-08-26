@@ -40,7 +40,7 @@ class JobPost extends Component {
         return (
             <Fragment>
                 <div className={`${multiple ? styles.multiplePost : styles.singlePost}`}>
-                    <Link to={`/postdetail/${pst.id}`} v-if={pst.image} className={styles.itemImage}>
+                    <Link to={`/postdetail/${pst.id}`}  className={styles.itemImage}>
                         <img src={pst.image} alt={'image'}/>
                     </Link>
                     <Link to={`/postdetail/${pst.id}`} className={styles.postHeaderWrapper}>
