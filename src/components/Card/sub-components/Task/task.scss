@@ -1,0 +1,47 @@
+.Task {
+  position: relative;
+  height: 100%;
+
+  & .title {
+    font-family: "Noto Sans Bold";
+    color: #2b4970;
+    font-size: 12px;
+    text-align: start;
+    margin: 0 20px 10px;
+  }
+
+  & .description {
+    font-family: "Noto Sans";
+    overflow: hidden;
+    display: -webkit-box;
+    width: 80%;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    color: #484848;
+    font-size: 14px;
+    text-align: start;
+    margin: 0 20px 10px;
+  }
+
+  & .users {
+    font-family: "Noto Sans";
+    color: #2b4970;
+    font-size: 14px;
+    text-align: start;
+    margin: 0 20px 10px;
+    & span {
+      color: #484848;
+    }
+  }
+
+  & .deadline {
+    font-family: "Noto Sans";
+    color: #2b4970;
+    font-size: 10px;
+    text-align: end;
+    margin: 0 20px 10px;
+    & span {
+      color: #646464;
+    }
+  }
+}

@@ -102,7 +102,7 @@ class TopBar extends Component {
                 value: 'My Tasks',
                 selected: false,
                 icon: taskIcon,
-                to: '/myTasks'
+                to: '/mytasks'
             },
             {
                 key: 'Log Out',

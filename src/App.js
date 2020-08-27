@@ -27,6 +27,7 @@ import styles from './app.scss';
 import {eraseCookie, getCookie} from "./utils/cookie";
 import store from "./store";
 import Dashboard from "./screens/EmployerDashboard";
+import MyTasks from "./screens/MyTasks";
 
 class App extends React.Component {
     state = {
@@ -135,6 +136,9 @@ class App extends React.Component {
                         />
                         <Route path="/myjobs"
                                render={props => <MyJobs user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
+                        />
+                        <Route path="/mytasks"
+                               render={props => <MyTasks user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
                         />
                         <Route
                             path="/jobapplication/:jobId"
