@@ -3,6 +3,7 @@
     grid-template-columns: 25% 25% 25% 25%;
     text-align: center;
     border: 1px solid #eee;
+    border-top: none;
     height: 100%;
     overflow: scroll;
 
@@ -11,6 +12,7 @@
         flex-direction: column;
         align-items: center;
         border: 1px solid #eee;
+        border-top: none;
         user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
