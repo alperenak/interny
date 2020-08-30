@@ -64,7 +64,7 @@ export const formItems = (formItems) => {
             placeholder: 'assignee',
             type: 'select',
             size: 'half',
-            defaultValue: formItems ? formItems.Intern : '',
+            defaultValue: formItems ? formItems.Intern[0].name + ' ' + formItems.Intern[0].surname : '',
             validations: {
             },
         },

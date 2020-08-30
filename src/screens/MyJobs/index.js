@@ -115,12 +115,13 @@ class MyJobs extends Component {
     }
 
     async getPosts() {
-        let appliedPostsRes = await store.getAppliedPost(getCookie('user_id'));
+        let userId = getCookie('user_id');
+        let appliedPostsRes = await store.getAppliedPost(userId);
         let appliedPosts = appliedPostsRes.map(pst => {
             return this.fillPosts(pst.Job, this.appliedButtons());
         });
         let acceptedPosts = appliedPostsRes.filter(post => post.isAccepted).map(pst => {
-            return this.fillPosts(pst.Job, this.acceptedButtons());
+            return this.fillPosts(pst.Job, this.acceptedButtons(userId, pst.Job.id));
         });
         let pendingPosts = appliedPostsRes.filter(post => post.isPending).map(pst => {
             return this.fillPosts(pst.Job, this.pendingButtons());
@@ -131,10 +132,19 @@ class MyJobs extends Component {
     async getJobPosts() {
         let id = getCookie('user_id');
         let postsRes = await store.getEmployerPosts(id);
+        let activePostsRes = await store.getActivePosts(id);
+        let passivePostsRes = await store.getPassivePosts(id);
+
         let posts = postsRes.map(pst => {
-            return this.fillPosts(pst, this.historyButtons());
+            return this.fillPosts(pst, this.historyButtons(pst));
         });
-        this.setState({ postHistory: posts });
+        let activePosts = activePostsRes.map(pst => {
+            return this.fillPosts(pst, this.historyButtons(pst));
+        });
+        let passivePosts = passivePostsRes.map(pst => {
+            return this.fillPosts(pst, this.historyButtons(pst));
+        });
+        this.setState({ postHistory: posts, activePosts: activePosts, passivePosts: passivePosts });
     }
 
     appliedButtons = () => [
@@ -174,12 +184,15 @@ class MyJobs extends Component {
             width:'100px',
         }
     ];
-    acceptedButtons = () => [
+    acceptedButtons = (userId, jobId) => [
         {
             type:'primary',
             text:'Start Internship',
             sizeName:'small',
             width:'100px',
+            onButtonClick: async () => {
+                await store.startInternship(userId, jobId);
+            }
         },
         {
             type:'ghost',
@@ -189,12 +202,19 @@ class MyJobs extends Component {
         }
     ];
 
-    historyButtons = () => [
+    historyButtons = (pst) => [
         {
-            type:'ghost',
-            text:'Something',
+            type: pst.isSuspended ? 'primary' : 'ghost',
+            text: pst.isSuspended ? 'Activate' : 'Suspend',
             sizeName:'small',
             width:'85px',
+            onButtonClick: async () => {
+                if (pst.isSuspended)
+                    await store.activatePost(pst.id);
+                else
+                    await store.suspendPost(pst.id);
+                await this.getJobPosts();
+            }
         }
     ];
 
@@ -223,7 +243,7 @@ class MyJobs extends Component {
 
     render() {
         let {appliedPosts, savedPosts, page, acceptedPosts, pendingPosts,
-            postHistory} = this.state;
+            postHistory, activePosts, passivePosts} = this.state;
         let userType = getCookie('user');
         return (
             <div className={styles.MyJobs}>
@@ -273,6 +293,18 @@ class MyJobs extends Component {
                         v-if={page === 0}
                         type={'jobPost'}
                         posts={postHistory}
+                    />
+                    <Card
+                        header={{text: 'Active Posts', position: 'center'}}
+                        v-if={page === 1}
+                        type={'jobPost'}
+                        posts={activePosts}
+                    />
+                    <Card
+                        header={{text: 'Passive Posts', position: 'center'}}
+                        v-if={page === 2}
+                        type={'jobPost'}
+                        posts={passivePosts}
                     />
                 </Fragment>
             </div>

@@ -69,13 +69,14 @@ export default class PieDiagram extends PureComponent {
     };
 
     render() {
+        let {availWidth, availHeight} = window.screen;
         return (
-            <PieChart width={500} height={300}>
+            <PieChart width={availWidth/3} height={300}>
                 <Pie
                     activeIndex={this.state.activeIndex}
                     activeShape={renderActiveShape}
                     data={data}
-                    cx={250}
+                    cx={availWidth/6}
                     cy={125}
                     innerRadius={60}
                     outerRadius={80}

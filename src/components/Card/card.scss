@@ -5,10 +5,10 @@
   border-radius: 16px;
   background-color: #ffffff;
   border: 1px solid #efefef;
+  overflow: hidden;
 
   &.task {
     width: calc(100% - 32px);
-    height: 150px;
     margin: 4px auto;
     padding: 16px 0;
     border-radius: 4px;
@@ -24,17 +24,21 @@
     -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
   }
   &.table {
-    width: 500px;
-    height: 155px;
+    height: 191px;
     margin: 10px 10px 20px;
+
+    & .cardHeader {
+      margin: 0 0 20px;
+    }
   }
   &.numeric {
-    width: 111px;
-    height: 50px;
+    height: 69px;
     margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   &.chart{
-    width: 500px;
     height: 400px;
     margin: 10px;
   }

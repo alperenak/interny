@@ -32,7 +32,7 @@ class Intern extends Component {
         let { CoverLetter, Intern } = this.props.application;
         let coverLetter = {
                 "title": `Cover Letter`,
-                "text": CoverLetter.phone
+                "text": CoverLetter.text
         };
 
         this.setState({ coverLetter });
@@ -71,6 +71,25 @@ class Intern extends Component {
         let {application} = this.props;
         let {section, coverLetterVisibility, cvVisibility, coverLetter} = this.state;
 
+        let primaryButtonText = '';
+        let ghostButtonText = '';
+
+        if (application.isPending) {
+            primaryButtonText = 'ACCEPT';
+            ghostButtonText = 'REJECT';
+        } else if (application.isAccepted) {
+            if (application.isApproved) {
+                primaryButtonText = 'ASSIGNMENTS';
+                ghostButtonText = 'WITHDRAW';
+            } else {
+                primaryButtonText = 'WITHDRAW';
+                ghostButtonText = 'REJECT';
+            }
+        } else if (application.isRejected) {
+            primaryButtonText = 'ACCEPT';
+            ghostButtonText = 'WITHDRAW';
+        }
+
         return (
             <div className={styles.Intern}>
                 <div className={styles.cardWrapper}>
@@ -101,14 +120,14 @@ class Intern extends Component {
                     <div className={styles.buttonContainer}>
                         <Button
                             type={'primary'}
-                            text={'ACCEPT'}
+                            text={primaryButtonText}
                             sizeName={'small'}
                             width={'72px'}
                             onButtonClick={async () => store.acceptApplication(application.Job.id, application.id) }
                         />
                         <Button
                             type={'ghost'}
-                            text={'REJECT'}
+                            text={ghostButtonText}
                             sizeName={'small'}
                             width={'72px'}
                             onButtonClick={async () => store.rejectApplication(application.Job.id, application.id) }

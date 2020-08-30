@@ -3,8 +3,48 @@
   flex-direction: row;
   justify-content: space-between;
 
-  & .tableContainer {
+  & .col1 {
+    width: 50%;
+  }
+  & .col2 {
+    width: 50%;
+  }
 
+  & .tableContainer {
+    overflow: scroll;
+    width: 100%;
+    height: 85%;
+    & .rowContainer {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      margin-bottom: 10px;
+      cursor: pointer;
+      padding: 10px;
+      & .avatar {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 4px;
+        -webkit-box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 1);
+        -moz-box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 1);
+        box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 1);
+        margin-right: 20px;
+        overflow: hidden;
+        & img {
+          width: 100%;
+        }
+      }
+      & .internName {
+        font-family: "Noto Sans Bold";
+        text-align: center;
+        font-size: 12px;
+        color: #2b4970;
+      }
+    }
   }
 
   & .projectsContainer {
@@ -18,17 +58,12 @@
     & .numericDataContainer {
       font-family: "Noto Sans Bold";
       text-align: center;
-      font-size: 24px;
+      font-size: 36px;
       color: #2b4970;
     }
   }
 
-  & .chartContainer {
-
-    & .taskCardContainer {
-    }
-
-    & .applicationContainer {
-    }
+  & .applicationContainer {
+    width: 100%;
   }
 }

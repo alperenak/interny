@@ -79,13 +79,17 @@ class PostDetail extends Component{
         });
     };
 
+    getApplicants = async (id) => {
+        let applicants = await store.getPostApplications(id);
+        this.setState({ applicants });
+    };
+
     onEditClick = async () => {
         this.props.createModal({ header: 'Edit Post', content: this.renderEditPostForm });
     };
 
     onViewApplicantsClick = async (id) => {
-        let applicants = await store.getPostApplications(id);
-        this.setState({ applicants });
+        this.getApplicants(id);
         this.props.createModal({ header: 'Applicants', content: this.renderApplicants });
     };
 
@@ -113,6 +117,7 @@ class PostDetail extends Component{
                     <Card
                         type={'intern'}
                         application={app}
+                        getApplicants={this.getApplicants}
                         key={i}
                     />
                 </Fragment>

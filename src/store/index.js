@@ -52,7 +52,7 @@ let store = {
     },
     async getInterns(id) {
         let baseUrl = config.baseUrl;
-        let path = `/intern/${id}`;
+        let path = `/employer/${id}/interns`;
         let tokenCookieName = "token";
         return await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
     },
@@ -111,6 +111,44 @@ let store = {
         let path = `/employer/${id}/job`;
         let tokenCookieName = "token";
         let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+
+        return res.data;
+    },
+    async getActivePosts(id) {
+        let baseUrl = config.baseUrl;
+        let path = `/employer/${id}/job?status=active`;
+        let tokenCookieName = "token";
+        let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+
+        return res.data;
+    },
+    async getPassivePosts(id) {
+        let baseUrl = config.baseUrl;
+        let path = `/employer/${id}/job?status=passive`;
+        let tokenCookieName = "token";
+        let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+
+        return res.data;
+    },
+    async activatePost(id) {
+        let baseUrl = config.baseUrl;
+        let path = `/job/${id}`;
+        let tokenCookieName = "token";
+        let payload = {
+          passive: false
+        };
+        let res = await http.makePutRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+
+        return res.data;
+    },
+    async suspendPost(id) {
+        let baseUrl = config.baseUrl;
+        let path = `/job/${id}`;
+        let tokenCookieName = "token";
+        let payload = {
+            passive: true
+        };
+        let res = await http.makePutRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
 
         return res.data;
     },
@@ -207,6 +245,15 @@ let store = {
         let path = `/job/${jobId}/application/${applicationId}/reject`;
         return await http.makePutRequest(path, baseUrl, tokenCookieName, {}, errorMessageBuilder);
     },
+    async startInternship(id, jobId) {
+        let baseUrl = config.baseUrl;
+        let tokenCookieName = "token";
+        let path = `/intern/${id}/approve`;
+        let payload = {
+            id: jobId
+        };
+        return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+    },
     async getCV(id) {
         let baseUrl = config.baseUrl;
         let path = `/cv/${id}`;
@@ -264,10 +311,13 @@ let store = {
         let path = `/intern/${id}/coverletter`;
         return await http.makePutRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
     },
-    async deleteCoverLetter(id, payload) {
+    async deleteCoverLetter(internId, id) {
         let baseUrl = config.baseUrl;
         let tokenCookieName = "token";
-        let path = `/intern/${id}/coverletter`;
+        let path = `/intern/${internId}/coverletter`;
+        let payload = {
+            id: id
+        };
         return await http.makeDeleteRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
     },
     async getTasks() {

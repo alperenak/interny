@@ -60,12 +60,16 @@ export const formTaskData = (formData) => {
     let id = getCookie('user_id');
     let payload = {
         "Employer": id,
-        "Intern": formData ? formData.assignee :  "",
+        "Intern": formData ? [formData.Intern[0]] :  [],
         "title": formData ? formData.title :  "",
         "label": formData ? formData.label :  "",
         "description": formData ? formData.description :  "",
         "deadline": formData ? formData.deadline :  "",
     };
+
+    if (formData) {
+        payload.id = formData.id;
+    }
 
     return payload;
 };

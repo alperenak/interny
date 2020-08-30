@@ -21,6 +21,7 @@ class JobPost extends Component {
                                 disabled={btn.disabled}
                                 hoverIcon={btn.hoverIcon}
                                 icon={btn.icon}
+                                loading={btn.loading}
                                 iconAutoWidth={btn.iconAutoWidth}
                                 iconPosition={btn.iconPosition}
                                 onButtonClick={btn.onButtonClick}

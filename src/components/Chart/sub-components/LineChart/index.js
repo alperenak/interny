@@ -29,11 +29,12 @@ const data = [
 
 export default class LineDiagram extends PureComponent {
     static jsfiddleUrl = 'https://jsfiddle.net/alidingling/xqjtetw0/';
-
     render() {
+        let {availWidth, availHeight} = window.screen;
+
         return (
             <LineChart
-                width={500}
+                width={availWidth/3}
                 height={300}
                 data={data}
                 margin={{

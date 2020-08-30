@@ -90,6 +90,7 @@ class CoverLetters extends Component {
 
     onCoverLetterDelete = async (id) => {
         await store.deleteCoverLetter(getCookie('user_id'), id);
+        await this.getCoverLetters();
     };
 
     renderModalContent = () => {
