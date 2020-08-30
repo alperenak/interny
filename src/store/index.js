@@ -50,23 +50,41 @@ let store = {
         };
         return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
     },
+    async getInterns(id) {
+        let baseUrl = config.baseUrl;
+        let path = `/intern/${id}`;
+        let tokenCookieName = "token";
+        return await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+    },
     async getIntern(id) {
         let baseUrl = config.baseUrl;
         let path = `/intern/${id}`;
         let tokenCookieName = "token";
         return await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
     },
-    async editIntern(id, field) {
+    async editIntern(id, {field, value}) {
         let baseUrl = config.baseUrl;
         let path = `/intern/${id}/${field}`;
         let tokenCookieName = "token";
-        return await http.makePutRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+        let payload = {
+            [field]: value
+        };
+        return await http.makePutRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
     },
     async getEmployer(id) {
         let baseUrl = config.baseUrl;
         let path = `/employer/${id}`;
         let tokenCookieName = "token";
         return await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+    },
+    async editEmployer(id, {field, value}) {
+        let baseUrl = config.baseUrl;
+        let path = `/intern/${id}/${field}`;
+        let tokenCookieName = "token";
+        let payload = {
+            [field]: value
+        };
+        return await http.makePutRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
     },
     async getLandingPosts({keyword, location, offset=0, limit=5}) {
         let baseUrl = config.baseUrl;
@@ -251,6 +269,9 @@ let store = {
         let tokenCookieName = "token";
         let path = `/intern/${id}/coverletter`;
         return await http.makeDeleteRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+    },
+    async getTasks() {
+
     },
 };
 

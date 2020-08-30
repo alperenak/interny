@@ -48,7 +48,7 @@ class Form extends Component {
             <Fragment>
                 <div className={styles.formButtons}>
                     {
-                        formButtons.map((btn, i) => {
+                        formButtons && formButtons.map((btn, i) => {
                             return <Button
                                 key={i}
                                 type={btn.type}

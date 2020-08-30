@@ -24,9 +24,8 @@ class MyJobs extends Component {
         acceptedPosts: [],
         pendingPosts: [],
         postHistory: [],
-        acceptedInterns: [],
-        pendingInterns: [],
-        rejectedInterns: [],
+        activePosts: [],
+        passivePosts: [],
         page: 0,
         internPostPageSource: [
             {
@@ -67,25 +66,18 @@ class MyJobs extends Component {
                 onChange: () => this.setState({page: 0})
             },
             {
-                key: 'AcceptedInterns',
-                value: 'Accepted Interns',
+                key: 'ActivePosts',
+                value: 'Active Posts',
                 selected: false,
                 to:'/myJobs',
                 onChange: () => this.setState({page: 1})
             },
             {
-                key: 'PendingInterns',
-                value: 'Pending Interns',
+                key: 'PassivePosts',
+                value: 'Passive Posts',
                 selected: false,
                 to:'/myJobs',
                 onChange: () => this.setState({page: 2})
-            },
-            {
-                key: 'RejectedInterns',
-                value: 'Rejected Interns',
-                selected: false,
-                to:'/myJobs',
-                onChange: () => this.setState({page: 3})
             },
         ]
     };
@@ -210,10 +202,6 @@ class MyJobs extends Component {
         this.props.createModal({ header: 'Create Post', content: this.renderCreatePostForm });
     };
 
-    onEditClick = async (id) => {
-        this.props.createModal({ header: 'Edit Post', content: () => this.renderEditPostForm(id) });
-    };
-
     renderCreatePostForm = () => {
         return (
             <Form
@@ -227,36 +215,15 @@ class MyJobs extends Component {
         );
     };
 
-    renderEditPostForm = async (id) => {
-        let postData = await store.getPost(id);
-        let isEdit = true;
-        return (
-            <Form
-                formItems={formItems(postData)}
-                formButtons={formButtons(isEdit)}
-                formData={postData}
-                formDataFormatter={formJobData}
-                onFormChange={onJobFormChange}
-                onSubmit={this.onEditFormSubmit}
-                onCancel={this.props.closeModal}
-            />
-        );
-    };
-
     onCreateFormSubmit = async (payload) => {
         await store.createPost(payload);
         this.props.closeModal();
-        // await this.getCVs();
-    };
-
-    onEditFormSubmit = async (payload) => {
-        await store.editPost(payload);
-        this.props.closeModal();
+        await this.getJobPosts();
     };
 
     render() {
         let {appliedPosts, savedPosts, page, acceptedPosts, pendingPosts,
-            postHistory, acceptedInterns, pendingInterns, rejectedInterns,} = this.state;
+            postHistory} = this.state;
         let userType = getCookie('user');
         return (
             <div className={styles.MyJobs}>

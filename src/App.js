@@ -44,6 +44,10 @@ class App extends React.Component {
     };
 
     async componentDidMount() {
+        await this.getUser();
+    }
+
+    getUser = async () => {
         if (getCookie('token')) {
             let userType = getCookie('user');
             if (userType === 'intern') {
@@ -62,7 +66,7 @@ class App extends React.Component {
             eraseCookie(['token', 'user', 'user_id']);
             this.setState({isAuthorized: false});
         }
-    }
+    };
 
     createModal = ({ header, declaration, content, buttons }) => {
         this.setState({ modal: {header, declaration, content, buttons, visibility: true}});
@@ -122,11 +126,11 @@ class App extends React.Component {
                         />
                         <Route
                             path="/myAccount"
-                            render={props => <MyAccount user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
+                            render={props => <MyAccount user={user} getUser={this.getUser} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
                         />
                         <Route
                             path="/postdetail/:id"
-                            render={props => <PostDetail {...props} />}
+                            render={props => <PostDetail closeModal={this.closeModal} createModal={this.createModal} {...props} />}
                         />
                         <Route path="/CVs"
                                render={props => <CVs user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}

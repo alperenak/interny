@@ -4,9 +4,13 @@ import React, {Component} from 'react';
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 
+/*** Utils ***/
+import store from "../../store";
+
 /*** Styles ***/
 import styles from "./myaccount.scss";
 import Input from "../../components/Input";
+import {getCookie} from "../../utils/cookie";
 
 class MyAccount extends Component {
     state = {
@@ -57,9 +61,14 @@ class MyAccount extends Component {
             text: 'Update',
             sizeName: 'default',
             onButtonClick: async () => {
-                await store.editIntern(this.props.user.id, key);
+                if (getCookie('user') === 'intern') {
+                    await store.editIntern(this.props.user.id, {field: key, value: this.state.value});
+                } else {
+                    await store.editEmployer(this.props.user.id, {field: key, value: this.state.value});
+                }
                 this.props.closeModal();
                 this.setState({ value: '' });
+                await this.props.getUser();
             }
         },
     ];

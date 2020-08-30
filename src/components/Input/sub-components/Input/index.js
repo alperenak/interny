@@ -42,10 +42,10 @@ class PlainInput extends Component {
 
     render() {
         let {name, label, labelDescription, type, disabled, icon,
-            defaultValue, placeholder, size, className} = this.props;
+            defaultValue, placeholder, size, className, onClick} = this.props;
         let {value, errorList, valid} = this.state;
         return (
-            <div className={`${styles.inputWrapper} ${disabled ? styles.disabled : ''} ${className}`}>
+            <div onClick={onClick} className={`${styles.inputWrapper} ${disabled ? styles.disabled : ''} ${className}`}>
                 <label v-if={label} htmlFor={name}>
                     {label}
                 </label>
@@ -116,6 +116,7 @@ PlainInput.propTypes = {
   name: PropTypes.string,
   icon: PropTypes.object,
   onChange: PropTypes.any,
+  onClick: PropTypes.any,
   type: PropTypes.string,
   defaultValue: PropTypes.string,
   placeholder: PropTypes.string,

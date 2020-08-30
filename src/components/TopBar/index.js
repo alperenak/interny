@@ -126,10 +126,17 @@ class TopBar extends Component {
             },
             {
                 key: 'myJobs',
-                value: 'My Jobs',
+                value: 'Jobs',
                 selected: false,
                 icon: CVIcon,
                 to: '/myJobs'
+            },
+            {
+                key: 'myTasks',
+                value: 'Tasks',
+                selected: false,
+                icon: taskIcon,
+                to: '/mytasks'
             },
             {
                 key: 'Log Out',

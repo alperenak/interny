@@ -1,4 +1,5 @@
 .MyTasks {
+    position: relative;
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
     text-align: center;
@@ -21,7 +22,7 @@
         & .sectionHeader {
             position: sticky;
             top: 0;
-            z-index: 12;
+            z-index: 1;
             font-family: "Noto Sans";
             font-size: 16px;
             padding: 20px 0;
@@ -38,5 +39,68 @@
             justify-content: center;
             width: 100%;
         }
+    }
+
+    & .createIcon {
+        position: fixed;
+        cursor: pointer;
+        bottom: 24px;
+        left: 24px;
+        display: flex;
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        background-color: #2b4970;
+        -webkit-box-shadow: 0px 0px 30px 2px rgba(43, 73, 112, 0.6);
+        -moz-box-shadow: 0px 0px 30px 2px rgba(43, 73, 112, 0.6);
+        box-shadow: 0px 0px 30px 2px rgba(43, 73, 112, 0.6);
+        &:hover {
+            background-color: #325a88;
+            -webkit-box-shadow: 0px 0px 30px 2px rgba(#325a88, 0.6);
+            -moz-box-shadow: 0px 0px 30px 2px rgba(#325a88, 0.6);
+            box-shadow: 0px 0px 30px 2px rgba(#325a88, 0.6);
+        }
+        &:active {
+            background-color: rgba(#2b4970, 1);
+            -webkit-box-shadow: 0px 0px 30px 2px rgba(43, 73, 112, 0.6);
+            -moz-box-shadow: 0px 0px 30px 2px rgba(43, 73, 112, 0.6);
+            box-shadow: 0px 0px 30px 2px rgba(43, 73, 112, 0.6);
+        }
+
+        & img {
+            width: 50px;
+            height: 50px;
+        }
+    }
+}
+
+.formWrapper {
+    display: grid;
+    grid-template-columns: auto auto;
+
+    & .title, & .description, & .label {
+        grid-column: span 2;
+    }
+
+    & .deadline, & .intern {
+        grid-column: span 1;
+    }
+
+    & .formButtons {
+        position: absolute;
+        display: flex;
+        bottom: 0;
+        left: 2.5%;
+        right: 0;
+        padding: 10px 0;
+        justify-content: flex-end;
+        align-self: center;
+        width: 95%;
+        background: white;
+        -webkit-box-shadow: 0px -23px 23px 23px white;
+        -moz-box-shadow: 0px -23px 23px 23px white;
+        box-shadow: 0px -23px 23px 0px white;
     }
 }

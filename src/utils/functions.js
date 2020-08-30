@@ -35,7 +35,6 @@ export const formCVData = async (formData) => {
 
 export const formJobData = async (formData) => {
     let id = getCookie('user_id');
-
     let payload = {
         "Employer": id,
         "description": formData ? formData.description :  "",
@@ -52,6 +51,20 @@ export const formJobData = async (formData) => {
         "jobType": formData ? formData.jobType :  "",
         "jobLocation": formData ? formData.jobLocation :  {},
         "internQuota": formData ? formData.internQuota :  0
+    };
+
+    return payload;
+};
+
+export const formTaskData = (formData) => {
+    let id = getCookie('user_id');
+    let payload = {
+        "Employer": id,
+        "Intern": formData ? formData.assignee :  "",
+        "title": formData ? formData.title :  "",
+        "label": formData ? formData.label :  "",
+        "description": formData ? formData.description :  "",
+        "deadline": formData ? formData.deadline :  "",
     };
 
     return payload;
@@ -99,5 +112,13 @@ export const onJobFormChange = (value, formData, sectionKey) => {
         formData[sectionKey] = value;
     }
 
+    return formData;
+};
+
+export const onTaskFormChange = (value, formData, key) => {
+    if (key === 'Intern') {
+        formData[key] = [value];
+    }
+    formData[key] = value;
     return formData;
 };

@@ -1,11 +1,9 @@
-export const formItems = () => {
+export const formItems = (formItems) => {
     let keys = {
         'position': {item: {
             title: "Position",
             validations: {
                 lengthValidator: {start: 1, stop: 40},
-                shouldHaveNumber: {},
-                shouldHaveLowerCase: {}
             },
         }},
         'jobRole': {item: {
@@ -55,10 +53,12 @@ export const formItems = () => {
         }},
         'startDate': {item: {
             title: "Start Date",
+            type: 'date',
             validations: {lengthValidator: {start: 1, stop: 40}},
         }},
         'endDate': {item: {
             title: "End Date",
+            type: 'date',
             validations: {lengthValidator: {start: 1, stop: 40}},
         }},
         'industry': {item: {
@@ -77,12 +77,18 @@ export const formItems = () => {
             duplicable: false,
             count: 0,
             items: [Object.keys(keys[key]).map(itKey => {
+                let defaultValue = key === 'city' || key === 'country' ?
+                    formItems?.jobLocation[key] :
+                    (key === 'education' || key === 'experiences' ?
+                    formItems?.requirements[key]:
+                    formItems && formItems[key]);
                 return {
                     key: keys[key].item.title,
                     type: keys[key].item.type,
                     size: 'full',
                     validations: keys[key].item.validations,
                     label: keys[key].item.title,
+                    defaultValue: defaultValue?.toString(),
                     placeholder: 'Enter ' + keys[key].item.title,
                 };
             })],
@@ -90,7 +96,7 @@ export const formItems = () => {
     });
 };
 
-export const formButtons = () => {
+export const formButtons = (isEdit) => {
     return  [
         {
             type:'ghost',
@@ -100,7 +106,7 @@ export const formButtons = () => {
         },
         {
             type:'primary',
-            text: 'Create',
+            text: isEdit ? 'Update' : 'Create',
             sizeName:'small',
             width:'50px'
         }

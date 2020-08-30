@@ -76,13 +76,16 @@ class Select extends Component {
     };
 
     render() {
-        let {name, label, placeholder, size, errorList, disabled, className} = this.props;
+        let {name, label, placeholder, size, labelDescription, errorList, disabled, className} = this.props;
         let {dropDownOpened, selectedValue, value, externalSource} = this.state;
         return (
             <div ref={this.wrapperRef} onClick={this.onClickInput} className={`${styles.selectWrapper} ${disabled ? styles.disabled : ''} ${className}`}>
                 <label v-if={label} htmlFor={name}>
                     {label}
                 </label>
+                <div v-if={labelDescription} className={styles.labelDescription}>
+                    {labelDescription}
+                </div>
                 <div className={`
                     ${styles.inputContainer} 
                     ${dropDownOpened ? styles.focus : ''} 
@@ -142,6 +145,7 @@ export default Select;
 Select.propTypes = {
     disabled: PropTypes.bool,
     label: PropTypes.string,
+    labelDescription: PropTypes.string,
     name: PropTypes.string,
     onChange: PropTypes.any,
     placeholder: PropTypes.string,
