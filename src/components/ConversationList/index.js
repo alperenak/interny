@@ -6,15 +6,22 @@ import ToolbarButton from '../ToolbarButton';
 import axios from 'axios';
 
 import styles from './ConversationList.scss';
+import store from "../../store";
+import {getCookie} from "../../utils/cookie";
 
 export default function ConversationList(props) {
   const [conversations, setConversations] = useState([]);
-  useEffect(() => {
-    getConversations()
+  useEffect(async () => {
+    await getConversations()
   },[])
 
- const getConversations = () => {
+ const getConversations = async () => {
+      let user = getCookie('user_id')
+      //let interns = await store.getInterns(user);
+      //console.log(interns);
+
     axios.get('https://randomuser.me/api/?results=5').then(response => {
+        console.log(response)
         let newConversations = response.data.results.map(result => {
           return {
             photo: result.picture.large,
@@ -24,6 +31,7 @@ export default function ConversationList(props) {
         });
         setConversations([...conversations, ...newConversations])
     });
+
   }
 
     return (
