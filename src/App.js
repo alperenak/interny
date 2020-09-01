@@ -28,6 +28,7 @@ import {eraseCookie, getCookie} from "./utils/cookie";
 import store from "./store";
 import Dashboard from "./screens/EmployerDashboard";
 import MyTasks from "./screens/MyTasks";
+import Messenger from "./components/Messenger";
 
 class App extends React.Component {
     state = {
@@ -140,6 +141,9 @@ class App extends React.Component {
                         />
                         <Route path="/myjobs"
                                render={props => <MyJobs user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
+                        />
+                        <Route path="/messages"
+                               render={props => <Messenger user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
                         />
                         <Route path="/mytasks"
                                render={props => <MyTasks user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}

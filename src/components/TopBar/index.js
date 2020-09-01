@@ -105,6 +105,13 @@ class TopBar extends Component {
                 to: '/mytasks'
             },
             {
+                key: 'myMessages',
+                value: 'Messages',
+                selected: false,
+                icon: taskIcon,
+                to: '/messages'
+            },
+            {
                 key: 'Log Out',
                 value: 'Log Out',
                 selected: false,
