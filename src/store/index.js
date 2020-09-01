@@ -1,5 +1,6 @@
 import http from '../utils/httpHelper';
 import config from '../../appConfig';
+import {getCookie} from "../utils/cookie";
 
 const errorMessageBuilder = (response) => {
     return (response.errorData && response.errorData.code) || '0';
@@ -79,7 +80,7 @@ let store = {
     },
     async editEmployer(id, {field, value}) {
         let baseUrl = config.baseUrl;
-        let path = `/intern/${id}/${field}`;
+        let path = `/employer/${id}/${field}`;
         let tokenCookieName = "token";
         let payload = {
             [field]: value
@@ -88,8 +89,8 @@ let store = {
     },
     async getLandingPosts({keyword, location, offset=0, limit=5}) {
         let baseUrl = config.baseUrl;
-        let keywordPath = keyword ? `keyword=${keyword}` : '';
-        let locationPath = location ? `&location=${location}&` : '';
+        let keywordPath = keyword && keyword !== 'null' ? `keyword=${keyword}` : '';
+        let locationPath = location && location !== 'null' ? `&location=${location}&` : '';
         let path = `/jobs?${keywordPath}${locationPath}offset=${offset}&limit=${limit}`;
         let tokenCookieName = "token";
         let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
@@ -98,8 +99,8 @@ let store = {
     },
     async getPosts({keyword, location, offset=0, limit=5}) {
         let baseUrl = config.baseUrl;
-        let keywordPath = keyword ? `keyword=${keyword}` : '';
-        let locationPath = location ? `&location=${location}&` : '';
+        let keywordPath = keyword && keyword !== 'null' ? `keyword=${keyword}` : '';
+        let locationPath = location && location !== 'null' ? `&location=${location}&` : '';
         let path = `/job?${keywordPath}${locationPath}offset=${offset}&limit=${limit}`;
         let tokenCookieName = "token";
         let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
@@ -155,6 +156,9 @@ let store = {
     async getPost(id) {
         let baseUrl = config.baseUrl;
         let path = `/job/${id}`;
+        if (getCookie('user') === 'employer') {
+            path = `/employer/${getCookie('user_id')}/job/${id}`
+        }
         let tokenCookieName = "token";
         let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
 
@@ -320,8 +324,87 @@ let store = {
         };
         return await http.makeDeleteRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
     },
-    async getTasks() {
+    async getTasks(id) {
+        let baseUrl = config.baseUrl;
+        let path = `/employer/${id}/board`;
+        let tokenCookieName = "token";
+        let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
 
+        return res.data;
+    },
+    async getInternTasks(id) {
+        let baseUrl = config.baseUrl;
+        let path = `/intern/${id}/task`;
+        let tokenCookieName = "token";
+        let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+
+        return res.data;
+    },
+    async createTask(payload) {
+        let baseUrl = config.baseUrl;
+        let tokenCookieName = "token";
+        let path = `/task`;
+        return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+    },
+    async updateTask(payload) {
+        let baseUrl = config.baseUrl;
+        let tokenCookieName = "token";
+        let path = `/task/${payload.id}`;
+        return await http.makePutRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+    },
+    async deleteTask(internId, id) {
+        let baseUrl = config.baseUrl;
+        let tokenCookieName = "token";
+        let path = `/intern/${internId}/coverletter`;
+        let payload = {
+            id: id
+        };
+        return await http.makeDeleteRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+    },
+    async moveInternTask(id, {taskId, status}) {
+        let baseUrl = config.baseUrl;
+        let tokenCookieName = "token";
+        let path = `/intern/${id}/task/${taskId}/status`;
+        let payload = {
+          status: status
+        };
+        return await http.makePutRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+    },
+    async moveEmployerTask({taskId, internId, status}) {
+        let baseUrl = config.baseUrl;
+        let tokenCookieName = "token";
+        let path = `/task/${taskId}/status`;
+        let payload = {
+            status: status,
+            Intern: internId
+        };
+        return await http.makePutRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+    },
+    async getMessage(contact) {
+        let baseUrl = config.baseUrl;
+        let path = `/message?contact=${contact}`;
+        let tokenCookieName = "token";
+        let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+
+        return res.data;
+    },
+    async createMessage(receiver, data) {
+        let baseUrl = config.baseUrl;
+        let tokenCookieName = "token";
+        let path = `/message`;
+        let payload = {
+            Receiver: receiver,
+            data
+        };
+        return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+    },
+    async getContacts() {
+        let baseUrl = config.baseUrl;
+        let path = `/message/contact`;
+        let tokenCookieName = "token";
+        let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+
+        return res.data;
     },
 };
 

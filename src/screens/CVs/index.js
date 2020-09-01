@@ -164,7 +164,7 @@ class CVs extends Component {
                         <Card
                             type={'profile'}
                             profileObject={{
-                                image: '',
+                                avatar: user.avatar,
                                 status: 'active',
                                 header: `${user.name} ${user.surname}`,
                                 location: 'Istanbul - Turkey',

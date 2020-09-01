@@ -1,13 +1,29 @@
+import eduLevel from "../../utils/educationLevels";
+import departments from "../../utils/departments";
+import countries from "../../utils/countries";
+import positions from "../../utils/positions";
+import languages from "../../utils/languages";
+
 export const formItems = (formInputs) => {
-    let a = [
-        {key: "1", value: "1", selected: false},
-        {key: "2", value: "2", selected: false},
-        {key: "3", value: "3", selected: false},
-        {key: "4", value: "4", selected: false},
-        {key: "5", value: "5", selected: false},
-        {key: "6", value: "6", selected: false},
-        {key: "7", value: "7", selected: false},
-    ];
+
+    let externalSources = {
+        "Education Level" : eduLevel,
+        Department : departments,
+        Country : countries,
+        Position : positions,
+        Language : languages,
+        "Language Level": [
+            {key: "1", value: "1", selected: false},
+            {key: "2", value: "2", selected: false},
+            {key: "3", value: "3", selected: false},
+            {key: "4", value: "4", selected: false},
+            {key: "5", value: "5", selected: false},
+            {key: "6", value: "6", selected: false},
+            {key: "7", value: "7", selected: false},
+        ]
+    };
+
+
     let keys = {
         'universities': {
             key: "University",
@@ -39,7 +55,7 @@ export const formItems = (formInputs) => {
             endDate: 'End Date'
         },
         'skills': {key: "Skills", title: 'Skill'},
-        'languages': {key: "Languages", title: 'Language'},
+        'languages': {key: "Languages", title: 'Language', level: 'Language Level'},
         'certificates': {key: "Certificates", title: 'Name', institution: 'Institution'},
         'hobbies': {key: "Hobbies", title: 'Name'},
     };
@@ -65,16 +81,24 @@ export const formItems = (formInputs) => {
 
             editItems[keys[key].key] = {
                 key: key,
-                duplicable: true,
-                count: item.items.length * Object.keys(item.items[0]).length,
                 items: item.items.map(it => {
                     return Object.keys(it).map(itKey => {
+                        let externalSource = [];
+                        let type = 'text';
+                        let defaultValue = keys[key][itKey];
+                        if (itKey.includes('Date')) {
+                            type = 'date';
+                        } else if (['Education Level', 'Department', 'Country', 'Position', 'Language', 'Language Level'].includes(keys[key][itKey])) {
+                            type = 'select';
+                            externalSource = externalSources[keys[key][itKey]];
+                            defaultValue = externalSource.find(el => el.value === it[itKey]);
+                        }
                         return {
                             key: itKey,
-                            type: 'select',
-                            externalSource: a,
+                            type: type,
+                            externalSource: externalSource,
                             size: 'full',
-                            defaultValue: it[itKey],
+                            defaultValue: defaultValue,
                             label: keys[key][itKey],
                             placeholder: 'Select ' + keys[key][itKey],
                         }
@@ -108,23 +132,22 @@ export const formItems = (formInputs) => {
                 {
                     key: 'level',
                     type: 'select',
-                    externalSource: a,
+                    externalSource: externalSources["Education Level"],
                     size: 'full',
                     label: 'Education Level',
                     placeholder: 'Select Education Level',
                 },
                 {
                     key: 'institution',
-                    type: 'select',
-                    externalSource: a,
+                    type: 'text',
                     size: 'full',
                     label: 'University',
-                    placeholder: 'Select University',
+                    placeholder: 'Enter University',
                 },
                 {
                     key: 'title',
                     type: 'select',
-                    externalSource: a,
+                    externalSource: externalSources.Department,
                     size: 'full',
                     label: 'Department',
                     placeholder: 'Select Department',
@@ -132,31 +155,28 @@ export const formItems = (formInputs) => {
                 {
                     key: 'country',
                     type: 'select',
-                    externalSource: a,
+                    externalSource: externalSources.Country,
                     size: 'full',
                     label: 'Country',
                     placeholder: 'Select Country',
                 },
                 {
                     key: 'city',
-                    type: 'select',
-                    externalSource: a,
+                    type: 'text',
                     size: 'full',
                     label: 'City',
                     placeholder: 'Select City',
                 },
                 {
                     key: 'startDate',
-                    type: 'select',
-                    externalSource: a,
+                    type: 'date',
                     size: 'half',
                     label: 'Start Date',
                     placeholder: 'Select Date',
                 },
                 {
                     key: 'endDate',
-                    type: 'select',
-                    externalSource: a,
+                    type: 'date',
                     size: 'half',
                     label: 'End Date',
                     placeholder: 'Select Date',
@@ -170,8 +190,7 @@ export const formItems = (formInputs) => {
             items: [[
                 {
                     key: 'institution',
-                    type: 'select',
-                    externalSource: a,
+                    type: 'text',
                     size: 'full',
                     label: 'High School',
                     placeholder: 'High School',
@@ -179,7 +198,7 @@ export const formItems = (formInputs) => {
                 {
                     key: 'title',
                     type: 'select',
-                    externalSource: a,
+                    externalSource: externalSources.Department,
                     size: 'full',
                     label: 'Department',
                     placeholder: 'Select Department',
@@ -187,31 +206,28 @@ export const formItems = (formInputs) => {
                 {
                     key: 'country',
                     type: 'select',
-                    externalSource: a,
+                    externalSource: externalSources.Country,
                     size: 'full',
                     label: 'Country',
                     placeholder: 'Select Country',
                 },
                 {
                     key: 'city',
-                    type: 'select',
-                    externalSource: a,
+                    type: 'text',
                     size: 'full',
                     label: 'City',
                     placeholder: 'Select City',
                 },
                 {
                     key: 'startDate',
-                    type: 'select',
-                    externalSource: a,
+                    type: 'date',
                     size: 'half',
                     label: 'Start Date',
                     placeholder: 'Select Date',
                 },
                 {
                     key: 'endDate',
-                    type: 'select',
-                    externalSource: a,
+                    type: 'date',
                     size: 'half',
                     label: 'End Date',
                     placeholder: 'Select Date',
@@ -226,15 +242,14 @@ export const formItems = (formInputs) => {
                 {
                     key: 'title',
                     type: 'select',
-                    externalSource: a,
+                    externalSource: externalSources.Position,
                     size: 'full',
                     label: 'Position',
                     placeholder: 'Select Position',
                 },
                 {
                     key: 'institution',
-                    type: 'select',
-                    externalSource: a,
+                    type: 'text',
                     size: 'full',
                     label: 'Company',
                     placeholder: 'Select Company',
@@ -242,31 +257,28 @@ export const formItems = (formInputs) => {
                 {
                     key: 'country',
                     type: 'select',
-                    externalSource: a,
+                    externalSource: externalSources.Country,
                     size: 'full',
                     label: 'Country',
                     placeholder: 'Select Country',
                 },
                 {
                     key: 'city',
-                    type: 'select',
-                    externalSource: a,
+                    type: 'text',
                     size: 'full',
                     label: 'City',
                     placeholder: 'Select City',
                 },
                 {
                     key: 'startDate',
-                    type: 'select',
-                    externalSource: a,
+                    type: 'date',
                     size: 'half',
                     label: 'Start Date',
                     placeholder: 'Select Date',
                 },
                 {
                     key: 'endDate',
-                    type: 'select',
-                    externalSource: a,
+                    type: 'date',
                     size: 'half',
                     label: 'End Date',
                     placeholder: 'Select Date',
@@ -280,8 +292,7 @@ export const formItems = (formInputs) => {
             items: [[
                 {
                     key: 'title',
-                    type: 'select',
-                    externalSource: a,
+                    type: 'text',
                     size: 'full',
                     label: 'Skill',
                     placeholder: 'Select your skills',
@@ -296,7 +307,7 @@ export const formItems = (formInputs) => {
                 {
                     key: 'title',
                     type: 'select',
-                    externalSource: a,
+                    externalSource: externalSources.Languages,
                     size: 'full',
                     label: 'Language',
                     placeholder: 'Select Language',
@@ -304,7 +315,7 @@ export const formItems = (formInputs) => {
                 {
                     key: 'level',
                     type: 'select',
-                    externalSource: a,
+                    externalSource: externalSources['Language Level'],
                     size: 'full',
                     label: 'Level',
                     placeholder: 'Select Language Level',
@@ -325,8 +336,7 @@ export const formItems = (formInputs) => {
                 },
                 {
                     key: 'institution',
-                    type: 'select',
-                    externalSource: a,
+                    type: 'text',
                     size: 'full',
                     label: 'Institution',
                     placeholder: 'Enter institution that certifies',

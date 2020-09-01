@@ -54,6 +54,7 @@ class SearchSection extends Component {
                         <Input
                             type={'text'}
                             placeholder={'Software Developer'}
+                            size={'medium'}
                             icon={{src: searchIcon, position: 'right'}}
                             labelDescription={'Enter position name, keyword or company name'}
                             defaultValue={keyword !== 'null' ? keyword : ''}
@@ -64,6 +65,7 @@ class SearchSection extends Component {
                         <Input
                             type={'text'}
                             placeholder={'Istanbul, Turkey'}
+                            size={'medium'}
                             icon={{src: locationIcon, position: 'right'}}
                             labelDescription={'Enter city name, country or state name'}
                             defaultValue={location !== 'null' ? location : ''}

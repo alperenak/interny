@@ -106,6 +106,7 @@ class CoverLetters extends Component {
                 />
                 <Input
                     type={'textarea'}
+                    size={'full'}
                     label={'Cover Letter Content'}
                     placeholder={'Cover letter...'}
                     onChange={(value) => this.onCreateCoverLetter(value)}
@@ -138,7 +139,7 @@ class CoverLetters extends Component {
                         <Card
                             type={'profile'}
                             profileObject={{
-                                image: '',
+                                avatar: user.avatar,
                                 status: 'active',
                                 header: `${user.name} ${user.surname}`,
                                 location: 'Istanbul - Turkey',

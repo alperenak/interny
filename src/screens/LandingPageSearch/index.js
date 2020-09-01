@@ -21,26 +21,29 @@ class LandingPageSearch extends Component {
         offset: 0,
         limit: 5,
         isAuthorized: false,
+        totalCount: 0
     };
 
     async componentDidMount() {
         let token = getCookie('token');
         let res = await this.returnPostRequest();
+        let totalCount = res.total;
         let posts = res.results.map(pst => {
             return this.fillPosts(pst);
         });
-        this.setState({ posts, isAuthorized: !!token });
+        this.setState({ posts, totalCount, isAuthorized: !!token });
     }
 
     async componentDidUpdate(prevProps) {
         let {keyword, location} = this.props.match.params;
         if (!Object.is(prevProps.match.params.keyword, keyword) ||
             !Object.is(prevProps.match.params.location, location)) {
+            this.setState({ offset: 0 });
             let res = await this.returnPostRequest();
             let posts = res.results.map(pst => {
                 return this.fillPosts(pst);
             });
-            this.setState({ posts, totalPostCount: res.total });
+            this.setState({ posts, totalCount: res.total });
         }
     }
 
@@ -50,7 +53,7 @@ class LandingPageSearch extends Component {
         let token = getCookie('token');
         let res = [];
         if (!!token) {
-            res = await store.getPosts({keyword, location, offset, limit});
+            res = await store.getPosts({keyword , location, offset, limit});
         } else {
             res = await store.getLandingPosts({keyword, location, offset, limit});
         }
@@ -80,8 +83,12 @@ class LandingPageSearch extends Component {
 
     onLoadMore = async () => {
         let {offset, limit} = this.state;
+        await this.setState(state => {
+            state.offset += state.limit;
+            return state;
+        });
         let res = await this.returnPostRequest();
-        let posts = res.map(pst => {
+        let posts = res.results.map(pst => {
             return this.fillPosts(pst);
         });
         this.setState({ posts: [...this.state.posts, ...posts], offset: offset + limit });
@@ -89,7 +96,7 @@ class LandingPageSearch extends Component {
 
     render() {
         let {keyword, location} = this.props.match.params;
-        let {posts} = this.state;
+        let {posts, totalCount} = this.state;
         return (
             <div className={styles.LandingPageSearch}>
                 <SearchSection
@@ -115,7 +122,7 @@ class LandingPageSearch extends Component {
                     posts={pst}
                 />
                 <Button
-                    v-if={posts.length > 0}
+                    v-if={posts.length > 0 && totalCount > posts.length}
                     type={'ghost'}
                     text={'Load More'}
                     sizeName={'small'}

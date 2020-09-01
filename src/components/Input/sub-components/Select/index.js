@@ -15,10 +15,8 @@ class Select extends Component {
             dropDownOpened: false,
             externalSource: [...this.props.externalSource],
             value: '',
-            selectedValue: {
-                key: 'default',
-                value: this.props.defaultValue || ''
-            }
+            selectedValue: this.props.defaultValue,
+            selectedValues: this.props.multiple ? (this.props.defaultValue ? this.props.defaultValue : []) : []
         };
         this.wrapperRef = React.createRef();
         this.handleClickOutside = this.handleClickOutside.bind(this);
@@ -34,50 +32,74 @@ class Select extends Component {
 
     handleClickOutside = (event) => {
         if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
-            this.setState({
-                dropDownOpened: false,
-                externalSource: this.props.externalSource.map(el => {el.selected = (this.state.selectedValue.key === el.key); return el;}),
+            this.setState(state => {
+                state.externalSource = this.props.multiple ?
+                    this.props.externalSource.map(el => {el.selected = this.state.selectedValues.some(vl => vl.key === el.key); return el;}) :
+                    this.props.externalSource.map(el => {el.selected = this.state.selectedValue.key === el.key; return el;});
+
+                state.dropDownOpened = false;
+
+                return state;
             });
         }
     };
 
     onChange = (event) => {
-        let { onChange } = this.props;
+        let {multiple} = this.props;
         this.setState({value: event.target.value});
         if (event.target.value) {
-            let tempSource = this.props.externalSource.filter(el => el.value.includes(event.target.value));
-            tempSource.map(el => {el.selected = (this.state.selectedValue.key === el.key); return el;});
+            let tempSource = this.props.externalSource.filter(el => el.value.toLowerCase().includes(event.target.value.toLowerCase()));
+            if (multiple)
+                tempSource.map(el => {
+                    el.selected = this.state.selectedValues.some(vl => vl.key === el.key); return el;});
+            else
+                tempSource.map(el => {el.selected = (this.state.selectedValue.key === el.key); return el;});
             this.setState({externalSource: [...tempSource]});
         } else {
             let tempSource = this.props.externalSource;
-            tempSource.map(el => {el.selected = (this.state.selectedValue.key === el.key); return el;});
+            if (multiple)
+                tempSource.map(el => {
+                    el.selected = this.state.selectedValues.some(vl => vl.key === el.key); return el;});
+            else
+                tempSource.map(el => {el.selected = (this.state.selectedValue.key === el.key); return el;});
             this.setState({externalSource: [...tempSource]});
         }
-        onChange(event.target.value, this.state.selectedValue.value);
     };
 
     onClickInput = () => {
         if (!this.props.disabled) {
-          this.setState({
-              dropDownOpened: !this.state.dropDownOpened,
-              externalSource: this.props.externalSource.map(el => {el.selected = (this.state.selectedValue.key === el.key); return el;}),
-          });
+            this.setState(state => {
+                state.externalSource = this.props.multiple ?
+                    this.props.externalSource.map(el => {el.selected = this.state.selectedValues.some(vl => vl.key === el.key); return el;}) :
+                    this.props.externalSource.map(el => {el.selected = this.state.selectedValue.key === el.key; return el;});
+
+                state.dropDownOpened = !state.dropDownOpened;
+
+                return state;
+            });
         }
     };
 
     onClickListItem = (key) => {
-        let { onChange, value } = this.props;
+        let { onChange, value, multiple } = this.props;
 
-        let tempSource = this.state.externalSource.map(el => {el.selected = (key === el.key); return el;});
-        let tempSelectedItem = tempSource.find(el => el.selected);
-        this.setState({externalSource: [...tempSource], selectedValue: tempSelectedItem});
-
-        onChange(value, tempSelectedItem);
+        if (multiple) {
+            let tempSource = this.state.externalSource.map(el => {el.selected = key === el.key ? !el.selected : el.selected; return el;});
+            let tempSelectedItems = tempSource.filter(el => el.selected);
+            this.setState({externalSource: [...tempSource], selectedValues: tempSelectedItems});
+            onChange(value, tempSelectedItems);
+        }
+        else {
+            let tempSource = this.state.externalSource.map(el => {el.selected = (key === el.key); return el;});
+            let tempSelectedItem = tempSource.find(el => el.selected);
+            this.setState({externalSource: [...tempSource], selectedValue: tempSelectedItem});
+            onChange(value, tempSelectedItem);
+        }
     };
 
     render() {
         let {name, label, placeholder, size, labelDescription, errorList, disabled, className} = this.props;
-        let {dropDownOpened, selectedValue, value, externalSource} = this.state;
+        let {dropDownOpened, selectedValue, selectedValues, value, externalSource} = this.state;
         return (
             <div ref={this.wrapperRef} onClick={this.onClickInput} className={`${styles.selectWrapper} ${disabled ? styles.disabled : ''} ${className}`}>
                 <label v-if={label} htmlFor={name}>
@@ -92,7 +114,11 @@ class Select extends Component {
                     ${styles[size]} ${errorList.length > 0 ? styles.error : ''}
                 `}>
                     <div
-                        v-if={selectedValue.value}
+                        v-if={selectedValues.length > 0}
+                        className={`${styles.inputSelf}`}
+                    >{selectedValues.map((vl, i) => i < selectedValues.length - 1 ? vl.value + ', ' : vl.value)}</div>
+                    <div
+                        v-else-if={selectedValue.value?.length > 0}
                         className={`${styles.inputSelf}`}
                     >{selectedValue.value}</div>
                     <div
@@ -144,6 +170,7 @@ export default Select;
 
 Select.propTypes = {
     disabled: PropTypes.bool,
+    multiple: PropTypes.bool,
     label: PropTypes.string,
     labelDescription: PropTypes.string,
     name: PropTypes.string,
@@ -158,6 +185,7 @@ Select.propTypes = {
 
 Select.defaultProps = {
     disabled: false,
+    multiple: false,
     label: "",
     name: "",
     placeholder: "placeholder",

@@ -66,33 +66,12 @@ class Form extends Component {
                             {
                                formItems[sectionKey].items.map((form, i) => {
                                    return <Fragment key={i+''+j}>
-                                       <div
-                                           v-if={
-                                               i === formItems[sectionKey].items.length - 1 &&
-                                               formItems[sectionKey].duplicable &&
-                                               !(formData[formItems[sectionKey].key]?.length > 0 ?
-                                                   !!formData[formItems[sectionKey].key][i] ?
-                                                       !(Object.keys(formData[formItems[sectionKey].key][i]).length
-                                                           === formItems[sectionKey].count) : true : true)
-                                           }
-                                           className={styles.addButton}
-                                       >
-                                           <Button
-                                               icon={addIconBlack}
-                                               iconPosition={'right'}
-                                               text={`Add new ${sectionKey}`}
-                                               hoverIcon={addIcon}
-                                               sizeName={'small'}
-                                               type={'link'}
-                                               onButtonClick={() => this.onAddClick(sectionKey)}
-                                           />
-                                       </div>
                                        <div className={styles.subSections}>
                                            <div
                                                v-if={formItems[sectionKey].duplicable}
                                                className={styles.subSectionTitle}
                                            >
-                                               {formItems[sectionKey].duplicable && (i+1)+'. '+sectionKey}
+                                               {sectionKey}
                                            </div>
                                            {
                                                form.map((item, k) => {
@@ -104,11 +83,13 @@ class Form extends Component {
                                                        externalSource={item.externalSource}
                                                        validations={item.validations}
                                                        type={item.type}
+                                                       multiple={item.multiple}
                                                        defaultValue={item.defaultValue}
                                                        errorList={item.errorList}
                                                        size={item.size}
                                                        onChange={(value, sValue) =>{
-                                                           let vl = item.type !== 'select' ? value :  sValue.value;
+                                                           let vl = item.type !== 'select' ? value :
+                                                               (item.multiple ? sValue.map(vl => vl.value) : sValue.value);
                                                            this.onFormChange(vl, formItems[sectionKey].key, item.key, i);
                                                        }}
                                                    />

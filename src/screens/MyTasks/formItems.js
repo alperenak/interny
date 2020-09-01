@@ -1,7 +1,15 @@
 import store from '../../store';
+import {getCookie} from "../../utils/cookie";
 
-export const formItems = (formItems) => {
-    // let interns = await store.getInterns();
+export const formItems = async (formItems) => {
+    let res = await store.getInterns(getCookie('user_id'));
+    let interns = res.data.map(intern => {
+        return {
+            key: intern.id,
+            value: intern.name +' '+ intern.surname,
+            selected: formItems ? formItems.Intern.name === intern.name && formItems.Intern.surname === intern.surname : false
+        }
+    });
 
     return [
         {
@@ -11,7 +19,7 @@ export const formItems = (formItems) => {
             placeholder: 'title',
             type: 'text',
             size: 'full',
-            defaultValue: formItems ? formItems.title : '',
+            defaultValue: formItems ? formItems.Task.title : '',
             validations: {
                 lengthValidator: {
                     start: 0, stop: 40
@@ -25,7 +33,7 @@ export const formItems = (formItems) => {
             placeholder: 'label',
             type: 'text',
             size: 'full',
-            defaultValue: formItems ? formItems.label : '',
+            defaultValue: formItems ? formItems.Task.label : '',
             validations: {
                 lengthValidator: {
                     start: 0, stop: 40
@@ -39,7 +47,7 @@ export const formItems = (formItems) => {
             placeholder: 'description',
             type: 'textarea',
             size: 'full',
-            defaultValue: formItems ? formItems.description : '',
+            defaultValue: formItems ? formItems.Task.description : '',
             validations: {
                 lengthValidator: {
                     start: 0, stop: 255
@@ -53,7 +61,7 @@ export const formItems = (formItems) => {
             placeholder: 'description',
             type: 'date',
             size: 'half',
-            defaultValue: formItems ? formItems.deadline : '',
+            defaultValue: formItems ? formItems.Task.deadline : '',
             validations: {
             },
         },
@@ -64,7 +72,8 @@ export const formItems = (formItems) => {
             placeholder: 'assignee',
             type: 'select',
             size: 'half',
-            defaultValue: formItems ? formItems.Intern[0].name + ' ' + formItems.Intern[0].surname : '',
+            externalSource: interns,
+            defaultValue: interns.find(e => e.selected),
             validations: {
             },
         },

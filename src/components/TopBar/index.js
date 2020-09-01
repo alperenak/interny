@@ -108,7 +108,7 @@ class TopBar extends Component {
                 key: 'myMessages',
                 value: 'Messages',
                 selected: false,
-                icon: taskIcon,
+                icon: mailIcon,
                 to: '/messages'
             },
             {
@@ -144,6 +144,13 @@ class TopBar extends Component {
                 selected: false,
                 icon: taskIcon,
                 to: '/mytasks'
+            },
+            {
+                key: 'myMessages',
+                value: 'Messages',
+                selected: false,
+                icon: mailIcon,
+                to: '/messages'
             },
             {
                 key: 'Log Out',

@@ -44,11 +44,19 @@
     margin-top: 8px;
     padding: 14px 16px;
     z-index: 12;
+    max-height: 200px;
+    overflow: scroll;
 
     & .searchWrapper {
+      position: sticky;
+      background: white;
+      width: 100%;
+      margin-top: -14px;
+      top: -14px;
+      border-bottom: 1px solid #fbfbfb;
       display: flex;
       flex-direction: row;
-      padding: 0 0 12px;
+      padding: 12px 0 12px;
 
       & .searchDropDown {
         padding: 0 0 0 8px;
@@ -119,6 +127,9 @@
     }
     &.full {
       width: 534px;
+    }
+    &.medium {
+      width: 390px;
     }
     &.half {
       width: 234px;

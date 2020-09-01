@@ -13,12 +13,12 @@ export default function Message(props) {
 
     const friendlyTimestamp = moment(data.timestamp).format('LLLL');
     return (
-      <div className={[
-          styles['message'],
-          styles[`${isMine ? 'mine' : ''}`],
-          styles[`${startsSequence ? 'start' : ''}`],
-          styles[`${endsSequence ? 'end' : ''}`]
-      ].join(' ')}>
+      <div className={`
+        ${styles['message']} 
+        ${isMine ? styles['mine'] : ''} 
+        ${startsSequence ? styles['start'] : ''} 
+        ${endsSequence ? styles['end'] : ''}`
+      }>
         {
           showTimestamp &&
             <div className={styles["timestamp"]}>

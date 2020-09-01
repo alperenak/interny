@@ -25,6 +25,7 @@ export default Input;
 
 Input.propTypes = {
     disabled: PropTypes.bool,
+    multiple: PropTypes.bool,
     label: PropTypes.string,
     labelDescription: PropTypes.string,
     name: PropTypes.string,
@@ -42,12 +43,13 @@ Input.propTypes = {
 
 Input.defaultProps = {
     disabled: false,
+    multiple: false,
     label: "",
     name: "",
     type: "text",
     defaultValue: "",
     placeholder: "",
-    size: "",
+    size: "half",
     errorList: [],
     externalSource: [],
     className: ''

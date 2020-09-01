@@ -13,7 +13,7 @@ class CompanyProfile extends Component {
         return (
             <div className={styles.companyProfileCard}>
                 <div className={styles.profileImage}>
-                    <img v-if={profileObject.image} src={profileObject.image} alt={'profile photo'}/>
+                    <img src={profileObject.avatar || profileObject.logo} alt={'profile photo'}/>
                 </div>
                 <div className={styles.headerText}>
                     {profileObject.header}

@@ -13,7 +13,7 @@ class Profile extends Component {
         return (
             <div className={styles.profileCard}>
                 <div className={styles.profileImage}>
-                    <img v-if={profileObject.image} src={profileObject.image} alt={'profile photo'}/>
+                    <img v-if={profileObject.avatar} src={profileObject.avatar} alt={'profile photo'}/>
                     {/*<div className={`${styles.statusCircle} ${styles[profileObject.status]}`} />*/}
                 </div>
                 <div className={styles.profileHeader}>

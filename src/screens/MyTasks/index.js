@@ -7,6 +7,7 @@ import Input from "../../components/Input";
 
 /*** Utils ***/
 import {getCookie} from "../../utils/cookie";
+import store from "../../store";
 import {formButtons, formItems} from './formItems';
 import {formTaskData, onTaskFormChange} from "../../utils/functions";
 
@@ -19,12 +20,34 @@ import Button from "../../components/Button";
 
 class MyTasks extends Component {
     state = {
-        toDoTasks: [{id: 'task1', label:'interny-UX', status: 'To Do', Intern: [{selected: true, name: 'Ahmet', surname: ' Boyacı', id: 'id', avatar: createIcon}], reporter: 'Ruken Boyacı' ,title: 'title1',deadline: '21.08.20',description: 'asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd'}, {id: 'task2', status: 'To Do', Intern: [{selected: true, name: 'Ahmet', surname: ' Boyacı', id: 'id', avatar: createIcon}], reporter: 'Ruken Boyacı' ,title: 'title2',deadline: '21.08.20',description: 'asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd'}, {id: 'task3', status: 'To Do', Intern: [{selected: true, name: 'Ahmet', surname: ' Boyacı', id: 'id', avatar: createIcon}], reporter: 'Ruken Boyacı' ,title: 'title3',deadline: '21.08.20',description: 'asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd'}],
-        inProgressTasks: [{id: 'task4', status: 'In Progress', Intern: [{selected: true, name: 'Ahmet', surname: ' Boyacı', id: 'id', avatar: createIcon}], reporter: 'Ruken Boyacı' ,title: 'title4',deadline: '21.08.20',description: 'asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd'}, {id: 'task5', status: 'In Progress', Intern: [{selected: true, name: 'Ahmet', surname: ' Boyacı', id: 'id', avatar: createIcon}], reporter: 'Ruken Boyacı' ,title: 'title5',deadline: '21.08.20',description: 'asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd'}, {id: 'task6', status: 'In Progress', Intern: [{selected: true, name: 'Ahmet', surname: ' Boyacı', id: 'id', avatar: createIcon}], reporter: 'Ruken Boyacı' ,title: 'title6',deadline: '21.08.20',description: 'asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd'}],
-        inTestTasks: [{id: 'task7', status: 'In Test', Intern: [{selected: true, name: 'Ahmet', surname: ' Boyacı', id: 'id', avatar: createIcon}], reporter: 'Ruken Boyacı' ,title: 'title7',deadline: '21.08.20',description: 'asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd'}, {id: 'task8', status: 'In Test', Intern: [{selected: true, name: 'Ahmet', surname: ' Boyacı', id: 'id', avatar: createIcon}], reporter: 'Ruken Boyacı' ,title: 'title8',deadline: '21.08.20',description: 'asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd'}, {id: 'task9', status: 'In Test', Intern: [{selected: true, name: 'Ahmet', surname: ' Boyacı', id: 'id', avatar: createIcon}], reporter: 'Ruken Boyacı' ,title: 'title9',deadline: '21.08.20',description: 'asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd'}],
-        doneTasks: [{id: 'task*', status: 'Done', Intern: [{selected: true, name: 'Ahmet', surname: ' Boyacı', id: 'id', avatar: createIcon}], reporter: 'Ruken Boyacı' ,title: 'title*',deadline: '21.08.20',description: 'asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd'}, {id: 'task0', status: 'Done', Intern: [{selected: true, name: 'Ahmet', surname: ' Boyacı', id: 'id', avatar: createIcon}], reporter: 'Ruken Boyacı' ,title: 'title0',deadline: '21.08.20',description: 'asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd'}, {id: 'task#', status: 'Done', Intern: [{selected: true, name: 'Ahmet', surname: ' Boyacı', id: 'id', avatar: createIcon}], reporter: 'Ruken Boyacı' ,title: 'title#',deadline: '21.08.20',description: 'asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd asdasdasdasd'}],
+        to_do: [],
+        in_progress: [],
+        in_test: [],
+        done: [],
         draggedItem: {},
-        createFormData: formTaskData()
+        createFormData: formTaskData(),
+    };
+
+    async componentDidMount() {
+        await this.getTasks();
+    }
+
+    getTasks = async () => {
+        let userId = getCookie('user_id');
+        let user = getCookie('user');
+        let res = {};
+        if (user === 'intern') {
+            res = await store.getInternTasks(userId);
+
+        } else {
+            res = await store.getTasks(userId);
+        }
+        this.setState({
+            to_do: res.to_do,
+            in_progress: res.in_progress,
+            in_test: res.in_test,
+            done: res.done,
+        })
     };
 
     onDragOver = (e) => {
@@ -39,24 +62,34 @@ class MyTasks extends Component {
         });
     };
 
-    onDropItem = (itemsKey) => {
-        this.setState(state => {
-            const sourceKey = Object.keys(state).find(key => {
-                return Array.isArray(state[key]) ? state[key].some((el) => Object.is(el, state.draggedItem)) : false
-            });
+    onDropItem = async (itemsKey) => {
+        let {Intern, Task} = this.state.draggedItem;
+        let user = getCookie('user');
+        if (user === 'intern') {
+            let userId = getCookie('user_id');
+            await store.moveInternTask(userId, {internId: Intern.id, taskId: Task.id, status: itemsKey});
+        } else {
+            await store.moveEmployerTask({internId: Intern.id, taskId: Task.id, status: itemsKey});
+        }
 
-            let index = state[sourceKey].indexOf(state.draggedItem);
-
-            if (index > -1) {
-                state[sourceKey].splice(index, 1);
-            }
-
-            state[itemsKey] = [state.draggedItem, ...state[itemsKey]];
-
-            state.draggedItem = {};
-
-            return state;
-        });
+        await this.getTasks();
+        // this.setState(state => {
+        //     const sourceKey = Object.keys(state).find(key => {
+        //         return Array.isArray(state[key]) ? state[key].some((el) => Object.is(el, state.draggedItem)) : false
+        //     });
+        //
+        //     let index = state[sourceKey].indexOf(state.draggedItem);
+        //
+        //     if (index > -1) {
+        //         state[sourceKey].splice(index, 1);
+        //     }
+        //
+        //     state[itemsKey] = [state.draggedItem, ...state[itemsKey]];
+        //
+        //     state.draggedItem = {};
+        //
+        //     return state;
+        // });
     };
 
     onTaskClick = (item) => {
@@ -77,7 +110,7 @@ class MyTasks extends Component {
                 className={styles.taskItem}
                 onClick={() => this.onTaskClick(item)}
             >
-                <Card type={'task'} item={item} onEditClick={() => this.onEditClick(item)} />
+                <Card type={'task'} item={item} onEditClick={async () => await this.onEditClick(item)} />
             </div>
         })
     }
@@ -85,7 +118,7 @@ class MyTasks extends Component {
     renderSection(title, itemsKey) {
         return (
             <div
-                onDrop={() => this.onDropItem(itemsKey)}
+                onDrop={async () => await this.onDropItem(itemsKey)}
                 onDragOver={(e) => this.onDragOver(e)}
                 className={`${styles.gridItem} ${styles[itemsKey]}`}
             >
@@ -98,16 +131,17 @@ class MyTasks extends Component {
     }
 
     onCreateClick = async () => {
-        this.props.createModal({ header: 'Create Task', content: this.renderCreateTaskForm });
+        let createItems = await formItems();
+        this.props.createModal({ header: 'Create Task', content: () => this.renderCreateTaskForm(createItems) });
     };
 
     onEditClick = async (item) => {
+        let editItems = await formItems(item);
         this.setState({ createFormData: formTaskData(item) });
-        this.props.createModal({ header: 'Edit Task', content: () => this.renderEditTaskForm(item) });
+        this.props.createModal({ header: 'Edit Task', content: () => this.renderEditTaskForm(editItems) });
     };
 
-    renderCreateTaskForm = () => {
-        let items = formItems();
+    renderCreateTaskForm = (items) => {
         return <div className={styles.formWrapper}>
             {items.map((item, i) => {
                 return (
@@ -117,7 +151,7 @@ class MyTasks extends Component {
                             labelDescription={item.labelDescription}
                             placeholder={item.placeholder}
                             type={item.type}
-                            externalSource={item.Intern}
+                            externalSource={item.externalSource}
                             size={item.size}
                             defaultValue={item.defaultValue}
                             validations={item.validations}
@@ -138,8 +172,7 @@ class MyTasks extends Component {
         </div>
     };
 
-    renderEditTaskForm = (fields) => {
-        let items = formItems(fields);
+    renderEditTaskForm = (items) => {
         return <div className={styles.formWrapper}>
             {items.map((item, i) => {
                 return (
@@ -152,6 +185,7 @@ class MyTasks extends Component {
                             size={item.size}
                             defaultValue={item.defaultValue}
                             validations={item.validations}
+                            externalSource={item.externalSource}
                             onChange={(value, sValue) =>{
                                 let vl = item.type !== 'select' ? value :  sValue;
                                 this.setState(state => {
@@ -192,29 +226,27 @@ class MyTasks extends Component {
     }
 
     onCreateFormSubmit = async (payload) => {
-        // await store.createTask(payload);
-        console.log(payload);
+        await store.createTask(payload);
         this.props.closeModal();
         this.setState({ createFormData: formTaskData() });
-        // await this.getJobTasks();
+        await this.getTasks();
     };
 
     onEditFormSubmit = async (payload) => {
-        // await store.createTask(payload);
-        console.log(payload);
+        await store.updateTask(payload);
         this.setState({ createFormData: formTaskData() });
         this.props.closeModal();
-        // await this.getJobTasks();
+        await this.getTasks();
     };
 
     render() {
         let user = getCookie('user');
         return (
             <div className={styles.MyTasks}>
-                {this.renderSection('To Do', 'toDoTasks')}
-                {this.renderSection('In Progress', 'inProgressTasks')}
-                {this.renderSection('In Test', 'inTestTasks')}
-                {this.renderSection('Done', 'doneTasks')}
+                {this.renderSection('To Do', 'to_do')}
+                {this.renderSection('In Progress', 'in_progress')}
+                {this.renderSection('In Test', 'in_test')}
+                {this.renderSection('Done', 'done')}
                 {user === 'employer' && <div onClick={() => this.onCreateClick()} className={styles.createIcon}><img src={createIcon} alt={'icon'} /></div>}
             </div>
         );

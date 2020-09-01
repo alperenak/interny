@@ -3,12 +3,12 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-start;
-  width: 100%;
+  width: 1000px;
 
   & .multiplePost {
     display: grid;
     grid-template-columns: 150px auto auto 150px;
-    width: 100%;
+    width: 1000px;
     border-bottom: 1px solid #eee;
     padding: 16px 0;
 
@@ -20,7 +20,7 @@
   & .singlePost {
     display: grid;
     grid-template-columns: 150px auto auto 150px;
-    width: 100%;
+    width: 1000px;
   }
 
   & .itemImage {

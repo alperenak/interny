@@ -72,7 +72,7 @@ DateInput.defaultProps = {
     type: "text",
     defaultValue: "",
     placeholder: "",
-    size: "",
+    size: "half",
     errorList: [],
     externalSource: [],
     className: ''

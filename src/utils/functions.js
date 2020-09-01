@@ -41,7 +41,6 @@ export const formJobData = async (formData) => {
         "position": formData ? formData.position :  "",
         "requirements": formData ? formData.requirements :  {},
         "qualifications": formData ? formData.qualifications :  [],
-        "employmentType": formData ? formData.employmentType :  "",
         "workingDays": formData ? formData.workingDays :  [],
         "salaryInterval": formData ? formData.salaryInterval :  [],
         "startDate": formData ? formData.startDate :  "",
@@ -53,6 +52,10 @@ export const formJobData = async (formData) => {
         "internQuota": formData ? formData.internQuota :  0
     };
 
+    if (formData) {
+        payload.id = formData.id;
+    }
+
     return payload;
 };
 
@@ -60,15 +63,15 @@ export const formTaskData = (formData) => {
     let id = getCookie('user_id');
     let payload = {
         "Employer": id,
-        "Intern": formData ? [formData.Intern[0]] :  [],
-        "title": formData ? formData.title :  "",
-        "label": formData ? formData.label :  "",
-        "description": formData ? formData.description :  "",
-        "deadline": formData ? formData.deadline :  "",
+        "Intern": formData ? [formData.Intern.key] :  [],
+        "title": formData ? formData.Task.title :  "",
+        "label": formData ? formData.Task.label :  "",
+        "description": formData ? formData.Task.description :  "",
+        "deadline": formData ? formData.Task.deadline :  "",
     };
 
     if (formData) {
-        payload.id = formData.id;
+        payload.id = formData.Task.id;
     }
 
     return payload;
@@ -121,8 +124,9 @@ export const onJobFormChange = (value, formData, sectionKey) => {
 
 export const onTaskFormChange = (value, formData, key) => {
     if (key === 'Intern') {
-        formData[key] = [value];
+        formData[key] = [value.key];
+    } else {
+        formData[key] = value;
     }
-    formData[key] = value;
     return formData;
 };

@@ -1,37 +1,40 @@
-import React from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import ConversationList from '../ConversationList';
 import MessageList from '../MessageList';
 import styles from './Messenger.scss';
+import ToolbarButton from "../ToolbarButton";
+import Toolbar from "../Toolbar";
+import store from "../../store";
 
-export default function Messenger(props) {
-    return (
-      <div className={styles["messenger"]}>
-        {/* <Toolbar
-          title="Messenger"
-          leftItems={[
-            <ToolbarButton key="cog" icon="ion-ios-cog" />
-          ]}
-          rightItems={[
-            <ToolbarButton key="add" icon="ion-ios-add-circle-outline" />
-          ]}
-        /> */}
+export default class Messenger extends Component {
+    state = {
+        contact: {}
+    };
 
-        {/* <Toolbar
-          title="Conversation Title"
-          rightItems={[
-            <ToolbarButton key="info" icon="ion-ios-information-circle-outline" />,
-            <ToolbarButton key="video" icon="ion-ios-videocam" />,
-            <ToolbarButton key="phone" icon="ion-ios-call" />
-          ]}
-        /> */}
+    async componentDidMount() {
+        await this.getContacts();
+    }
 
-        <div className={styles["scrollable sidebar"]}>
-          <ConversationList />
-        </div>
+    getContact = (contactParam) => {
+        this.setState({contact: contactParam});
+    };
 
-        <div className={styles["scrollable content"]}>
-          <MessageList />
-        </div>
-      </div>
-    );
+    getContacts = async () => {
+        let res = await store.getContacts();
+        this.setState({contact: res[0]});
+    };
+
+    render() {
+        return (
+          <div className={styles["messenger"]}>
+            <div className={`${styles["scrollable"]} ${styles["sidebar"]}`}>
+              <ConversationList getContact={this.getContact} />
+            </div>
+
+            <div className={`${styles["scrollable"]} ${styles["content"]}`}>
+              <MessageList contact={this.state.contact} getContacts={this.getContacts} />
+            </div>
+          </div>
+        );
+    }
 }

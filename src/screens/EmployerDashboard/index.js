@@ -37,18 +37,6 @@ class Dashboard extends Component {
                                             <div className={styles.avatar}><img src={intern.avatar} alt={'avatar'}/></div>
                                             <div className={styles.internName}>{intern.name} {intern.surname}</div>
                                         </div>
-                                    <div className={styles.rowContainer}>
-                                            <div className={styles.avatar}><img src={intern.avatar} alt={'avatar'}/></div>
-                                            <div className={styles.internName}>{intern.name} {intern.surname}</div>
-                                        </div>
-                                    <div className={styles.rowContainer}>
-                                            <div className={styles.avatar}><img src={intern.avatar} alt={'avatar'}/></div>
-                                            <div className={styles.internName}>{intern.name} {intern.surname}</div>
-                                        </div>
-                                    <div className={styles.rowContainer}>
-                                            <div className={styles.avatar}><img src={intern.avatar} alt={'avatar'}/></div>
-                                            <div className={styles.internName}>{intern.name} {intern.surname}</div>
-                                        </div>
                                     </Fragment>
                                 )
                             })}

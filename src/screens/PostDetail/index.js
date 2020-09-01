@@ -30,8 +30,15 @@ class PostDetail extends Component{
     getPost = async () => {
         let {id} = this.props.match.params;
         let userType = getCookie('user');
+        let user = '';
+        if (userType === 'employer') {
+            user = (await store.getEmployer(getCookie('user_id'))).data;
+        }
         let pst = await store.getPost(id);
         this.setState(state => {
+            if (userType === 'intern') {
+                user = pst.Employer;
+            }
             state.post = pst;
             state.posts = [
                 {
@@ -53,12 +60,12 @@ class PostDetail extends Component{
                 }
             ];
             state.company = {
-                image: pst?.Employer.logo,
-                header: pst?.Employer.legalName,
+                logo: user.logo,
+                header: user.legalName,
                 location: `${pst?.jobLocation?.country} - ${pst?.jobLocation?.city}`,
                 sector: pst?.industry,
                 jobType: pst?.jobType,
-                empNum: pst?.Employer?.employeeNumber,
+                empNum: user?.employeeNumber,
                 description: pst?.description,
             };
 
@@ -128,6 +135,7 @@ class PostDetail extends Component{
     onEditFormSubmit = async (payload) => {
         await store.editPost(payload);
         this.props.closeModal();
+        await this.getPost();
     };
 
     render() {

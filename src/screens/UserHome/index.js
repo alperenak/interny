@@ -18,19 +18,20 @@ class UserHome extends Component {
     state = {
         posts: [],
         offset: 0,
-        limit: 5
+        limit: 5,
+        totalCount: 0
     };
 
     async componentDidMount() {
         let {offset, limit} = this.state;
         let userType = getCookie('user');
-        let userId = getCookie('userId');
         if (userType === 'intern') {
             let res = await store.getPosts({offset, limit});
+            let totalCount = res.total;
             let posts = res.results.map(pst => {
                 return this.fillPosts(pst);
             });
-            this.setState({ posts });
+            this.setState({ posts, totalCount });
         }
     }
 
@@ -45,7 +46,7 @@ class UserHome extends Component {
             buttons:[
                 {
                     type:'primary',
-                    text:pst.isApplied?'Withdraw':'Apply Now',
+                    text:pst.isApplied? (pst.isApproved ? 'Start Internship' : 'Withdraw') : 'Apply Now',
                     sizeName:'small',
                     width:'85px',
                     to:`/jobApplication/${pst.id}`
@@ -87,7 +88,7 @@ class UserHome extends Component {
     };
 
     render() {
-        let {posts} = this.state;
+        let {posts, totalCount} = this.state;
         return (
             <div className={styles.UserHome}>
                 <SearchSection />
@@ -98,6 +99,7 @@ class UserHome extends Component {
                     posts={pst}
                 />
                 <Button
+                    v-if={totalCount > posts.length}
                     type={'ghost'}
                     text={'Load More'}
                     sizeName={'small'}

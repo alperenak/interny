@@ -39,6 +39,7 @@ class CoverLetter extends Component {
                 <Input
                     v-if={coverLetter}
                     type={'textarea'}
+                    size={'large'}
                     defaultValue={coverLetter?.text}
                     onChange={onChange}
                     disabled={disabled}

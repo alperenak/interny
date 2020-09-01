@@ -1,4 +1,10 @@
-.message-list-container {
-  padding: 10px;
-  padding-bottom: 70px;
+.message-list {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  & .message-list-container {
+    padding: 10px 10px 70px;
+    height: calc(100% - 200px);
+    overflow: scroll;
+  }
 }

@@ -78,6 +78,7 @@
     border: 1px solid #2b4970;
     width: 30px;
     height: 30px;
+    overflow: hidden;
 
     & img {
       width: 100%;
@@ -91,8 +92,8 @@
     align-items: center;
     background-color: #ff0000;
     color: #fff;
-    width: 67px;
-    padding: 2px 0;
+    width: 72px;
+    padding: 2px 5px;
     border-radius: 4px;
     font-size: 10px;
     margin: 0 20px 10px;
@@ -100,6 +101,7 @@
 
     & img {
       width: 14px;
+      margin-right: 5px;
     }
   }
 }

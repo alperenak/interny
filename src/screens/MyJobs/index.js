@@ -95,7 +95,7 @@ class MyJobs extends Component {
     fillPosts = (pst, buttons) => {
         return{
             id: pst.id,
-            date: pst.startDate,
+            date: pst.age + ' days ago',
             header: pst.Employer.legalName,
             company: pst.position,
             image: pst.Employer.logo,
@@ -193,12 +193,6 @@ class MyJobs extends Component {
             onButtonClick: async () => {
                 await store.startInternship(userId, jobId);
             }
-        },
-        {
-            type:'ghost',
-            text:'Reject Internship',
-            sizeName:'small',
-            width:'100px',
         }
     ];
 
