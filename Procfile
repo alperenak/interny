@@ -1,1 +1,1 @@
-web: yarn watch
+web: node server.js

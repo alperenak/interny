@@ -5,6 +5,7 @@ import styles from './Messenger.scss';
 import ToolbarButton from "../ToolbarButton";
 import Toolbar from "../Toolbar";
 import store from "../../store";
+import {getCookie} from "../../utils/cookie";
 
 export default class Messenger extends Component {
     state = {
@@ -13,6 +14,9 @@ export default class Messenger extends Component {
 
     async componentDidMount() {
         await this.getContacts();
+        let io = require('socket.io-client');
+        let user = getCookie('user_id');
+        this.setState({...this.state, socket: io(`http://localhost:5000/ws-notifications?user=${user}`)})
     }
 
     getContact = (contactParam) => {
