@@ -34,6 +34,7 @@ class Modal extends Component {
                                         sizeName={btn.sizeName}
                                         width={btn.width}
                                         onButtonClick={btn.onButtonClick}
+                                        to={btn.to}
                                     />;
                                 })}
                             </div>

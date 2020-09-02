@@ -32,7 +32,7 @@ class DropDown extends Component {
                         e.stopPropagation();
                     }}
                 >
-                    {externalData.map(el => {
+                    {externalData.length > 0 ? externalData.map(el => {
                         return <Link
                             key={el.key}
                             onClick={() => !el.disabled && this.onClickListItem(el.key)}
@@ -43,11 +43,11 @@ class DropDown extends Component {
                                 <div className={styles.title} v-if={el.title}>{el.title}</div>
                                 <div>{el.value}</div>
                             </div>
-                            <div v-if={el.icon || el.read} className={`${styles.icon} ${el.read ? styles.read : ''}`}>
+                            <div v-if={el.icon || el.unRead} className={`${styles.icon} ${el.unRead ? styles.read : ''}`}>
                                 <img v-if={el.icon} src={el.icon} alt={'icon'}/>
                             </div>
                         </Link>
-                    })}
+                    }) : <div className={styles.messageContainer}>No Data</div>}
                 </ul>
             </>
         );

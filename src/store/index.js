@@ -432,6 +432,22 @@ let store = {
 
         return res.data;
     },
+    async getNotifications() {
+        let baseUrl = config.baseUrl;
+        let path = `/notification`;
+        let tokenCookieName = "token";
+        let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+
+        return res.data;
+    },
+    async readNotifications() {
+        let baseUrl = config.baseUrl;
+        let path = `/notification/read`;
+        let tokenCookieName = "token";
+        let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+
+        return res.data;
+    },
 };
 
 export default store;
