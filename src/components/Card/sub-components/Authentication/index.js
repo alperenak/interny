@@ -44,7 +44,7 @@ class Authentication extends Component {
                 placeholder: "Enter e-mail address",
                 errorList: [],
                 type: 'text',
-                sizeName: 'half'
+                sizeName: 't-quarter'
             },
             {
                 key: 'password',
@@ -52,7 +52,7 @@ class Authentication extends Component {
                 placeholder: "Enter password",
                 errorList: [],
                 type: 'password',
-                sizeName: 'half'
+                sizeName: 't-quarter'
             },
             {
                 disabled: false,
@@ -74,7 +74,7 @@ class Authentication extends Component {
                 placeholder: "Enter name",
                 errorList: [],
                 type: 'text',
-                sizeName: 'half',
+                sizeName: 't-quarter',
                 value: ''
             },
             {
@@ -83,7 +83,7 @@ class Authentication extends Component {
                 placeholder: "Enter surname",
                 errorList: [],
                 type: 'text',
-                sizeName: 'half',
+                sizeName: 't-quarter',
                 value: ''
             },
             {
@@ -92,7 +92,7 @@ class Authentication extends Component {
                 placeholder: "Enter e-mail address",
                 errorList: [],
                 type: 'text',
-                sizeName: 'half',
+                sizeName: 't-quarter',
                 value: ''
             },
             {
@@ -101,7 +101,7 @@ class Authentication extends Component {
                 placeholder: "Enter password",
                 errorList: [],
                 type: 'password',
-                sizeName: 'half',
+                sizeName: 't-quarter',
                 value: ''
             },
             {
@@ -235,7 +235,7 @@ class Authentication extends Component {
                 type={'text'}
                 label={'E-mail Address'}
                 placeholder={`Enter e-mail address`}
-                size={'half'}
+                size={'t-quarter'}
                 onChange={(value) => this.setState({value})}
             />
         );
@@ -291,7 +291,7 @@ class Authentication extends Component {
                     return <Input
                         className={`${styles.inputsContainer}`}
                         v-if={inp.type !== 'link'}
-                        sizeName={inp.sizeName}
+                        size={inp.sizeName}
                         key={i}
                         label={inp.label}
                         placeholder={inp.placeholder}
@@ -304,7 +304,7 @@ class Authentication extends Component {
                         return <Input
                             className={`${styles.inputsContainer}`}
                             v-if={inp.type !== 'link'}
-                            sizeName={inp.sizeName}
+                            size={inp.sizeName}
                             key={i}
                             label={inp.label}
                             placeholder={inp.placeholder}

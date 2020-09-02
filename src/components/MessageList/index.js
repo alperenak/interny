@@ -106,7 +106,7 @@ export default class MessageList extends Component {
         return(
           <div className={styles["message-list"]}>
             <Toolbar
-              title="Conversation Title"
+              title={this.props.contact.name}
               rightItems={[
                 <ToolbarButton key="info" icon="ion-ios-information-circle-outline" />,
               ]}

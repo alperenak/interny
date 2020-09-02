@@ -10,7 +10,9 @@ import store from "../../store";
 
 export default class ConversationList extends Component {
     state = {
-        conversations: []
+        conversations: [],
+        filteredConversations: [],
+        searchText: ''
     };
 
     async componentDidMount() {
@@ -27,7 +29,25 @@ export default class ConversationList extends Component {
                 text: ''
               };
             });
-            this.setState({conversations: [...this.state.conversations, ...newConversations]})
+            this.setState({
+                conversations: [...this.state.conversations, ...newConversations],
+                filteredConversations: [...this.state.conversations, ...newConversations]
+            });
+        });
+    };
+
+    onSearchTextChange = (value) => {
+        this.setState(state => {
+            if (value) {
+                state.filteredConversations = state.conversations.filter(el => el.name.includes(value));
+            } else {
+                if (state.searchText) {
+                    state.filteredConversations = state.conversations;
+                }
+            }
+
+            state.searchText = value;
+            return state;
         });
     };
 
@@ -43,9 +63,9 @@ export default class ConversationList extends Component {
                 <ToolbarButton key="add" icon="ion-ios-add-circle-outline" />
               ]}
             />
-            <ConversationSearch />
+            <ConversationSearch onChange={this.onSearchTextChange} />
             {
-              this.state.conversations.map(conversation =>
+              this.state.filteredConversations.map(conversation =>
                 <ConversationListItem
                   key={conversation.name}
                   data={conversation}

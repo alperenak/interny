@@ -21,6 +21,7 @@ import editIcon from '../../icons/note-outlined-symbol.svg';
 import editIconBlue from '../../icons/note-outlined-symbol-blue.svg';
 import binIcon from '../../icons/recycling-bin.svg';
 import binIconBlue from '../../icons/recycling-bin-blue.svg';
+import Footer from "../../components/Footer";
 
 class CVs extends Component {
     state = {
@@ -149,7 +150,6 @@ class CVs extends Component {
         let {sections} = this.state;
         return (
             <div className={styles.cvs}>
-                <SearchSection />
                 <div className={styles.cards}>
                     <div className={styles.CVs}>
                         <Card
@@ -163,6 +163,7 @@ class CVs extends Component {
                     <div className={styles.profileSection}>
                         <Card
                             type={'profile'}
+                            getUser={this.props.getUser}
                             profileObject={{
                                 avatar: user.avatar,
                                 status: 'active',

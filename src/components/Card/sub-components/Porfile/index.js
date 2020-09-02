@@ -1,19 +1,44 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
+/*** Utils ***/
+import store from "../../../../store";
+
 /*** Styles ***/
 import styles from './profileCard.scss';
 
 /*** Icons ***/
 import locationIcon from "../../../../icons/location.svg";
+import addIcon from "../../../../icons/add-circular-outlined-white-button.svg";
 
 class Profile extends Component {
+    onFileUpload = async (files) => {
+        let uploadData = await store.uploadImageType(files[0].type);
+        let res = await store.uploadImage(uploadData.url, files[0]);
+        if (res) {
+            await store.uploadImageKey(uploadData.key);
+        }
+        await this.props.getUser();
+    };
+
     render() {
         let {profileObject} = this.props;
         return (
             <div className={styles.profileCard}>
                 <div className={styles.profileImage}>
-                    <img v-if={profileObject.avatar} src={profileObject.avatar} alt={'profile photo'}/>
+                    <div v-if={profileObject.avatar} className={styles.imageContainer}>
+                        <img src={profileObject.avatar} alt={'profile photo'}/>
+                    </div>
+                    <label className={profileObject.avatar ? styles.statusCircle : styles.fileInput} htmlFor="fileInput">
+                        <img src={addIcon} alt={'icon'} />
+                    </label>
+                    <input
+                        id={'fileInput'}
+                        hidden={true}
+                        accept="image/*"
+                        type={'file'}
+                        onChange={(e) => this.onFileUpload(e.target.files)}
+                    />
                     {/*<div className={`${styles.statusCircle} ${styles[profileObject.status]}`} />*/}
                 </div>
                 <div className={styles.profileHeader}>

@@ -25,6 +25,8 @@ import workingStudentImage from '../../assets/workingStudent.jpg';
 import register from '../../icons/register.svg';
 import application from '../../icons/application.svg';
 import duties from '../../icons/duties.svg';
+import backgroundImage from '../../assets/background.png';
+import Footer from "../../components/Footer";
 
 class Home extends Component {
     state = {
@@ -139,20 +141,20 @@ class Home extends Component {
                     </div>
                 </div>
                 <div id={'packages-section'} className={styles.packagesSection}>
-                    <div className={styles.packagesTitle}>See Our Internship Packages</div>
-                    <div className={styles.packagesSubTitle}>Click to detail of packages</div>
+                    <div className={styles.packagesTitle}>See the Intern Packages</div>
+                    <div className={styles.packagesSubTitle}>Click to see detail of packages</div>
                     <div className={styles.packagesCards}>
                         <Card>
                             <div className={styles.packageCard}>
                                 <div className={styles.headerDiv}>
-                                    <div className={styles.packageTitle}>Bronze Pack</div>
-                                    <div className={styles.packagePrice}>$40.00</div>
+                                    <div className={styles.packageTitle}>FREEMIUM</div>
+                                    <div className={styles.packagePrice}>$0.00</div>
                                     <div className={styles.packagePaymentDate}>Per Month</div>
                                 </div>
                                 <div className={styles.stroke} />
                                 <div className={styles.descriptionDiv}>
                                     <div className={styles.packageDescription}>
-                                        Apply to 20 days Internships Premium Support 24/7
+                                        Apply to 4-Week Internships, Local/Global Applications, Project Management Tool
                                     </div>
                                     <Button type={'ghost'} text={'Buy Now'} sizeName={'default'} />
                                 </div>
@@ -162,14 +164,14 @@ class Home extends Component {
                             <Card>
                                 <div className={styles.packageCard}>
                                     <div className={styles.headerDiv}>
-                                        <div className={styles.packageTitle}>Gold Pack</div>
-                                        <div className={styles.packagePrice}>$85.00</div>
+                                        <div className={styles.packageTitle}>WFA</div>
+                                        <div className={styles.packagePrice}>$14,99</div>
                                         <div className={styles.packagePaymentDate}>Per Month</div>
                                     </div>
                                     <div className={styles.stroke} />
                                     <div className={styles.descriptionDiv}>
                                         <div className={styles.packageDescription}>
-                                            Apply to 20-30-60 days Internships Consult Career Planning Specialist Premium Support 24/7
+                                            Apply to 8/12-Week Internships, Video-CV, WFA Report, Certification, Freemium Features
                                         </div>
                                         <Button type={'primary'} text={'Buy Now'} sizeName={'default'} />
                                     </div>
@@ -179,14 +181,14 @@ class Home extends Component {
                         <Card>
                             <div className={styles.packageCard}>
                                 <div className={styles.headerDiv}>
-                                    <div className={styles.packageTitle}>Silver Pack</div>
-                                    <div className={styles.packagePrice}>$50.00</div>
+                                    <div className={styles.packageTitle}>COM </div>
+                                    <div className={styles.packagePrice}>$9.99</div>
                                     <div className={styles.packagePaymentDate}>Per Month</div>
                                 </div>
                                 <div className={styles.stroke} />
                                 <div className={styles.descriptionDiv}>
                                     <div className={styles.packageDescription}>
-                                        Apply to 20-30 days Internships Premium Support 24/7
+                                        Apply to Competence Scaling, Competence Evaluation, Additional Report
                                     </div>
                                     <Button type={'ghost'} text={'Buy Now'} sizeName={'default'} />
                                 </div>
@@ -194,42 +196,7 @@ class Home extends Component {
                         </Card>
                     </div>
                 </div>
-                <div className={styles.footerSection}>
-                    <div className={styles.footerTop}>
-                        <div className={styles.companyDescription}>
-                            <img src={internyLogo}/>
-                            <div className={styles.description}>
-                                Provides a full online service for anyone looking for a new internship.
-                                We are not a recruitment agency, we are job site.
-                            </div>
-                        </div>
-                        <div className={styles.options}>
-                            <div className={styles.knowUs}>
-                                <div className={styles.header}>Know Us</div>
-                                <ul>
-                                    <li>Register</li>
-                                    <li>About Us</li>
-                                    <li>FAQ's</li>
-                                    <li>Terms and Policies</li>
-                                    <li>Privacy Policy</li>
-                                    <li>Contact Us</li>
-                                </ul>
-                            </div>
-                            <div className={styles.followUs}>
-                                <div className={styles.header}>Follow Us</div>
-                                <ul>
-                                    <li>Facebook</li>
-                                    <li>Twitter</li>
-                                    <li>Linkedin</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.stroke} />
-                    <div className={styles.rights}>
-                        2020 • Intern Academy © All rights reserved.
-                    </div>
-                </div>
+                <Footer/>
             </div>
         );
     }

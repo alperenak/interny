@@ -27,7 +27,9 @@ class TopBar extends Component {
     constructor(props) {
         super(props);
 
-        this.wrapperRef = React.createRef();
+        this.wrapperRefuser = React.createRef();
+        this.wrapperRefmail = React.createRef();
+        this.wrapperRefbell = React.createRef();
         this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
@@ -64,7 +66,10 @@ class TopBar extends Component {
             {
                 key: 'myAccount',
                 value: 'There is not news',
+                title: 'Sana ne',
                 selected: false,
+                icon: '',
+                read: true,
                 disabled: true
             },
         ],
@@ -187,7 +192,7 @@ class TopBar extends Component {
     }
 
     handleClickOutside = (event) => {
-        if (this.wrapperRef.current && !this.wrapperRef.current.contains(event.target)) {
+        if (this.wrapperRef?.current && !this.wrapperRef?.current.contains(event.target)) {
             this.setState({
                 mailDropDown: false,
                 bellDropDown: false,
@@ -196,25 +201,16 @@ class TopBar extends Component {
         }
     };
 
-    renderPackagesLink() {
-        return <div className={styles.packages} onClick={() => {
-            if (window.location.pathname.length > 1) document.location.pathname = '/';
-            document.getElementById('packages-section').scrollIntoView({behavior: "smooth"});
-        }}>
-            Our Packages
-        </div>
-    }
-
     renderIcon(iconName) {
         let {icons} = this.state;
         let userType = getCookie('user');
         return (
-            <div ref={this.wrapperRef} onClick={() => this.onIconClick(iconName)} className={styles.img}>
+            <div ref={this[`wrapperRef${iconName}`]} onClick={() => this.onIconClick(iconName)} className={styles.img}>
                 <img src={icons[`${iconName}Icon`]} alt={'icon'} />
                 <div v-if={this.state[`${iconName}DropDown`]} className={styles.cardContainer}>
                     <Card
                         type={'dropDown'}
-                        externalData={this.state[`${iconName === 'user' ? userType : iconName}Source`]}
+                        externalData={[...this.state[`${iconName === 'user' ? userType : iconName}Source`]]}
                     />
                 </div>
             </div>
@@ -232,10 +228,11 @@ class TopBar extends Component {
 
     onIconClick = (name) => {
         let {mailDropDown, bellDropDown, userDropDown} = this.state;
-        this.setState({
-            mailDropDown: name === 'mail' ? !mailDropDown : false,
-            bellDropDown: name === 'bell' ? !bellDropDown : false,
-            userDropDown: name === 'user' ? !userDropDown : false,
+        this.setState(state => {
+            state.mailDropDown = name === 'mail' ? !mailDropDown : false;
+            state.bellDropDown = name === 'bell' ? !bellDropDown : false;
+            state.userDropDown = name === 'user' ? !userDropDown : false;
+            return state;
         });
     };
 
@@ -248,9 +245,9 @@ class TopBar extends Component {
                 <div className={styles.logo}><Link to={'/'}><img src={internyLogo} alt={'logo'} /></Link></div>
                 <div className={styles.links}>
                     <Fragment v-if={!isAuthorized}>
-                        <div><Link to={'/'}>Home</Link></div>
+                        {/*<div><Link to={'/'}>Home</Link></div>*/}
                         <div><Link to={'/search'}>Browse Internships</Link></div>
-                        {this.renderPackagesLink()}
+                        <div><Link to={'/packages'}>Our Packages</Link></div>
                         <div
                             onMouseOver={() => this.setState({loginDropDown: true})}
                             onMouseLeave={() => this.setState({loginDropDown: false})}

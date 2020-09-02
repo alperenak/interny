@@ -13,6 +13,7 @@ import {formJobData, onJobFormChange} from "../../utils/functions";
 /*** Styles ***/
 import styles from "./postDetail.scss";
 import Form from "../../components/Form";
+import Footer from "../../components/Footer";
 
 
 class PostDetail extends Component{
@@ -142,7 +143,6 @@ class PostDetail extends Component{
         let {posts, company} = this.state;
         return (
             <div className={styles.postDetail}>
-                <SearchSection />
                 <div className={styles.cards}>
                     <Card
                         type={'jobDetail'}
@@ -153,6 +153,7 @@ class PostDetail extends Component{
                     <Card
                         type={'companyProfile'}
                         profileObject={company}
+                        getUser={this.getPost}
                     />
                 </div>
             </div>

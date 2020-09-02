@@ -12,6 +12,8 @@ export default function Message(props) {
     } = props;
 
     const friendlyTimestamp = moment(data.timestamp).format('LLLL');
+    let hours = (new Date(friendlyTimestamp)).getHours();
+    let mins = (new Date(friendlyTimestamp)).getMinutes();
     return (
       <div className={`
         ${styles['message']} 
@@ -29,6 +31,9 @@ export default function Message(props) {
         <div className={styles["bubble-container"]}>
           <div className={styles["bubble"]} title={friendlyTimestamp}>
             { data.message }
+              <div className={styles.tinyTime}>
+                {hours}:{mins < 10 ? '0'+mins : mins}
+              </div>
           </div>
         </div>
       </div>

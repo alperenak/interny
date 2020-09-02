@@ -17,29 +17,43 @@
     -moz-box-shadow: 0px 18px 18px 0px rgba(#2b4970,0.1);
     box-shadow: 0px 18px 18px 0px rgba(#2b4970,0.1);
     margin-bottom: 20px;
-    overflow: hidden;
+
+    & .fileInput {
+      cursor: pointer;
+      width: 100%;
+      background-color: #64646445;
+      border-radius: 32px;
+      padding: 10px 10px 5px 10px;
+      & img {
+        width: 100%;
+      }
+    }
 
     & .statusCircle {
       position: absolute;
+      cursor: pointer;
       top: -5px;
       right: -5px;
       width: 24px;
       height: 24px;
       border-radius: 50%;
       border: 2px solid #fff;
-
-      &.active {
-        background-color: green;
-      }
-
-      &.passive {
-        background-color: grey;
+      background-color: #646464;
+      & img {
+        width: 100%;
       }
     }
 
-    & img {
-      width: 100%;
+    & .imageContainer {
+      overflow: hidden;
+      width: 104px;
+      height: 104px;
+      border-radius: 32px;
+      & img {
+        width: 100%;
+      }
     }
+
   }
 
   & .profileHeader {
@@ -50,7 +64,7 @@
     margin-bottom: 24px;
     & .headerText {
       font-family: "Noto Sans Bold";
-      font-size: 24px;
+      font-size: calc(2px + 24px);
       font-weight: normal;
       font-stretch: normal;
       font-style: normal;
@@ -61,7 +75,7 @@
 
     & .location {
       display: flex;
-      font-size: 13px;
+      font-size: calc(2px + 13px);
       font-weight: lighter;
       font-stretch: normal;
       font-style: normal;
@@ -97,7 +111,7 @@
 
       & .property {
         font-family: "Noto Sans";
-        font-size: 15px;
+        font-size: calc(2px + 15px);
         font-weight: lighter;
         font-stretch: normal;
         font-style: normal;
@@ -107,7 +121,7 @@
       }
 
       & .propertyTitle {
-        font-size: 11px;
+        font-size: calc(2px + 11px);
         font-weight: lighter;
         font-stretch: normal;
         font-style: normal;

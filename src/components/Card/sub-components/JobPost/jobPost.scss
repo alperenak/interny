@@ -50,7 +50,7 @@
     align-items: center;
     & .postHeader {
       font-family: "Noto Sans Bold";
-      font-size: 15px;
+      font-size: calc(2px + 15px);
       font-weight: bolder;
       font-stretch: normal;
       font-style: normal;
@@ -59,7 +59,7 @@
       grid-column: span 2;
     }
     & .postDate {
-      font-size: 12px;
+      font-size: calc(2px + 12px);
       font-weight: lighter;
       font-stretch: normal;
       font-style: normal;
@@ -70,7 +70,7 @@
     }
   }
   & .postCompany {
-    font-size: 15px;
+    font-size: calc(2px + 15px);
     margin: 4px 0 0;
     font-weight: normal;
     font-stretch: normal;
@@ -83,7 +83,7 @@
   & .postLocation {
     display: flex;
     margin: 4px 0 0;
-    font-size: 13px;
+    font-size: calc(2px + 13px);
     font-weight: lighter;
     font-stretch: normal;
     font-style: normal;
@@ -115,7 +115,7 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     margin: 12px 0 0;
-    font-size: 13px;
+    font-size: calc(2px + 13px);
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;

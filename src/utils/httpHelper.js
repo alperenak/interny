@@ -96,10 +96,11 @@ export default {
 		});
 	},
 
-	makePutRequest(url, baseUrl, tokenCookieName, postBody, errorMessageBuilder, onProgress = () => {
+	makePutRequest(url, baseUrl, tokenCookieName, postBody, errorMessageBuilder, additionHeaders, onProgress = () => {
 	}, onCancelTokenAdded = () => {
 	}) {
 		let token = "Bearer " + getCookie(tokenCookieName);
+		console.log(additionHeaders);
 		const headers = {
 			"Content-Type": "application/json",
 			Authorization: token
@@ -111,7 +112,7 @@ export default {
 		});
 		const instance = axios.create({
 			baseURL: baseUrl,
-			headers: headers,
+			headers: additionHeaders || headers,
 			timeout: 60000,
 			onUploadProgress: progressEvent => {
 				var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)

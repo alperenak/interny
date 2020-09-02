@@ -6,6 +6,20 @@
   background-color: #ffffff;
   border: 1px solid #efefef;
 
+  &.photo {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: start;
+    padding: 64px 24px 0;
+    width: 15%;
+    margin: 0 24px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
+    -o-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
+  }
+
   &.task {
     width: calc(100% - 32px);
     margin: 4px auto;
@@ -82,7 +96,7 @@
   & .cardHeader {
     margin-bottom: 32px;
     font-family: "Noto Sans Bold";
-    font-size: 24px;
+    font-size: calc(2px + 24px);
     font-weight: 700;
     font-stretch: normal;
     font-style: normal;

@@ -38,7 +38,8 @@ Input.propTypes = {
     errorList: PropTypes.array,
     validations: PropTypes.object,
     externalSource: PropTypes.array,
-    className: PropTypes.string
+    className: PropTypes.string,
+    priorValue: PropTypes.string
 };
 
 Input.defaultProps = {

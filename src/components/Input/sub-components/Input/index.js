@@ -41,8 +41,8 @@ class PlainInput extends Component {
     };
 
     render() {
-        let {name, label, labelDescription, type, disabled, icon,
-            defaultValue, placeholder, size, className, onClick} = this.props;
+        let {name, label, labelDescription, type, disabled, icon, onKeyDown, priority,
+            defaultValue, placeholder, size, className, onClick, priorValue} = this.props;
         let {value, errorList, valid} = this.state;
         return (
             <div onClick={onClick} className={`${styles.inputWrapper} ${disabled ? styles.disabled : ''} ${className}`}>
@@ -62,10 +62,11 @@ class PlainInput extends Component {
                     name={name}
                     autoComplete={'off'}
                     autoFocus={false}
+                    onKeyDown={onKeyDown}
                     type={type}
                     disabled={disabled}
                     onChange={(e) => this.onChange(e)}
-                    value={value ? value : defaultValue}
+                    value={priority ? priorValue : value ? value : defaultValue}
                     placeholder={placeholder}
                 />
                 <div
@@ -82,9 +83,10 @@ class PlainInput extends Component {
                         autoComplete={'off'}
                         autoFocus={false}
                         type={type}
+                        onKeyDown={onKeyDown}
                         disabled={disabled}
                         onChange={(e) => this.onChange(e)}
-                        value={value ? value : defaultValue}
+                        value={priority ? priorValue : value ? value : defaultValue}
                         placeholder={placeholder}
                     />
                     <img v-if={icon && icon.position === 'right'} src={icon.src} alt={'icon'} className={`${styles.icon} ${styles[icon.position]}`} />
@@ -116,17 +118,21 @@ PlainInput.propTypes = {
   name: PropTypes.string,
   icon: PropTypes.object,
   onChange: PropTypes.any,
+  onKeyDown: PropTypes.any,
   onClick: PropTypes.any,
   type: PropTypes.string,
   defaultValue: PropTypes.string,
   placeholder: PropTypes.string,
   size: PropTypes.string,
   errorList: PropTypes.array,
-  className: PropTypes.string
+  className: PropTypes.string,
+  priorValue: PropTypes.string,
+  priority: PropTypes.bool
 };
 
 PlainInput.defaultProps = {
   disabled: false,
+  priority: false,
   label: "",
   name: "",
   type: "text",

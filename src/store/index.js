@@ -406,6 +406,32 @@ let store = {
 
         return res.data;
     },
+    async uploadImageType(type) {
+        let baseUrl = config.baseUrl;
+        let path = `/upload/pp?fileType=${type}`;
+        let tokenCookieName = "token";
+        let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+
+        return res.data;
+    },
+    async uploadImage(url, file) {
+        let baseUrl = url;
+        let path = ``;
+        let tokenCookieName = "token";
+        let additionHeaders = {
+            'Content-Type': file.type,
+        };
+
+        return await http.makePutRequest(path, baseUrl, tokenCookieName, file, errorMessageBuilder, additionHeaders);
+    },
+    async uploadImageKey(key) {
+        let baseUrl = config.baseUrl;
+        let path = `/upload/pp?key=${key}`;
+        let tokenCookieName = "token";
+        let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+
+        return res.data;
+    },
 };
 
 export default store;

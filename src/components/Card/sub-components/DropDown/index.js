@@ -39,9 +39,12 @@ class DropDown extends Component {
                             className={`${el.selected ? styles.selected: ''}`}
                             to={el.to}
                         >
-                            <div>{el.value}</div>
-                            <div v-if={el.icon} className={styles.icon}>
-                                <img src={el.icon} alt={'icon'}/>
+                            <div className={styles.messageContainer}>
+                                <div className={styles.title} v-if={el.title}>{el.title}</div>
+                                <div>{el.value}</div>
+                            </div>
+                            <div v-if={el.icon || el.read} className={`${styles.icon} ${el.read ? styles.read : ''}`}>
+                                <img v-if={el.icon} src={el.icon} alt={'icon'}/>
                             </div>
                         </Link>
                     })}

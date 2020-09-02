@@ -46,7 +46,7 @@ class SearchSection extends Component {
     render() {
         let {keyword, location} = this.state;
         return (
-            <div className={`${styles.searchSection}`}>
+            <div className={`${styles.searchSection} ${this.props.page === 'home' && styles.backgroundImage}`}>
                 <div v-if={this.props.page === 'home'} className={styles.slogan}>The Easiest Way to Get Your New Internship</div>
                 <div v-if={this.props.page === 'home'} className={styles.subSlogan}>Find the career you deserve</div>
                 <div className={styles.searchBars}>

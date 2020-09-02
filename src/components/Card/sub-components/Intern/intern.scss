@@ -52,7 +52,7 @@
       & .internName {
         position: relative;
         font-family: "Noto Sans Bold";
-        font-size: 20px;
+        font-size: calc(2px + 20px);
         color: #2b4970;
       }
 
@@ -74,7 +74,7 @@
           width: 20px;
           height: 20px;
           font-family: "Noto Sans";
-          font-size: 7px;
+          font-size: calc(2px + 7px);
           text-align: center;
 
           &:hover {

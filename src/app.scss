@@ -3,6 +3,7 @@
   width: calc(100% - 208px);
   height: calc(100% - 144px);
   padding: 112px 64px 32px 144px;
+  position: relative;
 
   &.fullScreen {
     width: unset;
@@ -17,5 +18,13 @@
 
   & a {
     text-decoration: none;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    -webkit-text-fill-color: #2b4970!important;
   }
 }

@@ -1,19 +1,45 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
+/*** Utils ***/
+import store from "../../../../store";
+
 /*** Styles ***/
 import styles from './companyProfileCard.scss';
 
 /*** Icons ***/
 import locationIcon from "../../../../icons/location-dark.svg";
+import addIcon from '../../../../icons/add-circular-outlined-white-button.svg';
 
 class CompanyProfile extends Component {
+    onFileUpload = async (files) => {
+        let uploadData = await store.uploadImageType(files[0].type);
+        let res = await store.uploadImage(uploadData.url, files[0]);
+        if (res) {
+            await store.uploadImageKey(uploadData.key);
+        }
+        await this.props.getUser();
+    };
+
     render() {
         let {profileObject} = this.props;
         return (
             <div className={styles.companyProfileCard}>
                 <div className={styles.profileImage}>
-                    <img src={profileObject.avatar || profileObject.logo} alt={'profile photo'}/>
+                    <div v-if={profileObject.avatar || profileObject.logo} className={styles.imageContainer}>
+                        <img src={profileObject.avatar || profileObject.logo} alt={'profile photo'}/>
+                    </div>
+                    <label className={profileObject.avatar || profileObject.logo ? styles.statusCircle : styles.fileInput} htmlFor="fileInput">
+                        <img src={addIcon} alt={'icon'} />
+                    </label>
+                    <input
+                        id={'fileInput'}
+                        hidden={true}
+                        accept={"image/*"}
+                        type={'file'}
+                        aria-label={""}
+                        onChange={(e) => this.onFileUpload(e.target.files)}
+                    />
                 </div>
                 <div className={styles.headerText}>
                     {profileObject.header}

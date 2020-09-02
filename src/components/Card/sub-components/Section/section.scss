@@ -18,7 +18,7 @@
       justify-content: space-between;
       align-items: center;
       font-family: "Noto Sans Bold";
-      font-size: 16px;
+      font-size: calc(2px + 16px);
       color: #2b4970;
       padding: 0 0 15px;
       margin-bottom: 20px;
@@ -50,7 +50,7 @@
 
         & .itemTitle {
           font-family: "Noto Sans Bold";
-          font-size: 15px;
+          font-size: calc(2px + 15px);
           font-weight: bolder;
           font-stretch: normal;
           font-style: normal;
@@ -59,7 +59,7 @@
           margin-bottom: 8px;
         }
         & .itemLocation {
-          font-size: 15px;
+          font-size: calc(2px + 15px);
           font-weight: normal;
           font-stretch: normal;
           font-style: normal;
@@ -68,7 +68,7 @@
           margin-bottom: 8px;
         }
         & .itemDate {
-          font-size: 13px;
+          font-size: calc(2px + 13px);
           font-weight: normal;
           font-stretch: normal;
           font-style: normal;

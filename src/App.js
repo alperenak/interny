@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 /*** Components ***/
 import TopBar from "./components/TopBar";
+import Footer from "./components/Footer";
 import SearchSection from "./components/SearchSection";
 import Modal from "./components/Modal";
+import Messenger from "./components/Messenger";
 
 /*** Screens ***/
 import Home from "./screens/Home";
@@ -19,6 +21,9 @@ import PostDetail from "./screens/PostDetail";
 import Error from "./screens/Error";
 import Login from "./screens/Login";
 import MyAccount from "./screens/MyAccount";
+import Dashboard from "./screens/EmployerDashboard";
+import MyTasks from "./screens/MyTasks";
+import Packages from "./screens/Packages";
 
 /*** Styles ***/
 import styles from './app.scss';
@@ -26,9 +31,6 @@ import styles from './app.scss';
 /*** Utils ***/
 import {eraseCookie, getCookie} from "./utils/cookie";
 import store from "./store";
-import Dashboard from "./screens/EmployerDashboard";
-import MyTasks from "./screens/MyTasks";
-import Messenger from "./components/Messenger";
 
 class App extends React.Component {
     state = {
@@ -118,6 +120,10 @@ class App extends React.Component {
                             render={props => <LandingPageSearch {...props} />}
                         />
                         <Route
+                            path="/packages"
+                            render={props => <Packages {...props} />}
+                        />
+                        <Route
                             path="/signup"
                             render={props => <SignUp closeModal={this.closeModal} createModal={this.createModal} {...props} />}
                         />
@@ -131,13 +137,13 @@ class App extends React.Component {
                         />
                         <Route
                             path="/postdetail/:id"
-                            render={props => <PostDetail closeModal={this.closeModal} createModal={this.createModal} {...props} />}
+                            render={props => <PostDetail getUser={this.getUser} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
                         />
                         <Route path="/CVs"
-                               render={props => <CVs user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
+                               render={props => <CVs getUser={this.getUser} user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
                         />
                         <Route path="/coverletters"
-                               render={props => <CoverLetters user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
+                               render={props => <CoverLetters getUser={this.getUser} user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
                         />
                         <Route path="/myjobs"
                                render={props => <MyJobs user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}

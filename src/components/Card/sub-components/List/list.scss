@@ -1,6 +1,6 @@
 .listHeader {
   width: 100%;
-  font-size: 16px;
+  font-size: calc(2px + 16px);
   font-family: "Noto Sans Bold";
   list-style: none;
   color: #2b4970;
@@ -19,7 +19,7 @@
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    font-size: 15px;
+    font-size: calc(2px + 15px);
     list-style: none;
     color: #484848;
     border-radius: 4px;

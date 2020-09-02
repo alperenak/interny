@@ -9,14 +9,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 60px;
     background-color: white;
     width: 100vw;
-    padding: 64px;
+    padding: 104px;
 
     & .popularSearchTitle {
       font-family: "Noto Sans Bold";
-      font-size: 24px;
+      font-size: calc(2px + 24px);
       color: #2b4970;
     }
 
@@ -30,7 +29,7 @@
         font-family: "Noto Sans";
         cursor: pointer;
         display: inline-block;
-        font-size: 12px;
+        font-size: calc(2px + 12px);
         color: #646464;
         padding: 6px 12px;
         margin: 4px;
@@ -52,12 +51,12 @@
     margin-top: 60px;
     & .postsTitle {
       font-family: "Noto Sans Bold";
-      font-size: 24px;
+      font-size: calc(2px + 24px);
       color: #2b4970;
     }
     & .postsSubTitle {
       font-family: "Noto Sans";
-      font-size: 18px;
+      font-size: calc(2px + 18px);
       margin-top: 5px;
       color: #484848;
     }
@@ -84,12 +83,12 @@
     padding: 64px;
     & .companiesTitle {
       font-family: "Noto Sans Bold";
-      font-size: 24px;
+      font-size: calc(2px + 24px);
       color: #2b4970;
     }
     & .companiesSubTitle {
       font-family: "Noto Sans";
-      font-size: 18px;
+      font-size: calc(2px + 18px);
       margin-top: 5px;
       color: #484848;
     }
@@ -108,15 +107,15 @@
 
     & .jobsTitle {
       font-family: "Noto Sans Bold";
-      font-size: 36px;
+      font-size: calc(2px + 36px);
       color: white;
       z-index: 1;
       padding: 150px 0 0 150px;
-      width: 50%;
+      width: 60%;
       position: absolute;
       & .prepareCv {
         font-family: "Noto Sans";
-        font-size: 16px;
+        font-size: calc(2px + 16px);
         color: white;
         width: fit-content;
         padding: 0 0 6px;
@@ -136,7 +135,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: start;
+    align-items: center;
     width: 100vw;
     height: fit-content;
     background-color: white;
@@ -145,17 +144,18 @@
 
     & .howItWorksTitle {
       font-family: "Noto Sans Bold";
-      font-size: 24px;
-      color: #000;
-      padding: 0 144px;
-      width: 27%;
+      font-size: calc(2px + 30px);
+      color: #2b4970;
+      margin-bottom: 20px;
+      width: 100%;
+      text-align: center;
     }
     & .howItWorksSubTitle {
       font-family: "Noto Sans";
-      font-size: 18px;
+      font-size: calc(2px + 18px);
       color: #484848;
-      padding: 0 144px;
-      width: 27%;
+      width: 50%;
+      text-align: center;
     }
 
     & .divisions {
@@ -163,7 +163,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 144px;
-      margin: 60px 0;
+      margin: 60px auto;
 
       & .division {
         display: flex;
@@ -176,15 +176,15 @@
         }
         & .title {
           font-family: "Noto Sans Bold";
-          font-size: 16px;
-          color: #000;
+          font-size: calc(2px + 16px);
+          color: #2b4970;
           line-height: 1.5em;
           margin-top: 20px;
         }
         & .description {
           font-family: "Noto Sans";
           margin-top: 20px;
-          font-size: 12px;
+          font-size: calc(2px + 12px);
           color: #484848;
           line-height: 1.5em;
         }
@@ -200,12 +200,12 @@
     padding: 64px;
     & .internsSaysTitle {
       font-family: "Noto Sans Bold";
-      font-size: 24px;
+      font-size: calc(2px + 24px);
       color: #2b4970;
     }
     & .internsSaysSubTitle {
       font-family: "Noto Sans";
-      font-size: 18px;
+      font-size: calc(2px + 18px);
       margin-top: 5px;
       color: #484848;
     }
@@ -239,12 +239,12 @@
     padding: 64px;
     & .packagesTitle {
       font-family: "Noto Sans Bold";
-      font-size: 24px;
+      font-size: calc(2px + 24px);
       color: #2b4970;
     }
     & .packagesSubTitle {
       font-family: "Noto Sans";
-      font-size: 18px;
+      font-size: calc(2px + 18px);
       margin-top: 5px;
       color: #484848;
     }
@@ -264,18 +264,18 @@
           justify-content: center;
           & .packageTitle {
             font-family: "Noto Sans Bold";
-            font-size: 16px;
+            font-size: calc(2px + 16px);
             color: #000;
             margin-bottom: 4px;
           }
           & .packagePrice {
             font-family: "Noto Sans Bold";
-            font-size: 40px;
+            font-size: calc(2px + 40px);
             color: #000;
           }
           & .packagePaymentDate {
             font-family: "Noto Sans";
-            font-size: 10px;
+            font-size: calc(2px + 10px);
             color: #868686;
             font-style: italic;
           }
@@ -294,7 +294,7 @@
           & .packageDescription {
             text-align: center;
             font-family: "Noto Sans";
-            font-size: 10px;
+            font-size: calc(2px + 10px);
             color: #868686;
             margin-bottom: 20px;
             line-height: 2em;
@@ -306,83 +306,6 @@
       & .frontier {
         margin-bottom: 50px;
       }
-    }
-  }
-  & .footerSection {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: start;
-    padding: 64px 0 0;
-    width: calc(100% - 100px);
-
-    & .footerTop {
-      display: flex;
-      justify-content: space-between;
-      align-items: start;
-      width: 100%;
-
-      & .companyDescription {
-        width: 20%;
-
-        & img {
-          height: 35px;
-          margin-bottom: 20px;
-          margin-left: -4px;
-        }
-        & .description {
-          font-family: "Noto Sans";
-          font-size: 10px;
-          color: #a9a9a9;
-          list-style-type: none;
-          line-height: 1.5em;
-          letter-spacing: 0.1px;
-        }
-      }
-      & .options {
-        display: flex;
-        width: 35%;
-        justify-content: space-around;
-        align-items: start;
-
-        ul {
-          margin: 0;
-          padding: 0;
-        }
-        & .header {
-          font-family: "Noto Sans Bold";
-          font-size: 16px;
-          color: #000;
-          margin-bottom: 20px;
-        }
-        & li {
-          font-family: "Noto Sans";
-          font-size: 12px;
-          color: #868686;
-          list-style-type: none;
-          line-height: 2em;
-          cursor: pointer;
-
-          &:hover {
-            color: black;
-          }
-        }
-      }
-    }
-    & .stroke {
-      height: 1px;
-      background-color: #e0e0e0;
-      width: 100%;
-      margin: 40px 0 20px;
-    }
-    & .rights {
-      font-family: "Noto Sans";
-      font-size: 10px;
-      color: #a9a9a9;
-      list-style-type: none;
-      line-height: 1.5em;
-      letter-spacing: 0.1px;
-      margin-bottom: 20px;
     }
   }
 }

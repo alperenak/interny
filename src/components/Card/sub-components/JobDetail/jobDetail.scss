@@ -16,7 +16,7 @@
     align-items: center;
     & .postHeader {
       font-family: "Noto Sans Bold";
-      font-size: 15px;
+      font-size: calc(2px + 15px);
       font-weight: bolder;
       font-stretch: normal;
       font-style: normal;
@@ -25,7 +25,7 @@
       grid-column: span 2;
     }
     & .postDate {
-      font-size: 12px;
+      font-size: calc(2px + 12px);
       font-weight: lighter;
       font-stretch: normal;
       font-style: normal;
@@ -37,7 +37,7 @@
   }
   & .postCompany {
     display: flex;
-    font-size: 13px;
+    font-size: calc(2px + 13px);
     margin: 4px 0 0;
     font-weight: normal;
     font-stretch: normal;
@@ -68,7 +68,7 @@
   & .postDescription {
     font-family: "Noto Sans Bold";
     margin: 35px 0 5px;
-    font-size: 13px;
+    font-size: calc(2px + 13px);
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -79,7 +79,7 @@
   }
   & .postNote {
     margin: 12px 0 0;
-    font-size: 13px;
+    font-size: calc(2px + 13px);
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;

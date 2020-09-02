@@ -33,7 +33,7 @@
       top: 0;
       padding: 16px 0 16px;
       font-family: "Noto Sans Bold";
-      font-size: 20px;
+      font-size: calc(2px + 20px);
       color: #2b4970;
       margin-bottom: 30px;
       z-index: 123;
@@ -41,7 +41,7 @@
 
     & .declaration {
       font-family: "Noto Sans";
-      font-size: 15px;
+      font-size: calc(2px + 15px);
       color: #2b4970;
       display: -webkit-box;
       -webkit-line-clamp: 3;

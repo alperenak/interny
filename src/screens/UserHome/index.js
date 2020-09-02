@@ -1,3 +1,4 @@
+
 import React, {Component} from 'react';
 
 /*** Components ***/
@@ -13,6 +14,7 @@ import styles from './userhome.scss';
 
 /*** Icons ***/
 import Button from "../../components/Button";
+import Footer from "../../components/Footer";
 
 class UserHome extends Component {
     state = {
@@ -98,14 +100,17 @@ class UserHome extends Component {
                     type={'jobPost'}
                     posts={pst}
                 />
-                <Button
-                    v-if={totalCount > posts.length}
-                    type={'ghost'}
-                    text={'Load More'}
-                    sizeName={'small'}
-                    onButtonClick={() => this.onLoadMore()}
-                    width={'160px'}
-                />
+                <div className={styles.buttonContainer}>
+                    <Button
+                        v-if={totalCount > posts.length}
+                        type={'ghost'}
+                        text={'Load More'}
+                        sizeName={'small'}
+                        onButtonClick={() => this.onLoadMore()}
+                        width={'160px'}
+                    />
+                </div>
+                <Footer/>
             </div>
         );
     }

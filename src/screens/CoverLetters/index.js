@@ -15,6 +15,7 @@ import styles from './coverletters.scss';
 /*** Icons ***/
 import addIcon from '../../icons/add-circular-outlined-white-button.svg';
 import Input from "../../components/Input";
+import Footer from "../../components/Footer";
 
 class CoverLetters extends Component {
     state = {
@@ -120,7 +121,6 @@ class CoverLetters extends Component {
         let {user} = this.props;
         return (
             <div className={styles.CoverLetters}>
-                <SearchSection />
                 <div className={styles.cards}>
                     <div className={styles.CoverLettersWrapper}>
                         <Card
@@ -138,6 +138,7 @@ class CoverLetters extends Component {
                     <div className={styles.profileSection}>
                         <Card
                             type={'profile'}
+                            getUser={this.props.getUser}
                             profileObject={{
                                 avatar: user.avatar,
                                 status: 'active',

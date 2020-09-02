@@ -14,6 +14,7 @@ import styles from './landingpagesearch.scss';
 /*** Icons ***/
 import Button from "../../components/Button";
 import {getCookie} from "../../utils/cookie";
+import Footer from "../../components/Footer";
 
 class LandingPageSearch extends Component {
     state = {
@@ -121,14 +122,17 @@ class LandingPageSearch extends Component {
                     type={'jobPost'}
                     posts={pst}
                 />
-                <Button
-                    v-if={posts.length > 0 && totalCount > posts.length}
-                    type={'ghost'}
-                    text={'Load More'}
-                    sizeName={'small'}
-                    onButtonClick={() => this.onLoadMore()}
-                    width={'160px'}
-                />
+                <div className={styles.buttonContainer}>
+                    <Button
+                        v-if={posts.length > 0 && totalCount > posts.length}
+                        type={'ghost'}
+                        text={'Load More'}
+                        sizeName={'small'}
+                        onButtonClick={() => this.onLoadMore()}
+                        width={'160px'}
+                    />
+                </div>
+                <Footer/>
             </div>
         );
     }
