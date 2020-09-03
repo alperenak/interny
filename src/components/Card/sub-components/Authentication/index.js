@@ -139,11 +139,23 @@ class Authentication extends Component {
     };
 
     onCreateIntern = async () => {
-        await store.internSignUp(this.state.submitObject);
+        let res = await store.internSignUp(this.state.submitObject);
         this.setState(state => {
             state.buttons.map(btn => {btn.loading = false; return btn;});
             return state;
         });
+        if (res.status === 200) {
+            this.props.createModal({
+                header: 'Success',
+                declaration: 'The account has been created successfully!',
+                buttons: [{
+                    type: 'primary',
+                    text: 'OK',
+                    sizeName: 'default',
+                    onButtonClick: () => {this.props.closeModal(); window.location.pathname = `/login/${this.state.page.toLowerCase()}`;}
+                }]
+            });
+        }
     };
 
     onCreateEmployer = async () => {
