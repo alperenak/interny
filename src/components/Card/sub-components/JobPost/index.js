@@ -42,7 +42,7 @@ class JobPost extends Component {
             <Fragment>
                 <div className={`${multiple ? styles.multiplePost : styles.singlePost}`}>
                     <Link to={`/postdetail/${pst.id}`}  className={styles.itemImage}>
-                        <img src={pst.Employer?.logo ? pst.Employer.logo : ''} alt={'image'}/>
+                        <img src={pst.image ? pst.image : ''} alt={'image'}/>
                     </Link>
                     <Link to={`/postdetail/${pst.id}`} className={styles.postHeaderWrapper}>
                         <div className={styles.postHeader}>{pst.header}</div>
