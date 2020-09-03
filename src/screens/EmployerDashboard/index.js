@@ -19,7 +19,6 @@ class Dashboard extends Component {
     async componentDidMount() {
         let id = getCookie('user_id');
         let res = await store.getInterns(id);
-        console.log(res.data);
         this.setState({ interns: res.data });
     }
 

@@ -22,6 +22,7 @@ import jobIcon from '../../icons/monitor-outline.svg';
 import taskIcon from '../../icons/clipboard-square-symbol.svg';
 import logOutIcon from '../../icons/logout.svg';
 import caret from '../../icons/selectbox-blue.svg';
+import store from "../../store";
 
 class TopBar extends Component {
     constructor(props) {
@@ -54,25 +55,8 @@ class TopBar extends Component {
                 to:'/login/Employer',
             }
         ],
-        mailSource: [
-            {
-                key: 'myAccount',
-                value: 'There is no mail',
-                selected: false,
-                disabled: true
-            },
-        ],
-        bellSource: [
-            {
-                key: 'myAccount',
-                value: 'There is not news',
-                title: 'Sana ne',
-                selected: false,
-                icon: '',
-                read: true,
-                disabled: true
-            },
-        ],
+        mailSource: [],
+        bellSource: [],
         internSource: [
             {
                 key: 'myAccount',
@@ -176,9 +160,51 @@ class TopBar extends Component {
         }
     };
 
-    componentDidMount() {
+    async componentDidMount() {
         document.addEventListener('mousedown', this.handleClickOutside);
         this.setSelectedPage();
+        if (getCookie('token')) {
+            let res = await store.getNotifications();
+            let jobNotifications = res.filter(e => e.type === 'job').map(notif => {
+                    return {
+                       key: notif.id,
+                       value: notif.message,
+                       title: notif.title,
+                       selected: false,
+                       icon: '',
+                       unRead: !notif.isRead,
+                       onChange: this.onNotificationItemClick,
+                   };
+            });
+            let mailNotifications = res.filter(e => e.type === 'message').map(notif => {
+                   return {
+                       key: notif.id,
+                       value: notif.message,
+                       title: notif.title,
+                       selected: false,
+                       icon: '',
+                       unRead: !notif.isRead,
+                       onChange: () => this.onMailItemClick(),
+                   };
+            });
+            if (jobNotifications.length === 0) {
+                jobNotifications = [{
+                    key: 'myAccount',
+                    value: 'There is no notification',
+                    selected: false,
+                    disabled: true
+                }];
+            }
+            if (mailNotifications.length === 0) {
+                mailNotifications = [{
+                    key: 'myAccount',
+                    value: 'There is no mail',
+                    selected: false,
+                    disabled: true
+                }];
+            }
+            this.setState({ bellSource: jobNotifications, mailSource: mailNotifications });
+        }
     }
 
     componentDidUpdate(prevProps) {
@@ -204,8 +230,13 @@ class TopBar extends Component {
     renderIcon(iconName) {
         let {icons} = this.state;
         let userType = getCookie('user');
+        let notificaionCount = 0;
+        if (userType)
+            notificaionCount = this.state[`${iconName === 'user' ? userType : iconName}Source`].length > 0 ?
+            this.state[`${iconName === 'user' ? userType : iconName}Source`].filter(e => e?.unRead).length : 0;
         return (
             <div ref={this[`wrapperRef${iconName}`]} onClick={() => this.onIconClick(iconName)} className={styles.img}>
+                <div v-if={notificaionCount > 0} className={styles.count}>{notificaionCount}</div>
                 <img src={icons[`${iconName}Icon`]} alt={'icon'} />
                 <div v-if={this.state[`${iconName}DropDown`]} className={styles.cardContainer}>
                     <Card
@@ -234,6 +265,15 @@ class TopBar extends Component {
             state.userDropDown = name === 'user' ? !userDropDown : false;
             return state;
         });
+    };
+
+    onNotificationItemClick = async () => {
+        await store.readNotifications();
+        window.location.pathname = '/myJobs'
+    };
+    onMailItemClick = () => {
+        store.readNotifications();
+        window.location.pathname = '/messages'
     };
 
     render() {

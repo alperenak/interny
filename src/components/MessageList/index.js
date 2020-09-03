@@ -106,7 +106,7 @@ export default class MessageList extends Component {
         return(
           <div className={styles["message-list"]}>
             <Toolbar
-              title={this.props.contact.name}
+              title={this.props.contact && this.props.contact.name}
               rightItems={[
                 <ToolbarButton key="info" icon="ion-ios-information-circle-outline" />,
               ]}
@@ -114,7 +114,7 @@ export default class MessageList extends Component {
 
             <div id={'message-list'} className={styles["message-list-container"]}>{this.renderMessages()}</div>
 
-            <Compose receiver={this.props.contact.id} getContacts={this.props.getContacts}/>
+            <Compose v-if={this.props.contact} receiver={this.props.contact.id} getContacts={this.props.getContacts}/>
           </div>
         );
     }

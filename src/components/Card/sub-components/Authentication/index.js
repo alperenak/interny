@@ -24,6 +24,7 @@ class Authentication extends Component {
                 disabled: false,
                 sizeName: 'default',
                 text: this.props.type === 'auth' ? 'Create Account' : 'Login',
+                width: this.props.type === 'auth' ? '120px' : '50px',
                 loading: false,
                 type: 'secondary',
                 onButtonClick: async () => this.onContinueClick()
@@ -146,16 +147,28 @@ class Authentication extends Component {
     };
 
     onCreateEmployer = async () => {
-        await store.employerSignUp(this.state.submitObject);
+        let res = await store.employerSignUp(this.state.submitObject);
         this.setState(state => {
             state.buttons.map(btn => {btn.loading = false; return btn;});
             return state;
         });
+        if (res.status === 200) {
+            this.props.createModal({
+                header: 'Success',
+                declaration: 'The account has been created successfully!',
+                buttons: [{
+                    type: 'primary',
+                    text: 'OK',
+                    sizeName: 'default',
+                    onButtonClick: () => {this.props.closeModal(); window.location.pathname = `/login/${this.state.page.toLowerCase()}`;}
+                }]
+            });
+        }
     };
 
     onLogin = async () => {
         let res = {};
-        if (this.props.match.params.user === 'Employer') {
+        if (this.props.match.params.user.toLowerCase() === 'employer') {
             res = await store.employerLogin(this.state.submitObject);
         } else {
             res = await store.internLogin(this.state.submitObject);
@@ -257,11 +270,11 @@ class Authentication extends Component {
             <div className={`${styles.auth} ${type === 'login' ? styles.login : ''}`}>
                 <div v-if={type === 'auth'} className={styles.switchButtons}>
                     <div
-                        onClick={() => this.onSwitchPage('Intern')}
+                        onClick={() => page === 'Employer' && this.onSwitchPage('Intern')}
                         className={`${styles.switchButton} ${styles.internButton} ${page === 'Intern' ? styles.activeButton : ''}`}
                     >Intern</div>
                     <div
-                        onClick={() => this.onSwitchPage('Employer')}
+                        onClick={() => page === 'Intern' && this.onSwitchPage('Employer')}
                         className={`${styles.switchButton} ${styles.employerButton} ${page === 'Employer' ? styles.activeButton : ''}`}
                     >Employer</div>
                 </div>
@@ -281,6 +294,7 @@ class Authentication extends Component {
                             <Button
                                 className={`${styles.inputsContainer}`}
                                 type={inp.type}
+                                width={inp.width}
                                 disabled={inp.disabled}
                                 sizeName={inp.sizeName}
                                 text={inp.text}
@@ -321,9 +335,9 @@ class Authentication extends Component {
                         type={btn.type}
                         disabled={btn.disabled}
                         sizeName={btn.sizeName}
+                        width={btn.width}
                         loading={btn.loading}
                         text={btn.text}
-                        width={'50px'}
                         onButtonClick={btn.onButtonClick}
                     />
                 </div>

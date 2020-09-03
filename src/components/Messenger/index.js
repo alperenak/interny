@@ -9,7 +9,6 @@ import {getCookie} from "../../utils/cookie";
 
 export default class Messenger extends Component {
     state = {
-        contact: {}
     };
 
     async componentDidMount() {
@@ -25,7 +24,8 @@ export default class Messenger extends Component {
 
     getContacts = async () => {
         let res = await store.getContacts();
-        this.setState({contact: res[0]});
+        if (res && Array.isArray(res) && res.length > 0)
+            this.setState({contact: res[0]});
     };
 
     render() {
@@ -36,7 +36,7 @@ export default class Messenger extends Component {
             </div>
 
             <div className={`${styles["scrollable"]} ${styles["content"]}`}>
-              <MessageList contact={this.state.contact} getContacts={this.getContacts} />
+              <MessageList v-if={this.state.contact} contact={this.state.contact} getContacts={this.getContacts} />
             </div>
           </div>
         );
