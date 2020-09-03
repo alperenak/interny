@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 /*** Utils ***/
 import store from "../../../../store";
+import {getCookie} from "../../../../utils/cookie";
 
 /*** Styles ***/
 import styles from './profileCard.scss';
@@ -23,13 +24,14 @@ class Profile extends Component {
 
     render() {
         let {profileObject} = this.props;
+        let userType = getCookie('user');
         return (
             <div className={styles.profileCard}>
                 <div className={styles.profileImage}>
                     <div v-if={profileObject.avatar} className={styles.imageContainer}>
                         <img src={profileObject.avatar} alt={'profile photo'}/>
                     </div>
-                    <label className={profileObject.avatar ? styles.statusCircle : styles.fileInput} htmlFor="fileInput">
+                    <label v-if={userType === 'intern'}  className={profileObject.avatar ? styles.statusCircle : styles.fileInput} htmlFor="fileInput">
                         <img src={addIcon} alt={'icon'} />
                     </label>
                     <input
