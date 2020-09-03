@@ -50,14 +50,14 @@ class UserHome extends Component {
                     type:'primary',
                     text:pst.isApplied? (pst.isApproved ? 'Start Internship' : 'Withdraw') : 'Apply Now',
                     sizeName:'small',
-                    width:'85px',
+                    width:'90px',
                     to:`/jobApplication/${pst.id}`
                 },
                 {
                     type:'ghost',
                     text:pst.isSaved?'Remove Post':'Save Post',
                     sizeName:'small',
-                    width:'85px',
+                    width:'90px',
                     onButtonClick: async () => {
                         let res = {};
                         if (pst.isSaved) {
