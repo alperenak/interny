@@ -55,8 +55,12 @@ class JobDetail extends Component {
                             </ul>
                             <div className={styles.postDescription}>Requirements:</div>
                             <ul className={styles.postNote}>
-                                <li v-for={(education, i) in pst.requirements.education} key={i}>{education.map(e => e)}</li>
-                                <li v-for={(experience, i) in pst.requirements.experiences} key={i}>{experience.map(e => e)}</li>
+                                <li v-for={(education, i) in pst.requirements.education} key={i}>
+                                    {pst.requirements.education.map(e => e)}
+                                </li>
+                                <li v-for={(experience, i) in pst.requirements.experiences} key={i}>
+                                    {pst.requirements.experiences.map(e => e)}
+                                </li>
                             </ul>
                         </div>
                     );

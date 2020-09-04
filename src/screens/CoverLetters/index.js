@@ -134,6 +134,7 @@ class CoverLetters extends Component {
                             onSubmit={() => this.onEditSubmit(coverLetter.id)}
                             onDelete={() => this.onCoverLetterDelete(coverLetter.id)}
                         />
+                        {coverLetters.length <= 0 && <Card>There is no Cover Letter...</Card>}
                     </div>
                     <div className={styles.profileSection}>
                         <Card

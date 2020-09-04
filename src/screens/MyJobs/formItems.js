@@ -21,29 +21,22 @@ export const formItems = (formItems) => {
     let keys = {
         'position': {item: {
             title: "Position",
-            validations: {
-                lengthValidator: {start: 1, stop: 40},
-            },
         }},
         'jobRole': {item: {
             title: "Job Role",
-            validations: {lengthValidator: {start: 1, stop: 40}},
         }},
         'jobType': {item: {
             title: "Job Type",
             type: 'select',
             externalSource: JobTypesArray,
-            validations: {lengthValidator: {start: 1, stop: 40}},
         }},
         'country': {item: {
             title: "Job Country",
             type: 'select',
             externalSource: countries,
-            validations: {lengthValidator: {start: 1, stop: 40}},
         }},
         'city': {item: {
             title: "Job City",
-            validations: {lengthValidator: {start: 1, stop: 40}},
         }},
         'description': {item: {
             title: "Description",
@@ -52,26 +45,21 @@ export const formItems = (formItems) => {
         }},
         'qualifications': {item: {
             title: "Qualifications",
-            validations: {lengthValidator: {start: 1, stop: 255}},
         }},
         'education': {item: {
             title: 'Min. Education Level',
-            validations: {lengthValidator: {start: 1, stop: 255}},
         }},
         'experiences': {item: {
             title: 'Min. Year(s) of Experience',
-            validations: {lengthValidator: {start: 1, stop: 255}},
         }},
         'workingDays': {item: {
             title: "Working Days",
             type: 'select',
             externalSource: workingDaysArray,
             multiple: true,
-            validations: {lengthValidator: {start: 1, stop: 40}},
         }},
         'salaryInterval': {item: {
             title: "Salary Interval",
-            validations: {lengthValidator: {start: 1, stop: 40}},
         }},
         'startDate': {item: {
             title: "Start Date",
@@ -81,7 +69,7 @@ export const formItems = (formItems) => {
         'endDate': {item: {
             title: "End Date",
             type: 'date',
-            validations: {lengthValidator: {start: 1, stop: 40}},
+            validations: {checkRegex: {whatToHave: ['^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$']}},
         }},
         'industry': {item: {
             title: "Industry",
@@ -89,7 +77,7 @@ export const formItems = (formItems) => {
         }},
         'internQuota': {item: {
             title: "Job Quota",
-            validations: {lengthValidator: {start: 1, stop: 40}},
+            validations: {isNumeric: {}},
         }},
     };
 

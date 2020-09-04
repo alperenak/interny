@@ -85,9 +85,11 @@ export const formItems = (formInputs) => {
                     return Object.keys(it).map(itKey => {
                         let externalSource = [];
                         let type = 'text';
+                        let validations = {};
                         let defaultValue = keys[key][itKey];
                         if (itKey.includes('Date')) {
                             type = 'date';
+                            validations = {checkRegex: {whatToHave: ['^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$']}};
                         } else if (['Education Level', 'Department', 'Country', 'Position', 'Language', 'Language Level'].includes(keys[key][itKey])) {
                             type = 'select';
                             externalSource = externalSources[keys[key][itKey]];
@@ -101,6 +103,7 @@ export const formItems = (formInputs) => {
                             defaultValue: defaultValue,
                             label: keys[key][itKey],
                             placeholder: 'Select ' + keys[key][itKey],
+                            validations: validations
                         }
                     });
                 }),
@@ -166,6 +169,7 @@ export const formItems = (formInputs) => {
                     size: 'full',
                     label: 'City',
                     placeholder: 'Select City',
+                    validations: {checkRegex: {whatToHave: ['^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$']}},
                 },
                 {
                     key: 'startDate',
@@ -173,6 +177,7 @@ export const formItems = (formInputs) => {
                     size: 'half',
                     label: 'Start Date',
                     placeholder: 'Select Date',
+                    validations: {checkRegex: {whatToHave: ['^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$']}},
                 },
                 {
                     key: 'endDate',
@@ -180,6 +185,7 @@ export const formItems = (formInputs) => {
                     size: 'half',
                     label: 'End Date',
                     placeholder: 'Select Date',
+                    validations: {checkRegex: {whatToHave: ['^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$']}},
                 },
             ]]
         },
@@ -224,6 +230,7 @@ export const formItems = (formInputs) => {
                     size: 'half',
                     label: 'Start Date',
                     placeholder: 'Select Date',
+                    validations: {checkRegex: {whatToHave: ['^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$']}},
                 },
                 {
                     key: 'endDate',
@@ -231,6 +238,7 @@ export const formItems = (formInputs) => {
                     size: 'half',
                     label: 'End Date',
                     placeholder: 'Select Date',
+                    validations: {checkRegex: {whatToHave: ['^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$']}},
                 },
             ]]
         },
@@ -275,6 +283,7 @@ export const formItems = (formInputs) => {
                     size: 'half',
                     label: 'Start Date',
                     placeholder: 'Select Date',
+                    validations: {checkRegex: {whatToHave: ['^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$']}},
                 },
                 {
                     key: 'endDate',
@@ -282,6 +291,7 @@ export const formItems = (formInputs) => {
                     size: 'half',
                     label: 'End Date',
                     placeholder: 'Select Date',
+                    validations: {checkRegex: {whatToHave: ['^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$']}},
                 },
             ]]
         },
