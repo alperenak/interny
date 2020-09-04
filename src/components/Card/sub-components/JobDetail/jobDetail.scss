@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-start;
-  width: 100%;
+  width: calc(60vw);
   display: grid;
   grid-template-columns: auto auto auto auto;
   padding: 20px 0 32px;
@@ -74,7 +74,7 @@
     font-style: normal;
     letter-spacing: -0.24px;
     color: #484848;
-    width: calc(100% - 124px);
+    width: calc(55vw - 124px);
     grid-column: span 2;
   }
   & .postNote {

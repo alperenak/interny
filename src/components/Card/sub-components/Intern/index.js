@@ -72,22 +72,32 @@ class Intern extends Component {
         let {section, coverLetterVisibility, cvVisibility, coverLetter} = this.state;
 
         let primaryButtonText = '';
+        let primaryFunc = () => {};
         let ghostButtonText = '';
+        let ghostFunc = () => {};
 
-        if (application.isPending) {
+        if (application.isPending) { // when intern applies
             primaryButtonText = 'ACCEPT';
+            primaryFunc = async () => store.acceptApplication(application.Job.id, application.id) ;
             ghostButtonText = 'REJECT';
+            ghostFunc = async () => store.rejectApplication(application.Job.id, application.id);
         } else if (application.isAccepted) {
-            if (application.isApproved) {
+            if (application.isApproved) { // when intern agree
                 primaryButtonText = 'ASSIGNMENTS';
+                primaryFunc = () => {};
                 ghostButtonText = 'WITHDRAW';
-            } else {
+                ghostFunc = () => {};
+            } else { // when employer accepted
                 primaryButtonText = 'WITHDRAW';
+                primaryFunc = () => {};
                 ghostButtonText = 'REJECT';
+                ghostFunc = async () => store.rejectApplication(application.Job.id, application.id);
             }
-        } else if (application.isRejected) {
+        } else if (application.isRejected) { // when employer or intern rejcet
             primaryButtonText = 'ACCEPT';
+            primaryFunc = () => {};
             ghostButtonText = 'WITHDRAW';
+            ghostFunc = () => {};
         }
 
         return (
@@ -123,14 +133,14 @@ class Intern extends Component {
                             text={primaryButtonText}
                             sizeName={'small'}
                             width={'72px'}
-                            onButtonClick={async () => store.acceptApplication(application.Job.id, application.id) }
+                            onButtonClick={async () => await primaryFunc()}
                         />
                         <Button
                             type={'ghost'}
                             text={ghostButtonText}
                             sizeName={'small'}
                             width={'72px'}
-                            onButtonClick={async () => store.rejectApplication(application.Job.id, application.id) }
+                            onButtonClick={async () => await ghostFunc()}
                         />
                     </div>
                 </div>

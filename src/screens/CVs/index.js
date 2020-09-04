@@ -159,6 +159,7 @@ class CVs extends Component {
                             sections={section.items}
                             header={{text: section.header, position: 'center'}}
                         >{this.renderCVButtons(section.id)}</Card>
+                        {sections.length <= 0 && <Card>There is no CV...</Card>}
                     </div>
                     <div className={styles.profileSection}>
                         <Card

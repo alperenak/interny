@@ -42,7 +42,8 @@ class App extends React.Component {
             declaration: '',
             content: {},
             buttons: [],
-            visibility: false
+            visibility: false,
+            isInternshipBegun: false
         }
     };
 
@@ -56,7 +57,7 @@ class App extends React.Component {
             if (userType === 'intern') {
                 let res = await store.getIntern(getCookie('user_id'));
                 if (res.status && res.status === 200) {
-                    this.setState({user: res.data, isAuthorized: true, userType: userType});
+                    this.setState({user: res.data, isAuthorized: true, userType: userType, isInternshipBegun: !!Object.keys(res.data.ApprovedJob).length});
                 }
             }
             else if (userType === 'employer') {
@@ -80,7 +81,7 @@ class App extends React.Component {
     };
 
     render() {
-        let {isAuthorized, user, modal, userType} = this.state;
+        let {isAuthorized, user, modal, userType, isInternshipBegun} = this.state;
         return (
             <div className={`${styles.App} ${styles.fullScreen}`}>
                 <Router>
@@ -89,6 +90,7 @@ class App extends React.Component {
                         render={props =>
                             <TopBar
                                 isAuthorized={isAuthorized}
+                                isInternshipBegun={isInternshipBegun}
                                 user={user}
                                 {...props}
                             />
@@ -145,13 +147,13 @@ class App extends React.Component {
                         <Route path="/coverletters"
                                render={props => <CoverLetters getUser={this.getUser} user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
                         />
-                        <Route path="/myjobs"
+                        <Route v-if={!(userType === 'intern' && isInternshipBegun)} path="/myjobs"
                                render={props => <MyJobs user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
                         />
                         <Route path="/messages"
                                render={props => <Messenger user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
                         />
-                        <Route path="/mytasks"
+                        <Route path="/mytasks" v-if={(userType === 'intern' && isInternshipBegun) || (userType === 'employer')}
                                render={props => <MyTasks user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
                         />
                         <Route

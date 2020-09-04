@@ -41,11 +41,15 @@ class PostDetail extends Component{
                 user = pst.Employer;
             }
             state.post = pst;
+            let city = pst?.jobLocation?.city ? pst?.jobLocation?.city : '';
+            let country = pst?.jobLocation?.country ? pst?.jobLocation?.country : '';
+            let location = pst?.jobLocation ?
+                `${country}${country && city ? ' - ' : ''}${city}` : '';
             state.posts = [
                 {
-                    date: pst?.startDate,
+                    date: pst.age === "0" ? 'Today' : pst.age + ' days ago',
                     position: pst?.position,
-                    company: `${pst?.Employer?.legalName} - ${pst?.jobLocation?.city}`,
+                    company: `${location}`,
                     buttons:[
                         {
                             type: userType === 'intern' ? 'primary' : 'ghost',

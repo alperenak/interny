@@ -107,21 +107,35 @@ class JobApplication extends Component {
                             header={{text: cv?.header, position: 'center'}}
                         />
                         <Card
-                            v-if={page === 1 && cl}
+                            v-else-if={page === 1 && cl}
                             type={'coverLetter'}
                             disabled={true}
                             header={{text: cl?.title, position: 'center'}}
                             coverLetter={cl}
                         />
+                        <Card v-else>
+                            {page === 0 && "There is no cv, please create a cv and try again!"}
+                            {page === 1 && "There is no Cover Letter, please create a Cover Letter and try again!"}
+                        </Card>
                     </div>
                     <div className={styles.selection}>
                         <Card
                             type={'list'}
                             externalData={page === 0 ? CVSource : coverLettersSource}
-                            title={page === 0 ? 'Select a CV' : 'Select a Cover Letter'}
+                            title={page === 0 ?
+                                (CVSource.length > 0 ? 'Select a CV' : 'NO CV AVAILABLE') :
+                                (coverLettersSource.length > 0 ? 'Select a Cover Letter' : 'NO Cover Letter AVAILABLE')
+                            }
                         />
                         <Button
-                            onButtonClick={async () => {
+                            to={page === 0 ? '/CVs' : '/coverletters'}
+                            v-if={(CVSource.length <= 0 && page === 0) || (page === 1 && coverLettersSource.length <= 0)}
+                            sizeName={'default'}
+                            text={page === 0 ? 'Create a CV': 'Create a Cover Letter'}
+                            type={'primary'}
+                        />
+                        <Button
+                            onButtonClick={CVSource.length > 0 ? async () => {
                                 if (page === 0) {
                                     this.setState({ page: 1 })
                                 } else if (page === 1) {
@@ -135,7 +149,8 @@ class JobApplication extends Component {
                                         window.location.pathname = '/';
                                     }
                                 }
-                            }}
+                            }: {}}
+                            v-if={(CVSource.length > 0 && page === 0) || (page === 1)}
                             sizeName={'default'}
                             text={page === 0 ? 'Continue to Cover Letters' : 'Send Application'}
                             type={'primary'}

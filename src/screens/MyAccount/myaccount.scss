@@ -48,6 +48,9 @@
       width: 164px;
       height: 164px;
       border-radius: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       & img {
         width: 100%;
       }

@@ -93,16 +93,20 @@ class MyJobs extends Component {
     }
 
     fillPosts = (pst, buttons) => {
+        let city = pst?.jobLocation?.city ? pst?.jobLocation?.city : '';
+        let country = pst?.jobLocation?.country ? pst?.jobLocation?.country : '';
+        let location = pst?.jobLocation ?
+            `${country}${country && city ? ' - ' : ''}${city}` : '';
         return{
             id: pst.id,
-            date: pst.age + ' days ago',
+            date: pst.age === "0" ? 'Today' : pst.age + ' days ago',
             header: pst.Employer.legalName,
             company: pst.position,
             image: pst.Employer.logo,
-            location: `${pst.jobLocation.city} - ${pst.jobLocation.country}`,
+            location: `${location}`,
             buttons:buttons,
             description: pst.description,
-            note: '987 views'
+            note: pst.views ? pst.views : '0 view'
         }
     };
 
@@ -118,13 +122,13 @@ class MyJobs extends Component {
         let userId = getCookie('user_id');
         let appliedPostsRes = await store.getAppliedPost(userId);
         let appliedPosts = appliedPostsRes.map(pst => {
-            return this.fillPosts(pst.Job, this.appliedButtons());
+            return this.fillPosts(pst.Job, this.appliedButtons(pst.id));
         });
         let acceptedPosts = appliedPostsRes.filter(post => post.isAccepted).map(pst => {
             return this.fillPosts(pst.Job, this.acceptedButtons(userId, pst.Job.id));
         });
         let pendingPosts = appliedPostsRes.filter(post => post.isPending).map(pst => {
-            return this.fillPosts(pst.Job, this.pendingButtons());
+            return this.fillPosts(pst.Job, this.pendingButtons(pst.id));
         });
         this.setState({ appliedPosts, acceptedPosts, pendingPosts });
     }
@@ -147,12 +151,18 @@ class MyJobs extends Component {
         this.setState({ postHistory: posts, activePosts: activePosts, passivePosts: passivePosts });
     }
 
-    appliedButtons = () => [
+    appliedButtons = (id) => [
         {
             type:'primary',
             text:'Withdraw',
             sizeName:'small',
             width:'85px',
+            onButtonClick: async () => {
+                let res = await store.withdrawPost(getCookie('user_id'), id);
+                if (res.status && res.status === 203) {
+                    await this.getPosts();
+                }
+            }
         }
     ];
     savedButtons = (id) => [
@@ -169,12 +179,18 @@ class MyJobs extends Component {
             }
         }
     ];
-    pendingButtons = () => [
+    pendingButtons = (id) => [
         {
             type:'primary',
             text:'Withdraw',
             sizeName:'small',
             width:'100px',
+            onButtonClick: async () => {
+                let res = await store.withdrawPost(getCookie('user_id'), id);
+                if (res.status && res.status === 203) {
+                    await this.getPosts();
+                }
+            }
         },
         {
             type:'ghost',
@@ -192,6 +208,7 @@ class MyJobs extends Component {
             width:'100px',
             onButtonClick: async () => {
                 await store.startInternship(userId, jobId);
+                window.location.pathname = '/myTasks';
             }
         }
     ];

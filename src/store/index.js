@@ -209,6 +209,15 @@ let store = {
         };
         return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
     },
+    async withdrawPost(id, job_id) {
+        let baseUrl = config.baseUrl;
+        let tokenCookieName = "token";
+        let path = `/intern/${id}/withdraw`;
+        let payload = {
+            "id": job_id
+        };
+        return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+    },
     async createPost(payload) {
         let baseUrl = config.baseUrl;
         let tokenCookieName = "token";

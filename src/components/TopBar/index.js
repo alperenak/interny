@@ -80,20 +80,6 @@ class TopBar extends Component {
                 to: '/CVs'
             },
             {
-                key: 'myJobs',
-                value: 'My Jobs',
-                selected: false,
-                icon: jobIcon,
-                to: '/myJobs'
-            },
-            {
-                key: 'myTasks',
-                value: 'My Tasks',
-                selected: false,
-                icon: taskIcon,
-                to: '/mytasks'
-            },
-            {
                 key: 'myMessages',
                 value: 'Messages',
                 selected: false,
@@ -164,6 +150,9 @@ class TopBar extends Component {
         document.addEventListener('mousedown', this.handleClickOutside);
         this.setSelectedPage();
         if (getCookie('token')) {
+            if (getCookie('user') === 'intern') {
+                this.getUserSource();
+            }
             let res = await store.getNotifications();
             let jobNotifications = res.filter(e => e.type === 'job').map(notif => {
                     return {
@@ -211,6 +200,9 @@ class TopBar extends Component {
         if (!Object.is(prevProps.location.pathname, this.props.location.pathname)) {
             this.setSelectedPage();
         }
+        if (prevProps.isInternshipBegun !== this.props.isInternshipBegun) {
+            this.getUserSource();
+        }
     }
 
     componentWillUnmount() {
@@ -225,6 +217,34 @@ class TopBar extends Component {
                 userDropDown: false
             });
         }
+    };
+
+    getUserSource = () => {
+        this.setState(state => {
+            if (this.props.isInternshipBegun) {
+                state.internSource = state.internSource.filter(e => e.key !== 'myJobs' && e.key !== 'myTasks');
+                state.internSource.splice(3,0,
+                    {
+                        key: 'myTasks',
+                        value: 'My Tasks',
+                        selected: false,
+                        icon: taskIcon,
+                        to: '/mytasks'
+                    });
+            }
+            else {
+                state.internSource = state.internSource.filter(e => e.key !== 'myTasks' && e.key !== 'myJobs');
+                state.internSource.splice(3,0,
+                    {
+                        key: 'myJobs',
+                        value: 'My Jobs',
+                        selected: false,
+                        icon: jobIcon,
+                        to: '/myJobs'
+                    });
+            }
+            return state;
+        });
     };
 
     renderIcon(iconName) {
