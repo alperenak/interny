@@ -65,6 +65,15 @@
   &.jobPost {
     width: 1000px;
   }
+  &.course {
+    width: 880px;
+  }
+  &.courseSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 440px;
+  }
   &.auth {
     margin: 32px auto;
     width: fit-content;

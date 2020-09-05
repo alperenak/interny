@@ -6,6 +6,7 @@ import Card from "../Card";
 import Button from "../Button";
 
 /*** Utils ***/
+import store from "../../store";
 import {eraseCookie, getCookie} from "../../utils/cookie";
 
 /*** Styles ***/
@@ -22,7 +23,7 @@ import jobIcon from '../../icons/monitor-outline.svg';
 import taskIcon from '../../icons/clipboard-square-symbol.svg';
 import logOutIcon from '../../icons/logout.svg';
 import caret from '../../icons/selectbox-blue.svg';
-import store from "../../store";
+import bookIcon from '../../icons/book-outline.svg';
 
 class TopBar extends Component {
     constructor(props) {
@@ -119,6 +120,13 @@ class TopBar extends Component {
                 selected: false,
                 icon: taskIcon,
                 to: '/mytasks'
+            },
+            {
+                key: 'myCourses',
+                value: 'Courses',
+                selected: false,
+                icon: bookIcon,
+                to: '/courses'
             },
             {
                 key: 'myMessages',
