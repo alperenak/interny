@@ -72,8 +72,8 @@ class CourseDetail extends Component {
 
     renderVideoPlayer(file) {
         const opts = {
-            height: '390',
-            width: '640',
+            height: '780',
+            width: '1280',
             playerVars: {
                 // https://developers.google.com/youtube/player_parameters
                 autoplay: 1,
@@ -114,7 +114,10 @@ class CourseDetail extends Component {
         return (
             <div className={styles.MyCourses}>
                 <Card header={{text: course.name, position: 'center'}}>
-                    <div className={styles.courseDescription}>{course.description}</div>
+                    <div className={styles.courseImage}><img src={course.image} alt={'img'} /></div>
+                    <div className={styles.language}>Language: <span>{`${course.language}`}</span></div>
+                    <div className={styles.duration}>Duration: <span>{`${course.duration}`}</span></div>
+                    <div className={styles.duration}>Description: <span>{`${course.description}`}</span></div>
                 </Card>
                 <div className={styles.cards}>
                     <div className={styles.courses}>
