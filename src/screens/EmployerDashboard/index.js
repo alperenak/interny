@@ -29,9 +29,9 @@ class Dashboard extends Component {
                 <div className={styles.col1}>
                     <Card header={{text: 'Interns', position: 'start'}} type={'table'}>
                         <div className={styles.tableContainer}>
-                            {interns.map(intern => {
+                            {interns.map((intern, i) => {
                                 return (
-                                    <Fragment>
+                                    <Fragment key={i}>
                                         <div className={styles.rowContainer}>
                                             <div className={styles.avatar}><img src={intern.avatar} alt={'avatar'}/></div>
                                             <div className={styles.internName}>{intern.name} {intern.surname}</div>
