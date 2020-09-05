@@ -158,7 +158,7 @@ class App extends React.Component {
                         <Route path="/mytasks" v-if={(userType === 'intern' && isInternshipBegun) || (userType === 'employer')}
                                render={props => <MyTasks user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
                         />
-                        <Route path="/courses"
+                        <Route path="/courses" v-if={(userType === 'intern' && isInternshipBegun) || (userType === 'employer')}
                                render={props => <MyCourses user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
                         />
                         <Route path="/coursedetail/:id"

@@ -7,6 +7,7 @@ import Card from "../../components/Card";
 
 /*** Utils ***/
 import store from "../../store";
+import {getCookie} from "../../utils/cookie";
 
 /*** Styles ***/
 import styles from "./courseDetail.scss";
@@ -16,6 +17,7 @@ import playIcon from "../../icons/play-triangle-outline.svg";
 import playIconWhite from "../../icons/play-triangle-outline-white.svg";
 import fileIcon from "../../icons/file.svg";
 import fileIconWhite from "../../icons/file-white.svg";
+import Button from "../../components/Button";
 
 class CourseDetail extends Component {
     state = {
@@ -81,6 +83,18 @@ class CourseDetail extends Component {
         return <YouTube videoId={file} opts={opts} onReady={this._onReady} />;
     }
 
+    createContent = () => {
+        this.props.createModal({
+            header: 'Create Content'
+        });
+    };
+
+    createSection = () => {
+        this.props.createModal({
+            header: 'Create Content'
+        });
+    };
+
     renderPDFReader(file) {
         let {pageNumber, numPages} = this.state;
         return <div>
@@ -95,6 +109,7 @@ class CourseDetail extends Component {
     }
 
     render() {
+        let userType = getCookie('user');
         let {contents, courseSource, hover, course} = this.state;
         return (
             <div className={styles.MyCourses}>
@@ -129,12 +144,28 @@ class CourseDetail extends Component {
                             </div>
                             <div className={styles.courseDuration}>{cnt.duration}</div>
                         </Card>
+                        <Button
+                            v-if={userType === 'employer'}
+                            text={'Add a content'}
+                            type={'ghost'}
+                            sizeName={'default'}
+                            width={'105px'}
+                            onButtonClick={() => this.createContent()}
+                        />
                     </div>
                     <div className={styles.profileSection}>
                         <Card
                             type={'list'}
                             header={{text: 'Sections', position: 'center'}}
                             externalData={courseSource}
+                        />
+                        <Button
+                            v-if={userType === 'employer'}
+                            text={'Create a section'}
+                            type={'primary'}
+                            sizeName={'default'}
+                            width={'125px'}
+                            onButtonClick={() => this.createSection()}
                         />
                     </div>
                 </div>
