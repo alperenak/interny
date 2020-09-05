@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import YouTube from "react-youtube";
+import { Document, Page } from 'react-pdf/dist/esm/entry.webpack';
 
 /*** Components ***/
 import Card from "../../components/Card";
@@ -20,7 +21,9 @@ class CourseDetail extends Component {
     state = {
         contents: [],
         course: {},
-        courseSource: []
+        courseSource: [],
+        numPages: null,
+        pageNumber: 1
     };
     async componentDidMount() {
         let {id} = this.props.match.params;
@@ -43,16 +46,27 @@ class CourseDetail extends Component {
     }
 
     onListItemClick = (content) => {
-        this.props.createModal({
-            header: content.name,
-            content: () => this.renderVideoPlayer(content.file)
-        });
+        if (content.type === 'video') {
+            this.props.createModal({
+                header: content.name,
+                content: () => this.renderVideoPlayer(content.file)
+            });
+        } else if (content.type === 'pdf') {
+            this.props.createModal({
+                header: content.name,
+                content: () => this.renderPDFReader(content.file)
+            });
+        }
     };
 
     _onReady(event) {
         // access to player in all event handlers via event.target
         event.target.pauseVideo();
     }
+
+    onDocumentLoadSuccess = ({ numPages }) => {
+        this.setState({numPages});
+    };
 
     renderVideoPlayer(file) {
         const opts = {
@@ -65,6 +79,19 @@ class CourseDetail extends Component {
         };
 
         return <YouTube videoId={file} opts={opts} onReady={this._onReady} />;
+    }
+
+    renderPDFReader(file) {
+        let {pageNumber, numPages} = this.state;
+        return <div>
+            <Document
+                file={file}
+                onLoadSuccess={this.onDocumentLoadSuccess}
+            >
+                <Page pageNumber={pageNumber} />
+            </Document>
+            <p>Page {pageNumber} of {numPages}</p>
+        </div>;
     }
 
     render() {
