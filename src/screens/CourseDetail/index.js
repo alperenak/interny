@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import YouTube from "react-youtube";
 
 /*** Components ***/
 import Card from "../../components/Card";
@@ -18,6 +19,7 @@ import fileIconWhite from "../../icons/file-white.svg";
 class CourseDetail extends Component {
     state = {
         contents: [],
+        course: {},
         courseSource: []
     };
     async componentDidMount() {
@@ -35,15 +37,43 @@ class CourseDetail extends Component {
                 state.courseSource.push(tempSection);
                 if (i === 0) state.contents = section.Contents;
             });
-
+            state.course = course;
             return state;
         })
     }
 
+    onListItemClick = (content) => {
+        this.props.createModal({
+            header: content.name,
+            content: () => this.renderVideoPlayer(content.file)
+        });
+    };
+
+    _onReady(event) {
+        // access to player in all event handlers via event.target
+        event.target.pauseVideo();
+    }
+
+    renderVideoPlayer(file) {
+        const opts = {
+            height: '390',
+            width: '640',
+            playerVars: {
+                // https://developers.google.com/youtube/player_parameters
+                autoplay: 1,
+            },
+        };
+
+        return <YouTube videoId={file} opts={opts} onReady={this._onReady} />;
+    }
+
     render() {
-        let {contents, courseSource, hover} = this.state;
+        let {contents, courseSource, hover, course} = this.state;
         return (
             <div className={styles.MyCourses}>
+                <Card header={{text: course.name, position: 'center'}}>
+                    <div className={styles.courseDescription}>{course.description}</div>
+                </Card>
                 <div className={styles.cards}>
                     <div className={styles.courses}>
                         <Card
@@ -56,6 +86,7 @@ class CourseDetail extends Component {
                                 onMouseOver={() => this.setState({ hover: i })}
                                 onMouseLeave={() => this.setState({ hover: '' })}
                                 className={styles.courseHeader}
+                                onClick={() => this.onListItemClick(cnt)}
                             >
                                 <div v-if={cnt.type === 'video'} className={styles.playIcon}>
                                     <img v-if={i !== hover} src={playIcon} alt={'icon'} />
@@ -75,6 +106,7 @@ class CourseDetail extends Component {
                     <div className={styles.profileSection}>
                         <Card
                             type={'list'}
+                            header={{text: 'Sections', position: 'center'}}
                             externalData={courseSource}
                         />
                     </div>
