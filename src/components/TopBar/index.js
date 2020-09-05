@@ -238,7 +238,17 @@ class TopBar extends Component {
                         selected: false,
                         icon: taskIcon,
                         to: '/mytasks'
-                    });
+                    }
+                );
+                state.internSource.splice(4,0,
+                    {
+                        key: 'myCourses',
+                        value: 'My Courses',
+                        selected: false,
+                        icon: bookIcon,
+                        to: '/courses'
+                    },
+                );
             }
             else {
                 state.internSource = state.internSource.filter(e => e.key !== 'myTasks' && e.key !== 'myJobs');
