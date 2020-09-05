@@ -13,6 +13,7 @@ import JobDetail from "./sub-components/JobDetail";
 import CoverLetter from "./sub-components/CoverLetter";
 import CompanyProfile from "./sub-components/CompanyProfile";
 import Authentication from "./sub-components/Authentication";
+import Course from "./sub-components/Course";
 
 /*** Styles ***/
 import styles from './card.scss';
@@ -26,6 +27,7 @@ class Card extends Component {
                 <List v-if={type==="list"} {...this.props}/>
                 <Task v-if={type==="task"} {...this.props}/>
                 <Intern v-if={type==="intern"} {...this.props}/>
+                <Course v-if={type==="course"} {...this.props}/>
                 <Section v-if={type==="section"} {...this.props}/>
                 <JobPost v-if={type==="jobPost"} {...this.props}/>
                 <Profile v-if={type==="profile"} {...this.props}/>

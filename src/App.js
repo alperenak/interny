@@ -24,6 +24,8 @@ import MyAccount from "./screens/MyAccount";
 import Dashboard from "./screens/EmployerDashboard";
 import MyTasks from "./screens/MyTasks";
 import Packages from "./screens/Packages";
+import MyCourses from "./screens/MyCourses";
+import CourseDetail from "./screens/CourseDetail";
 
 /*** Styles ***/
 import styles from './app.scss';
@@ -155,6 +157,12 @@ class App extends React.Component {
                         />
                         <Route path="/mytasks" v-if={(userType === 'intern' && isInternshipBegun) || (userType === 'employer')}
                                render={props => <MyTasks user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
+                        />
+                        <Route path="/courses"
+                               render={props => <MyCourses user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
+                        />
+                        <Route path="/coursedetail/:id"
+                               render={props => <CourseDetail user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
                         />
                         <Route
                             path="/jobapplication/:jobId"

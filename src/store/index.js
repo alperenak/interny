@@ -457,6 +457,30 @@ let store = {
 
         return res.data;
     },
+    async getCourses() {
+        let baseUrl = config.baseUrl;
+        let path = `/course`;
+        let tokenCookieName = "token";
+        let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+
+        return res.data;
+    },
+    async getCourse(id) {
+        let baseUrl = config.baseUrl;
+        let path = `/course/${id}`;
+        let tokenCookieName = "token";
+        let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+
+        return res.data;
+    },
+    async createCourse() {
+        let baseUrl = config.baseUrl;
+        let path = `/course`;
+        let tokenCookieName = "token";
+        let res = await http.makePostRequest(path, baseUrl, tokenCookieName, {}, errorMessageBuilder);
+
+        return res.data;
+    },
 };
 
 export default store;
