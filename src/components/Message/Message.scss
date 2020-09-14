@@ -21,15 +21,20 @@
 .message.mine .bubble-container {
   justify-content: flex-end;
 }
+.message.not-mine .bubble-container {
+  justify-content: flex-start;
+}
 
 .message.start .bubble-container .bubble {
   /* margin-top: 10px; */
   border-top-left-radius: 20px;
+  max-width: 45%;
 }
 
 .message.end .bubble-container .bubble {
   border-bottom-left-radius: 20px;
   /* margin-bottom: 10px; */
+  max-width: 45%;
 }
 
 .message.mine.start .bubble-container .bubble {
@@ -42,6 +47,13 @@
   position: relative;
   border-bottom-right-radius: 20px;
   margin-bottom: 10px;
+}
+
+.message .message-avatar {
+  border-radius: 10% !important;
+  width: 50px;
+  height: auto;
+  padding-right: 15px;
 }
 
 .message .bubble-container .bubble {
@@ -80,4 +92,8 @@
     top: 12px;
     color: #2b4970;
   }
+}
+
+.message.not-mine .bubble-container .bubble {
+  background: #a4b9c4;
 }

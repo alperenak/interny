@@ -8,3 +8,21 @@
     overflow: scroll;
   }
 }
+
+.toolbar__left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.toolbar__avatar {
+  border-radius: 10%;
+  height: 50px;
+  width: 50px;
+  padding-right: 15px;
+  object-fit: cover;
+}
+
+.toolbar__title {
+  font-weight: 600;
+}
