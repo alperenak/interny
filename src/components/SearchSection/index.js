@@ -36,8 +36,8 @@ class SearchSection extends Component {
     advanced_country: "",
     advanced_city: "",
     advanced_employee: { min: 0, max: 0 },
-    advanced_intern_type: "Student",
-    advanced_duration: "4 weeks",
+    advanced_intern_type: "",
+    advanced_duration: "",
     advanced_intern_quota: { min: 0, max: 0 },
     advanced_rate: { min: 0, max: 0 },
   };
@@ -107,7 +107,7 @@ class SearchSection extends Component {
 
           <Input
             type={"text"}
-            placeholder={"Software Developer"}
+            placeholder={"Turkey"}
             size={"half"}
             labelDescription={"Enter a country"}
             defaultValue={advanced_country !== "null" ? advanced_country : ""}
@@ -117,7 +117,7 @@ class SearchSection extends Component {
 
           <Input
             type={"text"}
-            placeholder={"Software Developer"}
+            placeholder={"Istanbul"}
             size={"half"}
             labelDescription={"Enter a city"}
             defaultValue={advanced_city !== "null" ? advanced_city : ""}
@@ -127,7 +127,7 @@ class SearchSection extends Component {
 
           <Input
             type={"text"}
-            placeholder={"Software Developer"}
+            placeholder={"Tech."}
             size={"half"}
             labelDescription={"Enter an industry"}
             defaultValue={advanced_industry !== "null" ? advanced_industry : ""}
@@ -337,7 +337,9 @@ class SearchSection extends Component {
                   industry: this.state.advanced_industry,
                 };
 
-                await store.advancedSearch(payload);
+                let response = await store.advancedSearch(payload);
+
+                this.setState({ advancedSearch: false });
               }}
             />
           </div>
