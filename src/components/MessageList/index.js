@@ -4,6 +4,8 @@ import Toolbar from "../Toolbar";
 import ToolbarButton from "../ToolbarButton";
 import Message from "../Message";
 import moment from "moment";
+import icon_ellipsis from "../../icons/ellipsis-vertical-outline.svg";
+import icon_trash from "../../icons/trash-outline.svg";
 
 import styles from "./MessageList.scss";
 import store from "../../store";
@@ -14,6 +16,13 @@ const MY_USER_ID = getCookie("user_id");
 export default class MessageList extends Component {
   state = {
     messages: [],
+    popover: false,
+  };
+
+  handleClickIcon = (e) => {
+    e.preventDefault();
+
+    this.setState({ popover: !this.state.popover });
   };
 
   async componentDidMount() {
@@ -106,6 +115,18 @@ export default class MessageList extends Component {
 
     return tempMessages;
   };
+
+  renderPopover = () => {
+    return (
+      <div className={styles["popover"]}>
+        <button className={styles["popover__button"]}>
+          <img src={icon_trash} />
+          Clear
+        </button>
+      </div>
+    );
+  };
+
   render() {
     return (
       <div className={styles["message-list"]}>
@@ -130,9 +151,21 @@ export default class MessageList extends Component {
             ),
           ]}
           rightItems={[
-            <ToolbarButton key="info" icon="ellipsis-vertical-outline" />,
+            <button
+              className={styles["three-dots-button"]}
+              name="popover_opener"
+            >
+              <img
+                src={icon_ellipsis}
+                alt=""
+                name="more_icon"
+                className={styles["more_icon"]}
+                onClick={this.handleClickIcon}
+              />
+            </button>,
           ]}
         />
+        {this.state.popover && this.renderPopover()}
 
         <div id={"message-list"} className={styles["message-list-container"]}>
           {this.renderMessages()}
