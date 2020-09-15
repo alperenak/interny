@@ -1,4 +1,41 @@
 .conversation-list {
+  height: auto;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  & .conversation-list__list {
+    overflow: scroll;
+    height: 400px;
+    &::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #e5e5e4;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgb(156, 156, 156);
+    }
+  }
+}
+
+.toolbar__user-info {
+  margin-top: 7.5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  & img {
+    width: 75px;
+    object-fit: cover;
+    margin-right: 15px;
+    border-radius: 10%;
+  }
 }

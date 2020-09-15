@@ -1,13 +1,25 @@
+.messenger__container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #dedee6;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
 .messenger {
   display: grid;
-  width: 100%;
-  height: 100%;
-  background: #eeeef1;
-
+  background: #fff;
   grid-template-columns: 350px auto;
   grid-template-rows: 60px auto 60px;
   grid-column-gap: 1px;
   grid-row-gap: 1px;
+  max-width: 80%;
+  margin: auto;
+  margin-top: 15vh;
+  border-radius: 10px;
+
+  height: 80vh;
 }
 
 .container {
@@ -16,20 +28,22 @@
 
 .scrollable {
   position: relative;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
+
+  overflow: hidden;
 }
 
 .sidebar {
   background: white;
   grid-row-start: 1;
   grid-row-end: span 3;
+  border-radius: 10px;
 }
 
 .content {
   background: white;
   grid-row-start: 1;
   grid-row-end: span 3;
+  border-radius: 10px;
 }
 
 .footer {

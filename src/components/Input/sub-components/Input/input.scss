@@ -4,14 +4,16 @@
   margin: 8px 0;
 
   &.disabled {
-    cursor: not-allowed!important;
+    cursor: not-allowed !important;
 
     & .inputContainer {
       background: #ddd;
     }
 
-    & > div, label, input {
-      cursor: not-allowed!important;
+    & > div,
+    label,
+    input {
+      cursor: not-allowed !important;
     }
   }
 
@@ -33,6 +35,9 @@
     margin: 4px 0 0;
   }
 
+  & .inputSearchBar {
+    border-radius: 15px !important;
+  }
   & .inputContainer {
     display: flex;
     outline: none;
@@ -70,19 +75,19 @@
       color: #2b4970;
       font-size: calc(2px + 12px);
       &::placeholder {
-        color: #AFB8C3;
+        color: #afb8c3;
         font-size: calc(2px + 11px);
       }
       &::-moz-placeholder {
-        color: #AFB8C3;
+        color: #afb8c3;
         font-size: calc(2px + 11px);
       }
       &::-ms-input-placeholder {
-        color: #AFB8C3;
+        color: #afb8c3;
         font-size: calc(2px + 11px);
       }
       &::-webkit-input-placeholder {
-        color: #AFB8C3;
+        color: #afb8c3;
         font-size: calc(2px + 11px);
       }
     }
@@ -109,19 +114,19 @@
       font-size: calc(2px + 12px);
       width: 100%;
       &::placeholder {
-        color: #AFB8C3;
+        color: #afb8c3;
         font-size: calc(2px + 11px);
       }
       &::-moz-placeholder {
-        color: #AFB8C3;
+        color: #afb8c3;
         font-size: calc(2px + 11px);
       }
       &::-ms-input-placeholder {
-        color: #AFB8C3;
+        color: #afb8c3;
         font-size: calc(2px + 11px);
       }
       &::-webkit-input-placeholder {
-        color: #AFB8C3;
+        color: #afb8c3;
         font-size: calc(2px + 11px);
       }
     }
@@ -161,8 +166,9 @@
     letter-spacing: -0.28px;
     color: #646464;
 
-    &:before, &:after{
-      content: ' ';
+    &:before,
+    &:after {
+      content: " ";
       position: absolute;
       border-left: 8px solid transparent;
       border-right: 8px solid transparent;
@@ -170,11 +176,11 @@
       width: 0;
       left: 35%;
     }
-    &:before{
+    &:before {
       border-bottom: 8px solid #e5e5e5;
       top: -8px;
     }
-    &:after{
+    &:after {
       top: -7px;
       border-bottom: 8px solid white;
       z-index: 1;

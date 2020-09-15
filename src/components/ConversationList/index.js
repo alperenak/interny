@@ -66,20 +66,32 @@ export default class ConversationList extends Component {
     return (
       <div className={styles["conversation-list"]}>
         <Toolbar
-          title={user && displayName}
-          leftItems={[<ToolbarButton key="cog" icon="ion-ios-cog" />]}
-          rightItems={[
-            <ToolbarButton key="add" icon="ion-ios-add-circle-outline" />,
-          ]}
+          title={
+            user && (
+              <div className={styles["toolbar__user-info"]}>
+                <img
+                  className={styles["toolbar__user-avatar"]}
+                  src={user.avatar}
+                  alt="User Avatar"
+                />
+                <div className={styles["toolbar__username"]}>{displayName}</div>
+              </div>
+            )
+          }
         />
-        <ConversationSearch onChange={this.onSearchTextChange} />
-        {this.state.filteredConversations.map((conversation) => (
-          <ConversationListItem
-            key={conversation.name}
-            data={conversation}
-            getContact={this.props.getContact}
-          />
-        ))}
+        <ConversationSearch
+          onChange={this.onSearchTextChange}
+          className="inputSearchBar"
+        />
+        <div className={styles["conversation-list__list"]}>
+          {this.state.filteredConversations.map((conversation) => (
+            <ConversationListItem
+              key={conversation.name}
+              data={conversation}
+              getContact={this.props.getContact}
+            />
+          ))}
+        </div>
       </div>
     );
   }

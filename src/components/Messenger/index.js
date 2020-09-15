@@ -25,21 +25,23 @@ export default class Messenger extends Component {
 
   render() {
     return (
-      <div className={styles["messenger"]}>
-        <div className={`${styles["scrollable"]} ${styles["sidebar"]}`}>
-          <ConversationList
-            getContact={this.getContact}
-            contact={this.state.contact}
-            user={this.props.user}
-          />
-        </div>
+      <div className={styles["messenger__container"]}>
+        <div className={styles["messenger"]}>
+          <div className={`${styles["scrollable"]} ${styles["sidebar"]}`}>
+            <ConversationList
+              getContact={this.getContact}
+              contact={this.state.contact}
+              user={this.props.user}
+            />
+          </div>
 
-        <div className={`${styles["scrollable"]} ${styles["content"]}`}>
-          <MessageList
-            v-if={this.state.contact}
-            contact={this.state.contact}
-            getContacts={this.getContacts}
-          />
+          <div className={`${styles["scrollable"]} ${styles["content"]}`}>
+            <MessageList
+              v-if={this.state.contact}
+              contact={this.state.contact}
+              getContacts={this.getContacts}
+            />
+          </div>
         </div>
       </div>
     );

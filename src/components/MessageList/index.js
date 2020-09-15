@@ -130,10 +130,7 @@ export default class MessageList extends Component {
             ),
           ]}
           rightItems={[
-            <ToolbarButton
-              key="info"
-              icon="ion-ios-information-circle-outline"
-            />,
+            <ToolbarButton key="info" icon="ellipsis-vertical-outline" />,
           ]}
         />
 
