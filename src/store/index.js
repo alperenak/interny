@@ -54,6 +54,18 @@ let store = {
       errorMessageBuilder
     );
   },
+
+  async faqData =() => {
+    let baseUrl = config.baseUrl;
+    let tokenCookieName = "token";
+    let path = `/faq`;
+    return await http.makeGetRequest(
+      path,
+      baseUrl,
+      tokenCookieName,
+      errorMessageBuilder
+    );
+  },
   async internSignUp({ name, surname, email, password }) {
     let baseUrl = config.baseUrl;
     let tokenCookieName = "token";
