@@ -36,12 +36,12 @@ let dummy_data = {
 class FAQ extends Component {
   state = { question_type: "intern", data: {} };
 
-  componentDidMount() {
+  componentDidMount = async () => {
     let response = await store.faqData();
     if (response) {
-      this.setState({data: response.data})
+      this.setState({ data: response.data });
     }
-  }
+  };
 
   renderRightBar = () => {
     return (
