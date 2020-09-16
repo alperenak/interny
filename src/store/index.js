@@ -55,7 +55,7 @@ let store = {
     );
   },
 
-  async faqData =() => {
+  async faqData() {
     let baseUrl = config.baseUrl;
     let tokenCookieName = "token";
     let path = `/faq`;
