@@ -64,6 +64,7 @@ class PlainInput extends Component {
       className,
       onClick,
       priorValue,
+      disclaimer,
     } = this.props;
     let { value, errorList, valid } = this.state;
     return (
@@ -133,6 +134,7 @@ class PlainInput extends Component {
         >
           {errorList[0].text}
         </div>
+
         <ul v-if={errorList.length > 1 && !valid} className={styles.tooltip}>
           {errorList.map((err, i) => {
             return (
@@ -154,6 +156,7 @@ class PlainInput extends Component {
             );
           })}
         </ul>
+        {disclaimer && <div className={styles.disclaimer}> {disclaimer} </div>}
       </div>
     );
   }

@@ -100,6 +100,7 @@ class Authentication extends Component {
         key: "email",
         label: "E-mail addrees",
         placeholder: "Enter e-mail address",
+        disclaimer: "* University e-mail is preferred.",
         errorList: [],
         type: "text",
         sizeName: "t-quarter",
@@ -278,12 +279,14 @@ class Authentication extends Component {
         this.setState((state) => {
           let name = state.authInputs.find((e) => e.key === "name");
           let surname = state.authInputs.find((e) => e.key === "surname");
+          let email = state.authInputs.find((e) => e.key === "email");
           name.key = "legalName";
           surname.key = "accountName";
           name.label = "Legal Name";
           surname.label = "Account Name";
           name.placeholder = "Enter Legal Name";
           surname.placeholder = "Enter Account Name";
+          email.disclaimer = null;
 
           return state;
         });
@@ -291,12 +294,14 @@ class Authentication extends Component {
         this.setState((state) => {
           let name = state.authInputs.find((e) => e.key === "legalName");
           let surname = state.authInputs.find((e) => e.key === "accountName");
+          let email = state.authInputs.find((e) => e.key === "email");
           name.key = "name";
           surname.key = "surname";
           name.label = "Name";
           surname.label = "Surname";
           name.placeholder = "Enter Name";
           surname.placeholder = "Enter Surname";
+          email.disclaimer = "* University e-mail is preferred.";
 
           return state;
         });
@@ -659,6 +664,7 @@ class Authentication extends Component {
                   errorList={inp.errorList}
                   type={inp.type}
                   onChange={inp.onChange}
+                  disclaimer={inp.disclaimer && inp.disclaimer}
                 />
               );
             })}
