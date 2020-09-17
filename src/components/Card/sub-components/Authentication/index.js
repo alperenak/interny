@@ -239,14 +239,12 @@ class Authentication extends Component {
           setCookie("user", this.props.match.params.user.toLowerCase(), {});
           setCookie("user_id", res.data.id, {});
           window.location.pathname = `/`;
-        } /* else if (res.data.isCompleted) {
+        } else if (res.data.isCompleted) {
           setCookie("token", res.data.token, {});
           setCookie("user", this.props.match.params.user.toLowerCase(), {});
           setCookie("user_id", res.data.id, {});
           window.location.pathname = `/`;
-        } */ else if (
-          res.data.isCompleted
-        ) {
+        } else if (!res.data.isCompleted) {
           this.setState({ getAdditionalInfo: true });
         }
       }
