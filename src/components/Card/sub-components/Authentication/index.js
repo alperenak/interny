@@ -3,11 +3,7 @@ import { Redirect } from "react-router-dom";
 
 /*** Components ***/
 import Button from "../../../Button";
-import PhoneInput, {
-  formatPhoneNumber,
-  formatPhoneNumberIntl,
-  isValidPhoneNumber,
-} from "react-phone-number-input";
+import PhoneInput from "react-phone-number-input";
 
 /*** Styles ***/
 import styles from "./authentication.scss";
@@ -16,6 +12,7 @@ import Input from "../../../Input";
 /*** Icons ***/
 import loginImage from "../../../../assets/login.png";
 import backIcon from "../../../../icons/arrow-back-outline.svg";
+import closeIcon from "../../../../icons/close-circular-button-symbol.svg";
 
 /*** Utils ***/
 import store from "../../../../store";
@@ -116,9 +113,14 @@ class Authentication extends Component {
         value: "",
       },
       {
-        label: "By joining you agree to the Terms, Privacy and Policy",
+        label: `By joining you agree to the`,
         type: "checkbox",
         sizeName: "full",
+        clickable: " Terms, Privacy and Policy",
+        value: "checkboxStatus",
+        onClick: () => {
+          this.setState({ terms: true });
+        },
       },
     ],
 
@@ -134,6 +136,8 @@ class Authentication extends Component {
     token: null,
     user: null,
     user_id: null,
+    terms: false,
+    checkboxStatus: false,
   };
 
   componentDidMount() {
@@ -145,6 +149,14 @@ class Authentication extends Component {
       this.setInputChangeMethods();
     }
   }
+
+  onClickTerms = () => {
+    this.setState({ terms: true });
+  };
+
+  onOutsideClick = () => {
+    this.setState({ terms: false });
+  };
 
   onContinueClick = async () => {
     this.setState((state) => {
@@ -309,6 +321,9 @@ class Authentication extends Component {
   };
 
   onInputChange = (key, value) => {
+    if (value.hasOwnProperty("checkboxStatus")) {
+      return this.setState({ checkboxStatus: value.checkboxStatus });
+    }
     this.setState({
       submitObject: { ...this.state.submitObject, [key]: value },
     });
@@ -662,7 +677,10 @@ class Authentication extends Component {
                   errorList={inp.errorList}
                   type={inp.type}
                   onChange={inp.onChange}
-                  disclaimer={inp.disclaimer && inp.disclaimer}
+                  disclaimer={inp.disclaimer}
+                  clickable={inp.clickable}
+                  onClick={inp.onClick}
+                  value={inp.value}
                 />
               );
             })}
@@ -671,7 +689,7 @@ class Authentication extends Component {
             v-for={(btn, i) in buttons}
             key={"btn" + i}
             type={btn.type}
-            disabled={btn.disabled}
+            disabled={!this.state.checkboxStatus}
             sizeName={btn.sizeName}
             width={btn.width}
             loading={btn.loading}
@@ -696,11 +714,73 @@ class Authentication extends Component {
     );
   };
 
+  renderTerms = () => {
+    return (
+      <div className={styles.modal_outer} onClick={this.onOutsideClick}>
+        <div className={styles.modal}>
+          <div className={styles.closeModalButton}>
+            <img src={closeIcon} alt="" />
+          </div>
+          <div className={styles.header}>Terms, Privacy and Policy</div>
+          <div className={styles.content}>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo
+            fuga laboriosam corporis eveniet laudantium maiores inventore cum
+            reprehenderit deleniti ad! Totam officia voluptatum possimus quis
+            doloribus accusantium, laborum perferendis a. Lorem ipsum dolor sit
+            amet, consectetur adipisicing elit. Explicabo fuga laboriosam
+            corporis eveniet laudantium maiores inventore cum reprehenderit
+            deleniti ad! Totam officia voluptatum possimus quis doloribus
+            accusantium, laborum perferendis a. Lorem ipsum dolor sit amet,
+            consectetur adipisicing elit. Explicabo fuga laboriosam corporis
+            eveniet laudantium maiores inventore cum reprehenderit deleniti ad!
+            Totam officia voluptatum possimus quis doloribus accusantium,
+            laborum perferendis a. Lorem ipsum dolor sit amet, consectetur
+            adipisicing elit. Explicabo fuga laboriosam corporis eveniet
+            laudantium maiores inventore cum reprehenderit deleniti ad! Totam
+            officia voluptatum possimus quis doloribus accusantium, laborum
+            perferendis a. Lorem ipsum dolor sit amet, consectetur adipisicing
+            elit. Explicabo fuga laboriosam corporis eveniet laudantium maiores
+            inventore cum reprehenderit deleniti ad! Totam officia voluptatum
+            possimus quis doloribus accusantium, laborum perferendis a. Lorem
+            ipsum dolor sit amet, consectetur adipisicing elit. Explicabo fuga
+            laboriosam corporis eveniet laudantium maiores inventore cum
+            reprehenderit deleniti ad! Totam officia voluptatum possimus quis
+            doloribus accusantium, laborum perferendis a. Lorem ipsum dolor sit
+            amet, consectetur adipisicing elit. Explicabo fuga laboriosam
+            corporis eveniet laudantium maiores inventore cum reprehenderit
+            deleniti ad! Totam officia voluptatum possimus quis doloribus
+            accusantium, laborum perferendis a. Lorem ipsum dolor sit amet,
+            consectetur adipisicing elit. Explicabo fuga laboriosam corporis
+            eveniet laudantium maiores inventore cum reprehenderit deleniti ad!
+            Totam officia voluptatum possimus quis doloribus accusantium,
+            laborum perferendis a. Lorem ipsum dolor sit amet, consectetur
+            adipisicing elit. Explicabo fuga laboriosam corporis eveniet
+            laudantium maiores inventore cum reprehenderit deleniti ad! Totam
+            officia voluptatum possimus quis doloribus accusantium, laborum
+            perferendis a. Lorem ipsum dolor sit amet, consectetur adipisicing
+            elit. Explicabo fuga laboriosam corporis eveniet laudantium maiores
+            inventore cum reprehenderit deleniti ad! Totam officia voluptatum
+            possimus quis doloribus accusantium, laborum perferendis a. Lorem
+            ipsum dolor sit amet, consectetur adipisicing elit. Explicabo fuga
+            laboriosam corporis eveniet laudantium maiores inventore cum
+            reprehenderit deleniti ad! Totam officia voluptatum possimus quis
+            doloribus accusantium, laborum perferendis a. Lorem ipsum dolor sit
+            amet, consectetur adipisicing elit. Explicabo fuga laboriosam
+            corporis eveniet laudantium maiores inventore cum reprehenderit
+            deleniti ad! Totam officia voluptatum possimus quis doloribus
+            accusantium, laborum perferendis a.
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   render() {
     return (
       <>
         {this.state.getAdditionalInfo && this.renderAdditionalInfo()}
         {!this.state.getAdditionalInfo && this.renderAuth()}
+        {this.state.terms && this.renderTerms()}
       </>
     );
   }

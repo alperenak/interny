@@ -26,7 +26,6 @@
     padding: 0 1px;
   }
 
-
   & input {
     outline: none;
     border: none;
@@ -36,4 +35,9 @@
     color: #2b4970;
     font-size: calc(2px + 12px);
   }
+}
+.clickable {
+  color: #2b4970;
+  display: inline;
+  cursor: pointer;
 }
