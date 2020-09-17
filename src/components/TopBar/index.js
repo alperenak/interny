@@ -263,7 +263,7 @@ class TopBar extends Component {
         });
         state.internSource.splice(4, 0, {
           key: "myCourses",
-          value: "My Courses",
+          value: "e-Learning",
           selected: false,
           icon: bookIcon,
           to: "/courses",
