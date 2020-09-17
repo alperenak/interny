@@ -4,7 +4,7 @@
   width: 80vw;
   margin-left: auto;
   margin-right: auto;
-  justify-content: space-around;
+  justify-items: space-around;
 
   & .sidebar {
     border: 1px solid #e0e2f1;
@@ -18,23 +18,27 @@
       flex-direction: column;
 
       & .item {
-        height: 36px;
+        min-height: 36px !important;
         width: 100%;
         padding-bottom: 10px;
         padding-top: 10px;
         outline: none;
         border: none;
         background-color: transparent;
-        border-top: 1px solid #e0e2f1 !important;
-        border-bottom: 1px solid #e0e2f1 !important;
-        font-weight: 600;
+        color: #2b4970;
+        font-weight: 300;
         text-align: left;
         font-size: medium;
         transition: background-color 0.3s ease;
+        font-family: "Noto Sans";
+        font-size: calc(2px + 15px);
 
         &:hover {
           cursor: pointer;
-          background-color: #4d638f6e;
+          background-color: rgba(43, 73, 112, 0.08);
+        }
+        &.active {
+          background-color: rgba(43, 73, 112, 0.08);
         }
       }
     }

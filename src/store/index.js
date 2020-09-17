@@ -54,7 +54,6 @@ let store = {
       errorMessageBuilder
     );
   },
-
   async faqData() {
     let baseUrl = config.baseUrl;
     let tokenCookieName = "token";
@@ -63,6 +62,18 @@ let store = {
       path,
       baseUrl,
       tokenCookieName,
+      errorMessageBuilder
+    );
+  },
+  async completeRegistration(id, payload) {
+    let baseUrl = config.baseUrl;
+    let tokenCookieName = "token";
+    let path = `/intern/${id}/complete`;
+    return await http.makePostRequest(
+      path,
+      baseUrl,
+      tokenCookieName,
+      payload,
       errorMessageBuilder
     );
   },

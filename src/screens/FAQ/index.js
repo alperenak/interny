@@ -59,19 +59,25 @@ class FAQ extends Component {
       <div className={styles.sidebar}>
         <div className={styles.items}>
           <button
-            className={styles.item}
+            className={`${styles.item} ${
+              this.state.question_type == "intern" ? styles.active : ""
+            }`}
             onClick={() => this.setState({ question_type: "intern" })}
           >
             FAQ for Interns
           </button>
           <button
-            className={styles.item}
+            className={`${styles.item} ${
+              this.state.question_type == "employer" ? styles.active : ""
+            }`}
             onClick={() => this.setState({ question_type: "employer" })}
           >
             FAQ for Employers
           </button>
           <button
-            className={styles.item}
+            className={`${styles.item} ${
+              this.state.question_type == "university" ? styles.active : ""
+            }`}
             onClick={() => this.setState({ question_type: "university" })}
           >
             FAQ for Universities
