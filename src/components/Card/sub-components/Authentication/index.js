@@ -12,7 +12,7 @@ import Input from "../../../Input";
 /*** Icons ***/
 import loginImage from "../../../../assets/login.png";
 import backIcon from "../../../../icons/arrow-back-outline.svg";
-import closeIcon from "../../../../icons/close-circular-button-symbol.svg";
+import closeIcon from "../../../../icons/close-outline.svg";
 
 /*** Utils ***/
 import store from "../../../../store";

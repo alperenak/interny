@@ -1,17 +1,19 @@
 .faq_container {
   display: flex;
-  flex-direction: row;
   width: 80vw;
   margin-left: auto;
   margin-right: auto;
-  justify-items: space-around;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 25px;
 
   & .sidebar {
     border: 1px solid #e0e2f1;
+    border-radius: 10px;
     flex: 1;
+    margin-right: 10px;
 
     & .items {
-      width: 90%;
       margin-left: auto;
       margin-right: auto;
       display: flex;
@@ -38,19 +40,21 @@
           background-color: rgba(43, 73, 112, 0.08);
         }
         &.active {
-          background-color: rgba(43, 73, 112, 0.08);
+          background-color: #f3f4f6;
         }
       }
     }
   }
 
   & .questions {
+    margin-left: 10px;
     border: 1px solid #e0e2f1;
+    border-radius: 10px;
     flex: 3;
     & .header {
-      font-weight: 800;
-      font-size: large;
-      color: #4d638f;
+      font-weight: 900;
+      font-size: x-large;
+      color: #2b4b79;
       width: 90%;
       margin-left: auto;
       margin-right: auto;
