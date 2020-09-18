@@ -1,16 +1,22 @@
+@import '../../../../helpers/responsiveBreakpointsMixins.scss';
+
 .jobPost {
   position: relative;
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-start;
-  width: 1000px;
+  width: 100%;
 
   & .multiplePost {
     display: grid;
     grid-template-columns: 150px auto auto 150px;
-    width: 1000px;
+    width: 100%;
     border-bottom: 1px solid #eee;
     padding: 16px 0;
+
+    @include small {
+      grid-template-columns: 20px auto auto 20px;
+    }
 
     & .postButton {
       top: 36px;
@@ -20,7 +26,11 @@
   & .singlePost {
     display: grid;
     grid-template-columns: 150px auto auto 150px;
-    width: 1000px;
+    width: 100%;
+
+    @include small {
+      grid-template-columns: 100px auto auto 100px;
+    }
   }
 
   & .itemImage {
@@ -32,18 +42,26 @@
     height: 104px;
     border-radius: 32px;
     border: 1px solid #eee;
-    -webkit-box-shadow: 0px 18px 18px 0px rgba(#2b4970,0.1);
-    -moz-box-shadow: 0px 18px 18px 0px rgba(#2b4970,0.1);
-    box-shadow: 0px 18px 18px 0px rgba(#2b4970,0.1);
+    -webkit-box-shadow: 0px 18px 18px 0px rgba(#2b4970, 0.1);
+    -moz-box-shadow: 0px 18px 18px 0px rgba(#2b4970, 0.1);
+    box-shadow: 0px 18px 18px 0px rgba(#2b4970, 0.1);
     margin-bottom: 20px;
     overflow: hidden;
     margin-right: 20px;
     grid-column: span 1;
     grid-row: span 5;
     align-self: center;
-      & img {
-        width: 100%;
-      }
+
+    @include medium {
+      width: 80px;
+      height: 80px;
+    }
+
+
+
+    & img {
+      width: 100%;
+    }
   }
 
   & .postHeaderWrapper {
@@ -52,6 +70,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
     & .postHeader {
       font-family: "Noto Sans Bold";
       font-size: calc(2px + 15px);
@@ -61,7 +80,18 @@
       letter-spacing: 0.3px;
       color: #2b4970;
       grid-column: span 2;
+
+      @include medium {
+        font-size: calc(2px + 12px);
+      }
+
+      @include small {
+        font-size: calc(2px + 10px);
+      }
     }
+
+
+
     & .postDate {
       font-size: calc(2px + 12px);
       font-weight: lighter;
@@ -71,8 +101,17 @@
       color: #949494;
       grid-column: span 1;
       margin-right: 6px;
+
+      @include medium {
+        font-size: calc(2px + 10px);
+      }
+
+      @include small {
+        font-size: calc(2px + 8px);
+      }
     }
   }
+
   & .postCompany {
     font-size: calc(2px + 15px);
     margin: 4px 0 0;
@@ -83,7 +122,16 @@
     color: #2c567e;
     width: calc(100% - 124px);
     grid-column: span 2;
+
+    @include medium {
+      font-size: calc(2px + 11px);
+    }
+
+    @include small {
+      font-size: calc(2px + 9px);
+    }
   }
+
   & .postLocation {
     display: flex;
     margin: 4px 0 0;
@@ -96,12 +144,21 @@
     width: calc(100% - 124px);
     grid-column: span 2;
 
+    @include medium {
+      font-size: calc(2px + 10px);
+    }
+
+    @include small {
+      font-size: calc(2px + 8px);
+    }
+
     & img {
       height: 18px;
       width: 11px;
       margin-right: 4px;
     }
   }
+
   & .postButton {
     display: flex;
     flex-direction: column;
@@ -112,7 +169,20 @@
     height: fit-content;
     grid-column: span 1;
     grid-row: span 4;
+
+    @include medium {
+      margin-left: 32px;
+      width: 80%;
+      height: 80%;
+    }
+
+    @include small {
+      margin-left: 48px;
+      width: 20px;
+      height: 20px;
+    }
   }
+
   & .postNote {
     overflow: hidden;
     display: -webkit-box;
@@ -127,5 +197,13 @@
     color: #949494;
     width: 80%;
     grid-column: span 2;
+
+    @include medium {
+      font-size: calc(2px + 10px);
+    }
+
+    @include small {
+      font-size: calc(2px + 8px);
+    }
   }
 }

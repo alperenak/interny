@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-
 /*** Components ***/
 import Card from "../Card";
 import Button from "../Button";
@@ -24,6 +23,8 @@ import taskIcon from "../../icons/clipboard-square-symbol.svg";
 import logOutIcon from "../../icons/logout.svg";
 import caret from "../../icons/selectbox-blue.svg";
 import bookIcon from "../../icons/book-outline.svg";
+import HamburgerMenuIcon from "../../icons/menu-three-filled-rounded-lines-symbol.svg";
+import SideBar from "../SideBar";
 
 class TopBar extends Component {
   constructor(props) {
@@ -215,7 +216,7 @@ class TopBar extends Component {
       });
 
       let data = this.state.bellSource_temp.filter((item, i) => {
-        return i < 3;
+            return i < 3;
       });
 
       this.setState({ bellSource: data });
@@ -284,7 +285,7 @@ class TopBar extends Component {
     });
   };
 
-  renderIcon(iconName) {
+  renderIcon(iconName, position) {
     let { icons } = this.state;
     let userType = getCookie("user");
     let notificaionCount = 0;
@@ -308,7 +309,9 @@ class TopBar extends Component {
         <img src={icons[`${iconName}Icon`]} alt={"icon"} />
         <div
           v-if={this.state[`${iconName}DropDown`]}
-          className={styles.cardContainer}
+          className={`${styles.cardContainer} ${
+            position ? styles[position] : ""
+          }`}
         >
           <Card
             type={"dropDown"}
@@ -358,6 +361,17 @@ class TopBar extends Component {
     window.location.pathname = "/messages";
   };
 
+  isSreenMatch() {
+    return window.matchMedia("(max-width: 576px)").matches;
+  }
+  openHamburgerMenu() {
+    this.isSreenMatch()
+      ? (document.getElementById("hamburger-menu").style.width = "100%")
+      : (document.getElementById("hamburger-menu").style.width = "50%");
+  }
+  closeHamburgerMenu() {
+    document.getElementById("hamburger-menu").style.width = "0";
+  }
   render() {
     let { isAuthorized, user } = this.props;
     let { loginDropDown } = this.state;
@@ -368,6 +382,93 @@ class TopBar extends Component {
           <Link to={"/"}>
             <img src={internyLogo} alt={"logo"} />
           </Link>
+        </div>
+
+        {/*  Hamburger Menu */}
+        <div className={styles.hamburgerMenu}>
+          <img
+            className={styles.hamburgerMenuIcon}
+            onClick={() => this.openHamburgerMenu()}
+            src={HamburgerMenuIcon}
+            alt={"hamburgerMenu"}
+          />
+          <SideBar type={"hamburgerMenu"}>
+            <Fragment v-if={!isAuthorized}>
+              {/*<div><Link to={'/'}>Home</Link></div>*/}
+              <div className={styles.hamburgerLinks}>
+                <div>
+                  <Link
+                    onClick={() => this.closeHamburgerMenu()}
+                    to={"/search"}
+                  >
+                    Browse Internships
+                  </Link>
+                </div>
+                <div>
+                  <Link
+                    onClick={() => this.closeHamburgerMenu()}
+                    to={"/packages"}
+                  >
+                    Our Packages
+                  </Link>
+                </div>
+              </div>
+              <div className={styles.hamburgerButtons}>
+                <div
+                  onClick={() =>
+                    this.setState({ loginDropDown: !this.state.loginDropDown })
+                  }
+                  className={styles.dropdownContainer}
+                >
+                  <Button
+                    type={"ghost"}
+                    sizeName={"small"}
+                    text={"Login"}
+                    iconPosition={"left"}
+                    responsive={"hamburger"}
+                    icon={caret}
+                  />
+                  <div v-if={loginDropDown} className={styles.dropdown}>
+                    <Card
+                      onPress={() => {
+                        this.closeHamburgerMenu();
+                        this.setState({
+                          loginDropDown: !this.state.loginDropDown,
+                        });
+                      }}
+                      type={"dropDown"}
+                      externalData={this.state.loginPages}
+                    />
+                  </div>
+                </div>
+                <Button
+                  to="/signup"
+                  type={"secondary"}
+                  sizeName={"small"}
+                  responsive={"hamburger"}
+                  text={"Sign Up"}
+                  onButtonClick={() => this.closeHamburgerMenu()}
+                />
+              </div>
+            </Fragment>
+            <Fragment v-else>
+              <div
+                className={styles.hamburgerAccountName}
+                style={{ cursor: "default" }}
+              >
+                Welcome,{" "}
+                <span className={styles.userName}>
+                  {userType === "intern" ? user.name : user.accountName}{" "}
+                  {userType === "intern" && user.surname}
+                </span>
+              </div>
+              <div className={styles.hamburgerAccountTools}>
+                {this.renderIcon("mail", "mail")}
+                {this.renderIcon("bell", "bell")}
+                {this.renderIcon("user", "user")}
+              </div>
+            </Fragment>
+          </SideBar>
         </div>
         <div className={styles.links}>
           <Fragment v-if={!isAuthorized}>

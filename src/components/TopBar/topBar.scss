@@ -1,3 +1,5 @@
+@import '../../helpers/responsiveBreakpointsMixins.scss';
+
 .TopBar {
   position: fixed;
   top: 0;
@@ -6,9 +8,9 @@
   width: calc(100% - 80px);
   height: 80px;
   z-index: 12;
-  -webkit-box-shadow: 0px 0px 18px 0px rgba(0,0,0,0.1);
-  -moz-box-shadow: 0px 0px 18px 0px rgba(0,0,0,0.1);
-  box-shadow: 0px 0px 18px 0px rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,6 +18,8 @@
   -moz-user-select: none;
   -ms-user-select: none;
   -webkit-user-select: none;
+
+
 
   &.fullScreen {
     width: 100%;
@@ -27,13 +31,142 @@
 
     & img {
       height: 40px;
+
+      @include small {
+        height: 32px;
+      }
+
     }
   }
+
+  & .hamburgerMenu {
+    display: none;
+
+    @include medium {
+      display: block;
+      margin-right: 24px;
+
+      & .hamburgerMenuIcon {
+        width: 24px;
+        cursor: pointer;
+      }
+    }
+
+    & .hamburgerLinks {
+      display: flex;
+      flex-direction: column;
+      width: 200px;
+      margin-top: 96px;
+      margin-right: auto;
+      margin-left: auto;
+
+      & div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 24px 0px;
+
+
+        & a {
+          color: #2b4970
+        }
+      }
+    }
+
+    & .hamburgerButtons {
+      width: 176px;
+      height: 300px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    & .hamburgerAccountName {
+      margin-top: 96px;
+      margin-bottom: 48px;
+      width: 210px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    & .hamburgerAccountTools {
+      display: flex;
+      justify-content: space-between;
+      width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+
+      & .img {
+        position: relative;
+        display: flex;
+        cursor: pointer;
+        justify-content: center;
+        align-items: center;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        padding: 10px;
+        margin: 0 4px;
+        background-color: #f0f0f0;
+
+        & .count {
+          position: absolute;
+          top: -5px;
+          right: -5px;
+          width: 10px;
+          font-size: 10px;
+          border-radius: 50%;
+          background-color: red;
+          color: white;
+          height: 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 3px;
+        }
+
+        & .cardContainer {
+          position: absolute;
+          display: flex;
+          justify-content: flex-end;
+          width: 100vw;
+          height: 100vw;
+          top: 64px;
+          right: -64px;
+          cursor: default;
+
+          &.mail {
+            right: -140px;
+          }
+
+          &.user {
+            right: 0;
+          }
+
+          &.bell {
+            right: -84px;
+
+          }
+        }
+
+
+
+        &>img {
+          height: 100%;
+        }
+      }
+    }
+  }
+
 
   & .links {
     display: flex;
     align-items: center;
     padding: 0 20px;
+
+    @include medium {
+      display: none
+    }
 
     & .userName {
       font-family: "Noto Sans Bold";
@@ -44,6 +177,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+
       & .dropdown {
         position: absolute;
         top: 48px;
@@ -90,12 +224,12 @@
         cursor: default;
       }
 
-      & > img {
+      &>img {
         height: 100%;
       }
     }
 
-    & > div {
+    &>div {
       cursor: pointer;
       margin: 0 20px;
       font-family: "Noto Sans";
@@ -107,11 +241,12 @@
         text-decoration: underline;
       }
 
-      & > a {
+      &>a {
         font-family: "Noto Sans";
         font-weight: 100;
         font-size: calc(2px + 12px);
         color: #2b4970;
+
         &:hover {
           text-decoration: underline;
         }

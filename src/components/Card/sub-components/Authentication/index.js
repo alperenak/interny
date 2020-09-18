@@ -64,6 +64,7 @@ class Authentication extends Component {
         sizeName: "small",
         text: "Forgot your password?",
         type: "link",
+        responsive: "link",
         onButtonClick: () =>
           this.props.createModal({
             header: "Forgot Password",
@@ -112,18 +113,17 @@ class Authentication extends Component {
         sizeName: "t-quarter",
         value: "",
       },
-      {
-        label: `By joining you agree to the`,
-        type: "checkbox",
-        sizeName: "full",
-        clickable: " Terms, Privacy and Policy",
-        value: "checkboxStatus",
-        onClick: () => {
-          this.setState({ terms: true });
+        {
+            label: `By joining you agree to the`,
+            type: "checkbox",
+            sizeName: "full",
+            clickable: " Terms, Privacy and Policy",
+            value: "checkboxStatus",
+            onClick: () => {
+                this.setState({ terms: true });
+            },
         },
-      },
     ],
-
     university: "",
     faculty: "",
     department: "",
@@ -645,6 +645,7 @@ class Authentication extends Component {
                       width={inp.width}
                       disabled={inp.disabled}
                       sizeName={inp.sizeName}
+                      responsive={inp.responsive}
                       text={inp.text}
                       onButtonClick={inp.onButtonClick}
                     />
@@ -677,6 +678,7 @@ class Authentication extends Component {
                   errorList={inp.errorList}
                   type={inp.type}
                   onChange={inp.onChange}
+                  responsive={inp.responsive}
                   disclaimer={inp.disclaimer}
                   clickable={inp.clickable}
                   onClick={inp.onClick}

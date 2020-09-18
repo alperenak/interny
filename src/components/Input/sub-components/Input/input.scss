@@ -1,3 +1,6 @@
+@import '../../../../helpers/responsiveBreakpointsMixins.scss';
+
+
 .inputWrapper {
   position: relative;
   cursor: text;
@@ -10,10 +13,8 @@
       background: #ddd;
     }
 
-    & > div,
-    label,
-    input {
-      cursor: not-allowed !important;
+    & > div, label, input {
+      cursor: not-allowed!important;
     }
   }
 
@@ -24,6 +25,11 @@
     color: #2b4970;
     letter-spacing: 0.5px;
     padding: 0 1px;
+
+    @include small {
+      font-size: calc(2px + 10px);
+
+    }
   }
 
   & .labelDescription {
@@ -49,9 +55,15 @@
     padding: 12px 16px;
     margin: 8px 0 0;
 
+    @include small {
+      padding: 8px 12px;
+
+    }
+
     &:focus-within {
       border: 1px solid #2b4970;
     }
+
     &.large {
       width: calc(100% - 32px);
     }
@@ -64,28 +76,50 @@
     &.half {
       width: 234px;
     }
+
+    &.responsive {
+      width: 390px;
+
+      @include medium {
+        width: 320px;
+
+      }
+
+      @include small {
+        width: 280px;
+
+      }
+    }
+
     &.error {
       border: 1px solid red;
       background-color: rgba(red, 0.1);
     }
+
     &.textarea {
       min-width: 234px;
       min-height: 234px;
       resize: none;
       color: #2b4970;
       font-size: calc(2px + 12px);
+
+
+
       &::placeholder {
         color: #afb8c3;
         font-size: calc(2px + 11px);
       }
+
       &::-moz-placeholder {
         color: #afb8c3;
         font-size: calc(2px + 11px);
       }
+
       &::-ms-input-placeholder {
         color: #afb8c3;
         font-size: calc(2px + 11px);
       }
+
       &::-webkit-input-placeholder {
         color: #afb8c3;
         font-size: calc(2px + 11px);
@@ -99,6 +133,7 @@
       &.right {
         margin-left: 8px;
       }
+
       &.left {
         margin-right: 8px;
       }
@@ -116,18 +151,37 @@
       &::placeholder {
         color: #afb8c3;
         font-size: calc(2px + 11px);
+
+        @include small {
+          font-size: calc(2px + 8px);
+        }
       }
+
       &::-moz-placeholder {
         color: #afb8c3;
         font-size: calc(2px + 11px);
+
+        @include medium {
+          font-size: calc(2px + 8px);
+        }
       }
+
       &::-ms-input-placeholder {
         color: #afb8c3;
         font-size: calc(2px + 11px);
+
+        @include medium {
+          font-size: calc(2px + 8px);
+        }
       }
+
       &::-webkit-input-placeholder {
         color: #afb8c3;
         font-size: calc(2px + 11px);
+
+        @include medium {
+          font-size: calc(2px + 8px);
+        }
       }
     }
   }
@@ -143,6 +197,10 @@
     letter-spacing: -0.24px;
     color: #f90000;
     margin: 7px 8px;
+
+    @include medium {
+      font-size: calc(2px + 10px);
+    }
   }
 
   & .tooltip {
@@ -166,9 +224,8 @@
     letter-spacing: -0.28px;
     color: #646464;
 
-    &:before,
-    &:after {
-      content: " ";
+    &:before, &:after{
+      content: ' ';
       position: absolute;
       border-left: 8px solid transparent;
       border-right: 8px solid transparent;
@@ -176,11 +233,11 @@
       width: 0;
       left: 35%;
     }
-    &:before {
+    &:before{
       border-bottom: 8px solid #e5e5e5;
       top: -8px;
     }
-    &:after {
+    &:after{
       top: -7px;
       border-bottom: 8px solid white;
       z-index: 1;
@@ -206,6 +263,10 @@
       line-height: 1.5;
       letter-spacing: -0.28px;
       color: #439e4a;
+
+      @include medium {
+        font-size: calc(2px + 12px);
+      }
     }
   }
 }

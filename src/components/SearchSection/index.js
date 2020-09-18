@@ -368,6 +368,7 @@ class SearchSection extends Component {
             <Input
               type={"text"}
               placeholder={"Software Developer"}
+              size={"responsive"}
               size={"medium"}
               icon={{ src: searchIcon, position: "right" }}
               labelDescription={"Enter position name, keyword or company name"}
@@ -380,6 +381,7 @@ class SearchSection extends Component {
             <Input
               type={"text"}
               placeholder={"Istanbul, Turkey"}
+              size={"responsive"}
               size={"medium"}
               icon={{ src: locationIcon, position: "right" }}
               labelDescription={"Enter city name, country or state name"}
@@ -438,5 +440,5 @@ class SearchSection extends Component {
     );
   }
 }
-// test
+
 export default SearchSection;

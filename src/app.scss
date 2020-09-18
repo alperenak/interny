@@ -1,3 +1,5 @@
+@import './helpers/responsiveBreakpointsMixins.scss';
+
 .App {
   background-color: #fbfbfb;
   width: calc(100% - 208px);
@@ -8,6 +10,11 @@
   &.fullScreen {
     width: unset;
     padding: 112px 64px 32px 64px;
+
+    // @include small {
+    //   padding: 112px 5% 32px 5%;
+    // }
+
   }
 
   & .temp {
@@ -23,8 +30,8 @@
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
-  input:-webkit-autofill:active  {
+  input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px white inset !important;
-    -webkit-text-fill-color: #2b4970!important;
+    -webkit-text-fill-color: #2b4970 !important;
   }
 }
