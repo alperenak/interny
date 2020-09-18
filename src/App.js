@@ -138,6 +138,10 @@ class App extends React.Component {
               render={(props) => <LandingPageSearch {...props} />}
             />
             <Route
+                path="/faq"
+                render={(props) => <FrequentlyAskedQuestions {...props} />}
+            />
+            <Route
               path="/packages"
               render={(props) => <Packages {...props} />}
             />

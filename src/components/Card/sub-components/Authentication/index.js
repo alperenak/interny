@@ -714,6 +714,8 @@ class Authentication extends Component {
             <img v-if={type === "login"} src={loginImage} alt={"loginImage"} />
           </div>
         </div>
+        {
+          /*
         <div
           v-if={
             type === "login" &&
@@ -735,6 +737,8 @@ class Authentication extends Component {
           Afterwards, click on the “Forgot your password?” and send your
           interns' tracking account password to your university e-mail account.
         </div>
+        */
+        }
       </div>
     );
   };
