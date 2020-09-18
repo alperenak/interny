@@ -1,41 +1,43 @@
-$primary: (background-color:#2b4970,color:white,border:solid 1px #2b4970);
-$secondary: (background-color:#ff8104,color:#fff,border:solid 1px transparent);
-$ghost: (background-color:white,color:#2b4970,border:solid 1px #ddd);
-$link: (background-color:transparent,color:#484848,border:solid 1px transparent);
+@import '../../helpers/responsiveBreakpointsMixins.scss';
+
+$primary: (background-color:#2b4970, color:white, border:solid 1px #2b4970);
+$secondary: (background-color:#ff8104, color:#fff, border:solid 1px transparent);
+$ghost: (background-color:white, color:#2b4970, border:solid 1px #ddd);
+$link: (background-color:transparent, color:#484848, border:solid 1px transparent);
 $icons: ("large":24px, "default":24px, "small":17px, "tiny":16px);
 $icon-margins: ("large":12px, "default":8px, "small":4px, "tiny":4px);
 
-$variants:(
-  //primary variants
-        primary-hover: (background-color:#1d3f6b,color:white,border:solid 1px #1d3f6b),
-        primary-focus: (background-color:#003670,color:white,border:solid 1px #003670),
-        primary-disable: (background-color:#cccccc,color:#919191,border:solid 1px #cccccc),
+$variants:( //primary variants
+  primary-hover: (background-color:#1d3f6b, color:white, border:solid 1px #1d3f6b),
+  primary-focus: (background-color:#003670, color:white, border:solid 1px #003670),
+  primary-disable: (background-color:#cccccc, color:#919191, border:solid 1px #cccccc),
   //secondary variants
-        secondary-hover: (background-color:rgba(#ff8104,0.2),color:#ff8104,border:solid 1px transparent),
-        secondary-focus: (background-color:#ff8104,color:white,border:solid 1px #ff8104),
-        secondary-disable: (background-color:#cccccc,color:#919191,border:solid 1px #cccccc),
+  secondary-hover: (background-color:rgba(#ff8104, 0.2), color:#ff8104, border:solid 1px transparent),
+  secondary-focus: (background-color:#ff8104, color:white, border:solid 1px #ff8104),
+  secondary-disable: (background-color:#cccccc, color:#919191, border:solid 1px #cccccc),
   //ghost variants
-        ghost-hover: (background-color:white,color:#2b4970,border:solid 1px #2b4970),
+        ghost-hover: (background-color:transparent,color:#2b4970,border:solid 1px #2b4970),
         ghost-focus: (background-color:rgba(#2b4970,0.08),color:#003670,border:solid 1px #003670),
         ghost-disable: (background-color:white,color:#919191,border:solid 1px #cccccc),
   //link variants
-        link-hover: (background-color:transparent,color:#2b4970,border:solid 1px transparent),
-        link-focus: (background-color:transparent,color:#003670,border:solid 1px transparent),
-        link-disable: (background-color:transparent,color:#919191,border:solid 1px transparent),
+  link-hover: (background-color:transparent, color:#2b4970, border:solid 1px transparent),
+  link-focus: (background-color:transparent, color:#003670, border:solid 1px transparent),
+  link-disable: (background-color:transparent, color:#919191, border:solid 1px transparent),
 );
 
 // size variants
-$large: (padding:12px 36px,font-size:14px);
-$default: (padding:8px 24px,font-size:14px);
-$small: (padding:8px 24px,font-size:12px);
-$tiny: (padding:4px 12px,font-size:10px);
+$large: (padding:12px 36px, font-size:14px);
+$default: (padding:8px 24px, font-size:14px);
+$small: (padding:8px 24px, font-size:12px);
+$tiny: (padding:4px 12px, font-size:10px);
 
-$types: ("primary":$primary,"secondary":$secondary,"ghost":$ghost,"link":$link);
+$types: ("primary":$primary, "secondary":$secondary, "ghost":$ghost, "link":$link);
 $sizes: ("large":$large, "default":$default, "small":$small, "tiny":$tiny);
-.btn{
+
+.btn {
   border-radius: 4px;
   box-sizing: unset;
-  border:none;
+  border: none;
   font-weight: normal;
   display: flex;
   align-items: center;
@@ -47,83 +49,128 @@ $sizes: ("large":$large, "default":$default, "small":$small, "tiny":$tiny);
   &.loading {
     pointer-events: none;
     & img {
-      width: 19px!important;
+      width: 19px !important;
     }
 
     &:hover {
       & img {
-        width: 19px!important;
-        display: block!important;
+        width: 19px !important;
+        display: block !important;
       }
     }
   }
 
-  @each $typeName,$type in $types {
-    &.#{$typeName}
-    {
-      @each $key,$value in $type{
-        #{$key}:$value;
+
+
+  @each $typeName,
+  $type in $types {
+    &.#{$typeName} {
+
+
+      @each $key,
+      $value in $type {
+        #{$key}: $value;
       }
-      &.disabled{
-        @each $key,$value in map-get($variants, #{$typeName}#{-disable}){
-          #{$key}:$value;
+
+      &.disabled {
+
+        @each $key,
+        $value in map-get($variants, #{$typeName}#{-disable}) {
+          #{$key}: $value;
         }
+
         cursor: not-allowed;
+        pointer-events: none;
       }
-      &:not(.disabled):hover{
-        @each $key,$value in map-get($variants, #{$typeName}#{-hover}){
-          #{$key}:$value;
+
+      &:not(.disabled):hover {
+
+        @each $key,
+        $value in map-get($variants, #{$typeName}#{-hover}) {
+          #{$key}: $value;
         }
       }
-      &:not(.disabled):active{
-        @each $key,$value in map-get($variants, #{$typeName}#{-focus}){
-          #{$key}:$value;
+
+      &:not(.disabled):active {
+
+        @each $key,
+        $value in map-get($variants, #{$typeName}#{-focus}) {
+          #{$key}: $value;
         }
       }
-      &:focus, &:active{
+
+      &:focus,
+      &:active {
         outline: none;
       }
     }
   }
-  @each $sizeName,$size in $sizes{
-    @each $key,$value in $size{
+
+  @each $sizeName,
+  $size in $sizes {
+
+    @each $key,
+    $value in $size {
       &.#{$sizeName} {
-        #{$key}:$value;
-        & img{
-          &:not(.autoWidth){
-            width: map_get($icons,#{$sizeName});
+        #{$key}: $value;
+
+        & img {
+          &:not(.autoWidth) {
+            width: map_get($icons, #{$sizeName});
           }
-          &.hoverIcon{
+
+          &.hoverIcon {
             display: none;
           }
-          &.left-icon{
-            margin-right: map_get($icon-margins,#{$sizeName});
+
+          &.left-icon {
+            margin-right: map_get($icon-margins, #{$sizeName});
           }
-          &.right-icon{
-            margin-left: map_get($icon-margins,#{$sizeName});
+
+          &.right-icon {
+            margin-left: map_get($icon-margins, #{$sizeName});
           }
-          &.center-icon{
+
+          &.center-icon {
             margin: 0;
           }
         }
+
         &:hover {
-          & .hoverIcon{
+          & .hoverIcon {
             display: block;
           }
-          & img:not(.hoverIcon){
+
+          & img:not(.hoverIcon) {
             display: none;
           }
         }
       }
     }
   }
+
+  &.responsivePost {
+    @include small {
+      width: 30px;
+      font-size: calc(2px + 8px);
+    }
+  }
+
+  &.responsiveAuth {
+    @include small {
+      font-size: calc(2px + 8px);
+    }
+  }
+
+  &.responsiveLink {
+    @include small {
+      font-size: calc(2px + 8px);
+    }
+  }
+
+  &.responsiveHamburger {
+    @include medium {
+      width: 120px;
+    }
+  }
 }
-
-
-
-
-
-
-
-
-

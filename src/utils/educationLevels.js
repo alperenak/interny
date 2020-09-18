@@ -1,27 +1,37 @@
 export default [
     {
-        key: 'Graduate',
-        value: 'Graduate',
+        key: 'Primary',
+        value: 'Primary',
         selected: false
     },
     {
-        key: 'Undergraduate',
-        value: 'Undergraduate',
+        key: 'Secondary',
+        value: 'Secondary',
         selected: false
     },
     {
-        key: 'Post-Graduate(Continuing)',
-        value: 'Post-Graduate(Continuing)',
+        key: 'High School',
+        value: 'High School',
         selected: false
     },
     {
-        key: 'Post-Graduate',
-        value: 'Post-Graduate',
+        key: 'Associate Degree / Higher Diploma',
+        value: 'Associate Degree / Higher Diploma',
         selected: false
     },
     {
-        key: 'None',
-        value: 'None',
+        key: 'Bachelor\'s Degree',
+        value: 'Bachelor\'s Degree',
+        selected: false
+    },
+    {
+        key: 'Master\'s Degree',
+        value: 'Master\'s Degree',
+        selected: false
+    },
+    {
+        key: 'Doctoral Degree',
+        value: 'Doctoral Degree',
         selected: false
     },
 ];

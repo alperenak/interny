@@ -1,0 +1,93 @@
+.ProfileSection {
+  background-color: #fbfbfb;
+  margin-bottom: 30px;
+  padding: 24px 0 12px;
+
+  & .name {
+    padding: 0 32px;
+    font-family: "Noto Sans Bold";
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: calc(2px + 16px);
+    color: #2b4970;
+    margin-bottom: 8px;
+
+    & .buttonsContainer {
+      display: flex;
+    }
+  }
+  & .title {
+    padding: 0 32px;
+    font-size: calc(2px + 15px);
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.28px;
+    color: #484848;
+    margin-bottom: 8px;
+  }
+  & .location {
+    padding: 0 32px;
+    font-size: calc(2px + 13px);
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.28px;
+    color: #646464;
+    margin-bottom: 8px;
+  }
+  & .mail {
+    padding: 0 32px;
+    font-size: calc(2px + 13px);
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.28px;
+    color: #646464;
+    margin-bottom: 8px;
+  }
+  & .summary {
+    padding: 16px 0 0;
+  }
+}
+
+.editForm {
+  background-color: #fbfbfb;
+  padding: 24px 0 0px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &.create {
+    background-color: transparent;
+  }
+
+  & .checkboxContainer {
+    width: 568px;
+
+    & .checkboxTitle {
+      font-family: "Noto Sans Bold";
+      font-size: calc(2px + 12px);
+      font-weight: 700;
+      color: #2b4970;
+      letter-spacing: 0.5px;
+      padding: 0 1px;
+      margin: 8px 0 0;
+    }
+  }
+  & .formButtons {
+    width: 580px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 16px 0;
+  }
+  & .couples {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 568px;
+  }
+}

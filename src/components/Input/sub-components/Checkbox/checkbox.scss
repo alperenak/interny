@@ -1,3 +1,5 @@
+@import '../../../../helpers/responsiveBreakpointsMixins.scss';
+
 .boxWrapper {
   width: fit-content;
   display: flex;
@@ -13,6 +15,7 @@
     & label {
       cursor: not-allowed;
     }
+
     & input {
       cursor: not-allowed;
     }
@@ -24,8 +27,11 @@
     font-weight: 700;
     letter-spacing: 0.5px;
     padding: 0 1px;
-  }
 
+    @include medium {
+      font-size: calc(2px + 8px);
+    }
+  }
 
   & input {
     outline: none;
@@ -36,4 +42,9 @@
     color: #2b4970;
     font-size: calc(2px + 12px);
   }
+}
+.clickable {
+  color: #2b4970;
+  display: inline;
+  cursor: pointer;
 }

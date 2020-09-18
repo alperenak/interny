@@ -1,3 +1,5 @@
+@import '../../helpers/responsiveBreakpointsMixins.scss';
+
 .footerSection {
   display: flex;
   flex-direction: column;
@@ -13,14 +15,39 @@
     align-items: start;
     width: 100%;
 
+    @include large {
+      align-items: center;
+      flex-direction: column;
+    }
+
+
+
     & .companyDescription {
+
       width: 20%;
+
+
+      @include large {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 60%;
+        margin: 24px 0px
+      }
 
       & img {
         height: 45px;
         margin-bottom: 20px;
         margin-left: -4px;
+
+
+        @include large {
+          margin-bottom: 36px;
+
+        }
       }
+
       & .description {
         font-family: "Noto Sans";
         font-size: calc(2px + 12px);
@@ -28,24 +55,58 @@
         list-style-type: none;
         line-height: 1.5em;
         letter-spacing: 0.1px;
+
+        @include large {
+          font-size: calc(2px + 12px);
+
+        }
+
+        @include large {
+          text-align: center;
+        }
       }
     }
+
     & .options {
       display: flex;
       width: 35%;
       justify-content: space-around;
       align-items: start;
 
+      @include large {
+        width: 65%;
+      }
+
+      @include medium {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
       ul {
         margin: 0;
         padding: 0;
+
+        @include medium {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin: 24px 0;
+        }
+
       }
+
       & .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         font-family: "Noto Sans Bold";
         font-size: calc(2px + 18px);
         color: #243e5d;
         margin-bottom: 20px;
       }
+
       & li {
         font-family: "Noto Sans";
         font-size: calc(2px + 16px);
@@ -53,6 +114,12 @@
         list-style-type: none;
         line-height: 2em;
         cursor: pointer;
+        text-align: center;
+
+        @include small {
+          font-size: calc(2px + 12px);
+
+        }
 
         &:hover {
           color: black;
@@ -60,12 +127,14 @@
       }
     }
   }
+
   & .stroke {
     height: 1px;
     background-color: #e0e0e0;
     width: 100%;
     margin: 40px 0 20px;
   }
+
   & .rights {
     font-family: "Noto Sans";
     font-size: calc(2px + 12px);
@@ -74,5 +143,9 @@
     line-height: 1.5em;
     letter-spacing: 0.1px;
     margin-bottom: 20px;
+
+    @include medium {
+      text-align: center;
+    }
   }
 }

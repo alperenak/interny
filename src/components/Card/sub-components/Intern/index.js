@@ -104,7 +104,7 @@ class Intern extends Component {
             <div className={styles.Intern}>
                 <div className={styles.cardWrapper}>
                     <div className={styles.photoContainer}>
-                        <img src={application.Cv.photo} alt={'image'}/>
+                        <img src={application.Intern.avatar} alt={'image'}/>
                     </div>
                     <div className={styles.infoWrapper}>
                         <Link to={''} className={styles.internName}>

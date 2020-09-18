@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 /*** Styles ***/
 import styles from './section.scss';
+import {formatDate} from "../../../../utils/functions";
 
 class Section extends Component {
     render() {
@@ -32,7 +33,7 @@ class Section extends Component {
                                                 {item.city + " - " + item.country}
                                             </div>
                                             <div v-if={item.endDate || item.startDate} className={styles.itemDate}>
-                                                {item.endDate + " - " + item.startDate}
+                                                {formatDate(item.startDate) + " - " + formatDate(item.endDate)}
                                             </div>
                                         </div>
                                     </div>

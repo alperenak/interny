@@ -11,8 +11,9 @@ import loadingIcon from '../../icons/loading.svg';
 class Button extends Component {
     onClick = () => {
         let {disabled, onButtonClick} = this.props;
-        if(!disabled)
+        if(!disabled) {
             onButtonClick();
+        }
     };
 
     renderContent() {
@@ -33,17 +34,32 @@ class Button extends Component {
             </Fragment>
         );
     }
+    responsiveConverter(responsive){
+        if(responsive==='post'){
+            return styles.responsivePost
+        }
+        else if (responsive === 'auth'){
+            return styles.responsiveAuth
+        }
+        else if (responsive === 'link'){
+            return styles.responsiveLink
+        }
+        else if (responsive === 'hamburger'){
+            return styles.responsiveHamburger
+        }
+        else return ''
+    }
 
     render() {
-        let {disabled, to, onButtonClick, loading, width, sizeName, type, onMouseOver, onMouseLeave} = this.props;
+        let {disabled, to, onButtonClick, loading, width, sizeName, type, onMouseOver, onMouseLeave,responsive} = this.props;
         return (
             <Fragment>
-                <Link style={{width: width}} v-if={to} to={to} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}
-                    className={`${styles.btn} ${loading ? styles.loading : ''} ${styles[sizeName]} ${styles[type]} ${(disabled?styles.disabled:'')}`}>
+                <Link onClick={onButtonClick} style={{width: width}} v-if={to} to={to} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}
+                    className={`${styles.btn} ${loading ? styles.loading : ''} ${styles[sizeName]} ${styles[type]} ${this.responsiveConverter(responsive)} ${(disabled?styles.disabled:'')}`}>
                     {this.renderContent()}
                 </Link>
                 <button style={{width: width}} v-if={!to} onClick={onButtonClick} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}
-                    className={`${styles.btn} ${loading ? styles.loading : ''} ${styles[sizeName]} ${styles[type]} ${(disabled?styles.disabled:'')}`}>
+                    className={`${styles.btn} ${loading ? styles.loading : ''} ${styles[sizeName]} ${styles[type]} ${this.responsiveConverter(responsive)} ${(disabled?styles.disabled:'')}`}>
                     {this.renderContent()}
                 </button>
             </Fragment>
@@ -63,6 +79,7 @@ Button.propTypes = {
   onButtonClick: PropTypes.func,
   to: PropTypes.string,
   sizeName: PropTypes.string,
+  responsive:PropTypes.string,
   text: PropTypes.string,
   type: PropTypes.string,
   width: PropTypes.string
@@ -77,4 +94,5 @@ Button.defaultProps = {
   iconPosition: "",
   sizeName: "default",
   type: "primary",
+  responsive:"",
 };

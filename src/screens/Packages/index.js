@@ -8,7 +8,7 @@ class Packages extends Component {
         return (
             <div id={'packages-section'} className={styles.packagesSection}>
                 <div className={styles.packagesCards}>
-                    <Card>
+                    <Card type={'pricing'}>
                         <div className={styles.packageCard}>
                             <div className={styles.headerDiv}>
                                 <div className={styles.packageTitle}>FREEMIUM</div>
@@ -25,7 +25,7 @@ class Packages extends Component {
                         </div>
                     </Card>
                     <div className={styles.frontier}>
-                        <Card>
+                        <Card type={'pricing'}>
                             <div className={styles.packageCard}>
                                 <div className={styles.headerDiv}>
                                     <div className={styles.packageTitle}>WFA</div>
@@ -42,7 +42,7 @@ class Packages extends Component {
                             </div>
                         </Card>
                     </div>
-                    <Card>
+                    <Card type={'pricing'}>
                         <div className={styles.packageCard}>
                             <div className={styles.headerDiv}>
                                 <div className={styles.packageTitle}>COM </div>
