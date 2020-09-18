@@ -13,8 +13,10 @@
       background: #ddd;
     }
 
-    & > div, label, input {
-      cursor: not-allowed!important;
+    &>div,
+    label,
+    input {
+      cursor: not-allowed !important;
     }
   }
 
@@ -44,6 +46,7 @@
   & .inputSearchBar {
     border-radius: 15px !important;
   }
+
   & .inputContainer {
     display: flex;
     outline: none;
@@ -55,8 +58,10 @@
     padding: 12px 16px;
     margin: 8px 0 0;
 
+
     @include small {
-      padding: 8px 12px;
+      // padding: 8px 12px;
+      width: 200px;
 
     }
 
@@ -67,29 +72,19 @@
     &.large {
       width: calc(100% - 32px);
     }
+
     &.full {
       width: 534px;
     }
+
     &.medium {
       width: 390px;
     }
+
     &.half {
       width: 234px;
     }
 
-    &.responsive {
-      width: 390px;
-
-      @include medium {
-        width: 320px;
-
-      }
-
-      @include small {
-        width: 280px;
-
-      }
-    }
 
     &.error {
       border: 1px solid red;
@@ -148,6 +143,7 @@
       color: #2b4970;
       font-size: calc(2px + 12px);
       width: 100%;
+
       &::placeholder {
         color: #afb8c3;
         font-size: calc(2px + 11px);
@@ -182,6 +178,20 @@
         @include medium {
           font-size: calc(2px + 8px);
         }
+      }
+    }
+
+    &.responsive {
+      width: 390px;
+
+      @include medium {
+        width: 320px;
+
+      }
+
+      @include small {
+        width: 280px;
+
       }
     }
   }
@@ -224,7 +234,8 @@
     letter-spacing: -0.28px;
     color: #646464;
 
-    &:before, &:after{
+    &:before,
+    &:after {
       content: ' ';
       position: absolute;
       border-left: 8px solid transparent;
@@ -233,11 +244,13 @@
       width: 0;
       left: 35%;
     }
-    &:before{
+
+    &:before {
       border-bottom: 8px solid #e5e5e5;
       top: -8px;
     }
-    &:after{
+
+    &:after {
       top: -7px;
       border-bottom: 8px solid white;
       z-index: 1;

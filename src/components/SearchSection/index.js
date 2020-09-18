@@ -369,7 +369,6 @@ class SearchSection extends Component {
               type={"text"}
               placeholder={"Software Developer"}
               size={"responsive"}
-              size={"medium"}
               icon={{ src: searchIcon, position: "right" }}
               labelDescription={"Enter position name, keyword or company name"}
               defaultValue={keyword !== "null" ? keyword : ""}
@@ -382,7 +381,6 @@ class SearchSection extends Component {
               type={"text"}
               placeholder={"Istanbul, Turkey"}
               size={"responsive"}
-              size={"medium"}
               icon={{ src: locationIcon, position: "right" }}
               labelDescription={"Enter city name, country or state name"}
               defaultValue={location !== "null" ? location : ""}

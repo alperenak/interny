@@ -86,10 +86,8 @@ class PlainInput extends Component {
                         ${styles.inputContainer} 
                         ${type === "textarea" ? styles.textarea : ""} 
                         ${styles[size]} ${!valid ? styles.error : ""}`}
-
-                    name={name}
-
-                    autoComplete={"off"}
+          name={name}
+          autoComplete={"off"}
           autoFocus={false}
           onKeyDown={onKeyDown}
           type={type}
@@ -103,8 +101,9 @@ class PlainInput extends Component {
           className={`
                         ${styles.inputContainer} 
                         ${type === "textarea" ? styles.textArea : ""} 
-                        ${styles[size]} ${!valid ? styles.error : ""}
-                        ${styles[this.props.className]}`}
+                      ${!valid ? styles.error : ""}
+                        ${styles[this.props.className]}
+                        ${styles[size]}`}
         >
           <img
             v-if={icon && icon.position === "left"}
