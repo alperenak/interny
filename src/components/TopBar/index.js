@@ -56,6 +56,13 @@ class TopBar extends Component {
         disabled: true,
         to: "/login/Employer",
       },
+      {
+        key: "universityLogin",
+        value: "Login as University",
+        selected: false,
+        disabled: true,
+        to: "/login/University",
+      },
     ],
     mailSource: [],
     bellSource_temp: [],

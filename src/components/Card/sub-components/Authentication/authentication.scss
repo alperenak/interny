@@ -206,12 +206,13 @@
       left: 0;
       z-index: 1;
       background-color: rgba(#2b4970, 0.09);
-      height: 100%;
-
+      max-width: 50%;
+      max-height: 100%;
       & img {
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
-        height: 100%;
+        max-height: 100%;
+        max-width: 100%;
       }
     }
   }
@@ -269,6 +270,14 @@
     & .saveButtonContainer {
       grid-column-start: 1;
       grid-column-end: span 5;
+    }
+    & .mutedText {
+      color: #666666;
+      font-size: 14px;
+      font-weight: lighter;
+      grid-row-start: 8;
+      grid-column-start: 3;
+      grid-column-end: 7;
     }
   }
 }

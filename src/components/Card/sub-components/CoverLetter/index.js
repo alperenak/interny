@@ -31,7 +31,10 @@ class CoverLetter extends Component {
         sizeName: "default",
         text: "SAVE",
         type: "secondary",
-        onButtonClick: this.props.onSubmit,
+        onButtonClick: () => {
+          this.props.onSubmit();
+          this.setState({ editMode: false });
+        },
       },
     ],
   };

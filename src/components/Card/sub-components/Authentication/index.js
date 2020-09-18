@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 /*** Components ***/
 import Button from "../../../Button";
 import PhoneInput from "react-phone-number-input";
+import ForgotPassword from "../ForgotPassword";
 
 /*** Styles ***/
 import styles from "./authentication.scss";
@@ -64,15 +65,9 @@ class Authentication extends Component {
         sizeName: "small",
         text: "Forgot your password?",
         type: "link",
-        responsive: "link",
-        onButtonClick: () =>
-          this.props.createModal({
-            header: "Forgot Password",
-            declaration:
-              "Enter your e-mail associated with the account, reset request will be emailed to the address.",
-            content: this.renderForgotPasswordContent,
-            buttons: this.renderForgotPasswordButtons(),
-          }),
+        onButtonClick: () => {
+          this.setState({ forgotPasswordMode: true });
+        },
       },
     ],
     authInputs: [
@@ -138,6 +133,7 @@ class Authentication extends Component {
     user_id: null,
     terms: false,
     checkboxStatus: false,
+    forgotPasswordMode: false,
   };
 
   componentDidMount() {
@@ -235,8 +231,10 @@ class Authentication extends Component {
     let res = {};
     if (this.props.match.params.user.toLowerCase() === "employer") {
       res = await store.employerLogin(this.state.submitObject);
-    } else {
+    } else if (this.props.match.params.user.toLowerCase() === "intern") {
       res = await store.internLogin(this.state.submitObject);
+    } else if (this.props.match.params.user.toLowerCase() === "university") {
+      res = await store.universityLogin(this.state.submitObject);
     }
     if (res && res.data.token) {
       if (res.status) {
@@ -402,6 +400,9 @@ class Authentication extends Component {
     }
   };
 
+  closeModal = () => {
+    this.setState({ forgotPasswordMode: false });
+  };
   setInputChangeMethods = () => {
     this.setState((state) => {
       state.loginInputs.map((e) => {
@@ -686,17 +687,22 @@ class Authentication extends Component {
                 />
               );
             })}
+
         <div className={styles.saveButtonContainer}>
           <Button
             v-for={(btn, i) in buttons}
             key={"btn" + i}
             type={btn.type}
-            disabled={!this.state.checkboxStatus}
+            disabled={
+              this.props.type == "login" ? false : !this.state.checkboxStatus
+            }
             sizeName={btn.sizeName}
             width={btn.width}
             loading={btn.loading}
             text={btn.text}
-            onButtonClick={btn.onButtonClick}
+            onButtonClick={() => {
+              this.state.checkboxStatus ? btn.onButtonClick() : null;
+            }}
           />
         </div>
         <div
@@ -711,6 +717,27 @@ class Authentication extends Component {
           <div className={styles.shadow}>
             <img v-if={type === "login"} src={loginImage} alt={"loginImage"} />
           </div>
+        </div>
+        <div
+          v-if={
+            type === "login" &&
+            this.props.match.params.user.toLowerCase() === "university"
+          }
+          className={styles.mutedText}
+        >
+          Intern tracking accounts for all universities were created
+          automatically as “interny@YOURUNIVERSITY.edu” or
+          “interny@YOURUNIVERSITY.edu.YOURCOUNTRY”.
+          <br />
+          <br />
+          If you are going to login for the first time in INTERNY, you must
+          first create an e-mail account in your university mail server as
+          “interny@YOURUNIVERSITY.edu” or
+          “interny@YOURUNIVERSITY.edu.YOURCOUNTRY”.
+          <br />
+          <br />
+          Afterwards, click on the “Forgot your password?” and send your
+          interns' tracking account password to your university e-mail account.
         </div>
       </div>
     );
@@ -778,11 +805,21 @@ class Authentication extends Component {
   };
 
   render() {
+    let { forgotPasswordMode, getAdditionalInfo, terms } = this.state;
     return (
       <>
-        {this.state.getAdditionalInfo && this.renderAdditionalInfo()}
-        {!this.state.getAdditionalInfo && this.renderAuth()}
-        {this.state.terms && this.renderTerms()}
+        {forgotPasswordMode && (
+          //TODO: What happens onSubmit
+          //TODO: What happens onChange
+          <ForgotPassword
+            onClick={this.closeModal}
+            onChange={(value) => {}}
+            onSubmit={this.closeModal}
+          />
+        )}
+        {getAdditionalInfo && this.renderAdditionalInfo()}
+        {!getAdditionalInfo && this.renderAuth()}
+        {terms && this.renderTerms()}
       </>
     );
   }
