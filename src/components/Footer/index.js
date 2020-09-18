@@ -5,6 +5,7 @@ import styles from "./footer.scss";
 
 /*** Icons ***/
 import internyLogo from "../../assets/interny-logo.png";
+import {Link} from "react-router-dom";
 
 class Footer extends Component {
     render() {
@@ -22,12 +23,12 @@ class Footer extends Component {
                         <div className={styles.knowUs}>
                             <div className={styles.header}>Know Us</div>
                             <ul>
-                                <li>Register</li>
-                                <li>About Us</li>
-                                <li>FAQ's</li>
-                                <li>Terms and Policies</li>
-                                <li>Privacy Policy</li>
-                                <li>Contact Us</li>
+                                <li><Link to="/signup" >Register</Link></li>
+                                <li><Link to="/" >About Us</Link></li>
+                                <li> <Link to="/faq" >FAQ's</Link></li>
+                                <li><Link to="/faq" >Terms and Policies</Link></li>
+                                <li><Link to="/faq" >Privacy Policy</Link></li>
+                                <li><Link to="/faq" >Help Center</Link></li>
                             </ul>
                         </div>
                         <div className={styles.followUs}>
