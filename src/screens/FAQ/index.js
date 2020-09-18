@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component, Fragment} from "react";
 
 /*** Components ***/
 import Accordion from "../../components/Accordion";
@@ -8,6 +8,7 @@ import store from "../../store";
 
 /*** Styles ***/
 import styles from "./faq.scss";
+import Card from "../../components/Card";
 
 let dummy_data = {
   intern: [
@@ -46,44 +47,38 @@ class FAQ extends Component {
   renderRightBar = () => {
     return (
       <div className={styles.questions}>
-        <div className={styles.header}>Frequently Asked Questions</div>
-        {dummy_data[this.state.question_type].map((data) => {
-          return <Accordion title={data.question} content={data.answer} />;
-        })}
+        <Card>
+          {dummy_data[this.state.question_type].map((data) => {
+            return <Accordion title={data.question} content={data.answer} />;
+          })}
+        </Card>
       </div>
     );
   };
 
   renderLeftBar = () => {
+    let {question_type} = this.state;
     return (
-      <div className={styles.sidebar}>
-        <div className={styles.items}>
-          <button
-            className={`${styles.item} ${
-              this.state.question_type == "intern" ? styles.active : ""
-            }`}
-            onClick={() => this.setState({ question_type: "intern" })}
-          >
-            FAQ for Interns
-          </button>
-          <button
-            className={`${styles.item} ${
-              this.state.question_type == "employer" ? styles.active : ""
-            }`}
-            onClick={() => this.setState({ question_type: "employer" })}
-          >
-            FAQ for Employers
-          </button>
-          <button
-            className={`${styles.item} ${
-              this.state.question_type == "university" ? styles.active : ""
-            }`}
-            onClick={() => this.setState({ question_type: "university" })}
-          >
-            FAQ for Universities
-          </button>
-        </div>
-      </div>
+      <Card type={'list'} externalData={[
+        {
+          key: 'FAQ for Interns',
+          value: 'FAQ for Interns',
+          selected: question_type === 'intern',
+          onChange: () => this.setState({ question_type: "intern" })
+        },
+        {
+          key: 'FAQ for Employers',
+          value: 'FAQ for Employers',
+          selected: question_type === 'employer',
+          onChange: () => this.setState({ question_type: "employer" })
+        },
+        {
+          key: 'FAQ for Universities',
+          value: 'FAQ for Universities',
+          selected: question_type === 'university',
+          onChange: () => this.setState({ question_type: "university" })
+        }
+      ]}/>
     );
   };
 

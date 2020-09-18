@@ -230,7 +230,7 @@ class MyJobs extends Component {
     ];
 
     onCreateClick = async () => {
-        this.props.createModal({ header: 'Create Post', content: this.renderCreatePostForm });
+        this.props.createModal({ header: 'Create Job', content: this.renderCreatePostForm });
     };
 
     renderCreatePostForm = () => {
@@ -265,7 +265,7 @@ class MyJobs extends Component {
                     />
                     <Button
                         v-if={userType === 'employer'}
-                        text={'Create new Post'}
+                        text={'Create new Job'}
                         width={'60%'}
                         icon={addIcon}
                         iconPosition={'right'}

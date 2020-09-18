@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import SearchSection from "./components/SearchSection";
 import Modal from "./components/Modal";
 import Messenger from "./components/Messenger";
+import CvCreate from "./components/CV/cvCreate";
 
 /*** Screens ***/
 import Home from "./screens/Home";
@@ -194,9 +195,11 @@ class App extends React.Component {
                   {...props}
                 />
               )}
-            />
-            <Route
-              path="/coverletters"
+                        />
+                        <Route path="/cvcreate"
+                               render={props => <CvCreate getUser={this.getUser} user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
+                        />
+                        <Route path="/coverletters"
               render={(props) => (
                 <CoverLetters
                   getUser={this.getUser}

@@ -24,6 +24,7 @@ class Checkbox extends Component {
       className,
       clickable,
       onClick,
+      defaultValue
     } = this.props;
     return (
       <div
@@ -32,15 +33,16 @@ class Checkbox extends Component {
         } ${className}`}
       >
         <input
-          name={name}
+          name={'checkbox'}
           autoComplete={"off"}
           autoFocus={false}
           type={"checkbox"}
           disabled={disabled}
+          defaultValue={value ? defaultValue : ''}
           onChange={this.onChange}
           value={value}
         />
-        <label v-if={label} htmlFor={name}>
+        <label v-if={label} htmlFor={'checkbox'}>
           {label}
           <p className={styles.clickable} onClick={onClick}>
             {clickable}
@@ -59,15 +61,16 @@ Checkbox.propTypes = {
   name: PropTypes.string,
   onChange: PropTypes.any,
   value: PropTypes.string,
+  defaultValue: PropTypes.string,
   size: PropTypes.string,
   className: PropTypes.string,
 };
 
 Checkbox.defaultProps = {
-  disabled: false,
-  label: "",
-  name: "",
-  value: "",
-  size: "half",
-  className: "",
+    disabled: false,
+    label: "",
+    name: "",
+    value: "",
+    size: "half",
+    className: ''
 };

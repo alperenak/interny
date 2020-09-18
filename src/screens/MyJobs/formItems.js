@@ -1,42 +1,32 @@
 import countries from "../../utils/countries";
+import languages from "../../utils/languages";
 
 export const formItems = (formItems) => {
-    let workingDaysArray = [
-        {key: 'monday', value: 'Monday', selected: false},
-        {key: 'tuesday', value: 'Tuesday', selected: false},
-        {key: 'wednesday', value: 'Wednesday', selected: false},
-        {key: 'thursday', value: 'Thursday', selected: false},
-        {key: 'friday', value: 'Friday', selected: false},
-        {key: 'saturday', value: 'Saturday', selected: false},
-        {key: 'sunday', value: 'Sunday', selected: false},
+    let internLevel = [
+        {key: 'newlyGraduated', value: 'Newly Graduated', selected: false},
+        {key: 'student', value: 'Student', selected: false},
     ];
 
-    let JobTypesArray = [
-        {key: 'fullTime', value: 'Full Time', selected: false},
-        {key: 'projectBased', value: 'Project Based', selected: false},
-        {key: 'partTime', value: 'Part Time', selected: false},
-        {key: 'freeTime', value: 'Free Time', selected: false},
+    let internshipLength = [
+        {key: '4', value: '4 weeks', selected: false},
+        {key: '5', value: '5 weeks', selected: false},
+        {key: '6', value: '6 weeks', selected: false},
+        {key: '7', value: '7 weeks', selected: false},
+        {key: '8', value: '8 weeks', selected: false},
+        {key: '9', value: '9 weeks', selected: false},
+        {key: '10', value: '10 weeks', selected: false},
+        {key: '11', value: '11 weeks', selected: false},
+        {key: '12', value: '12 weeks', selected: false},
     ];
 
     let keys = {
+        'internshipLength': {item: {
+            title: "Internship Length",
+            type: 'select',
+            externalSource: internshipLength,
+        }},
         'position': {item: {
             title: "Position",
-        }},
-        'jobRole': {item: {
-            title: "Job Role",
-        }},
-        'jobType': {item: {
-            title: "Job Type",
-            type: 'select',
-            externalSource: JobTypesArray,
-        }},
-        'country': {item: {
-            title: "Job Country",
-            type: 'select',
-            externalSource: countries,
-        }},
-        'city': {item: {
-            title: "Job City",
         }},
         'description': {item: {
             title: "Description",
@@ -45,21 +35,38 @@ export const formItems = (formItems) => {
         }},
         'qualifications': {item: {
             title: "Qualifications",
+            type: "textarea",
+            validations: {lengthValidator: {start: 1, stop: 255}},
         }},
-        'education': {item: {
-            title: 'Min. Education Level',
-        }},
-        'experiences': {item: {
-            title: 'Min. Year(s) of Experience',
-        }},
-        'workingDays': {item: {
-            title: "Working Days",
+        'internLevel': {item: {
+            title: "Intern Level",
             type: 'select',
-            externalSource: workingDaysArray,
+            externalSource: internLevel,
             multiple: true,
         }},
-        'salaryInterval': {item: {
-            title: "Salary Interval",
+        'languages': {item: {
+            title: "Preferred Languages",
+            type: 'select',
+            externalSource: languages,
+            multiple: true,
+        }},
+        'country': {item: {
+            title: "Preferred Countries",
+            type: 'select',
+            externalSource: countries,
+            multiple: true,
+        }},
+        'gpa': {item: {
+            title: "Preferred GPA",
+            validations: {isNumeric: {}},
+        }},
+        'minSalary': {item: {
+            title: "Minimum Salary",
+            validations: {isNumeric: {}},
+        }},
+        'maxSalary': {item: {
+            title: "Maximum Salary",
+            validations: {isNumeric: {}},
         }},
         'startDate': {item: {
             title: "Start Date",
@@ -70,10 +77,6 @@ export const formItems = (formItems) => {
             title: "End Date",
             type: 'date',
             validations: {checkRegex: {whatToHave: ['^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$']}},
-        }},
-        'industry': {item: {
-            title: "Industry",
-            validations: {lengthValidator: {start: 1, stop: 40}},
         }},
         'internQuota': {item: {
             title: "Job Quota",
@@ -87,11 +90,7 @@ export const formItems = (formItems) => {
             duplicable: false,
             count: 0,
             items: [Object.keys(keys[key]).map(itKey => {
-                let defaultTextValue = key === 'city' || key === 'country' ?
-                    formItems?.jobLocation[key] :
-                    (key === 'education' || key === 'experiences' ?
-                    formItems?.requirements[key]:
-                    formItems && formItems[key]);
+                let defaultTextValue = formItems && formItems[key];
                 let defaultValue = keys[key].item.type === 'select' ?
                     (keys[key].item.multiple ? keys[key].item.externalSource.filter(e => defaultTextValue?.includes(e.value)) :
                         keys[key].item.externalSource.find(e => {if (e.value === defaultTextValue) {e.selected = true; return e;}})) :

@@ -11,8 +11,9 @@ import loadingIcon from '../../icons/loading.svg';
 class Button extends Component {
     onClick = () => {
         let {disabled, onButtonClick} = this.props;
-        if(!disabled)
+        if(!disabled) {
             onButtonClick();
+        }
     };
 
     renderContent() {

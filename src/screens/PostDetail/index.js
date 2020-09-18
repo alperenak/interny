@@ -41,15 +41,11 @@ class PostDetail extends Component{
                 user = pst.Employer;
             }
             state.post = pst;
-            let city = pst?.jobLocation?.city ? pst?.jobLocation?.city : '';
-            let country = pst?.jobLocation?.country ? pst?.jobLocation?.country : '';
-            let location = pst?.jobLocation ?
-                `${country}${country && city ? ' - ' : ''}${city}` : '';
             state.posts = [
                 {
                     date: pst.age === "0" ? 'Today' : pst.age + ' days ago',
                     position: pst?.position,
-                    company: `${location}`,
+                    company: `${pst?.country}`,
                     buttons:[
                         {
                             type: userType === 'intern' ? 'primary' : 'ghost',
@@ -59,9 +55,16 @@ class PostDetail extends Component{
                         }
                     ],
                     description: pst?.description,
-                    qualifications: pst?.qualifications,
-                    requirements: pst?.requirements,
+                    endDate: pst?.endDate,
+                    gpa: pst?.gpa,
+                    internLevel: pst?.internLevel,
                     internQuota: pst?.internQuota,
+                    internshipLength: pst?.internshipLength,
+                    languages: pst?.languages,
+                    maxSalary: pst?.maxSalary,
+                    minSalary: pst?.minSalary,
+                    qualifications: pst?.qualifications,
+                    startDate: pst?.startDate,
                 }
             ];
             state.company = {
@@ -101,7 +104,7 @@ class PostDetail extends Component{
     };
 
     onViewApplicantsClick = async (id) => {
-        this.getApplicants(id);
+        await this.getApplicants(id);
         this.props.createModal({ header: 'Applicants', content: this.renderApplicants });
     };
 

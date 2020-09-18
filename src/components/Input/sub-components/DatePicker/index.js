@@ -8,10 +8,9 @@ import Input from "../../index";
 /*** Styles ***/
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
-export default function DateInput({label, placeholder, errorList, labelDescription,
+export default function DateInput({label, placeholder, errorList, labelDescription, defaultValue,
                                       validations, disabled, size, onChange}) {
-    const [startDate, setStartDate] = useState(new Date());
-
+    const [startDate, setStartDate] = useState(defaultValue ? new Date(defaultValue) : '');
 
     const onDateChange = (date) => {
 
@@ -29,7 +28,7 @@ export default function DateInput({label, placeholder, errorList, labelDescripti
             errorList={errorList}
             labelDescription={labelDescription}
             validations={validations}
-            defaultValue={value}
+            defaultValue={value || defaultValue}
             disabled={disabled}
             size={size}
             onClick={onClick}

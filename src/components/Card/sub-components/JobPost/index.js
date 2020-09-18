@@ -8,7 +8,8 @@ import styles from "./jobPost.scss";
 
 /*** Icons ***/
 import locationIcon from "../../../../icons/location.svg";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
+import {getCookie} from "../../../../utils/cookie";
 
 class JobPost extends Component {
   renderPostButtons(buttons) {
@@ -39,37 +40,37 @@ class JobPost extends Component {
   }
 
   renderPost = (pst, multiple) => {
-    return (
-      <Fragment>
-        <div
-          className={`${multiple ? styles.multiplePost : styles.singlePost}`}
-        >
-          <Link to={`/postdetail/${pst.id}`} className={styles.itemImage}>
-            <img src={pst.image ? pst.image : ""} alt={"image"} />
+    let link = getCookie('token') ? `/postdetail/${pst.id}` : 'signup';
+
+        return (
+            <Fragment>
+                <div className={`${multiple ? styles.multiplePost : styles.singlePost}`}>
+                    <Link to={link}  className={styles.itemImage}>
+                        <img src={pst.image ? pst.image : ""} alt={"image"} />
           </Link>
           <Link
-            to={`/postdetail/${pst.id}`}
+            to={link}
             className={styles.postHeaderWrapper}
           >
             <div className={styles.postHeader}>{pst.header}</div>
             <div className={styles.postDate}>{pst.date}</div>
           </Link>
-          <Link to={`/postdetail/${pst.id}`} className={styles.postCompany}>
+          <Link to={link} className={styles.postCompany}>
             {pst.company}
           </Link>
           {pst.buttons && this.renderPostButtons(pst.buttons)}
           <Link
-            to={`/postdetail/${pst.id}`}
+            to={link}
             v-if={pst.location}
             className={styles.postLocation}
           >
             <img src={locationIcon} alt={"location"} />
             {pst.location}
           </Link>
-          <Link to={`/postdetail/${pst.id}`} className={styles.postNote}>
+          <Link to={link} className={styles.postNote}>
             {pst.description}
           </Link>
-          <Link to={`/postdetail/${pst.id}`} className={styles.postNote}>
+          <Link to={link} className={styles.postNote}>
             {pst.note}
           </Link>
         </div>

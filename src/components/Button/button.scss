@@ -16,9 +16,9 @@ $variants:( //primary variants
   secondary-focus: (background-color:#ff8104, color:white, border:solid 1px #ff8104),
   secondary-disable: (background-color:#cccccc, color:#919191, border:solid 1px #cccccc),
   //ghost variants
-  ghost-hover: (background-color:white, color:#2b4970, border:solid 1px #2b4970),
-  ghost-focus: (background-color:rgba(#2b4970, 0.08), color:#003670, border:solid 1px #003670),
-  ghost-disable: (background-color:white, color:#919191, border:solid 1px #cccccc),
+        ghost-hover: (background-color:transparent,color:#2b4970,border:solid 1px #2b4970),
+        ghost-focus: (background-color:rgba(#2b4970,0.08),color:#003670,border:solid 1px #003670),
+        ghost-disable: (background-color:white,color:#919191,border:solid 1px #cccccc),
   //link variants
   link-hover: (background-color:transparent, color:#2b4970, border:solid 1px transparent),
   link-focus: (background-color:transparent, color:#003670, border:solid 1px transparent),
@@ -48,7 +48,6 @@ $sizes: ("large":$large, "default":$default, "small":$small, "tiny":$tiny);
 
   &.loading {
     pointer-events: none;
-
     & img {
       width: 19px !important;
     }
@@ -81,6 +80,7 @@ $sizes: ("large":$large, "default":$default, "small":$small, "tiny":$tiny);
         }
 
         cursor: not-allowed;
+        pointer-events: none;
       }
 
       &:not(.disabled):hover {

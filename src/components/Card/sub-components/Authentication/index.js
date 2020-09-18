@@ -315,7 +315,7 @@ class Authentication extends Component {
         });
       }
     }
-    this.setState({ page: page, submitObject: {} });
+    this.setState({ page: page });
   };
 
   onInputChange = (key, value) => {
@@ -693,16 +693,12 @@ class Authentication extends Component {
             v-for={(btn, i) in buttons}
             key={"btn" + i}
             type={btn.type}
-            disabled={
-              this.props.type == "login" ? false : !this.state.checkboxStatus
-            }
+            disabled={(type === 'auth' && !this.state.checkboxStatus)}
             sizeName={btn.sizeName}
             width={btn.width}
             loading={btn.loading}
             text={btn.text}
-            onButtonClick={() => {
-              this.state.checkboxStatus ? btn.onButtonClick() : null;
-            }}
+            onButtonClick={btn.onButtonClick}
           />
         </div>
         <div

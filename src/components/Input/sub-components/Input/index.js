@@ -86,8 +86,10 @@ class PlainInput extends Component {
                         ${styles.inputContainer} 
                         ${type === "textarea" ? styles.textarea : ""} 
                         ${styles[size]} ${!valid ? styles.error : ""}`}
-          name={name}
-          autoComplete={"off"}
+
+                    name={name}
+
+                    autoComplete={"off"}
           autoFocus={false}
           onKeyDown={onKeyDown}
           type={type}

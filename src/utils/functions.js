@@ -37,19 +37,19 @@ export const formJobData = async (formData) => {
     let id = getCookie('user_id');
     let payload = {
         "Employer": id,
-        "description": formData ? formData.description :  "",
         "position": formData ? formData.position :  "",
-        "requirements": formData ? formData.requirements :  {},
-        "qualifications": formData ? formData.qualifications :  [],
-        "workingDays": formData ? formData.workingDays :  [],
-        "salaryInterval": formData ? formData.salaryInterval :  [],
-        "startDate": formData ? formData.startDate :  "",
+        "country": formData ? formData.country :  [],
+        "description": formData ? formData.description :  "",
         "endDate": formData ? formData.endDate :  "",
-        "industry": formData ? formData.industry :  "",
-        "jobRole": formData ? formData.jobRole :  "",
-        "jobType": formData ? formData.jobType :  "",
-        "jobLocation": formData ? formData.jobLocation :  {},
-        "internQuota": formData ? formData.internQuota :  0
+        "gpa": formData ? formData.gpa :  "",
+        "internLevel": formData ? formData.internLevel :  [],
+        "internQuota": formData ? formData.internQuota :  "",
+        "internshipLength": formData ? formData.internshipLength :  "",
+        "languages": formData ? formData.languages :  [],
+        "maxSalary": formData ? formData.maxSalary :  "",
+        "minSalary": formData ? formData.minSalary :  "",
+        "qualifications": formData ? formData.qualifications :  "",
+        "startDate": formData ? formData.startDate :  ""
     };
 
     if (formData) {
@@ -111,9 +111,7 @@ export const onCVFormChange = (value, formData, sectionKey, itemKey, index) => {
 };
 
 export const onJobFormChange = (value, formData, sectionKey) => {
-    if (sectionKey === 'country' || sectionKey === 'city') {
-        formData['jobLocation'][sectionKey] = value;
-    } else if (sectionKey === 'education' || sectionKey === 'experiences') {
+    if (sectionKey === 'education' || sectionKey === 'experiences') {
         formData['requirements'][sectionKey] = [value];
     } else {
         formData[sectionKey] = value;
@@ -129,4 +127,16 @@ export const onTaskFormChange = (value, formData, key) => {
         formData[key] = value;
     }
     return formData;
+};
+
+export const formatDate = (date) => {
+    let months = [
+        'Jan', 'Feb', 'Mar',
+        'Apr', 'May', 'Jun',
+        'Jul', 'Aug', 'Sep',
+        'Oct', 'Nov', 'Dec',
+    ];
+
+    let tempDate = new Date(date.toString());
+    return `${tempDate.getUTCDate()} ${months[tempDate.getUTCMonth()]} ${tempDate.getFullYear()}`
 };
