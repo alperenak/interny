@@ -9,7 +9,7 @@ import internyLogo from "../../assets/tinyLogo.png";
 
 class SideBar extends Component {
   render() {
-    let { type } = this.props;
+    let { type, isOpen, children } = this.props;
     return (
       <Fragment>
         {/* sidebar */}
@@ -23,19 +23,19 @@ class SideBar extends Component {
         </div>
 
         {/* hamburger menu */}
-
         <div
           id="hamburger-menu"
           v-if={type === "hamburgerMenu"}
           className={styles.hamburgerMenu}
         >
           <img
-            onClick={() =>
-              (document.getElementById("hamburger-menu").style.display = "none")
-            }
+            onClick={() => {
+              document.getElementById("hamburger-menu").style.width = "0";
+            }}
             src={CloseIcon}
             alt={"close"}
           />
+          {children}
         </div>
       </Fragment>
     );

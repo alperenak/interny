@@ -43,6 +43,9 @@ class Button extends Component {
         else if (responsive === 'link'){
             return styles.responsiveLink
         }
+        else if (responsive === 'hamburger'){
+            return styles.responsiveHamburger
+        }
         else return ''
     }
 
@@ -50,7 +53,7 @@ class Button extends Component {
         let {disabled, to, onButtonClick, loading, width, sizeName, type, onMouseOver, onMouseLeave,responsive} = this.props;
         return (
             <Fragment>
-                <Link style={{width: width}} v-if={to} to={to} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}
+                <Link onClick={onButtonClick} style={{width: width}} v-if={to} to={to} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}
                     className={`${styles.btn} ${loading ? styles.loading : ''} ${styles[sizeName]} ${styles[type]} ${this.responsiveConverter(responsive)} ${(disabled?styles.disabled:'')}`}>
                     {this.renderContent()}
                 </Link>

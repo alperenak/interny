@@ -167,4 +167,10 @@ $sizes: ("large":$large, "default":$default, "small":$small, "tiny":$tiny);
       font-size: calc(2px + 8px);
     }
   }
+
+  &.responsiveHamburger {
+    @include medium {
+      width: 120px;
+    }
+  }
 }

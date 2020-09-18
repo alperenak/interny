@@ -1,3 +1,5 @@
+@import '../../../../helpers/responsiveBreakpointsMixins.scss';
+
 .dropDownHeader {
   width: 100%;
   font-size: calc(2px + 16px);
@@ -13,7 +15,8 @@
   margin: 0;
   padding: 0;
 
-  & li, a {
+  & li,
+  a {
     display: flex;
     font-family: "Noto Sans";
     justify-content: space-between;
@@ -26,6 +29,11 @@
     padding: 6px 8px;
     margin: 2px 0;
 
+    @include small {
+      font-size: calc(2px + 11px);
+
+    }
+
     &:hover {
       background-color: rgba(#2b4970, 0.08);
       color: #2b4970;
@@ -35,6 +43,7 @@
         background-color: transparent;
       }
     }
+
     &.selected {
       background-color: rgba(#2b4970, 0.08);
       color: #2b4970;
@@ -71,7 +80,7 @@
         margin-left: 20px;
       }
 
-      & > img {
+      &>img {
         width: 100%;
       }
     }

@@ -7,7 +7,13 @@
   border-radius: 16px;
   background-color: #ffffff;
   border: 1px solid #efefef;
+  &.pricing{
+    @include large{
+      padding: 16px 16px;
 
+    }
+
+  }
 
   &.photo {
     display: flex;
@@ -116,6 +122,22 @@
     height: fit-content;
   }
 
+  & .responsiveDropdown {
+    margin: 0;
+    border-radius: 6px;
+    padding: 8px 16px;
+    min-width: 150px;
+    max-width: 200px;
+    height: fit-content;
+
+    @include small {
+      min-width: 136px;
+      margin-left: 7px;
+      width: 136px;
+      background-color: red;
+    }
+  }
+
   &.list {
     padding: 32px;
     min-width: 200px;
@@ -145,4 +167,6 @@
       text-align: center
     }
   }
+
+
 }
