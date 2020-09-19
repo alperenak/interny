@@ -4,6 +4,7 @@ import React, { Component, Fragment } from "react";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import SearchSection from "../../components/SearchSection";
+import LoadingModal from '../../components/LoadingModal'
 
 /*** Utils ***/
 import store from "../../store";
@@ -24,10 +25,16 @@ class CoverLetters extends Component {
       title: "",
       text: "",
     },
+    processing: true
   };
 
   async componentDidMount() {
-    await this.getCoverLetters();
+    let response = await this.getCoverLetters();
+
+    if (response) {
+      this.setState({ processing: false })
+
+    }
   }
 
   getCoverLetters = async () => {
@@ -42,6 +49,7 @@ class CoverLetters extends Component {
     });
 
     this.setState({ coverLetters });
+    return res;
   };
 
   renderModalButtons = () => [
@@ -55,13 +63,22 @@ class CoverLetters extends Component {
       type: "primary",
       text: "Create",
       sizeName: "default",
+      loading: this.state.create_processing,
       onButtonClick: async () => {
+        this.setState({ create_processing: true })
+
         await store.createCoverLetter(
           getCookie("user_id"),
           this.state.newLetter
         );
-        this.props.closeModal();
-        await this.getCoverLetters();
+
+        let response = await this.getCoverLetters();
+        console.log(response);
+        if (response) {
+          this.setState({ create_processing: false })
+          if (!this.state.create_processing)
+            this.props.closeModal();
+        }
       },
     },
   ];
@@ -129,64 +146,58 @@ class CoverLetters extends Component {
     );
   };
 
-  /* renderHorizontalCard = () => {
-    return (
-      <div className={styles.card_container}>
-        <div className={styles.card_image}></div>
-        <div className={styles.card_content}></div>
-        <div className={styles.card_buttons}></div>
-      </div>
-    );
-  }; */
   render() {
-    let { coverLetters } = this.state;
+    let { coverLetters, processing } = this.state;
     let { user } = this.props;
     return (
-      <div className={styles.CoverLetters}>
-        <div className={styles.cards}>
-          <div className={styles.CoverLettersWrapper}>
-            <Card
-              type={"coverLetter"}
-              showButtons={true}
-              v-for={(coverLetter, i) in coverLetters}
-              header={{ text: coverLetter.title, position: "center" }}
-              coverLetter={coverLetter}
-              key={i}
-              onChange={(value) =>
-                this.onCoverLetterChange(value, coverLetter.id)
-              }
-              onSubmit={() => this.onEditSubmit(coverLetter.id)}
-              onDelete={() => this.onCoverLetterDelete(coverLetter.id)}
-              accordion={true}
-            />
-            {coverLetters.length <= 0 && (
-              <Card>There is no Cover Letter...</Card>
-            )}
-          </div>
-          <div className={styles.profileSection}>
-            <Card
-              type={"profile"}
-              getUser={this.props.getUser}
-              profileObject={{
-                avatar: user.avatar,
-                status: "active",
-                header: `${user.name} ${user.surname}`,
-                location: "Istanbul - Turkey",
-                sector: "Software",
-                position: "Full Time",
-                education: "Graduate",
-              }}
-            />
-            <Button
-              text={"Create new Cover Letter"}
-              width={"60%"}
-              icon={addIcon}
-              iconPosition={"right"}
-              onButtonClick={this.createCoverLetter}
-            />
+      <>
+        {processing && <LoadingModal text={"Loading..."} />}
+        <div className={styles.CoverLetters}>
+          <div className={styles.cards}>
+            <div className={styles.CoverLettersWrapper}>
+              <Card
+                type={"coverLetter"}
+                showButtons={true}
+                v-for={(coverLetter, i) in coverLetters}
+                header={{ text: coverLetter.title, position: "center" }}
+                coverLetter={coverLetter}
+                key={i}
+                onChange={(value) =>
+                  this.onCoverLetterChange(value, coverLetter.id)
+                }
+                onSubmit={() => this.onEditSubmit(coverLetter.id)}
+                onDelete={() => this.onCoverLetterDelete(coverLetter.id)}
+                accordion={true}
+              />
+              {coverLetters.length <= 0 && (
+                <Card>There is no Cover Letter...</Card>
+              )}
+            </div>
+            <div className={styles.profileSection}>
+              <Card
+                type={"profile"}
+                getUser={this.props.getUser}
+                profileObject={{
+                  avatar: user.avatar,
+                  status: "active",
+                  header: `${user.name} ${user.surname}`,
+                  location: "Istanbul - Turkey",
+                  sector: "Software",
+                  position: "Full Time",
+                  education: "Graduate",
+                }}
+              />
+              <Button
+                text={"Create new Cover Letter"}
+                width={"60%"}
+                icon={addIcon}
+                iconPosition={"right"}
+                onButtonClick={this.createCoverLetter}
+              />
+            </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }

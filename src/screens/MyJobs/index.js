@@ -1,13 +1,13 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 
 /*** Components ***/
 import Card from "../../components/Card";
 
 /*** Utils ***/
 import store from '../../store';
-import {getCookie} from "../../utils/cookie";
-import {formButtons, formItems} from "./formItems";
-import {formJobData, onJobFormChange} from "../../utils/functions";
+import { getCookie } from "../../utils/cookie";
+import { formButtons, formItems } from "./formItems";
+import { formJobData, onJobFormChange } from "../../utils/functions";
 
 /*** Styles ***/
 import styles from './myjobs.scss';
@@ -16,6 +16,7 @@ import styles from './myjobs.scss';
 import Button from "../../components/Button";
 import addIcon from "../../icons/add-circular-outlined-white-button.svg";
 import Form from "../../components/Form";
+import LoadingModal from '../../components/LoadingModal';
 
 class MyJobs extends Component {
     state = {
@@ -32,29 +33,29 @@ class MyJobs extends Component {
                 key: 'ApplicationHistory',
                 value: 'Application History',
                 selected: true,
-                to:'/myJobs',
-                onChange: () => this.setState({page: 0})
+                to: '/myJobs',
+                onChange: () => this.setState({ page: 0 })
             },
             {
                 key: 'SavedJobs',
                 value: 'Saved Jobs',
                 selected: false,
-                to:'/myJobs',
-                onChange: () => this.setState({page: 1})
+                to: '/myJobs',
+                onChange: () => this.setState({ page: 1 })
             },
             {
                 key: 'AcceptedJobs',
                 value: 'Accepted Jobs',
                 selected: false,
-                to:'/myJobs',
-                onChange: () => this.setState({page: 2})
+                to: '/myJobs',
+                onChange: () => this.setState({ page: 2 })
             },
             {
                 key: 'PendingJobs',
                 value: 'Pending Jobs',
                 selected: false,
-                to:'/myJobs',
-                onChange: () => this.setState({page: 3})
+                to: '/myJobs',
+                onChange: () => this.setState({ page: 3 })
             },
         ],
         employerPostPageSource: [
@@ -62,24 +63,25 @@ class MyJobs extends Component {
                 key: 'PostHistory',
                 value: 'Post History',
                 selected: true,
-                to:'/myJobs',
-                onChange: () => this.setState({page: 0})
+                to: '/myJobs',
+                onChange: () => this.setState({ page: 0 })
             },
             {
                 key: 'ActivePosts',
                 value: 'Active Posts',
                 selected: false,
-                to:'/myJobs',
-                onChange: () => this.setState({page: 1})
+                to: '/myJobs',
+                onChange: () => this.setState({ page: 1 })
             },
             {
                 key: 'PassivePosts',
                 value: 'Passive Posts',
                 selected: false,
-                to:'/myJobs',
-                onChange: () => this.setState({page: 2})
+                to: '/myJobs',
+                onChange: () => this.setState({ page: 2 })
             },
-        ]
+        ],
+        processing: true
     };
 
     async componentDidMount() {
@@ -97,14 +99,14 @@ class MyJobs extends Component {
         let country = pst?.jobLocation?.country ? pst?.jobLocation?.country : '';
         let location = pst?.jobLocation ?
             `${country}${country && city ? ' - ' : ''}${city}` : '';
-        return{
+        return {
             id: pst.id,
             date: pst.age === "0" ? 'Today' : pst.age + ' days ago',
             header: pst.Employer.legalName,
             company: pst.position,
             image: pst.Employer.logo,
             location: `${location}`,
-            buttons:buttons,
+            buttons: buttons,
             description: pst.description,
             note: pst.views ? pst.views : '0 view'
         }
@@ -115,7 +117,7 @@ class MyJobs extends Component {
         let savedPosts = savedPostsRes.map(pst => {
             return this.fillPosts(pst, this.savedButtons(pst.id));
         });
-        this.setState({ savedPosts });
+        this.setState({ savedPosts, processing: false });
     }
 
     async getPosts() {
@@ -130,7 +132,7 @@ class MyJobs extends Component {
         let pendingPosts = appliedPostsRes.filter(post => post.isPending).map(pst => {
             return this.fillPosts(pst.Job, this.pendingButtons(pst.id));
         });
-        this.setState({ appliedPosts, acceptedPosts, pendingPosts });
+        this.setState({ appliedPosts, acceptedPosts, pendingPosts, processing: false });
     }
 
     async getJobPosts() {
@@ -148,15 +150,15 @@ class MyJobs extends Component {
         let passivePosts = passivePostsRes.map(pst => {
             return this.fillPosts(pst, this.historyButtons(pst));
         });
-        this.setState({ postHistory: posts, activePosts: activePosts, passivePosts: passivePosts });
+        this.setState({ postHistory: posts, activePosts: activePosts, passivePosts: passivePosts, processing: false });
     }
 
     appliedButtons = (id) => [
         {
-            type:'primary',
-            text:'Withdraw',
-            sizeName:'small',
-            width:'85px',
+            type: 'primary',
+            text: 'Withdraw',
+            sizeName: 'small',
+            width: '85px',
             onButtonClick: async () => {
                 let res = await store.withdrawPost(getCookie('user_id'), id);
                 if (res.status && res.status === 203) {
@@ -167,10 +169,10 @@ class MyJobs extends Component {
     ];
     savedButtons = (id) => [
         {
-            type:'ghost',
-            text:'Remove Post',
-            sizeName:'small',
-            width:'85px',
+            type: 'ghost',
+            text: 'Remove Post',
+            sizeName: 'small',
+            width: '85px',
             onButtonClick: async () => {
                 let res = await store.removePost(getCookie('user_id'), id);
                 if (res.status && res.status === 203) {
@@ -181,10 +183,10 @@ class MyJobs extends Component {
     ];
     pendingButtons = (id) => [
         {
-            type:'primary',
-            text:'Withdraw',
-            sizeName:'small',
-            width:'100px',
+            type: 'primary',
+            text: 'Withdraw',
+            sizeName: 'small',
+            width: '100px',
             onButtonClick: async () => {
                 let res = await store.withdrawPost(getCookie('user_id'), id);
                 if (res.status && res.status === 203) {
@@ -193,19 +195,19 @@ class MyJobs extends Component {
             }
         },
         {
-            type:'ghost',
+            type: 'ghost',
             disabled: true,
-            text:'Pending...',
-            sizeName:'small',
-            width:'100px',
+            text: 'Pending...',
+            sizeName: 'small',
+            width: '100px',
         }
     ];
     acceptedButtons = (userId, jobId) => [
         {
-            type:'primary',
-            text:'Start Internship',
-            sizeName:'small',
-            width:'100px',
+            type: 'primary',
+            text: 'Start Internship',
+            sizeName: 'small',
+            width: '100px',
             onButtonClick: async () => {
                 await store.startInternship(userId, jobId);
                 window.location.pathname = '/myTasks';
@@ -217,8 +219,8 @@ class MyJobs extends Component {
         {
             type: pst.isSuspended ? 'primary' : 'ghost',
             text: pst.isSuspended ? 'Activate' : 'Suspend',
-            sizeName:'small',
-            width:'85px',
+            sizeName: 'small',
+            width: '85px',
             onButtonClick: async () => {
                 if (pst.isSuspended)
                     await store.activatePost(pst.id);
@@ -253,11 +255,12 @@ class MyJobs extends Component {
     };
 
     render() {
-        let {appliedPosts, savedPosts, page, acceptedPosts, pendingPosts,
-            postHistory, activePosts, passivePosts} = this.state;
+        let { appliedPosts, savedPosts, page, acceptedPosts, pendingPosts,
+            postHistory, activePosts, passivePosts, processing } = this.state;
         let userType = getCookie('user');
         return (
             <div className={styles.MyJobs}>
+                {processing && <LoadingModal text="Loading" />}
                 <div className={styles.listButtonContainer}>
                     <Card
                         type={'list'}
@@ -274,25 +277,25 @@ class MyJobs extends Component {
                 </div>
                 <Fragment v-if={userType === 'intern'}>
                     <Card
-                        header={{text: 'Application History', position: 'center'}}
+                        header={{ text: 'Application History', position: 'center' }}
                         v-if={page === 0}
                         type={'jobPost'}
                         posts={appliedPosts}
                     />
                     <Card
-                        header={{text: 'Saved Jobs', position: 'center'}}
+                        header={{ text: 'Saved Jobs', position: 'center' }}
                         v-if={page === 1}
                         type={'jobPost'}
                         posts={savedPosts}
                     />
                     <Card
-                        header={{text: 'Accepted Jobs', position: 'center'}}
+                        header={{ text: 'Accepted Jobs', position: 'center' }}
                         v-if={page === 2}
                         type={'jobPost'}
                         posts={acceptedPosts}
                     />
                     <Card
-                        header={{text: 'Pending Jobs', position: 'center'}}
+                        header={{ text: 'Pending Jobs', position: 'center' }}
                         v-if={page === 3}
                         type={'jobPost'}
                         posts={pendingPosts}
@@ -300,19 +303,19 @@ class MyJobs extends Component {
                 </Fragment>
                 <Fragment v-else-if={userType === 'employer'}>
                     <Card
-                        header={{text: 'Post History', position: 'center'}}
+                        header={{ text: 'Post History', position: 'center' }}
                         v-if={page === 0}
                         type={'jobPost'}
                         posts={postHistory}
                     />
                     <Card
-                        header={{text: 'Active Posts', position: 'center'}}
+                        header={{ text: 'Active Posts', position: 'center' }}
                         v-if={page === 1}
                         type={'jobPost'}
                         posts={activePosts}
                     />
                     <Card
-                        header={{text: 'Passive Posts', position: 'center'}}
+                        header={{ text: 'Passive Posts', position: 'center' }}
                         v-if={page === 2}
                         type={'jobPost'}
                         posts={passivePosts}

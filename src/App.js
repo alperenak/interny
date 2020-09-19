@@ -67,6 +67,7 @@ class App extends React.Component {
             userType: userType,
             isInternshipBegun: !!Object.keys(res.data.ApprovedJob).length,
           });
+          return res;
         }
       } else if (userType === "employer") {
         let res = await store.getEmployer(getCookie("user_id"));
@@ -76,6 +77,7 @@ class App extends React.Component {
             isAuthorized: true,
             userType: userType,
           });
+          return res;
         }
       }
     } else {
@@ -138,8 +140,8 @@ class App extends React.Component {
               render={(props) => <LandingPageSearch {...props} />}
             />
             <Route
-                path="/faq"
-                render={(props) => <FrequentlyAskedQuestions {...props} />}
+              path="/faq"
+              render={(props) => <FrequentlyAskedQuestions {...props} />}
             />
             <Route
               path="/packages"
@@ -199,11 +201,11 @@ class App extends React.Component {
                   {...props}
                 />
               )}
-                        />
-                        <Route path="/cvcreate"
-                               render={props => <CvCreate getUser={this.getUser} user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
-                        />
-                        <Route path="/coverletters"
+            />
+            <Route path="/cvcreate"
+              render={props => <CvCreate getUser={this.getUser} user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
+            />
+            <Route path="/coverletters"
               render={(props) => (
                 <CoverLetters
                   getUser={this.getUser}

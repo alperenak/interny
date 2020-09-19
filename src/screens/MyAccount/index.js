@@ -3,6 +3,7 @@ import React, { Component, Fragment } from "react";
 /*** Components ***/
 import Card from "../../components/Card";
 import Button from "../../components/Button";
+import LoadingModal from '../../components/LoadingModal'
 
 /*** Utils ***/
 import store from "../../store";
@@ -27,6 +28,7 @@ class MyAccount extends Component {
       { key: "location", title: "Location" },
     ],
     value: "",
+    processing: false
   };
 
   onFileUpload = async (files) => {
@@ -58,6 +60,29 @@ class MyAccount extends Component {
       />
     );
   }
+  onUpdateClick = async (key) => {
+    this.setState({ processing: true })
+    console.log(this.state.processing);
+    if (getCookie("user") === "intern") {
+      await store.editIntern(this.props.user.id, {
+        field: key,
+        value: this.state.value,
+      });
+    } else {
+      await store.editEmployer(this.props.user.id, {
+        field: key,
+        value: this.state.value,
+      });
+    }
+    this.setState({ value: "" });
+    let response = await this.props.getUser();
+
+
+    if (response) {
+      this.setState({ processing: false })
+      this.props.closeModal();
+    }
+  }
 
   renderModalButtons = (key) => [
     {
@@ -70,91 +95,79 @@ class MyAccount extends Component {
       type: "primary",
       text: "Update",
       sizeName: "default",
-      onButtonClick: async () => {
-        if (getCookie("user") === "intern") {
-          await store.editIntern(this.props.user.id, {
-            field: key,
-            value: this.state.value,
-          });
-        } else {
-          await store.editEmployer(this.props.user.id, {
-            field: key,
-            value: this.state.value,
-          });
-        }
-        this.props.closeModal();
-        this.setState({ value: "" });
-        await this.props.getUser();
-      },
+      onButtonClick: (key) => this.onUpdateClick(key),
     },
   ];
   render() {
     let { user } = this.props;
-    let { items } = this.state;
+    let { items, processing } = this.state;
     return (
-      <div className={styles.myAccount}>
-        <Card
-          header={{ text: "Profile Photo", position: "start" }}
-          type={"photo"}
-        >
-          <div className={styles.profileImage}>
-            <div
-              v-if={user.avatar || user.logo}
-              className={styles.imageContainer}
-            >
-              <img src={user.avatar || user.logo} alt={"profile photo"} />
-            </div>
-            <label
-              className={
-                user.avatar || user.logo
-                  ? styles.statusCircle
-                  : styles.fileInput
-              }
-              htmlFor="fileInput"
-            >
-              <img src={addIcon} alt={"icon"} />
-            </label>
-            <input
-              id={"fileInput"}
-              hidden={true}
-              accept={"image/*"}
-              type={"file"}
-              aria-label={""}
-              onChange={(e) => this.onFileUpload(e.target.files)}
-            />
-          </div>
-        </Card>
-        <Card
-          type={"myAccount"}
-          header={{ text: "My Account", position: "start" }}
-        >
-          {items.map((item, i) => {
-            return (
+      <>
+        {processing && <LoadingModal text={"Loading..."} />}
+        <div className={styles.myAccount}>
+          <Card
+            header={{ text: "Profile Photo", position: "start" }}
+            type={"photo"}
+          >
+            <div className={styles.profileImage}>
               <div
-                v-if={user[item.key]}
-                key={i}
-                className={styles.MyAccountRow}
+                v-if={user.avatar || user.logo}
+                className={styles.imageContainer}
               >
-                <div className={styles.title}>{item.title}</div>
-                <div v-if={item.key !== "password"} className={styles.text}>
-                  {item.key === "location"
-                    ? user[item.key].city + " - " + user[item.key].country
-                    : user[item.key]}
-                </div>
-                <div v-if={item.key === "password"} className={styles.text}>
-                  **********
-                </div>
-                <Button
-                  type={"ghost"}
-                  sizeName={"tiny"}
-                  text={"Update"}
-                  onButtonClick={() => this.onChangeClick(item)}
-                />
+                <img src={user.avatar || user.logo} alt={"profile photo"} />
               </div>
-            );
-          })}
-        </Card>
-      </div>
+              <label
+                className={
+                  user.avatar || user.logo
+                    ? styles.statusCircle
+                    : styles.fileInput
+                }
+                htmlFor="fileInput"
+              >
+                <img src={addIcon} alt={"icon"} />
+              </label>
+              <input
+                id={"fileInput"}
+                hidden={true}
+                accept={"image/*"}
+                type={"file"}
+                aria-label={""}
+                onChange={(e) => this.onFileUpload(e.target.files)}
+              />
+            </div>
+          </Card>
+          <Card
+            type={"myAccount"}
+            header={{ text: "My Account", position: "start" }}
+          >
+            {items.map((item, i) => {
+              return (
+                <div
+                  v-if={user[item.key]}
+                  key={i}
+                  className={styles.MyAccountRow}
+                >
+                  <div className={styles.title}>{item.title}</div>
+                  <div v-if={item.key !== "password"} className={styles.text}>
+                    {item.key === "location"
+                      ? user[item.key].city + " - " + user[item.key].country
+                      : user[item.key]}
+                  </div>
+                  <div v-if={item.key === "password"} className={styles.text}>
+                    **********
+                </div>
+                  <Button
+                    type={"ghost"}
+                    sizeName={"tiny"}
+                    text={"Update"}
+                    onButtonClick={() => this.onChangeClick(item)}
+                  />
+                </div>
+              );
+            })}
+          </Card>
+        </div>
+      </>
     );
   }
 }

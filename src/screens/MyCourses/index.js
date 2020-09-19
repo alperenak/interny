@@ -10,11 +10,13 @@ import { getCookie } from "../../utils/cookie";
 
 /*** Styles ***/
 import styles from "./mycourses.scss";
+import LoadingModal from "../../components/LoadingModal";
 
 class MyCourses extends Component {
   state = {
     courses: [],
     company: {},
+    processing: true
   };
 
   async componentDidMount() {
@@ -39,6 +41,9 @@ class MyCourses extends Component {
         description: "",
       },
     });
+
+    if (resCompany)
+      this.setState({ processing: false })
   }
 
   createCourse = () => {
@@ -52,8 +57,14 @@ class MyCourses extends Component {
   };
   render() {
     let userType = getCookie("user");
-    let { courses, company } = this.state;
-    return this.renderComingSoon();
+    let { courses, company, processing } = this.state;
+    return (
+      <>
+        {this.renderComingSoon()}
+        {processing && <LoadingModal text="Loading" />}
+
+      </>
+    );
     /* <div className={styles.MyCourses}>
         <div className={styles.cards}>
           <div className={styles.courses}>
