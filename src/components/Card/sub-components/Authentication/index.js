@@ -108,16 +108,16 @@ class Authentication extends Component {
         sizeName: "t-quarter",
         value: "",
       },
-        {
-            label: `By joining you agree to the`,
-            type: "checkbox",
-            sizeName: "full",
-            clickable: " Terms, Privacy and Policy",
-            value: "checkboxStatus",
-            onClick: () => {
-                this.setState({ terms: true });
-            },
+      {
+        label: `By joining you agree to the`,
+        type: "checkbox",
+        sizeName: "full",
+        clickable: " Terms, Privacy and Policy",
+        value: "checkboxStatus",
+        onClick: () => {
+          this.setState({ terms: true });
         },
+      },
     ],
     university: "",
     faculty: "",
@@ -598,124 +598,125 @@ class Authentication extends Component {
     let { page, buttons, authButtons, authInputs, loginInputs } = this.state;
     return (
       <div className={`${styles.auth} ${type === "login" ? styles.login : ""}`}>
-        <div v-if={type === "auth"} className={styles.switchButtons}>
-          <div
-            onClick={() => page === "Employer" && this.onSwitchPage("Intern")}
-            className={`${styles.switchButton} ${styles.internButton} ${
-              page === "Intern" ? styles.activeButton : ""
-            }`}
-          >
-            Intern
+        <div className={styles.inputs_container}>
+          <div v-if={type === "auth"} className={styles.switchButtons}>
+            <div
+              onClick={() => page === "Employer" && this.onSwitchPage("Intern")}
+              className={`${styles.switchButton} ${styles.internButton} ${
+                page === "Intern" ? styles.activeButton : ""
+              }`}
+            >
+              Intern
+            </div>
+            <div
+              onClick={() => page === "Intern" && this.onSwitchPage("Employer")}
+              className={`${styles.switchButton} ${styles.employerButton} ${
+                page === "Employer" ? styles.activeButton : ""
+              }`}
+            >
+              Employer
+            </div>
+          </div>
+          <div className={styles.authHeader}>
+            <div className={styles.headerText}>
+              {type === "auth" ? page : "Log In"}
+            </div>
+            <div v-if={type === "auth"} className={styles.description}>
+              New to Interny? Create free account
+            </div>
+            <div v-if={type !== "auth"} className={styles.description}>
+              Log in Interny as {this.props.match.params.user}
+            </div>
           </div>
           <div
-            onClick={() => page === "Intern" && this.onSwitchPage("Employer")}
-            className={`${styles.switchButton} ${styles.employerButton} ${
-              page === "Employer" ? styles.activeButton : ""
-            }`}
+            v-if={type === "auth"}
+            v-for={(btn, i) in authButtons}
+            key={"authBtn" + i}
+            className={styles.authButtonContainer}
           >
-            Employer
+            <div className={styles.authButton}>{btn.text}</div>
           </div>
-        </div>
-        <div className={styles.authHeader}>
-          <div className={styles.headerText}>
-            {type === "auth" ? page : "Log In"}
-          </div>
-          <div v-if={type === "auth"} className={styles.description}>
-            New to Interny? Create free account
-          </div>
-          <div v-if={type !== "auth"} className={styles.description}>
-            Log in Interny as {this.props.match.params.user}
-          </div>
-        </div>
-        <div
-          v-if={type === "auth"}
-          v-for={(btn, i) in authButtons}
-          key={"authBtn" + i}
-          className={styles.authButtonContainer}
-        >
-          <div className={styles.authButton}>{btn.text}</div>
-        </div>
-        {type === "login"
-          ? loginInputs.map((inp, i) => {
-              if (inp.type === "link") {
+          {type === "login"
+            ? loginInputs.map((inp, i) => {
+                if (inp.type === "link") {
+                  return (
+                    <div key={i} className={styles.inputsContainer}>
+                      <Button
+                        className={`${styles.inputsContainer}`}
+                        type={inp.type}
+                        width={inp.width}
+                        disabled={inp.disabled}
+                        sizeName={inp.sizeName}
+                        responsive={inp.responsive}
+                        text={inp.text}
+                        onButtonClick={inp.onButtonClick}
+                      />
+                    </div>
+                  );
+                }
                 return (
-                  <div key={i} className={styles.inputsContainer}>
-                    <Button
-                      className={`${styles.inputsContainer}`}
-                      type={inp.type}
-                      width={inp.width}
-                      disabled={inp.disabled}
-                      sizeName={inp.sizeName}
-                      responsive={inp.responsive}
-                      text={inp.text}
-                      onButtonClick={inp.onButtonClick}
-                    />
-                  </div>
+                  <Input
+                    className={`${styles.inputsContainer}`}
+                    v-if={inp.type !== "link"}
+                    size={inp.sizeName}
+                    key={i}
+                    label={inp.label}
+                    placeholder={inp.placeholder}
+                    errorList={inp.errorList}
+                    type={inp.type}
+                    onChange={inp.onChange}
+                  />
                 );
-              }
-              return (
-                <Input
-                  className={`${styles.inputsContainer}`}
-                  v-if={inp.type !== "link"}
-                  size={inp.sizeName}
-                  key={i}
-                  label={inp.label}
-                  placeholder={inp.placeholder}
-                  errorList={inp.errorList}
-                  type={inp.type}
-                  onChange={inp.onChange}
-                />
-              );
-            })
-          : authInputs.map((inp, i) => {
-              return (
-                <Input
-                  className={`${styles.inputsContainer}`}
-                  v-if={inp.type !== "link"}
-                  size={inp.sizeName}
-                  key={i}
-                  label={inp.label}
-                  placeholder={inp.placeholder}
-                  errorList={inp.errorList}
-                  type={inp.type}
-                  onChange={inp.onChange}
-                  responsive={inp.responsive}
-                  disclaimer={inp.disclaimer}
-                  clickable={inp.clickable}
-                  onClick={inp.onClick}
-                  value={inp.value}
-                />
-              );
-            })}
+              })
+            : authInputs.map((inp, i) => {
+                return (
+                  <Input
+                    className={`${styles.inputsContainer}`}
+                    v-if={inp.type !== "link"}
+                    size={inp.sizeName}
+                    key={i}
+                    label={inp.label}
+                    placeholder={inp.placeholder}
+                    errorList={inp.errorList}
+                    type={inp.type}
+                    onChange={inp.onChange}
+                    responsive={inp.responsive}
+                    disclaimer={inp.disclaimer}
+                    clickable={inp.clickable}
+                    onClick={inp.onClick}
+                    value={inp.value}
+                  />
+                );
+              })}
 
-        <div className={styles.saveButtonContainer}>
-          <Button
-            v-for={(btn, i) in buttons}
-            key={"btn" + i}
-            type={btn.type}
-            disabled={(type === 'auth' && !this.state.checkboxStatus)}
-            sizeName={btn.sizeName}
-            width={btn.width}
-            loading={btn.loading}
-            text={btn.text}
-            onButtonClick={btn.onButtonClick}
-          />
-        </div>
-        <div
-          v-for={(btn, i) in authButtons}
-          key={"loginBtn" + i}
-          v-if={type === "login"}
-          className={styles.authButtonContainer}
-        >
-          <div className={styles.authButton}>{btn.text}</div>
+          <div className={styles.saveButtonContainer}>
+            <Button
+              v-for={(btn, i) in buttons}
+              key={"btn" + i}
+              type={btn.type}
+              disabled={type === "auth" && !this.state.checkboxStatus}
+              sizeName={btn.sizeName}
+              width={btn.width}
+              loading={btn.loading}
+              text={btn.text}
+              onButtonClick={btn.onButtonClick}
+            />
+          </div>
+          <div
+            v-for={(btn, i) in authButtons}
+            key={"loginBtn" + i}
+            v-if={type === "login"}
+            className={styles.authButtonContainer}
+          >
+            <div className={styles.authButton}>{btn.text}</div>
+          </div>
         </div>
         <div className={styles.imgContainer}>
           <div className={styles.shadow}>
             <img v-if={type === "login"} src={loginImage} alt={"loginImage"} />
           </div>
         </div>
-        {
-          /*
+
         <div
           v-if={
             type === "login" &&
@@ -727,18 +728,14 @@ class Authentication extends Component {
           automatically as “interny@YOURUNIVERSITY.edu” or
           “interny@YOURUNIVERSITY.edu.YOURCOUNTRY”.
           <br />
-          <br />
           If you are going to login for the first time in INTERNY, you must
           first create an e-mail account in your university mail server as
           “interny@YOURUNIVERSITY.edu” or
           “interny@YOURUNIVERSITY.edu.YOURCOUNTRY”.
           <br />
-          <br />
           Afterwards, click on the “Forgot your password?” and send your
           interns' tracking account password to your university e-mail account.
         </div>
-        */
-        }
       </div>
     );
   };
