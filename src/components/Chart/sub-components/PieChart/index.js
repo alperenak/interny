@@ -67,6 +67,9 @@ export default class PieDiagram extends PureComponent {
             activeIndex: index,
         });
     };
+    isScreenMatch() {
+        return window.matchMedia("(max-width: 576px)").matches;
+      }
 
     render() {
         return (
@@ -77,8 +80,8 @@ export default class PieDiagram extends PureComponent {
                     data={data}
                     cx={200}
                     cy={110}
-                    innerRadius={60}
-                    outerRadius={80}
+                    innerRadius={this.isScreenMatch()? 45 : 60}
+                    outerRadius={this.isScreenMatch()? 55 : 80}
                     fill="#8884d8"
                     dataKey="value"
                     onMouseEnter={this.onPieEnter}

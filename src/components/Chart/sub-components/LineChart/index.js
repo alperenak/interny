@@ -20,12 +20,16 @@ const data = [
 
 export default class LineDiagram extends PureComponent {
     static jsfiddleUrl = 'https://jsfiddle.net/alidingling/xqjtetw0/';
+    isScreenMatch() {
+        return window.matchMedia("(max-width: 768px)").matches;
+      }
+
     render() {
 
         return (
             <LineChart
-                width={400}
-                height={240}
+                width={this.isScreenMatch() ? 320: 400}
+                height={this.isScreenMatch() ? 200 : 240}
                 data={data}
                 margin={{
                     top: 5, right: 30, left: 20, bottom: 5,

@@ -1,12 +1,20 @@
+@import '../../helpers/responsiveBreakpointsMixins.scss';
+
 .Dashboard {
   display: flex;
   flex-direction: row;
   justify-content: center;
 
+  @include large {
+    flex-direction: column;
+    align-items: center;
+  }
+
   & .tableContainer {
     overflow: scroll;
     width: 100%;
     height: 85%;
+
     & .rowContainer {
       display: flex;
       justify-content: start;
@@ -14,6 +22,7 @@
       margin-bottom: 10px;
       cursor: pointer;
       padding: 10px;
+
       & .avatar {
         position: relative;
         display: flex;
@@ -27,31 +36,32 @@
         box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 1);
         margin-right: 20px;
         overflow: hidden;
+
         & img {
           width: 100%;
         }
       }
+
       & .internName {
         font-family: "Noto Sans Bold";
         text-align: center;
-        font-size: calc(2px + 12px;
+        font-size: calc(2px + 12px);
         color: #2b4970;
       }
     }
   }
 
-  & .projectsContainer {
-
-  }
+  & .projectsContainer {}
 
   & .numericCardContainer {
     display: grid;
     grid-template-columns: 33% 33% 33%;
     grid-row: span 2;
+
     & .numericDataContainer {
       font-family: "Noto Sans Bold";
       text-align: center;
-      font-size: calc(2px + 26px;
+      font-size: calc(2px + 26px);
       color: #2b4970;
     }
   }

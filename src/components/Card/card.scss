@@ -7,8 +7,9 @@
   border-radius: 16px;
   background-color: #ffffff;
   border: 1px solid #efefef;
-  &.pricing{
-    @include large{
+
+  &.pricing {
+    @include large {
       padding: 16px 16px;
 
     }
@@ -35,6 +36,8 @@
     padding: 16px 0;
     border-radius: 4px;
     cursor: pointer;
+
+
   }
 
   &.myAccount {
@@ -53,6 +56,13 @@
     margin: 10px 10px 20px;
     overflow: hidden;
 
+    @include medium {
+      width: 320px;
+    }
+    @include small {
+      width: 260px;
+    }
+
     & .cardHeader {
       margin: 0 0 20px;
     }
@@ -65,12 +75,26 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    @include medium {
+    width: calc(77px - 25px);
+    @include small {
+      width: calc(77px - 45px);
+
+    }
+    }
   }
 
   &.chart {
     height: 350px;
     width: 400px;
     margin: 10px;
+
+    @include medium {
+      width: 320px;
+    }
+    @include small {
+      width: 260px;
+    }
   }
 
   &.modal {

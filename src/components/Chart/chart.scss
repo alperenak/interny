@@ -1,4 +1,13 @@
+@import '../../helpers/responsiveBreakpointsMixins.scss' ;
+
 .Chart {
+  @include medium{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
   position: relative;
 
   & .header {
@@ -12,4 +21,8 @@
     letter-spacing: -0.17px;
     color: #2b4970;
   }
+  & .pieDiagram{
+
+  }
 }
+
