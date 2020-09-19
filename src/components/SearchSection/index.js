@@ -11,6 +11,7 @@ import styles from "./searchSection.scss";
 /*** Icons ***/
 import searchIcon from "../../icons/colorfulSearch.svg";
 import locationIcon from "../../icons/colorfulLocation.svg";
+import closeIcon from "../../icons/close-outline.svg";
 
 /*** Store ***/
 import store from "../../store";
@@ -83,8 +84,25 @@ class SearchSection extends Component {
             e.stopPropagation();
           }}
         >
-          <div style={{ paddingBottom: "50px" }}></div>
-          <div style={{ paddingBottom: "50px" }}></div>
+          <div
+            style={{ paddingBottom: "50px" }}
+            className={styles.hidden_mobile}
+          ></div>
+          <div
+            style={{ paddingBottom: "50px" }}
+            className={styles.hidden_mobile}
+          ></div>
+
+          <div
+            className={`${styles.only_mobile} ${styles.close_icon}`}
+            onClick={() => {
+              this.setState({ advancedSearch: false });
+            }}
+          >
+            {" "}
+            <img src={closeIcon} alt="" />{" "}
+          </div>
+
           <Input
             type={"text"}
             placeholder={"Software Developer"}
