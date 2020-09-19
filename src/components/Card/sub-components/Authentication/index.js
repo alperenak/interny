@@ -712,7 +712,7 @@ class Authentication extends Component {
             <div className={styles.authButton}>{btn.text}</div>
           </div>
         </div>
-        <div className={styles.imgContainer}>
+        <div v-if={type === "login"} className={styles.imgContainer}>
           <div className={styles.shadow}>
             <img v-if={type === "login"} src={loginImage} alt={"loginImage"} />
           </div>

@@ -2,7 +2,7 @@
 
 .auth {
   display: grid;
-  grid-template-columns: 136px 296px 16px 296px 136px;
+  grid-template-columns: 136px 250px 16px 250px 136px;
 
   @include x-large {
     grid-template-columns: 50% 50%;
@@ -21,7 +21,7 @@
   }
 
   & .inputs_container {
-    grid-column: 3 / span 3;
+    grid-column: 2 / span 3;
   }
   & .switchButtons {
     display: flex;
@@ -248,6 +248,10 @@
       & .description {
         text-align: start;
       }
+    }
+
+    & .inputs_container {
+      grid-column: 3 / span 3;
     }
 
     & .authButtonContainer {
