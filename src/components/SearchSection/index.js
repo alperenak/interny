@@ -15,6 +15,7 @@ import closeIcon from "../../icons/close-outline.svg";
 
 /*** Store ***/
 import store from "../../store";
+import {getCookie} from "../../utils/cookie";
 
 class SearchSection extends Component {
   state = {
@@ -424,7 +425,7 @@ class SearchSection extends Component {
           </div>
         </div>
 
-        <div className={styles["advancedSearch"]}>
+        <div v-if={getCookie('token')} className={styles["advancedSearch"]}>
           <a
             className={styles["advancedSearch__button"]}
             onClick={(e) => {
