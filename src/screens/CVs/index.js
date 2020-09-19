@@ -49,7 +49,12 @@ class CVs extends Component {
                             file={section}
                             getCVs={this.getCVs}
                         />
-                        {sections.length <= 0 && <Card>There is no CV...</Card>}
+                        {sections.length <= 0 && <Card>You don't have a CV yet. <span
+                            className={styles.link_text}
+                            onClick={() => window.location.pathname = "/cvcreate"}>
+                            Create one?
+                            </span>
+                        </Card>}
                     </div>
                     <div className={styles.profileSection}>
                         <Card

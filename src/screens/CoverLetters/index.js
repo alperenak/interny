@@ -170,7 +170,12 @@ class CoverLetters extends Component {
                 accordion={true}
               />
               {coverLetters.length <= 0 && (
-                <Card>There is no Cover Letter...</Card>
+                <Card>You have no Cover Letter yet. <span
+                  className={styles.link_text}
+                  onClick={this.createCoverLetter}>
+                  Create one?
+            </span>
+                </Card>
               )}
             </div>
             <div className={styles.profileSection}>
