@@ -8,8 +8,8 @@ import styles from "./jobPost.scss";
 
 /*** Icons ***/
 import locationIcon from "../../../../icons/location.svg";
-import {Link} from "react-router-dom";
-import {getCookie} from "../../../../utils/cookie";
+import { Link } from "react-router-dom";
+import { getCookie } from "../../../../utils/cookie";
 
 class JobPost extends Component {
   renderPostButtons(buttons) {
@@ -42,11 +42,11 @@ class JobPost extends Component {
   renderPost = (pst, multiple) => {
     let link = getCookie('token') ? `/postdetail/${pst.id}` : 'signup';
 
-        return (
-            <Fragment>
-                <div className={`${multiple ? styles.multiplePost : styles.singlePost}`}>
-                    <Link to={link}  className={styles.itemImage}>
-                        <img src={pst.image ? pst.image : ""} alt={"image"} />
+    return (
+      <Fragment>
+        <div className={`${multiple ? styles.multiplePost : styles.singlePost}`}>
+          <Link to={link} className={styles.itemImage}>
+            <img src={pst.image ? pst.image : ""} alt={"image"} />
           </Link>
           <Link
             to={link}
@@ -78,6 +78,15 @@ class JobPost extends Component {
     );
   };
 
+  renderEmpty = () => {
+    let { posts } = this.props;
+
+    if (posts.length < 1) {
+      return <div> There is no job post for you... </div>
+    }
+    return;
+  }
+
   render() {
     let { posts } = this.props;
     return (
@@ -89,6 +98,7 @@ class JobPost extends Component {
             </div>
           );
         })}
+        {this.renderEmpty()}
       </Fragment>
     );
   }

@@ -1,0 +1,36 @@
+.wrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(black, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1500;
+    & .iconWrapper{
+        width: 50px;
+        height: 50px;
+        
+
+        & img{
+            width: 50px;
+            height: 50px;
+            -webkit-animation:rotate 1s linear infinite;
+            -moz-animation:rotate 1s linear infinite;
+            animation:rotate 1s linear infinite;
+        }
+       
+    } 
+    & .text{
+        margin: 25px 0;
+            color: white;
+            font-weight: 600;
+        }
+}
+
+@-moz-keyframes rotate { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes rotate { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes rotate { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }

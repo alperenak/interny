@@ -24,15 +24,18 @@ class CoverLetter extends Component {
         sizeName: "default",
         text: "DELETE",
         type: "ghost",
-        onButtonClick: this.props.onDelete,
+        onButtonClick: async () => {
+          this.setState({ editMode: false })
+          await this.props.onDelete();
+        }
       },
       {
         disabled: false,
         sizeName: "default",
         text: "SAVE",
         type: "secondary",
-        onButtonClick: () => {
-          this.props.onSubmit();
+        onButtonClick: async () => {
+          await this.props.onSubmit();
           this.setState({ editMode: false });
         },
       },

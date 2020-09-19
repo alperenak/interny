@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /*** Components ***/
@@ -10,10 +10,10 @@ import styles from './modal.scss';
 
 class Modal extends Component {
     render() {
-        let {closeModal, width, header, declaration, content, buttons} = this.props;
+        let { closeModal, width, header, declaration, content, buttons } = this.props;
         return (
             <div className={styles.Modal} onClick={() => closeModal()}>
-                <div onClick={(e) => {e.preventDefault(); e.stopPropagation()}}>
+                <div onClick={(e) => { e.preventDefault(); e.stopPropagation() }}>
                     <Card type={'modal'}>
                         <div style={{ width: width }} className={styles.modal}>
                             <div v-if={header} className={styles.header}>
@@ -35,6 +35,7 @@ class Modal extends Component {
                                         width={btn.width}
                                         onButtonClick={btn.onButtonClick}
                                         to={btn.to}
+                                        loading={btn.loading}
                                     />;
                                 })}
                             </div>
@@ -49,10 +50,10 @@ class Modal extends Component {
 export default Modal;
 
 Modal.propTypes = {
-  closeModal: PropTypes.func,
-  content: PropTypes.any,
-  buttons: PropTypes.array,
-  declaration: PropTypes.string,
-  header: PropTypes.string,
-  width: PropTypes.string
+    closeModal: PropTypes.func,
+    content: PropTypes.any,
+    buttons: PropTypes.array,
+    declaration: PropTypes.string,
+    header: PropTypes.string,
+    width: PropTypes.string
 };
