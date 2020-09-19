@@ -5,7 +5,7 @@
   grid-template-columns: 136px 250px 16px 250px 136px;
 
   @include x-large {
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 72px 136px 16px 136px 72px;
   }
 
   @include large {
