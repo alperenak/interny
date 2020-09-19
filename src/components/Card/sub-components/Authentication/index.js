@@ -14,6 +14,7 @@ import Input from "../../../Input";
 import loginImage from "../../../../assets/login.png";
 import backIcon from "../../../../icons/arrow-back-outline.svg";
 import closeIcon from "../../../../icons/close-outline.svg";
+import infoIcon from "../../../../icons/information.svg";
 
 /*** Utils ***/
 import store from "../../../../store";
@@ -716,25 +717,26 @@ class Authentication extends Component {
             <img v-if={type === "login"} src={loginImage} alt={"loginImage"} />
           </div>
         </div>
-
         <div
-          v-if={
-            type === "login" &&
-            this.props.match.params.user.toLowerCase() === "university"
-          }
-          className={styles.mutedText}
+          v-if={type === "login" && this.props.match.params.user.toLowerCase() === "university"}
+          className={styles.info}
         >
-          Intern tracking accounts for all universities were created
-          automatically as “interny@YOURUNIVERSITY.edu” or
-          “interny@YOURUNIVERSITY.edu.YOURCOUNTRY”.
-          <br />
-          If you are going to login for the first time in INTERNY, you must
-          first create an e-mail account in your university mail server as
-          “interny@YOURUNIVERSITY.edu” or
-          “interny@YOURUNIVERSITY.edu.YOURCOUNTRY”.
-          <br />
-          Afterwards, click on the “Forgot your password?” and send your
-          interns' tracking account password to your university e-mail account.
+          <img src={infoIcon} alt={'icon'} />
+          <div
+            className={styles.mutedText}
+          >
+            Intern tracking accounts for all universities were created
+            automatically as “interny@YOURUNIVERSITY.edu” or
+            “interny@YOURUNIVERSITY.edu.YOURCOUNTRY”.
+            <br />
+            If you are going to login for the first time in INTERNY, you must
+            first create an e-mail account in your university mail server as
+            “interny@YOURUNIVERSITY.edu” or
+            “interny@YOURUNIVERSITY.edu.YOURCOUNTRY”.
+            <br />
+            Afterwards, click on the “Forgot your password?” and send your
+            interns' tracking account password to your university e-mail account.
+          </div>
         </div>
       </div>
     );
