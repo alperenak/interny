@@ -2,10 +2,10 @@
 
 .auth {
   display: grid;
-  grid-template-columns: 136px 296px 16px 296px 136px;
+  grid-template-columns: 136px 250px 16px 250px 136px;
 
   @include x-large {
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 72px 136px 16px 136px 72px;
   }
 
   @include large {
@@ -21,7 +21,7 @@
   }
 
   & .inputs_container {
-    grid-column: 3 / span 3;
+    grid-column: 2 / span 3;
   }
   & .switchButtons {
     display: flex;
@@ -202,13 +202,13 @@
     max-width: calc(100% - 20px);
 
     & .shadow {
-      /* position: absolute; */
+      position: absolute;
       border-top-left-radius: 10px;
       border-bottom-left-radius: 10px;
       z-index: 1;
-      background-color: rgba(#2b4970, 0.09);
-      height: auto;
-      width: 100%;
+      width: 437px;
+      top: 0;
+      left: 0;
 
       & img {
         border-top-left-radius: 10px;
@@ -250,6 +250,10 @@
       }
     }
 
+    & .inputs_container {
+      grid-column: 3 / span 3;
+    }
+
     & .authButtonContainer {
       &:nth-child(even) {
         grid-column-start: 3;
@@ -275,13 +279,60 @@
       grid-column-start: 1;
       grid-column-end: span 5;
     }
-    & .mutedText {
-      color: #666666;
-      font-size: 14px;
-      font-weight: lighter;
-      grid-row: 8 / span 2;
-      grid-column: 1 /-1;
-      word-wrap: break-word;
+
+    & .info {
+      position: absolute;
+      right: 32px;
+      top: 16px;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+
+      & img {
+        width: 100%;
+      }
+
+      &:hover {
+        & .mutedText {
+          display: inline-block;
+        }
+      }
+
+      & .mutedText {
+        display: none;
+        position: absolute;
+        border: 2px solid #eee;
+        border-radius: 16px;
+        background-color: rgba(#fff, 0.9);
+        width: 500px;
+        color: #484848;
+        top: 32px;
+        right: 0;
+        padding: 16px;
+        font-family: "Noto Sans";
+        font-size: 14px;
+        font-weight: lighter;
+        grid-row: 8 / span 2;
+        grid-column: 1 /-1;
+        word-wrap: break-word;
+
+        @include x-large {
+          width: 500px;
+        }
+
+        @include large {
+          width: 500px;
+        }
+
+        @include medium {
+          width: 250px;
+        }
+
+        @include small {
+          width: 200px;
+        }
+
+      }
     }
   }
 }
@@ -315,7 +366,7 @@
     background-color: white;
 
     & .row {
-      widows: 100%;
+      windows: 100%;
       display: flex;
       flex-direction: row;
       justify-content: space-around;
