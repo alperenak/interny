@@ -311,6 +311,23 @@
         grid-row: 8 / span 2;
         grid-column: 1 /-1;
         word-wrap: break-word;
+
+        @include x-large {
+          width: 500px;
+        }
+
+        @include large {
+          width: 500px;
+        }
+
+        @include medium {
+          width: 250px;
+        }
+
+        @include small {
+          width: 200px;
+        }
+
       }
     }
   }
