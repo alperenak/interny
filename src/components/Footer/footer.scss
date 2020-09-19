@@ -116,6 +116,10 @@
         cursor: pointer;
         text-align: center;
 
+        & a {
+          color: #2b4970;
+        }
+
         @include small {
           font-size: calc(2px + 12px);
 
