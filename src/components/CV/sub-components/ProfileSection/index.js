@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /*** Components ***/
@@ -20,17 +20,18 @@ import store from "../../../../store";
 
 class ProfileSection extends Component {
     state = {
-        activeEditForm: false
+        activeEditForm: false,
+        deleteBtn_processing: false
     };
 
     onFormCanceled = async () => {
-        this.setState({activeEditForm: false});
+        this.setState({ activeEditForm: false });
         await this.props.getCVs();
     };
 
     render() {
-        let {file} = this.props;
-        let {activeEditForm} = this.state;
+        let { file } = this.props;
+        let { activeEditForm } = this.state;
         let country = '';
         let city = '';
         if (file?.location) {
@@ -47,10 +48,15 @@ class ProfileSection extends Component {
                             type={'ghost'}
                             text={'Delete CV'}
                             sizeName={'small'}
+                            loading={this.state.deleteBtn_processing}
                             iconPosition={'center'}
                             onButtonClick={async () => {
-                                await store.deleteCV(this.props.file.id);
+                                this.setState({ deleteBtn_processing: true })
+                                let response = await store.deleteCV(this.props.file.id);
                                 await this.props.getCVs();
+
+                                if (response)
+                                    this.setState({ deleteBtn_processing: false })
                             }}
                         />
                     </div>
@@ -66,7 +72,7 @@ class ProfileSection extends Component {
                         hoverIcon={editHoverIcon}
                         iconPosition={'left'}
                         text={file.summary}
-                        onButtonClick={() => this.setState({activeEditForm: true})}
+                        onButtonClick={() => this.setState({ activeEditForm: true })}
                     />
                     <Button
                         v-else
@@ -75,12 +81,12 @@ class ProfileSection extends Component {
                         hoverIcon={addHoverIcon}
                         iconPosition={'left'}
                         text={'Add Summary'}
-                        onButtonClick={() => this.setState({activeEditForm: true})}
+                        onButtonClick={() => this.setState({ activeEditForm: true })}
                     />
                 </div>
                 <EditForm
                     v-else
-                    object={{summary: file.summary.title, id: this.state.summary.id, title: file.title}}
+                    object={{ summary: file.summary.title, id: this.state.summary.id, title: file.title }}
                     cv_id={this.props.file.id}
                     onCancel={this.onFormCanceled}
                 />

@@ -41,6 +41,7 @@ class SearchSection extends Component {
     advanced_duration: "",
     advanced_intern_quota: { min: 0, max: 0 },
     advanced_rate: { min: 0, max: 0 },
+    advanced_search_processing: false,
   };
 
   componentDidMount() {
@@ -337,8 +338,9 @@ class SearchSection extends Component {
               type={"secondary"}
               text={"Find Job"}
               sizeName={"large"}
+              loading={this.state.advanced_search_processing}
               onButtonClick={async () => {
-                console.log(this.state);
+                this.setState({ advanced_search_processing: true });
                 let payload = {
                   keyword: this.state.advanced_keyword,
                   location: this.state.advanced_location,
@@ -357,7 +359,11 @@ class SearchSection extends Component {
 
                 let response = await store.advancedSearch(payload);
 
-                this.setState({ advancedSearch: false });
+                if (response)
+                  this.setState({
+                    advancedSearch: false,
+                    advanced_search_processing: false,
+                  });
               }}
             />
           </div>
