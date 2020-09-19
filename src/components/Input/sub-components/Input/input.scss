@@ -192,6 +192,14 @@
 
       }
     }
+
+    &.compose {
+      width: calc(100% - 32px);
+    }
+
+    & .composeInput {
+      padding-right: 28px;
+    }
   }
 
   & .errorMessage {

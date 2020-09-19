@@ -1,7 +1,13 @@
+@import '../../helpers//responsiveBreakpointsMixins.scss';
+
 .conversation-search {
   padding: 10px;
   display: flex;
   flex-direction: column;
+
+  @include medium {
+    display: none;
+  }
 }
 
 .conversation-search-input {

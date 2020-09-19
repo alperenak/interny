@@ -116,6 +116,7 @@ class PlainInput extends Component {
             autoComplete={"off"}
             autoFocus={false}
             type={type}
+            className={size === "compose" ? styles.composeInput : ""}
             onKeyDown={onKeyDown}
             disabled={disabled}
             onChange={(e) => this.onChange(e)}

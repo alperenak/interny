@@ -1,3 +1,5 @@
+@import '../../helpers/responsiveBreakpointsMixins.scss';
+
 .conversation-list-item {
   display: flex;
   align-items: center;
@@ -16,6 +18,10 @@
   border-radius: 10%;
   object-fit: cover;
   margin-right: 10px;
+
+  @include medium {
+    border-radius: 50%;
+  }
 }
 
 .conversation-title {
@@ -23,6 +29,10 @@
   font-weight: bold;
   text-transform: capitalize;
   margin: 0;
+
+  @include medium {
+    display: none;
+  }
 }
 
 .conversation-snippet {

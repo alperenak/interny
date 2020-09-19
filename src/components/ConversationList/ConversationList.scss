@@ -1,12 +1,18 @@
+@import '../../helpers/responsiveBreakpointsMixins.scss';
+
 .conversation-list {
   height: auto;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   background-color: #fbfbfb;
+
+
   & .conversation-list__list {
     overflow: auto;
     height: 400px;
+
+
     &::-webkit-scrollbar {
       width: 7px;
     }
@@ -33,10 +39,40 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  & img {
+  padding-right: 24px;
+
+  @include medium {
+    height: 72px;
+  }
+
+  & .toolbar__user-avatar {
     width: 75px;
     object-fit: cover;
     margin-right: 15px;
     border-radius: 10%;
+
+    @include medium {
+      width: 50px;
+      height: 50px;
+      border: solid 3px rgb(189, 189, 189);
+      border-radius: 50%;
+      padding: 0;
+    }
+  }
+
+  & .toolbar__forward-icon {
+    display: none;
+
+    @include medium {
+      display: flex;
+      width: 24px;
+    }
+  }
+}
+
+.toolbar__username {
+  @include medium {
+    display: none;
+    ;
   }
 }
