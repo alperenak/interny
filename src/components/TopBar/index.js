@@ -223,7 +223,7 @@ class TopBar extends Component {
       });
 
       let data = this.state.bellSource_temp.filter((item, i) => {
-            return i < 3;
+        return i < 3;
       });
 
       this.setState({ bellSource: data });
@@ -322,6 +322,7 @@ class TopBar extends Component {
         >
           <Card
             type={"dropDown"}
+            onPress={() => this.closeHamburgerMenu()}
             externalData={[
               ...this.state[
                 `${iconName === "user" ? userType : iconName}Source`
