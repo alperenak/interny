@@ -32,6 +32,7 @@ class JobPost extends Component {
               type={btn.type}
               width={btn.width}
               to={btn.to}
+              hoverText={btn.hoverText ? btn.hoverText : null}
             />
           );
         })}

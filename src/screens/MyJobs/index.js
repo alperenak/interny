@@ -81,7 +81,8 @@ class MyJobs extends Component {
                 onChange: () => this.setState({ page: 2 })
             },
         ],
-        processing: true
+        processing: true,
+        error: null
     };
 
     async componentDidMount() {
@@ -99,6 +100,15 @@ class MyJobs extends Component {
         let country = pst?.jobLocation?.country ? pst?.jobLocation?.country : '';
         let location = pst?.jobLocation ?
             `${country}${country && city ? ' - ' : ''}${city}` : '';
+
+        let currentDate = new Date();
+        let startDate = new Date(pst.startDate).toLocaleDateString();
+        /*         let endDate = new Date(pst.endDate).toLocaleDateString();*/
+        let canStart = false;
+        if (startDate > currentDate) {
+            canStart = true;
+        }
+
         return {
             id: pst.id,
             date: pst.age === "0" ? 'Today' : pst.age + ' days ago',
@@ -108,7 +118,11 @@ class MyJobs extends Component {
             location: `${location}`,
             buttons: buttons,
             description: pst.description,
-            note: pst.views ? pst.views : '0 view'
+            note: pst.views ? pst.views : '0 view',
+            isStarted: pst.isStarted,
+            isFinished: pst.isFinished,
+            canStart
+
         }
     };
 
@@ -142,13 +156,16 @@ class MyJobs extends Component {
         let passivePostsRes = await store.getPassivePosts(id);
 
         let posts = postsRes.map(pst => {
-            return this.fillPosts(pst, this.historyButtons(pst));
+            if (pst.isSuspended)
+                return this.fillPosts(pst, this.historyButtonsPassive(pst));
+            else
+                return this.fillPosts(pst, this.historyButtonsActive(pst));
         });
         let activePosts = activePostsRes.map(pst => {
-            return this.fillPosts(pst, this.historyButtons(pst));
+            return this.fillPosts(pst, this.historyButtonsActive(pst));
         });
         let passivePosts = passivePostsRes.map(pst => {
-            return this.fillPosts(pst, this.historyButtons(pst));
+            return this.fillPosts(pst, this.historyButtonsPassive(pst));
         });
         this.setState({ postHistory: posts, activePosts: activePosts, passivePosts: passivePosts, processing: false });
     }
@@ -215,7 +232,7 @@ class MyJobs extends Component {
         }
     ];
 
-    historyButtons = (pst) => [
+    historyButtonsPassive = (pst) => [
         {
             type: pst.isSuspended ? 'primary' : 'ghost',
             text: pst.isSuspended ? 'Activate' : 'Suspend',
@@ -223,10 +240,41 @@ class MyJobs extends Component {
             width: '85px',
             onButtonClick: async () => {
                 if (pst.isSuspended)
-                    await store.activatePost(pst.id);
+                    await store.updateStatusOfPost(pst.id, "active");
                 else
-                    await store.suspendPost(pst.id);
+                    await store.updateStatusOfPost(pst.id, "passive");
                 await this.getJobPosts();
+            }
+        },
+
+    ];
+    historyButtonsActive = (pst) => [
+        {
+            type: pst.isSuspended ? 'primary' : 'ghost',
+            text: pst.isSuspended ? 'Activate' : 'Suspend',
+            sizeName: 'small',
+            width: '85px',
+            onButtonClick: async () => {
+                if (pst.isSuspended)
+                    await store.updateStatusOfPost(pst.id, "active");
+                else
+                    await store.updateStatusOfPost(pst.id, "passive");
+                await this.getJobPosts();
+            }
+        },
+        {
+            type: pst.isSuspended ? 'primary' : 'ghost',
+            text: pst.isStarted ? 'End Internship' : 'Start Internship',
+            sizeName: 'small',
+            width: '85px',
+            onButtonClick: async () => {
+                if (pst.canStart)
+                    return this.setState({ error: { title: "Title", description: "You can't do that!" } });
+
+                if (pst.isStarted)
+                    await store.updateStatusOfPost(pst.id, "finish");
+                else
+                    await store.updateStatusOfPost(pst.id, "start");
             }
         }
     ];
@@ -254,12 +302,39 @@ class MyJobs extends Component {
         await this.getJobPosts();
     };
 
+    renderNoPermission = ({ title, description }) => {
+        return (
+            <div className={styles.modal_wrapper} onClick={(e) => {
+                this.setState({ error: null });
+            }}>
+
+                <div className={styles.modal} onClick={(e) => {
+                    e.stopPropaganda();
+                }}>
+                    <div className={styles.title}> {title} </div>
+                    <div className={styles.description}> {description} </div>
+
+                    <div className={styles.button_wrapper}>
+                        <button onClick={(e) => {
+                            this.setState({ error: null });
+                        }}>
+                            Okay
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+        )
+    }
+
     render() {
         let { appliedPosts, savedPosts, page, acceptedPosts, pendingPosts,
-            postHistory, activePosts, passivePosts, processing } = this.state;
+            postHistory, activePosts, passivePosts, processing, error } = this.state;
         let userType = getCookie('user');
         return (
             <div className={styles.MyJobs}>
+                {error && this.renderNoPermission(error)}
                 {processing && <LoadingModal text="Loading" />}
                 <div className={styles.listButtonContainer}>
                     <Card
