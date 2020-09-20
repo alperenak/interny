@@ -268,8 +268,8 @@ class MyJobs extends Component {
             sizeName: 'small',
             width: '85px',
             onButtonClick: async () => {
-                if (pst.canStart)
-                    return this.setState({ error: { title: "Title", description: "You can't do that!" } });
+                if (pst.canStart && !pst.isStarted)
+                    return this.setState({ error: { title: "Error Title Here", description: "You can't do that!" } });
 
                 if (pst.isStarted)
                     await store.updateStatusOfPost(pst.id, "finish");
