@@ -27,6 +27,7 @@ class MyJobs extends Component {
         postHistory: [],
         activePosts: [],
         passivePosts: [],
+        jobsForTask: [],
         page: 0,
         internPostPageSource: [
             {
@@ -81,16 +82,65 @@ class MyJobs extends Component {
                 onChange: () => this.setState({ page: 2 })
             },
         ],
-        processing: true
+        processing: true,
+        redirected: false,
     };
 
+
+
+    redirectControl(props) {
+        const { children = '', is = true } = props;
+
+        if ((this.state.redirected !== false) === is) {
+            // when redirected is true 
+            return (
+                <>
+                    {children}
+                </>
+            )
+        } else return (<></>)
+
+    }
+
+    jobIDSelector = (selectedJOBId) => {
+        if (!this.props.selectJobID) return;
+
+        const callbackMethod = () => {
+            this.props.history.push('/mytasks');
+        }
+
+        this.props.selectJobID(selectedJOBId, callbackMethod);
+    }
+
+    async componentDidUpdate() {
+        let userType = getCookie('user');
+        if (userType === 'employer') {
+            if (this.state.redirected !== false && !(this.state.jobsForTask.length > 0))
+                await this.getJobsForTask();
+        }
+    }
+
     async componentDidMount() {
+
+        // clear location state 
+        if (this.props.location.state && this.props.location.state.redirectInfo) {
+            const redirected = this.props.location.state.redirectInfo;
+            this.setState({ redirected });
+            let state = { ...this.props.location.state };
+            delete state.redirectInfo;
+            this.props.history.replace({ ...this.props.location, state });
+        }
+        //
+
+
         let userType = getCookie('user');
         if (userType === 'intern') {
             await this.getSavedPosts();
             await this.getPosts();
         } else if (userType === 'employer') {
-            await this.getJobPosts();
+            if (this.state.redirected !== false) { await this.getJobsForTask(); }
+            else
+                await this.getJobPosts();
         }
     }
 
@@ -134,6 +184,27 @@ class MyJobs extends Component {
         });
         this.setState({ appliedPosts, acceptedPosts, pendingPosts, processing: false });
     }
+
+    //
+    async getJobsForTask() {
+        let id = getCookie('user_id');
+        let postsRes = await store.getEmployerPosts(id);
+
+        let jobsForTask = postsRes.map(pst => {
+            return this.fillPosts(pst, this.goBoardButton(pst));
+        });
+
+        this.setState({ jobsForTask });
+    }
+    goBoardButton = (pst) => [
+        {
+            type: 'primary',
+            text: 'Go to board',
+            sizeName: 'small',
+            width: '85px',
+            onButtonClick: () => this.jobIDSelector(pst.id)
+        }
+    ];
 
     async getJobPosts() {
         let id = getCookie('user_id');
@@ -256,70 +327,101 @@ class MyJobs extends Component {
 
     render() {
         let { appliedPosts, savedPosts, page, acceptedPosts, pendingPosts,
-            postHistory, activePosts, passivePosts, processing } = this.state;
+            postHistory, jobsForTask, activePosts, passivePosts, processing } = this.state;
         let userType = getCookie('user');
+
+        //
+        const RedirectControl = this.redirectControl.bind(this);
+        const cardText = (text) => (this.state.redirected !== false) ? 'please choose a job' : text;
+
         return (
             <div className={styles.MyJobs}>
                 {processing && <LoadingModal text="Loading" />}
                 <div className={styles.listButtonContainer}>
-                    <Card
-                        type={'list'}
-                        externalData={this.state[`${userType}PostPageSource`]}
-                    />
-                    <Button
-                        v-if={userType === 'employer'}
-                        text={'Create new Job'}
-                        width={'60%'}
-                        icon={addIcon}
-                        iconPosition={'right'}
-                        onButtonClick={this.onCreateClick}
-                    />
+                    <RedirectControl is={false}>
+                        <Card
+                            type={'list'}
+                            externalData={this.state[`${userType}PostPageSource`]}
+                        />
+                        <Button
+                            v-if={userType === 'employer'}
+                            text={'Create new Job'}
+                            width={'60%'}
+                            icon={addIcon}
+                            iconPosition={'right'}
+                            onButtonClick={this.onCreateClick}
+                        />
+                    </RedirectControl>
                 </div>
                 <Fragment v-if={userType === 'intern'}>
-                    <Card
-                        header={{ text: 'Application History', position: 'center' }}
-                        v-if={page === 0}
-                        type={'jobPost'}
-                        posts={appliedPosts}
-                    />
-                    <Card
-                        header={{ text: 'Saved Jobs', position: 'center' }}
-                        v-if={page === 1}
-                        type={'jobPost'}
-                        posts={savedPosts}
-                    />
-                    <Card
-                        header={{ text: 'Accepted Jobs', position: 'center' }}
-                        v-if={page === 2}
-                        type={'jobPost'}
-                        posts={acceptedPosts}
-                    />
-                    <Card
-                        header={{ text: 'Pending Jobs', position: 'center' }}
-                        v-if={page === 3}
-                        type={'jobPost'}
-                        posts={pendingPosts}
-                    />
+                    <RedirectControl is={false}>
+                        <Card
+                            header={{ text: cardText('Application History'), position: 'center' }}
+                            v-if={page === 0}
+                            type={'jobPost'}
+                            RedirectControl={this.redirectControl.bind(this)}
+                            posts={appliedPosts}
+                        />
+                        <Card
+                            header={{ text: cardText('Saved Jobs'), position: 'center' }}
+                            v-if={page === 1}
+                            type={'jobPost'}
+                            RedirectControl={this.redirectControl.bind(this)}
+                            posts={savedPosts}
+                        />
+                        <Card
+                            header={{ text: cardText('Accepted Jobs'), position: 'center' }}
+                            v-if={page === 2}
+                            type={'jobPost'}
+                            RedirectControl={this.redirectControl.bind(this)}
+                            posts={acceptedPosts}
+                        />
+                        <Card
+                            header={{ text: cardText('Pending Jobs'), position: 'center' }}
+                            v-if={page === 3}
+                            type={'jobPost'}
+                            RedirectControl={this.redirectControl.bind(this)}
+                            posts={pendingPosts}
+                        />
+                    </RedirectControl>
+                    <RedirectControl>
+                        <></>
+                    </RedirectControl>
                 </Fragment>
                 <Fragment v-else-if={userType === 'employer'}>
-                    <Card
-                        header={{ text: 'Post History', position: 'center' }}
-                        v-if={page === 0}
-                        type={'jobPost'}
-                        posts={postHistory}
-                    />
-                    <Card
-                        header={{ text: 'Active Posts', position: 'center' }}
-                        v-if={page === 1}
-                        type={'jobPost'}
-                        posts={activePosts}
-                    />
-                    <Card
-                        header={{ text: 'Passive Posts', position: 'center' }}
-                        v-if={page === 2}
-                        type={'jobPost'}
-                        posts={passivePosts}
-                    />
+                    <RedirectControl is={false}>
+                        <Card
+                            header={{ text: cardText('Post History'), position: 'center' }}
+                            v-if={page === 0}
+                            type={'jobPost'}
+                            RedirectControl={this.redirectControl.bind(this)}
+                            posts={postHistory}
+                        />
+                        <Card
+                            header={{ text: cardText('Active Posts'), position: 'center' }}
+                            v-if={page === 1}
+                            type={'jobPost'}
+                            RedirectControl={this.redirectControl.bind(this)}
+                            posts={activePosts}
+                        />
+                        <Card
+                            header={{ text: cardText('Passive Posts'), position: 'center' }}
+                            v-if={page === 2}
+                            type={'jobPost'}
+                            RedirectControl={this.redirectControl.bind(this)}
+                            posts={passivePosts}
+                        />
+                    </RedirectControl>
+                    <RedirectControl>
+                        <Card
+                            header={{ text: cardText('Post History'), position: 'center' }}
+                            v-if={page === 0}
+                            selectJob={this.jobIDSelector.bind(this)}
+                            type={'jobPost'}
+                            RedirectControl={this.redirectControl.bind(this)}
+                            posts={jobsForTask}
+                        />
+                    </RedirectControl>
                 </Fragment>
             </div>
         );

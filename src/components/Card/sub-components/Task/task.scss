@@ -2,6 +2,11 @@
   position: relative;
   height: 100%;
 
+  & .assigneeName{
+    padding: 2px;
+    font-style: italic;
+  }
+
   & .title {
     font-family: "Noto Sans Bold";
     color: #2b4970;

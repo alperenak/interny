@@ -40,39 +40,88 @@ class JobPost extends Component {
   }
 
   renderPost = (pst, multiple) => {
+    const { selectJob, RedirectControl } = this.props;
+
     let link = getCookie('token') ? `/postdetail/${pst.id}` : 'signup';
 
     return (
       <Fragment>
         <div className={`${multiple ? styles.multiplePost : styles.singlePost}`}>
-          <Link to={link} className={styles.itemImage}>
-            <img src={pst.image ? pst.image : ""} alt={"image"} />
-          </Link>
-          <Link
-            to={link}
-            className={styles.postHeaderWrapper}
-          >
-            <div className={styles.postHeader}>{pst.header}</div>
-            <div className={styles.postDate}>{pst.date}</div>
-          </Link>
-          <Link to={link} className={styles.postCompany}>
-            {pst.company}
-          </Link>
-          {pst.buttons && this.renderPostButtons(pst.buttons)}
-          <Link
-            to={link}
-            v-if={pst.location}
-            className={styles.postLocation}
-          >
-            <img src={locationIcon} alt={"location"} />
-            {pst.location}
-          </Link>
-          <Link to={link} className={styles.postNote}>
-            {pst.description}
-          </Link>
-          <Link to={link} className={styles.postNote}>
-            {pst.note}
-          </Link>
+          <RedirectControl is={false}>
+            <Link to={link} className={styles.itemImage}>
+              <img src={pst.image ? pst.image : ""} alt={"image"} />
+            </Link>
+
+            <Link
+              to={link}
+              className={styles.postHeaderWrapper}
+            >
+              <div className={styles.postHeader}>{pst.header}</div>
+              <div className={styles.postDate}>{pst.date}</div>
+            </Link>
+
+            <Link to={link} className={styles.postCompany}>
+              {pst.company}
+            </Link>
+
+            {pst.buttons && this.renderPostButtons(pst.buttons)}
+
+            <Link
+              to={link}
+              v-if={pst.location}
+              className={styles.postLocation}
+            >
+              <img src={locationIcon} alt={"location"} />
+              {pst.location}
+            </Link>
+
+            <Link to={link} className={styles.postNote}>
+              {pst.description}
+            </Link>
+
+            <Link to={link} className={styles.postNote}>
+              {pst.note}
+            </Link>
+          </RedirectControl>
+
+          <RedirectControl>
+            <a href="#" onClick={() => selectJob(pst.id)} className={styles.itemImage}>
+              <img src={pst.image ? pst.image : ""} alt={"image"} />
+            </a>
+
+            <a
+              href="#"
+              onClick={() => selectJob(pst.id)}
+              className={styles.postHeaderWrapper}
+            >
+              <div className={styles.postHeader}>{pst.header}</div>
+              <div className={styles.postDate}>{pst.date}</div>
+            </a>
+
+            <a href="#" onClick={() => selectJob(pst.id)} className={styles.postCompany}>
+              {pst.company}
+            </a>
+
+            {pst.buttons && this.renderPostButtons(pst.buttons)}
+
+            <a
+              href="#"
+              onClick={() => selectJob(pst.id)}
+              v-if={pst.location}
+              className={styles.postLocation}
+            >
+              <img src={locationIcon} alt={"location"} />
+              {pst.location}
+            </a>
+
+            <a href="#" onClick={() => selectJob(pst.id)} className={styles.postNote}>
+              {pst.description}
+            </a>
+
+            <a href="#" onClick={() => selectJob(pst.id)} className={styles.postNote}>
+              {pst.note}
+            </a>
+          </RedirectControl>
         </div>
       </Fragment>
     );
@@ -82,7 +131,7 @@ class JobPost extends Component {
     let { posts } = this.props;
 
     if (posts.length < 1) {
-      return <div> There is no job post for you... </div>
+      return <div className={styles.noJob}> <span>There is no job post for you...</span> </div>
     }
     return;
   }

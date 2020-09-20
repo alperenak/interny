@@ -48,8 +48,13 @@ class App extends React.Component {
       buttons: [],
       visibility: false,
       isInternshipBegun: false,
+      selectedJobID: null,
     },
   };
+
+  selectJobID(selectedJobID, callback = () => null) {
+    this.setState({ selectedJobID }, callback.bind(this))
+  }
 
   async componentDidMount() {
     await this.getUser();
@@ -99,7 +104,7 @@ class App extends React.Component {
   };
 
   render() {
-    let { isAuthorized, user, modal, userType, isInternshipBegun } = this.state;
+    let { isAuthorized, user, modal, userType, isInternshipBegun, selectedJobID } = this.state;
     return (
       <div className={`${styles.App} ${styles.fullScreen}`}>
         <Router>
@@ -224,6 +229,7 @@ class App extends React.Component {
                   user={user}
                   closeModal={this.closeModal}
                   createModal={this.createModal}
+                  selectJobID={this.selectJobID.bind(this)}
                   {...props}
                 />
               )}
@@ -250,6 +256,7 @@ class App extends React.Component {
                   user={user}
                   closeModal={this.closeModal}
                   createModal={this.createModal}
+                  selectedJobID={selectedJobID}
                   {...props}
                 />
               )}
