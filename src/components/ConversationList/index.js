@@ -4,7 +4,6 @@ import ConversationListItem from "../ConversationListItem";
 import Toolbar from "../Toolbar";
 import ToolbarButton from "../ToolbarButton";
 import axios from "axios";
-import ForwardIcon from "../../icons/arrow-forward-outline.svg";
 import styles from "./ConversationList.scss";
 import store from "../../store";
 
@@ -71,17 +70,10 @@ export default class ConversationList extends Component {
               <div className={styles["toolbar__user-info"]}>
                 <img
                   className={styles["toolbar__user-avatar"]}
-                  src={
-                    "https://www.click2houston.com/resizer/A0p2ChPTttB2rrVxAxVEN-XWzm4=/480x600/smart/filters:format(jpeg):strip_exif(true):strip_icc(true):no_upscale(true):quality(65)/arc-anglerfish-arc2-prod-gmg.s3.amazonaws.com/public/PUD7JFA7QJCUJBFSTCO232DXTE.png"
-                  }
+                  src={user.avatar}
                   alt="User Avatar"
                 />
-                {/* <img
-                  className={styles["toolbar__forward-icon"]}
-                  src={ForwardIcon}
-                  alt={"forward-icon"}
-                  onClick={}
-                /> */}
+
                 <div className={styles["toolbar__username"]}>{displayName}</div>
               </div>
             )

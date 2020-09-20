@@ -25,10 +25,9 @@
 }
 
 .message .bubble-container {
+  min-height: 50px;
+  ;
   font-size: calc(2px + 14px);
-
-
-
   display: flex;
 
   @include medium {

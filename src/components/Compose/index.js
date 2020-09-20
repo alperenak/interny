@@ -19,7 +19,7 @@ export default class Compose extends Component {
           priorValue={this.state.value}
           priority={true}
           onKeyDown={async (event) => {
-            if (event.keyCode === 13) {
+            if (event.keyCode === 13 && this.state.value !== "") {
               await store.createMessage(this.props.receiver, this.state.value);
               this.setState({ value: "" });
               await this.props.getContacts();
