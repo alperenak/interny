@@ -1,0 +1,93 @@
+.InternListContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 172px;
+    padding: 24px;
+
+    & .profile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        flex: 1;
+
+        & .avatar {
+
+            & img {
+                border-radius: 50%;
+            }
+        }
+
+        & .fullname {
+            font-weight: 600;
+            color: #2b4970;
+
+        }
+    }
+
+
+    & .company {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        flex: 1;
+
+
+        & .companyLogo {
+            & img {
+                width: 200px;
+            }
+        }
+
+        & .position {
+            font-weight: 600;
+            color: #2b4970
+        }
+
+    }
+
+    & .program {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding-left: 72px;
+        flex: 1;
+
+        article {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2b4970
+        }
+
+        & .duration,
+        .startDate,
+        .endDate,
+        .leftDay,
+        .internshipLength {
+            display: flex;
+
+        }
+    }
+
+
+
+    & .Completed {
+        display: flex;
+        position: absolute;
+        bottom: 20px;
+        right: 32px;
+        font-weight: 600;
+        color: #2b4970;
+    }
+
+    & .Ongoing {
+        display: flex;
+        position: absolute;
+        bottom: 20px;
+        right: 32px;
+        font-weight: 600;
+        color: #FF8104;
+    }
+}

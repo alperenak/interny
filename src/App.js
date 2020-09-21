@@ -28,6 +28,7 @@ import Packages from "./screens/Packages";
 import MyCourses from "./screens/MyCourses";
 import FrequentlyAskedQuestions from "./screens/FAQ";
 import CourseDetail from "./screens/CourseDetail";
+import UniverstyDashboard from "./screens/universtyDashboard/universtyDashboard";
 
 /*** Styles ***/
 import styles from "./app.scss";
@@ -148,6 +149,10 @@ class App extends React.Component {
               render={(props) => <Packages {...props} />}
             />
             <Route
+              path="/universtydash"
+              render={(props) => <UniverstyDashboard {...props} />}
+            />
+            <Route
               path="/signup"
               render={(props) => (
                 <SignUp
@@ -202,10 +207,20 @@ class App extends React.Component {
                 />
               )}
             />
-            <Route path="/cvcreate"
-              render={props => <CvCreate getUser={this.getUser} user={user} closeModal={this.closeModal} createModal={this.createModal} {...props} />}
+            <Route
+              path="/cvcreate"
+              render={(props) => (
+                <CvCreate
+                  getUser={this.getUser}
+                  user={user}
+                  closeModal={this.closeModal}
+                  createModal={this.createModal}
+                  {...props}
+                />
+              )}
             />
-            <Route path="/coverletters"
+            <Route
+              path="/coverletters"
               render={(props) => (
                 <CoverLetters
                   getUser={this.getUser}

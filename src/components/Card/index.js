@@ -14,13 +14,14 @@ import CoverLetter from "./sub-components/CoverLetter";
 import CompanyProfile from "./sub-components/CompanyProfile";
 import Authentication from "./sub-components/Authentication";
 import Course from "./sub-components/Course";
+import InternList from "./sub-components/InternList";
 
 /*** Styles ***/
 import styles from "./card.scss";
 
 class Card extends Component {
   render() {
-    let { type, header, children, id } = this.props;
+    let { type, header, children } = this.props;
     return (
       <div className={`${styles.Card} ${styles[type]}`}>
         <div
@@ -40,6 +41,7 @@ class Card extends Component {
         <JobDetail v-if={type === "jobDetail"} {...this.props} />
         <CoverLetter v-if={type === "coverLetter"} {...this.props} />
         <CompanyProfile v-if={type === "companyProfile"} {...this.props} />
+        <InternList v-if={type === "internList"} {...this.props} />
         <Authentication
           v-if={type === "auth" || type === "login"}
           {...this.props}

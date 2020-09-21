@@ -1,0 +1,47 @@
+.dashboardContainer {
+    position: fixed;
+    left: 0;
+    top: 80px;
+    height: calc(100% - 80px);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+
+}
+
+.internTitles {
+    display: flex;
+    width: 90vw;
+    padding-left: 16px 32px;
+
+    & .student {
+        font-weight: 600;
+        color: #2b4970;
+        margin-left: 100px;
+    }
+
+    & .companyProgram {
+        font-weight: 600;
+        color: #2b4970;
+        margin-left: -50px;
+    }
+
+    & .InternshipInfo {
+        font-weight: 600;
+        color: #2b4970;
+        margin-left: -320px;
+    }
+
+    & div {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        ;
+    }
+
+
+}
