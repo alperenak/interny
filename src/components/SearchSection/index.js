@@ -109,7 +109,7 @@ class SearchSection extends Component {
             type={"text"}
             placeholder={"Software Developer"}
             size={"half"}
-            labelDescription={"Enter position name, keyword or company name"}
+            labelDescription={"Position, keyword or company"}
             defaultValue={advanced_keyword !== "null" ? advanced_keyword : ""}
             onChange={(value) => this.setState({ advanced_keyword: value })}
             label={"Keyword"}
@@ -215,8 +215,9 @@ class SearchSection extends Component {
             onChange={(value, slValue) => {
               this.setState({ advanced_intern_type: slValue.value });
             }}
+            placeholder={'Select intern type'}
             externalSource={[
-              { key: "Student", value: "Student" },
+              { key: "Student", value: "Student", selected: true },
               { key: "Newly Graduated", value: "Newly Graduated" },
             ]}
           />
@@ -226,6 +227,7 @@ class SearchSection extends Component {
             label={"Duration"}
             labelDescription={"Choose one below"}
             defaultValue={advanced_duration !== "null" ? advanced_duration : ""}
+            placeholder={'Select duration'}
             onChange={(value, slValue) =>
               this.setState({ advanced_duration: slValue.value })
             }
