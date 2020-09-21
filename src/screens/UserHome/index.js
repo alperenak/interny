@@ -44,7 +44,7 @@ class UserHome extends Component {
             header: pst.Employer.legalName,
             company: pst.position,
             image: pst.Employer.logo,
-            location: `${pst.jobLocation.city} - ${pst.jobLocation.country}`,
+            location: `${pst.country.map(e => e)}`,
             buttons:[
                 {
                     type:'primary',
