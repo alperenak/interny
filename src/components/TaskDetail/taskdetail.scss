@@ -115,6 +115,20 @@ $active-color: #4CAF50;
       border: none;
       font-size: 17px;
       font-weight: bold;
+
+      &.questionSubmitButtonRed{
+        background-color: #EF5350;
+      }
+      &.questionSubmitButtonOrange{
+        background-color: #FF7043;
+      }
+      &.questionSubmitButtonLightGreen{
+        background-color: #81C784;
+      }
+      &.questionSubmitButtonGreen{
+        background-color: $active-color;
+      }
+
     }
 
   }
