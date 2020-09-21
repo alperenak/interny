@@ -213,7 +213,7 @@ let store = {
         let keywordPath = keyword && keyword !== "null" ? `keyword=${keyword}` : "";
         let locationPath =
             location && location !== "null" ? `&location=${location}&` : "";
-        let path = `/jobs?${keywordPath}${locationPath}offset=${offset}&limit=${limit}`;
+        let path = `/jobs?${keywordPath}${locationPath}&offset=${offset}&limit=${limit}`;
         let tokenCookieName = "token";
         let res = await http.makeGetRequest(
             path,
@@ -228,7 +228,7 @@ let store = {
     let baseUrl = config.baseUrl;
     let keywordPath = keyword && keyword !== 'null' ? `keyword=${keyword}` : '';
     let locationPath = location && location !== 'null' ? `&location=${location}&` : '';
-    let path = `/job?${keywordPath}${locationPath}offset=${offset}&limit=${limit}`;
+    let path = `/job?${keywordPath}${locationPath}&offset=${offset}&limit=${limit}`;
     let tokenCookieName = "token";
     let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
 

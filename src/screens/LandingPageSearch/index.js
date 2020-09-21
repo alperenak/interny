@@ -68,7 +68,7 @@ class LandingPageSearch extends Component {
             header: pst.Employer.legalName,
             company: pst.position,
             image: pst.Employer.logo,
-            location: `${pst.jobLocation.city} - ${pst.jobLocation.country}`,
+            location: `${pst.country.map(e => e)}`,
             buttons:[
                 {
                     type:'ghost',
@@ -107,12 +107,15 @@ class LandingPageSearch extends Component {
                 />
                 <div className={styles.noResult} v-if={posts.length <= 0}>
                     No results found...
-                    <div className={styles.description}>
+                    <div v-if={keyword || location} className={styles.description}>
                         Your search for
                         {keyword === 'null' ? '' : ' "'+keyword+'" '}
                         {keyword === 'null' || location === 'null' ? '' : 'in'}
                         {location === 'null' ? '' : ' "'+location+'" '}
                         did not return any result
+                    </div>
+                    <div v-else className={styles.description}>
+                        Did not return any result
                     </div>
                 </div>
                 <Card

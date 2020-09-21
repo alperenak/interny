@@ -106,7 +106,7 @@ class Home extends Component {
           </div>
           <div className={styles.discoverBtn}>
             <Button
-              to={"/search/null/null"}
+              to={"/search"}
               type={"ghost"}
               text={"Discover"}
               sizeName={"large"}

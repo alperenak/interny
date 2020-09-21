@@ -21,7 +21,7 @@ class EditForm extends Component {
 
     render() {
         let {editObject} = this.state;
-        let {object, type} = this.props;
+        let {type} = this.props;
         return (
             <div className={`${styles.editForm} ${styles[this.props.type]}`}>
                 <Input
@@ -52,7 +52,7 @@ class EditForm extends Component {
                 />
                 <div className={styles.formButtons}>
                     <Button v-if={type !== 'create'} text={'Save'} type={'secondary'} sizeName={'default'} onButtonClick={async () => await this.onSaveClick()} />
-                    <Button v-if={type !== 'create'} text={'Cancel'} type={'ghost'} sizeName={'default'} onButtonClick={() => this.props.onCancel(object.id)} />
+                    <Button v-if={type !== 'create'} text={'Cancel'} type={'ghost'} sizeName={'default'} onButtonClick={() => this.props.onCancel()} />
                 </div>
             </div>
         );

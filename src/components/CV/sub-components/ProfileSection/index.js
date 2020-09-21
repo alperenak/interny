@@ -86,7 +86,7 @@ class ProfileSection extends Component {
                 </div>
                 <EditForm
                     v-else
-                    object={{ summary: file.summary.title, id: this.state.summary.id, title: file.title }}
+                    object={{ summary: file.summary.title, title: file.title }}
                     cv_id={this.props.file.id}
                     onCancel={this.onFormCanceled}
                 />
