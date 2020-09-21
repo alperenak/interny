@@ -2,11 +2,19 @@ import React, { Component, Fragment } from "react";
 import styles from "./internList.scss";
 class InternList extends Component {
   render() {
-    let { item } = this.props;
+    let { item, history } = this.props;
+    let duration =
+      ((item.Internship.duration - item.Internship.dayLeft) /
+        item.Internship.duration) *
+      100;
     return (
       <Fragment>
-        <div className={styles.InternListContainer}>
+        <div
+          onClick={() => history.push(`/internDetail/${item.id}`)}
+          className={styles.InternListContainer}
+        >
           <div className={styles.profile}>
+            <div className={styles.responsiveTitles}>Student</div>
             <div className={styles.avatar}>
               <img width="100" src={item.avatar} />
             </div>
@@ -20,6 +28,7 @@ class InternList extends Component {
             </div>
           </div>
           <div className={styles.company}>
+            <div className={styles.responsiveTitles}>Company / Program</div>
             <div className={styles.companyLogo}>
               <img src={item.Internship.Employer.logo} alt={"companyLogo"} />
             </div>
@@ -31,6 +40,7 @@ class InternList extends Component {
             <div className={styles.companyImage}></div>
           </div>
           <div className={styles.program}>
+            <div className={styles.responsiveTitles}>Internship Info</div>
             <div className={styles.startDate}>
               <article>Start Date : </article>
               &nbsp; {item.Internship.startDate}
@@ -41,8 +51,14 @@ class InternList extends Component {
             </div>
 
             <div className={styles.duration}>
-              <article>Duration : </article>
-              &nbsp; {item.Internship.duration}
+              <article>Duration :</article>
+              &nbsp;
+              <div className={styles.bar}>
+                <div
+                  style={{ width: duration + "%" }}
+                  className={styles.duration}
+                />
+              </div>
             </div>
             <div className={styles.leftDay}>
               <article>Days Left : </article>

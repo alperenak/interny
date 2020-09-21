@@ -69,6 +69,7 @@
     @include medium {
       width: 320px;
     }
+
     @include small {
       width: 260px;
     }
@@ -85,12 +86,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    @include medium {
-    width: calc(77px - 25px);
-    @include small {
-      width: calc(77px - 45px);
 
-    }
+    @include medium {
+      width: calc(77px - 25px);
+
+      @include small {
+        width: calc(77px - 45px);
+
+      }
     }
   }
 
@@ -102,6 +105,7 @@
     @include medium {
       width: 320px;
     }
+
     @include small {
       width: 260px;
     }
@@ -154,6 +158,20 @@
     min-width: 150px;
     max-width: 200px;
     height: fit-content;
+  }
+
+  &.internList {
+    transition: 0.3s;
+
+    @include x-large {
+      padding: 0;
+      margin: 0;
+      margin-top: 32px;
+    }
+
+    &:hover {
+      background-color: rgb(241, 241, 241);
+    }
   }
 
   & .responsiveDropdown {

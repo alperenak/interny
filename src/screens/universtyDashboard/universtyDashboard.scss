@@ -1,14 +1,16 @@
+@import '../../helpers/responsiveBreakpointsMixins.scss';
+
 .dashboardContainer {
-    position: fixed;
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: calc(100% -80px);
     left: 0;
     top: 80px;
-    height: calc(100% - 80px);
-    width: 100%;
-    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
+    min-width: 350px;
 
 }
 
@@ -16,6 +18,10 @@
     display: flex;
     width: 90vw;
     padding-left: 16px 32px;
+
+    @include x-large {
+        display: none;
+    }
 
     & .student {
         font-weight: 600;
@@ -33,7 +39,12 @@
         font-weight: 600;
         color: #2b4970;
         margin-left: -320px;
+
+
+
     }
+
+
 
     & div {
         flex: 1;

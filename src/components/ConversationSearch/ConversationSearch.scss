@@ -10,6 +10,12 @@
   }
 }
 
+.internList {
+  @include medium {
+    display: flex;
+  }
+}
+
 .conversation-search-input {
   background: #f4f4f8;
   padding: 8px 10px;

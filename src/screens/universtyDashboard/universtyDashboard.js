@@ -6,13 +6,15 @@ import ConversationSearch from "../../components/ConversationSearch";
 
 class UniverstyDashboard extends Component {
   state = {
-    filteredStaticData: "",
+    filteredStaticData: staticData,
   };
   onSearchTextChange = (value) => {
     this.setState((state) => {
       if (value) {
-        state.filteredStaticData = staticData.filter((el) =>
-          el.name.includes(value)
+        state.filteredStaticData = staticData.filter(
+          (el) =>
+            `${el.name} ${el.surname}`.includes(value) ||
+            `${el.name} ${el.surname}`.toLocaleLowerCase().includes(value)
         );
       } else {
         if (state.searchText) {
@@ -25,11 +27,13 @@ class UniverstyDashboard extends Component {
     });
   };
   render() {
+    let { history } = this.props;
     return (
       <Fragment>
         <ConversationSearch
           onChange={this.onSearchTextChange}
           className="inputSearchBar"
+          type={"internList"}
         />
         <div className={styles.internTitles}>
           <div>
@@ -45,8 +49,8 @@ class UniverstyDashboard extends Component {
           </div>
         </div>
         <div className={styles.searchIntern}></div>
-        {staticData.map((item) => {
-          return <Card type={"internList"} item={item} />;
+        {this.state.filteredStaticData.map((item) => {
+          return <Card type={"internList"} item={item} history={history} />;
         })}
       </Fragment>
     );

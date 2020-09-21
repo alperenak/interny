@@ -4,7 +4,11 @@ import Input from "../Input";
 
 export default function ConversationSearch(props) {
   return (
-    <div className={styles["conversation-search"]}>
+    <div
+      className={`${styles["conversation-search"]} ${
+        props.type ? styles[props.type] : ""
+      }`}
+    >
       <Input
         type={"text"}
         placeholder={"Search"}
