@@ -16,31 +16,11 @@ class Task extends Component {
         await this.props.onEditClick();
     };
 
-    renderMembers(props) {
-        const { item, renderFor = 'name' } = props;
-        const { Members = [] } = item;
-
-        if (renderFor === 'name')
-            return Members.map((val, index) => (
-                <span key={index} className={styles.assigneeName}>{val.name} {val.surname} {index + 1 !== Members.length && ', '}</span>
-            ));
-        else if (renderFor === 'avatar')
-            return Members.map((val, index) => (
-                <div className={styles.userImage} key={index} >
-                    <img src={val.avatar} alt={'image'} />
-                </div>
-            ));
-        else
-            return (<></>);
-
-
-    }
-
     render() {
         let { item } = this.props;
 
         let user = getCookie('user');
-        const RenderMembers = this.renderMembers.bind(this);
+        const { RenderMembers } = this.props;
 
         return (
             <div className={styles.Task}>
@@ -57,10 +37,10 @@ class Task extends Component {
                 <div className={styles.users}>Reporter: <span>{item.Employer}</span></div>
                 <div className={styles.users}>
                     Assignee:
-                    <RenderMembers renderFor='name' {...this.props} />
+                    <RenderMembers styles={styles} renderFor='name' {...this.props} />
                 </div>
                 <div className={styles.description}>{item.description}</div>
-                <RenderMembers renderFor='avatar' {...this.props} />
+                <RenderMembers styles={styles} renderFor='avatar' {...this.props} />
                 <div className={styles.deadline}>
                     <img src={clockIcon} alt={'clock'} /> <span>{(new Date(item.deadline)).toLocaleDateString()}</span>
                 </div>

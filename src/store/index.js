@@ -242,6 +242,14 @@ let store = {
 
     return res.data;
   },
+  async getEmployerPostsStarted(id) {
+    let baseUrl = config.baseUrl;
+    let path = `/employer/${id}/job?status=started`;
+    let tokenCookieName = "token";
+    let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+
+    return res.data;
+  },
   async getActivePosts(id) {
     let baseUrl = config.baseUrl;
     let path = `/employer/${id}/job?status=active`;
@@ -305,6 +313,15 @@ let store = {
     let path = `/intern/${id}/save`;
     let payload = {
       "id": job_id
+    };
+    return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+  },
+  async sendQuestions(id, wfa) {
+    let baseUrl = config.baseUrl;
+    let tokenCookieName = "token";
+    let path = `/task/${id}/wfa`;
+    let payload = {
+      "wfa": wfa
     };
     return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
   },

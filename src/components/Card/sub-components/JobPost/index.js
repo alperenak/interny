@@ -40,7 +40,7 @@ class JobPost extends Component {
   }
 
   renderPost = (pst, multiple) => {
-    const { selectJob, RedirectControl } = this.props;
+    const { selectJob, RedirectControl = (props) => props.is === false ? props.children : <></> } = this.props;
 
     let link = getCookie('token') ? `/postdetail/${pst.id}` : 'signup';
 

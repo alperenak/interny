@@ -32,7 +32,7 @@ class MyTasks extends Component {
         createFormData: formTaskData(),
         selectedInterns: [],
         internList: [],
-        loaded: false,
+        loading: false,
     };
 
     async componentDidMount() {
@@ -57,7 +57,7 @@ class MyTasks extends Component {
     }
 
     getTasks = async () => {
-        if (this.state.loaded) return;
+        if (this.state.loading) return;
 
         let userId = getCookie('user_id');
         let user = getCookie('user');
@@ -90,7 +90,7 @@ class MyTasks extends Component {
             in_test: res.in_test || [],
             done: res.done || [],
             internList: internList || [],
-            loaded: false,
+            loading: false,
         }
 
         // Sonsuz döngüyü engellemek için alınan geçici önlem
@@ -112,19 +112,18 @@ class MyTasks extends Component {
     onDragItemStart = (item) => {
         this.setState(state => {
             state.draggedItem = item;
-
             return state;
         });
     };
 
     onDropItem = async (itemsKey) => {
-        let { Intern, Task } = this.state.draggedItem;
+        let { id } = this.state.draggedItem;
         let user = getCookie('user');
         if (user === 'intern') {
             let userId = getCookie('user_id');
-            await store.moveInternTask(userId, { internId: Intern.id, taskId: Task.id, status: itemsKey });
+            await store.moveInternTask(userId, { taskId: id, status: itemsKey });
         } else {
-            await store.moveEmployerTask({ internId: Intern.id, taskId: Task.id, status: itemsKey });
+            await store.moveEmployerTask({ taskId: id, status: itemsKey });
         }
 
         await this.getTasks();
@@ -147,12 +146,34 @@ class MyTasks extends Component {
         // });
     };
 
+    renderMembers(props) {
+        const { item, renderFor = 'name', styles = {} } = props;
+        const { Members = [] } = item;
+
+        if (renderFor === 'name')
+            return Members.map((val, index) => (
+                <span key={index} className={styles.assigneeName}>{val.name} {val.surname} {index + 1 !== Members.length && ', '}</span>
+            ));
+        else if (renderFor === 'avatar')
+            return Members.map((val, index) => (
+                <div className={styles.userImage} key={index} >
+                    <img src={val.avatar} alt={'image'} />
+                </div>
+            ));
+        else if (renderFor === 'avatarFromDetail')
+            return Members.map((val, index) => (
+                <img src={val.avatar} key={index} alt={'image'} />
+            ));
+        else
+            return (<></>);
+    }
+
     onTaskClick = (item) => {
-        this.props.createModal({ header: item.title, content: () => this.renderModalContent(item) });
+        this.props.createModal({ header: item.title, size: 'large', content: () => this.renderModalContent(item) });
     };
 
     renderModalContent(item) {
-        return <TaskDetail item={item} />;
+        return <TaskDetail item={item} RenderMembers={this.renderMembers} />;
     }
 
     renderSectionItem(itemsKey) {
@@ -165,7 +186,7 @@ class MyTasks extends Component {
                 className={styles.taskItem}
                 onClick={() => this.onTaskClick(item)}
             >
-                <Card type={'task'} item={item} onEditClick={async () => await this.onEditClick(item)} />
+                <Card RenderMembers={this.renderMembers} type={'task'} item={item} onEditClick={async () => await this.onEditClick(item)} />
             </div>
         })
     }
@@ -296,7 +317,7 @@ class MyTasks extends Component {
 
     /* toggle selecetedInterns */
     toggleIntern(internInfo) {
-        if (this.state.loaded) return;
+        if (this.state.loading) return;
 
         let alreadySelected = false;
         const internSelected = this.state.internList.filter(intern => intern.id === internInfo.id && intern.selected === true)
@@ -345,6 +366,7 @@ class MyTasks extends Component {
                     userType={user}
                     selectedInterns={this.state.selectedInterns}
                     internList={this.state.internList}
+                    loading={this.state.loading}
                     toggleIntern={this.toggleIntern.bind(this)}
                 />
                 <div className={styles.MyTasks}>

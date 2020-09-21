@@ -44,6 +44,7 @@ class App extends React.Component {
     modal: {
       header: "",
       declaration: "",
+      size: 'small',
       content: {},
       buttons: [],
       visibility: false,
@@ -91,15 +92,15 @@ class App extends React.Component {
     }
   };
 
-  createModal = ({ header, declaration, content, buttons }) => {
+  createModal = ({ header, declaration, content, buttons, size = 'small' }) => {
     this.setState({
-      modal: { header, declaration, content, buttons, visibility: true },
+      modal: { header, declaration, content, buttons, size, visibility: true },
     });
   };
 
   closeModal = () => {
     this.setState({
-      modal: { header: "", declaration: "", visibility: false },
+      modal: { header: "", declaration: "", size: 'small', visibility: false },
     });
   };
 
@@ -122,6 +123,7 @@ class App extends React.Component {
           <Modal
             v-if={modal.visibility}
             header={modal.header}
+            modalSize={modal.size}
             declaration={modal.declaration}
             closeModal={this.closeModal}
             content={modal.content}

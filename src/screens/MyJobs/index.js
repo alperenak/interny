@@ -188,7 +188,7 @@ class MyJobs extends Component {
     //
     async getJobsForTask() {
         let id = getCookie('user_id');
-        let postsRes = await store.getEmployerPosts(id);
+        let postsRes = await store.getEmployerPostsStarted(id);
 
         let jobsForTask = postsRes.map(pst => {
             return this.fillPosts(pst, this.goBoardButton(pst));
