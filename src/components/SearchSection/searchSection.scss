@@ -14,8 +14,6 @@
   }
 
   &.backgroundImage {
-    background-image: url("../../assets/background.png");
-    background-repeat: round;
     margin: -31px 0 0 -64px;
 
     @include x-large {
@@ -44,23 +42,34 @@
 
   & .slogan {
     z-index: 1;
-    font-family: "Noto Sans Bold";
-    font-size: calc(2px + 24px);
+    font-family: "Sofia Pro Bold";
+    font-size: 40px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+    text-align: left;
+    color: #2c3f58;
 
     @include medium {
       text-align: center;
       font-size: calc(2px + 18px);
     }
-
-    color: #2b4970;
   }
 
   & .subSlogan {
     z-index: 1;
-    font-family: "Noto Sans";
-    font-size: calc(2px + 22px);
+    font-family: "Sofia Pro";
+    font-size: 28px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    text-align: left;
+    color: #2c3f58;
     margin-top: 5px;
-    color: #2b4970;
 
     @include medium {
       text-align: center;
@@ -111,9 +120,15 @@
 
   & .prepareCv {
     z-index: 1;
-    font-family: "Noto Sans";
-    font-size: calc(2px + 10px);
-    color: #484848;
+    font-family: "Sofia Pro";
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    text-align: left;
+    color: #2c3f58;
     margin-top: 16px;
 
     & a {
@@ -121,6 +136,8 @@
     }
 
     & .underlined {
+      font-family: "Sofia Pro Bold";
+      font-weight: 900;
       z-index: 1;
       text-decoration: underline;
       cursor: pointer;
@@ -136,7 +153,7 @@
 
     & .searchedWord {
       z-index: 1;
-      font-family: "Noto Sans";
+      font-family: "Sofia Pro";
       cursor: pointer;
       display: inline-block;
       font-size: calc(2px + 12px);
@@ -262,10 +279,10 @@
       margin-top: 8px;
       margin-bottom: 8px;
       & label {
-        font-family: "Noto Sans Bold";
+        font-family: "Sofia Pro Bold";
         font-size: calc(2px + 12px);
         font-weight: 700;
-        color: #2b4970;
+        color: #2c3f58;
         letter-spacing: 0.5px;
         padding: 0 1px;
       }
@@ -277,7 +294,7 @@
 
         & .advancedSearch__input-wrapper {
           & .advancedSearch__description {
-            font-family: "Noto Sans";
+            font-family: "Sofia Pro";
             font-size: calc(2px + 10px);
             font-weight: 700;
             letter-spacing: 0.5px;
@@ -300,7 +317,7 @@
               margin: 0;
               padding: 0;
               background: transparent;
-              color: #2b4970;
+              color: #2c3f58;
               font-size: calc(2px + 12px);
               width: 100%;
 

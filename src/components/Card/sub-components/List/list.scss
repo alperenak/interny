@@ -1,9 +1,9 @@
 .listHeader {
   width: 100%;
   font-size: calc(2px + 16px);
-  font-family: "Noto Sans Bold";
+  font-family: "Sofia Pro Bold";
   list-style: none;
-  color: #2b4970;
+  color: #2c3f58;
   border-radius: 4px;
   padding: 6px 8px;
 }
@@ -15,7 +15,7 @@
 
   & li, a {
     display: flex;
-    font-family: "Noto Sans";
+    font-family: "Sofia Pro";
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
@@ -27,8 +27,8 @@
     margin: 6px 0;
 
     &:hover {
-      background-color: rgba(#2b4970, 0.08);
-      color: #2b4970;
+      background-color: rgba(#2c3f58, 0.08);
+      color: #2c3f58;
       font-weight: 100;
 
       & .icon {
@@ -36,8 +36,8 @@
       }
     }
     &.selected {
-      background-color: rgba(#2b4970, 0.08);
-      color: #2b4970;
+      background-color: rgba(#2c3f58, 0.08);
+      color: #2c3f58;
 
       & .icon {
         background-color: transparent;
@@ -52,7 +52,7 @@
       width: 10px;
       border-radius: 50%;
       padding: 5px;
-      background-color: rgba(#2b4970, 0.08);
+      background-color: rgba(#2c3f58, 0.08);
 
       & > img {
         width: 100%;

@@ -10,8 +10,8 @@ $active-color: #4CAF50;
   flex: 1 1;
 
   & .title {
-    font-family: "Noto Sans Bold";
-    color: #2b4970;
+    font-family: "Sofia Pro Bold";
+    color: #2c3f58;
     font-size: calc(2px + 14px);
     text-align: start;
     margin: 0 20px 10px;
@@ -34,12 +34,12 @@ $active-color: #4CAF50;
       &:last-child{
         border: none;
       }
-      
+
       padding: 5px 10px;
-      
+
       margin: 5px 0;
       justify-content: center;
-      
+
       & .questionTitle {
         font-size: 20px;
         font-weight: bold;
@@ -94,7 +94,7 @@ $active-color: #4CAF50;
               &:nth-child(5){
                 background-color: #4CAF50;
               }
-              
+
               color: #fff;
             }
           }
@@ -120,7 +120,7 @@ $active-color: #4CAF50;
   }
 
   & .label {
-    font-family: "Noto Sans";
+    font-family: "Sofia Pro";
     background-color: #ff8104;
     color: #fff;
     width: 75px;
@@ -131,7 +131,7 @@ $active-color: #4CAF50;
   }
 
   & .description {
-    font-family: "Noto Sans";
+    font-family: "Sofia Pro";
     color: #484848;
     font-size: calc(2px + 14px);
     text-align: start;
@@ -139,8 +139,8 @@ $active-color: #4CAF50;
   }
 
   & .users {
-    font-family: "Noto Sans";
-    color: #2b4970;
+    font-family: "Sofia Pro";
+    color: #2c3f58;
     font-size: calc(2px + 14px);
     text-align: start;
     margin: 0 20px 10px;
@@ -153,7 +153,7 @@ $active-color: #4CAF50;
       position: absolute;
       right: 30px;
       border-radius: 50%;
-      border: 1px solid #2b4970;
+      border: 1px solid #2c3f58;
       width: 30px;
       height: 30px;
       overflow: hidden;
@@ -167,8 +167,8 @@ $active-color: #4CAF50;
   }
 
   & .status {
-    font-family: "Noto Sans";
-    color: #2b4970;
+    font-family: "Sofia Pro";
+    color: #2c3f58;
     font-size: calc(2px + 10px);
     margin: 0 20px 10px;
     & span {
@@ -177,7 +177,7 @@ $active-color: #4CAF50;
   }
 
   & .deadline {
-    font-family: "Noto Sans";
+    font-family: "Sofia Pro";
     position: absolute;
     bottom: -75px;
     align-items: center;

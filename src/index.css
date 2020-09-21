@@ -1,42 +1,34 @@
 @font-face {
 
-  font-family: 'Noto Sans Bold';
+  font-family: 'Sofia Pro';
 
-  font-style: normal;
+  src: url('./assets/SofiaProRegular.ttf'); /* IE9 Compat Modes */
 
-  font-weight: 400;
+  src: local('Sofia Pro'), local('SofiaPro'),
 
-  src: url('./assets/NotoSans-Bold.ttf'); /* IE9 Compat Modes */
-
-  src: local('Noto Sans Bold'), local('NotoSans-Bold'),
-
-  url('./assets/NotoSans-Bold.ttf') format('truetype'); /* Safari, Android, iOS */
+  url('./assets/SofiaProRegular.ttf') format('truetype'); /* Safari, Android, iOS */
 
 }
 
 @font-face {
 
-  font-family: 'Noto Sans';
+  font-family: 'Sofia Pro Bold';
 
-  font-style: normal;
+  src: url('./assets/Sofia Pro Bold.ttf'); /* IE9 Compat Modes */
 
-  font-weight: 400;
+  src: local('Sofia Pro Bold'), local('SofiaProBold'),
 
-  src: url('./assets/NotoSans-Regular.ttf'); /* IE9 Compat Modes */
-
-  src: local('Noto Sans'), local('NotoSans'),
-
-  url('./assets/NotoSans-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
+  url('./assets/Sofia Pro Bold.ttf') format('truetype'); /* Safari, Android, iOS */
 
 }
 
 body {
   margin: 0;
-  font-family: "Noto Sans";
+  font-family: "Sofia Pro";
 }
 
 input, textarea {
-  font-family: "Noto Sans";
+  font-family: "Sofia Pro";
 }
 
 code {

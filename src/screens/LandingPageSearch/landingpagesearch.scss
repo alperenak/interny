@@ -5,17 +5,17 @@
   align-items: center;
 
   & .noResult {
-    font-family: "Noto Sans Bold";
+    font-family: "Sofia Pro Bold";
     font-size: calc(2px + 20px);
     margin: 50px;
     text-align: center;
-    color: #2b4970;
+    color: #2c3f58;
 
     & .description {
-      font-family: "Noto Sans";
+      font-family: "Sofia Pro";
       font-size: calc(2px + 14px);
       margin: 12px;
-      color: #2b4970;
+      color: #2c3f58;
     }
   }
   & .buttonContainer {

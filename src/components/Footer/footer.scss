@@ -7,7 +7,7 @@
   align-items: start;
   padding: 64px 228px 0;
   width: calc(100%);
-  background-color: rgba(#2b4970, 0.2);
+  background-color: #696cff;
 
   & .footerTop {
     display: flex;
@@ -49,9 +49,9 @@
       }
 
       & .description {
-        font-family: "Noto Sans";
+        font-family: "Sofia Pro";
         font-size: calc(2px + 12px);
-        color: #2b4970;
+        color: #fff;
         list-style-type: none;
         line-height: 1.5em;
         letter-spacing: 0.1px;
@@ -101,23 +101,23 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-family: "Noto Sans Bold";
+        font-family: "Sofia Pro Bold";
         font-size: calc(2px + 18px);
-        color: #243e5d;
+        color: #fff;
         margin-bottom: 20px;
       }
 
       & li {
-        font-family: "Noto Sans";
+        font-family: "Sofia Pro";
         font-size: calc(2px + 16px);
-        color: #2b4970;
+        color: #fff;
         list-style-type: none;
         line-height: 2em;
         cursor: pointer;
         text-align: center;
 
         & a {
-          color: #2b4970;
+          color: #fff;
         }
 
         @include small {
@@ -126,7 +126,7 @@
         }
 
         &:hover {
-          color: black;
+          color: #fff;
         }
       }
     }
@@ -140,9 +140,9 @@
   }
 
   & .rights {
-    font-family: "Noto Sans";
+    font-family: "Sofia Pro";
     font-size: calc(2px + 12px);
-    color: #2b4970;
+    color: #fff;
     list-style-type: none;
     line-height: 1.5em;
     letter-spacing: 0.1px;

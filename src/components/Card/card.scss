@@ -4,9 +4,10 @@
   position: relative;
   padding: 16px 32px;
   margin: 32px;
-  border-radius: 16px;
-  background-color: #ffffff;
   border: 1px solid #efefef;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px 0 rgba(215, 219, 252, 0.55);
+  background-color: #ffffff;
 
   &.pricing {
     @include large {
@@ -181,13 +182,13 @@
 
   & .cardHeader {
     margin-bottom: 32px;
-    font-family: "Noto Sans Bold";
+    font-family: "Sofia Pro Bold";
     font-size: calc(2px + 24px);
     font-weight: 700;
     font-stretch: normal;
     font-style: normal;
     letter-spacing: -0.17px;
-    color: #2b4970;
+    color: #2c3f58;
 
     &.start {
       text-align: start

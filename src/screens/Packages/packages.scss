@@ -8,12 +8,12 @@
   padding: 64px;
 
   & .packagesTitle {
-    font-family: "Noto Sans Bold";
+    font-family: "Sofia Pro Bold";
     font-size: calc(2px + 24px);
-    color: #2b4970;
+    color: #2c3f58;
   }
   & .packagesSubTitle {
-    font-family: "Noto Sans";
+    font-family: "Sofia Pro";
     font-size: calc(2px + 18px);
     margin-top: 5px;
     color: #484848;
@@ -24,7 +24,7 @@
     width: 100%;
     align-items: center;
     justify-content: center;
-  
+
 
     @include medium{
       flex-direction: column;
@@ -34,26 +34,26 @@
     & .packageCard {
       width: 165px;
       padding: 24px 0;
-      
+
       & .headerDiv {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-    
+
         & .packageTitle {
-          font-family: "Noto Sans Bold";
+          font-family: "Sofia Pro Bold";
           font-size: calc(2px + 16px);
           color: #000;
           margin-bottom: 4px;
         }
         & .packagePrice {
-          font-family: "Noto Sans Bold";
+          font-family: "Sofia Pro Bold";
           font-size: calc(2px + 40px);
           color: #000;
         }
         & .packagePaymentDate {
-          font-family: "Noto Sans";
+          font-family: "Sofia Pro";
           font-size: calc(2px + 10px);
           color: #868686;
           font-style: italic;
@@ -72,7 +72,7 @@
 
         & .packageDescription {
           text-align: center;
-          font-family: "Noto Sans";
+          font-family: "Sofia Pro";
           font-size: calc(2px + 10px);
           color: #868686;
           margin-bottom: 20px;

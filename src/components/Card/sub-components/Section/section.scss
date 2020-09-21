@@ -17,12 +17,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-family: "Noto Sans Bold";
+      font-family: "Sofia Pro Bold";
       font-size: calc(2px + 16px);
-      color: #2b4970;
+      color: #2c3f58;
       padding: 0 0 15px;
       margin-bottom: 20px;
-      border-bottom: 2px solid rgba(#2b4970, 0.065);
+      border-bottom: 2px solid rgba(#2c3f58, 0.065);
       width: 100%;
     }
     & .item {
@@ -49,7 +49,7 @@
         align-items: flex-start;
 
         & .itemTitle {
-          font-family: "Noto Sans Bold";
+          font-family: "Sofia Pro Bold";
           font-size: calc(2px + 15px);
           font-weight: bolder;
           font-stretch: normal;
