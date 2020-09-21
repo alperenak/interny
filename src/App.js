@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 /*** Components ***/
 import TopBar from "./components/TopBar";
-import Footer from "./components/Footer";
 import SearchSection from "./components/SearchSection";
 import Modal from "./components/Modal";
 import Messenger from "./components/Messenger";
@@ -29,6 +28,7 @@ import MyCourses from "./screens/MyCourses";
 import FrequentlyAskedQuestions from "./screens/FAQ";
 import CourseDetail from "./screens/CourseDetail";
 import UniverstyDashboard from "./screens/universtyDashboard/universtyDashboard";
+import InternDetail from "./screens/InternDetail";
 
 /*** Styles ***/
 import styles from "./app.scss";
@@ -156,7 +156,7 @@ class App extends React.Component {
               render={(props) => <Packages {...props} />}
             />
             <Route
-              path="/universtydash"
+              path="/universitydash"
               render={(props) => <UniverstyDashboard {...props} />}
             />
             <Route
@@ -307,6 +307,10 @@ class App extends React.Component {
             <Route
               path="/jobapplication/:jobId"
               render={(props) => <JobApplication {...props} />}
+            />
+            <Route
+                path="/interndetail/:internId"
+                render={(props) => <InternDetail {...props} />}
             />
             <Route
               path="/faq"

@@ -11,9 +11,19 @@
   &.pricing {
     @include large {
       padding: 16px 16px;
-
     }
+  }
 
+  &.internDetail {
+    display: flex;
+    margin: 16px;
+    padding: 10px;
+  }
+
+  &.internInfo {
+    display: flex;
+    margin: 16px;
+    padding: 32px;
   }
 
   &.photo {

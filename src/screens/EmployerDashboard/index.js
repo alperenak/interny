@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react';
+import {Link} from "react-router-dom";
 
 /*** Components ***/
 import Card from "../../components/Card";
@@ -32,10 +33,10 @@ class Dashboard extends Component {
                             {interns.map((intern, i) => {
                                 return (
                                     <Fragment key={i}>
-                                        <div className={styles.rowContainer}>
+                                        <Link to={`/interndetail/${intern.id}`} className={styles.rowContainer}>
                                             <div className={styles.avatar}><img src={intern.avatar} alt={'avatar'}/></div>
                                             <div className={styles.internName}>{intern.name} {intern.surname}</div>
-                                        </div>
+                                        </Link>
                                     </Fragment>
                                 )
                             })}

@@ -1,0 +1,402 @@
+@import '../../helpers/responsiveBreakpointsMixins.scss';
+
+.InternDetail {
+  display: grid;
+  grid-template-columns: 35% 35%;
+  justify-content: center;
+
+  @include x-large {
+    grid-template-columns: 40% 40%;
+    justify-content: center;
+  }
+  @include large {
+    grid-template-columns: 40% 40%;
+  }
+  @include medium {
+    grid-template-columns: auto;
+  }
+  @include small {
+    grid-template-columns: auto;
+  }
+
+  & .internInfo {
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 124px 60%;
+    grid-template-areas:
+            'image name'
+            'image email'
+            'image phone'
+            'image gradStatus'
+            'image location';
+
+    @include x-large {
+      grid-template-areas:
+              'image name'
+              'image email'
+              'image phone'
+              'image gradStatus'
+              'image location';
+    }
+    @include large {
+      grid-template-areas:
+              'image name'
+              'image email'
+              'image phone'
+              'image gradStatus'
+              'image location';
+    }
+    @include medium {
+      grid-template-columns: auto;
+      grid-template-areas:
+              'image'
+              'name'
+              'email'
+              'phone'
+              'gradStatus'
+              'location';
+    }
+    @include small {
+      grid-template-areas:
+              'image image'
+              'name name'
+              'email email'
+              'phone phone'
+              'gradStatus gradStatus'
+              'location location';
+    }
+    & .userImage {
+      position: relative;
+      grid-area: image;
+      display: flex;
+      overflow: hidden;
+      justify-content: center;
+      align-items: center;
+      width: 104px;
+      height: 104px;
+      border-radius: 32px;
+      border: 1px solid #eee;
+      margin-right: 20px;
+      -webkit-box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 0.1);
+      -moz-box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 0.1);
+      box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 0.1);
+
+      @include x-large {
+        width: 104px;
+        height: 104px;
+      }
+      @include large {
+        width: 104px;
+        height: 104px;
+      }
+      @include medium {
+        width: 84px;
+        height: 84px;
+      }
+      @include small {
+        width: 84px;
+        height: 84px;
+      }
+
+      & .statusCircle {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+
+        &.active {
+          background-color: green;
+        }
+
+        &.passive {
+          background-color: grey;
+        }
+      }
+
+      & img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    & .name {
+      grid-area: name;
+      font-family: "Noto Sans Bold";
+      font-size: calc(2px + 18px);
+      color: #2b4970;
+      margin-bottom: 10px;
+      @include small {
+        font-size: calc(2px + 14px);
+      }
+    }
+    & .infoFields {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      font-family: "Noto Sans";
+      font-size: calc(2px + 12px);
+      @include small {
+        font-size: calc(2px + 8px);
+      }
+      & span {
+        color: #646464;
+        &.value {
+          color: #2c567e;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+      }
+      &.email {
+        grid-area: email;
+      }
+      &.phone {
+        grid-area: phone;
+      }
+      &.gradStatus {
+        grid-area: gradStatus;
+      }
+      &.location {
+        grid-area: location;
+      }
+    }
+  }
+
+  & .internship {
+    width: 100%;
+    @include x-large {
+    }
+    @include large {
+    }
+    @include medium {
+    }
+    @include small {
+    }
+    & .internshipHeader {
+      font-family: "Noto Sans Bold";
+      font-size: calc(2px + 18px);
+      color: #2b4970;
+      margin-bottom: 10px;
+      @include small {
+        font-size: calc(2px + 14px);
+      }
+    }
+    & .internshipField {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      font-family: "Noto Sans";
+      font-size: calc(2px + 12px);
+      align-items: center;
+      @include small {
+        font-size: calc(2px + 8px);
+      }
+      & span {
+        color: #646464;
+        &.value {
+          color: #2c567e;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+      }
+      & .bar {
+        position: relative;
+        width: 100%;
+        border-radius: 2px;
+        height: 10px;
+        background-color: #eeeeee;
+        & .duration {
+          position: absolute;
+          left: 0;
+          width: 100%;
+          border-radius: 2px;
+          height: 10px;
+          background-image: -webkit-gradient(linear, left top, right bottom, color-stop(10%, #2b4970), to(#6588b5));
+          background-image: linear-gradient(#2b4970 10%, #6588b5);
+        }
+      }
+    }
+
+  }
+
+  & .university {
+    width: 100%;
+    @include x-large {
+    }
+    @include large {
+    }
+    @include medium {
+    }
+    @include small {
+    }
+    & .uniHeader {
+      font-family: "Noto Sans Bold";
+      font-size: calc(2px + 18px);
+      color: #2b4970;
+      margin-bottom: 10px;
+      @include small {
+        font-size: calc(2px + 14px);
+      }
+    }
+    & .uniField {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      font-family: "Noto Sans";
+      font-size: calc(2px + 12px);
+      align-items: center;
+      @include small {
+        font-size: calc(2px + 5px);
+      }
+      & span {
+        color: #646464;
+        &.value {
+          color: #2c567e;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+      }
+      & .bar {
+        position: relative;
+        width: 100%;
+        border-radius: 2px;
+        height: 10px;
+        background-color: #eeeeee;
+        & .duration {
+          position: absolute;
+          left: 0;
+          width: 100%;
+          border-radius: 2px;
+          height: 10px;
+          background-image: -webkit-gradient(linear, left top, right bottom, color-stop(10%, #2b4970), to(#6588b5));
+          background-image: linear-gradient(#2b4970 10%, #6588b5);
+        }
+      }
+    }
+
+  }
+
+  & .employer {
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 124px 60%;
+    grid-template-areas:
+            'image name'
+            'image empNum';
+
+    @include x-large {
+      grid-template-areas:
+              'image name'
+              'image empNum';
+    }
+    @include large {
+      grid-template-areas:
+              'image name'
+              'image empNum';
+    }
+    @include medium {
+      grid-template-columns: auto;
+      grid-template-areas:
+              'image'
+              'name'
+              'empNum';
+    }
+    @include small {
+      grid-template-areas:
+              'image'
+              'name'
+              'empNum';
+    }
+    & .empImage {
+      position: relative;
+      grid-area: image;
+      display: flex;
+      overflow: hidden;
+      justify-content: center;
+      align-items: center;
+      width: 104px;
+      height: 104px;
+      border-radius: 32px;
+      border: 1px solid #eee;
+      margin-right: 20px;
+      -webkit-box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 0.1);
+      -moz-box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 0.1);
+      box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 0.1);
+
+      @include x-large {
+        width: 104px;
+        height: 104px;
+      }
+      @include large {
+        width: 104px;
+        height: 104px;
+      }
+      @include medium {
+        width: 84px;
+        height: 84px;
+      }
+      @include small {
+        width: 84px;
+        height: 84px;
+      }
+
+      & .statusCircle {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+
+        &.active {
+          background-color: green;
+        }
+
+        &.passive {
+          background-color: grey;
+        }
+      }
+
+      & img {
+        width: 100%;
+      }
+    }
+    & .name {
+      grid-area: name;
+      font-family: "Noto Sans Bold";
+      font-size: calc(2px + 18px);
+      color: #2b4970;
+      margin-bottom: 10px;
+      @include small {
+        font-size: calc(2px + 14px);
+      }
+    }
+    & .infoFields {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      font-family: "Noto Sans";
+      font-size: calc(2px + 12px);
+      @include small {
+        font-size: calc(2px + 8px);
+      }
+      & span {
+        color: #646464;
+        &.value {
+          color: #2c567e;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+      }
+      &.empNum {
+        grid-area: empNum;
+      }
+    }
+  }
+}
