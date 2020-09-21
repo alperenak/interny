@@ -69,7 +69,7 @@
 
 
         & a {
-          color: #2b4970
+          color: #2c3f58
         }
       }
     }
@@ -169,7 +169,7 @@
     }
 
     & .userName {
-      font-family: "Noto Sans Bold";
+      font-family: "Sofia Pro Bold";
     }
 
     & .dropdownContainer {
@@ -232,20 +232,20 @@
     &>div {
       cursor: pointer;
       margin: 0 20px;
-      font-family: "Noto Sans";
+      font-family: "Sofia Pro";
       font-weight: 100;
       font-size: calc(2px + 12px);
-      color: #2b4970;
+      color: #2c3f58;
 
       &.packages:hover {
         text-decoration: underline;
       }
 
       &>a {
-        font-family: "Noto Sans";
+        font-family: "Sofia Pro";
         font-weight: 100;
         font-size: calc(2px + 12px);
-        color: #2b4970;
+        color: #2c3f58;
 
         &:hover {
           text-decoration: underline;

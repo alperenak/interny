@@ -11,7 +11,6 @@ import styles from "./home.scss";
 
 /*** Icons ***/
 import chaseBroke from "../../assets/chaseBroke.png";
-import internyLogo from "../../assets/interny-logo.png";
 import steveAustin from "../../assets/steveAustin.png";
 import georgeBurgess from "../../assets/georgeBurgess.png";
 import siemens from "../../assets/siemens.png";
@@ -25,7 +24,6 @@ import workingStudentImage from "../../assets/workingStudent.jpg";
 import register from "../../icons/register.svg";
 import application from "../../icons/application.svg";
 import duties from "../../icons/duties.svg";
-import backgroundImage from "../../assets/background.png";
 import Footer from "../../components/Footer";
 
 class Home extends Component {
@@ -94,7 +92,7 @@ class Home extends Component {
                   image: i === 0 ? siemens : i === 1 ? nanodems : fikrimuhal,
                   buttons: [
                     {
-                      type: "ghost",
+                      type: "primary",
                       text: "20 Days Internship",
                       sizeName: "small",
                       responsive: "post",

@@ -6,6 +6,7 @@ import styles from "./footer.scss";
 /*** Icons ***/
 import internyLogo from "../../assets/interny-logo.png";
 import {Link} from "react-router-dom";
+import {getCookie} from "../../utils/cookie";
 
 class Footer extends Component {
     render() {
@@ -23,7 +24,7 @@ class Footer extends Component {
                         <div className={styles.knowUs}>
                             <div className={styles.header}>Know Us</div>
                             <ul>
-                                <li><Link to="/signup" >Register</Link></li>
+                                <li v-if={!getCookie('token')}><Link to="/signup" >Register</Link></li>
                                 <li><Link to="/" >About Us</Link></li>
                                 <li> <Link to="/faq" >FAQ's</Link></li>
                                 <li><Link to="/faq" >Terms and Policies</Link></li>

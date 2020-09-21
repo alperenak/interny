@@ -52,7 +52,7 @@
 
         & .fullname {
             font-weight: 600;
-            color: #2b4970;
+            color: #2c3f58;
         }
     }
 
@@ -76,7 +76,7 @@
 
         & .position {
             font-weight: 600;
-            color: #2b4970
+            color: #2c3f58
         }
 
     }
@@ -90,7 +90,8 @@
         & article {
             font-size: 16px;
             font-weight: 600;
-            color: #2b4970;
+
+            color: #2c3f58;
 
             @include small {
                 font-size: calc(2px + 12px);
@@ -145,11 +146,12 @@
         bottom: 20px;
         right: 32px;
         font-weight: 600;
-        color: #2b4970;
+        color: #2c3f58;
 
         @include x-large {
             padding-top: 24px;
         }
+
     }
 
     & .Ongoing {

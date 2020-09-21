@@ -29,8 +29,8 @@
     align-items: center;
     justify-content: center;
     grid-column: span 5;
-    color: #2b4970;
-    font-family: "Noto Sans";
+    color: #2c3f58;
+    font-family: "Sofia Pro";
     font-size: calc(2px + 12px);
     margin-top: 20px;
 
@@ -54,7 +54,7 @@
       }
 
       &:hover {
-        background-color: #2b4970;
+        background-color: #2c3f58;
         color: white;
       }
 
@@ -74,7 +74,7 @@
         background-color: rgba(#bbb, 0.2);
 
         &:hover {
-          background-color: rgba(#2b4970, 0.8);
+          background-color: rgba(#2c3f58, 0.8);
           color: white;
         }
       }
@@ -87,13 +87,13 @@
 
     & .headerText {
       margin: 32px 0 8px;
-      font-family: "Noto Sans Bold";
+      font-family: "Sofia Pro Bold";
       font-size: calc(2px + 24px);
       font-weight: 700;
       font-stretch: normal;
       font-style: normal;
       letter-spacing: -0.17px;
-      color: #2b4970;
+      color: #2c3f58;
       text-align: center;
 
       @include medium {
@@ -102,7 +102,7 @@
     }
 
     & .description {
-      font-family: "Noto Sans";
+      font-family: "Sofia Pro";
       font-size: calc(2px + 14px);
       text-align: center;
 
@@ -124,9 +124,9 @@
     grid-column-end: span 1;
 
     & .authButton {
-      border: 1px solid #2b4970;
+      border: 1px solid #2c3f58;
       cursor: pointer;
-      color: #2b4970;
+      color: #2c3f58;
       border-radius: 4px;
       padding: 10px 12px;
       margin: 32px 0 16px;
@@ -142,12 +142,12 @@
       box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.06);
 
       &:hover {
-        background-color: #2b4970;
+        background-color: #2c3f58;
         color: white;
       }
 
       &:active {
-        background-color: rgba(#2b4970, 0.8);
+        background-color: rgba(#2c3f58, 0.8);
         color: white;
       }
     }
@@ -309,7 +309,7 @@
         top: 32px;
         right: 0;
         padding: 16px;
-        font-family: "Noto Sans";
+        font-family: "Sofia Pro";
         font-size: 14px;
         font-weight: lighter;
         grid-row: 8 / span 2;
@@ -373,16 +373,16 @@
       align-items: flex-start;
 
       &.header {
-        color: #2b4970;
+        color: #2c3f58;
         font-size: large;
         font-weight: 600;
-        border-bottom: 1px solid #2b497094;
+        border-bottom: 1px solid #2c3f5894;
         width: 50%;
         align-self: center;
         padding: 10px 0 10px 0;
       }
       &.big_header {
-        color: #2b4970;
+        color: #2c3f58;
         font-size: xx-large;
         font-weight: 600;
         width: 50%;
@@ -397,10 +397,10 @@
         width: 268px;
 
         & label {
-          font-family: "Noto Sans Bold";
+          font-family: "Sofia Pro Bold";
           font-size: calc(2px + 12px);
           font-weight: 700;
-          color: #2b4970;
+          color: #2c3f58;
           letter-spacing: 0.5px;
           padding: 0 1px;
         }
@@ -467,8 +467,8 @@
     }
 
     & .header {
-      border-bottom: 1px solid #2b4970;
-      color: #2b4970;
+      border-bottom: 1px solid #2c3f58;
+      color: #2c3f58;
       height: 50px;
       position: relative;
       top: -25px;
