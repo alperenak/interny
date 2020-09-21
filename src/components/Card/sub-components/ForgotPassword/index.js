@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import styles from "./forgotPassword.scss";
+import Input from "../../../Input";
+import Button from "../../../Button";
 
 class ForgotPassword extends Component {
   state = { value: "" };
@@ -23,22 +25,16 @@ class ForgotPassword extends Component {
           </div>
 
           <div className={styles.input_wrapper}>
-            <label htmlFor="email" className={styles.label}>
-              E-mail Address
-            </label>
-
-            <div className={styles.input_field_wrapper}>
-              <input
-                type="text"
-                placeholder="Enter e-mail address"
-                className={styles.input}
-                onChange={this.onChange}
-                value={this.state.value}
-              />
+            <Input
+              label={'E-mail Address'}
+              type="text"
+              size={'large'}
+              placeholder="Enter e-mail address"
+              onChange={v => this.setState({ value: v })}
+            />
+            <div className={styles.button}>
+              <Button text={'Send Password'} type={'secondary'} onButtonClick={this.props.onClick} />
             </div>
-            <button className={styles.button} onClick={this.props.onClick}>
-              Send Password
-            </button>
           </div>
         </div>
       </div>,
