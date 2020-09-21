@@ -10,13 +10,23 @@
   background-color: rgba(0,0,0, 0.4);
   z-index: 2345;
 
+  & .modalLarge {
+    min-width: 70%;
+    max-height: 90%;
+  }
+
+  & .modalSmall {
+    min-width: 50%;
+    max-height: 90%;
+  }
+
   & .modal {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: start;
     min-width: 250px;
-    max-width: fit-content;
+    max-width: 100%;
     max-height: 80vh;
     overflow: scroll;
     margin-top: 42px;
@@ -51,6 +61,7 @@
 
     & .content {
       margin-bottom: 77px;
+      width: 100%;
     }
 
     & .buttons {

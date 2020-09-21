@@ -4,4 +4,5 @@ export default {
     shouldHaveLowerCase: 'Should have at least one lowercase character',
     checkRegex: 'Should be date format dd/mm/yyyy',
     isNumeric: 'Should only consist of numbers',
+    isRequired: 'You have to fill this field'
 }

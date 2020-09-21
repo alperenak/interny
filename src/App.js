@@ -45,12 +45,18 @@ class App extends React.Component {
     modal: {
       header: "",
       declaration: "",
+      size: 'small',
       content: {},
       buttons: [],
       visibility: false,
       isInternshipBegun: false,
+      selectedJobID: null,
     },
   };
+
+  selectJobID(selectedJobID, callback = () => null) {
+    this.setState({ selectedJobID }, callback.bind(this))
+  }
 
   async componentDidMount() {
     await this.getUser();
@@ -87,20 +93,20 @@ class App extends React.Component {
     }
   };
 
-  createModal = ({ header, declaration, content, buttons }) => {
+  createModal = ({ header, declaration, content, buttons, size = 'small' }) => {
     this.setState({
-      modal: { header, declaration, content, buttons, visibility: true },
+      modal: { header, declaration, content, buttons, size, visibility: true },
     });
   };
 
   closeModal = () => {
     this.setState({
-      modal: { header: "", declaration: "", visibility: false },
+      modal: { header: "", declaration: "", size: 'small', visibility: false },
     });
   };
 
   render() {
-    let { isAuthorized, user, modal, userType, isInternshipBegun } = this.state;
+    let { isAuthorized, user, modal, userType, isInternshipBegun, selectedJobID } = this.state;
     return (
       <div className={`${styles.App} ${styles.fullScreen}`}>
         <Router>
@@ -118,6 +124,7 @@ class App extends React.Component {
           <Modal
             v-if={modal.visibility}
             header={modal.header}
+            modalSize={modal.size}
             declaration={modal.declaration}
             closeModal={this.closeModal}
             content={modal.content}
@@ -239,6 +246,7 @@ class App extends React.Component {
                   user={user}
                   closeModal={this.closeModal}
                   createModal={this.createModal}
+                  selectJobID={this.selectJobID.bind(this)}
                   {...props}
                 />
               )}
@@ -265,6 +273,7 @@ class App extends React.Component {
                   user={user}
                   closeModal={this.closeModal}
                   createModal={this.createModal}
+                  selectedJobID={selectedJobID}
                   {...props}
                 />
               )}

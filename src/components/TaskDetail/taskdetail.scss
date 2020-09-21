@@ -1,5 +1,13 @@
+$active-color: #4CAF50;
+
 .TaskDetail {
+  margin-top: 30px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1;
 
   & .title {
     font-family: "Noto Sans Bold";
@@ -7,6 +15,108 @@
     font-size: calc(2px + 14px);
     text-align: start;
     margin: 0 20px 10px;
+  }
+
+  & .questionsContainer{
+    max-width: 100%;
+    box-sizing: border-box;
+
+    &, & .questionArea{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    & .questionArea{
+      border-bottom: 1px solid #CFD8DC;
+      user-select: none;
+      &:last-child{
+        border: none;
+      }
+      
+      padding: 5px 10px;
+      
+      margin: 5px 0;
+      justify-content: center;
+      
+      & .questionTitle {
+        font-size: 20px;
+        font-weight: bold;
+        color: #172b4d;
+        margin-bottom: 10px;
+        position: relative;
+        z-index: 99;
+        &::after{
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          z-index: -1;
+          width: 100%;
+          height: 70%;
+          background-color: #ECEFF1;
+        }
+      }
+
+      & .questionRateArea{
+        background-color: transparent;
+
+        & .questionRate{
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 5px;
+
+          & span{
+            cursor: pointer;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 0 4px;
+            background-color: #CFD8DC;
+            transition: all .4s ease;
+
+            &.pointActive{
+              background-color: $active-color;
+              &:nth-child(1){
+                background-color: #F44336;
+              }
+              &:nth-child(2){
+                background-color: #EF5350;
+              }
+              &:nth-child(3){
+                background-color: #FF7043;
+              }
+              &:nth-child(4){
+                background-color: #66BB6A;
+              }
+              &:nth-child(5){
+                background-color: #4CAF50;
+              }
+              
+              color: #fff;
+            }
+          }
+        }
+      }
+
+    }
+
+    & .questionsSubmitButton{
+      width: 100%;
+      border-radius: 5px;
+      outline: none;
+      cursor: pointer;
+      margin-top: 7px;
+      min-height: 50px;
+      background-color: $active-color;
+      color: #fff;
+      border: none;
+      font-size: 17px;
+      font-weight: bold;
+    }
+
   }
 
   & .label {

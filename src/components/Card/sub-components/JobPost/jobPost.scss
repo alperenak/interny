@@ -1,5 +1,16 @@
 @import '../../../../helpers/responsiveBreakpointsMixins.scss';
 
+.noJob {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+
+  & > span {
+    opacity: .8;
+  }
+}
+
 .jobPost {
   position: relative;
   flex-direction: column;
@@ -34,6 +45,7 @@
   }
 
   & .itemImage {
+    cursor: pointer;
     position: relative;
     display: flex;
     justify-content: center;
@@ -89,8 +101,6 @@
         font-size: calc(2px + 10px);
       }
     }
-
-
 
     & .postDate {
       font-size: calc(2px + 12px);
