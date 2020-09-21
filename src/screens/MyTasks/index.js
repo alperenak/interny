@@ -83,8 +83,6 @@ class MyTasks extends Component {
                 res = await store.getEmployerTasksForInternID(this.props.selectedJobID, this.state.selectedInterns.join(','));
             else
                 res = await store.getTasks(this.props.selectedJobID);
-
-            console.log('res', res);
         }
 
 
@@ -434,7 +432,6 @@ class MyTasks extends Component {
 
     render() {
         let user = getCookie('user');
-        console.log(this.state.searchResults.length > 0 ? "sres" : 'interns', this.state.searchResults);
         return (
             <>
                 <InternList

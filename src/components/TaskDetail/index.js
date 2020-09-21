@@ -159,9 +159,6 @@ class TaskDetail extends Component {
 
             return className;
         }
-
-        console.log('avarage is', calcRateAverage('', true, 5));
-
         return (
             <Master>
                 {questions.map((v, i) => <Child key={i} item={v} />)}
