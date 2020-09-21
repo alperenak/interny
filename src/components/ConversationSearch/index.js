@@ -7,7 +7,7 @@ export default function ConversationSearch(props) {
     <div className={styles["conversation-search"]}>
       <Input
         type={"text"}
-        placeholder={"Search Messages"}
+        placeholder={"Search"}
         size={"something"}
         onChange={props.onChange}
         className={props.className}

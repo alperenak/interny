@@ -132,7 +132,7 @@ class TopBar extends Component {
       },
       {
         key: "myCourses",
-        value: "Courses",
+        value: "e-Learning",
         selected: false,
         icon: bookIcon,
         to: "/courses",
