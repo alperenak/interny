@@ -426,15 +426,14 @@ class SearchSection extends Component {
         </div>
 
         <div v-if={getCookie('token')} className={styles["advancedSearch"]}>
-          <a
-            className={styles["advancedSearch__button"]}
-            onClick={(e) => {
-              e.preventDefault();
-              this.setState({ advancedSearch: true });
-            }}
-          >
-            Advanced Search
-          </a>
+          <Button
+              text={'Advanced Search'}
+              type={'ghost'}
+              onButtonClick={(e) => {
+                e.preventDefault();
+                this.setState({ advancedSearch: true });
+              }}
+          />
           {this.state.advancedSearch && this.renderAdvancedSearch()}
         </div>
 
