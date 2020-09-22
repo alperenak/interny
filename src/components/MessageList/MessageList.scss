@@ -45,7 +45,7 @@
   height: 50px;
   width: 50px;
   margin-right: 15px;
-  object-fit: cover;
+  object-fit: contain;
 
   @include medium {
     border-radius: 50%;
