@@ -6,6 +6,7 @@ import ToolbarButton from "../ToolbarButton";
 import Toolbar from "../Toolbar";
 import store from "../../store";
 import Button from "../Button";
+import messagesIcon from "../../assets/messages.png";
 
 export default class Messenger extends Component {
   state = {};
@@ -43,6 +44,7 @@ export default class Messenger extends Component {
               getContacts={this.getContacts}
             />
             <div className={styles.noContent} v-else>
+              <img src={messagesIcon} alt={'messages'} />
               <div className={styles.title}>Welcome to Messages</div>
               <div className={styles.subTitle}>When a contact contacts you, you can reach messages here.</div>
               <Button
