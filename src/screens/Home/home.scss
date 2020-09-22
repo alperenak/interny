@@ -196,6 +196,10 @@
       margin-top: 60px;
       margin-bottom: 60px;
 
+      & img {
+        cursor: pointer;
+      }
+
       @include large {
         flex-direction: column;
         height: 344px;
