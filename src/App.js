@@ -320,7 +320,13 @@ class App extends React.Component {
             <Route
                 v-if={!getCookie('token')}
                 path="/updatepassword/:userType/:verificationKey"
-                render={(props) => <UpdatePassword {...props} />}
+                render={(props) =>
+                    <UpdatePassword
+                        {...props}
+                        closeModal={this.closeModal}
+                        createModal={this.createModal}
+                    />
+                }
             />
             <Route path="/error" render={(props) => <Error {...props} />} />
           </Switch>

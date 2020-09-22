@@ -14,9 +14,38 @@ class ForgotPassword extends Component {
 
   onClick = async () => {
     this.setState({ processing: true });
-    await store.sendForgot(this.props.userType, this.state.value);
+    let res = await store.sendForgot(this.props.userType, this.state.value);
     this.setState({ processing: false });
-    window.location.pathname = '/';
+    if (res.status === 200) {
+      this.props.createModal({
+        header: "Success",
+        declaration: "The email has been sent!",
+        buttons: [
+          {
+            type: "primary",
+            text: "OK",
+            sizeName: "default",
+            onButtonClick: () => {
+              this.props.closeModal();
+              window.location.pathname = `/`;
+            },
+          },
+        ],
+      });
+    } else {
+      this.props.createModal({
+        header: res.data.title,
+        declaration: res.data.message,
+        buttons: [
+          {
+            type: "primary",
+            text: "OK",
+            sizeName: "default",
+            onButtonClick: () => this.props.closeModal(),
+          },
+        ],
+      });
+    }
   };
 
   render() {

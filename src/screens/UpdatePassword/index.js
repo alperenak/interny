@@ -27,9 +27,38 @@ class UpdatePassword extends Component {
             });
         } else {
             this.setState({ processing: true });
-            await store.resetPassword(userType, value, verificationKey);
+            let res = await store.resetPassword(userType, value, verificationKey);
             this.setState({ processing: false });
-            window.location.pathname = '/';
+            if (res.status === 200) {
+                this.props.createModal({
+                    header: "Success",
+                    declaration: "The email has been sent!",
+                    buttons: [
+                        {
+                            type: "primary",
+                            text: "OK",
+                            sizeName: "default",
+                            onButtonClick: () => {
+                                this.props.closeModal();
+                                window.location.pathname = `/`;
+                            },
+                        },
+                    ],
+                });
+            } else {
+                this.props.createModal({
+                    header: res.data.title,
+                    declaration: res.data.message,
+                    buttons: [
+                        {
+                            type: "primary",
+                            text: "OK",
+                            sizeName: "default",
+                            onButtonClick: () => this.props.closeModal(),
+                        },
+                    ],
+                });
+            }
         }
     };
 

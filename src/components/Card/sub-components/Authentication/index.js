@@ -19,6 +19,7 @@ import infoIcon from "../../../../icons/information.svg";
 /*** Utils ***/
 import store from "../../../../store";
 import { getCookie, setCookie } from "../../../../utils/cookie";
+import CourseDetail from "../../../../screens/CourseDetail";
 
 class Authentication extends Component {
   state = {
@@ -811,9 +812,9 @@ class Authentication extends Component {
           //TODO: What happens onSubmit
           //TODO: What happens onChange
           <ForgotPassword
-            onClick={this.closeModal}
+            closeModal={this.props.closeModal}
+            createModal={this.props.createModal}
             userType={this.props.match.params.user.toLowerCase()}
-            onSubmit={this.closeModal}
           />
         )}
         {getAdditionalInfo && this.renderAdditionalInfo()}
