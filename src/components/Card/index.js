@@ -21,12 +21,13 @@ import styles from "./card.scss";
 
 class Card extends Component {
   render() {
-    let { type, header, children } = this.props;
+    let { type, header, children, backgroundColor = '#fff' } = this.props;
     return (
-      <div className={`${styles.Card} ${styles[type]}`}>
+      <div className={`${styles.Card} ${styles[type]}`} style={{ backgroundColor }}>
         <div
           v-if={header}
           className={`${styles.cardHeader} ${styles[header.position]}`}
+          style={{ backgroundColor }}
         >
           {header.text}
         </div>

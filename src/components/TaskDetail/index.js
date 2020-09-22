@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 
 /*** Styles ***/
 import styles from './taskdetail.scss';
-import clockIcon from "../../icons/nine-oclock-on-circular-clock.svg";
+import SendCommentShortcut from '../SendCommentShortcut'
 import store from '../../store';
 
 class TaskDetail extends Component {
 
     state = {
         isEvaluated: false,
+        doRate: false,
         questions: [
             {
                 question: 'Question 1',
@@ -30,17 +31,21 @@ class TaskDetail extends Component {
                 key: 'q_4',
                 rate: 0,
             }
-        ]
+        ],
+        labelClass: {
+            'reporting': 'Orange',
+        }
     }
 
     componentDidUpdate() {
     }
 
     async sendQuestions() {
-        if (item.status != 'Done' || this.props.item.isEvaluated === true || this.state.isEvaluated) return;
+        const { item, userType = 'intern' } = this.props;
+        const { isEvaluated = false } = item;
+        if (item.status != 'Done' || isEvaluated === true || this.state.isEvaluated || userType === 'intern') return;
 
         try {
-            const { item } = this.props;
             const response = await store.sendQuestions(item.id, this.state.questions);
             if (response.status == '200') this.setState({ isEvaluated: true });
 
@@ -52,9 +57,9 @@ class TaskDetail extends Component {
     renderWFA() {
         // for static structure
         const { questions, isEvaluated } = this.state;
-        const { item } = this.props;
-
-        if (item.status != 'Done' || item.isEvaluated === true || isEvaluated) return <></>;
+        const { item = {}, userType = 'intern' } = this.props;
+        if (typeof item.isEvaluated === 'undefined') item.isEvaluated = false;
+        if (item.status != 'Done' || isEvaluated === true || this.state.isEvaluated || userType === 'intern') return <></>;
 
         const allDone = () => {
             if (item.status != 'Done' || item.isEvaluated === true || isEvaluated) return false;
@@ -85,11 +90,25 @@ class TaskDetail extends Component {
         }
 
         const Master = ({ children }) => {
-            return (
-                <div className={styles.questionsContainer}>
-                    {children}
-                </div>
-            );
+            if (!this.state.doRate)
+                return (
+                    <div className={styles.doRateArea}>
+                        <div className={styles.doRateAreaString}>
+                            <span>do you want to rate this task?</span>
+                        </div>
+                        <div className={styles.doRateAreaButtons}>
+                            <button type={'button'} className={styles.doRateAreaButtonGreen} onClick={() => this.setState({ doRate: true })}>
+                                yes, i'll do
+                            </button>
+                        </div>
+                    </div>
+                );
+            else
+                return (
+                    <div className={styles.questionsContainer}>
+                        {children}
+                    </div>
+                );
         }
 
         const Rates = ({ item }) => (
@@ -176,25 +195,60 @@ class TaskDetail extends Component {
         );
     }
 
+    // TODO: finish this function
+    renderLogsAndComments() {
+        return (
+            <div className={styles.logsArea}>
+                <div className={styles.logsHeader}>
+                    <h3>Logs</h3>
+                    <button type={'button'} className={styles.logsOpenButton}>
+                        Show Details
+                    </button>
+                </div>
+                <SendCommentShortcut />
+            </div>
+        );
+    }
+
     render() {
         let { item, RenderMembers } = this.props;
+        console.log('item', item)
         const RenderWFA = this.renderWFA.bind(this);
+        const RenderLogsAndComments = this.renderLogsAndComments.bind(this);
+        const labelClassName = `labelStyle${this.state.labelClass[item.label.toLowerCase()]}`;
+
         return (
             <div className={styles.TaskDetail}>
-                <div className={styles.title}>{item.title}</div>
-                <div className={styles.label}>{item.label}</div>
-                <div className={styles.status}>Status: <span>{item.status}</span></div>
-                <div className={styles.users}>Reporter: <span>'Reporter' is not defined(related to 'backend structure')</span></div>
-                <div className={styles.users}>Assignee:
-                    <div className={styles.userImage}>
-                        <RenderMembers renderFor='avatarFromDetail' {...this.props} />
+                <div className={`${styles.in} ${styles.inStretch}`}>
+                    <div>
+                        <RenderMembers renderFor='avatarFromDetail' style={styles} {...this.props} />
                     </div>
-                    <RenderMembers renderFor='name' {...this.props} />
                 </div>
-                <div className={styles.description}>{item.description}</div>
-                <div className={styles.deadline}>
-                    <img src={clockIcon} alt={'clock'} /> <span>{(new Date(item.deadline)).toLocaleDateString()}</span>
+                <div className={styles.in}>
+                    <div>
+                        <b>in</b>
+                        <span>{item.status}</span>
+                    </div>
+                    <div>
+                        <b>label</b>
+                        <span className={styles[labelClassName]}>{item.label}</span>
+                    </div>
+                    <div>
+                        <b>deadline</b>
+                        <span>{(new Date(item.deadline)).toLocaleDateString()}</span>
+                    </div>
                 </div>
+                <div className={styles.taskDetailGroup}>
+                    <div className={styles.taskDetailTitle}>
+                        <h3>Description</h3>
+                    </div>
+                    <div className={styles.taskDetailContent}>
+                        <span>
+                            {item.description}
+                        </span>
+                    </div>
+                </div>
+                <RenderLogsAndComments />
                 <RenderWFA />
             </div>
         );

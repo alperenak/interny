@@ -8,8 +8,10 @@ import Checkbox from "./sub-components/Checkbox";
 import DateInput from "./sub-components/DatePicker";
 
 class Input extends Component {
+
   render() {
     let { type } = this.props;
+
     return (
       <Fragment>
         <PlainInput
@@ -20,6 +22,7 @@ class Input extends Component {
         />
         <DateInput v-if={["date"].includes(type)} {...this.props} />
         <Select v-if={type === "select"} {...this.props} />
+        <Select v-if={type === "multiselect"} multiple={true} {...this.props} />
         <Checkbox v-if={type === "checkbox"} {...this.props} />
       </Fragment>
     );

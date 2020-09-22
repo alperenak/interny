@@ -10,7 +10,6 @@ import { getCookie } from "../../utils/cookie";
 import store from "../../store";
 import { formButtons, formItems } from './formItems';
 import { formTaskData, onTaskFormChange } from "../../utils/functions";
-import errors from "../../utils/errorTexts";
 
 /*** Styles ***/
 import styles from './mytasks.scss'
@@ -32,10 +31,15 @@ class MyTasks extends Component {
         draggedItem: {},
         createFormData: formTaskData(),
         selectedInterns: [],
-        searchResults: [],
+        selecedInternsForMultiSelect: [
+            {
+                label: "Oya Alyanak",
+                selectedd: false,
+                value: "5f5146f8cb4ec4130143bbd6",
+            }
+        ],
         internList: [],
         loading: false,
-        allCheck: false,
     };
 
     async componentDidMount() {
@@ -57,6 +61,7 @@ class MyTasks extends Component {
 
     async componentDidUpdate() {
         await this.getTasks();
+        console.log('selamlar');
     }
 
     getTasks = async () => {
@@ -150,7 +155,7 @@ class MyTasks extends Component {
     };
 
     renderMembers(props) {
-        const { item, renderFor = 'name', styles = {} } = props;
+        const { item, renderFor = 'name', styles = {}, style = {} } = props;
         const { Members = [] } = item;
 
         if (renderFor === 'name')
@@ -165,18 +170,21 @@ class MyTasks extends Component {
             ));
         else if (renderFor === 'avatarFromDetail')
             return Members.map((val, index) => (
-                <img src={val.avatar} key={index} alt={'image'} />
+                <span key={index} className={style.userIn} title={`${val.name} ${val.surname}`}>
+                    <img src={val.avatar} key={index} alt={'image'} />
+                </span>
             ));
         else
             return (<></>);
     }
 
     onTaskClick = (item) => {
-        this.props.createModal({ header: item.title, size: 'large', content: () => this.renderModalContent(item) });
+        const userType = getCookie('user');
+        this.props.createModal({ header: item.title, size: 'large', backgroundColor: '#F4F5F7', content: () => this.renderModalContent(item, userType) });
     };
 
-    renderModalContent(item) {
-        return <TaskDetail item={item} RenderMembers={this.renderMembers} />;
+    renderModalContent(item, userType) {
+        return <TaskDetail userType={userType} item={item} RenderMembers={this.renderMembers} />;
     }
 
     renderSectionItem(itemsKey) {
@@ -209,9 +217,21 @@ class MyTasks extends Component {
         );
     }
 
+    setSelecedInternsForMultiSelect(selecedInternsForMultiSelect) {
+        console.log(selecedInternsForMultiSelect);
+        this.setState({
+            selecedInternsForMultiSelect
+        });
+    }
+
     onCreateClick = async () => {
         let createItems = await formItems();
-        // TODO: change area
+        /*
+        options={options}
+          value={selected}
+          onChange={setSelected}
+          labelledBy={"Select"}
+        */
         this.props.createModal({ header: 'Create Task', content: () => this.renderCreateTaskForm(createItems) });
     };
 
@@ -222,7 +242,6 @@ class MyTasks extends Component {
     };
 
     renderCreateTaskForm = (items) => {
-        // TODO: change area 2
         return <div className={styles.formWrapper}>
             {items.map((item, i) => {
                 return (
@@ -232,12 +251,16 @@ class MyTasks extends Component {
                             labelDescription={item.labelDescription}
                             placeholder={item.placeholder}
                             type={item.type}
+                            multiple={item.multiple || false}
                             externalSource={item.externalSource}
                             size={item.size}
                             defaultValue={item.defaultValue}
                             validations={item.validations}
+                            selecedInternsForMultiSelect={this.state.selecedInternsForMultiSelect}
+                            setSelecedInternsForMultiSelect={this.setSelecedInternsForMultiSelect.bind(this)}
                             onChange={(value, sValue) => {
                                 let vl = item.type !== 'select' ? value : sValue;
+                                console.log(value, sValue, vl);
                                 this.setState(state => {
                                     onTaskFormChange(vl, state.createFormData, item.key);
                                     return state;
@@ -330,6 +353,7 @@ class MyTasks extends Component {
         if (Array.isArray(internSelected)) alreadySelected = internSelected.length > 0;
         let newInternInfo = internInfo;
         let internList = this.state.internList;
+
         const not_this_intern_from_selected = this.state.selectedInterns.filter((id) => id != internInfo.id);
         let selectedInterns = [];
 
@@ -358,91 +382,20 @@ class MyTasks extends Component {
             return a - b;
         });
 
-        let allCheck = selectedInterns.length === internList.length;
-
-        this.setState({ internList, selectedInterns, allCheck });
-    }
-
-    /* toggle allCheck */
-    toggleAllCheck() {
-        this.setState((state) => {
-            const oldAllCheckVal = state.allCheck;
-            let selectedInterns = [];
-            if (!oldAllCheckVal) {
-                selectedInterns = this.state.internList.map(v => v.id);
-            }
-            this.setState({ selectedInterns, allCheck: !oldAllCheckVal });
-        });
-    }
-
-    /**
-     * search to in internList (defined in state)
-     * @param {string} query
-     */
-    searchInInternList(query = '') {
-        // only searching interns name (or|and) surname
-        let { internList, searchResults } = this.state;
-        const searchOptions = {
-            length: {
-                min: 1,
-                max: 35,
-            },
-            errors,
-        };
-
-        if (!(internList.length > 0) || query.length === 0) {
-            this.setState({ searchResults: [] });
-            return;
-        }
-
-        if (!(query.length >= searchOptions.length.min && query.length <= searchOptions.length.max)) return;
-        searchResults = [];
-
-        if (typeof internList.filter === 'undefined') return;
-
-
-        searchResults = internList.filter((v) => {
-            if (
-                !(
-                    typeof v.name === 'string'
-                    && typeof v.surname === 'string'
-                )
-            ) return false;
-
-            const searchfc = (searchIn) => {
-                if (typeof searchIn.search === 'undefined') return false;
-                return searchIn.search(query) != -1
-            };
-
-            const controller = (
-                searchfc(v.name)
-                || searchfc(v.surname)
-                || searchfc(`${v.name} ${v.surname}`)
-            );
-
-            return controller;
-        });
-
-        if (typeof searchResults === 'undefined') searchResults = []
-        else searchResults = Array.isArray(searchResults) ? searchResults : [searchResults];
-
-        this.setState({ searchResults });
+        this.setState({ internList, selectedInterns });
     }
 
 
     render() {
-        let user = getCookie('user');
+        const user = getCookie('user');
         return (
             <>
                 <InternList
                     userType={user}
                     selectedInterns={this.state.selectedInterns}
-                    internList={this.state.searchResults.length > 0 ? this.state.searchResults : this.state.internList}
+                    internList={this.state.internList}
                     loading={this.state.loading}
-                    allCheck={this.state.allCheck}
-                    toggleAllCheck={this.toggleAllCheck.bind(this)}
                     toggleIntern={this.toggleIntern.bind(this)}
-                    searchInInternList={this.searchInInternList.bind(this)}
                 />
                 <div className={styles.MyTasks}>
                     {this.renderSection('To Do', 'to_do')}

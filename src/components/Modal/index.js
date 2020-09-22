@@ -10,13 +10,13 @@ import styles from './modal.scss';
 
 class Modal extends Component {
     render() {
-        let { closeModal, width, header, declaration, content, buttons, modalSize = 'small' } = this.props;
+        let { closeModal, width, backgroundColor = '#fff', header, declaration, content, buttons, modalSize = 'small' } = this.props;
         const modalSizeClass = modalSize === 'small' ? styles.modalSmall : styles.modalLarge;
 
         return (
             <div className={styles.Modal} onClick={() => closeModal()}>
                 <div onClick={(e) => { e.preventDefault(); e.stopPropagation() }} className={modalSizeClass}>
-                    <Card type={'modal'}>
+                    <Card type={'modal'} backgroundColor={backgroundColor}>
                         <div style={{ width }} className={styles.modal}>
                             <div v-if={header} className={styles.header}>
                                 {header}
