@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from "react-dom"
 import styles from "./LoadingModal.scss"
 
-import loadingIcon from '../../icons/reload-outline.svg'
+import loadingIcon from '../../assets/tinyLogo.png'
 
 class LoadingModal extends Component {
     state = {}

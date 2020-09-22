@@ -37,12 +37,14 @@ import styles from "./app.scss";
 /*** Utils ***/
 import { eraseCookie, getCookie } from "./utils/cookie";
 import store from "./store";
+import LoadingModal from "./components/LoadingModal";
 
 class App extends React.Component {
   state = {
     isAuthorized: true,
     user: {},
     userType: "",
+    loading: true,
     modal: {
       header: "",
       declaration: "",
@@ -61,6 +63,7 @@ class App extends React.Component {
 
   async componentDidMount() {
     await this.getUser();
+    this.setState({ loading: false });
   }
 
   getUser = async () => {
@@ -107,9 +110,10 @@ class App extends React.Component {
   };
 
   render() {
-    let { isAuthorized, user, modal, userType, isInternshipBegun, selectedJobID } = this.state;
+    let { isAuthorized, user, modal, userType, isInternshipBegun, selectedJobID, loading } = this.state;
     return (
       <div className={`${styles.App} ${styles.fullScreen}`}>
+        <LoadingModal v-if={loading} />
         <Router>
           <Route
             path="/"

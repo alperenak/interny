@@ -99,22 +99,34 @@
 
       & .header {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         font-family: "Sofia Pro Bold";
-        font-size: calc(2px + 18px);
-        color: #fff;
         margin-bottom: 20px;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        color: #ffffff;
       }
 
       & li {
         font-family: "Sofia Pro";
-        font-size: calc(2px + 16px);
         color: #fff;
         list-style-type: none;
-        line-height: 2em;
         cursor: pointer;
-        text-align: center;
+        text-align: left;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.57;
+        -webkit-filter: blur(.5px);
+        filter: blur(.5px);
+        letter-spacing: normal;
+        width: 120px;
 
         & a {
           color: #fff;
@@ -126,7 +138,7 @@
         }
 
         &:hover {
-          color: #fff;
+          font-family: "Sofia Pro Bold";
         }
       }
     }

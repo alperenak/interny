@@ -241,8 +241,10 @@
       }
 
       & .prepareCv {
+        display: flex;
+        align-items: center;
         font-family: "Sofia Pro";
-        font-size: calc(2px + 12px);
+        font-size: 16px;
         color: white;
         width: fit-content;
         padding: 0 0 6px;
@@ -250,6 +252,12 @@
         border-bottom: 1px solid white;
         cursor: pointer;
         z-index: 1;
+        text-decoration: none;
+
+        & img {
+          margin-left: 10px;
+          width: 32px;
+        }
       }
     }
 
@@ -304,7 +312,7 @@
 
     & .divisions {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       margin: 60px auto;
       padding: 0 144px;
@@ -321,9 +329,16 @@
       & .division {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         width: 27%;
+        border-radius: 12px;
+        margin: 10px;
+        padding: 10px;
+        box-shadow: 0 -3px 4px 0 rgba(215, 219, 252, 0.55);
+        -webkit-box-shadow: 0 -3px 4px 0 rgba(215, 219, 252, 0.55);
+        -o-box-shadow: 0 -3px 4px 0 rgba(215, 219, 252, 0.55);
+        -moz-box-shadow: 0 -3px 4px 0 rgba(215, 219, 252, 0.55);
 
         @include small {
           flex-direction: column;

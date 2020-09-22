@@ -15,9 +15,16 @@ class Footer extends Component {
                 <div className={styles.footerTop}>
                     <div className={styles.companyDescription}>
                         <img src={internyLogo}/>
+                        <div
+                            style={{ fontStyle: 'italic', marginBottom: '17px', fontSize: '17px', }}
+                            className={styles.description}
+                        >
+                            "The way to be a global intern"
+                        </div>
                         <div className={styles.description}>
-                            Provides a full online service for anyone looking for a new internship.
-                            We are not a recruitment agency, we are job site.
+                            Provides a complete online service for anyone looking for a new internship worldwide.
+                            We are not a recruitment agency.
+                            We are an online internship platform that supports the intern and the company from the beginning to the end of the internship process.
                         </div>
                     </div>
                     <div className={styles.options}>
@@ -44,7 +51,7 @@ class Footer extends Component {
                 </div>
                 <div className={styles.stroke} />
                 <div className={styles.rights}>
-                    2020 • Intern Academy © All rights reserved.
+                    2020 • INTERNY Inc. © All rights reserved.
                 </div>
             </div>
         );

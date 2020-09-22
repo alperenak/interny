@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 /*** Components ***/
 import Button from "../../components/Button";
 import Card from "../../components/Card";
-import SearchSection from "../../components/SearchSection";
+import Footer from "../../components/Footer";
 
 /*** Styles ***/
 import styles from "./home.scss";
@@ -26,9 +26,10 @@ import unileverImage from "../../assets/unilever.png";
 import unileverGrayImage from "../../assets/unilevergray.png";
 import workingStudentImage from "../../assets/workingStudent.jpg";
 import register from "../../icons/register.svg";
+import comp from "../../icons/comp.svg";
 import application from "../../icons/application.svg";
 import duties from "../../icons/duties.svg";
-import Footer from "../../components/Footer";
+import promotion from "../../icons/promotion.svg";
 
 class Home extends Component {
   state = {
@@ -124,8 +125,7 @@ class Home extends Component {
         <div className={styles.companiesSection}>
           <div className={styles.companiesTitle}>Outstanding Companies</div>
           <div className={styles.companiesSubTitle}>
-            Each month, more than 7 billion jobseekers turn to website in their
-            search for work
+            Each year, more than 400 million interns turn to INTERNY as searching for internships
           </div>
           <div className={styles.companiesImages}>
             <img
@@ -163,9 +163,9 @@ class Home extends Component {
         </div>
         <div className={styles.browseJobsSection}>
           <div className={styles.jobsTitle}>
-            <div>Use thousands of jobs from anywhere here</div>
+            <div>Apply here for any of the thousands of internships around the world.</div>
             <Link to={"signup"} className={styles.prepareCv}>
-              Prepare your CVs -{">"}
+              Sign up! <img src={promotion} alt={'promotion'} />
             </Link>
           </div>
           <img src={workingStudentImage} alt={"image"} />
@@ -173,43 +173,47 @@ class Home extends Component {
         <div className={styles.howItWorksSection}>
           <div className={styles.howItWorksTitle}>How It Works</div>
           <div className={styles.howItWorksSubTitle}>
-            Each month, more than 7 billion jobseekers turn to website in their
-            search for work, making over 160,000 applications every day.
+            Each year, more than 400 million interns turn to INTERNY as searching for internships, making over thousands applications every day.
           </div>
           <div className={styles.divisions}>
-            <div className={styles.division}>
+            <div style={{marginTop: '0px'}} className={styles.division}>
               <img className={styles.icon} src={register} />
-              <div className={styles.title}>Register</div>
+              <div className={styles.title}>Join & Apply</div>
               <div className={styles.description}>
-                Create your profile, determine your interests, talk about your
-                skills.
+                Sign up and buy the requested package. Then apply for the internships for acceptance.
               </div>
             </div>
-            <div className={styles.division}>
+            <div style={{marginTop: '15px'}} className={styles.division}>
+              <img className={styles.icon} src={comp} />
+              <div className={styles.title}>Competency Analytics</div>
+              <div className={styles.description}>
+                Prove your competency to be the primary candidate of the company you want to apply for.
+                Use CA to determine and improve the competency level if necessary.
+              </div>
+            </div>
+            <div style={{marginTop: '30px'}} className={styles.division}>
               <img className={styles.icon} src={application} />
-              <div className={styles.title}>Application</div>
+              <div className={styles.title}>Project Management System</div>
               <div className={styles.description}>
-                Find the best project in the industry you want to improve
-                yourself.
+                Use PMS to manage tasks assigned for the internship and to contact the company.
               </div>
             </div>
-            <div className={styles.division}>
+            <div style={{marginTop: '45px'}} className={styles.division}>
               <img className={styles.icon} src={duties} />
-              <div className={styles.title}>Duties</div>
+              <div className={styles.title}>Reference Letter</div>
               <div className={styles.description}>
-                After approval, review the project details and ask the project
-                manager for questions.
+                Complete the internship process and take your WFA report.
+                If you're over 60% successful according to the WFA, get your signed reference letter.
               </div>
             </div>
           </div>
         </div>
         <div className={styles.internsSaysSection}>
           <div className={styles.internsSaysTitle}>
-            What Interns Says About Us
+            What Interns Say About Us
           </div>
           <div className={styles.internsSaysSubTitle}>
-            Thousands of students and graduates found new jobs they deserve
-            thanks to Interny
+            Thousands of university students and recent graduates easily found internships they deserve anywhere in the world
           </div>
           <div className={styles.internsSaysImages}>
             <img height={297} src={steveAustin} alt={"image"} />
@@ -228,7 +232,7 @@ class Home extends Component {
             Click to see detail of packages
           </div>
           <div className={styles.packagesCards}>
-            <Card>
+            <Card type={'pricing'}>
               <div className={styles.packageCard}>
                 <div className={styles.headerDiv}>
                   <div className={styles.packageTitle}>FREEMIUM</div>
@@ -238,58 +242,50 @@ class Home extends Component {
                 <div className={styles.stroke} />
                 <div className={styles.descriptionDiv}>
                   <div className={styles.packageDescription}>
-                    Apply to 4-Week Internships, Local/Global Applications,
-                    Project Management Tool
+                    <div>Sign up!</div>
+                    <div>Create CV</div>
+                    <div>Search Internships</div>
                   </div>
-                  <Button
-                    type={"ghost"}
-                    text={"Buy Now"}
-                    sizeName={"default"}
-                  />
+                  <Button type={'ghost'} text={'Buy Now'} sizeName={'default'} />
                 </div>
               </div>
             </Card>
             <div className={styles.frontier}>
-              <Card>
+              <Card type={'pricing'}>
                 <div className={styles.packageCard}>
                   <div className={styles.headerDiv}>
-                    <div className={styles.packageTitle}>WFA</div>
-                    <div className={styles.packagePrice}>$14,99</div>
+                    <div className={styles.packageTitle}>INTERN</div>
+                    <div className={styles.packagePrice}>$19,99</div>
                     <div className={styles.packagePaymentDate}>Per Month</div>
                   </div>
                   <div className={styles.stroke} />
                   <div className={styles.descriptionDiv}>
                     <div className={styles.packageDescription}>
-                      Apply to 8/12-Week Internships, Video-CV, WFA Report,
-                      Certification, Freemium Features
+                      <div>Apply for Internships</div>
+                      <div>PMS</div>
+                      <div>WFA Report</div>
+                      <div>Reference Letter</div>
                     </div>
-                    <Button
-                      type={"primary"}
-                      text={"Buy Now"}
-                      sizeName={"default"}
-                    />
+                    <Button type={'primary'} text={'Buy Now'} sizeName={'default'} />
                   </div>
                 </div>
               </Card>
             </div>
-            <Card>
+            <Card type={'pricing'}>
               <div className={styles.packageCard}>
                 <div className={styles.headerDiv}>
-                  <div className={styles.packageTitle}>COM </div>
+                  <div className={styles.packageTitle}>COMPETENCY</div>
                   <div className={styles.packagePrice}>$9.99</div>
                   <div className={styles.packagePaymentDate}>Per Month</div>
                 </div>
                 <div className={styles.stroke} />
                 <div className={styles.descriptionDiv}>
                   <div className={styles.packageDescription}>
-                    Apply to Competence Scaling, Competence Evaluation,
-                    Additional Report
+                    <div>Case Studies</div>
+                    <div>Competency Analytics</div>
+                    <div>Competency Report</div>
                   </div>
-                  <Button
-                    type={"ghost"}
-                    text={"Buy Now"}
-                    sizeName={"default"}
-                  />
+                  <Button type={'ghost'} text={'Buy Now'} sizeName={'default'} />
                 </div>
               </div>
             </Card>

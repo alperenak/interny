@@ -15,6 +15,7 @@ import styles from './landingpagesearch.scss';
 import Button from "../../components/Button";
 import {getCookie} from "../../utils/cookie";
 import Footer from "../../components/Footer";
+import LoadingModal from "../../components/LoadingModal";
 
 class LandingPageSearch extends Component {
     state = {
@@ -22,29 +23,31 @@ class LandingPageSearch extends Component {
         offset: 0,
         limit: 5,
         isAuthorized: false,
-        totalCount: 0
+        totalCount: 0,
+        loading: true
     };
 
     async componentDidMount() {
+        this.setState({ loading: true });
         let token = getCookie('token');
         let res = await this.returnPostRequest();
         let totalCount = res.total;
         let posts = res.results.map(pst => {
             return this.fillPosts(pst);
         });
-        this.setState({ posts, totalCount, isAuthorized: !!token });
+        this.setState({ posts, totalCount, isAuthorized: !!token, loading: false });
     }
 
     async componentDidUpdate(prevProps) {
         let {keyword, location} = this.props.match.params;
         if (!Object.is(prevProps.match.params.keyword, keyword) ||
             !Object.is(prevProps.match.params.location, location)) {
-            this.setState({ offset: 0 });
+            this.setState({ offset: 0, loading: true });
             let res = await this.returnPostRequest();
             let posts = res.results.map(pst => {
                 return this.fillPosts(pst);
             });
-            this.setState({ posts, totalCount: res.total });
+            this.setState({ posts, totalCount: res.total, loading: false });
         }
     }
 
@@ -52,12 +55,14 @@ class LandingPageSearch extends Component {
         let {offset, limit} = this.state;
         let {keyword, location} = this.props.match.params;
         let token = getCookie('token');
+        this.setState({ loading: true });
         let res = [];
         if (!!token) {
             res = await store.getPosts({keyword , location, offset, limit});
         } else {
             res = await store.getLandingPosts({keyword, location, offset, limit});
         }
+        this.setState({ loading: false });
         return res;
     };
 
@@ -86,20 +91,22 @@ class LandingPageSearch extends Component {
         let {offset, limit} = this.state;
         await this.setState(state => {
             state.offset += state.limit;
+            state.loading = true;
             return state;
         });
         let res = await this.returnPostRequest();
         let posts = res.results.map(pst => {
             return this.fillPosts(pst);
         });
-        this.setState({ posts: [...this.state.posts, ...posts], offset: offset + limit });
+        this.setState({ posts: [...this.state.posts, ...posts], offset: offset + limit, loading: false });
     };
 
     render() {
         let {keyword, location} = this.props.match.params;
-        let {posts, totalCount} = this.state;
+        let {posts, totalCount, loading} = this.state;
         return (
             <div className={styles.LandingPageSearch}>
+                <LoadingModal v-if={loading} />
                 <SearchSection
                     isAuthorized
                     defaultKeyword={keyword}
