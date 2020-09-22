@@ -1,0 +1,168 @@
+.selectWrapper {
+  position: relative;
+  width: fit-content;
+  margin: 8px 0;
+  font-family: "Sofia Pro";
+
+  &.disabled {
+    cursor: not-allowed!important;
+
+    & .inputContainer {
+      background: #ddd;
+    }
+
+    & > div, label, input {
+      cursor: not-allowed!important;
+    }
+  }
+
+  & label {
+    font-family: "Sofia Pro Bold";
+    font-size: calc(2px + 12px);
+    font-weight: 700;
+    color: #2c3f58;
+    letter-spacing: 0.5px;
+    padding: 0 1px;
+  }
+
+  & .labelDescription {
+    padding: 0 1px;
+    margin: 4px 0 0;
+    font-family: "Sofia Pro";
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    text-align: left;
+    color: #2c3f58;
+  }
+
+  & .dropDown {
+    position: absolute;
+    width: calc(100% - 34px);
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
+    border: solid 1px rgba(0, 0, 0, 0.08);
+    margin-top: 8px;
+    padding: 14px 16px;
+    z-index: 12;
+    max-height: 200px;
+    overflow: scroll;
+
+    & .searchWrapper {
+      position: sticky;
+      background: white;
+      width: 100%;
+      margin-top: -14px;
+      top: -14px;
+      border-bottom: 1px solid #fbfbfb;
+      display: flex;
+      flex-direction: row;
+      padding: 12px 0 12px;
+
+      & .searchDropDown {
+        padding: 0 0 0 8px;
+        outline: none;
+        border: 0;
+        font-size: calc(2px + 12px);
+        color: #2c3f58;
+        width: 100%;
+
+        &::placeholder {
+          color: #AFB8C3;
+          font-size: calc(2px + 12px);
+        }
+        &::-moz-placeholder {
+          color: #AFB8C3;
+          font-size: calc(2px + 12px);
+        }
+        &::-ms-input-placeholder {
+          color: #AFB8C3;
+          font-size: calc(2px + 12px);
+        }
+        &::-webkit-input-placeholder {
+          color: #AFB8C3;
+          font-size: calc(2px + 11px);
+        }
+      }
+    }
+
+
+    & li {
+      cursor: pointer;
+      font-size: calc(2px + 14px);
+      list-style: none;
+      color: #2c3f58;
+      border-radius: 4px;
+      padding: 6px 8px;
+
+      &:hover {
+        background-color: rgba(#ff8104, 0.08);
+        color: #ff8104;
+      }
+      &.selected {
+        color: #ff8104;
+      }
+    }
+  }
+
+  & .inputContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    border: 1px solid #d6dfea;
+    padding: 12px 16px;
+    margin: 8px 0 0;
+    min-width: 234px;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px 0 rgba(215, 219, 252, 0.55);
+    background-color: #ffffff;
+
+    & img {
+      position: absolute;
+      right: 16px;
+    }
+
+    &.focus {
+      border: 1px solid #2c3f58;
+    }
+    &.full {
+      width: 534px;
+    }
+    &.medium {
+      width: 390px;
+    }
+    &.half {
+      width: 234px;
+    }
+    &.error {
+      border: 1px solid red;
+      background-color: rgba(red, 0.1);
+    }
+
+    & .inputSelf {
+      font-family: "Sofia Pro";
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #2c3f58;
+      font-size: calc(2px + 12px);
+      width: 100%;
+    }
+
+    & .inputPlaceholder {
+      font-family: "Sofia Pro";
+      margin: 0;
+      background: transparent;
+      color: #AFB8C3;
+      font-size: calc(2px + 11px);
+      padding: .5px 0;
+      width: 100%;
+    }
+  }
+}

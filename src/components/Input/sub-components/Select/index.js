@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /*** Styles ***/
@@ -34,8 +34,8 @@ class Select extends Component {
         if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
             this.setState(state => {
                 state.externalSource = this.props.multiple ?
-                    this.props.externalSource.map(el => {el.selected = this.state.selectedValues.some(vl => vl.key === el.key); return el;}) :
-                    this.props.externalSource.map(el => {el.selected = this.state.selectedValue.key === el.key; return el;});
+                    this.props.externalSource.map(el => { el.selected = this.state.selectedValues.some(vl => vl.key === el.key); return el; }) :
+                    this.props.externalSource.map(el => { el.selected = this.state.selectedValue.key === el.key; return el; });
 
                 state.dropDownOpened = false;
 
@@ -45,24 +45,26 @@ class Select extends Component {
     };
 
     onChange = (event) => {
-        let {multiple} = this.props;
-        this.setState({value: event.target.value});
+        let { multiple } = this.props;
+        this.setState({ value: event.target.value });
         if (event.target.value) {
             let tempSource = this.props.externalSource.filter(el => el.value.toLowerCase().includes(event.target.value.toLowerCase()));
             if (multiple)
                 tempSource.map(el => {
-                    el.selected = this.state.selectedValues.some(vl => vl.key === el.key); return el;});
+                    el.selected = this.state.selectedValues.some(vl => vl.key === el.key); return el;
+                });
             else
-                tempSource.map(el => {el.selected = (this.state.selectedValue.key === el.key); return el;});
-            this.setState({externalSource: [...tempSource]});
+                tempSource.map(el => { el.selected = (this.state.selectedValue.key === el.key); return el; });
+            this.setState({ externalSource: [...tempSource] });
         } else {
             let tempSource = this.props.externalSource;
             if (multiple)
                 tempSource.map(el => {
-                    el.selected = this.state.selectedValues.some(vl => vl.key === el.key); return el;});
+                    el.selected = this.state.selectedValues.some(vl => vl.key === el.key); return el;
+                });
             else
-                tempSource.map(el => {el.selected = (this.state.selectedValue.key === el.key); return el;});
-            this.setState({externalSource: [...tempSource]});
+                tempSource.map(el => { el.selected = (this.state.selectedValue.key === el.key); return el; });
+            this.setState({ externalSource: [...tempSource] });
         }
     };
 
@@ -70,8 +72,8 @@ class Select extends Component {
         if (!this.props.disabled) {
             this.setState(state => {
                 state.externalSource = this.props.multiple ?
-                    this.props.externalSource.map(el => {el.selected = this.state.selectedValues.some(vl => vl.key === el.key); return el;}) :
-                    this.props.externalSource.map(el => {el.selected = this.state.selectedValue.key === el.key; return el;});
+                    this.props.externalSource.map(el => { el.selected = this.state.selectedValues.some(vl => vl.key === el.key); return el; }) :
+                    this.props.externalSource.map(el => { el.selected = this.state.selectedValue.key === el.key; return el; });
 
                 state.dropDownOpened = !state.dropDownOpened;
 
@@ -84,22 +86,22 @@ class Select extends Component {
         let { onChange, value, multiple } = this.props;
 
         if (multiple) {
-            let tempSource = this.state.externalSource.map(el => {el.selected = key === el.key ? !el.selected : el.selected; return el;});
+            let tempSource = this.state.externalSource.map(el => { el.selected = key === el.key ? !el.selected : el.selected; return el; });
             let tempSelectedItems = tempSource.filter(el => el.selected);
-            this.setState({externalSource: [...tempSource], selectedValues: tempSelectedItems});
+            this.setState({ externalSource: [...tempSource], selectedValues: tempSelectedItems });
             onChange(value, tempSelectedItems);
         }
         else {
-            let tempSource = this.state.externalSource.map(el => {el.selected = (key === el.key); return el;});
+            let tempSource = this.state.externalSource.map(el => { el.selected = (key === el.key); return el; });
             let tempSelectedItem = tempSource.find(el => el.selected);
-            this.setState({externalSource: [...tempSource], selectedValue: tempSelectedItem});
+            this.setState({ externalSource: [...tempSource], selectedValue: tempSelectedItem });
             onChange(value, tempSelectedItem);
         }
     };
 
     render() {
-        let {name, label, placeholder, size, labelDescription, errorList, disabled, className} = this.props;
-        let {dropDownOpened, selectedValue, selectedValues, value, externalSource} = this.state;
+        let { name, label, placeholder, size, labelDescription, errorList, disabled, className } = this.props;
+        let { dropDownOpened, selectedValue, selectedValues, value, externalSource } = this.state;
         return (
             <div ref={this.wrapperRef} onClick={this.onClickInput} className={`${styles.selectWrapper} ${disabled ? styles.disabled : ''} ${className}`}>
                 <label v-if={label} htmlFor={name}>
@@ -125,7 +127,7 @@ class Select extends Component {
                         v-else
                         className={`${styles.inputPlaceholder}`}
                     >{placeholder}</div>
-                    <img src={selectIcon} alt={'selectIcon'}/>
+                    <img src={selectIcon} alt={'selectIcon'} />
                 </div>
                 <ul
                     v-if={dropDownOpened}
@@ -136,7 +138,7 @@ class Select extends Component {
                     }}
                 >
                     <div className={styles.searchWrapper}>
-                        <img src={searchIcon} alt={'searchIcon'}/>
+                        <img src={searchIcon} alt={'searchIcon'} />
                         <input
                             autoComplete={'off'}
                             className={styles.searchDropDown}
@@ -148,18 +150,18 @@ class Select extends Component {
                             placeholder={'Search'}
                         />
                     </div>
-                        {externalSource.length ? externalSource.map(el => {
-                            return <li
-                                    key={el.key}
-                                    onClick={() => this.onClickListItem(el.key)}
-                                    className={`${el.selected ? styles.selected: ''}`}
-                            >
-                                {el.value}
-                            </li>
-                        })
-                            :
+                    {externalSource.length ? externalSource.map(el => {
+                        return <li
+                            key={el.key}
+                            onClick={() => this.onClickListItem(el.key)}
+                            className={`${el.selected ? styles.selected : ''}`}
+                        >
+                            {el.value}
+                        </li>
+                    })
+                        :
                         <li>No results found...</li>
-                        }
+                    }
                 </ul>
             </div>
         );

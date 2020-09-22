@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import DatePicker from 'react-datepicker';
 
@@ -8,14 +8,22 @@ import Input from "../../index";
 /*** Styles ***/
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
-export default function DateInput({label, placeholder, errorList, labelDescription, defaultValue,
-                                      validations, disabled, size, onChange}) {
+export default function DateInput({
+    label,
+    placeholder,
+    errorList,
+    labelDescription,
+    defaultValue,
+    validations,
+    disabled,
+    size,
+    onChange
+}) {
+
     const [startDate, setStartDate] = useState(defaultValue ? new Date(defaultValue) : '');
 
     const onDateChange = (date) => {
-
         setStartDate(date);
-
         onChange(date);
     };
 
@@ -46,6 +54,23 @@ export default function DateInput({label, placeholder, errorList, labelDescripti
         />
     );
 };
+
+/* export default class DateInput{
+    
+    render(){
+        const {
+            label,
+            placeholder,
+            errorList,
+            labelDescription,
+            defaultValue,
+            validations,
+            disabled,
+            size,
+            onChange
+        } = this.props;
+    }
+} */
 
 DateInput.propTypes = {
     disabled: PropTypes.bool,

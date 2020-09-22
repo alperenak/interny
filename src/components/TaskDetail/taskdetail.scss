@@ -17,6 +17,185 @@ $active-color: #4CAF50;
     margin: 0 20px 10px;
   }
 
+  & .in{
+    display: flex;
+    width: 100%;
+    margin: 10px 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+    &.inStretch{
+      justify-content: stretch;
+      &>*{
+        flex: 1 1 auto;
+      }
+    }
+
+    & > div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin: 0 0 0 10px;
+
+      &.alignRight{
+        justify-content: flex-end;
+      }
+
+      &:first-child{
+        margin-left: 0;
+      }
+
+      & > span{
+        user-select: none;
+        margin: 0 0 0 8px;
+        padding: 5px 10px;
+        display: block;
+        font-weight: bold;
+        border: 1px solid rgba(9, 30, 66, 0.06);
+        border-radius: 5px;
+        background-color: rgba(9,30,66,.04);
+        color: #172b4d;
+
+        &.labelStyleOrange,
+        &.labelStyleBlue{
+          color: #fff;
+          border: 1px solid transparent;
+        }
+
+        &.labelStyleOrange{
+          background-color: #F44336;
+        }
+        &.labelStyleBlue{
+          background-color: #5C6BC0;
+        }
+        &.userIn {
+          width: 30px;
+          height: 30px;
+          padding: 0;
+          border: none;
+          border-radius: 250px;
+          &>img{
+            border-radius: 250px;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  & .taskDetailGroup {
+    justify-content: flex-start;
+
+    &, 
+    & .taskDetailTitle,
+    & .taskDetailContent {
+      flex-direction: column;
+      display: flex;
+      width: 100%;
+    }
+
+    & .taskDetailTitle {
+      margin: 0;
+
+      & >h3{
+        font-size: 22px;
+        color: #172b4d;
+        margin: 5px 0;
+      }
+    }
+
+    & .taskDetailContent {
+      background: rgba(0,0,0,.02);
+      padding: 15px 10px;
+      width: 100%;
+      box-sizing: border-box;
+      margin: 9px 0px;
+      border-radius: 7px;
+      & *{
+        color: #172b4d;
+        font-size: 16px;
+        opacity: .9;
+        font-weight: 100;
+      }
+    }
+
+  }
+
+  & .logsArea{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+
+    & .logsHeader{
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+
+      & >h3{
+        font-size: 22px;
+        color: #172b4d;
+        margin: 5px 0;
+      }
+
+      & >button{
+        background-color: rgba(9,30,66,.04);
+        box-shadow: none;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        padding: 12px 24px;
+        color: #172b4d;
+        outline:none;
+
+        &:hover{
+          background-color: rgba(9,30,66,.08);
+        }
+        &:active{
+          background-color: #e4f0f6;
+          color: #0079bf;
+        }
+      }
+      
+    }
+
+  }
+
+  & .doRateArea{
+    margin: 10px 0;
+    display: flex;
+    user-select: none;
+    flex-direction: column;
+    align-items: center;
+
+    & .doRateAreaString{
+      display: flex;
+    }
+    & .doRateAreaButtons {
+      display: flex;
+      margin: 10px 0 0 0;
+
+      & > button{
+        cursor: pointer;
+      } 
+
+      & .doRateAreaButtonGreen{
+        display: flex;
+        border:none;
+        outline: none;
+        color: #fff;
+        padding: 10px 15px;
+        background-color: #4CAF50;
+        border-radius: 4px;
+        text-transform: lowercase;
+        font-weight: bold;
+      }
+
+    }
+  }
+
   & .questionsContainer{
     max-width: 100%;
     box-sizing: border-box;

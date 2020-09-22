@@ -11,12 +11,12 @@
   z-index: 2345;
 
   & .modalLarge {
-    min-width: 70%;
+    width: 70%;
     max-height: 90%;
   }
 
   & .modalSmall {
-    min-width: 50%;
+    width: 50%;
     max-height: 90%;
   }
 
@@ -37,7 +37,7 @@
 
     & .header {
       position: absolute;
-      background-color: white;
+      background-color: inherit;
       left: 32px;
       right: 16px;
       top: 0;

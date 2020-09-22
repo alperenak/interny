@@ -31,6 +31,13 @@ class MyTasks extends Component {
         draggedItem: {},
         createFormData: formTaskData(),
         selectedInterns: [],
+        selecedInternsForMultiSelect: [
+            {
+                label: "Oya Alyanak",
+                selectedd: false,
+                value: "5f5146f8cb4ec4130143bbd6",
+            }
+        ],
         internList: [],
         loading: false,
     };
@@ -54,6 +61,7 @@ class MyTasks extends Component {
 
     async componentDidUpdate() {
         await this.getTasks();
+        console.log('selamlar');
     }
 
     getTasks = async () => {
@@ -147,7 +155,7 @@ class MyTasks extends Component {
     };
 
     renderMembers(props) {
-        const { item, renderFor = 'name', styles = {} } = props;
+        const { item, renderFor = 'name', styles = {}, style = {} } = props;
         const { Members = [] } = item;
 
         if (renderFor === 'name')
@@ -162,18 +170,21 @@ class MyTasks extends Component {
             ));
         else if (renderFor === 'avatarFromDetail')
             return Members.map((val, index) => (
-                <img src={val.avatar} key={index} alt={'image'} />
+                <span key={index} className={style.userIn} title={`${val.name} ${val.surname}`}>
+                    <img src={val.avatar} key={index} alt={'image'} />
+                </span>
             ));
         else
             return (<></>);
     }
 
     onTaskClick = (item) => {
-        this.props.createModal({ header: item.title, size: 'large', content: () => this.renderModalContent(item) });
+        const userType = getCookie('user');
+        this.props.createModal({ header: item.title, size: 'large', backgroundColor: '#F4F5F7', content: () => this.renderModalContent(item, userType) });
     };
 
-    renderModalContent(item) {
-        return <TaskDetail item={item} RenderMembers={this.renderMembers} />;
+    renderModalContent(item, userType) {
+        return <TaskDetail userType={userType} item={item} RenderMembers={this.renderMembers} />;
     }
 
     renderSectionItem(itemsKey) {
@@ -206,8 +217,21 @@ class MyTasks extends Component {
         );
     }
 
+    setSelecedInternsForMultiSelect(selecedInternsForMultiSelect) {
+        console.log(selecedInternsForMultiSelect);
+        this.setState({
+            selecedInternsForMultiSelect
+        });
+    }
+
     onCreateClick = async () => {
         let createItems = await formItems();
+        /*
+        options={options}
+          value={selected}
+          onChange={setSelected}
+          labelledBy={"Select"}
+        */
         this.props.createModal({ header: 'Create Task', content: () => this.renderCreateTaskForm(createItems) });
     };
 
@@ -227,12 +251,16 @@ class MyTasks extends Component {
                             labelDescription={item.labelDescription}
                             placeholder={item.placeholder}
                             type={item.type}
+                            multiple={item.multiple || false}
                             externalSource={item.externalSource}
                             size={item.size}
                             defaultValue={item.defaultValue}
                             validations={item.validations}
+                            selecedInternsForMultiSelect={this.state.selecedInternsForMultiSelect}
+                            setSelecedInternsForMultiSelect={this.setSelecedInternsForMultiSelect.bind(this)}
                             onChange={(value, sValue) => {
                                 let vl = item.type !== 'select' ? value : sValue;
+                                console.log(value, sValue, vl);
                                 this.setState(state => {
                                     onTaskFormChange(vl, state.createFormData, item.key);
                                     return state;
@@ -359,7 +387,7 @@ class MyTasks extends Component {
 
 
     render() {
-        let user = getCookie('user');
+        const user = getCookie('user');
         return (
             <>
                 <InternList

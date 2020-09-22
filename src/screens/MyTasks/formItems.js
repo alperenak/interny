@@ -1,12 +1,12 @@
 import store from '../../store';
-import {getCookie} from "../../utils/cookie";
+import { getCookie } from "../../utils/cookie";
 
 export const formItems = async (formItems) => {
     let res = await store.getInterns(getCookie('user_id'));
     let interns = res.data.map(intern => {
         return {
             key: intern.id,
-            value: intern.name +' '+ intern.surname,
+            value: intern.name + ' ' + intern.surname,
             selected: formItems ? formItems.Intern.name === intern.name && formItems.Intern.surname === intern.surname : false
         }
     });
@@ -73,6 +73,7 @@ export const formItems = async (formItems) => {
             type: 'select',
             size: 'half',
             externalSource: interns,
+            multiple: true,
             defaultValue: interns.find(e => e.selected),
             validations: {
             },
@@ -81,20 +82,20 @@ export const formItems = async (formItems) => {
 };
 
 export const formButtons = (isEdit) => {
-    return  [
+    return [
         {
             key: 'cancel',
-            type:'ghost',
+            type: 'ghost',
             text: 'Cancel',
-            sizeName:'small',
-            width:'50px'
+            sizeName: 'small',
+            width: '50px'
         },
         {
             key: 'create',
-            type:'primary',
+            type: 'primary',
             text: isEdit ? 'Update' : 'Create',
-            sizeName:'small',
-            width:'50px'
+            sizeName: 'small',
+            width: '50px'
         }
     ];
 };

@@ -46,11 +46,13 @@ class App extends React.Component {
       header: "",
       declaration: "",
       size: 'small',
+      backgroundColor: '#fff',
       content: {},
       buttons: [],
       visibility: false,
       isInternshipBegun: false,
-      selectedJobID: null,
+      /*default: null*/
+      selectedJobID: '5f640f3dc782454860f792f1',
     },
   };
 
@@ -93,15 +95,15 @@ class App extends React.Component {
     }
   };
 
-  createModal = ({ header, declaration, content, buttons, size = 'small' }) => {
+  createModal = ({ header, declaration, backgroundColor = '#fff', content, buttons, size = 'small' }) => {
     this.setState({
-      modal: { header, declaration, content, buttons, size, visibility: true },
+      modal: { header, declaration, backgroundColor, content, buttons, size, visibility: true },
     });
   };
 
   closeModal = () => {
     this.setState({
-      modal: { header: "", declaration: "", size: 'small', visibility: false },
+      modal: { header: "", declaration: "", backgroundColor: '#fff', size: 'small', visibility: false },
     });
   };
 
@@ -125,6 +127,7 @@ class App extends React.Component {
             v-if={modal.visibility}
             header={modal.header}
             modalSize={modal.size}
+            backgroundColor={modal.backgroundColor}
             declaration={modal.declaration}
             closeModal={this.closeModal}
             content={modal.content}
@@ -309,8 +312,8 @@ class App extends React.Component {
               render={(props) => <JobApplication {...props} />}
             />
             <Route
-                path="/interndetail/:internId"
-                render={(props) => <InternDetail {...props} />}
+              path="/interndetail/:internId"
+              render={(props) => <InternDetail {...props} />}
             />
             <Route
               path="/faq"
