@@ -239,6 +239,13 @@ class Authentication extends Component {
     }
     if (res && res.data.token) {
       if (res.status) {
+        this.setState((state) => {
+          state.buttons.map((btn) => {
+            btn.loading = false;
+            return btn;
+          });
+          return state;
+        });
         this.setState({
           token: res.data.token,
           user: this.props.match.params.user.toLowerCase(),
@@ -718,13 +725,14 @@ class Authentication extends Component {
           </div>
         </div>
         <div
-          v-if={type === "login" && this.props.match.params.user.toLowerCase() === "university"}
+          v-if={
+            type === "login" &&
+            this.props.match.params.user.toLowerCase() === "university"
+          }
           className={styles.info}
         >
-          <img src={infoIcon} alt={'icon'} />
-          <div
-            className={styles.mutedText}
-          >
+          <img src={infoIcon} alt={"icon"} />
+          <div className={styles.mutedText}>
             Intern tracking accounts for all universities were created
             automatically as “interny@YOURUNIVERSITY.edu” or
             “interny@YOURUNIVERSITY.edu.YOURCOUNTRY”.
@@ -735,7 +743,8 @@ class Authentication extends Component {
             “interny@YOURUNIVERSITY.edu.YOURCOUNTRY”.
             <br />
             Afterwards, click on the “Forgot your password?” and send your
-            interns' tracking account password to your university e-mail account.
+            interns' tracking account password to your university e-mail
+            account.
           </div>
         </div>
       </div>
