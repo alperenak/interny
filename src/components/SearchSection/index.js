@@ -339,7 +339,7 @@ class SearchSection extends Component {
           <div className={styles["advancedSearch__send-button"]}>
             <Button
               type={"secondary"}
-              text={"Find Job"}
+              text={"Find Internship"}
               sizeName={"large"}
               loading={this.state.advanced_search_processing}
               onButtonClick={async () => {
@@ -418,7 +418,7 @@ class SearchSection extends Component {
           <div className={styles.findJob}>
             <Button
               type={"secondary"}
-              text={"Find Job"}
+              text={"Find Internship"}
               sizeName={"large"}
               to={`/search/${keyword ? keyword : null}/${
                 location ? location : null
