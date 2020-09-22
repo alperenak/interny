@@ -129,6 +129,22 @@ let store = {
             errorMessageBuilder
         );
     },
+    async universityLogin({ email, password }) {
+        let baseUrl = config.baseUrl;
+        let tokenCookieName = "token";
+        let path = `/login/university`;
+        let payload = {
+            email: email,
+            password: password,
+        };
+        return await http.makePostRequest(
+            path,
+            baseUrl,
+            tokenCookieName,
+            payload,
+            errorMessageBuilder
+        );
+    },
     async employerLogin({ email, password }) {
         let baseUrl = config.baseUrl;
         let tokenCookieName = "token";
