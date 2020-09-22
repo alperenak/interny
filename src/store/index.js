@@ -640,6 +640,27 @@ let store = {
 
     return res.data;
   },
+  async sendForgot(userType, email) {
+      let baseUrl = config.baseUrl;
+      let path = `/login/${userType}/forgot`;
+      let tokenCookieName = "token";
+      let payload = {
+          email: email
+      };
+
+      return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+  },
+  async resetPassword(userType, password, verificationKey) {
+      let baseUrl = config.baseUrl;
+      let path = `/login/${userType}/setPassword`;
+      let tokenCookieName = "token";
+      let payload = {
+          password: password,
+          verificationKey: verificationKey
+      };
+
+      return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+  },
 };
 
 export default store;

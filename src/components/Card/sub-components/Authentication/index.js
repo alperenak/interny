@@ -812,7 +812,7 @@ class Authentication extends Component {
           //TODO: What happens onChange
           <ForgotPassword
             onClick={this.closeModal}
-            onChange={(value) => {}}
+            userType={this.props.match.params.user.toLowerCase()}
             onSubmit={this.closeModal}
           />
         )}

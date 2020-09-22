@@ -3,20 +3,26 @@ import ReactDOM from "react-dom";
 import styles from "./forgotPassword.scss";
 import Input from "../../../Input";
 import Button from "../../../Button";
+import store from "../../../../store";
+import LoadingModal from "../../../LoadingModal";
 
 class ForgotPassword extends Component {
-  state = { value: "" };
+  state = {
+    value: "",
+    processing: false
+  };
 
-  onChange = (e) => {
-    let { onChange } = this.props;
-    let { value } = this.state;
-    this.setState({ value: e.target.value });
-    onChange(value);
+  onClick = async () => {
+    this.setState({ processing: true });
+    await store.sendForgot(this.props.userType, this.state.value);
+    this.setState({ processing: false });
+    window.location.pathname = '/';
   };
 
   render() {
     return ReactDOM.createPortal(
       <div className={styles.outer}>
+        <LoadingModal v-if={this.state.processing} />
         <div className={styles.modal}>
           <div className={styles.header}>Forgot Password</div>
           <div className={styles.description}>
@@ -30,10 +36,10 @@ class ForgotPassword extends Component {
               type="text"
               size={'large'}
               placeholder="Enter e-mail address"
-              onChange={v => this.setState({ value: v })}
+              onChange={value => this.setState({ value })}
             />
             <div className={styles.button}>
-              <Button text={'Send Password'} type={'secondary'} onButtonClick={this.props.onClick} />
+              <Button text={'Send Password'} type={'secondary'} onButtonClick={async () => await this.onClick()} />
             </div>
           </div>
         </div>

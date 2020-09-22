@@ -16,7 +16,7 @@ class MyCourses extends Component {
   state = {
     courses: [],
     company: {},
-    processing: true
+    processing: false
   };
 
   async componentDidMount() {
