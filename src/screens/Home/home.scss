@@ -324,6 +324,7 @@
 
       @include small {
         flex-direction: column;
+        align-items: center;
       }
 
       & .division {
@@ -357,6 +358,12 @@
           color: #2c3f58;
           line-height: 1.5em;
           margin-top: 20px;
+          width: 100%;
+          text-align: center;
+          @include small {
+            font-size: 14px;
+
+          }
         }
 
         & .description {
@@ -373,6 +380,7 @@
 
           @include small {
             text-align: center;
+            font-size: 12px;
           }
         }
       }
