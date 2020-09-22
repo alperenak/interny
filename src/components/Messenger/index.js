@@ -5,6 +5,7 @@ import styles from "./Messenger.scss";
 import ToolbarButton from "../ToolbarButton";
 import Toolbar from "../Toolbar";
 import store from "../../store";
+import Button from "../Button";
 
 export default class Messenger extends Component {
   state = {};
@@ -41,6 +42,15 @@ export default class Messenger extends Component {
               contact={this.state.contact}
               getContacts={this.getContacts}
             />
+            <div className={styles.noContent} v-else>
+              <div className={styles.title}>Welcome to Messages</div>
+              <div className={styles.subTitle}>When a contact contacts you, you can reach messages here.</div>
+              <Button
+                type={'primary'}
+                text={'Find Jobs'}
+                to={'/'}
+              />
+            </div>
           </div>
         </div>
       </div>

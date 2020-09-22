@@ -23,7 +23,7 @@ export default class ConversationList extends Component {
       let newConversations = response.map((result) => {
         return {
           id: result.id,
-          photo: result.avatar,
+          photo: result.logo || result.avatar,
           name: `${result.name}`,
           text: "",
         };
@@ -70,7 +70,7 @@ export default class ConversationList extends Component {
               <div className={styles["toolbar__user-info"]}>
                 <img
                   className={styles["toolbar__user-avatar"]}
-                  src={user.avatar}
+                  src={user.avatar || user.logo}
                   alt="User Avatar"
                 />
 
