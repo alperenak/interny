@@ -3,11 +3,11 @@ import styles from '../../style.scss'
 
 export class Intern extends Component {
   render() {
-    const { internInfo = {} } = this.props;
+    const { internInfo = {}, allCheck } = this.props;
 
     const { selected } = internInfo;
 
-    const activeClass = (selected ? styles.internActive : '');
+    const activeClass = ((selected || allCheck) ? styles.internActive : '');
 
     return (
       <div className={`${styles.intern} ${activeClass}`} onClick={() => {

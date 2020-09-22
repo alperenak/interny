@@ -5,6 +5,9 @@ import styles from "./Messenger.scss";
 import ToolbarButton from "../ToolbarButton";
 import Toolbar from "../Toolbar";
 import store from "../../store";
+import Button from "../Button";
+import messagesIcon from "../../assets/messages.svg";
+import {getCookie} from "../../utils/cookie";
 
 export default class Messenger extends Component {
   state = {};
@@ -41,6 +44,28 @@ export default class Messenger extends Component {
               contact={this.state.contact}
               getContacts={this.getContacts}
             />
+            <div className={styles.noContent} v-else>
+              <img src={messagesIcon} alt={'messages'} />
+              <div className={styles.title}>Welcome to Messages</div>
+              <div
+                  v-if={getCookie('user') === 'intern'}
+                  className={styles.subTitle}
+              >
+                When an employer contacts you, you can reach messages here.
+              </div>
+              <div
+                  v-if={getCookie('user') === 'employer'}
+                  className={styles.subTitle}
+              >
+                You can contacts with interns here.
+              </div>
+              <Button
+                v-if={getCookie('user') === 'intern'}
+                type={'primary'}
+                text={'Find Jobs'}
+                to={'/'}
+              />
+            </div>
           </div>
         </div>
       </div>

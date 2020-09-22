@@ -3,6 +3,7 @@ import React, {Component, Fragment} from 'react';
 /*** Component ***/
 import Card from "../../components/Card";
 import SearchSection from "../../components/SearchSection";
+import LoadingModal from "../../components/LoadingModal";
 
 /*** Utils ***/
 import store from "../../store";
@@ -21,11 +22,13 @@ class PostDetail extends Component{
         posts: [],
         post: {},
         company: {},
-        applicants: []
+        applicants: [],
+        processing: true
     };
 
     async componentDidMount() {
         await this.getPost();
+        this.setState({ processing: false });
     }
 
     getPost = async () => {
@@ -147,9 +150,10 @@ class PostDetail extends Component{
     };
 
     render() {
-        let {posts, company} = this.state;
+        let {posts, company, processing} = this.state;
         return (
             <div className={styles.postDetail}>
+                <LoadingModal v-if={processing} />
                 <div className={styles.cards}>
                     <Card
                         type={'jobDetail'}

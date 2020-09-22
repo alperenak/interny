@@ -17,9 +17,13 @@ import siemens from "../../assets/siemens.png";
 import nanodems from "../../assets/nanodems.png";
 import fikrimuhal from "../../assets/Fikrimuhal.png";
 import vodafoneImage from "../../assets/vodafone.png";
+import vodafoneGrayImage from "../../assets/vodafonegray.png";
 import allianzImage from "../../assets/allianz.png";
+import allianzGrayImage from "../../assets/allianzgray.png";
 import ingBankImage from "../../assets/ing-bank.png";
+import ingBankGrayImage from "../../assets/ing-bank gray.png";
 import unileverImage from "../../assets/unilever.png";
+import unileverGrayImage from "../../assets/unilevergray.png";
 import workingStudentImage from "../../assets/workingStudent.jpg";
 import register from "../../icons/register.svg";
 import application from "../../icons/application.svg";
@@ -44,6 +48,10 @@ class Home extends Component {
       "Southampton",
     ],
     items: [1, 2, 3],
+    ing: ingBankGrayImage,
+    unilever: unileverGrayImage,
+    allianz: allianzGrayImage,
+    vodafone: vodafoneGrayImage
   };
 
   render() {
@@ -106,7 +114,7 @@ class Home extends Component {
           </div>
           <div className={styles.discoverBtn}>
             <Button
-              to={"/search/null/null"}
+              to={"/search"}
               type={"ghost"}
               text={"Discover"}
               sizeName={"large"}
@@ -120,10 +128,37 @@ class Home extends Component {
             search for work
           </div>
           <div className={styles.companiesImages}>
-            <img height={38} src={ingBankImage} alt={"image"} />
-            <img height={65} src={unileverImage} alt={"image"} />
-            <img height={35} src={allianzImage} alt={"image"} />
-            <img height={62} src={vodafoneImage} alt={"image"} />
+            <img
+                onClick={() => this.setState({ing: ingBankImage})}
+                onMouseOver={() => this.setState({ing: ingBankImage})}
+                onMouseLeave={() => this.setState({ing: ingBankGrayImage})}
+                height={38}
+                src={this.state.ing} alt={"image"}
+            />
+            <img
+                onClick={() => this.setState({unilever: unileverImage})}
+                onMouseOver={() => this.setState({unilever: unileverImage})}
+                onMouseLeave={() => this.setState({unilever: unileverGrayImage})}
+                height={65}
+                src={this.state.unilever}
+                alt={"image"}
+            />
+            <img
+                onClick={() => this.setState({allianz: allianzImage})}
+                onMouseOver={() => this.setState({allianz: allianzImage})}
+                onMouseLeave={() => this.setState({allianz: allianzGrayImage})}
+                height={35}
+                src={this.state.allianz}
+                alt={"image"}
+            />
+            <img
+                onClick={() => this.setState({vodafone: vodafoneImage})}
+                onMouseOver={() => this.setState({vodafone: vodafoneImage})}
+                onMouseLeave={() => this.setState({vodafone: vodafoneGrayImage})}
+                height={62}
+                src={this.state.vodafone}
+                alt={"image"}
+            />
           </div>
         </div>
         <div className={styles.browseJobsSection}>

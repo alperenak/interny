@@ -385,7 +385,7 @@ class SearchSection extends Component {
         }`}
       >
         <div v-if={this.props.page === "home"} className={styles.slogan}>
-          The Easiest Way to Get Your New Internship
+          The <span style={{color: '#f97050'}}>Easiest</span> Way to Get Your <span style={{color: '#696cff'}}>New Internship</span>
         </div>
         <div v-if={this.props.page === "home"} className={styles.subSlogan}>
           Find the career you deserve

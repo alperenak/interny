@@ -53,6 +53,37 @@
     
   }
 
+  & .AllInternsButtonContainer{
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    transition: .4s all ease;
+
+    & button{
+      padding: 0 20px;
+      height: 100%;
+      background-color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+
+      width: 100px;
+      
+      letter-spacing: -1px;
+      outline: none;
+      border: none;
+      border-color: transparent;
+      color: rgb(40, 43, 48);
+      box-shadow: 0 0 5px 1px rgba($color: #000000, $alpha: 0.05);
+
+      &.AllInternsButtonChecked{
+        background-color: #2196F3;
+        color: #fff;
+      }
+    }
+  }
+
   & .verticalHR{
     width: 2px;
     background-color: #CFD8DC;

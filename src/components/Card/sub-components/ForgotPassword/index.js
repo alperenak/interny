@@ -1,20 +1,57 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import styles from "./forgotPassword.scss";
+import Input from "../../../Input";
+import Button from "../../../Button";
+import store from "../../../../store";
+import LoadingModal from "../../../LoadingModal";
 
 class ForgotPassword extends Component {
-  state = { value: "" };
+  state = {
+    value: "",
+    processing: false
+  };
 
-  onChange = (e) => {
-    let { onChange } = this.props;
-    let { value } = this.state;
-    this.setState({ value: e.target.value });
-    onChange(value);
+  onClick = async () => {
+    this.setState({ processing: true });
+    let res = await store.sendForgot(this.props.userType, this.state.value);
+    this.setState({ processing: false });
+    if (res.status === 200) {
+      this.props.createModal({
+        header: "Success",
+        declaration: "The email has been sent!",
+        buttons: [
+          {
+            type: "primary",
+            text: "OK",
+            sizeName: "default",
+            onButtonClick: () => {
+              this.props.closeModal();
+              window.location.pathname = `/`;
+            },
+          },
+        ],
+      });
+    } else {
+      this.props.createModal({
+        header: res.data.title,
+        declaration: res.data.message,
+        buttons: [
+          {
+            type: "primary",
+            text: "OK",
+            sizeName: "default",
+            onButtonClick: () => this.props.closeModal(),
+          },
+        ],
+      });
+    }
   };
 
   render() {
     return ReactDOM.createPortal(
       <div className={styles.outer}>
+        <LoadingModal v-if={this.state.processing} />
         <div className={styles.modal}>
           <div className={styles.header}>Forgot Password</div>
           <div className={styles.description}>
@@ -23,22 +60,16 @@ class ForgotPassword extends Component {
           </div>
 
           <div className={styles.input_wrapper}>
-            <label htmlFor="email" className={styles.label}>
-              E-mail Address
-            </label>
-
-            <div className={styles.input_field_wrapper}>
-              <input
-                type="text"
-                placeholder="Enter e-mail address"
-                className={styles.input}
-                onChange={this.onChange}
-                value={this.state.value}
-              />
+            <Input
+              label={'E-mail Address'}
+              type="text"
+              size={'large'}
+              placeholder="Enter e-mail address"
+              onChange={value => this.setState({ value })}
+            />
+            <div className={styles.button}>
+              <Button text={'Send Password'} type={'secondary'} onButtonClick={async () => await this.onClick()} />
             </div>
-            <button className={styles.button} onClick={this.props.onClick}>
-              Send Password
-            </button>
           </div>
         </div>
       </div>,

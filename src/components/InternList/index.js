@@ -4,7 +4,7 @@ import styles from "./style.scss"
 import ScrollContainer from 'react-indiana-drag-scroll'
 
 //
-import { Search, Intern } from './sub-components';
+import { Search, Intern, AllInterns } from './sub-components';
 
 export default class InternList extends Component {
 
@@ -14,7 +14,8 @@ export default class InternList extends Component {
 
     return (
       <div className={styles.container}>
-        <Search />
+        <Search {...this.props} />
+        <AllInterns {...this.props} />
         <div className={styles.verticalHR} />
         <ScrollContainer className={styles.internList}>
           {/* FOR TEST */}

@@ -129,6 +129,22 @@ let store = {
             errorMessageBuilder
         );
     },
+    async universityLogin({ email, password }) {
+        let baseUrl = config.baseUrl;
+        let tokenCookieName = "token";
+        let path = `/login/university`;
+        let payload = {
+            email: email,
+            password: password,
+        };
+        return await http.makePostRequest(
+            path,
+            baseUrl,
+            tokenCookieName,
+            payload,
+            errorMessageBuilder
+        );
+    },
     async employerLogin({ email, password }) {
         let baseUrl = config.baseUrl;
         let tokenCookieName = "token";
@@ -213,7 +229,7 @@ let store = {
         let keywordPath = keyword && keyword !== "null" ? `keyword=${keyword}` : "";
         let locationPath =
             location && location !== "null" ? `&location=${location}&` : "";
-        let path = `/jobs?${keywordPath}${locationPath}offset=${offset}&limit=${limit}`;
+        let path = `/jobs?${keywordPath}${locationPath}&offset=${offset}&limit=${limit}`;
         let tokenCookieName = "token";
         let res = await http.makeGetRequest(
             path,
@@ -228,7 +244,7 @@ let store = {
     let baseUrl = config.baseUrl;
     let keywordPath = keyword && keyword !== 'null' ? `keyword=${keyword}` : '';
     let locationPath = location && location !== 'null' ? `&location=${location}&` : '';
-    let path = `/job?${keywordPath}${locationPath}offset=${offset}&limit=${limit}`;
+    let path = `/job?${keywordPath}${locationPath}&offset=${offset}&limit=${limit}`;
     let tokenCookieName = "token";
     let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
 
@@ -639,6 +655,27 @@ let store = {
     let res = await http.makePostRequest(path, baseUrl, tokenCookieName, {}, errorMessageBuilder);
 
     return res.data;
+  },
+  async sendForgot(userType, email) {
+      let baseUrl = config.baseUrl;
+      let path = `/login/${userType}/forgot`;
+      let tokenCookieName = "token";
+      let payload = {
+          email: email
+      };
+
+      return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+  },
+  async resetPassword(userType, password, verificationKey) {
+      let baseUrl = config.baseUrl;
+      let path = `/login/${userType}/setPassword`;
+      let tokenCookieName = "token";
+      let payload = {
+          password: password,
+          verificationKey: verificationKey
+      };
+
+      return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
   },
 };
 

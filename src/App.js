@@ -29,6 +29,7 @@ import FrequentlyAskedQuestions from "./screens/FAQ";
 import CourseDetail from "./screens/CourseDetail";
 import UniverstyDashboard from "./screens/universtyDashboard/universtyDashboard";
 import InternDetail from "./screens/InternDetail";
+import UpdatePassword from "./screens/UpdatePassword";
 
 /*** Styles ***/
 import styles from "./app.scss";
@@ -315,6 +316,17 @@ class App extends React.Component {
             <Route
               path="/faq"
               render={(props) => <FrequentlyAskedQuestions {...props} />}
+            />
+            <Route
+                v-if={!getCookie('token')}
+                path="/updatepassword/:userType/:verificationKey"
+                render={(props) =>
+                    <UpdatePassword
+                        {...props}
+                        closeModal={this.closeModal}
+                        createModal={this.createModal}
+                    />
+                }
             />
             <Route path="/error" render={(props) => <Error {...props} />} />
           </Switch>

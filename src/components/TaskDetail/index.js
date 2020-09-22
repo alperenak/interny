@@ -115,13 +115,57 @@ class TaskDetail extends Component {
             );
         }
 
+        const calcRateAverage = (type = '', fillThemAll = false, defaultVal = 5) => {
+            if (!(questions.length > 0)) return defaultVal;
+
+            let totalRate = 0,
+                error = false;
+
+            questions.forEach(v => {
+                if (v.rate === 0 && fillThemAll) error = true;
+                totalRate += v.rate
+            });
+
+            if (error) return defaultVal;
+
+            let average = totalRate / questions.length;
+
+            if (
+                type === 'ceil'
+                || type === 'floor'
+                || type === 'round'
+            ) average = Math[type](average)
+
+            return average;
+        }
+
+        const buttonClassNameGenerator = () => {
+            const rate = calcRateAverage('', true, 0);
+            let className = styles.questionsSubmitButton;
+
+            if (rate < 2) {
+                // red
+                className += ` ${styles.questionSubmitButtonRed}`;
+            } else if (rate < 3) {
+                // orange
+                className += ` ${styles.questionSubmitButtonOrange}`;
+            } else if (rate < 4) {
+                // light green
+                className += ` ${styles.questionSubmitButtonLightGreen}`;
+            } else if (rate < 5) {
+                //green
+                className += ` ${styles.questionSubmitButtonGreen}`;
+            }
+
+            return className;
+        }
         return (
             <Master>
                 {questions.map((v, i) => <Child key={i} item={v} />)}
                 {
                     allDone() && (
                         <button
-                            className={styles.questionsSubmitButton}
+                            className={buttonClassNameGenerator()}
                             disabled={!allDone()}
                             onClick={this.sendQuestions.bind(this)}>
                             Submit
