@@ -29,7 +29,7 @@ class UpdatePassword extends Component {
             this.setState({ processing: true });
             let res = await store.resetPassword(userType, value, verificationKey);
             this.setState({ processing: false });
-            if (res.status === 200) {
+            if (res.statusCode === 200) {
                 this.props.createModal({
                     header: "Success",
                     declaration: "The email has been sent!",
