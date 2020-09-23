@@ -34,6 +34,7 @@
     & .packageCard {
       width: 165px;
       padding: 24px 0;
+      cursor: pointer;
 
       & .headerDiv {
         display: flex;
@@ -83,7 +84,9 @@
     }
 
     & .frontier {
-      margin-bottom: 50px;
+      &:hover {
+        margin-top: -50px;
+      }
     }
   }
 }

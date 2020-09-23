@@ -10,6 +10,7 @@
   background-color: #ffffff;
 
   &.pricing {
+    height: 345px;
     @include large {
       padding: 16px 16px;
     }
