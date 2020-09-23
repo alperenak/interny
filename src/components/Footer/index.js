@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
+import {Link} from "react-router-dom";
 
 /*** Styles ***/
 import styles from "./footer.scss";
 
-/*** Icons ***/
-import internyLogo from "../../assets/interny-logo.png";
-import {Link} from "react-router-dom";
+/*** Utils ***/
 import {getCookie} from "../../utils/cookie";
+
+/*** Icons ***/
+import internyLogo from "../../assets/interny-logo-white.png";
 
 class Footer extends Component {
     render() {
