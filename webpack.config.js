@@ -37,6 +37,11 @@ let webpackConfig = {
                 }]
             },
             {
+                test: /\.(ico)$/,
+                exclude: /node_modules/,
+                use: ['file-loader?name=[name].[ext]'] // ?name=[name].[ext] is only necessary to preserve the original file name
+            },
+            {
                 test: /\.css$/,
                 use: [
                     'style-loader',
@@ -82,7 +87,7 @@ let webpackConfig = {
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebPackPlugin({
-            template: "./index.html",
+            template: "./public/index.html",
             filename: path.resolve(__dirname, 'dist') + "/index.html"
         }),
         new webpack.EnvironmentPlugin({'NODE_ENV': "production"}),

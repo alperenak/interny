@@ -44,9 +44,9 @@ class Footer extends Component {
                         <div className={styles.followUs}>
                             <div className={styles.header}>Follow Us</div>
                             <ul>
-                                <li>Facebook</li>
-                                <li>Twitter</li>
-                                <li>Linkedin</li>
+                                <li><a href={'https://www.facebook.com/internynet/'} target={'blank'}>Facebook</a></li>
+                                <li><a href={'https://twitter.com/internynet/'} target={'blank'}>Twitter</a></li>
+                                <li><a href={'https://www.linkedin.com/company/internynet/'} target={'blank'}>LinkedIn</a></li>
                             </ul>
                         </div>
                     </div>

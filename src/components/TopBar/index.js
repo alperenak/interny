@@ -23,6 +23,7 @@ import taskIcon from "../../icons/clipboard-square-symbol.svg";
 import logOutIcon from "../../icons/logout.svg";
 import caret from "../../icons/selectbox-blue.svg";
 import bookIcon from "../../icons/book-outline.svg";
+import wfaIcon from "../../icons/wfa.svg";
 import HamburgerMenuIcon from "../../icons/menu-three-filled-rounded-lines-symbol.svg";
 import SideBar from "../SideBar";
 
@@ -275,6 +276,13 @@ class TopBar extends Component {
           selected: false,
           icon: bookIcon,
           to: "/courses",
+        });
+        state.internSource.splice(5, 0, {
+          key: "wfa",
+          value: "WFA",
+          selected: false,
+          icon: wfaIcon,
+          to: "/wfa",
         });
       } else {
         state.internSource = state.internSource.filter(
