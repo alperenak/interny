@@ -52,7 +52,10 @@ class Home extends Component {
     ing: ingBankGrayImage,
     unilever: unileverGrayImage,
     allianz: allianzGrayImage,
-    vodafone: vodafoneGrayImage
+    vodafone: vodafoneGrayImage,
+    pri1: false,
+    pri2: false,
+    pri3: false
   };
 
   render() {
@@ -232,7 +235,7 @@ class Home extends Component {
             Click to see detail of packages
           </div>
           <div className={styles.packagesCards}>
-            <div className={styles.frontier}>
+            <div onMouseLeave={() => this.setState({ pri1: false })} onMouseOver={() => this.setState({ pri1: true })} className={styles.frontier}>
               <Card type={'pricing'}>
                 <div className={styles.packageCard}>
                   <div className={styles.headerDiv}>
@@ -247,12 +250,13 @@ class Home extends Component {
                       <div>Create CV</div>
                       <div>Search Internships</div>
                     </div>
-                    <Button type={'ghost'} text={'Buy Now'} sizeName={'default'} />
+                    <Button v-if={this.state.pri1} type={'primary'} text={'Buy Now'} sizeName={'default'} />
+                    <Button v-if={!this.state.pri1} type={'ghost'} text={'Buy Now'} sizeName={'default'} />
                   </div>
                 </div>
               </Card>
             </div>
-            <div className={styles.frontier}>
+            <div onMouseLeave={() => this.setState({ pri2: false })} onMouseOver={() => this.setState({ pri2: true })} className={styles.frontier}>
               <Card type={'pricing'}>
                 <div className={styles.packageCard}>
                   <div className={styles.headerDiv}>
@@ -268,12 +272,13 @@ class Home extends Component {
                       <div>WFA Report</div>
                       <div>Reference Letter</div>
                     </div>
-                    <Button type={'primary'} text={'Buy Now'} sizeName={'default'} />
+                    <Button v-if={this.state.pri2} type={'primary'} text={'Buy Now'} sizeName={'default'} />
+                    <Button v-if={!this.state.pri2} type={'ghost'} text={'Buy Now'} sizeName={'default'} />
                   </div>
                 </div>
               </Card>
             </div>
-            <div className={styles.frontier}>
+            <div onMouseLeave={() => this.setState({ pri3: false })} onMouseOver={() => this.setState({ pri3: true })} className={styles.frontier}>
               <Card type={'pricing'}>
                 <div className={styles.packageCard}>
                   <div className={styles.headerDiv}>
@@ -288,7 +293,8 @@ class Home extends Component {
                       <div>Competency Analytics</div>
                       <div>Competency Report</div>
                     </div>
-                    <Button type={'ghost'} text={'Buy Now'} sizeName={'default'} />
+                    <Button v-if={this.state.pri3} type={'primary'} text={'Buy Now'} sizeName={'default'} />
+                    <Button v-if={!this.state.pri3} type={'ghost'} text={'Buy Now'} sizeName={'default'} />
                   </div>
                 </div>
               </Card>
