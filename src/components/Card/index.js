@@ -21,9 +21,9 @@ import styles from "./card.scss";
 
 class Card extends Component {
   render() {
-    let { type, header, children, backgroundColor = '#fff' } = this.props;
+    let { type, header, children, backgroundColor = '#fff', posts } = this.props;
     return (
-      <div className={`${styles.Card} ${styles[type]}`} style={{ backgroundColor }}>
+      <div className={`${styles.Card} ${styles[type]} ${posts.length > 1 && styles.multiple}`} style={{ backgroundColor }}>
         <div
           v-if={header}
           className={`${styles.cardHeader} ${styles[header.position]}`}

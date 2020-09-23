@@ -84,7 +84,6 @@ class MyJobs extends Component {
         ],
         processing: true,
         redirected: false,
-        processing: true,
         error: null
     };
 
