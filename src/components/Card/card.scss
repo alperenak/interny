@@ -12,6 +12,7 @@
   &.wfaQuestion {
     width: fit-content;
     max-width: 500px;
+    display: inline-block;
 
     &:hover {
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
