@@ -9,6 +9,18 @@
   /* box-shadow: 0 4px 10px 0 rgba(215, 219, 252, 0.55); */
   background-color: #ffffff;
 
+  &.wfaQuestion {
+    width: fit-content;
+    max-width: 500px;
+
+    &:hover {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
+      -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
+      -o-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
+      -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
+    }
+  }
+
   &.pricing {
     height: 345px;
     &:hover {
@@ -99,6 +111,34 @@
         width: calc(77px - 45px);
 
       }
+    }
+  }
+
+  &.num {
+    height: 69px;
+    width: 150px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
+      -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
+      -o-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
+      -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
+    }
+
+    @include x-large {
+      width: calc(150px - 75px);
+    }
+    @include large {
+      width: calc(150px - 105px);
+    }
+    @include medium {
+      width: calc(150px);
+    }
+    @include small {
+      width: calc(150px);
     }
   }
 

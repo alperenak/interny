@@ -1,3 +1,116 @@
-.WFA {
+@import '../../helpers/responsiveBreakpointsMixins.scss';
 
+.WFA {
+  & .numerics {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include medium {
+      flex-direction: column;
+    }
+    @include small {
+      flex-direction: column;
+    }
+
+    & .numeric {
+      display: flex;
+      flex-direction: column;
+      font-family: "Sofia Pro Bold";
+      font-size: 32px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.22;
+      letter-spacing: normal;
+      text-align: center;
+      width: 150px;
+      height: 100%;
+      color: #696cff;
+
+      & span {
+        font-family: "Sofia Pro";
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.22;
+        margin-bottom: 10px;
+        letter-spacing: normal;
+        text-align: center;
+        color: #2c3f58;
+      }
+    }
+  }
+  & .questions {
+    width: 100%;
+    text-align: center;
+
+    & .question {
+      display: flex;
+      flex-direction: column;
+      font-family: "Sofia Pro";
+      font-size: 18px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.22;
+      letter-spacing: normal;
+      text-align: center;
+      color: #2c3f58;
+
+      & .averageScore {
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  & .labels {
+    width: 100%;
+    text-align: center;
+
+    @include x-large() {
+      grid-template-columns: auto;
+      justify-content: center;
+      align-items: center;
+    }
+
+    & .label {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      @include medium() {
+        flex-direction: column;
+        align-items: center;
+      }
+      & .items {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        & .item {
+          font-family: "Sofia Pro Bold";
+          font-size: 18px;
+          font-weight: normal;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: 1.22;
+          letter-spacing: normal;
+          text-align: center;
+          color: #696cff;
+          margin: 0 20px 10px 0;
+          & span {
+            font-family: "Sofia Pro";
+            font-size: 18px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.22;
+            letter-spacing: normal;
+            text-align: center;
+            color: #2c3f58;
+          }
+        }
+      }
+    }
+  }
 }

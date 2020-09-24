@@ -677,6 +677,13 @@ let store = {
 
       return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
   },
+  async getWFAData(id) {
+      let baseUrl = config.baseUrl;
+      let path = `/intern/${id}/wfa`;
+      let tokenCookieName = "token";
+
+      return await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+  }
 };
 
 export default store;

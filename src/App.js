@@ -38,6 +38,7 @@ import styles from "./app.scss";
 import { eraseCookie, getCookie } from "./utils/cookie";
 import store from "./store";
 import LoadingModal from "./components/LoadingModal";
+import WFA from "./screens/WFA";
 
 class App extends React.Component {
   state = {
@@ -335,6 +336,7 @@ class App extends React.Component {
                     />
                 }
             />
+            <Route path="/wfa" render={(props) => <WFA {...props} />} />
             <Route path="/error" render={(props) => <Error {...props} />} />
           </Switch>
         </Router>
