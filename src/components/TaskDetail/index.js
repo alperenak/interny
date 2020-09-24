@@ -3,66 +3,110 @@ import React, { Component } from 'react';
 /*** Styles ***/
 import styles from './taskdetail.scss';
 import SendCommentShortcut from '../SendCommentShortcut'
+import Activity from '../Activity'
 import store from '../../store';
 
 class TaskDetail extends Component {
 
     state = {
+        show: true,
         isEvaluated: false,
         doRate: false,
-        questions: [
-            {
-                question: 'Question 1',
-                key: 'q_1',
-                rate: 0,
-            },
-            {
-                question: 'Question 2',
-                key: 'q_2',
-                rate: 0,
-            },
-            {
-                question: 'Question 3',
-                key: 'q_3',
-                rate: 0,
-            },
-            {
-                question: 'Question 4',
-                key: 'q_4',
-                rate: 0,
-            }
-        ],
-        labelClass: {
-            'reporting': 'Orange',
+        questions: [],
+        showLogs: false,
+        item: {},
+    }
+
+    async componentDidMount() {
+        const { userType = 'intern', userId = '' } = this.props;
+        let detail = {};
+
+        const wfaQuestions = await store.getWFAForTask(this.props.item.id);
+        if (userType === 'employer')
+            detail = await store.getTaskDetailEmployer(this.props.item.id);
+        else if (userType === 'intern')
+            detail = await store.getTaskDetailIntern(this.props.item.id, userId);
+
+
+        ///
+        const taskItem = Object.assign({}, detail.data);
+        const taskQuestions = Object.assign([], wfaQuestions.data);
+        let wfaQues = false
+        let isEvaluated = false;
+
+        if (userType === 'employer' && taskItem.isEvaluatedByEmployer) {
+            isEvaluated = true;
+            wfaQues = taskItem.wfaEmployer;
+        } else if (userType === 'intern' && taskItem.isEvaluatedByIntern) {
+            isEvaluated = true;
+            wfaQues = taskItem.wfaIntern;
         }
+
+        if (isEvaluated) {
+            taskQuestions.sort(function (a, b) {
+                return a.question.localeCompare(b.question);
+            });
+            wfaQues.sort(function (a, b) {
+                return a.question.localeCompare(b.question);
+            });
+
+            let same = true;
+            wfaQues.forEach((v, i) => {
+                if (!(Object.is(taskQuestions[i], v))) {
+                    same = false;
+                    return;
+                };
+            })
+            if (!same && wfaQues !== false) {
+                wfaQuestions.data = wfaQues
+            }
+        }
+
+        ///
+        if (isEvaluated !== this.state.isEvaluated) this.setState({ questions: wfaQuestions.data, item: detail.data, isEvaluated })
+        else this.setState({ questions: wfaQuestions.data, item: detail.data })
+
+
     }
 
     componentDidUpdate() {
+        // /task/:taskId/wfa (intern)
+        // /task/:taskId/wfa (intern)
     }
 
+
+
     async sendQuestions() {
-        const { item, userType = 'intern' } = this.props;
-        const { isEvaluated = false } = item;
-        if (item.status != 'Done' || isEvaluated === true || this.state.isEvaluated || userType === 'intern') return;
+        const { item } = this.state;
+        if (!this.wfaControl()) return;
 
         try {
             const response = await store.sendQuestions(item.id, this.state.questions);
-            if (response.status == '200') this.setState({ isEvaluated: true });
-
+            if (response.status == '204') this.setState({ isEvaluated: true });
         } catch (error) {
             console.error(error);
         }
     }
 
+    wfaControl() {
+        const { item = {} } = this.state;
+
+        if (typeof item.isEvaluated === 'undefined') item.isEvaluated = false;
+
+        if (item.status != 'Done' || !this.state.show) return false;
+
+        return true;
+    }
+
     renderWFA() {
         // for static structure
-        const { questions, isEvaluated } = this.state;
-        const { item = {}, userType = 'intern' } = this.props;
-        if (typeof item.isEvaluated === 'undefined') item.isEvaluated = false;
-        if (item.status != 'Done' || isEvaluated === true || this.state.isEvaluated || userType === 'intern') return <></>;
+        if (!this.wfaControl()) return <></>;
+        const questions = this.state.questions;
+        const { isEvaluated = false } = this.state;
+
 
         const allDone = () => {
-            if (item.status != 'Done' || item.isEvaluated === true || isEvaluated) return false;
+            if (!this.wfaControl()) return false;
             let response = true;
 
             questions.forEach(v => {
@@ -73,24 +117,23 @@ class TaskDetail extends Component {
         }
 
         const changeRate = (item, newValue = 0) => {
-            const notThis = questions.filter((val, index) => val.key !== item.key);
+            const notThis = questions.filter((val) => val.key !== item.key);
             item.rate = newValue;
 
             const questionsNew = [
                 ...notThis,
                 item
-            ]
+            ];
 
             questionsNew.sort(function (a, b) {
                 return a.key.localeCompare(b.key) || a.question.localeCompare(b.question);
             });
 
             this.setState({ questions: questionsNew });
-
         }
 
         const Master = ({ children }) => {
-            if (!this.state.doRate)
+            if (!this.state.doRate && !isEvaluated)
                 return (
                     <div className={styles.doRateArea}>
                         <div className={styles.doRateAreaString}>
@@ -111,13 +154,18 @@ class TaskDetail extends Component {
                 );
         }
 
-        const Rates = ({ item }) => (
-            [1, 2, 3, 4, 5].map(
+        const Rates = ({ item }) => {
+            return [1, 2, 3, 4, 5].map(
                 (v, i) => (
-                    <span onClick={() => changeRate(item, v)} className={item.rate >= v ? styles.pointActive : ''} key={i}>{v}</span>
+                    <span
+                        onClick={!isEvaluated ? () => changeRate(item, v) : () => { }}
+                        className={item.rate >= v ? styles.pointActive : ''}
+                        key={i}>
+                        {v}
+                    </span>
                 )
             )
-        );
+        };
 
         const Child = ({ item }) => {
             return (
@@ -182,7 +230,7 @@ class TaskDetail extends Component {
             <Master>
                 {questions.map((v, i) => <Child key={i} item={v} />)}
                 {
-                    allDone() && (
+                    (allDone() && !isEvaluated) && (
                         <button
                             className={buttonClassNameGenerator()}
                             disabled={!allDone()}
@@ -195,27 +243,26 @@ class TaskDetail extends Component {
         );
     }
 
-    // TODO: finish this function
     renderLogsAndComments() {
         return (
             <div className={styles.logsArea}>
                 <div className={styles.logsHeader}>
                     <h3>Logs</h3>
-                    <button type={'button'} className={styles.logsOpenButton}>
-                        Show Details
+                    <button type={'button'} className={styles.logsOpenButton} onClick={() => this.setState({ showLogs: !this.state.showLogs })}>
+                        {this.state.showLogs ? 'Hide Details' : 'Show Details'}
                     </button>
                 </div>
-                <SendCommentShortcut />
+                <SendCommentShortcut user={this.props.user} />
+                <Activity items={this.state.item.activity} showLogs={this.state.showLogs} />
             </div>
         );
     }
 
     render() {
         let { item, RenderMembers } = this.props;
-        console.log('item', item)
         const RenderWFA = this.renderWFA.bind(this);
         const RenderLogsAndComments = this.renderLogsAndComments.bind(this);
-        const labelClassName = `labelStyle${this.state.labelClass[item.label.toLowerCase()]}`;
+        const labelClassName = `labelStyle${this.props.labelClass[item.label.toLowerCase()]}`;
 
         return (
             <div className={styles.TaskDetail}>

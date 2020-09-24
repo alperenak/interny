@@ -21,11 +21,12 @@ class Task extends Component {
 
         let user = getCookie('user');
         const { RenderMembers } = this.props;
+        const labelClassName = `labelStyle${this.props.labelClass[item.label.toLowerCase()]}`;
 
         return (
             <div className={styles.Task}>
                 <div className={styles.title}>{item.title}</div>
-                <div className={styles.label}>{item.label}</div>
+                <div className={`${styles.label} ${styles[labelClassName]}`}>{item.label}</div>
                 <div
                     draggable={false}
                     v-if={user === 'employer'}

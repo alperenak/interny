@@ -3,46 +3,46 @@ import config from "../../appConfig";
 import { getCookie } from "../utils/cookie";
 
 const errorMessageBuilder = (response) => {
-    return (response.errorData && response.errorData.code) || "0";
+  return (response.errorData && response.errorData.code) || "0";
 };
 
 let store = {
-    async advancedSearch(payload) {
-        let {
-            keyword,
-            location,
-            country,
-            city,
-            employee_min,
-            employee_max,
-            intern_type,
-            duration,
-            intern_quota_min,
-            intern_quota_max,
-            rate_min,
-            rate_max,
-            industry,
-        } = payload;
+  async advancedSearch(payload) {
+    let {
+      keyword,
+      location,
+      country,
+      city,
+      employee_min,
+      employee_max,
+      intern_type,
+      duration,
+      intern_quota_min,
+      intern_quota_max,
+      rate_min,
+      rate_max,
+      industry,
+    } = payload;
 
-        let query = `keyword=${encodeURIComponent(
-            keyword
-        )}&location=${encodeURIComponent(location)}&country=${encodeURIComponent(
-            country
-        )}&city=${encodeURIComponent(city)}&employee_min=${encodeURIComponent(
-            employee_min
-        )}&employee_max=${encodeURIComponent(
-            employee_max
-        )}&intern_type=${encodeURIComponent(
-            intern_type
-        )}&duration=${encodeURIComponent(
-            duration
-        )}&intern_quota_min=${encodeURIComponent(
-            intern_quota_min
-        )}&intern_quota_max=${encodeURIComponent(
-            intern_quota_max
-        )}&rate_min=${encodeURIComponent(rate_min)}&rate_max=${encodeURIComponent(
-            rate_max
-        )}&industry=${encodeURIComponent(industry)}`;
+    let query = `keyword=${encodeURIComponent(
+      keyword
+    )}&location=${encodeURIComponent(location)}&country=${encodeURIComponent(
+      country
+    )}&city=${encodeURIComponent(city)}&employee_min=${encodeURIComponent(
+      employee_min
+    )}&employee_max=${encodeURIComponent(
+      employee_max
+    )}&intern_type=${encodeURIComponent(
+      intern_type
+    )}&duration=${encodeURIComponent(
+      duration
+    )}&intern_quota_min=${encodeURIComponent(
+      intern_quota_min
+    )}&intern_quota_max=${encodeURIComponent(
+      intern_quota_max
+    )}&rate_min=${encodeURIComponent(rate_min)}&rate_max=${encodeURIComponent(
+      rate_max
+    )}&industry=${encodeURIComponent(industry)}`;
 
         let tokenCookieName = "token";
         let baseUrl = config.baseUrl;
@@ -522,53 +522,53 @@ let store = {
     let tokenCookieName = "token";
     let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
 
-        return res.data;
-    },
-    async createTask(payload) {
-        let baseUrl = config.baseUrl;
-        let tokenCookieName = "token";
-        let path = `/task`;
-        return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
-    },
-    async updateTask(payload) {
-        let baseUrl = config.baseUrl;
-        let tokenCookieName = "token";
-        let path = `/task/${payload.id}`;
-        return await http.makePutRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
-    },
-    async deleteTask(internId, id) {
-        let baseUrl = config.baseUrl;
-        let tokenCookieName = "token";
-        let path = `/intern/${internId}/coverletter`;
-        let payload = {
-            id: id
-        };
-        return await http.makeDeleteRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
-    },
-    async moveInternTask(id, { taskId, status }) {
-        let baseUrl = config.baseUrl;
-        let tokenCookieName = "token";
-        let path = `/intern/${id}/task/${taskId}/status`;
-        let payload = {
-            status: status
-        };
-        return await http.makePutRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
-    },
-    async moveEmployerTask({ taskId, internId, status }) {
-        let baseUrl = config.baseUrl;
-        let tokenCookieName = "token";
-        let path = `/task/${taskId}/status`;
-        let payload = {
-            status: status,
-            Intern: internId
-        };
-        return await http.makePutRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
-    },
-    async getMessage(contact) {
-        let baseUrl = config.baseUrl;
-        let path = `/message?contact=${contact}`;
-        let tokenCookieName = "token";
-        let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
+    return res.data;
+  },
+  async createTask(payload) {
+    let baseUrl = config.baseUrl;
+    let tokenCookieName = "token";
+    let path = `/task`;
+    return await http.makePostRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+  },
+  async updateTask(payload) {
+    let baseUrl = config.baseUrl;
+    let tokenCookieName = "token";
+    let path = `/task/${payload.id}`;
+    return await http.makePutRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+  },
+  async deleteTask(internId, id) {
+    let baseUrl = config.baseUrl;
+    let tokenCookieName = "token";
+    let path = `/intern/${internId}/coverletter`;
+    let payload = {
+      id: id
+    };
+    return await http.makeDeleteRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+  },
+  async moveInternTask(id, { taskId, status }) {
+    let baseUrl = config.baseUrl;
+    let tokenCookieName = "token";
+    let path = `/intern/${id}/task/${taskId}/status`;
+    let payload = {
+      status: status
+    };
+    return await http.makePutRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+  },
+  async moveEmployerTask({ taskId, internId, status }) {
+    let baseUrl = config.baseUrl;
+    let tokenCookieName = "token";
+    let path = `/task/${taskId}/status`;
+    let payload = {
+      status: status,
+      Intern: internId
+    };
+    return await http.makePutRequest(path, baseUrl, tokenCookieName, payload, errorMessageBuilder);
+  },
+  async getMessage(contact) {
+    let baseUrl = config.baseUrl;
+    let path = `/message?contact=${contact}`;
+    let tokenCookieName = "token";
+    let res = await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
 
     return res.data;
   },
@@ -683,7 +683,40 @@ let store = {
       let tokenCookieName = "token";
 
       return await http.makeGetRequest(path, baseUrl, tokenCookieName, errorMessageBuilder);
-  }
+  },
+    async getWFAForTask(id) {
+        let baseUrl = config.baseUrl;
+        let path = `/task/${id}/wfa`;
+        let tokenCookieName = "token";
+        return await http.makeGetRequest(
+            path,
+            baseUrl,
+            tokenCookieName,
+            errorMessageBuilder
+        );
+    },
+    async getTaskDetailEmployer(id) {
+        let baseUrl = config.baseUrl;
+        let path = `/task/${id}`;
+        let tokenCookieName = "token";
+        return await http.makeGetRequest(
+            path,
+            baseUrl,
+            tokenCookieName,
+            errorMessageBuilder
+        );
+    },
+    async getTaskDetailIntern(id, internId) {
+        let baseUrl = config.baseUrl;
+        let path = `/intern/${internId}/task/${id}`;
+        let tokenCookieName = "token";
+        return await http.makeGetRequest(
+            path,
+            baseUrl,
+            tokenCookieName,
+            errorMessageBuilder
+        );
+    },
 };
 
 export default store;
