@@ -28,6 +28,7 @@ class WFA extends Component {
         return (
             <div className={styles.WFA}>
                 <LoadingModal v-if={loading} text={'loading'} />
+                <div className={styles.header}>WORK FORCE ANALYTICS</div>
                 <div className={styles.numerics}>
                     <Card type={'num'}>
                         <div className={styles.numeric}>
