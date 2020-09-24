@@ -47,6 +47,9 @@ class JobDetail extends Component {
                             <div v-if={pst.company} className={styles.postCompany}>
                                 {pst.company}
                             </div>
+                            <div v-if={pst.city} className={styles.postCompany}>
+                                {pst.city}
+                            </div>
                             {pst.buttons && this.renderDetailButtons(pst.buttons)}
                             <div className={styles.postDescription}>{pst.description}</div>
                             <div v-if={pst.qualifications} className={styles.postDescription}>Qualifications:</div>

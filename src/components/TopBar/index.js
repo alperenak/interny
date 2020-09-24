@@ -85,7 +85,7 @@ class TopBar extends Component {
       },
       {
         key: "CVs",
-        value: "CVs",
+        value: "CV",
         selected: false,
         icon: CVIcon,
         to: "/CVs",

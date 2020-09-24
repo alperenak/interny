@@ -153,7 +153,7 @@ class PostDetail extends Component{
         let {posts, company, processing} = this.state;
         return (
             <div className={styles.postDetail}>
-                <LoadingModal v-if={processing} />
+                <LoadingModal text="Loading" v-if={processing} />
                 <div className={styles.cards}>
                     <Card
                         type={'jobDetail'}

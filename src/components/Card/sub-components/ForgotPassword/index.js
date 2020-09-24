@@ -49,9 +49,9 @@ class ForgotPassword extends Component {
   };
 
   render() {
-    return ReactDOM.createPortal(
+    return (
       <div className={styles.outer}>
-        <LoadingModal v-if={this.state.processing} />
+        <LoadingModal text="Loading" v-if={this.state.processing} />
         <div className={styles.modal}>
           <div className={styles.header}>Forgot Password</div>
           <div className={styles.description}>
@@ -72,8 +72,7 @@ class ForgotPassword extends Component {
             </div>
           </div>
         </div>
-      </div>,
-      document.getElementById("modal")
+      </div>
     );
   }
 }

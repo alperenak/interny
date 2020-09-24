@@ -11,6 +11,9 @@
 
   &.pricing {
     height: 345px;
+    &:hover {
+      border: 1px solid #696cff;
+    }
     @include large {
       padding: 16px 16px;
     }

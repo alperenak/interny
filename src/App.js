@@ -115,7 +115,7 @@ class App extends React.Component {
     let { isAuthorized, user, modal, userType, isInternshipBegun, selectedJobID, loading } = this.state;
     return (
       <div className={`${styles.App} ${styles.fullScreen}`}>
-        <LoadingModal v-if={loading} />
+        <LoadingModal text="Loading" v-if={loading} />
         <Router>
           <Route
             path="/"

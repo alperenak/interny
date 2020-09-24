@@ -106,7 +106,7 @@ class LandingPageSearch extends Component {
         let {posts, totalCount, loading} = this.state;
         return (
             <div className={styles.LandingPageSearch}>
-                <LoadingModal v-if={loading} />
+                <LoadingModal text="Loading" v-if={loading} />
                 <SearchSection
                     isAuthorized
                     defaultKeyword={keyword}

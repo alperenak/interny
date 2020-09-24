@@ -168,7 +168,7 @@ class Home extends Component {
           <div className={styles.jobsTitle}>
             <div>Apply here for any of the thousands of internships around the world.</div>
             <Link to={"signup"} className={styles.prepareCv}>
-              Sign up! <img src={promotion} alt={'promotion'} />
+              Sign up!
             </Link>
           </div>
           <img src={workingStudentImage} alt={"image"} />
@@ -179,14 +179,14 @@ class Home extends Component {
             Each year, more than 400 million interns turn to INTERNY as searching for internships, making over thousands applications every day.
           </div>
           <div className={styles.divisions}>
-            <div style={{marginTop: '0px'}} className={styles.division}>
+            <div style={{marginTop: '45px'}} className={styles.division}>
               <img className={styles.icon} src={register} />
               <div className={styles.title}>Join & Apply</div>
               <div className={styles.description}>
                 Sign up and buy the requested package. Then apply for the internships for acceptance.
               </div>
             </div>
-            <div style={{marginTop: '15px'}} className={styles.division}>
+            <div style={{marginTop: '30px'}} className={styles.division}>
               <img className={styles.icon} src={comp} />
               <div className={styles.title}>Competency Analytics</div>
               <div className={styles.description}>
@@ -194,14 +194,14 @@ class Home extends Component {
                 Use CA to determine and improve the competency level if necessary.
               </div>
             </div>
-            <div style={{marginTop: '30px'}} className={styles.division}>
+            <div style={{marginTop: '15px'}} className={styles.division}>
               <img className={styles.icon} src={application} />
               <div className={styles.title}>Project Management System</div>
               <div className={styles.description}>
                 Use PMS to manage tasks assigned for the internship and to contact the company.
               </div>
             </div>
-            <div style={{marginTop: '45px'}} className={styles.division}>
+            <div style={{marginTop: '0px'}} className={styles.division}>
               <img className={styles.icon} src={duties} />
               <div className={styles.title}>Reference Letter</div>
               <div className={styles.description}>

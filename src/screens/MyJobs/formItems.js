@@ -56,16 +56,11 @@ export const formItems = (formItems) => {
             externalSource: countries,
             multiple: true,
         }},
+        'city': {item: {
+            title: "Preferred Cities",
+        }},
         'gpa': {item: {
             title: "Preferred GPA",
-            validations: {isNumeric: {}},
-        }},
-        'minSalary': {item: {
-            title: "Minimum Salary",
-            validations: {isNumeric: {}},
-        }},
-        'maxSalary': {item: {
-            title: "Maximum Salary",
             validations: {isNumeric: {}},
         }},
         'startDate': {item: {
