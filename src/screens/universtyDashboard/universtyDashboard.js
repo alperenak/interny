@@ -91,34 +91,55 @@ const staticData = [
     },
   },
   {
-    id: "5f5145c6cb4ec4130143bbd4",
-    name: "Gustavo",
-    surname: "Velasco",
-    email: "gustavo.velasco@example.com",
-    phone: "+90 543 739 05 54",
+    id: '5f5146f8cb4ec4130143bbd6',
+    name: 'Oya',
+    surname: 'Alyanak',
+    email: 'oya.alyanak@example.com',
+    phone: '',
+    membershipStatus: 'FREEMIUM',
     location: {
-      country: "Turkey",
-      city: "Ankara",
+      country: 'Turkey',
+      city: 'Ankara'
     },
-    gradStatus: "Student",
-    avatar:
-      "https://interny-pp.s3.eu-central-1.amazonaws.com/5f5145c6cb4ec4130143bbd4/pp.jpeg",
+    university: {
+      university: 'Ankara University',
+      faculty: 'Engineering',
+      department: 'Computer Science',
+      universityMail: 'example@ogrenci.ankara.edu.tr',
+      studentNumber: '18290454'
+    },
+    gradStatus: 'Student',
+    avatar: 'https://interny-pp.s3.eu-central-1.amazonaws.com/5f5146f8cb4ec4130143bbd6/pp.jpeg',
+    isCompleted: true,
     Internship: {
-      id: "5f640f3dc782454860f792f1",
+      id: '5f640f3dc782454860f792f1',
       Employer: {
-        id: "5f514d5f73b6d41b674e16fb",
-        legalName: "Innovation and Partners Limited Inc.",
-        logo:
-          "https://interny-pp.s3.eu-central-1.amazonaws.com/5f514d5f73b6d41b674e16fb/pp.png",
+        id: '5f514d5f73b6d41b674e16fb',
+        legalName: 'Innovation and Partners Limited Inc.',
+        accountName: 'innovation',
+        email: 'info@innovationandpartners.com',
+        logo: 'https://interny-pp.s3.eu-central-1.amazonaws.com/5f514d5f73b6d41b674e16fb/pp.png',
+        isValid: null,
+        employeeNumber: 24,
+        sectors: [],
+        workingLocations: []
       },
-      position: "Game Developer",
-      startDate: "9/30/2020",
-      endDate: "11/30/2020",
-      duration: "61",
-      dayLeft: 13,
-      internshipLength: "10 weeks",
-      status: "Completed",
-    },
+      position: 'Game Developer',
+      startDate: '8/30/2020',
+      endDate: '10/30/2020',
+      duration: 61,
+      age: 6,
+      internshipLength: '10 weeks',
+      country: [
+        'Afghanistan',
+        'Åland Islands',
+        'Albania'
+      ],
+      postedAt: '9/18/2020',
+      overAllScore: 4.8,
+      dayLeft: 36,
+      status: "Ongoing",
+    }
   },
   {
     id: "5f5145c6cb4ec4130143bbd4",
@@ -132,14 +153,14 @@ const staticData = [
     },
     gradStatus: "Student",
     avatar:
-      "https://interny-pp.s3.eu-central-1.amazonaws.com/5f5145c6cb4ec4130143bbd4/pp.jpeg",
+        "https://interny-pp.s3.eu-central-1.amazonaws.com/5f5145c6cb4ec4130143bbd4/pp.jpeg",
     Internship: {
       id: "5f640f3dc782454860f792f1",
       Employer: {
         id: "5f514d5f73b6d41b674e16fb",
         legalName: "Innovation and Partners Limited Inc.",
         logo:
-          "https://interny-pp.s3.eu-central-1.amazonaws.com/5f514d5f73b6d41b674e16fb/pp.png",
+            "https://interny-pp.s3.eu-central-1.amazonaws.com/5f514d5f73b6d41b674e16fb/pp.png",
       },
       position: "Game Developer",
       startDate: "9/30/2020",
@@ -147,7 +168,58 @@ const staticData = [
       duration: "61",
       dayLeft: 13,
       internshipLength: "10 weeks",
-      status: "Ongoing",
+      status: "Completed",
     },
+  },
+  {
+    id: '5f5146f8cb4ec4130143bbd6',
+    name: 'Oya',
+    surname: 'Alyanak',
+    email: 'oya.alyanak@example.com',
+    phone: '',
+    membershipStatus: 'FREEMIUM',
+    location: {
+      country: 'Turkey',
+      city: 'Ankara'
+    },
+    university: {
+      university: 'Ankara University',
+      faculty: 'Engineering',
+      department: 'Computer Science',
+      universityMail: 'example@ogrenci.ankara.edu.tr',
+      studentNumber: '18290454'
+    },
+    gradStatus: 'Student',
+    avatar: 'https://interny-pp.s3.eu-central-1.amazonaws.com/5f5146f8cb4ec4130143bbd6/pp.jpeg',
+    isCompleted: true,
+    Internship: {
+      id: '5f640f3dc782454860f792f1',
+      Employer: {
+        id: '5f514d5f73b6d41b674e16fb',
+        legalName: 'Innovation and Partners Limited Inc.',
+        accountName: 'innovation',
+        email: 'info@innovationandpartners.com',
+        logo: 'https://interny-pp.s3.eu-central-1.amazonaws.com/5f514d5f73b6d41b674e16fb/pp.png',
+        isValid: null,
+        employeeNumber: 24,
+        sectors: [],
+        workingLocations: []
+      },
+      position: 'Game Developer',
+      startDate: '8/30/2020',
+      endDate: '10/30/2020',
+      duration: 61,
+      age: 6,
+      internshipLength: '10 weeks',
+      country: [
+        'Afghanistan',
+        'Åland Islands',
+        'Albania'
+      ],
+      postedAt: '9/18/2020',
+      overAllScore: 4.8,
+      dayLeft: 36,
+      status: "Ongoing",
+    }
   },
 ];
