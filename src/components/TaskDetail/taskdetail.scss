@@ -56,18 +56,45 @@ $active-color: #4CAF50;
         background-color: rgba(9,30,66,.04);
         color: #172b4d;
 
+        &.labelStyleGreen,
+        &.labelStyleIndigo,
+        &.labelStyleBlue,
+        &.labelStyleRed,
         &.labelStyleOrange,
-        &.labelStyleBlue{
+        &.labelStylePurple{
           color: #fff;
           border: 1px solid transparent;
         }
 
+
+        /*
+          X green: #4CAF50
+          X indigo: #3F51B5
+          X blue: #2196F3
+          X red: #F44336
+          X orange: #F44336
+          X purple: #9C27B0
+          
+        */
+        &.labelStyleGreen{
+          background-color: #4CAF50;
+        }
+        &.labelStyleIndigo{
+          background-color: #3F51B5;
+        }
+        &.labelStyleBlue{
+          background-color: #2196F3;
+        }
+        &.labelStyleRed{
+          background-color: #F44336;
+        }
         &.labelStyleOrange{
           background-color: #F44336;
         }
-        &.labelStyleBlue{
-          background-color: #5C6BC0;
+        &.labelStylePurple{
+          background-color: #9C27B0;
         }
+        
         &.userIn {
           width: 30px;
           height: 30px;

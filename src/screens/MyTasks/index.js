@@ -31,13 +31,15 @@ class MyTasks extends Component {
         draggedItem: {},
         createFormData: formTaskData(),
         selectedInterns: [],
-        selecedInternsForMultiSelect: [
-            {
-                label: "Oya Alyanak",
-                selectedd: false,
-                value: "5f5146f8cb4ec4130143bbd6",
-            }
-        ],
+        taskLabelClass: {
+            'research': 'Green',
+            'avaluation': 'Blue',
+            'reorganization': 'Purple',
+            'design': 'Orange',
+            'application': 'Indigo',
+            'reporting': 'Red',
+        },
+        selecedInternsForMultiSelect: [],
         internList: [],
         loading: false,
     };
@@ -61,7 +63,6 @@ class MyTasks extends Component {
 
     async componentDidUpdate() {
         await this.getTasks();
-        console.log('selamlar');
     }
 
     getTasks = async () => {
@@ -184,7 +185,7 @@ class MyTasks extends Component {
     };
 
     renderModalContent(item, userType) {
-        return <TaskDetail userType={userType} item={item} RenderMembers={this.renderMembers} />;
+        return <TaskDetail user={this.props.user} userType={userType} labelClass={this.state.taskLabelClass} userId={getCookie('user_id')} item={item} RenderMembers={this.renderMembers} />;
     }
 
     renderSectionItem(itemsKey) {
@@ -197,7 +198,7 @@ class MyTasks extends Component {
                 className={styles.taskItem}
                 onClick={() => this.onTaskClick(item)}
             >
-                <Card RenderMembers={this.renderMembers} type={'task'} item={item} onEditClick={async () => await this.onEditClick(item)} />
+                <Card RenderMembers={this.renderMembers} labelClass={this.state.taskLabelClass} type={'task'} item={item} onEditClick={async () => await this.onEditClick(item)} />
             </div>
         })
     }
@@ -218,7 +219,6 @@ class MyTasks extends Component {
     }
 
     setSelecedInternsForMultiSelect(selecedInternsForMultiSelect) {
-        console.log(selecedInternsForMultiSelect);
         this.setState({
             selecedInternsForMultiSelect
         });
