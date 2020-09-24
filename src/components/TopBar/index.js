@@ -282,7 +282,7 @@ class TopBar extends Component {
           value: "WFA",
           selected: false,
           icon: wfaIcon,
-          to: "/wfa",
+          to: `/internDetail/${getCookie('user_id')}`,
         });
       } else {
         state.internSource = state.internSource.filter(

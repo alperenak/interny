@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 /*** Components ***/
-import Card from "../../components/Card";
+import Card from "../Card";
 
 /*** Styles ***/
 import styles from './wfa.scss';
@@ -9,7 +9,7 @@ import styles from './wfa.scss';
 /*** Utils ***/
 import store from "../../store";
 import {getCookie} from "../../utils/cookie";
-import LoadingModal from "../../components/LoadingModal";
+import LoadingModal from "../LoadingModal";
 
 class WFA extends Component {
     state = {
@@ -19,7 +19,7 @@ class WFA extends Component {
 
     async componentDidMount() {
         this.setState({ loading: true });
-        let res = await store.getWFAData(getCookie('user_id'));
+        let res = await store.getWFAData(this.props.internId);
         this.setState({ loading: false, data: res.data });
     }
 
