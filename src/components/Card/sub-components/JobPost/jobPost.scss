@@ -26,7 +26,8 @@
     padding: 16px 0;
 
     @include small {
-      grid-template-columns: 20px auto auto 20px;
+      display: flex;
+      flex-direction: column;
     }
 
     & .postButton {
@@ -187,9 +188,11 @@
     }
 
     @include small {
-      margin-left: 48px;
-      width: 20px;
-      height: 20px;
+      margin: 0;
+      width: 100%;
+      height: fit-content;
+      flex-direction: column;
+      justify-content: center;
     }
   }
 
