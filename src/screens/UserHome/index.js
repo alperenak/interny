@@ -26,15 +26,12 @@ class UserHome extends Component {
 
     async componentDidMount() {
         let {offset, limit} = this.state;
-        let userType = getCookie('user');
-        if (userType === 'intern') {
-            let res = await store.getPosts({offset, limit});
-            let totalCount = res.total;
-            let posts = res.results.map(pst => {
-                return this.fillPosts(pst);
-            });
-            this.setState({ posts, totalCount });
-        }
+        let res = await store.getPosts({offset, limit});
+        let totalCount = res.total;
+        let posts = res.results.map(pst => {
+            return this.fillPosts(pst);
+        });
+        this.setState({ posts, totalCount });
     }
 
     fillPosts = (pst) => [
@@ -48,10 +45,14 @@ class UserHome extends Component {
             buttons:[
                 {
                     type:'primary',
-                    text:pst.isApplied? (pst.isApproved ? 'Start Internship' : 'Withdraw') : 'Apply Now',
+                    disabled: getCookie('isInProgram'),
+                    text:pst.isApplied ?
+                        (pst.acceptationByEmployer ?
+                            (!pst.isApproved ? 'Confirm Internship' :
+                                getCookie('isInProgram') ? 'Withdraw' : 'Waiting') : 'Waiting') : 'Apply Now',
                     sizeName:'small',
                     width:'90px',
-                    to:`/jobApplication/${pst.id}`
+                    to:pst.isApplied ? `/postdetail/${pst.id}` : `/jobApplication/${pst.id}`,
                 },
                 {
                     type:'ghost',

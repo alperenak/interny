@@ -133,6 +133,7 @@ class Authentication extends Component {
     country: "",
     city: "",
     token: null,
+    isInProgram: false,
     user: null,
     user_id: null,
     terms: false,
@@ -253,17 +254,20 @@ class Authentication extends Component {
           token: res.data.token,
           user: this.props.match.params.user.toLowerCase(),
           user_id: res.data.id,
+          isInProgram: !!res?.data?.Internship
         });
 
         if (res.data.user_type === "employer") {
           setCookie("token", res.data.token, {});
           setCookie("user", this.props.match.params.user.toLowerCase(), {});
           setCookie("user_id", res.data.id, {});
+          setCookie("isInProgram", !!res?.data?.Internship, {});
           window.location.pathname = `/`;
         } else if (res.data.isCompleted) {
           setCookie("token", res.data.token, {});
           setCookie("user", this.props.match.params.user.toLowerCase(), {});
           setCookie("user_id", res.data.id, {});
+          setCookie("isInProgram", !!res?.data?.Internship, {});
           window.location.pathname = `/`;
         } else if (!res.data.isCompleted) {
           this.setState({ getAdditionalInfo: true });
@@ -402,6 +406,7 @@ class Authentication extends Component {
     setCookie("token", this.state.token, {});
     setCookie("user", this.state.user, {});
     setCookie("user_id", this.state.user_id, {});
+    setCookie("isInProgram", this.state.isInProgram, {});
     let user_id = this.state.user_id;
     let response = await store.completeRegistration(user_id, payload);
 

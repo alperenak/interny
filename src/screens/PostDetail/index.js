@@ -39,7 +39,11 @@ class PostDetail extends Component{
             user = (await store.getEmployer(getCookie('user_id'))).data;
         }
         let pst = await store.getPost(id);
-        this.setState(state => {
+        this.setState(async state => {
+            let text = pst.isApplied ?
+                (pst.acceptationByEmployer ?
+                    (!pst.isApproved ? 'Confirm Internship' :
+                        getCookie('isInProgram') ? 'Withdraw' : 'Withdraw') : 'Withdraw') : 'Apply Now';
             if (userType === 'intern') {
                 user = pst.Employer;
             }
@@ -52,7 +56,7 @@ class PostDetail extends Component{
                     buttons:[
                         {
                             type: userType === 'intern' ? 'primary' : 'ghost',
-                            text: userType === 'intern' ? 'Apply Now' : 'Edit',
+                            text: userType === 'intern' ? text : 'Edit',
                             sizeName:'small',
                             width: userType === 'intern' ? '85px' : '105px',
                         }
@@ -81,7 +85,23 @@ class PostDetail extends Component{
             };
 
             if (userType === 'intern') {
-                state.posts[0].buttons[0].to = `/jobapplication/${pst?.id}`;
+                if (pst.isApplied) {
+                    if (pst.acceptationByEmployer) {
+                        if (pst.isApproved) {
+                            await store.withdrawPost(getCookie('user_id', pst.id))
+                        } else {
+                            await store.startInternship(getCookie('user_id', pst.id))
+                        }
+                    } else {
+                        if (!pst.isRejected) {
+                            await store.withdrawPost(getCookie('user_id', pst.id))
+                        } else {
+                            state.posts[0].buttons[0].to = `/jobapplication/${pst?.id}`;
+                        }
+                    }
+                } else {
+                    state.posts[0].buttons[0].to = `/jobapplication/${pst?.id}`;
+                }
             } else {
                 state.posts[0].buttons[0].onButtonClick = () => this.onEditClick(pst.id);
                 state.posts[0].buttons.splice(0, 0, {

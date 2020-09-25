@@ -261,7 +261,7 @@ class TopBar extends Component {
     this.setState((state) => {
       if (this.props.isInternshipBegun) {
         state.internSource = state.internSource.filter(
-          (e) => e.key !== "myJobs" && e.key !== "myTasks"
+          (e) => e.key !== "myTasks" && e.key !== "myJobs" && e.key !== "myCourses" && e.key !== "wfa"
         );
         state.internSource.splice(3, 0, {
           key: "myTasks",
@@ -286,7 +286,7 @@ class TopBar extends Component {
         });
       } else {
         state.internSource = state.internSource.filter(
-          (e) => e.key !== "myTasks" && e.key !== "myJobs"
+          (e) => e.key !== "myTasks" && e.key !== "myJobs" && e.key !== "myCourses" && e.key !== "wfa"
         );
         state.internSource.splice(3, 0, {
           key: "myJobs",
