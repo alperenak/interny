@@ -219,14 +219,13 @@ class Home extends Component {
             Thousands of university students and recent graduates easily found internships they deserve anywhere in the world
           </div>
           <div className={styles.internsSaysImages}>
-            <img height={297} src={steveAustin} alt={"image"} />
+            <img src={steveAustin} alt={"image"} />
             <img
-              height={296}
               className={styles.shadowed}
               src={chaseBroke}
               alt={"image"}
             />
-            <img height={297} src={georgeBurgess} alt={"image"} />
+            <img src={georgeBurgess} alt={"image"} />
           </div>
         </div>
         <div id={"packages-section"} className={styles.packagesSection}>

@@ -441,6 +441,7 @@
 
       @include x-large {
         flex-direction: column;
+        height: unset;
       }
 
       & img {
