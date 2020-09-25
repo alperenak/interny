@@ -158,7 +158,7 @@ class MyAccount extends Component {
                 </div>
                   <Button
                     type={"ghost"}
-                    sizeName={"tiny"}
+                    sizeName={"small"}
                     text={"Update"}
                     onButtonClick={() => this.onChangeClick(item)}
                   />

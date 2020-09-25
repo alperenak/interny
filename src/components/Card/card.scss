@@ -56,6 +56,11 @@
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
     -o-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
     -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
+    @include large {
+      width: 75%;
+      padding: 64px 92px 64px 64px;
+      margin: 32px;
+    }
   }
 
   &.task {
@@ -76,6 +81,9 @@
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
     -o-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
     -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
+    @include large {
+      margin: 32px;
+    }
   }
 
   &.table {
