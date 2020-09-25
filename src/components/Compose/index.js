@@ -29,9 +29,11 @@ export default class Compose extends Component {
         />
         <img
           onClick={async () => {
-            await store.createMessage(this.props.receiver, this.state.value);
-            this.setState({ value: "" });
-            await this.props.getContacts();
+              if (this.state.value !== "") {
+                await store.createMessage(this.props.receiver, this.state.value);
+                this.setState({ value: "" });
+                await this.props.getContacts();
+              }
           }}
           src={sendButton}
           alt="send-button"

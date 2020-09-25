@@ -57,7 +57,7 @@ export default class Messenger extends Component {
                   v-if={getCookie('user') === 'employer'}
                   className={styles.subTitle}
               >
-                You can contacts with interns here.
+                You can contact with interns here.
               </div>
               <Button
                 v-if={getCookie('user') === 'intern'}
