@@ -20,6 +20,7 @@
         -ms-user-select: none;
         -webkit-user-select: none;
         width: 326px;
+        height: fit-content;
         @include small {
             width: 190px;
         }
