@@ -7,7 +7,22 @@
     border: 1px solid #eee;
     border-top: none;
     height: 100%;
+    width: fit-content;
     overflow: auto;
+    margin: 0 auto;
+
+    @include x-large {
+        width: 100%;
+    }
+    @include large {
+        width: 100%;
+    }
+    @include medium {
+        width: 100%;
+    }
+    @include small {
+        width: 100%;
+    }
 
     & .gridItem {
         display: flex;
@@ -21,10 +36,6 @@
         -webkit-user-select: none;
         width: 326px;
         height: fit-content;
-        @include x-large {
-            width: fit-content;
-            margin: auto;
-        }
         @include small {
             width: 190px;
         }
