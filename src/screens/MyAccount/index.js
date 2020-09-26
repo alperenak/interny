@@ -111,7 +111,7 @@ class MyAccount extends Component {
         <div className={styles.myAccount}>
           <div className={styles.infoSection}>
             <Card
-              header={{ text: "Profile", position: "start" }}
+              header={{ text: "Profile Photo", position: "start" }}
               type={"photo"}
             >
               <div className={styles.profileImage}>
