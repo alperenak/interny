@@ -41,7 +41,8 @@
     width: 100%;
 
     @include small {
-      grid-template-columns: 100px auto auto 100px;
+      display: flex;
+      flex-direction: column;
     }
   }
 
