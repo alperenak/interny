@@ -4,15 +4,18 @@ import React, { Component, Fragment } from "react";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import LoadingModal from '../../components/LoadingModal'
+import Input from "../../components/Input";
 
 /*** Utils ***/
 import store from "../../store";
+import { getCookie } from "../../utils/cookie";
 
 /*** Styles ***/
 import styles from "./myaccount.scss";
-import Input from "../../components/Input";
-import { getCookie } from "../../utils/cookie";
+
+/*** Styles ***/
 import addIcon from "../../icons/add-circular-outlined-white-button.svg";
+import logo from "../../assets/interny-logo-white.png";
 
 class MyAccount extends Component {
   state = {
@@ -101,41 +104,86 @@ class MyAccount extends Component {
   render() {
     let { user } = this.props;
     let { items, processing } = this.state;
+    let duration = (((user?.Internship?.duration - user?.Internship?.dayLeft) / user?.Internship?.duration) * 100);
     return (
       <>
         {processing && <LoadingModal text={"Loading..."} />}
         <div className={styles.myAccount}>
-          <Card
-            header={{ text: "Profile Photo", position: "start" }}
-            type={"photo"}
-          >
-            <div className={styles.profileImage}>
-              <div
-                v-if={user.avatar || user.logo}
-                className={styles.imageContainer}
-              >
-                <img src={user.avatar || user.logo} alt={"profile photo"} />
+          <div className={styles.infoSection}>
+            <Card
+              header={{ text: "Profile", position: "start" }}
+              type={"photo"}
+            >
+              <div className={styles.profileImage}>
+                <div
+                  v-if={user.avatar || user.logo}
+                  className={styles.imageContainer}
+                >
+                  <img src={user.avatar || user.logo} alt={"profile photo"} />
+                </div>
+                <label
+                  className={
+                    user.avatar || user.logo
+                      ? styles.statusCircle
+                      : styles.fileInput
+                  }
+                  htmlFor="fileInput"
+                >
+                  <img src={addIcon} alt={"icon"} />
+                </label>
+                <input
+                  id={"fileInput"}
+                  hidden={true}
+                  accept={"image/*"}
+                  type={"file"}
+                  aria-label={""}
+                  onChange={(e) => this.onFileUpload(e.target.files)}
+                />
               </div>
-              <label
-                className={
-                  user.avatar || user.logo
-                    ? styles.statusCircle
-                    : styles.fileInput
-                }
-                htmlFor="fileInput"
-              >
-                <img src={addIcon} alt={"icon"} />
-              </label>
-              <input
-                id={"fileInput"}
-                hidden={true}
-                accept={"image/*"}
-                type={"file"}
-                aria-label={""}
-                onChange={(e) => this.onFileUpload(e.target.files)}
-              />
-            </div>
-          </Card>
+            </Card>
+            <Card v-if={user?.Internship} type={'photo'}>
+              <div className={styles.internship}>
+                <div className={styles.internshipHeader}>Internship</div>
+                <div className={styles.internshipField}>
+                  <span>Position: </span>
+                  <span className={styles.value}>{user?.Internship?.position}</span>
+                </div>
+                <div className={styles.internshipField}>
+                  <span>Start Date: </span>
+                  <span className={styles.value}>{user?.Internship?.startDate}</span>
+                </div>
+                <div className={styles.internshipField}>
+                  <span>End Date: </span>
+                  <span className={styles.value}>{user?.Internship?.endDate}</span>
+                </div>
+                <div className={styles.internshipField}>
+                  <span>Duration: </span>
+                  <div className={styles.bar}>
+                    <div
+                        style={{width: duration+'%'}}
+                        className={styles.duration}
+                    />
+                  </div>
+                </div>
+                <div className={styles.internshipField}>
+                  <span>Day(s) Left: </span>
+                  <span className={styles.value}>{user?.Internship?.dayLeft}</span>
+                </div>
+                <div className={styles.internshipField}>
+                  <span>Internship Length: </span>
+                  <span className={styles.value}>{user?.Internship?.internshipLength}</span>
+                </div>
+                <div className={styles.internshipField}>
+                  <span>Overall Score: </span>
+                  <span className={styles.value}>{user?.Internship?.overAllScore}</span>
+                </div>
+              </div>
+            </Card>
+            <Card v-else type={'logo'} backgroundColor={'#2c3f58'}>
+              <img src={logo} alt={'logo'} />
+              <div className={styles.slogan}>"The way to be a global intern"</div>
+            </Card>
+          </div>
           <Card
             type={"myAccount"}
             header={{ text: "My Account", position: "start" }}
