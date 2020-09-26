@@ -1,7 +1,8 @@
+@import "../../helpers/responsiveBreakpointsMixins.scss";
+
 .MyTasks {
     position: relative;
-    display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
+    display: flex;
     text-align: center;
     border: 1px solid #eee;
     border-top: none;
@@ -18,6 +19,10 @@
         -moz-user-select: none;
         -ms-user-select: none;
         -webkit-user-select: none;
+        width: 326px;
+        @include small {
+            width: 190px;
+        }
 
         & .sectionHeader {
             position: sticky;
@@ -27,7 +32,10 @@
             font-size: calc(2px + 16px);
             padding: 20px 0;
             margin-bottom: 10px;
-            width: 100%;
+            width: 325px;
+            @include small {
+                width: 190px;
+            }
             background: #2c3f58;
             color: white;
             border-bottom-left-radius: 16px;
@@ -37,7 +45,10 @@
         & .taskItem {
             display: flex;
             justify-content: center;
-            width: 100%;
+            width: 332px;
+            @include small {
+                width: 200px;
+            }
         }
     }
 
