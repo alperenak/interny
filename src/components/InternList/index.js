@@ -18,7 +18,6 @@ export default class InternList extends Component {
         <AllInterns {...this.props} />
         <div className={styles.verticalHR} />
         <ScrollContainer className={styles.internList}>
-          {/* FOR TEST */}
           {
             this.props.internList.map((internInfo, index) => {
               return <Intern key={index} internInfo={internInfo} {...this.props} />

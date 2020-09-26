@@ -20,6 +20,7 @@ import Button from "../../components/Button";
 
 // Intern list
 import InternList from "../../components/InternList";
+import errors from "../../utils/errorTexts"
 
 
 class MyTasks extends Component {
@@ -41,7 +42,9 @@ class MyTasks extends Component {
         },
         selecedInternsForMultiSelect: [],
         internList: [],
+        searchResults: [],
         loading: false,
+        allCheck: false,
     };
 
     async componentDidMount() {
@@ -348,10 +351,8 @@ class MyTasks extends Component {
         if (this.state.loading) return;
 
         let alreadySelected = false;
-        const internSelected = this.state.internList.filter(intern => intern.id === internInfo.id && intern.selected === true)
-
+        const internSelected = this.state.selectedInterns.filter(id => id === internInfo.id)
         if (Array.isArray(internSelected)) alreadySelected = internSelected.length > 0;
-        let newInternInfo = internInfo;
         let internList = this.state.internList;
 
         const not_this_intern_from_selected = this.state.selectedInterns.filter((id) => id != internInfo.id);
@@ -367,22 +368,81 @@ class MyTasks extends Component {
                 internInfo.id,
             ]
         }
-
-        newInternInfo.selected = !alreadySelected;
-
-        internList = [
-            ...this.state.internList.filter(intern => intern.id !== internInfo.id),
-            newInternInfo
-        ]
-
-        internList.sort(function (a, b) {
-            return a.id - b.id || a.name.localeCompare(b.name);
-        });
         selectedInterns.sort(function (a, b) {
             return a - b;
         });
 
-        this.setState({ internList, selectedInterns });
+        let allCheck = selectedInterns.length === internList.length;
+
+        this.setState({ selectedInterns, allCheck });
+    }
+
+    toggleAllCheck() {
+        this.setState((state) => {
+            const oldAllCheckVal = state.allCheck;
+            let selectedInterns = [];
+            if (!oldAllCheckVal) {
+                console.log('run!');
+                // yeni state true ise 
+                selectedInterns = this.state.internList.map(v => v.id);
+            } else selectedInterns = [];
+
+            return { selectedInterns, allCheck: !oldAllCheckVal };
+        });
+    }
+    /**
+     * search to in internList (defined in state)
+     * @param {string} query
+     */
+    searchInInternList(query = '') {
+        // only searching interns name (or|and) surname
+        let { internList, searchResults } = this.state;
+        const searchOptions = {
+            length: {
+                min: 1,
+                max: 35,
+            },
+            errors,
+        };
+
+        if (!(internList.length > 0) || query.length === 0) {
+            this.setState({ searchResults: [] });
+            return;
+        }
+
+        if (!(query.length >= searchOptions.length.min && query.length <= searchOptions.length.max)) return;
+        searchResults = [];
+
+        if (typeof internList.filter === 'undefined') return;
+
+
+        searchResults = internList.filter((v) => {
+            if (
+                !(
+                    typeof v.name === 'string'
+                    && typeof v.surname === 'string'
+                )
+            ) return false;
+
+            const searchfc = (searchIn) => {
+                if (typeof searchIn.search === 'undefined') return false;
+                return searchIn.search(query) != -1 || searchIn.toLowerCase().search(query.toLowerCase()) != -1
+            };
+
+            const controller = (
+                searchfc(v.name)
+                || searchfc(v.surname)
+                || searchfc(`${v.name} ${v.surname}`)
+            );
+
+            return controller;
+        });
+
+        if (typeof searchResults === 'undefined') searchResults = []
+        else searchResults = Array.isArray(searchResults) ? searchResults : [searchResults];
+
+
+        this.setState({ searchResults });
     }
 
 
@@ -393,9 +453,12 @@ class MyTasks extends Component {
                 <InternList
                     userType={user}
                     selectedInterns={this.state.selectedInterns}
-                    internList={this.state.internList}
+                    internList={this.state.searchResults.length > 0 ? this.state.searchResults : this.state.internList}
                     loading={this.state.loading}
+                    allCheck={this.state.allCheck}
+                    toggleAllCheck={this.toggleAllCheck.bind(this)}
                     toggleIntern={this.toggleIntern.bind(this)}
+                    searchInInternList={this.searchInInternList.bind(this)}
                 />
                 <div className={styles.MyTasks}>
                     {this.renderSection('To Do', 'to_do')}

@@ -2,13 +2,18 @@
 
 .container{
   display: flex;
-  width: 100%;
   flex-wrap: nowrap;
   min-height: 50px;
   margin: 10px 0;
   align-items: stretch;
   padding: 10px 0;
-  max-height: 60px;
+  width: fit-content;
+  margin: 0 auto;
+  max-width: 90%;
+
+  @include small{
+    flex-direction: column;
+  }
 
 
   & .searchArea {
@@ -17,6 +22,10 @@
     justify-content: center;
     align-items: stretch;
     transition: .4s all ease;
+    @include small{
+      height: 50px;
+      margin: 5px 0;
+    }
 
     & .searchInput{
       padding: 0 20px;
@@ -26,6 +35,9 @@
       font-weight: bold;
 
       width: 100px;
+      @include small{
+        width: 70%;
+      }
       
       letter-spacing: -1px;
       outline: none;
@@ -38,17 +50,9 @@
     & .searchInput:focus, 
     & .searchInput:active{
       width: 200px;
-    }
-
-    & .searchSubmit{
-      background-color: #2196F3;
-      color: rgba($color: #fff, $alpha: 0.9);
-      border: none;
-      padding: 5px 10px;
-      outline: none;
-      border-radius: 0 4px 4px 0px;
-      text-transform: lowercase;
-      font-weight: bold;
+      @include small{
+        width: calc(100% - 40px);
+      }
     }
     
   }
@@ -60,6 +64,13 @@
     align-items: stretch;
     transition: .4s all ease;
 
+    @include small{
+      height: 50px;
+      width: 100%;
+      margin: 5px 0;
+    }
+
+
     & button{
       padding: 0 20px;
       height: 100%;
@@ -69,6 +80,9 @@
       cursor: pointer;
 
       width: 100px;
+      @include small{
+        width: 100%;
+      }
       
       letter-spacing: -1px;
       outline: none;
@@ -88,15 +102,24 @@
     width: 2px;
     background-color: #CFD8DC;
     margin: 10px;
+    @include small{
+      display: none;
+    }
   }
 
   & .internList {
     display: flex;
+    position: relative;
     flex: 1 1;
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
     max-height: 50px;
+    @include small{
+      height: 50px;
+      width: 100%;
+      margin: 5px 0;
+    }
     -ms-overflow-style: none; 
       scrollbar-width: none; 
       &::-webkit-scrollbar{

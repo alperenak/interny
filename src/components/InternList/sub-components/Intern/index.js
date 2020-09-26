@@ -3,9 +3,10 @@ import styles from '../../style.scss'
 
 export class Intern extends Component {
   render() {
-    const { internInfo = {}, allCheck } = this.props;
+    const { internInfo = {}, allCheck, selectedInterns = [] } = this.props;
 
-    const { selected } = internInfo;
+    let selectedFilter = selectedInterns.filter((id) => id === internInfo.id);
+    let selected = selectedFilter.length > 0;
 
     const activeClass = ((selected || allCheck) ? styles.internActive : '');
 
