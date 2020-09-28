@@ -52,7 +52,7 @@ class TopBar extends Component {
       },
       {
         key: "employerLogin",
-        value: "Login as Employer",
+        value: "Login as Company",
         selected: false,
         disabled: true,
         to: "/login/Employer",

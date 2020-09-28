@@ -630,7 +630,7 @@ class Authentication extends Component {
                 page === "Employer" ? styles.activeButton : ""
               }`}
             >
-              Employer
+              Company
             </div>
           </div>
           <div className={styles.authHeader}>
