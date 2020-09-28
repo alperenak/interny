@@ -635,13 +635,13 @@ class Authentication extends Component {
           </div>
           <div className={styles.authHeader}>
             <div className={styles.headerText}>
-              {type === "auth" ? page : "Log In"}
+              {type === "auth" ? (page === 'Employer' ? 'Company' : page) : "Log In"}
             </div>
             <div v-if={type === "auth"} className={styles.description}>
               New to Interny? Create free account
             </div>
             <div v-if={type !== "auth"} className={styles.description}>
-              Log in Interny as {this.props.match.params.user}
+              Log in Interny as {this.props.match.params.user === 'Employer' ? 'Company' : this.props.match.params.user}
             </div>
           </div>
           <div
