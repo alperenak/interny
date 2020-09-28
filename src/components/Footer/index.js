@@ -9,6 +9,9 @@ import {getCookie} from "../../utils/cookie";
 
 /*** Icons ***/
 import internyLogo from "../../assets/interny-logo-white.png";
+import facebook from "../../icons/facebook.svg";
+import twitter from "../../icons/twitter.svg";
+import linkedin from "../../icons/linkedin.svg";
 
 class Footer extends Component {
     render() {
@@ -41,19 +44,16 @@ class Footer extends Component {
                                 <li><Link to="/faq" >Help Center</Link></li>
                             </ul>
                         </div>
-                        <div className={styles.followUs}>
-                            <div className={styles.header}>Follow Us</div>
-                            <ul>
-                                <li><a href={'https://www.facebook.com/internynet/'} target={'blank'}>Facebook</a></li>
-                                <li><a href={'https://twitter.com/internynet/'} target={'blank'}>Twitter</a></li>
-                                <li><a href={'https://www.linkedin.com/company/internynet/'} target={'blank'}>LinkedIn</a></li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
                 <div className={styles.stroke} />
                 <div className={styles.rights}>
                     2020 • INTERNY Inc. © All rights reserved.
+                    <div className={styles.followUs}>
+                        <a href={'https://www.facebook.com/internynet/'} target={'blank'}><img src={facebook} alt={facebook} /></a>
+                        <a href={'https://twitter.com/internynet/'} target={'blank'}><img src={twitter} alt={twitter} /></a>
+                        <a href={'https://www.linkedin.com/company/internynet/'} target={'blank'}><img src={linkedin} alt={linkedin} /></a>
+                    </div>
                 </div>
             </div>
         );

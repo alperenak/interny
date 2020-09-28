@@ -284,7 +284,7 @@
 
     & .howItWorksTitle {
       font-family: "Sofia Pro Bold";
-      font-size: 32px;
+      font-size: 34px;
       font-weight: bold;
       font-stretch: normal;
       font-style: normal;
@@ -298,7 +298,7 @@
 
     & .howItWorksSubTitle {
       font-family: "Sofia Pro";
-      font-size: 16px;
+      font-size: 18px;
       font-weight: normal;
       font-stretch: normal;
       font-style: normal;
@@ -353,7 +353,7 @@
 
         & .title {
           font-family: "Sofia Pro Bold";
-          font-size: calc(2px + 16px);
+          font-size: calc(2px + 18px);
           color: #2c3f58;
           line-height: 1.5em;
           margin-top: 20px;
@@ -367,7 +367,7 @@
 
         & .description {
           font-family: "Sofia Pro";
-          font-size: 14px;
+          font-size: 16px;
           font-weight: 300;
           font-stretch: normal;
           font-style: normal;
@@ -576,12 +576,6 @@
             line-height: 2em;
             letter-spacing: 0.1px;
           }
-        }
-      }
-
-      & .frontier {
-        &:hover {
-          margin-top: -50px;
         }
       }
     }
