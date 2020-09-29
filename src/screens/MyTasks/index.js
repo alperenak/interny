@@ -352,9 +352,9 @@ class MyTasks extends Component {
     onEditFormSubmit = async (payload) => {
         let newPayload = Object.assign({}, payload);
 
-        if (Array.isArray(newPayload.Members[0])) {
-            newPayload.Members = payload.Members[0].map((v) => {
-                return v.id || '';
+        if (Array.isArray(newPayload.Members)) {
+            newPayload.Members = payload.Members.map((v) => {
+                return v.key || '';
             });
         }
 
