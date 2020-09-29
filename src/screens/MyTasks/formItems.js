@@ -1,7 +1,7 @@
 import store from '../../store';
 import { getCookie } from "../../utils/cookie";
 
-export const formItems = async (formItems) => {
+export const formItems = async (formItems = { label: '' }) => {
     let res = await store.getInterns(getCookie('user_id'));
 
     let interns = [];
@@ -51,7 +51,7 @@ export const formItems = async (formItems) => {
             type: 'select',
             size: 'full',
             defaultValue: {
-                key: formItems.label.toLowerCase(),
+                key: formItems && formItems.label.toLowerCase(),
                 value: formItems.label,
                 selected: true,
             },
