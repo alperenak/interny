@@ -327,7 +327,23 @@ class MyTasks extends Component {
     }
 
     onCreateFormSubmit = async (payload) => {
-        await store.createTask(payload);
+        let newPayload = Object.assign({}, payload);
+
+        if (Array.isArray(newPayload.Members)) {
+            newPayload.Members = payload.Members.map((v) => {
+
+                return v.key || '';
+            });
+        }
+
+
+        if (typeof newPayload.label !== 'string') {
+            newPayload.label = payload.label.value;
+        }
+        await store.createTask({
+            ...newPayload,
+            Job: this.props.selectedJobID
+        });
         this.props.closeModal();
         this.setState({ createFormData: formTaskData() });
         await this.getTasks();
