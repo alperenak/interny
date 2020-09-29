@@ -229,12 +229,6 @@ class MyTasks extends Component {
 
     onCreateClick = async () => {
         let createItems = await formItems();
-        /*
-        options={options}
-          value={selected}
-          onChange={setSelected}
-          labelledBy={"Select"}
-        */
         this.props.createModal({ header: 'Create Task', content: () => this.renderCreateTaskForm(createItems) });
     };
 
@@ -263,7 +257,6 @@ class MyTasks extends Component {
                             setSelecedInternsForMultiSelect={this.setSelecedInternsForMultiSelect.bind(this)}
                             onChange={(value, sValue) => {
                                 let vl = item.type !== 'select' ? value : sValue;
-                                console.log(value, sValue, vl);
                                 this.setState(state => {
                                     onTaskFormChange(vl, state.createFormData, item.key);
                                     return state;
@@ -290,6 +283,7 @@ class MyTasks extends Component {
                             placeholder={item.placeholder}
                             type={item.type}
                             size={item.size}
+                            multiple={item.multiple || false}
                             defaultValue={item.defaultValue}
                             validations={item.validations}
                             externalSource={item.externalSource}
@@ -340,7 +334,24 @@ class MyTasks extends Component {
     };
 
     onEditFormSubmit = async (payload) => {
-        await store.updateTask(payload);
+        let newPayload = Object.assign({}, payload);
+
+        if (Array.isArray(newPayload.Members[0])) {
+            newPayload.Members = payload.Members[0].map((v) => {
+                return v.id || '';
+            });
+        }
+
+
+        if (typeof newPayload.label !== 'string' && Array.isArray(newPayload.label)) {
+            newPayload.label = payload.label.value;
+        }
+
+
+        await store.updateTask({
+            ...newPayload,
+            Job: this.props.selectedJobID
+        });
         this.setState({ createFormData: formTaskData() });
         this.props.closeModal();
         await this.getTasks();
@@ -382,7 +393,6 @@ class MyTasks extends Component {
             const oldAllCheckVal = state.allCheck;
             let selectedInterns = [];
             if (!oldAllCheckVal) {
-                console.log('run!');
                 // yeni state true ise 
                 selectedInterns = this.state.internList.map(v => v.id);
             } else selectedInterns = [];

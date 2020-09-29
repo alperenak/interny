@@ -1,5 +1,5 @@
 import store from '../store';
-import {getCookie} from "./cookie";
+import { getCookie } from "./cookie";
 
 export const formCVData = async (formData) => {
     let res = await store.getIntern(getCookie('user_id'));
@@ -37,19 +37,19 @@ export const formJobData = async (formData) => {
     let id = getCookie('user_id');
     let payload = {
         "Employer": id,
-        "position": formData ? formData.position :  "",
-        "country": formData ? formData.country :  [],
-        "description": formData ? formData.description :  "",
-        "endDate": formData ? formData.endDate :  "",
-        "gpa": formData ? formData.gpa :  "",
-        "internLevel": formData ? formData.internLevel :  [],
-        "internQuota": formData ? formData.internQuota :  "",
-        "internshipLength": formData ? formData.internshipLength :  "",
-        "languages": formData ? formData.languages :  [],
-        "maxSalary": formData ? formData.maxSalary :  "",
-        "minSalary": formData ? formData.minSalary :  "",
-        "qualifications": formData ? formData.qualifications :  "",
-        "startDate": formData ? formData.startDate :  ""
+        "position": formData ? formData.position : "",
+        "country": formData ? formData.country : [],
+        "description": formData ? formData.description : "",
+        "endDate": formData ? formData.endDate : "",
+        "gpa": formData ? formData.gpa : "",
+        "internLevel": formData ? formData.internLevel : [],
+        "internQuota": formData ? formData.internQuota : "",
+        "internshipLength": formData ? formData.internshipLength : "",
+        "languages": formData ? formData.languages : [],
+        "maxSalary": formData ? formData.maxSalary : "",
+        "minSalary": formData ? formData.minSalary : "",
+        "qualifications": formData ? formData.qualifications : "",
+        "startDate": formData ? formData.startDate : ""
     };
 
     if (formData) {
@@ -63,15 +63,15 @@ export const formTaskData = (formData) => {
     let id = getCookie('user_id');
     let payload = {
         "Employer": id,
-        "Intern": formData ? [formData.Intern.key] :  [],
-        "title": formData ? formData.Task.title :  "",
-        "label": formData ? formData.Task.label :  "",
-        "description": formData ? formData.Task.description :  "",
-        "deadline": formData ? formData.Task.deadline :  "",
+        "Members": formData ? [formData.Members] : [],
+        "title": formData ? formData.title : "",
+        "label": formData ? formData.label : "",
+        "description": formData ? formData.description : "",
+        "deadline": formData ? formData.deadline : "",
     };
 
     if (formData) {
-        payload.id = formData.Task.id;
+        payload.id = formData.id;
     }
 
     return payload;
@@ -86,7 +86,7 @@ export const onCVFormChange = (value, formData, sectionKey, itemKey, index) => {
                 if (formData[sectionKey][index]['location'])
                     formData[sectionKey][index]['location'][itemKey] = value;
                 else
-                    formData[sectionKey][index]['location'] = {[itemKey]: value};
+                    formData[sectionKey][index]['location'] = { [itemKey]: value };
             else
                 formData[sectionKey][index][itemKey] = value;
         } else {
@@ -97,12 +97,12 @@ export const onCVFormChange = (value, formData, sectionKey, itemKey, index) => {
         }
     } else {
         if (value) {
-            if (itemKey === 'country' || itemKey === 'city'){
+            if (itemKey === 'country' || itemKey === 'city') {
                 formData[sectionKey] = [];
-                formData[sectionKey].push({['location']: {[itemKey]: value}});
+                formData[sectionKey].push({ ['location']: { [itemKey]: value } });
             } else {
                 formData[sectionKey] = [];
-                formData[sectionKey].push({[itemKey]: value});
+                formData[sectionKey].push({ [itemKey]: value });
             }
         }
     }

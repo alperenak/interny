@@ -40,7 +40,7 @@ Input.propTypes = {
   onChange: PropTypes.any,
   onClick: PropTypes.any,
   type: PropTypes.string,
-  defaultValue: PropTypes.string,
+  defaultValue: PropTypes.any,
   placeholder: PropTypes.string,
   size: PropTypes.string,
   errorList: PropTypes.array,

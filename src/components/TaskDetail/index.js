@@ -15,9 +15,15 @@ class TaskDetail extends Component {
         questions: [],
         showLogs: false,
         item: {},
+        selectedCommentId: null,
+        commentMode: 'CREATE',
+        commentOpen: false,
+        commentLoading: false,
+        commentText: '',
+        commentSelectedFiles: []
     }
 
-    async componentDidMount() {
+    async getItemInfo() {
         const { userType = 'intern', userId = '' } = this.props;
         let detail = {};
 
@@ -62,19 +68,26 @@ class TaskDetail extends Component {
             }
         }
 
-        ///
-        if (isEvaluated !== this.state.isEvaluated) this.setState({ questions: wfaQuestions.data, item: detail.data, isEvaluated })
-        else this.setState({ questions: wfaQuestions.data, item: detail.data })
+        const commentState = {
+            selectedCommentId: null,
+            commentMode: 'CREATE',
+            commentOpen: false,
+            commentLoading: false,
+            commentText: '',
+            commentSelectedFiles: []
+        };
 
+        //
+        if (isEvaluated !== this.state.isEvaluated) this.setState({ questions: wfaQuestions.data, item: detail.data, isEvaluated, ...commentState })
+        else this.setState({ questions: wfaQuestions.data, item: detail.data, ...commentState })
+    }
 
+    async componentDidMount() {
+        this.getItemInfo();
     }
 
     componentDidUpdate() {
-        // /task/:taskId/wfa (intern)
-        // /task/:taskId/wfa (intern)
     }
-
-
 
     async sendQuestions() {
         const { item } = this.state;
@@ -88,6 +101,22 @@ class TaskDetail extends Component {
         }
     }
 
+    async sendComment(taskId, text) {
+        const files = this.state.commentSelectedFiles.map((v) => {
+            return {
+                name: v.name,
+                key: v.key,
+            }
+        });
+        if (this.state.commentMode === 'CREATE')
+            await store.sendComment(taskId, text, files);
+        else if (this.state.commentMode === 'EDIT')
+            await store.editComment(taskId, text, files, this.state.selectedCommentId);
+
+
+        this.getItemInfo();
+    }
+
     wfaControl() {
         const { item = {} } = this.state;
 
@@ -99,7 +128,6 @@ class TaskDetail extends Component {
     }
 
     renderWFA() {
-        // for static structure
         if (!this.wfaControl()) return <></>;
         const questions = this.state.questions;
         const { isEvaluated = false } = this.state;
@@ -243,6 +271,23 @@ class TaskDetail extends Component {
         );
     }
 
+    async deleteComment(payload) {
+        await store.deleteComment(this.props.item.id, payload);
+        this.getItemInfo();
+    }
+
+    setCommentMode(commentMode = 'CREATE') {
+
+        if (!(
+            commentMode === 'CREATE'
+            || commentMode === 'EDIT'
+            || commentMode === 'DELETE'
+        )) return;
+
+        this.setState({ commentMode });
+
+    }
+
     renderLogsAndComments() {
         return (
             <div className={styles.logsArea}>
@@ -252,8 +297,33 @@ class TaskDetail extends Component {
                         {this.state.showLogs ? 'Hide Details' : 'Show Details'}
                     </button>
                 </div>
-                <SendCommentShortcut user={this.props.user} />
-                <Activity items={this.state.item.activity} showLogs={this.state.showLogs} />
+                <SendCommentShortcut
+                    open={this.state.commentOpen}
+                    setOpen={(commentOpen) => this.setState({ commentOpen })}
+                    textA={this.state.commentText}
+                    setterText={(commentText) => { this.setState({ commentText }) }}
+                    loading={this.state.commentLoading}
+                    sendComment={this.sendComment.bind(this)}
+                    setLoading={(commentLoading) => this.setState({ commentLoading })}
+                    selectedFiles={this.state.commentSelectedFiles}
+                    setSelectedFiles={(commentSelectedFiles) => this.setState({ commentSelectedFiles })}
+                    reload={this.getItemInfo.bind(this)}
+                    commentMode={this.state.commentMode}
+                    setCommentMode={this.setCommentMode.bind(this)}
+                    user={this.props.user}
+                    taskId={this.props.item.id} />
+                <Activity
+                    items={this.state.item.activity}
+                    user={this.props.user}
+                    userType={this.props.userType}
+                    setterText={(commentText) => { this.setState({ commentText }) }}
+                    deleteComment={this.deleteComment.bind(this)}
+                    setSelectedFiles={(commentSelectedFiles) => this.setState({ commentSelectedFiles })}
+                    commentMode={this.state.commentMode}
+                    selectedId={this.state.selectedCommentId}
+                    setSelectedId={(selectedCommentId) => { this.setState({ selectedCommentId }) }}
+                    setCommentMode={this.setCommentMode.bind(this)}
+                    showLogs={this.state.showLogs} />
             </div>
         );
     }

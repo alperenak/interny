@@ -178,7 +178,7 @@ Select.propTypes = {
     name: PropTypes.string,
     onChange: PropTypes.any,
     placeholder: PropTypes.string,
-    defaultValue: PropTypes.string,
+    defaultValue: PropTypes.any,
     size: PropTypes.string,
     errorList: PropTypes.array,
     externalSource: PropTypes.array,

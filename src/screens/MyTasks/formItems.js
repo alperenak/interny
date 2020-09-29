@@ -3,13 +3,30 @@ import { getCookie } from "../../utils/cookie";
 
 export const formItems = async (formItems) => {
     let res = await store.getInterns(getCookie('user_id'));
-    let interns = res.data.map(intern => {
+
+    let interns = [];
+
+    if (res.data && res.data.length > 0) {
+        interns = res.data.map((v) => {
+            let is_selected = [];
+            if (formItems && formItems.Members) {
+                is_selected = formItems.Members.filter((q) => q.id === v.id);
+            }
+            return {
+                key: v.id,
+                value: v.name,
+                selected: is_selected.length > 0
+            };
+        });
+    }
+
+    /* let interns = res.data.map(intern => {
         return {
             key: intern.id,
             value: intern.name + ' ' + intern.surname,
-            selected: formItems ? formItems.Intern.name === intern.name && formItems.Intern.surname === intern.surname : false
+            selected
         }
-    });
+    }); */
 
     return [
         {
@@ -19,7 +36,7 @@ export const formItems = async (formItems) => {
             placeholder: 'title',
             type: 'text',
             size: 'full',
-            defaultValue: formItems ? formItems.Task.title : '',
+            defaultValue: formItems ? formItems.title : '',
             validations: {
                 lengthValidator: {
                     start: 0, stop: 40
@@ -31,9 +48,45 @@ export const formItems = async (formItems) => {
             label: 'Label',
             labelDescription: 'Label the task',
             placeholder: 'label',
-            type: 'text',
+            type: 'select',
             size: 'full',
-            defaultValue: formItems ? formItems.Task.label : '',
+            defaultValue: {
+                key: formItems.label.toLowerCase(),
+                value: formItems.label,
+                selected: true,
+            },
+            externalSource: [
+                {
+                    key: 'research',
+                    value: 'Research',
+                    selected: false,
+                },
+                {
+                    key: 'evaluation',
+                    value: 'Evaluation',
+                    selected: false,
+                },
+                {
+                    key: 'reorganization',
+                    value: 'Reorganization',
+                    selected: false,
+                },
+                {
+                    key: 'design',
+                    value: 'Design',
+                    selected: false,
+                },
+                {
+                    key: 'application',
+                    value: 'Application',
+                    selected: false,
+                },
+                {
+                    key: 'reporting',
+                    value: 'Reporting',
+                    selected: false,
+                },
+            ],
             validations: {
                 lengthValidator: {
                     start: 0, stop: 40
@@ -47,7 +100,7 @@ export const formItems = async (formItems) => {
             placeholder: 'description',
             type: 'textarea',
             size: 'full',
-            defaultValue: formItems ? formItems.Task.description : '',
+            defaultValue: formItems ? formItems.description : '',
             validations: {
                 lengthValidator: {
                     start: 0, stop: 255
@@ -61,12 +114,12 @@ export const formItems = async (formItems) => {
             placeholder: 'description',
             type: 'date',
             size: 'half',
-            defaultValue: formItems ? formItems.Task.deadline : '',
+            defaultValue: formItems ? formItems.deadline : '',
             validations: {
             },
         },
         {
-            key: 'Intern',
+            key: 'Members',
             label: 'Assignee',
             labelDescription: 'Select an assignee',
             placeholder: 'assignee',
@@ -74,7 +127,7 @@ export const formItems = async (formItems) => {
             size: 'half',
             externalSource: interns,
             multiple: true,
-            defaultValue: interns.find(e => e.selected),
+            defaultValue: Array.isArray(interns.filter(e => e.selected)) ? interns.filter(e => e.selected) : [interns.filter(e => e.selected)],
             validations: {
             },
         },
