@@ -15,7 +15,7 @@ import closeIcon from "../../icons/close-outline.svg";
 
 /*** Store ***/
 import store from "../../store";
-import {getCookie} from "../../utils/cookie";
+import { getCookie, setCookie } from "../../utils/cookie";
 
 class SearchSection extends Component {
   state = {
@@ -37,11 +37,20 @@ class SearchSection extends Component {
     advanced_location: "",
     advanced_country: "",
     advanced_city: "",
-    advanced_employee: { min: 0, max: 0 },
+    advanced_employee: {
+      min: 0,
+      max: 0,
+    },
     advanced_intern_type: "",
     advanced_duration: "",
-    advanced_intern_quota: { min: 0, max: 0 },
-    advanced_rate: { min: 0, max: 0 },
+    advanced_intern_quota: {
+      min: 0,
+      max: 0,
+    },
+    advanced_rate: {
+      min: 0,
+      max: 0,
+    },
     advanced_search_processing: false,
   };
 
@@ -101,8 +110,7 @@ class SearchSection extends Component {
               this.setState({ advancedSearch: false });
             }}
           >
-            {" "}
-            <img src={closeIcon} alt="" />{" "}
+            <img src={closeIcon} alt="" />
           </div>
 
           <Input
@@ -110,7 +118,11 @@ class SearchSection extends Component {
             placeholder={"Software Developer"}
             size={"half"}
             labelDescription={"Position, keyword or company"}
-            defaultValue={advanced_keyword !== "null" ? advanced_keyword : ""}
+            defaultValue={
+              this.state.advanced_keyword !== "null"
+                ? this.state.advanced_keyword
+                : ""
+            }
             onChange={(value) => this.setState({ advanced_keyword: value })}
             label={"Keyword"}
           />
@@ -120,7 +132,11 @@ class SearchSection extends Component {
             placeholder={"Software Developer"}
             size={"half"}
             labelDescription={"Enter a location"}
-            defaultValue={advanced_location !== "null" ? advanced_location : ""}
+            defaultValue={
+              this.state.advanced_location !== "null"
+                ? this.state.advanced_location
+                : ""
+            }
             onChange={(value) => this.setState({ advanced_location: value })}
             label={"Location"}
           />
@@ -130,7 +146,11 @@ class SearchSection extends Component {
             placeholder={"Turkey"}
             size={"half"}
             labelDescription={"Enter a country"}
-            defaultValue={advanced_country !== "null" ? advanced_country : ""}
+            defaultValue={
+              this.state.advanced_country !== "null"
+                ? this.state.advanced_country
+                : ""
+            }
             onChange={(value) => this.setState({ advanced_country: value })}
             label={"Country"}
           />
@@ -140,7 +160,11 @@ class SearchSection extends Component {
             placeholder={"Istanbul"}
             size={"half"}
             labelDescription={"Enter a city"}
-            defaultValue={advanced_city !== "null" ? advanced_city : ""}
+            defaultValue={
+              this.state.advanced_city !== "null"
+                ? this.state.advanced_city
+                : "sads"
+            }
             onChange={(value) => this.setState({ advanced_city: value })}
             label={"City"}
           />
@@ -150,7 +174,11 @@ class SearchSection extends Component {
             placeholder={"Tech."}
             size={"half"}
             labelDescription={"Enter an industry"}
-            defaultValue={advanced_industry !== "null" ? advanced_industry : ""}
+            defaultValue={
+              this.state.advanced_industry !== "null"
+                ? this.state.advanced_industry
+                : ""
+            }
             onChange={(value) => {
               this.setState({ advanced_industry: value });
             }}
@@ -210,12 +238,14 @@ class SearchSection extends Component {
             label={"Intern Type"}
             labelDescription={"Choose one below"}
             defaultValue={
-              advanced_intern_type !== "null" ? advanced_intern_type : ""
+              this.state.advanced_intern_type !== "null"
+                ? this.state.advanced_intern_type
+                : ""
             }
             onChange={(value, slValue) => {
               this.setState({ advanced_intern_type: slValue.value });
             }}
-            placeholder={'Select intern type'}
+            placeholder={"Select intern type"}
             externalSource={[
               { key: "Student", value: "Student", selected: true },
               { key: "Newly Graduated", value: "Newly Graduated" },
@@ -226,8 +256,12 @@ class SearchSection extends Component {
             type={"select"}
             label={"Duration"}
             labelDescription={"Choose one below"}
-            defaultValue={advanced_duration !== "null" ? advanced_duration : ""}
-            placeholder={'Select duration'}
+            defaultValue={
+              this.state.advanced_duration !== "null"
+                ? this.state.advanced_duration
+                : ""
+            }
+            placeholder={"Select duration"}
             onChange={(value, slValue) =>
               this.setState({ advanced_duration: slValue.value })
             }
@@ -362,6 +396,8 @@ class SearchSection extends Component {
 
                 let response = await store.advancedSearch(payload);
 
+                this.setAdvancedSearch(payload);
+
                 if (response)
                   this.setState({
                     advancedSearch: false,
@@ -385,7 +421,8 @@ class SearchSection extends Component {
         }`}
       >
         <div v-if={this.props.page === "home"} className={styles.slogan}>
-          The <span style={{color: '#f97050'}}>Easiest</span> Way to Get Your <span style={{color: '#696cff'}}>New Internship</span>
+          The <span style={{ color: "#f97050" }}>Easiest</span> Way to Get Your{" "}
+          <span style={{ color: "#696cff" }}>New Internship</span>
         </div>
         <div v-if={this.props.page === "home"} className={styles.subSlogan}>
           Find the career you deserve
@@ -427,14 +464,14 @@ class SearchSection extends Component {
           </div>
         </div>
 
-        <div v-if={getCookie('token')} className={styles["advancedSearch"]}>
+        <div v-if={getCookie("token")} className={styles["advancedSearch"]}>
           <Button
-              text={'Advanced Search'}
-              type={'ghost'}
-              onButtonClick={(e) => {
-                e.preventDefault();
-                this.setState({ advancedSearch: true });
-              }}
+            text={"Advanced Search"}
+            type={"ghost"}
+            onButtonClick={(e) => {
+              e.preventDefault();
+              this.setState({ advancedSearch: true });
+            }}
           />
           {this.state.advancedSearch && this.renderAdvancedSearch()}
         </div>
