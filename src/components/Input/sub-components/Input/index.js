@@ -56,6 +56,7 @@ class PlainInput extends Component {
       type,
       disabled,
       icon,
+      id,
       onKeyDown,
       priority,
       defaultValue,
@@ -64,6 +65,7 @@ class PlainInput extends Component {
       className,
       onClick,
       priorValue,
+      dynamicValue,
       disclaimer,
     } = this.props;
     let { value, errorList, valid } = this.state;
@@ -93,7 +95,15 @@ class PlainInput extends Component {
           type={type}
           disabled={disabled}
           onChange={(e) => this.onChange(e)}
-          value={priority ? priorValue : value ? value : defaultValue}
+          value={
+            dynamicValue
+              ? dynamicValue
+              : priority
+              ? priorValue
+              : value
+              ? value
+              : defaultValue
+          }
           placeholder={placeholder}
         />
         <div
@@ -120,7 +130,16 @@ class PlainInput extends Component {
             onKeyDown={onKeyDown}
             disabled={disabled}
             onChange={(e) => this.onChange(e)}
-            value={priority ? priorValue : value ? value : defaultValue}
+            id={id ? id : null}
+            value={
+              dynamicValue
+                ? dynamicValue
+                : priority
+                ? priorValue
+                : value
+                ? value
+                : defaultValue
+            }
             placeholder={placeholder}
           />
           <img
@@ -174,6 +193,7 @@ PlainInput.propTypes = {
   name: PropTypes.string,
   icon: PropTypes.object,
   onChange: PropTypes.any,
+  id: PropTypes.any,
   onKeyDown: PropTypes.any,
   onClick: PropTypes.any,
   type: PropTypes.string,

@@ -31,6 +31,9 @@ class SearchSection extends Component {
       "Bath",
       "Bristol",
     ],
+    tags: [],
+    externalSource: [],
+    dynamic: "",
     advancedSearch: false,
     advanced_keyword: "",
     advanced_industry: "",
@@ -68,7 +71,99 @@ class SearchSection extends Component {
       this.setState({ location: defaultLocation });
     }
   }
+  resetInputs() {
+    this.setState({
+      keyword: "",
+      location: "",
+      searches: [
+        "Manchester",
+        "London",
+        "Oxford",
+        "Newcastle",
+        "Birmingham",
+        "Norwich",
+        "Bath",
+        "Bristol",
+      ],
+      tags: [],
+      externalSource: [],
+      dynamic: "",
+      advancedSearch: false,
+      advanced_keyword: "",
+      advanced_industry: "",
+      advanced_location: "",
+      advanced_country: "",
+      advanced_city: "",
+      advanced_employee: {
+        min: 0,
+        max: 0,
+      },
+      advanced_intern_type: "",
+      advanced_duration: "",
+      advanced_intern_quota: {
+        min: 0,
+        max: 0,
+      },
+      advanced_rate: {
+        min: 0,
+        max: 0,
+      },
+    });
+    setTimeout(() => {
+      this.setState({
+        advancedSearch: true,
+      });
+    }, 10);
+  }
 
+  getTagValue(name) {
+    return this.state.tags.find((item) => {
+      return item.name === "keyword";
+    }).value;
+  }
+
+  sendRequestTags() {
+    let payload = {
+      keyword: this.getTagValue("keyword"),
+      location: this.getTagValue("location"),
+      country: this.getTagValue("country"),
+      city: this.getTagValue("city"),
+      employee_min: this.getTagValue("keyword"),
+      employee_max: this.getTagValue("keyword"),
+      intern_type: this.getTagValue("type"),
+      duration: this.getTagValue("keyword"),
+      intern_quota_min: this.getTagValue("keyword"),
+      intern_quota_max: this.getTagValue("keyword"),
+      rate_min: this.getTagValue("keyword"),
+      rate_max: this.getTagValue("keyword"),
+      industry: this.getTagValue("keyword"),
+    };
+  }
+  addTags() {
+    this.setState({
+      tags: [
+        { name: "keyword", value: this.state.advanced_keyword },
+        { name: "location", value: this.state.advanced_location },
+        { name: "industry", value: this.state.advanced_industry },
+        { name: "country", value: this.state.advanced_country },
+        { name: "duration", value: this.state.advanced_duration },
+        {
+          name: "intern quota",
+          value: `${this.state.advanced_intern_quota.min} - ${this.state.advanced_intern_quota.max} `,
+        },
+        {
+          name: "Rate",
+          value: `${this.state.advanced_rate.min} - ${this.state.advanced_rate.max} `,
+        },
+        {
+          name: "employee",
+          value: `${this.state.advanced_employee.min} - ${this.state.advanced_employee.max} `,
+        },
+        { name: "city", value: this.state.advanced_city },
+        { name: "type", value: this.state.advanced_intern_type },
+      ],
+    });
+  }
   renderAdvancedSearch = () => {
     let {
       advanced_keyword,
@@ -114,6 +209,7 @@ class SearchSection extends Component {
           </div>
 
           <Input
+            id={"keyword"}
             type={"text"}
             placeholder={"Software Developer"}
             size={"half"}
@@ -128,13 +224,14 @@ class SearchSection extends Component {
           />
 
           <Input
+            id={"location"}
             type={"text"}
             placeholder={"Software Developer"}
             size={"half"}
             labelDescription={"Enter a location"}
             defaultValue={
-              this.state.advanced_location !== "null"
-                ? this.state.advanced_location
+              this.state.tagsLabeladvanced_location !== "null"
+                ? this.stateadvanced_location
                 : ""
             }
             onChange={(value) => this.setState({ advanced_location: value })}
@@ -142,6 +239,7 @@ class SearchSection extends Component {
           />
 
           <Input
+            id={"country"}
             type={"text"}
             placeholder={"Turkey"}
             size={"half"}
@@ -156,29 +254,23 @@ class SearchSection extends Component {
           />
 
           <Input
+            id={"city"}
             type={"text"}
             placeholder={"Istanbul"}
             size={"half"}
             labelDescription={"Enter a city"}
-            defaultValue={
-              this.state.advanced_city !== "null"
-                ? this.state.advanced_city
-                : "sads"
-            }
+            defaultValue={advanced_city !== "null" ? advanced_city : "sads"}
             onChange={(value) => this.setState({ advanced_city: value })}
             label={"City"}
           />
 
           <Input
             type={"text"}
+            id={"industry"}
             placeholder={"Tech."}
             size={"half"}
             labelDescription={"Enter an industry"}
-            defaultValue={
-              this.state.advanced_industry !== "null"
-                ? this.state.advanced_industry
-                : ""
-            }
+            defaultValue={advanced_industry !== "null" ? advanced_industry : ""}
             onChange={(value) => {
               this.setState({ advanced_industry: value });
             }}
@@ -223,8 +315,6 @@ class SearchSection extends Component {
                           max: e.target.value,
                         },
                       });
-
-                      console.log(this.state.advanced_employee);
                     }}
                     value={this.state.advanced_employee.max}
                   />
@@ -235,6 +325,7 @@ class SearchSection extends Component {
 
           <Input
             type={"select"}
+            id={"internType"}
             label={"Intern Type"}
             labelDescription={"Choose one below"}
             defaultValue={
@@ -253,6 +344,7 @@ class SearchSection extends Component {
           />
 
           <Input
+            id={"duration"}
             type={"select"}
             label={"Duration"}
             labelDescription={"Choose one below"}
@@ -261,6 +353,7 @@ class SearchSection extends Component {
                 ? this.state.advanced_duration
                 : ""
             }
+            selectedValueId={"duration"}
             placeholder={"Select duration"}
             onChange={(value, slValue) =>
               this.setState({ advanced_duration: slValue.value })
@@ -393,10 +486,8 @@ class SearchSection extends Component {
                   rate_max: this.state.advanced_rate.max,
                   industry: this.state.advanced_industry,
                 };
-
+                this.addTags();
                 let response = await store.advancedSearch(payload);
-
-                this.setAdvancedSearch(payload);
 
                 if (response)
                   this.setState({
@@ -404,6 +495,13 @@ class SearchSection extends Component {
                     advanced_search_processing: false,
                   });
               }}
+            />
+            <Button
+              onButtonClick={() => {
+                this.resetInputs();
+              }}
+              isLink={true}
+              text={"Clear"}
             />
           </div>
         </div>
@@ -496,6 +594,47 @@ class SearchSection extends Component {
               );
             })}
           </ul>
+          <div className={styles.tagsContainer}>
+            {this.state.tags.length !== 0
+              ? this.state.tags
+                  .filter(
+                    (item) =>
+                      item.value !== "" &&
+                      !item.value?.includes("0 - 0") &&
+                      item.value !== "" &&
+                      item.value !== " "
+                  )
+                  .map((item) => {
+                    return (
+                      <div className={styles.tagsWrapper}>
+                        <div className={styles.tagsTitle}>{item.name} </div>
+                        <div className={styles.tagsLabel}>
+                          <div className={styles.tagsValue}>{item.value}</div>
+                          <div
+                            className={styles.cross}
+                            onClick={() => {
+                              this.sendRequestTags();
+
+                              this.setState({
+                                tags: this.state.tags.filter((tags) => {
+                                  return tags.name !== item.name;
+                                }),
+                              });
+                            }}
+                          >
+                            <img
+                              src={closeIcon}
+                              className={styles.closeTag}
+                              alt="closeTag"
+                              width="10"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })
+              : ""}
+          </div>
         </Fragment>
       </div>
     );
