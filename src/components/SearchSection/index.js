@@ -116,11 +116,34 @@ class SearchSection extends Component {
     }, 10);
   }
 
+  getTagValue(name) {
+    return this.state.tags.find((item) => {
+      return item.name === "keyword";
+    }).value;
+  }
+
+  sendRequestTags() {
+    let payload = {
+      keyword: this.getTagValue("keyword"),
+      location: this.getTagValue("location"),
+      country: this.getTagValue("country"),
+      city: this.getTagValue("city"),
+      employee_min: this.getTagValue("keyword"),
+      employee_max: this.getTagValue("keyword"),
+      intern_type: this.getTagValue("type"),
+      duration: this.getTagValue("keyword"),
+      intern_quota_min: this.getTagValue("keyword"),
+      intern_quota_max: this.getTagValue("keyword"),
+      rate_min: this.getTagValue("keyword"),
+      rate_max: this.getTagValue("keyword"),
+      industry: this.getTagValue("keyword"),
+    };
+  }
   addTags() {
     this.setState({
       tags: [
         { name: "keyword", value: this.state.advanced_keyword },
-        { name: "location", value: this.state.location },
+        { name: "location", value: this.state.advanced_location },
         { name: "industry", value: this.state.advanced_industry },
         { name: "country", value: this.state.advanced_country },
         { name: "duration", value: this.state.advanced_duration },
@@ -590,6 +613,8 @@ class SearchSection extends Component {
                           <div
                             className={styles.cross}
                             onClick={() => {
+                              this.sendRequestTags();
+
                               this.setState({
                                 tags: this.state.tags.filter((tags) => {
                                   return tags.name !== item.name;

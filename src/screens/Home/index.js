@@ -30,6 +30,8 @@ import comp from "../../icons/comp.svg";
 import application from "../../icons/application.svg";
 import duties from "../../icons/duties.svg";
 import promotion from "../../icons/promotion.svg";
+import rightArrow from "../../icons/right-arrow.svg";
+import leftArrow from "../../icons/left-arrow.svg";
 
 class Home extends Component {
   state = {
@@ -55,9 +57,78 @@ class Home extends Component {
     vodafone: vodafoneGrayImage,
     pri1: false,
     pri2: false,
-    pri3: false
+    pri3: false,
+    slideCount: 0,
   };
-
+  renderSlide() {
+    if (this.state.slideCount === 0) {
+      return (
+        <>
+          <img
+            onClick={() => this.setState({ ing: ingBankImage })}
+            onMouseOver={() => this.setState({ ing: ingBankImage })}
+            onMouseLeave={() => this.setState({ ing: ingBankGrayImage })}
+            height={38}
+            src={this.state.ing}
+            alt={"image"}
+          />
+          <img
+            onClick={() => this.setState({ unilever: unileverImage })}
+            onMouseOver={() => this.setState({ unilever: unileverImage })}
+            onMouseLeave={() => this.setState({ unilever: unileverGrayImage })}
+            height={65}
+            src={this.state.unilever}
+            alt={"image"}
+          />
+          <img
+            onClick={() => this.setState({ allianz: allianzImage })}
+            onMouseOver={() => this.setState({ allianz: allianzImage })}
+            onMouseLeave={() => this.setState({ allianz: allianzGrayImage })}
+            height={35}
+            src={this.state.allianz}
+            alt={"image"}
+          />
+          <img
+            onClick={() => this.setState({ vodafone: vodafoneImage })}
+            onMouseOver={() => this.setState({ vodafone: vodafoneImage })}
+            onMouseLeave={() => this.setState({ vodafone: vodafoneGrayImage })}
+            height={62}
+            src={this.state.vodafone}
+            alt={"image"}
+          />
+        </>
+      );
+    } else if (this.state.slideCount === 1) {
+      return (
+        <>
+          <img
+            onClick={() => this.setState({ unilever: unileverImage })}
+            onMouseOver={() => this.setState({ unilever: unileverImage })}
+            onMouseLeave={() => this.setState({ unilever: unileverGrayImage })}
+            height={65}
+            src={this.state.unilever}
+            alt={"image"}
+          />
+          <img
+            onClick={() => this.setState({ allianz: allianzImage })}
+            onMouseOver={() => this.setState({ allianz: allianzImage })}
+            onMouseLeave={() => this.setState({ allianz: allianzGrayImage })}
+            height={35}
+            src={this.state.allianz}
+            alt={"image"}
+          />
+          <img
+            onClick={() => this.setState({ vodafone: vodafoneImage })}
+            onMouseOver={() => this.setState({ vodafone: vodafoneImage })}
+            onMouseLeave={() => this.setState({ vodafone: vodafoneGrayImage })}
+            height={62}
+            src={this.state.vodafone}
+            alt={"image"}
+          />
+        </>
+      );
+    }
+  }
   render() {
     let { items } = this.state;
     return (
@@ -128,45 +199,39 @@ class Home extends Component {
         <div className={styles.companiesSection}>
           <div className={styles.companiesTitle}>Outstanding Companies</div>
           <div className={styles.companiesSubTitle}>
-            Each year, more than 400 million interns turn to INTERNY as searching for internships
+            Each year, more than 400 million interns turn to INTERNY as
+            searching for internships
           </div>
           <div className={styles.companiesImages}>
-            <img
-                onClick={() => this.setState({ing: ingBankImage})}
-                onMouseOver={() => this.setState({ing: ingBankImage})}
-                onMouseLeave={() => this.setState({ing: ingBankGrayImage})}
-                height={38}
-                src={this.state.ing} alt={"image"}
-            />
-            <img
-                onClick={() => this.setState({unilever: unileverImage})}
-                onMouseOver={() => this.setState({unilever: unileverImage})}
-                onMouseLeave={() => this.setState({unilever: unileverGrayImage})}
-                height={65}
-                src={this.state.unilever}
-                alt={"image"}
-            />
-            <img
-                onClick={() => this.setState({allianz: allianzImage})}
-                onMouseOver={() => this.setState({allianz: allianzImage})}
-                onMouseLeave={() => this.setState({allianz: allianzGrayImage})}
-                height={35}
-                src={this.state.allianz}
-                alt={"image"}
-            />
-            <img
-                onClick={() => this.setState({vodafone: vodafoneImage})}
-                onMouseOver={() => this.setState({vodafone: vodafoneImage})}
-                onMouseLeave={() => this.setState({vodafone: vodafoneGrayImage})}
-                height={62}
-                src={this.state.vodafone}
-                alt={"image"}
-            />
+            <div className={styles.companiesImagesWrapper}>
+              <div
+                className={styles.leftArrow}
+                onClick={() => {
+                  if (this.state.slideCount >= 1 && this.state.slideCount <= 1)
+                    this.setState({ slideCount: this.state.slideCount - 1 });
+                }}
+              >
+                <img src={leftArrow} alt="left-arrow" />
+              </div>
+              {this.renderSlide()}
+              <div
+                className={styles.rightArrow}
+                onClick={() => {
+                  if (this.state.slideCount >= 0 && this.state.slideCount <= 0)
+                    this.setState({ slideCount: this.state.slideCount + 1 });
+                }}
+              >
+                <img src={rightArrow} alt="right-arrow" />
+              </div>
+            </div>
           </div>
         </div>
         <div className={styles.browseJobsSection}>
           <div className={styles.jobsTitle}>
-            <div>Apply here for any of the thousands of internships around the world.</div>
+            <div>
+              Apply here for any of the thousands of internships around the
+              world.
+            </div>
             <Link to={"signup"} className={styles.prepareCv}>
               Sign up!
             </Link>
@@ -176,37 +241,43 @@ class Home extends Component {
         <div className={styles.howItWorksSection}>
           <div className={styles.howItWorksTitle}>How It Works</div>
           <div className={styles.howItWorksSubTitle}>
-            Each year, more than 400 million interns turn to INTERNY as searching for internships, making over thousands applications every day.
+            Each year, more than 400 million interns turn to INTERNY as
+            searching for internships, making over thousands applications every
+            day.
           </div>
           <div className={styles.divisions}>
-            <div style={{marginTop: '45px'}} className={styles.division}>
+            <div style={{ marginTop: "45px" }} className={styles.division}>
               <img className={styles.icon} src={register} />
               <div className={styles.title}>Join & Apply</div>
               <div className={styles.description}>
-                Sign up and buy the requested package. Then apply for the internships for acceptance.
+                Sign up and buy the requested package. Then apply for the
+                internships for acceptance.
               </div>
             </div>
-            <div style={{marginTop: '30px'}} className={styles.division}>
+            <div style={{ marginTop: "30px" }} className={styles.division}>
               <img className={styles.icon} src={comp} />
               <div className={styles.title}>Competency Analytics</div>
               <div className={styles.description}>
-                Prove your competency to be the primary candidate of the company you want to apply for.
-                Use CA to determine and improve the competency level if necessary.
+                Prove your competency to be the primary candidate of the company
+                you want to apply for. Use CA to determine and improve the
+                competency level if necessary.
               </div>
             </div>
-            <div style={{marginTop: '15px'}} className={styles.division}>
+            <div style={{ marginTop: "15px" }} className={styles.division}>
               <img className={styles.icon} src={application} />
               <div className={styles.title}>Project Management System</div>
               <div className={styles.description}>
-                Use PMS to manage tasks assigned for the internship and to contact the company.
+                Use PMS to manage tasks assigned for the internship and to
+                contact the company.
               </div>
             </div>
-            <div style={{marginTop: '0px'}} className={styles.division}>
+            <div style={{ marginTop: "0px" }} className={styles.division}>
               <img className={styles.icon} src={duties} />
               <div className={styles.title}>Reference Letter</div>
               <div className={styles.description}>
-                Complete the internship process and take your WFA report.
-                If you're over 60% successful according to the WFA, get your signed reference letter.
+                Complete the internship process and take your WFA report. If
+                you're over 60% successful according to the WFA, get your signed
+                reference letter.
               </div>
             </div>
           </div>
@@ -216,15 +287,12 @@ class Home extends Component {
             What Interns Say About Us
           </div>
           <div className={styles.internsSaysSubTitle}>
-            Thousands of university students and recent graduates easily found internships they deserve anywhere in the world
+            Thousands of university students and recent graduates easily found
+            internships they deserve anywhere in the world
           </div>
           <div className={styles.internsSaysImages}>
             <img src={steveAustin} alt={"image"} />
-            <img
-              className={styles.shadowed}
-              src={chaseBroke}
-              alt={"image"}
-            />
+            <img className={styles.shadowed} src={chaseBroke} alt={"image"} />
             <img src={georgeBurgess} alt={"image"} />
           </div>
         </div>
@@ -234,8 +302,12 @@ class Home extends Component {
             Click to see detail of packages
           </div>
           <div className={styles.packagesCards}>
-            <div onMouseLeave={() => this.setState({ pri1: false })} onMouseOver={() => this.setState({ pri1: true })} className={styles.frontier}>
-              <Card type={'pricing'}>
+            <div
+              onMouseLeave={() => this.setState({ pri1: false })}
+              onMouseOver={() => this.setState({ pri1: true })}
+              className={styles.frontier}
+            >
+              <Card type={"pricing"}>
                 <div className={styles.packageCard}>
                   <div className={styles.headerDiv}>
                     <div className={styles.packageTitle}>FREEMIUM</div>
@@ -249,14 +321,28 @@ class Home extends Component {
                       <div>Create CV</div>
                       <div>Search Internships</div>
                     </div>
-                    <Button v-if={this.state.pri1} type={'primary'} text={'Buy Now'} sizeName={'default'} />
-                    <Button v-if={!this.state.pri1} type={'ghost'} text={'Buy Now'} sizeName={'default'} />
+                    <Button
+                      v-if={this.state.pri1}
+                      type={"primary"}
+                      text={"Buy Now"}
+                      sizeName={"default"}
+                    />
+                    <Button
+                      v-if={!this.state.pri1}
+                      type={"ghost"}
+                      text={"Buy Now"}
+                      sizeName={"default"}
+                    />
                   </div>
                 </div>
               </Card>
             </div>
-            <div onMouseLeave={() => this.setState({ pri2: false })} onMouseOver={() => this.setState({ pri2: true })} className={styles.frontier}>
-              <Card type={'pricing'}>
+            <div
+              onMouseLeave={() => this.setState({ pri2: false })}
+              onMouseOver={() => this.setState({ pri2: true })}
+              className={styles.frontier}
+            >
+              <Card type={"pricing"}>
                 <div className={styles.packageCard}>
                   <div className={styles.headerDiv}>
                     <div className={styles.packageTitle}>INTERN</div>
@@ -271,14 +357,28 @@ class Home extends Component {
                       <div>WFA Report</div>
                       <div>Reference Letter</div>
                     </div>
-                    <Button v-if={this.state.pri2} type={'primary'} text={'Buy Now'} sizeName={'default'} />
-                    <Button v-if={!this.state.pri2} type={'ghost'} text={'Buy Now'} sizeName={'default'} />
+                    <Button
+                      v-if={this.state.pri2}
+                      type={"primary"}
+                      text={"Buy Now"}
+                      sizeName={"default"}
+                    />
+                    <Button
+                      v-if={!this.state.pri2}
+                      type={"ghost"}
+                      text={"Buy Now"}
+                      sizeName={"default"}
+                    />
                   </div>
                 </div>
               </Card>
             </div>
-            <div onMouseLeave={() => this.setState({ pri3: false })} onMouseOver={() => this.setState({ pri3: true })} className={styles.frontier}>
-              <Card type={'pricing'}>
+            <div
+              onMouseLeave={() => this.setState({ pri3: false })}
+              onMouseOver={() => this.setState({ pri3: true })}
+              className={styles.frontier}
+            >
+              <Card type={"pricing"}>
                 <div className={styles.packageCard}>
                   <div className={styles.headerDiv}>
                     <div className={styles.packageTitle}>COMPETENCY</div>
@@ -292,8 +392,18 @@ class Home extends Component {
                       <div>Competency Analytics</div>
                       <div>Competency Report</div>
                     </div>
-                    <Button v-if={this.state.pri3} type={'primary'} text={'Buy Now'} sizeName={'default'} />
-                    <Button v-if={!this.state.pri3} type={'ghost'} text={'Buy Now'} sizeName={'default'} />
+                    <Button
+                      v-if={this.state.pri3}
+                      type={"primary"}
+                      text={"Buy Now"}
+                      sizeName={"default"}
+                    />
+                    <Button
+                      v-if={!this.state.pri3}
+                      type={"ghost"}
+                      text={"Buy Now"}
+                      sizeName={"default"}
+                    />
                   </div>
                 </div>
               </Card>
