@@ -100,7 +100,7 @@ class Select extends Component {
     };
 
     render() {
-        let { name, label, placeholder, size, labelDescription, errorList, disabled, className } = this.props;
+        let { name, label, placeholder, size, labelDescription, errorList, disabled, className,selectedValueId } = this.props;
         let { dropDownOpened, selectedValue, selectedValues, value, externalSource } = this.state;
         return (
             <div ref={this.wrapperRef} onClick={this.onClickInput} className={`${styles.selectWrapper} ${disabled ? styles.disabled : ''} ${className}`}>
@@ -120,6 +120,7 @@ class Select extends Component {
                         className={`${styles.inputSelf}`}
                     >{selectedValues.map((vl, i) => i < selectedValues.length - 1 ? vl.value + ', ' : vl.value)}</div>
                     <div
+                        id={selectedValueId ? selectedValueId : null}
                         v-else-if={selectedValue.value?.length > 0}
                         className={`${styles.inputSelf}`}
                     >{selectedValue.value}</div>
