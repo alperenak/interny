@@ -3,7 +3,7 @@
 .footerSection {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: start;
   padding: 64px 228px 0;
   width: calc(100%);
@@ -12,7 +12,7 @@
   & .footerTop {
     display: flex;
     justify-content: space-between;
-    align-items: start;
+    align-items: center;
     width: 100%;
 
     @include large {
@@ -21,6 +21,78 @@
     }
 
 
+
+    & .rightSide {
+
+      & .languages {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & .selectWrapper {
+          display: flex;
+          height: 40px;
+          padding: 0 10px;
+          border-radius: 5px;
+          border: solid 1.5px;
+          border-color: white;
+
+          & img {
+            color: white;
+            width: 20px;
+            margin-right: 20px;
+          }
+
+          & select {
+            background: none;
+            height: 40px;
+            color: white;
+            width: 100px;
+            border-radius: 5px;
+            border-color: white;
+            cursor: pointer;
+            border: none;
+            outline: none;
+
+            & option {
+              width: 100px;
+              height: 50px;
+              color: black;
+            }
+          }
+        }
+      }
+
+      & .stores {
+        display: flex;
+        margin-top: 20px;
+        flex-direction: column;
+        position: relative;
+        align-items: center;
+        justify-content: space-between;
+        height: 100px;
+
+        & .store {
+          height: 45px;
+
+          & img {
+            height: 100%;
+            margin: 0;
+          }
+        }
+
+        & .storePlay {
+          height: 45px;
+
+
+
+          & img {
+            height: 100%;
+            margin: 0;
+          }
+        }
+      }
+    }
 
     & .companyDescription {
 
@@ -64,37 +136,16 @@
           text-align: center;
         }
       }
-      & .followUs {
-        display: flex;
-        width: 100%;
-        justify-content: center;
 
-        & img {
-          width: 20px;
-          margin: 0 20px;
-        }
-      }
-      & .stores {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        & .store {
-          height: 130px;
 
-          & img {
-            height: 100%;
-            margin: 0;
-          }
-        }
-      }
+
     }
 
     & .options {
       display: flex;
-      width: 35%;
+      width: 80%;
       justify-content: space-around;
-      align-items: end;
+      align-items: center;
 
       @include large {
         width: 65%;
@@ -125,32 +176,14 @@
 
       }
 
-      & .header {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        font-family: "Sofia Pro Bold";
-        margin-bottom: 20px;
-        font-size: 16px;
-        font-weight: bold;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: 1.5;
-        letter-spacing: normal;
-        color: #ffffff;
-      }
 
       & li {
-        font-family: "Sofia Pro";
         color: #fff;
         list-style-type: none;
         cursor: pointer;
-        text-align: left;
-        font-size: 14px;
-        font-weight: normal;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: 1.57;
+        font-size: calc(2px + 14px);
+        padding: 2.5px 0;
+        text-align: center;
         letter-spacing: normal;
         width: 120px;
 
@@ -169,6 +202,8 @@
       }
     }
   }
+
+
 
   & .stroke {
     height: 1px;
@@ -189,17 +224,21 @@
     letter-spacing: 0.1px;
     margin-bottom: 20px;
 
-    & .location {
-      display: flex;
-      width: 120px;
-
-      & img {
-        width: 20px;
-      }
-    }
-
     @include medium {
       text-align: center;
     }
+
+    & .followUs {
+      display: flex;
+      justify-content: center;
+
+      & img {
+        width: 15px;
+        margin: 0 20px;
+      }
+    }
+
+
+
   }
 }
