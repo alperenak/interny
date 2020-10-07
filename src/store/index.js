@@ -7,7 +7,7 @@ const errorMessageBuilder = (response) => {
 };
 
 let store = {
-  async advancedSearch(payload) {
+  async advancedSearch(payload,firstPath) {
     let {
       keyword,
       location,
@@ -46,7 +46,7 @@ let store = {
 
     let tokenCookieName = "token";
     let baseUrl = config.baseUrl;
-    let path = `/job?${query}`;
+    let path = `/${firstPath?firstPath:'job'}?${query}`;
     return await http.makeGetRequest(
       path,
       baseUrl,

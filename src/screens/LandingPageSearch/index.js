@@ -113,12 +113,12 @@ class LandingPageSearch extends Component {
     return (
       <div className={styles.LandingPageSearch}>
         <LoadingModal text="Loading" v-if={loading} />
-        {/* <SearchSection
+        <SearchSection
           isAuthorized
           defaultKeyword={keyword}
+          browseInternship={true}
           defaultLocation={location}
-        /> */}
-        <SearchSection browseInternship={true} />
+        />
         <div className={styles.noResult} v-if={posts.length <= 0}>
           No results found...
           <div v-if={keyword || location} className={styles.description}>

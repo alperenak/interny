@@ -487,7 +487,7 @@ class SearchSection extends Component {
                   industry: this.state.advanced_industry,
                 };
                 this.addTags();
-                let response = await store.advancedSearch(payload);
+                let response = await store.advancedSearch(payload,this.props.browseInternship ?'jobs':'job');
 
                 if (response)
                   this.setState({
