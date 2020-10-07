@@ -42,6 +42,23 @@ class TopBar extends Component {
     bellDropDown: false,
     userDropDown: false,
     loginDropDown: false,
+    ourDropdown: false,
+    ourPackages: [
+      {
+        key: "companyPackages",
+        value: "Company Packages",
+        selected: false,
+        disabled: true,
+        to: "/login/Intern",
+      },
+      {
+        key: "internyPackages",
+        value: "Interny Packages",
+        selected: false,
+        disabled: true,
+        to: "/packages",
+      },
+    ],
     loginPages: [
       {
         key: "internLogin",
@@ -261,7 +278,11 @@ class TopBar extends Component {
     this.setState((state) => {
       if (this.props.isInternshipBegun) {
         state.internSource = state.internSource.filter(
-          (e) => e.key !== "myTasks" && e.key !== "myJobs" && e.key !== "myCourses" && e.key !== "wfa"
+          (e) =>
+            e.key !== "myTasks" &&
+            e.key !== "myJobs" &&
+            e.key !== "myCourses" &&
+            e.key !== "wfa"
         );
         state.internSource.splice(3, 0, {
           key: "myTasks",
@@ -282,11 +303,15 @@ class TopBar extends Component {
           value: "WFA",
           selected: false,
           icon: wfaIcon,
-          to: `/internDetail/${getCookie('user_id')}`,
+          to: `/internDetail/${getCookie("user_id")}`,
         });
       } else {
         state.internSource = state.internSource.filter(
-          (e) => e.key !== "myTasks" && e.key !== "myJobs" && e.key !== "myCourses" && e.key !== "wfa"
+          (e) =>
+            e.key !== "myTasks" &&
+            e.key !== "myJobs" &&
+            e.key !== "myCourses" &&
+            e.key !== "wfa"
         );
         state.internSource.splice(3, 0, {
           key: "myJobs",
@@ -390,7 +415,7 @@ class TopBar extends Component {
   }
   render() {
     let { isAuthorized, user } = this.props;
-    let { loginDropDown } = this.state;
+    let { loginDropDown, ourDropdown } = this.state;
     let userType = getCookie("user");
     return (
       <div className={`${styles.TopBar} ${styles.fullScreen}`}>
@@ -492,8 +517,23 @@ class TopBar extends Component {
             <div>
               <Link to={"/search"}>Browse Internships</Link>
             </div>
-            <div>
-              <Link to={"/packages"}>Our Packages</Link>
+
+            {/* our packages */}
+            <div
+              onMouseOver={() => this.setState({ ourDropdown: true })}
+              onMouseLeave={() => this.setState({ ourDropdown: false })}
+              className={styles.dropdownContainer}
+            >
+              <Button
+                type={"ghost"}
+                sizeName={"small"}
+                text={"Our Packages"}
+                iconPosition={"left"}
+                icon={caret}
+              />
+              <div v-if={ourDropdown} className={styles.dropdown}>
+                <Card type={"dropDown"} externalData={this.state.ourPackages} />
+              </div>
             </div>
             <div
               onMouseOver={() => this.setState({ loginDropDown: true })}

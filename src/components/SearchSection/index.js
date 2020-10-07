@@ -497,9 +497,7 @@ class SearchSection extends Component {
               }}
             />
             <Button
-              onButtonClick={() => {
-                this.resetInputs();
-              }}
+              onButtonClick={() => this.resetInputs()}
               isLink={true}
               text={"Clear"}
             />
@@ -511,6 +509,7 @@ class SearchSection extends Component {
 
   render() {
     let { keyword, location } = this.state;
+    let { browseInternship } = this.props;
 
     return (
       <div
@@ -562,7 +561,10 @@ class SearchSection extends Component {
           </div>
         </div>
 
-        <div v-if={getCookie("token")} className={styles["advancedSearch"]}>
+        <div
+          v-if={getCookie("token") || browseInternship}
+          className={styles["advancedSearch"]}
+        >
           <Button
             text={"Advanced Search"}
             type={"ghost"}
