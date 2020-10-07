@@ -570,19 +570,33 @@
     }
 
     & .packagesCards {
-
       display: flex;
       width: 100%;
       align-items: center;
       justify-content: center;
-
+      position: relative;
 
       @include medium {
         flex-direction: column;
       }
 
+      & .moneyGuarenteed {
+        display: flex;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        justify-content: center;
+        align-items: center;
+        height: 18px;
+        padding: 0 5px;
+        background-color: #1a5aff;
+        color: white;
+        border-radius: 15px;
+        font-size: calc(2px + 6px)
+      }
 
       & .packageCard {
+        margin-top: 20px;
         width: 165px;
         padding: 24px 0;
         cursor: pointer;
