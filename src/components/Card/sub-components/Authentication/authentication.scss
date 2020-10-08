@@ -23,6 +23,7 @@
   & .inputs_container {
     grid-column: 2 / span 3;
   }
+
   & .switchButtons {
     display: flex;
     flex-direction: row;
@@ -127,10 +128,14 @@
       border: 1px solid #2c3f58;
       cursor: pointer;
       color: #2c3f58;
+      position: relative;
+      display: flex;
+      align-items: center;
       border-radius: 4px;
       padding: 10px 12px;
       margin: 32px 0 16px;
       text-align: center;
+      justify-content: center;
       font-size: calc(2px + 12px);
 
       @include small {
@@ -142,19 +147,44 @@
       box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.06);
 
       &:hover {
-        background-color: #2c3f58;
+        background-color: #3A559F;
         color: white;
       }
 
       &:active {
-        background-color: rgba(#2c3f58, 0.8);
+        background-color: rgba(#3A559F, 0.8);
         color: white;
       }
+
+      & .facebookIcon {
+        position: absolute;
+        left: 10px;
+        width: 20px;
+
+      }
+
+      & .googleIcon {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        left: 10px;
+      }
+
     }
+
+    & .google {
+      &:hover {
+        background-color: white;
+        color: #EA4335;
+        border-color: #EA4335
+      }
+    }
+
+    & .facebook {}
   }
 
   & .inputsContainer {
-    & > button {
+    &>button {
       padding: 0;
       margin: 0;
       text-decoration: underline;
@@ -197,6 +227,7 @@
     @include large {
       display: none;
     }
+
     grid-row-start: -1;
     grid-column: 1 / span 2;
     max-width: calc(100% - 20px);
@@ -210,14 +241,23 @@
       height: 570.8px;
       top: 0;
       left: 0;
+      overflow: hidden;
 
       & img {
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
 
-        /* height: 100%; */
-        width: 100%;
-        height: auto;
+        height: 570.8px;
+        width: auto;
+
+      }
+
+      & .employerBackground {
+        margin-left: -300px;
+      }
+
+      & .universtyBackground {
+        margin-left: -300px;
       }
     }
   }
@@ -352,11 +392,13 @@
     top: 50px;
     z-index: 11;
     cursor: pointer;
+
     & img {
       width: 50px;
       height: 50px;
     }
   }
+
   & .advancedSearchDropdown__inputs {
     position: relative;
     width: 45vw;
@@ -382,6 +424,7 @@
         align-self: center;
         padding: 10px 0 10px 0;
       }
+
       &.big_header {
         color: #2c3f58;
         font-size: xx-large;
@@ -486,32 +529,40 @@
         width: 7px;
         height: 7px;
       }
+
       &::-webkit-scrollbar-button {
         width: 0px;
         height: 0px;
       }
+
       &::-webkit-scrollbar-thumb {
         background: #e1e1e1;
         border: 0px solid #ffffff;
         border-radius: 71px;
       }
+
       &::-webkit-scrollbar-thumb:hover {
         background: #ffffff;
       }
+
       &::-webkit-scrollbar-thumb:active {
         background: #000000;
       }
+
       &::-webkit-scrollbar-track {
         background: #666666;
         border: 0px solid #ffffff;
         border-radius: 50px;
       }
+
       &::-webkit-scrollbar-track:hover {
         background: #666666;
       }
+
       &::-webkit-scrollbar-track:active {
         background: #333333;
       }
+
       &::-webkit-scrollbar-corner {
         background: transparent;
       }

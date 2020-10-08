@@ -309,6 +309,9 @@ class Home extends Component {
             >
               <Card type={"pricing"}>
                 <div className={styles.packageCard}>
+                  <div className={styles.moneyGuarenteed}>
+                    Money Back Guarenteed
+                  </div>
                   <div className={styles.headerDiv}>
                     <div className={styles.packageTitle}>FREEMIUM</div>
                     <div className={styles.packagePrice}>$0.00</div>
@@ -344,6 +347,9 @@ class Home extends Component {
             >
               <Card type={"pricing"}>
                 <div className={styles.packageCard}>
+                  <div className={styles.moneyGuarenteed}>
+                    Money Back Guarenteed
+                  </div>
                   <div className={styles.headerDiv}>
                     <div className={styles.packageTitle}>INTERN</div>
                     <div className={styles.packagePrice}>$19,99</div>
@@ -380,6 +386,9 @@ class Home extends Component {
             >
               <Card type={"pricing"}>
                 <div className={styles.packageCard}>
+                  <div className={styles.moneyGuarenteed}>
+                    Money Back Guarenteed
+                  </div>
                   <div className={styles.headerDiv}>
                     <div className={styles.packageTitle}>COMPETENCY</div>
                     <div className={styles.packagePrice}>$9.99</div>

@@ -12,11 +12,14 @@ import Input from "../../../Input";
 
 /*** Icons ***/
 import loginImage from "../../../../assets/login.png";
-import loginUniImage from "../../../../assets/login-uni.png";
-import loginEmpImage from "../../../../assets/login-employer.png";
+import loginUniImage from "../../../../assets/university.jpg";
+import loginEmpImage from "../../../../assets/company.jpg";
 import backIcon from "../../../../icons/arrow-back-outline.svg";
 import closeIcon from "../../../../icons/close-outline.svg";
 import infoIcon from "../../../../icons/information.svg";
+import googleIcon from "../../../../icons/google-icon.svg";
+import facebookIcon from "../../../../icons/facebook-icon.svg";
+import facebookWhiteIcon from "../../../../icons/facebook-icon-white.svg";
 
 /*** Utils ***/
 import store from "../../../../store";
@@ -26,6 +29,10 @@ import CourseDetail from "../../../../screens/CourseDetail";
 class Authentication extends Component {
   state = {
     getAdditionalInfo: false,
+    googleIcon: googleIcon,
+    facebookIcon: facebookWhiteIcon,
+    googleStyles: "google",
+    facebookStyles: "facebook",
     page: "Intern",
     submitObject: {},
     buttons: [
@@ -42,9 +49,11 @@ class Authentication extends Component {
     authButtons: [
       {
         text: "Log in with Google+",
+        styles: "google",
       },
       {
         text: "Log in with Facebook",
+        styles: "facebook",
       },
     ],
     loginInputs: [
@@ -254,7 +263,7 @@ class Authentication extends Component {
           token: res.data.token,
           user: this.props.match.params.user.toLowerCase(),
           user_id: res.data.id,
-          isInProgram: !!res?.data?.Internship
+          isInProgram: !!res?.data?.Internship,
         });
 
         if (res.data.user_type === "employer") {
@@ -635,13 +644,20 @@ class Authentication extends Component {
           </div>
           <div className={styles.authHeader}>
             <div className={styles.headerText}>
-              {type === "auth" ? (page === 'Employer' ? 'Company' : page) : "Log In"}
+              {type === "auth"
+                ? page === "Employer"
+                  ? "Company"
+                  : page
+                : "Log In"}
             </div>
             <div v-if={type === "auth"} className={styles.description}>
               New to Interny? Create free account
             </div>
             <div v-if={type !== "auth"} className={styles.description}>
-              Log in Interny as {this.props.match.params.user === 'Employer' ? 'Company' : this.props.match.params.user}
+              Log in Interny as{" "}
+              {this.props.match.params.user === "Employer"
+                ? "Company"
+                : this.props.match.params.user}
             </div>
           </div>
           <div
@@ -650,7 +666,31 @@ class Authentication extends Component {
             key={"authBtn" + i}
             className={styles.authButtonContainer}
           >
-            <div className={styles.authButton}>{btn.text}</div>
+            <div
+              onMouseOver={() => {
+                if (btn.styles === "facebook")
+                  this.setState({ facebookIcon: facebookWhiteIcon });
+              }}
+              onMouseLeave={() => {
+                if (btn.styles === "facebook")
+                  this.setState({ facebookIcon: facebookIcon });
+              }}
+              className={styles.authButton}
+            >
+              <img
+                className={
+                  btn.text?.includes("Google")
+                    ? styles.facebookIcon
+                    : styles.googleIcon
+                }
+                src={
+                  btn.styles === "google"
+                    ? this.state.googleIcon
+                    : this.state.facebookIcon
+                }
+              />
+              {btn.text}
+            </div>
           </div>
           {type === "login"
             ? loginInputs.map((inp, i) => {
@@ -677,6 +717,9 @@ class Authentication extends Component {
                     size={inp.sizeName}
                     key={i}
                     label={inp.label}
+                    onKeyDown={(e) => {
+                      if (e.keyCode === 13) this.onContinueClick();
+                    }}
                     placeholder={inp.placeholder}
                     errorList={inp.errorList}
                     type={inp.type}
@@ -691,6 +734,9 @@ class Authentication extends Component {
                     v-if={inp.type !== "link"}
                     size={inp.sizeName}
                     key={i}
+                    onKeyDown={(e) => {
+                      if (e.keyCode === 13) this.onContinueClick();
+                    }}
                     label={inp.label}
                     placeholder={inp.placeholder}
                     errorList={inp.errorList}
@@ -724,25 +770,64 @@ class Authentication extends Component {
             v-if={type === "login"}
             className={styles.authButtonContainer}
           >
-            <div className={styles.authButton}>{btn.text}</div>
+            <div
+              onMouseEnter={() => {
+                if (btn.styles === "facebook")
+                  this.setState({ facebookIcon: facebookWhiteIcon });
+              }}
+              onMouseUp={() => {
+                if (btn.styles === "facebook")
+                  this.setState({ facebookIcon: facebookWhiteIcon });
+              }}
+              onMouseLeave={() => {
+                if (btn.styles === "facebook")
+                  this.setState({ facebookIcon: facebookIcon });
+              }}
+              className={`${styles.authButton} ${styles[btn.styles]} }`}
+            >
+              <img
+                className={
+                  btn.text?.includes("Google")
+                    ? styles.facebookIcon
+                    : styles.googleIcon
+                }
+                src={
+                  btn.styles === "google"
+                    ? this.state.googleIcon
+                    : this.state.facebookIcon
+                }
+              />
+              {btn.text}
+            </div>
           </div>
         </div>
         <div v-if={type === "login"} className={styles.imgContainer}>
           <div className={styles.shadow}>
             <img
-                v-if={type === "login" && this.props.match.params.user.toLowerCase() === 'intern'}
-                src={loginImage}
-                alt={"loginImage"}
+              v-if={
+                type === "login" &&
+                this.props.match.params.user.toLowerCase() === "intern"
+              }
+              src={loginImage}
+              alt={"loginImage"}
             />
             <img
-                v-if={type === "login" && this.props.match.params.user.toLowerCase() === 'employer'}
-                src={loginEmpImage}
-                alt={"loginImage"}
+              v-if={
+                type === "login" &&
+                this.props.match.params.user.toLowerCase() === "employer"
+              }
+              src={loginEmpImage}
+              alt={"loginImage"}
+              className={styles.employerBackground}
             />
             <img
-                v-if={type === "login" && this.props.match.params.user.toLowerCase() === 'university'}
-                src={loginUniImage}
-                alt={"loginImage"}
+              v-if={
+                type === "login" &&
+                this.props.match.params.user.toLowerCase() === "university"
+              }
+              src={loginUniImage}
+              className={styles.universtyBackground}
+              alt={"loginImage"}
             />
           </div>
         </div>
