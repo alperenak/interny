@@ -12,8 +12,8 @@ import Input from "../../../Input";
 
 /*** Icons ***/
 import loginImage from "../../../../assets/login.png";
-import loginUniImage from "../../../../assets/login-uni.png";
-import loginEmpImage from "../../../../assets/login-employer.png";
+import loginUniImage from "../../../../assets/university.jpg";
+import loginEmpImage from "../../../../assets/company.jpg";
 import backIcon from "../../../../icons/arrow-back-outline.svg";
 import closeIcon from "../../../../icons/close-outline.svg";
 import infoIcon from "../../../../icons/information.svg";
@@ -738,10 +738,12 @@ class Authentication extends Component {
                 v-if={type === "login" && this.props.match.params.user.toLowerCase() === 'employer'}
                 src={loginEmpImage}
                 alt={"loginImage"}
+                className={styles.employerBackground}
             />
             <img
                 v-if={type === "login" && this.props.match.params.user.toLowerCase() === 'university'}
                 src={loginUniImage}
+                className={styles.universtyBackground}
                 alt={"loginImage"}
             />
           </div>
