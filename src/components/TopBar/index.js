@@ -49,7 +49,7 @@ class TopBar extends Component {
         value: "Company Packages",
         selected: false,
         disabled: true,
-        to: "/login/Internsssss",
+        to: "",
       },
       {
         key: "internyPackages",
