@@ -30,7 +30,7 @@ class Authentication extends Component {
   state = {
     getAdditionalInfo: false,
     googleIcon: googleIcon,
-    facebookIcon: facebookWhiteIcon,
+    facebookIcon: facebookIcon,
     googleStyles: "google",
     facebookStyles: "facebook",
     page: "Intern",
