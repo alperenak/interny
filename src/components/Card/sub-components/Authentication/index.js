@@ -717,6 +717,9 @@ class Authentication extends Component {
                     size={inp.sizeName}
                     key={i}
                     label={inp.label}
+                    onKeyDown={(e) => {
+                      if (e.keyCode === 13) this.onContinueClick();
+                    }}
                     placeholder={inp.placeholder}
                     errorList={inp.errorList}
                     type={inp.type}
@@ -731,6 +734,9 @@ class Authentication extends Component {
                     v-if={inp.type !== "link"}
                     size={inp.sizeName}
                     key={i}
+                    onKeyDown={(e) => {
+                      if (e.keyCode === 13) this.onContinueClick();
+                    }}
                     label={inp.label}
                     placeholder={inp.placeholder}
                     errorList={inp.errorList}
