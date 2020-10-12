@@ -35,9 +35,17 @@ class TopBar extends Component {
     this.wrapperRefmail = React.createRef();
     this.wrapperRefbell = React.createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
+
+    this.myRef = React.createRef()
   }
 
   state = {
+
+    scrollTop: 0,
+
+
+    isScrolled: false,
+
     mailDropDown: false,
     bellDropDown: false,
     userDropDown: false,
@@ -246,6 +254,8 @@ class TopBar extends Component {
 
       this.setState({ bellSource: data });
     }
+    document.addEventListener("scroll", this.handleScroll);
+
   }
 
   componentDidUpdate(prevProps) {
@@ -259,6 +269,7 @@ class TopBar extends Component {
 
   componentWillUnmount() {
     document.removeEventListener("mousedown", this.handleClickOutside);
+    document.removeEventListener("scroll", this.handleScroll);
   }
 
   handleClickOutside = (event) => {
@@ -413,12 +424,30 @@ class TopBar extends Component {
   closeHamburgerMenu() {
     document.getElementById("hamburger-menu").style.width = "0";
   }
+
+  handleScroll = () => {
+    const scrollY = window.scrollY
+    console.log(scrollY)
+
+    if (window.scrollY > 155) {
+      this.setState({isScrolled: true});
+    } else {
+      this.setState({isScrolled: false});
+    }
+  };
+
   render() {
+
+    const {
+      scrollTop
+    } = this.state
+
     let { isAuthorized, user } = this.props;
     let { loginDropDown, ourDropdown } = this.state;
     let userType = getCookie("user");
+    const topBarClass = this.state.isScrolled ? `${styles.TopBar} ${styles.fullScreen} ${styles.scroll}` : `${styles.TopBar} ${styles.fullScreen} ${styles.nonscroll}`
     return (
-      <div className={`${styles.TopBar} ${styles.fullScreen}`}>
+      <div className={topBarClass} >
         <div className={styles.logo}>
           <Link to={"/"}>
             <img src={internyLogo} alt={"logo"} />
@@ -514,8 +543,17 @@ class TopBar extends Component {
         <div className={styles.links}>
           <Fragment v-if={!isAuthorized}>
             {/*<div><Link to={'/'}>Home</Link></div>*/}
+
+          <div>
+            <Link to={"/login/University"} className={this.state.isScrolled ? styles.scroll : styles.nonscroll}>University</Link>
+          </div>
+
             <div>
-              <Link to={"/search"}>Browse Internships</Link>
+              <Link to={"/login/Employer"} className={this.state.isScrolled ? styles.scroll : styles.nonscroll}>Company</Link>
+            </div>
+
+            <div>
+              <Link to={"/search"} className={this.state.isScrolled ? styles.scroll : styles.nonscroll}>Browse Internships</Link>
             </div>
 
             {/* our packages */}
@@ -524,12 +562,13 @@ class TopBar extends Component {
               onMouseLeave={() => this.setState({ ourDropdown: false })}
               className={styles.dropdownContainer}
             >
-              <Button
+              <Button  
                 type={"ghost"}
                 sizeName={"small"}
-                text={"Our Packages"}
+                text ={"Our Packages" }
+                textClass={this.state.isScrolled ? styles.scroll : styles.nonscroll}
                 iconPosition={"left"}
-                icon={caret}
+                icon={caret} 
               />
               <div v-if={ourDropdown} className={styles.dropdown}>
                 <Card type={"dropDown"} externalData={this.state.ourPackages} />
@@ -544,6 +583,7 @@ class TopBar extends Component {
                 type={"ghost"}
                 sizeName={"small"}
                 text={"Login"}
+                textClass={this.state.isScrolled ? styles.scroll : styles.nonscroll}
                 iconPosition={"left"}
                 icon={caret}
               />
