@@ -4,13 +4,12 @@
   position: fixed;
   top: 0;
   right: 0;
-  background-color: white;
+  background-color: #FAFBFF;
   width: calc(100% - 80px);
   height: 80px;
   z-index: 12;
-  -webkit-box-shadow: 0 3px 4px 0 rgba(215, 219, 252, 0.55);
-  -moz-box-shadow: 0 3px 4px 0 rgba(215, 219, 252, 0.55);
-  box-shadow: 0 3px 4px 0 rgba(215, 219, 252, 0.55);
+  box-shadow: none;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,6 +19,13 @@
   -webkit-user-select: none;
 
 
+  &.scroll{
+  background-color: white;
+  -webkit-box-shadow: 0 3px 4px 0 rgba(215, 219, 252, 0.55);
+  -moz-box-shadow: 0 3px 4px 0 rgba(215, 219, 252, 0.55);
+  box-shadow: 0 3px 4px 0 rgba(215, 219, 252, 0.55);
+  transition: .5s;
+  }
 
   &.fullScreen {
     width: 100%;
@@ -235,7 +241,7 @@
       font-family: "Sofia Pro";
       font-weight: 100;
       font-size: calc(2px + 12px);
-      color: #2c3f58;
+      color: #264870;
 
       &.packages:hover {
         text-decoration: underline;
@@ -245,7 +251,7 @@
         font-family: "Sofia Pro";
         font-weight: 100;
         font-size: calc(2px + 12px);
-        color: #2c3f58;
+        color: #264870;
 
         &:hover {
           text-decoration: underline;
@@ -253,5 +259,16 @@
       }
 
     }
+
+    & .nonscroll{
+      font-family: "Sofia Pro Bold";
+    }
+
+    & .scroll{
+      font-family: "Sofia Pro";
+    }
+
+
+
   }
 }

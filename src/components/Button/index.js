@@ -17,7 +17,7 @@ class Button extends Component {
     };
 
     renderContent() {
-        let {disabled, hoverIcon, loading, icon, iconAutoWidth, iconPosition, text} = this.props;
+        let {disabled, hoverIcon, loading, icon, iconAutoWidth, iconPosition, text, textClass} = this.props;
         return (
             <Fragment>
                 {(icon && iconPosition.includes('left')) && <img src={icon} alt="" className={`${styles[iconPosition+'-icon']} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
@@ -27,7 +27,7 @@ class Button extends Component {
                 {(icon && iconPosition.includes('center')) && <img src={icon} alt="" className={`${styles[iconPosition+'-icon']} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
                 {(icon && hoverIcon && iconPosition.includes('center') && !disabled) && <img src={hoverIcon} alt="" className={`${styles[iconPosition+'-icon']} ${styles.hoverIcon} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
                 {(icon && !hoverIcon && iconPosition.includes('center')) && <img src={icon} alt="" className={`${styles[iconPosition+'-icon']} ${styles.hoverIcon} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
-                {!loading && text}
+                {!loading && <span className={textClass}>{text}</span>}
                 {(icon && iconPosition.includes('right')) && <img src={icon} alt="" className={`${styles[iconPosition+'-icon']} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
                 {(icon && hoverIcon && iconPosition.includes('right') && !disabled) && <img src={hoverIcon} alt="" className={`${styles[iconPosition+'-icon']} ${styles.hoverIcon} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
                 {(icon && !hoverIcon && iconPosition.includes('right')) && <img src={icon} alt="" className={`${styles[iconPosition+'-icon']} ${styles.hoverIcon} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
@@ -81,6 +81,7 @@ Button.propTypes = {
   sizeName: PropTypes.string,
   responsive:PropTypes.string,
   text: PropTypes.string,
+  textClass : PropTypes.string,
   type: PropTypes.string,
   width: PropTypes.string
 };
@@ -94,5 +95,6 @@ Button.defaultProps = {
   iconPosition: "",
   sizeName: "default",
   type: "primary",
+  textClass: "nonscroll",
   responsive:"",
 };
