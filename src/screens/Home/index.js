@@ -137,9 +137,9 @@ class Home extends Component {
     return (
 
       <div className={styles.Home}>
-        <CookieConsent background={'#264870'} color={'#F9704F'} buttonBackground={'#F9704F'} buttonColor={'#264870'} bottomPosition={true}> This website uses cookies to improve
+        <CookieConsent  className={styles.myCookie} buttonBackground={'#F9704F'} buttonColor={'#112B49'}> This website uses cookies to improve
           service, for analytical and advertising purposes.
-          Please read our <a href={'/cookies'} style={{color: '#fff'}}>Cookie Policy</a>.
+          Please read our <a href={'/cookies'} style={{color: '#F9704F'}}>Cookie Policy</a>.
           Confirm your consent to the use of cookies.</CookieConsent>
         <div className={styles.popularSearchSection}>
           <div className={styles.popularSearchTitle}>Popular Searches</div>
