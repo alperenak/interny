@@ -1,5 +1,9 @@
 @import './helpers/responsiveBreakpointsMixins.scss';
 
+* {
+  box-sizing: border-box;
+}
+
 .App {
   background-color: #fafbff;
   width: calc(100% - 208px);

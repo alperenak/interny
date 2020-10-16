@@ -1,6 +1,7 @@
 @import '../../helpers/responsiveBreakpointsMixins.scss';
 
 .footerSection {
+  width: 100vw!important;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
