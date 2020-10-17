@@ -48,6 +48,12 @@
     width: 100vw;
     padding: 104px;
 
+    @include medium {
+      padding: 0;
+      padding-top: 104px;
+      padding-bottom: 104px;
+    }
+
     & .popularSearchTitle {
       font-family: "Sofia Pro Bold";
       font-size: 30px;
@@ -181,6 +187,12 @@
     background-color: white;
     width: 100vw;
     padding: 64px;
+
+    @include medium {
+      padding: 0;
+      padding-top: 64px;
+      padding-bottom: 64px;
+    }
 
     & .companiesTitle {
       font-family: "Sofia Pro Bold";
