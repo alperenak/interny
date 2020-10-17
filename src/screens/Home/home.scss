@@ -7,6 +7,11 @@
   justify-content: center;
 
   & .myCookie{
+
+    & *{
+      box-sizing: content-box;
+    }
+
     max-width: 50rem;
     margin-left: auto;
     margin-right: auto;
