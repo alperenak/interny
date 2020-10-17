@@ -60,6 +60,7 @@ class Home extends Component {
     pri2: false,
     pri3: false,
     slideCount: 0,
+    consentTaken: false,
   };
 
   renderSlide() {
@@ -132,15 +133,29 @@ class Home extends Component {
     }
   }
 
+  checkStatus = (status) => {
+    console.log(status);
+    if(status){
+      this.setState({consentTaken:true})
+    }
+  }
+
   render() {
     let {items} = this.state;
+    const cookieClass = this.state.consentTaken ? `${styles.hidden} ${styles.myCookie}` : styles.myCookie
     return (
-
       <div className={styles.Home}>
-        <CookieConsent  className={styles.myCookie} buttonBackground={'#F9704F'} buttonColor={'#112B49'}> This website uses cookies to improve
+        <CookieConsent  
+          consentFunction={this.checkStatus} 
+          className={cookieClass}
+          buttonBackground={'#F9704F'}
+          buttonColor={'#112B49'}
+        > 
+          This website uses cookies to improve
           service, for analytical and advertising purposes.
           Please read our <a href={'/cookies'} style={{color: '#F9704F'}}>Cookie Policy</a>.
-          Confirm your consent to the use of cookies.</CookieConsent>
+          Confirm your consent to the use of cookies.
+        </CookieConsent>
         <div className={styles.popularSearchSection}>
           <div className={styles.popularSearchTitle}>Popular Searches</div>
           <ul className={styles.cities}>

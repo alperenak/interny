@@ -5,13 +5,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  
+  & .hidden {
+  bottom: -100px !important;
+  opacity: 0!important;
+  }
 
-  & .myCookie{
-
-    & *{
+  & .myCookie {
+    
+    & * {
       box-sizing: content-box;
     }
-
+    transition: .8s cubic-bezier(0.48, -0.62, 0.51, 1.68);
+    opacity: 1;
     max-width: 50rem;
     margin-left: auto;
     margin-right: auto;
