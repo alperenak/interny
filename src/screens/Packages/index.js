@@ -55,11 +55,12 @@ class Packages extends Component {
             onMouseOver={() => this.setState({ pri2: true })}
             className={styles.frontier}
           >
+
             <Card type={"pricing"}>
-              <div className={styles.packageCard}>
-                <div className={styles.moneyGuarenteed}>
-                  Money Back Guarenteed
-                </div>
+            <div className={styles.moneyGuarenteed}>
+                {/* Money Back Guarenteed */}
+            </div>
+              <div className={styles.packageCardGuaranteed}>
                 <div className={styles.headerDiv}>
                   <div className={styles.packageTitle}>INTERN</div>
                   <div className={styles.packagePrice}>$19,99</div>
