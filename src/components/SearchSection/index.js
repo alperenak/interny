@@ -578,7 +578,7 @@ class SearchSection extends Component {
 
         <div v-if={this.props.page === "home"} className={styles.prepareCv}>
           <Link to={"SignUp"} className={styles.underlined}>
-            Prepare your CVs
+            Prepare your CV
           </Link>{" "}
           - Easily apply to thousands of jobs from anywhere
         </div>
