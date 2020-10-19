@@ -1,5 +1,8 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
+import CookieConsent from 'react-cookie-consent-notification';
+import React, {Component} from "react";
+import {Link} from "react-router-dom";
 
 /*** Components ***/
 import Button from "../../components/Button";
@@ -60,7 +63,6 @@ class Home extends Component {
     pri3: false,
     slideCount: 0,
   };
-
   renderSlide() {
     if (this.state.slideCount === 0) {
       return (
@@ -103,9 +105,9 @@ class Home extends Component {
       return (
         <>
           <img
-            onClick={() => this.setState({unilever: unileverImage})}
-            onMouseOver={() => this.setState({unilever: unileverImage})}
-            onMouseLeave={() => this.setState({unilever: unileverGrayImage})}
+            onClick={() => this.setState({ unilever: unileverImage })}
+            onMouseOver={() => this.setState({ unilever: unileverImage })}
+            onMouseLeave={() => this.setState({ unilever: unileverGrayImage })}
             height={65}
             src={this.state.unilever}
             alt={"image"}
@@ -130,12 +132,14 @@ class Home extends Component {
       );
     }
   }
-
-
   render() {
     let {items} = this.state;
     return (
       <div className={styles.Home}>
+        <CookieConsent background={'#264870'} color={'#F9704F'} buttonBackground={'#F9704F'} buttonColor={'#264870'} bottomPosition={true}> This website uses cookies to improve
+          service, for analytical and advertising purposes.
+          Please read our <a href={'/cookies'} style={{color: '#fff'}}>Cookie Policy</a>.
+          Confirm your consent to the use of cookies.</CookieConsent>
         <div className={styles.popularSearchSection}>
           <div className={styles.popularSearchTitle}>Popular Searches</div>
           <ul className={styles.cities}>
@@ -211,20 +215,20 @@ class Home extends Component {
                 className={styles.leftArrow}
                 onClick={() => {
                   if (this.state.slideCount >= 1 && this.state.slideCount <= 1)
-                    this.setState({slideCount: this.state.slideCount - 1});
+                    this.setState({ slideCount: this.state.slideCount - 1 });
                 }}
               >
-                <img src={leftArrow} alt="left-arrow"/>
+                <img src={leftArrow} alt="left-arrow" />
               </div>
               {this.renderSlide()}
               <div
                 className={styles.rightArrow}
                 onClick={() => {
                   if (this.state.slideCount >= 0 && this.state.slideCount <= 0)
-                    this.setState({slideCount: this.state.slideCount + 1});
+                    this.setState({ slideCount: this.state.slideCount + 1 });
                 }}
               >
-                <img src={rightArrow} alt="right-arrow"/>
+                <img src={rightArrow} alt="right-arrow" />
               </div>
             </div>
           </div>
@@ -239,7 +243,7 @@ class Home extends Component {
               Sign up!
             </Link>
           </div>
-          <img src={workingStudentImage} alt={"image"}/>
+          <img src={workingStudentImage} alt={"image"} />
         </div>
         <div className={styles.howItWorksSection}>
           <div className={styles.howItWorksTitle}>How It Works</div>
@@ -249,16 +253,16 @@ class Home extends Component {
             day.
           </div>
           <div className={styles.divisions}>
-            <div style={{marginTop: "45px"}} className={styles.division}>
-              <img className={styles.icon} src={register}/>
+            <div style={{ marginTop: "45px" }} className={styles.division}>
+              <img className={styles.icon} src={register} />
               <div className={styles.title}>Join & Apply</div>
               <div className={styles.description}>
                 Sign up and buy the requested package. Then apply for the
                 internships for acceptance.
               </div>
             </div>
-            <div style={{marginTop: "30px"}} className={styles.division}>
-              <img className={styles.icon} src={comp}/>
+            <div style={{ marginTop: "30px" }} className={styles.division}>
+              <img className={styles.icon} src={comp} />
               <div className={styles.title}>Competency Analytics</div>
               <div className={styles.description}>
                 Prove your competency to be the primary candidate of the company
@@ -266,16 +270,16 @@ class Home extends Component {
                 competency level if necessary.
               </div>
             </div>
-            <div style={{marginTop: "15px"}} className={styles.division}>
-              <img className={styles.icon} src={application}/>
+            <div style={{ marginTop: "15px" }} className={styles.division}>
+              <img className={styles.icon} src={application} />
               <div className={styles.title}>Project Management System</div>
               <div className={styles.description}>
                 Use PMS to manage tasks assigned for the internship and to
                 contact the company.
               </div>
             </div>
-            <div style={{marginTop: "0px"}} className={styles.division}>
-              <img className={styles.icon} src={duties}/>
+            <div style={{ marginTop: "0px" }} className={styles.division}>
+              <img className={styles.icon} src={duties} />
               <div className={styles.title}>Reference Letter</div>
               <div className={styles.description}>
                 Complete the internship process and take your WFA report. If
@@ -294,9 +298,9 @@ class Home extends Component {
             internships they deserve anywhere in the world
           </div>
           <div className={styles.internsSaysImages}>
-            <img src={steveAustin} alt={"image"}/>
-            <img className={styles.shadowed} src={chaseBroke} alt={"image"}/>
-            <img src={georgeBurgess} alt={"image"}/>
+            <img src={steveAustin} alt={"image"} />
+            <img className={styles.shadowed} src={chaseBroke} alt={"image"} />
+            <img src={georgeBurgess} alt={"image"} />
           </div>
         </div>
         <div id={"packages-section"} className={styles.packagesSection}>
@@ -306,8 +310,8 @@ class Home extends Component {
           </div>
           <div className={styles.packagesCards}>
             <div
-              onMouseLeave={() => this.setState({pri1: false})}
-              onMouseOver={() => this.setState({pri1: true})}
+              onMouseLeave={() => this.setState({ pri1: false })}
+              onMouseOver={() => this.setState({ pri1: true })}
               className={styles.frontier}
             >
               <Card type={"pricing"}>
@@ -317,7 +321,7 @@ class Home extends Component {
                     <div className={styles.packagePrice}>$0.00</div>
                     <div className={styles.packagePaymentDate}>Per Month</div>
                   </div>
-                  <div className={styles.stroke}/>
+                  <div className={styles.stroke} />
                   <div className={styles.descriptionDiv}>
                     <div className={styles.packageDescription}>
                       <div>Sign up!</div>
@@ -341,8 +345,8 @@ class Home extends Component {
               </Card>
             </div>
             <div
-              onMouseLeave={() => this.setState({pri2: false})}
-              onMouseOver={() => this.setState({pri2: true})}
+              onMouseLeave={() => this.setState({ pri2: false })}
+              onMouseOver={() => this.setState({ pri2: true })}
               className={styles.frontier}
             >
               <Card type={"pricing"}>
@@ -355,7 +359,7 @@ class Home extends Component {
                     <div className={styles.packagePrice}>$19,99</div>
                     <div className={styles.packagePaymentDate}>Per Month</div>
                   </div>
-                  <div className={styles.stroke}/>
+                  <div className={styles.stroke} />
                   <div className={styles.descriptionDiv}>
                     <div className={styles.packageDescription}>
                       <div>Apply for Internships</div>
@@ -380,8 +384,8 @@ class Home extends Component {
               </Card>
             </div>
             <div
-              onMouseLeave={() => this.setState({pri3: false})}
-              onMouseOver={() => this.setState({pri3: true})}
+              onMouseLeave={() => this.setState({ pri3: false })}
+              onMouseOver={() => this.setState({ pri3: true })}
               className={styles.frontier}
             >
               <Card type={"pricing"}>
@@ -391,7 +395,7 @@ class Home extends Component {
                     <div className={styles.packagePrice}>$9.99</div>
                     <div className={styles.packagePaymentDate}>Per Month</div>
                   </div>
-                  <div className={styles.stroke}/>
+                  <div className={styles.stroke} />
                   <div className={styles.descriptionDiv}>
                     <div className={styles.packageDescription}>
                       <div>Case Studies</div>
@@ -416,7 +420,7 @@ class Home extends Component {
             </div>
           </div>
         </div>
-        <Footer/>
+        <Footer />
       </div>
     );
   }
