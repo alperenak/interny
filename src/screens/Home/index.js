@@ -1,8 +1,5 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
-import CookieConsent from 'react-cookie-consent-notification';
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
 
 /*** Components ***/
 import Button from "../../components/Button";
@@ -136,10 +133,6 @@ class Home extends Component {
     let {items} = this.state;
     return (
       <div className={styles.Home}>
-        <CookieConsent background={'#264870'} color={'#F9704F'} buttonBackground={'#F9704F'} buttonColor={'#264870'} bottomPosition={true}> This website uses cookies to improve
-          service, for analytical and advertising purposes.
-          Please read our <a href={'/cookies'} style={{color: '#fff'}}>Cookie Policy</a>.
-          Confirm your consent to the use of cookies.</CookieConsent>
         <div className={styles.popularSearchSection}>
           <div className={styles.popularSearchTitle}>Popular Searches</div>
           <ul className={styles.cities}>
