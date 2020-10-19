@@ -24,11 +24,32 @@
     }
 
     @include medium {
+      margin: -67px -64px 0 -64px;
+    }
+
+    @include small {
+      margin: -85px -128px 0 -64px;
+
+    }
+  }
+
+  &.backgroundImageCookiesGone {
+    margin: -31px 0 0 -64px;
+    background-color: #f0f2fc;
+
+    @include x-large {
+      background-repeat: round;
+      background-size: cover;
+      height: 500px;
+    }
+
+    @include medium {
       margin: -31px -64px 0 -64px;
     }
 
     @include small {
       margin: -31px -128px 0 -64px;
+
     }
   }
 

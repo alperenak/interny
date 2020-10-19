@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import CookieConsent from 'react-cookie-consent-notification';
 
 /*** Components ***/
 import TopBar from "./components/TopBar";
@@ -57,6 +58,8 @@ class App extends React.Component {
       /*default: null*/
       selectedJobID: '5f640f3dc782454860f792f1',
     },
+    consentTaken: false,
+
   };
 
   selectJobID(selectedJobID, callback = () => null) {
@@ -111,11 +114,32 @@ class App extends React.Component {
     });
   };
 
+  checkStatus = (status) => {
+    console.log(status);
+    if(status){
+      this.setState({consentTaken:true})
+    }
+  }
+
   render() {
     let { isAuthorized, user, modal, userType, isInternshipBegun, selectedJobID, loading } = this.state;
+    const cookieClass = this.state.consentTaken ? `${styles.hidden} ${styles.myCookie}` : styles.myCookie
+    const appClass = this.state.consentTaken ? `${styles.App} ${styles.fullScreen} ${styles.paddingTop}` : `${styles.App} ${styles.fullScreen}`
+    
     return (
-      <div className={`${styles.App} ${styles.fullScreen}`}>
+      <div className={appClass}>
         <LoadingModal text="Loading" v-if={loading} />
+        <CookieConsent  
+          consentFunction={this.checkStatus} 
+          className={cookieClass}
+          buttonBackground={'#F9704F'}
+          buttonColor={'#112B49'}
+        > 
+          This website uses cookies to improve
+          service, for analytical and advertising purposes.
+          Please read our <a href={'/cookies'} style={{color: '#F9704F'}}>Cookie Policy</a>.
+          Confirm your consent to the use of cookies.
+        </CookieConsent>
         <Router>
           <Route
             path="/"
@@ -144,7 +168,7 @@ class App extends React.Component {
               <Dashboard v-if={userType === "employer"} />
             </Route>
             <Route v-else exact path="/">
-              <SearchSection v-if={!isAuthorized} page={"home"} />
+              <SearchSection v-if={!isAuthorized} page={"home"} consentTaken={this.state.consentTaken} />
               <Home />
             </Route>
             <Route

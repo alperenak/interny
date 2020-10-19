@@ -511,10 +511,11 @@ class SearchSection extends Component {
     let { keyword, location } = this.state;
     let { browseInternship } = this.props;
 
+    const backgroundImageClass = this.props.consentTaken ? styles.backgroundImageCookiesGone : styles.backgroundImage
     return (
       <div
         className={`${styles.searchSection} ${
-          this.props.page === "home" && styles.backgroundImage
+          this.props.page === "home" && backgroundImageClass
         }`}
       >
         <div v-if={this.props.page === "home"} className={styles.slogan}>

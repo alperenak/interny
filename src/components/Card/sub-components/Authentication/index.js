@@ -125,10 +125,20 @@ class Authentication extends Component {
         label: `By joining you agree to the`,
         type: "checkbox",
         sizeName: "full",
-        clickable: " Terms, Privacy and Policy",
+        clickable: " Terms and Conditions",
         value: "checkboxStatus",
         onClick: () => {
           this.setState({ terms: true });
+        },
+      },
+      {
+        label: `By joining you agree to the`,
+        type: "checkbox",
+        sizeName: "full",
+        clickable: " Privacy Policy",
+        value: "checkboxStatus",
+        onClick: () => {
+          this.setState({ privacyPolicy: true });
         },
       },
     ],
@@ -146,6 +156,7 @@ class Authentication extends Component {
     user: null,
     user_id: null,
     terms: false,
+    privacyPolicy: false,
     checkboxStatus: false,
     forgotPasswordMode: false,
   };
@@ -164,8 +175,16 @@ class Authentication extends Component {
     this.setState({ terms: true });
   };
 
-  onOutsideClick = () => {
+  onClickPrivacyPolicy = () => {
+    this.setState({ privacyPolicy: true });
+  };
+
+  onOutsideClickTerms = () => {
     this.setState({ terms: false });
+  };
+
+  onOutsideClickPrivacyPolicy = () => {
+    this.setState({ privacyPolicy: false });
   };
 
   onContinueClick = async () => {
@@ -860,12 +879,73 @@ class Authentication extends Component {
 
   renderTerms = () => {
     return (
-      <div className={styles.modal_outer} onClick={this.onOutsideClick}>
+      <div className={styles.modal_outer} onClick={this.onOutsideClickTerms}>
         <div className={styles.modal}>
           <div className={styles.closeModalButton}>
             <img src={closeIcon} alt="" />
           </div>
-          <div className={styles.header}>Terms, Privacy and Policy</div>
+          <div className={styles.header}>Terms and Conditions</div>
+          <div className={styles.content}>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo
+            fuga laboriosam corporis eveniet laudantium maiores inventore cum
+            reprehenderit deleniti ad! Totam officia voluptatum possimus quis
+            doloribus accusantium, laborum perferendis a. Lorem ipsum dolor sit
+            amet, consectetur adipisicing elit. Explicabo fuga laboriosam
+            corporis eveniet laudantium maiores inventore cum reprehenderit
+            deleniti ad! Totam officia voluptatum possimus quis doloribus
+            accusantium, laborum perferendis a. Lorem ipsum dolor sit amet,
+            consectetur adipisicing elit. Explicabo fuga laboriosam corporis
+            eveniet laudantium maiores inventore cum reprehenderit deleniti ad!
+            Totam officia voluptatum possimus quis doloribus accusantium,
+            laborum perferendis a. Lorem ipsum dolor sit amet, consectetur
+            adipisicing elit. Explicabo fuga laboriosam corporis eveniet
+            laudantium maiores inventore cum reprehenderit deleniti ad! Totam
+            officia voluptatum possimus quis doloribus accusantium, laborum
+            perferendis a. Lorem ipsum dolor sit amet, consectetur adipisicing
+            elit. Explicabo fuga laboriosam corporis eveniet laudantium maiores
+            inventore cum reprehenderit deleniti ad! Totam officia voluptatum
+            possimus quis doloribus accusantium, laborum perferendis a. Lorem
+            ipsum dolor sit amet, consectetur adipisicing elit. Explicabo fuga
+            laboriosam corporis eveniet laudantium maiores inventore cum
+            reprehenderit deleniti ad! Totam officia voluptatum possimus quis
+            doloribus accusantium, laborum perferendis a. Lorem ipsum dolor sit
+            amet, consectetur adipisicing elit. Explicabo fuga laboriosam
+            corporis eveniet laudantium maiores inventore cum reprehenderit
+            deleniti ad! Totam officia voluptatum possimus quis doloribus
+            accusantium, laborum perferendis a. Lorem ipsum dolor sit amet,
+            consectetur adipisicing elit. Explicabo fuga laboriosam corporis
+            eveniet laudantium maiores inventore cum reprehenderit deleniti ad!
+            Totam officia voluptatum possimus quis doloribus accusantium,
+            laborum perferendis a. Lorem ipsum dolor sit amet, consectetur
+            adipisicing elit. Explicabo fuga laboriosam corporis eveniet
+            laudantium maiores inventore cum reprehenderit deleniti ad! Totam
+            officia voluptatum possimus quis doloribus accusantium, laborum
+            perferendis a. Lorem ipsum dolor sit amet, consectetur adipisicing
+            elit. Explicabo fuga laboriosam corporis eveniet laudantium maiores
+            inventore cum reprehenderit deleniti ad! Totam officia voluptatum
+            possimus quis doloribus accusantium, laborum perferendis a. Lorem
+            ipsum dolor sit amet, consectetur adipisicing elit. Explicabo fuga
+            laboriosam corporis eveniet laudantium maiores inventore cum
+            reprehenderit deleniti ad! Totam officia voluptatum possimus quis
+            doloribus accusantium, laborum perferendis a. Lorem ipsum dolor sit
+            amet, consectetur adipisicing elit. Explicabo fuga laboriosam
+            corporis eveniet laudantium maiores inventore cum reprehenderit
+            deleniti ad! Totam officia voluptatum possimus quis doloribus
+            accusantium, laborum perferendis a.
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  renderPrivacyPolicy = () => {
+    return (
+      <div className={styles.modal_outer} onClick={this.onOutsideClickPrivacyPolicy}>
+        <div className={styles.modal}>
+          <div className={styles.closeModalButton}>
+            <img src={closeIcon} alt="" />
+          </div>
+          <div className={styles.header}>Privacy Policy</div>
           <div className={styles.content}>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo
             fuga laboriosam corporis eveniet laudantium maiores inventore cum
@@ -920,7 +1000,7 @@ class Authentication extends Component {
   };
 
   render() {
-    let { forgotPasswordMode, getAdditionalInfo, terms } = this.state;
+    let { forgotPasswordMode, getAdditionalInfo, terms, privacyPolicy } = this.state;
     return (
       <>
         {forgotPasswordMode && (
@@ -935,6 +1015,7 @@ class Authentication extends Component {
         {getAdditionalInfo && this.renderAdditionalInfo()}
         {!getAdditionalInfo && this.renderAuth()}
         {terms && this.renderTerms()}
+        {privacyPolicy && this.renderPrivacyPolicy()}
       </>
     );
   }
