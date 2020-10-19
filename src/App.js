@@ -32,6 +32,7 @@ import CourseDetail from "./screens/CourseDetail";
 import UniverstyDashboard from "./screens/universtyDashboard/universtyDashboard";
 import InternDetail from "./screens/InternDetail";
 import UpdatePassword from "./screens/UpdatePassword";
+import Cookies from "./screens/Cookies"
 
 /*** Styles ***/
 import styles from "./app.scss";
@@ -120,6 +121,8 @@ class App extends React.Component {
       this.setState({consentTaken:true})
     }
   }
+
+
 
   render() {
     let { isAuthorized, user, modal, userType, isInternshipBegun, selectedJobID, loading } = this.state;
@@ -349,6 +352,10 @@ class App extends React.Component {
               render={(props) => <FrequentlyAskedQuestions {...props} />}
             />
             <Route
+              path="/cookies"
+              render={(props) => <Cookies {...props} />}
+            />
+            <Route
                 v-if={!getCookie('token')}
                 path="/updatepassword/:userType/:verificationKey"
                 render={(props) =>
@@ -363,7 +370,7 @@ class App extends React.Component {
           </Switch>
         </Router>
       </div>
-    );
+        );
   }
 }
 
