@@ -532,7 +532,7 @@ class SearchSection extends Component {
               placeholder={"Software Developer"}
               size={"responsive"}
               icon={{ src: searchIcon, position: "right" }}
-              labelDescription={"Enter position name, keyword or company name"}
+              labelDescription={"Enter keyword as position or company"}
               defaultValue={keyword !== "null" ? keyword : ""}
               onChange={(value) => this.setState({ keyword: value })}
               label={"Keyword"}
@@ -544,7 +544,7 @@ class SearchSection extends Component {
               placeholder={"Istanbul, Turkey"}
               size={"responsive"}
               icon={{ src: locationIcon, position: "right" }}
-              labelDescription={"Enter city name, country or state name"}
+              labelDescription={"Enter location as city, country or state"}
               defaultValue={location !== "null" ? location : ""}
               onChange={(value) => this.setState({ location: value })}
               label={"Location"}
@@ -581,7 +581,7 @@ class SearchSection extends Component {
           <Link to={"SignUp"} className={styles.underlined}>
             Prepare your CV
           </Link>{" "}
-          - Easily apply to thousands of jobs from anywhere
+          - Easily apply to thousands of internships from anywhere
         </div>
         <Fragment v-else>
           <ul className={styles.searches}>
