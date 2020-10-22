@@ -1,5 +1,18 @@
 @import "../../helpers/responsiveBreakpointsMixins.scss";
 
+
+.searchSectionWrapper{
+  // margin: -31px 0 0 0;
+  background-color: white;
+
+  img{
+    // margin: -2px 0 0 -64px; 
+    margin-top: -2px;
+    width: 100vw;
+  }
+}
+
+
 .searchSection {
   display: flex;
   flex-direction: column;
@@ -14,7 +27,8 @@
   }
 
   &.backgroundImage {
-    margin: -31px 0 0 -64px;
+    // margin: -31px 0 0 -64px;
+    margin-top: -31px;
     background-color: #f0f2fc;
     // background: radial-gradient(circle at 46% -416%,#f0f2fc 96%,transparent 79.5%);
 
@@ -25,17 +39,19 @@
     }
 
     @include medium {
-      margin: -67px -64px 0 -64px;
+      // margin: -67px -64px 0 -64px;
+      margin-top: -67px;
     }
 
     @include small {
-      margin: -85px -128px 0 -64px;
-
+      // margin: -85px -128px 0 -64px;
+      margin-top: -85px;
     }
   }
 
   &.backgroundImageCookiesGone {
-    margin: -31px 0 0 -64px;
+    // margin: -31px 0 0 -64px;
+    margin-top: -31px;
     background-color: #f0f2fc;
     // background: radial-gradient(circle at 46% -416%,#f0f2fc 96%,transparent 79.5%);
     
@@ -46,12 +62,13 @@
     }
 
     @include medium {
-      margin: -31px -64px 0 -64px;
+      // margin: -31px -64px 0 -64px;
+      margin-top: -31px;
     }
 
     @include small {
-      margin: -31px -128px 0 -64px;
-
+      // margin: -31px -128px 0 -64px;
+      margin-top: -31px;
     }
   }
 
@@ -187,6 +204,7 @@
     }
   }
 }
+
 
 .advancedSearch {
   display: flex;
