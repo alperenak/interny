@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 
 /*** Components ***/
@@ -18,10 +19,11 @@ import binIconBlue from "../../../../icons/recycling-bin-blue.svg";
 /*** Utils ***/
 import store from "../../../../store";
 
+
 class ProfileSection extends Component {
     state = {
         activeEditForm: false,
-        deleteBtn_processing: false
+        deleteBtn_processing: false,
     };
 
     onFormCanceled = async () => {
@@ -44,6 +46,9 @@ class ProfileSection extends Component {
                 <div className={styles.name}>
                     {file.name}
                     <div className={styles.buttonsContainer}>
+
+                    <Link to={`${file.name}-${file.title}`}  class={styles.viewButton}>View CV</Link>
+
                         <Button
                             type={'ghost'}
                             text={'Delete CV'}
