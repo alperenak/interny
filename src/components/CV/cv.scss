@@ -5,4 +5,16 @@
   border-radius: 16px;
   background-color: #ffffff;
   border: 1px solid #efefef;
+
+
+  & .progressBar{
+    width: 800px;
+  }
+
+  & .progressBarUpper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 3rem;
+  }
 }

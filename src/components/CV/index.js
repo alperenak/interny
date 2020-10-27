@@ -23,6 +23,10 @@ import {
 } from 'react-accessible-accordion';
 
 
+//import progress bar 
+import ProgressBarIMG from "../../assets/progressBarWithSteps.png"
+
+
 
 class CV extends Component {
     render() {
@@ -40,6 +44,10 @@ class CV extends Component {
                         </AccordionItemButton>
                     </AccordionItemHeading>
                     <AccordionItemPanel>
+
+                    <div className={styles.progressBarUpper}>
+                    <img className={styles.progressBar} src={ProgressBarIMG} alt="Logo" />
+                    </div>
 
                     <Experiences file={file} getCVs={getCVs} />
                     <Education file={file} getCVs={getCVs} />
