@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 
 /*** Components ***/
@@ -14,14 +15,18 @@ import addIcon from '../../../../icons/add-circular-outlined-black-button.svg';
 import editIcon from "../../../../icons/note-outlined-symbol.svg";
 import editHoverIcon from "../../../../icons/note-outlined-symbol-blue.svg";
 import binIconBlue from "../../../../icons/recycling-bin-blue.svg";
+import downloadCVIcon from '../../../../icons/down-arrow2.svg'
+import shareCVIcon from '../../../../icons/cvUpload.svg'
+
 
 /*** Utils ***/
 import store from "../../../../store";
 
+
 class ProfileSection extends Component {
     state = {
         activeEditForm: false,
-        deleteBtn_processing: false
+        deleteBtn_processing: false,
     };
 
     onFormCanceled = async () => {
@@ -40,10 +45,31 @@ class ProfileSection extends Component {
         }
         let location = country && city ? `${city} - ${country}` : (country ? `${country}` : city ? `${city}` : ``);
         return (
+            
             <div className={styles.ProfileSection}>
                 <div className={styles.name}>
                     {file.name}
                     <div className={styles.buttonsContainer}>
+
+
+                    <Button
+                            text={'Share Your CV '}
+                            width={'40%'}
+                            icon={shareCVIcon}
+                            iconPosition={'right'}
+                            to={'/sharecv'}
+                            type={'ghost'}
+                        />
+                    <Button
+                            text={'Download CV'}
+                            width={'40%'}
+                            icon={downloadCVIcon}
+                            iconPosition={'right'}
+                            to={'/downloadcv'}
+                            type={'ghost'}
+                        />
+                    <Link to={`${file.name}-${file.title}`}  class={styles.viewButton}>View CV</Link>
+
                         <Button
                             type={'ghost'}
                             text={'Delete CV'}

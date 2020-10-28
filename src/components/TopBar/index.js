@@ -427,7 +427,7 @@ class TopBar extends Component {
 
   handleScroll = () => {
     const scrollY = window.scrollY
-    console.log(scrollY)
+    // console.log(scrollY)
 
     if (window.scrollY > 155) {
       this.setState({isScrolled: true});

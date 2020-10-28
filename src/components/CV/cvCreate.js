@@ -11,6 +11,8 @@ import styles from './cvcreate.scss';
 import store from "../../store";
 import { getCookie } from "../../utils/cookie";
 
+import { Line } from 'rc-progress';
+
 class CvCreate extends Component {
     state = {
         page: 0,
@@ -35,7 +37,8 @@ class CvCreate extends Component {
                         {page === 2 && 'Education'}
                         {page === 3 && 'Language'}
                     </div>
-                    <div className={styles.page}>step {page + 1}/4</div>
+                    {/* <div className={styles.page}>step {page + 1}/4</div> */}
+                    <Line style={{width: 200}} percent={page*25} strokeWidth="3" trailColor="#D3D3D3" strokeColor="#2C3F58" trailWidth="4"/>
                 </div>
                 <Card>
                     <div hidden={page !== 3}><Languages cv_id={cv.id} object={cv.languages} type={'create'} /></div>
