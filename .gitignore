@@ -10,10 +10,12 @@
 
 # production
 /build
+/dist
 
 # IDE files
 .idea
 # misc
+.env
 .DS_Store
 .env.local
 .env.development.local
