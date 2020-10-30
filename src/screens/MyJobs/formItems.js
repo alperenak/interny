@@ -82,19 +82,6 @@ export const formItems = (formItems) => {
         validations: { lengthValidator: { start: 1, stop: 40 } },
       },
     },
-    endDate: {
-      item: {
-        title: 'End Date',
-        type: 'date',
-        validations: {
-          checkRegex: {
-            whatToHave: [
-              '^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$',
-            ],
-          },
-        },
-      },
-    },
     internQuota: {
       item: {
         title: 'Job Quota',
