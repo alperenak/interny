@@ -17,6 +17,7 @@ let config = require('./appConfig');
 
 app.use(cors(corsOptions));
 
+console.log(process.env.NODE_ENV);
 
 if (process.env.NODE_ENV === 'development') {
     let webpack = require('webpack');
