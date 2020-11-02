@@ -175,6 +175,7 @@ class App extends React.Component {
             </Route>
             <Route v-else exact path="/">
               <SearchSection v-if={!isAuthorized} page={"home"} consentTaken={this.state.consentTaken} />
+
               <Home />
             </Route>
             <Route

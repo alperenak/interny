@@ -8,7 +8,7 @@ import Footer from "../../components/Footer";
 
 /*** Styles ***/
 import styles from "./home.scss";
-
+import homeCurve from "../../assets/home-curve.svg";
 /*** Icons ***/
 import chaseBroke from "../../assets/chaseBroke.png";
 import steveAustin from "../../assets/steveAustin.png";

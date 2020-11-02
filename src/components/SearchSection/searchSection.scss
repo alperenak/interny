@@ -1,36 +1,23 @@
 @import "../../helpers/responsiveBreakpointsMixins.scss";
-
-
 .searchSectionWrapper{
-  // margin: -31px 0 0 0;
-  background-color: white;
-
-  img{
-    // margin: -2px 0 0 -64px; 
-    margin-top: -2px;
-    width: 100vw;
-  }
+	width: 100vw;
+	height: auto;
+	margin: -31px 0 0 0;
 }
-
-
 .searchSection {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: -31px 0 0 0;
   width: 100vw;
-  height: 600px;
+  height: 354px;
 
   @include x-large {
     height: 500px;
   }
 
   &.backgroundImage {
-    // margin: -31px 0 0 -64px;
-    margin-top: -31px;
     background-color: #f0f2fc;
-    // background: radial-gradient(circle at 46% -416%,#f0f2fc 96%,transparent 79.5%);
 
     @include x-large {
       background-repeat: round;
@@ -39,22 +26,19 @@
     }
 
     @include medium {
-      // margin: -67px -64px 0 -64px;
-      margin-top: -67px;
+      margin: -67px -64px 0 -64px;
     }
 
     @include small {
-      // margin: -85px -128px 0 -64px;
-      margin-top: -85px;
+      margin: -85px -128px 0 -64px;
+
     }
   }
 
   &.backgroundImageCookiesGone {
-    // margin: -31px 0 0 -64px;
-    margin-top: -31px;
+    margin: -31px 0 0 -64px;
     background-color: #f0f2fc;
-    // background: radial-gradient(circle at 46% -416%,#f0f2fc 96%,transparent 79.5%);
-    
+
     @include x-large {
       background-repeat: round;
       background-size: cover;
@@ -62,13 +46,12 @@
     }
 
     @include medium {
-      // margin: -31px -64px 0 -64px;
-      margin-top: -31px;
+      margin: -31px -64px 0 -64px;
     }
 
     @include small {
-      // margin: -31px -128px 0 -64px;
-      margin-top: -31px;
+      margin: -31px -128px 0 -64px;
+
     }
   }
 
@@ -204,7 +187,6 @@
     }
   }
 }
-
 
 .advancedSearch {
   display: flex;

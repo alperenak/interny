@@ -7,12 +7,11 @@ import Input from "../../components/Input";
 
 /*** Styles ***/
 import styles from "./searchSection.scss";
-
+import homeCurve from "../../assets/home-curve.svg";
 /*** Icons ***/
 import searchIcon from "../../icons/colorfulSearch.svg";
 import locationIcon from "../../icons/colorfulLocation.svg";
 import closeIcon from "../../icons/close-outline.svg";
-import homeCurve from "../../assets/home-curve.svg";
 
 /*** Store ***/
 import store from "../../store";
@@ -514,10 +513,10 @@ class SearchSection extends Component {
 
     const backgroundImageClass = this.props.consentTaken ? styles.backgroundImageCookiesGone : styles.backgroundImage
     return (
-      <div className={styles.searchSectionWrapper}>
+		<div className={styles.searchSectionWrapper}>
       <div
         className={`${styles.searchSection} ${
-          this.props.page === "home" && ""
+          styles.backgroundImage
         }`}
       >
         <div v-if={this.props.page === "home"} className={styles.slogan}>
@@ -642,8 +641,8 @@ class SearchSection extends Component {
           </div>
         </Fragment>
       </div>
-      <img src={homeCurve}/>
-      </div>
+	  <img src={homeCurve}/>
+	  </div>
     );
   }
 }
