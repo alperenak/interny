@@ -67,8 +67,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 10px;
-      width: 10px;
+      height: 24px;
+      width: 24px;
       border-radius: 50%;
       padding: 5px;
       background-color: rgba(#2c3f58, 0.08);
@@ -81,7 +81,8 @@
       }
 
       &>img {
-        width: 100%;
+        width: 14px;
+		height:14px;
       }
     }
   }
