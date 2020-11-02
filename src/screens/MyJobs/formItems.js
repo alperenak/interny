@@ -1,16 +1,33 @@
-import countries from '../../utils/countries';
 import languages from '../../utils/languages';
 
 export const formItems = (formItems) => {
   let internLevel = [
     { key: 'newlyGraduated', value: 'Newly Graduated', selected: false },
-    { key: 'student', value: 'Student', selected: false },
+    { key: 'universityStudent', value: 'University Student', selected: false },
   ];
 
   let internshipLength = [
     { key: '4', value: '4 weeks', selected: false },
     { key: '8', value: '8 weeks', selected: false },
     { key: '12', value: '12 weeks', selected: false },
+  ];
+
+  let applicationsTypes = [
+    { key: 'local', value: 'Local', selected: false },
+    { key: 'global', value: 'Global', selected: false },
+  ];
+
+  let quotas = [
+    { key: '1', value: '1', selected: false },
+    { key: '2', value: '2', selected: false },
+    { key: '3', value: '3', selected: false },
+    { key: '4', value: '4', selected: false },
+    { key: '5', value: '5', selected: false },
+    { key: '6', value: '6', selected: false },
+    { key: '7', value: '7', selected: false },
+    { key: '8', value: '8', selected: false },
+    { key: '9', value: '9', selected: false },
+    { key: '10', value: '10', selected: false },
   ];
 
   let keys = {
@@ -56,17 +73,12 @@ export const formItems = (formItems) => {
         multiple: true,
       },
     },
-    country: {
+    applicationType: {
       item: {
-        title: 'Preferred Countries',
+        title: 'Application Type',
         type: 'select',
-        externalSource: countries,
+        externalSource: applicationsTypes,
         multiple: true,
-      },
-    },
-    city: {
-      item: {
-        title: 'Preferred Cities',
       },
     },
     gpa: {
@@ -85,7 +97,9 @@ export const formItems = (formItems) => {
     internQuota: {
       item: {
         title: 'Job Quota',
-        validations: { isNumeric: {} },
+        type: 'select',
+        externalSource: quotas,
+        multiple: false,
       },
     },
   };
