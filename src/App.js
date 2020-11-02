@@ -35,6 +35,7 @@ import UpdatePassword from "./screens/UpdatePassword";
 import Cookies from "./screens/Cookies"
 import ReferrenceLetter from "./screens/ReferrenceLetter";
 import ReferrenceLetterLetter from "./screens/ReferrenceLetterLetter";
+import HelpCenter from "./screens/HelpCenter";
 
 /*** Styles ***/
 import styles from "./app.scss";
@@ -364,6 +365,10 @@ class App extends React.Component {
             <Route
               path="/referrenceLetterLetter"
               render={(props) => <ReferrenceLetterLetter {...props} />}
+            />
+            <Route
+              path="/helpCenter"
+              render={(props) => <HelpCenter {...props} />}
             />
             <Route
                 v-if={!getCookie('token')}

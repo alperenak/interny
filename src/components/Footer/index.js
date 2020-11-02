@@ -49,7 +49,7 @@ class Footer extends Component {
                   <Link to="/">About Us</Link>
                 </li>
                 <li>
-                  <Link to="/faq">Help Center</Link>
+                  <Link to="/helpCenter">Help Center</Link>
                 </li>
                 <li>
                   <Link to="/faq">Terms</Link>
@@ -101,7 +101,7 @@ class Footer extends Component {
                   <Link to="/faq">INTERNY for Bussiness</Link>
                 </li>
                 <li>
-                  <Link to="/faq">Help Center</Link>
+                  <Link to="/helpCenter">Help Center</Link>
                 </li>
               </ul>
             </div>
