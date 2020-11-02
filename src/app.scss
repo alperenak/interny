@@ -8,12 +8,12 @@
   background-color: #fafbff;
   width: calc(100% - 208px);
   height: calc(100% - 144px);
-  padding: 112px 64px 32px 144px;
+  
   position: relative;
 
   &.fullScreen {
     width: unset;
-    padding: 37px 64px 32px 64px;
+    
 
     // @include small {
     //   padding: 112px 5% 32px 5%;
@@ -27,9 +27,9 @@
     bottom: -100px !important;
     opacity: 0!important;
   }
-  
+
   & .myCookie {
-    
+
     & * {
       box-sizing: content-box;
     }

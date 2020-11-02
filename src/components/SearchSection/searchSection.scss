@@ -1,11 +1,14 @@
 @import "../../helpers/responsiveBreakpointsMixins.scss";
-
+.searchSectionWrapper{
+	width: 100vw;
+	height: auto;
+	margin: -31px 0 0 0;
+}
 .searchSection {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: -31px 0 0 0;
   width: 100vw;
   height: 354px;
 
@@ -14,7 +17,6 @@
   }
 
   &.backgroundImage {
-    margin: -31px 0 0 -64px;
     background-color: #f0f2fc;
 
     @include x-large {
