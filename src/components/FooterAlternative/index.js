@@ -26,25 +26,43 @@ class FooterAlternative extends Component {
                 <Link to="/faq">Hiring Lab</Link>
             </li>
             <li>
+               <span className={styles.dot}></span>
+            </li>
+            <li>
                 <Link to="/faq">Career Advice</Link>
+            </li>
+            <li>
+               <span className={styles.dot}></span>
             </li>
             <li>
                 <Link to="/referrenceLetter">Browse Jobs</Link>
             </li>
             <li>
+               <span className={styles.dot}></span>
+            </li>
+            <li>
                 <Link to="/faq">Browse Companies</Link>
+            </li>
+            <li>
+               <span className={styles.dot}></span>
             </li>
             <li>
                 <Link to="/faq">Employer Events</Link>
             </li>
+            <li>
+               <span className={styles.dot}></span>
+            </li>
             <li v-if={!getCookie("token")}>
                   <Link to="/signup">Careers</Link>
                 </li>
+                <li>
+               <span className={styles.dot}></span>
+            </li>
             <li>
                 <Link to="/faq">About</Link>
             </li>
             </ul>
-          </div>
+        </div>
 
         <div className={styles.stroke} />
         <div className={styles.rights}>
