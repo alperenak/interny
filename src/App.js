@@ -33,6 +33,8 @@ import UniverstyDashboard from "./screens/universtyDashboard/universtyDashboard"
 import InternDetail from "./screens/InternDetail";
 import UpdatePassword from "./screens/UpdatePassword";
 import Cookies from "./screens/Cookies"
+import ReferrenceLetter from "./screens/ReferrenceLetter";
+import ReferrenceLetterLetter from "./screens/ReferrenceLetterLetter";
 
 /*** Styles ***/
 import styles from "./app.scss";
@@ -354,6 +356,14 @@ class App extends React.Component {
             <Route
               path="/cookies"
               render={(props) => <Cookies {...props} />}
+            />
+            <Route
+              path="/referrenceLetter"
+              render={(props) => <ReferrenceLetter {...props} />}
+            />
+            <Route
+              path="/referrenceLetterLetter"
+              render={(props) => <ReferrenceLetterLetter {...props} />}
             />
             <Route
                 v-if={!getCookie('token')}
