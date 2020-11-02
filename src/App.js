@@ -14,7 +14,8 @@ import LoadingModal from "./components/LoadingModal";
 import Home from "./screens/Home";
 import SignUp from "./screens/SignUp";
 import UserHome from "./screens/UserHome";
-import CVs from "./screens/CVs";
+import CVs from "./screens/CVs/index.js";
+import CVList from "./screens/CVs/list.js";
 import CoverLetters from "./screens/CoverLetters";
 import JobApplication from "./screens/JobApplication";
 import LandingPageSearch from "./screens/LandingPageSearch";
@@ -130,16 +131,16 @@ class App extends React.Component {
     let { isAuthorized, user, modal, userType, isInternshipBegun, selectedJobID, loading } = this.state;
     const cookieClass = this.state.consentTaken ? `${styles.hidden} ${styles.myCookie}` : styles.myCookie
     const appClass = this.state.consentTaken ? `${styles.App} ${styles.fullScreen} ${styles.paddingTop}` : `${styles.App} ${styles.fullScreen}`
-    
+
     return (
       <div className={appClass}>
         <LoadingModal text="Loading" v-if={loading} />
-        <CookieConsent  
-          consentFunction={this.checkStatus} 
+        <CookieConsent
+          consentFunction={this.checkStatus}
           className={cookieClass}
           buttonBackground={'#F9704F'}
           buttonColor={'#112B49'}
-        > 
+        >
           This website uses cookies to improve
           service, for analytical and advertising purposes.
           Please read our <a href={'/cookies'} style={{color: '#F9704F'}}>Cookie Policy</a>.
@@ -241,6 +242,18 @@ class App extends React.Component {
             />
             <Route
               path="/CVs"
+              render={(props) => (
+                <CVList
+                  getUser={this.getUser}
+                  user={user}
+                  closeModal={this.closeModal}
+                  createModal={this.createModal}
+                  {...props}
+                />
+              )}
+            />
+			<Route
+              path="/Cvdetail/:id"
               render={(props) => (
                 <CVs
                   getUser={this.getUser}

@@ -517,7 +517,7 @@ class SearchSection extends Component {
       <div className={styles.searchSectionWrapper}>
       <div
         className={`${styles.searchSection} ${
-          this.props.page === "home" && backgroundImageClass
+          this.props.page === "home" && ""
         }`}
       >
         <div v-if={this.props.page === "home"} className={styles.slogan}>

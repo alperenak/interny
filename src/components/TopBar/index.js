@@ -562,13 +562,13 @@ class TopBar extends Component {
               onMouseLeave={() => this.setState({ ourDropdown: false })}
               className={styles.dropdownContainer}
             >
-              <Button  
+              <Button
                 type={"ghost"}
                 sizeName={"small"}
                 text ={"Our Packages" }
                 textClass={this.state.isScrolled ? styles.scroll : styles.nonscroll}
                 iconPosition={"left"}
-                icon={caret} 
+                icon={caret}
               />
               <div v-if={ourDropdown} className={styles.dropdown}>
                 <Card type={"dropDown"} externalData={this.state.ourPackages} />
