@@ -13,56 +13,19 @@ import Languages from "./sub-components/Languages";
 /*** Styles ***/
 import styles from './cv.scss';
 
-//accordion library
-import {
-    Accordion,
-    AccordionItem,
-    AccordionItemHeading,
-    AccordionItemButton,
-    AccordionItemPanel,
-} from 'react-accessible-accordion';
-
-
-//import progress bar 
-import ProgressBarIMG from "../../assets/progressBarWithSteps.png"
-
-
-
 class CV extends Component {
     render() {
         let {file, getCVs} = this.props;
         return (
-
             <div className={styles.CV}>
-                <Accordion allowZeroExpanded>
-                <AccordionItem>
-                    <AccordionItemHeading>
-                        <AccordionItemButton>
-
-                             <ProfileSection file={file} getCVs={getCVs} />
-                             
-                        </AccordionItemButton>
-                    </AccordionItemHeading>
-                    <AccordionItemPanel>
-
-                    <div className={styles.progressBarUpper}>
-                    <img className={styles.progressBar} src={ProgressBarIMG} alt="Logo" />
-                    </div>
-
-                    <Experiences file={file} getCVs={getCVs} />
-                    <Education file={file} getCVs={getCVs} />
-                    <Skills file={file} getCVs={getCVs} />
-                    <Languages file={file} getCVs={getCVs} />
-                    <Certificates file={file} getCVs={getCVs} />
-                    <AdditionalInfo file={file} getCVs={getCVs} />
-
-                    </AccordionItemPanel>
-                </AccordionItem>
-            </Accordion>
+                <ProfileSection file={file} getCVs={getCVs} />
+                <Experiences file={file} getCVs={getCVs} />
+                <Education file={file} getCVs={getCVs} />
+                <Skills file={file} getCVs={getCVs} />
+                <Languages file={file} getCVs={getCVs} />
+                <Certificates file={file} getCVs={getCVs} />
+                <AdditionalInfo file={file} getCVs={getCVs} />
             </div>
-                
-
-
         );
     }
 }
@@ -70,5 +33,5 @@ class CV extends Component {
 export default CV;
 
 CV.propTypes = {
-  file: PropTypes.object
+    file: PropTypes.object
 };
