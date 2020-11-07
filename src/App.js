@@ -138,12 +138,13 @@ class App extends React.Component {
         <CookieConsent  
           consentFunction={this.checkStatus} 
           className={cookieClass}
-          buttonBackground={'#F9704F'}
+          buttonText={'Allow'}
+          buttonBackground={'#EFF2FC'}
           buttonColor={'#112B49'}
         > 
           This website uses cookies to improve
           service, for analytical and advertising purposes.
-          Please read our <a href={'/cookies'} style={{color: '#F9704F'}}>Cookie Policy</a>.
+          Please read our <a href={'/cookies'} style={{color: '#EFF2FC'}}>Cookie Policy</a>.
           Confirm your consent to the use of cookies.
         </CookieConsent>
         <Router>

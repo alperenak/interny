@@ -544,17 +544,10 @@ class TopBar extends Component {
           <Fragment v-if={!isAuthorized}>
             {/*<div><Link to={'/'}>Home</Link></div>*/}
 
-          <div>
-            <Link to={"/login/University"} className={this.state.isScrolled ? styles.scroll : styles.nonscroll}>University</Link>
-          </div>
-
-            <div>
-              <Link to={"/login/Employer"} className={this.state.isScrolled ? styles.scroll : styles.nonscroll}>Company</Link>
-            </div>
-
             <div>
               <Link to={"/search"} className={this.state.isScrolled ? styles.scroll : styles.nonscroll}>Browse Internships</Link>
             </div>
+
 
             {/* our packages */}
             <div
@@ -562,34 +555,32 @@ class TopBar extends Component {
               onMouseLeave={() => this.setState({ ourDropdown: false })}
               className={styles.dropdownContainer}
             >
-              <Button  
-                type={"ghost"}
-                sizeName={"small"}
-                text ={"Our Packages" }
+              <Button
+                type={"link"}
+                sizeName={"default"}
+                text={"\u00a0\u00a0Packages\u00a0\u00a0"}
                 textClass={this.state.isScrolled ? styles.scroll : styles.nonscroll}
-                iconPosition={"left"}
-                icon={caret} 
               />
               <div v-if={ourDropdown} className={styles.dropdown}>
                 <Card type={"dropDown"} externalData={this.state.ourPackages} />
               </div>
             </div>
+
             <div
               onMouseOver={() => this.setState({ loginDropDown: true })}
               onMouseLeave={() => this.setState({ loginDropDown: false })}
               className={styles.dropdownContainer}
             >
               <Button
-                type={"ghost"}
+                type={"primary"}
                 sizeName={"small"}
-                text={"Login"}
+                text={"\u00a0\u00a0Login\u00a0\u00a0"}
                 textClass={this.state.isScrolled ? styles.scroll : styles.nonscroll}
-                iconPosition={"left"}
-                icon={caret}
               />
               <div v-if={loginDropDown} className={styles.dropdown}>
                 <Card type={"dropDown"} externalData={this.state.loginPages} />
               </div>
+
             </div>
             <Button
               to="/signup"
