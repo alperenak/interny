@@ -260,28 +260,46 @@ class AboutUs extends Component {
                     <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
                     <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
                     <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="4"></li>
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                    <img src="https://photographylife.com/wp-content/uploads/2017/01/What-is-landscape-photography.jpg" class="d-block w-100" alt="..."/>
+                    <img src="https://www.teahub.io/photos/full/100-1001595_golden-gate-bridge.jpg" class="d-block w-100" alt="..."/>
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        <h3>California USA</h3>
+                        <h5>Main Location</h5>
                     </div>
                     </div>
                     <div class="carousel-item">
-                    <img src="https://photographylife.com/wp-content/uploads/2016/06/Mass.jpg" class="d-block w-100" alt="..."/>
+                    <img src="https://i0.wp.com/www.parkeagle.com/wp-content/uploads/2016/12/rotterdam.jpg?fit=1920%2C1080&ssl=1" class="d-block w-100" alt="..."/>
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>Second slide label</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <h3>Rotterdam NL</h3>
+                        <h5>Europe Headquarters</h5>
                     </div>
                     </div>
                     <div class="carousel-item">
-                    <img src="https://photographylife.com/wp-content/uploads/2015/07/Stokksnes1.jpg" class="d-block w-100" alt="..."/>
+                    <img src="https://www.wallpapers4u.org/wp-content/uploads/istanbul_turkey_sea_buildings_96520_1920x1080.jpg" class="d-block w-100" alt="..."/>
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>Third slide label</h5>
-                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                        <h3>Istanbul TR</h3>
+                        <h5>Europe-Asia Headquarters</h5>
                     </div>
+                    </div>
+                    <div className="carousel-item">
+                        <img src="https://i2.wp.com/wallur.com/wp-content/uploads/2016/12/london-background-11.jpg"
+                             className="d-block w-100" alt="..."/>
+                        <div className="carousel-caption d-none d-md-block">
+                            <h3>London UK</h3>
+                            <h5>United Kingdom Headquarters</h5>
+                        </div>
+                    </div>
+                    <div className="carousel-item">
+                        <img src="https://www.setaswall.com/wp-content/uploads/2018/01/Dubai-Widescreen-Wallpaper-09-1920x1080.jpg"
+                             className="d-block w-100" alt="..."/>
+                        <div className="carousel-caption d-none d-md-block">
+                            <h3>Dubai UAE</h3>
+                            <h5>West Asia Headquarters</h5>
+                        </div>
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
