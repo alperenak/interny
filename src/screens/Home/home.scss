@@ -15,11 +15,12 @@
     background-color: white;
     width: 100vw;
     padding: 104px;
+    padding-top: 200px;
 
     @include medium {
       padding: 0;
-      padding-top: 104px;
       padding-bottom: 104px;
+      padding-top: 14px;
     }
 
     & .popularSearchTitle {
