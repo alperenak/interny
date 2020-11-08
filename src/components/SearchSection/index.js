@@ -488,7 +488,10 @@ class SearchSection extends Component {
                   industry: this.state.advanced_industry,
                 };
                 this.addTags();
-                let response = await store.advancedSearch(payload,this.props.browseInternship ?'jobs':'job');
+                let response = await store.advancedSearch(
+                  payload,
+                  this.props.browseInternship ? "jobs" : "job"
+                );
 
                 if (response)
                   this.setState({
@@ -512,137 +515,139 @@ class SearchSection extends Component {
     let { keyword, location } = this.state;
     let { browseInternship } = this.props;
 
-    const backgroundImageClass = this.props.consentTaken ? styles.backgroundImageCookiesGone : styles.backgroundImage
+    const backgroundImageClass = this.props.consentTaken
+      ? styles.backgroundImageCookiesGone
+      : styles.backgroundImage;
     return (
       <div className={styles.searchSectionWrapper}>
-      <div
-        className={`${styles.searchSection} ${
-          this.props.page === "home" && backgroundImageClass
-        }`}
-      >
-        <div v-if={this.props.page === "home"} className={styles.slogan}>
-          The <span style={{ color: "#f97050" }}>Easiest</span> Way to Get Your{" "}
-          <span style={{ color: "#264870" }}>New Internship</span>
-        </div>
-        <div v-if={this.props.page === "home"} className={styles.subSlogan}>
-          Find the career you deserve
-        </div>
-        <div className={styles.searchBars}>
-          <div className={styles.keyword}>
-            <Input
-              type={"text"}
-              placeholder={"Software Developer"}
-              size={"responsive"}
-              icon={{ src: searchIcon, position: "right" }}
-              labelDescription={"Enter keyword as position or company"}
-              defaultValue={keyword !== "null" ? keyword : ""}
-              onChange={(value) => this.setState({ keyword: value })}
-              label={"Keyword"}
-            />
-          </div>
-          <div className={styles.location}>
-            <Input
-              type={"text"}
-              placeholder={"Istanbul, Turkey"}
-              size={"responsive"}
-              icon={{ src: locationIcon, position: "right" }}
-              labelDescription={"Enter location as city, country or state"}
-              defaultValue={location !== "null" ? location : ""}
-              onChange={(value) => this.setState({ location: value })}
-              label={"Location"}
-            />
-          </div>
-          <div className={styles.findJob}>
-            <Button
-              type={"secondary"}
-              text={"Find Internship"}
-              sizeName={"large"}
-              to={`/search/${keyword ? keyword : null}/${
-                location ? location : null
-              }`}
-            />
-          </div>
-        </div>
-
         <div
-          v-if={getCookie("token") || browseInternship}
-          className={styles["advancedSearch"]}
+          className={`${styles.searchSection} ${
+            this.props.page === "home" && backgroundImageClass
+          }`}
         >
-          <Button
-            text={"Advanced Search"}
-            type={"ghost"}
-            onButtonClick={(e) => {
-              e.preventDefault();
-              this.setState({ advancedSearch: true });
-            }}
-          />
-          {this.state.advancedSearch && this.renderAdvancedSearch()}
-        </div>
+          <div v-if={this.props.page === "home"} className={styles.slogan}>
+            The <span style={{ color: "#f97050" }}>Easiest</span> Way to Get
+            Your <span style={{ color: "#264870" }}>New Internship</span>
+          </div>
+          <div v-if={this.props.page === "home"} className={styles.subSlogan}>
+            Find the career you deserve
+          </div>
+          <div className={styles.searchBars}>
+            <div className={styles.keyword}>
+              <Input
+                type={"text"}
+                placeholder={"Software Developer"}
+                size={"responsive"}
+                icon={{ src: searchIcon, position: "right" }}
+                labelDescription={"Enter keyword as position or company"}
+                defaultValue={keyword !== "null" ? keyword : ""}
+                onChange={(value) => this.setState({ keyword: value })}
+                label={"Keyword"}
+              />
+            </div>
+            <div className={styles.location}>
+              <Input
+                type={"text"}
+                placeholder={"Istanbul, Turkey"}
+                size={"responsive"}
+                icon={{ src: locationIcon, position: "right" }}
+                labelDescription={"Enter location as city, country or state"}
+                defaultValue={location !== "null" ? location : ""}
+                onChange={(value) => this.setState({ location: value })}
+                label={"Location"}
+              />
+            </div>
+            <div className={styles.findJob}>
+              <Button
+                type={"secondary"}
+                text={"Find Internship"}
+                sizeName={"large"}
+                to={`/search/${keyword ? keyword : null}/${
+                  location ? location : null
+                }`}
+              />
+            </div>
+          </div>
 
-        <div v-if={this.props.page === "home"} className={styles.prepareCv}>
-          <Link to={"SignUp"} className={styles.underlined}>
-            Prepare your CV
-          </Link>{" "}
-          - Easily apply to thousands of internships from anywhere
-        </div>
-        <Fragment v-else>
-          <ul className={styles.searches}>
-            {this.state.searches.map((searchedWord, i) => {
-              return (
-                <Link
-                  to={`/search/${keyword ? keyword : null}/${searchedWord}`}
-                  key={"searchedWord" + i}
-                  className={styles.searchedWord}
-                >
-                  {searchedWord}
-                </Link>
-              );
-            })}
-          </ul>
-          <div className={styles.tagsContainer}>
-            {this.state.tags.length !== 0
-              ? this.state.tags
-                  .filter(
-                    (item) =>
-                      item.value !== "" &&
-                      !item.value?.includes("0 - 0") &&
-                      item.value !== "" &&
-                      item.value !== " "
-                  )
-                  .map((item) => {
-                    return (
-                      <div className={styles.tagsWrapper}>
-                        <div className={styles.tagsTitle}>{item.name} </div>
-                        <div className={styles.tagsLabel}>
-                          <div className={styles.tagsValue}>{item.value}</div>
-                          <div
-                            className={styles.cross}
-                            onClick={() => {
-                              this.sendRequestTags();
+          <div
+            v-if={getCookie("token") || browseInternship}
+            className={styles["advancedSearch"]}
+          >
+            <Button
+              text={"Advanced Search"}
+              type={"ghost"}
+              onButtonClick={(e) => {
+                e.preventDefault();
+                this.setState({ advancedSearch: true });
+              }}
+            />
+            {this.state.advancedSearch && this.renderAdvancedSearch()}
+          </div>
 
-                              this.setState({
-                                tags: this.state.tags.filter((tags) => {
-                                  return tags.name !== item.name;
-                                }),
-                              });
-                            }}
-                          >
-                            <img
-                              src={closeIcon}
-                              className={styles.closeTag}
-                              alt="closeTag"
-                              width="10"
-                            />
+          <div v-if={this.props.page === "home"} className={styles.prepareCv}>
+            <Link to={"SignUp"} className={styles.underlined}>
+              Prepare your CV
+            </Link>{" "}
+            - Easily apply to thousands of internships from anywhere
+          </div>
+          <Fragment v-else>
+            <ul className={styles.searches}>
+              {this.state.searches.map((searchedWord, i) => {
+                return (
+                  <Link
+                    to={`/search/${keyword ? keyword : null}/${searchedWord}`}
+                    key={"searchedWord" + i}
+                    className={styles.searchedWord}
+                  >
+                    {searchedWord}
+                  </Link>
+                );
+              })}
+            </ul>
+            <div className={styles.tagsContainer}>
+              {this.state.tags.length !== 0
+                ? this.state.tags
+                    .filter(
+                      (item) =>
+                        item.value !== "" &&
+                        !item.value?.includes("0 - 0") &&
+                        item.value !== "" &&
+                        item.value !== " "
+                    )
+                    .map((item) => {
+                      return (
+                        <div className={styles.tagsWrapper}>
+                          <div className={styles.tagsTitle}>{item.name} </div>
+                          <div className={styles.tagsLabel}>
+                            <div className={styles.tagsValue}>{item.value}</div>
+                            <div
+                              className={styles.cross}
+                              onClick={() => {
+                                this.sendRequestTags();
+
+                                this.setState({
+                                  tags: this.state.tags.filter((tags) => {
+                                    return tags.name !== item.name;
+                                  }),
+                                });
+                              }}
+                            >
+                              <img
+                                src={closeIcon}
+                                className={styles.closeTag}
+                                alt="closeTag"
+                                width="10"
+                              />
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    );
-                  })
-              : ""}
-          </div>
-        </Fragment>
-      </div>
-      <img src={homeCurve}/>
+                      );
+                    })
+                : ""}
+            </div>
+          </Fragment>
+        </div>
+        <img className={styles.homeCurve} src={homeCurve} />
       </div>
     );
   }

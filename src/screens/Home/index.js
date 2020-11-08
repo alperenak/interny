@@ -179,6 +179,7 @@ class Home extends Component {
               id="carouselExampleSlidesOnly"
               class="carousel slide"
               data-ride="carousel"
+              data-interval="5000"
             >
               <div className="carousel-inner">
                 <div
