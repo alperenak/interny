@@ -36,6 +36,7 @@ import Cookies from "./screens/Cookies"
 import ReferrenceLetter from "./screens/ReferrenceLetter";
 import ReferrenceLetterLetter from "./screens/ReferrenceLetterLetter";
 import HelpCenter from "./screens/HelpCenter";
+import AboutUs from "./screens/AboutUs";
 
 /*** Styles ***/
 import styles from "./app.scss";
@@ -370,6 +371,10 @@ class App extends React.Component {
             <Route
               path="/helpCenter"
               render={(props) => <HelpCenter {...props} />}
+            />
+            <Route
+                path="/aboutUs"
+                render={(props) => <AboutUs {...props} />}
             />
             <Route
                 v-if={!getCookie('token')}

@@ -46,7 +46,7 @@ class Footer extends Component {
             <div className={styles.knowUs}>
               <ul>
                 <li>
-                  <Link to="/">About Us</Link>
+                  <Link to="/aboutUs">About Us</Link>
                 </li>
                 <li>
                   <Link to="/helpCenter">Help Center</Link>
