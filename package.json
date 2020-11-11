@@ -2,9 +2,7 @@
   "name": "IandP",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": "12.18.1"
-  },
+
   "dependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.10.5",
