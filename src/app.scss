@@ -5,11 +5,13 @@
 }
 
 .App {
-  background-color: #fafbff;
-  width: calc(100% - 208px);
-  height: calc(100% - 144px);
 
-  position: relative;
+  background-color: #EFF2FC;
+  // width: calc(100% - 208px);
+  // height: calc(100% - 144px);
+  // padding: 112px 64px 32px 144px;
+  // position: relative;
+
 
   &.fullScreen {
     width: unset;
@@ -39,7 +41,7 @@
     margin-left: auto;
     margin-right: auto;
     visibility: visible;
-    background-color: #102b49;
+    background-color: #3f5572;
     padding: 10px;
     flex-flow: row;
     color: white;
@@ -53,6 +55,7 @@
     box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 3px, rgba(0, 0, 0, 0.24) 0px 0px 2px;
     z-index: 900;
     text-align: center;
+    opacity: 0.8;
 
   }
 
