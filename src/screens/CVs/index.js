@@ -21,64 +21,78 @@ import LoadingModal from '../../components/LoadingModal';
 
 class CVs extends Component {
     state = {
-        sections: [],
+        cv: {},
         processing: true
     };
 
     async componentDidMount() {
         await this.getCVs();
-
     }
 
     getCVs = async () => {
         let id = getCookie('user_id');
-        let res = await store.getCVs(id);
-        this.setState({ sections: [...(res)], processing: false });
+        let res = await store.getCV(this.props.match.params.id);
+        this.setState({ cv: res, processing: false });
     };
-
+	renderProgressBar(){
+		const divs = [];
+		for (var i = 1; i <= this.state.cv.total; i++) {
+			if(i <= this.state.cv.completeness){
+				divs.push(
+					<div class="progress-bar progress-bar-danger" role="progressbar" style={{"width":"14.1%","background-color":"#f69f1e"}}></div>
+				);
+			}else{
+				divs.push(
+					<div class="progress-bar progress-bar-danger" role="progressbar" style={{"width":"14.1%","background-color":"#dfe2f3"}}></div>
+				);
+			}
+		}
+		return divs;
+	}
     render() {
+		console.log(this.state.sections)
         let { user } = this.props;
         let { sections, processing } = this.state;
         return (
             <div className={styles.cvs}>
                 {processing && <LoadingModal text="Loading" />}
-                <div className={styles.cards}>
-                    <div className={styles.CVs}>
-                        <CV
-                            v-for={(section, i) in sections}
-                            file={section}
-                            getCVs={this.getCVs}
-                        />
-                        {sections.length <= 0 && <Card>You don't have a CV yet. <span
-                            className={styles.link_text}
-                            onClick={() => window.location.pathname = "/cvcreate"}>
-                            Create one?
-                            </span>
-                        </Card>}
-                    </div>
-                    <div className={styles.profileSection}>
-                        <Card
-                            type={'profile'}
-                            getUser={this.props.getUser}
-                            profileObject={{
-                                avatar: user.avatar,
-                                status: 'active',
-                                header: `${user.name} ${user.surname}`,
-                                location: 'Istanbul - Turkey',
-                                sector: 'Software',
-                                position: 'Full Time',
-                                education: 'Graduate',
-                            }}
-                        />
-                        <Button
-                            text={'Create new CV'}
-                            width={'60%'}
-                            icon={addIcon}
-                            iconPosition={'right'}
-                            to={'/cvcreate'}
-                        />
-                    </div>
-                </div>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div className={styles.profileSection}>
+								<Card
+									type={'profile'}
+									getUser={this.props.getUser}
+									profileObject={{
+										avatar: user.avatar,
+										status: 'active',
+										header: `${user.name} ${user.surname}`,
+										location: 'Istanbul - Turkey',
+										sector: 'Software',
+										position: 'Full Time',
+										education: 'Graduate',
+									}}
+								/>
+
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="progress" style={{"justify-content":"space-between","border-radius":"10px","margin-bottom":"30px"}}>
+								{this.renderProgressBar()}
+							</div>
+							<div className={styles.CVs}>
+							{typeof this.state.cv.id !== "undefined" ? (
+								<CV
+									file={this.state.cv}
+									getCVs={this.getCVs}
+								/>
+							):(null)}
+							</div>
+						</div>
+					</div>
+				</div>
             </div>
         );
     }

@@ -7,12 +7,11 @@ import Input from "../../components/Input";
 
 /*** Styles ***/
 import styles from "./searchSection.scss";
-
+import homeCurve from "../../assets/home-curve.svg";
 /*** Icons ***/
 import searchIcon from "../../icons/colorfulSearch.svg";
 import locationIcon from "../../icons/colorfulLocation.svg";
 import closeIcon from "../../icons/close-outline.svg";
-import homeCurve from "../../assets/home-curve.svg";
 
 /*** Store ***/
 import store from "../../store";
@@ -519,6 +518,7 @@ class SearchSection extends Component {
       ? styles.backgroundImageCookiesGone
       : styles.backgroundImage;
     return (
+
       <div className={styles.searchSectionWrapper}>
         <div
           className={`${styles.searchSection} ${
@@ -641,6 +641,7 @@ class SearchSection extends Component {
                             </div>
                           </div>
                         </div>
+
                       );
                     })
                 : ""}
@@ -649,6 +650,7 @@ class SearchSection extends Component {
         </div>
         <img className={styles.homeCurve} src={homeCurve} />
       </div>
+
     );
   }
 }
