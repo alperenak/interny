@@ -4,9 +4,11 @@
 .searchSectionWrapper{
   // margin: -31px 0 0 0;
   background-color: white;
+  padding-bottom: 5rem;
 
-  img{
+  & .homeCurve{
     // margin: -2px 0 0 -64px; 
+    position: absolute;
     margin-top: -2px;
     width: 100vw;
   }
@@ -20,7 +22,9 @@
   justify-content: center;
   margin: -31px 0 0 0;
   width: 100vw;
-  height: 600px;
+  height: 500px;
+  background-color: #EFF2FC!important;
+
 
   @include x-large {
     height: 500px;
@@ -29,7 +33,7 @@
   &.backgroundImage {
     // margin: -31px 0 0 -64px;
     margin-top: -31px;
-    background-color: #f0f2fc;
+    background-color: #EFF2FC;
     // background: radial-gradient(circle at 46% -416%,#f0f2fc 96%,transparent 79.5%);
 
     @include x-large {
@@ -52,7 +56,7 @@
   &.backgroundImageCookiesGone {
     // margin: -31px 0 0 -64px;
     margin-top: -31px;
-    background-color: #f0f2fc;
+    background-color: #EFF2FC;
     // background: radial-gradient(circle at 46% -416%,#f0f2fc 96%,transparent 79.5%);
     
     @include x-large {

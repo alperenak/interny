@@ -15,11 +15,12 @@
     background-color: white;
     width: 100vw;
     padding: 104px;
+    padding-top: 200px;
 
     @include medium {
       padding: 0;
-      padding-top: 104px;
       padding-bottom: 104px;
+      padding-top: 14px;
     }
 
     & .popularSearchTitle {
@@ -78,7 +79,7 @@
     align-items: center;
     padding-top: 60px;
     width: 100vw;
-    background-color: #FAFBFF;
+    background-color: #EFF2FC;
 
     & .postsTitle {
       font-family: "Sofia Pro Bold";
@@ -206,6 +207,7 @@
     & .companiesImages {
       display: flex;
       align-items: center;
+      justify-content: space-around;
       width: 60%;
       margin-top: 60px;
       margin-bottom: 60px;
@@ -741,5 +743,11 @@
 
 
     }
+  }
+}
+.outstandingCompaniesCard{
+  img{
+    cursor: pointer;
+    margin: 0 50px;
   }
 }

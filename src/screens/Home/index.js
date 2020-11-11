@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 /*** Components ***/
 import Button from "../../components/Button";
@@ -61,46 +61,17 @@ class Home extends Component {
     slideCount: 0,
   };
   renderSlide() {
-    if (this.state.slideCount === 0) {
-      return (
-        <>
+    return (
+      <>
+        <div className="carousel-item active">
           <img
-            onClick={() => this.setState({ing: ingBankImage})}
-            onMouseOver={() => this.setState({ing: ingBankImage})}
-            onMouseLeave={() => this.setState({ing: ingBankGrayImage})}
+            onClick={() => this.setState({ ing: ingBankImage })}
+            onMouseOver={() => this.setState({ ing: ingBankImage })}
+            onMouseLeave={() => this.setState({ ing: ingBankGrayImage })}
             height={38}
             src={this.state.ing}
             alt={"image"}
           />
-          <img
-            onClick={() => this.setState({unilever: unileverImage})}
-            onMouseOver={() => this.setState({unilever: unileverImage})}
-            onMouseLeave={() => this.setState({unilever: unileverGrayImage})}
-            height={65}
-            src={this.state.unilever}
-            alt={"image"}
-          />
-          <img
-            onClick={() => this.setState({allianz: allianzImage})}
-            onMouseOver={() => this.setState({allianz: allianzImage})}
-            onMouseLeave={() => this.setState({allianz: allianzGrayImage})}
-            height={35}
-            src={this.state.allianz}
-            alt={"image"}
-          />
-          <img
-            onClick={() => this.setState({vodafone: vodafoneImage})}
-            onMouseOver={() => this.setState({vodafone: vodafoneImage})}
-            onMouseLeave={() => this.setState({vodafone: vodafoneGrayImage})}
-            height={62}
-            src={this.state.vodafone}
-            alt={"image"}
-          />
-        </>
-      );
-    } else if (this.state.slideCount === 1) {
-      return (
-        <>
           <img
             onClick={() => this.setState({ unilever: unileverImage })}
             onMouseOver={() => this.setState({ unilever: unileverImage })}
@@ -110,27 +81,27 @@ class Home extends Component {
             alt={"image"}
           />
           <img
-            onClick={() => this.setState({allianz: allianzImage})}
-            onMouseOver={() => this.setState({allianz: allianzImage})}
-            onMouseLeave={() => this.setState({allianz: allianzGrayImage})}
+            onClick={() => this.setState({ allianz: allianzImage })}
+            onMouseOver={() => this.setState({ allianz: allianzImage })}
+            onMouseLeave={() => this.setState({ allianz: allianzGrayImage })}
             height={35}
             src={this.state.allianz}
             alt={"image"}
           />
           <img
-            onClick={() => this.setState({vodafone: vodafoneImage})}
-            onMouseOver={() => this.setState({vodafone: vodafoneImage})}
-            onMouseLeave={() => this.setState({vodafone: vodafoneGrayImage})}
+            onClick={() => this.setState({ vodafone: vodafoneImage })}
+            onMouseOver={() => this.setState({ vodafone: vodafoneImage })}
+            onMouseLeave={() => this.setState({ vodafone: vodafoneGrayImage })}
             height={62}
             src={this.state.vodafone}
             alt={"image"}
           />
-        </>
-      );
-    }
+        </div>
+      </>
+    );
   }
   render() {
-    let {items} = this.state;
+    let { items } = this.state;
     return (
       <div className={styles.Home}>
         <div className={styles.popularSearchSection}>
@@ -196,6 +167,7 @@ class Home extends Component {
             />
           </div>
         </div>
+
         <div className={styles.companiesSection}>
           <div className={styles.companiesTitle}>Outstanding Companies</div>
           <div className={styles.companiesSubTitle}>
@@ -203,25 +175,109 @@ class Home extends Component {
             searching for internships
           </div>
           <div className={styles.companiesImages}>
-            <div className={styles.companiesImagesWrapper}>
-              <div
-                className={styles.leftArrow}
-                onClick={() => {
-                  if (this.state.slideCount >= 1 && this.state.slideCount <= 1)
-                    this.setState({ slideCount: this.state.slideCount - 1 });
-                }}
-              >
-                <img src={leftArrow} alt="left-arrow" />
-              </div>
-              {this.renderSlide()}
-              <div
-                className={styles.rightArrow}
-                onClick={() => {
-                  if (this.state.slideCount >= 0 && this.state.slideCount <= 0)
-                    this.setState({ slideCount: this.state.slideCount + 1 });
-                }}
-              >
-                <img src={rightArrow} alt="right-arrow" />
+            <div
+              id="carouselExampleSlidesOnly"
+              class="carousel slide"
+              data-ride="carousel"
+              data-interval="5000"
+            >
+              <div className="carousel-inner">
+                <div
+                  className={`carousel-item active ${styles.outstandingCompaniesCard}`}
+                >
+                  <img
+                    onClick={() => this.setState({ ing: ingBankImage })}
+                    onMouseOver={() => this.setState({ ing: ingBankImage })}
+                    onMouseLeave={() =>
+                      this.setState({ ing: ingBankGrayImage })
+                    }
+                    height={38}
+                    src={this.state.ing}
+                    alt={"image"}
+                  />
+                  <img
+                    onClick={() => this.setState({ unilever: unileverImage })}
+                    onMouseOver={() =>
+                      this.setState({ unilever: unileverImage })
+                    }
+                    onMouseLeave={() =>
+                      this.setState({ unilever: unileverGrayImage })
+                    }
+                    height={65}
+                    src={this.state.unilever}
+                    alt={"image"}
+                  />
+                  <img
+                    onClick={() => this.setState({ allianz: allianzImage })}
+                    onMouseOver={() => this.setState({ allianz: allianzImage })}
+                    onMouseLeave={() =>
+                      this.setState({ allianz: allianzGrayImage })
+                    }
+                    height={35}
+                    src={this.state.allianz}
+                    alt={"image"}
+                  />
+                  <img
+                    onClick={() => this.setState({ vodafone: vodafoneImage })}
+                    onMouseOver={() =>
+                      this.setState({ vodafone: vodafoneImage })
+                    }
+                    onMouseLeave={() =>
+                      this.setState({ vodafone: vodafoneGrayImage })
+                    }
+                    height={62}
+                    src={this.state.vodafone}
+                    alt={"image"}
+                  />
+                </div>
+                <div
+                  className={`carousel-item ${styles.outstandingCompaniesCard}`}
+                >
+                  <img
+                    onClick={() => this.setState({ ing: ingBankImage })}
+                    onMouseOver={() => this.setState({ ing: ingBankImage })}
+                    onMouseLeave={() =>
+                      this.setState({ ing: ingBankGrayImage })
+                    }
+                    height={38}
+                    src={this.state.ing}
+                    alt={"image"}
+                  />
+                  <img
+                    onClick={() => this.setState({ unilever: unileverImage })}
+                    onMouseOver={() =>
+                      this.setState({ unilever: unileverImage })
+                    }
+                    onMouseLeave={() =>
+                      this.setState({ unilever: unileverGrayImage })
+                    }
+                    height={65}
+                    src={this.state.unilever}
+                    alt={"image"}
+                  />
+                  <img
+                    onClick={() => this.setState({ allianz: allianzImage })}
+                    onMouseOver={() => this.setState({ allianz: allianzImage })}
+                    onMouseLeave={() =>
+                      this.setState({ allianz: allianzGrayImage })
+                    }
+                    height={35}
+                    src={this.state.allianz}
+                    alt={"image"}
+                  />
+                  <img
+                    onClick={() => this.setState({ vodafone: vodafoneImage })}
+                    onMouseOver={() =>
+                      this.setState({ vodafone: vodafoneImage })
+                    }
+                    onMouseLeave={() =>
+                      this.setState({ vodafone: vodafoneGrayImage })
+                    }
+                    height={62}
+                    src={this.state.vodafone}
+                    alt={"image"}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -343,9 +399,9 @@ class Home extends Component {
               className={styles.frontier}
             >
               <Card type={"pricing"}>
-              <div className={styles.moneyGuarenteed}>
-                    {/* Money Back Guarenteed */}
-              </div>
+                <div className={styles.moneyGuarenteed}>
+                  {/* Money Back Guarenteed */}
+                </div>
                 <div className={styles.packageCardGuaranteed}>
                   <div className={styles.headerDiv}>
                     <div className={styles.packageTitle}>INTERN</div>

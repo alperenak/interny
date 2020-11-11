@@ -33,6 +33,10 @@ import UniverstyDashboard from "./screens/universtyDashboard/universtyDashboard"
 import InternDetail from "./screens/InternDetail";
 import UpdatePassword from "./screens/UpdatePassword";
 import Cookies from "./screens/Cookies"
+import ReferrenceLetter from "./screens/ReferrenceLetter";
+import ReferrenceLetterLetter from "./screens/ReferrenceLetterLetter";
+import HelpCenter from "./screens/HelpCenter";
+import AboutUs from "./screens/AboutUs";
 
 /*** Styles ***/
 import styles from "./app.scss";
@@ -135,12 +139,13 @@ class App extends React.Component {
         <CookieConsent  
           consentFunction={this.checkStatus} 
           className={cookieClass}
-          buttonBackground={'#F9704F'}
+          buttonText={'Allow'}
+          buttonBackground={'#EFF2FC'}
           buttonColor={'#112B49'}
         > 
           This website uses cookies to improve
           service, for analytical and advertising purposes.
-          Please read our <a href={'/cookies'} style={{color: '#F9704F'}}>Cookie Policy</a>.
+          Please read our <a href={'/cookies'} style={{color: '#EFF2FC'}}>Cookie Policy</a>.
           Confirm your consent to the use of cookies.
         </CookieConsent>
         <Router>
@@ -354,6 +359,22 @@ class App extends React.Component {
             <Route
               path="/cookies"
               render={(props) => <Cookies {...props} />}
+            />
+            <Route
+              path="/referrenceLetter"
+              render={(props) => <ReferrenceLetter {...props} />}
+            />
+            <Route
+              path="/referrenceLetterLetter"
+              render={(props) => <ReferrenceLetterLetter {...props} />}
+            />
+            <Route
+              path="/helpCenter"
+              render={(props) => <HelpCenter {...props} />}
+            />
+            <Route
+                path="/aboutUs"
+                render={(props) => <AboutUs {...props} />}
             />
             <Route
                 v-if={!getCookie('token')}
