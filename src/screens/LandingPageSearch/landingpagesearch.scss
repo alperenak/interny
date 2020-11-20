@@ -1,24 +1,25 @@
-.LandingPageSearch {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.landingPageSearch {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 
-  & .noResult {
-    font-family: "Sofia Pro Bold";
-    font-size: calc(2px + 20px);
-    margin: 50px;
-    text-align: center;
-    color: #2c3f58;
+	&__noResult {
+		width: 100%;
+		font-family: "Sofia Pro Bold";
+		font-size: calc(2px + 20px);
+		text-align: center;
+		color: #2c3f58;
+	}
+	&__description {
+		font-family: "Sofia Pro";
+		font-size: calc(2px + 14px);
+		margin: 12px;
+		color: #2c3f58;
+	}
+	&__buttonContainer {
+		margin:0 auto;
+		margin-bottom: 40px;
 
-    & .description {
-      font-family: "Sofia Pro";
-      font-size: calc(2px + 14px);
-      margin: 12px;
-      color: #2c3f58;
-    }
-  }
-  & .buttonContainer {
-    margin-bottom: 40px;
-  }
+	}
 }

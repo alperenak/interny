@@ -17,14 +17,30 @@ class CV extends Component {
     render() {
         let {file, getCVs} = this.props;
         return (
-            <div className={styles.CV}>
-                <ProfileSection file={file} getCVs={getCVs} />
-                <Experiences file={file} getCVs={getCVs} />
-                <Education file={file} getCVs={getCVs} />
-                <Skills file={file} getCVs={getCVs} />
-                <Languages file={file} getCVs={getCVs} />
-                <Certificates file={file} getCVs={getCVs} />
-                <AdditionalInfo file={file} getCVs={getCVs} />
+            <div className={"cvDetailCom"}>
+				<div class="row">
+					<div class="col-md-12">
+						<ProfileSection file={file} getCVs={getCVs} />
+					</div>
+					<div class="col-md-12">
+						<Experiences file={file} getCVs={getCVs} />
+					</div>
+					<div class="col-md-12">
+						<Education file={file} getCVs={getCVs} />
+					</div>
+					<div class="col-md-12">
+						<Skills file={file} getCVs={getCVs} />
+					</div>
+					<div class="col-md-12">
+						<Languages file={file} getCVs={getCVs} />
+					</div>
+					<div class="col-md-12">
+						<Certificates file={file} getCVs={getCVs} />
+					</div>
+					<div class="col-md-12">
+						<AdditionalInfo file={file} getCVs={getCVs} />
+					</div>
+				</div>
             </div>
         );
     }

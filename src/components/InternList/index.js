@@ -13,11 +13,11 @@ export default class InternList extends Component {
     if (userType !== 'employer') return (<></>);
 
     return (
-      <div className={styles.container}>
+      <div className={"containerr"}>
         <Search {...this.props} />
         <AllInterns {...this.props} />
-        <div className={styles.verticalHR} />
-        <ScrollContainer className={styles.internList}>
+        <div className={"verticalHR"} />
+        <ScrollContainer className={"internList"}>
           {
             this.props.internList.map((internInfo, index) => {
               return <Intern key={index} internInfo={internInfo} {...this.props} />

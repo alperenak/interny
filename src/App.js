@@ -19,7 +19,8 @@ import CVList from "./screens/CVs/list.js";
 import CoverLetters from "./screens/CoverLetters";
 import JobApplication from "./screens/JobApplication";
 import LandingPageSearch from "./screens/LandingPageSearch";
-import MyJobs from "./screens/MyJobs";
+import MyJobs from "./screens/MyJobs/index.js";
+import MyJobs2 from "./screens/MyJobs/index2.js";
 import PostDetail from "./screens/PostDetail";
 import Error from "./screens/Error";
 import Login from "./screens/Login";
@@ -129,284 +130,296 @@ class App extends React.Component {
 
 
 
-  render() {
-    let { isAuthorized, user, modal, userType, isInternshipBegun, selectedJobID, loading } = this.state;
-    const cookieClass = this.state.consentTaken ? `${styles.hidden} ${styles.myCookie}` : styles.myCookie
-    const appClass = this.state.consentTaken ? `${styles.App} ${styles.fullScreen} ${styles.paddingTop}` : `${styles.App} ${styles.fullScreen}`
+	render() {
+		let { isAuthorized, user, modal, userType, isInternshipBegun, selectedJobID, loading } = this.state;
+		const cookieClass = this.state.consentTaken ? `${"hidden"} ${"myCookie"}` : "myCookie"
+		const appClass = this.state.consentTaken ? `${"App"} ${"fullScreen"} ${"paddingTop"}` : `${"App"} ${"fullScreen"}`
 
-    return (
-      <div className={appClass}>
-        <LoadingModal text="Loading" v-if={loading} />
-        <CookieConsent
-          consentFunction={this.checkStatus}
-          className={cookieClass}
-          buttonText={'Allow'}
-          buttonBackground={'#EFF2FC'}
-          buttonColor={'#112B49'}
-        >
-          This website uses cookies to improve
-          service, for analytical and advertising purposes.
-          Please read our <a href={'/cookies'} style={{color: '#EFF2FC'}}>Cookie Policy</a>.
-          Confirm your consent to the use of cookies.
-        </CookieConsent>
-        <Router>
-          <Route
-            path="/"
-            render={(props) => (
-              <TopBar
-                isAuthorized={isAuthorized}
-                isInternshipBegun={isInternshipBegun}
-                user={user}
-                {...props}
-              />
-            )}
-          />
-          <Modal
-            v-if={modal.visibility}
-            header={modal.header}
-            modalSize={modal.size}
-            backgroundColor={modal.backgroundColor}
-            declaration={modal.declaration}
-            closeModal={this.closeModal}
-            content={modal.content}
-            buttons={modal.buttons}
-          />
-          <Switch>
-            <Route v-if={isAuthorized} exact path="/">
-              <UserHome v-if={userType === "intern"} />
-              <Dashboard v-if={userType === "employer"} />
-            </Route>
-            <Route v-else exact path="/">
-              <SearchSection v-if={!isAuthorized} page={"home"} consentTaken={this.state.consentTaken} />
+		return (
+			<div className={appClass}>
+				<LoadingModal text="Loading" v-if={loading} />
+				<CookieConsent
+					consentFunction={this.checkStatus}
+					className={cookieClass}
+					buttonText={'Allow'}
+					buttonBackground={'#EFF2FC'}
+					buttonColor={'#112B49'}
+				>
+					This website uses cookies to improve
+					service, for analytical and advertising purposes.
+					Please read our <a href={'/cookies'} style={{color: '#EFF2FC'}}>Cookie Policy</a>.
+					Confirm your consent to the use of cookies.
+				</CookieConsent>
+				<Router>
+					<Route
+						path="/"
+						render={(props) => (
+							<TopBar
+							isAuthorized={isAuthorized}
+							isInternshipBegun={isInternshipBegun}
+							user={user}
+							{...props}
+							/>
+						)}
+					/>
+					<Modal
+						v-if={modal.visibility}
+						header={modal.header}
+						modalSize={modal.size}
+						backgroundColor={modal.backgroundColor}
+						declaration={modal.declaration}
+						closeModal={this.closeModal}
+						content={modal.content}
+						buttons={modal.buttons}
+					/>
+					<Switch>
+					<Route v-if={isAuthorized} exact path="/">
+						<UserHome v-if={userType === "intern"} />
+						<Dashboard v-if={userType === "employer"} />
+					</Route>
+					<Route v-else exact path="/">
+						<SearchSection v-if={!isAuthorized} page={"home"} consentTaken={this.state.consentTaken} />
+						<Home />
+					</Route>
+					<Route
+						path="/search/:keyword/:location"
+						render={(props) => <LandingPageSearch {...props} />}
+					/>
+					<Route
+						path="/search"
+						render={(props) => <LandingPageSearch {...props} />}
+					/>
+					<Route
+						path="/faq"
+						render={(props) => <FrequentlyAskedQuestions {...props} />}
+					/>
+					<Route
+						path="/packages"
+						render={(props) => <Packages {...props} />}
+					/>
+					<Route
+						path="/universitydash"
+						render={(props) => <UniverstyDashboard {...props} />}
+					/>
+					<Route
+						path="/signup"
+						render={(props) => (
+							<SignUp
+								closeModal={this.closeModal}
+								createModal={this.createModal}
+								{...props}
+							/>
+						)}
+					/>
+					<Route
+						path="/login/:user"
+						render={(props) => (
+							<Login
+								closeModal={this.closeModal}
+								createModal={this.createModal}
+								{...props}
+							/>
+						)}
+					/>
+					<Route
+						path="/myAccount"
+						render={(props) => (
+							<MyAccount
+								user={user}
+								getUser={this.getUser}
+								closeModal={this.closeModal}
+								createModal={this.createModal}
+								{...props}
+							/>
+						)}
+					/>
+					<Route
+						path="/postdetail/:id"
+						render={(props) => (
+							<PostDetail
+								getUser={this.getUser}
+								closeModal={this.closeModal}
+								createModal={this.createModal}
+								{...props}
+							/>
+						)}
+					/>
+					<Route
+						path="/CVs"
+						render={(props) => (
+							<CVList
+								getUser={this.getUser}
+								user={user}
+								closeModal={this.closeModal}
+								createModal={this.createModal}
+								{...props}
+							/>
+						)}
+					/>
+					<Route
+						path="/Cvdetail/:id"
+						render={(props) => (
+							<CVs
+								getUser={this.getUser}
+								user={user}
+								closeModal={this.closeModal}
+								createModal={this.createModal}
+								{...props}
+							/>
+						)}
+					/>
+					<Route
+						path="/cvcreate"
+						render={(props) => (
+							<CvCreate
+								getUser={this.getUser}
+								user={user}
+								closeModal={this.closeModal}
+								createModal={this.createModal}
+								{...props}
+							/>
+						)}
+					/>
+					<Route
+						path="/coverletters"
+						render={(props) => (
+							<CoverLetters
+								getUser={this.getUser}
+								user={user}
+								closeModal={this.closeModal}
+								createModal={this.createModal}
+								{...props}
+							/>
+						)}
+					/>
+					<Route
 
-              <Home />
-            </Route>
-            <Route
-              path="/search/:keyword/:location"
-              render={(props) => <LandingPageSearch {...props} />}
-            />
-            <Route
-              path="/search"
-              render={(props) => <LandingPageSearch {...props} />}
-            />
-            <Route
-              path="/faq"
-              render={(props) => <FrequentlyAskedQuestions {...props} />}
-            />
-            <Route
-              path="/packages"
-              render={(props) => <Packages {...props} />}
-            />
-            <Route
-              path="/universitydash"
-              render={(props) => <UniverstyDashboard {...props} />}
-            />
-            <Route
-              path="/signup"
-              render={(props) => (
-                <SignUp
-                  closeModal={this.closeModal}
-                  createModal={this.createModal}
-                  {...props}
-                />
-              )}
-            />
-            <Route
-              path="/login/:user"
-              render={(props) => (
-                <Login
-                  closeModal={this.closeModal}
-                  createModal={this.createModal}
-                  {...props}
-                />
-              )}
-            />
-            <Route
-              path="/myAccount"
-              render={(props) => (
-                <MyAccount
-                  user={user}
-                  getUser={this.getUser}
-                  closeModal={this.closeModal}
-                  createModal={this.createModal}
-                  {...props}
-                />
-              )}
-            />
-            <Route
-              path="/postdetail/:id"
-              render={(props) => (
-                <PostDetail
-                  getUser={this.getUser}
-                  closeModal={this.closeModal}
-                  createModal={this.createModal}
-                  {...props}
-                />
-              )}
-            />
-            <Route
-              path="/CVs"
-              render={(props) => (
-                <CVList
-                  getUser={this.getUser}
-                  user={user}
-                  closeModal={this.closeModal}
-                  createModal={this.createModal}
-                  {...props}
-                />
-              )}
-            />
-			<Route
-              path="/Cvdetail/:id"
-              render={(props) => (
-                <CVs
-                  getUser={this.getUser}
-                  user={user}
-                  closeModal={this.closeModal}
-                  createModal={this.createModal}
-                  {...props}
-                />
-              )}
-            />
-            <Route
-              path="/cvcreate"
-              render={(props) => (
-                <CvCreate
-                  getUser={this.getUser}
-                  user={user}
-                  closeModal={this.closeModal}
-                  createModal={this.createModal}
-                  {...props}
-                />
-              )}
-            />
-            <Route
-              path="/coverletters"
-              render={(props) => (
-                <CoverLetters
-                  getUser={this.getUser}
-                  user={user}
-                  closeModal={this.closeModal}
-                  createModal={this.createModal}
-                  {...props}
-                />
-              )}
-            />
-            <Route
-              v-if={!(userType === "intern" && isInternshipBegun)}
-              path="/myjobs"
-              render={(props) => (
-                <MyJobs
-                  user={user}
-                  closeModal={this.closeModal}
-                  createModal={this.createModal}
-                  selectJobID={this.selectJobID.bind(this)}
-                  {...props}
-                />
-              )}
-            />
-            <Route
-              path="/messages"
-              render={(props) => (
-                <Messenger
-                  user={user}
-                  closeModal={this.closeModal}
-                  createModal={this.createModal}
-                  {...props}
-                />
-              )}
-            />
-            <Route
-              path="/mytasks"
-              v-if={
-                (userType === "intern" && isInternshipBegun) ||
-                userType === "employer"
-              }
-              render={(props) => (
-                <MyTasks
-                  user={user}
-                  closeModal={this.closeModal}
-                  createModal={this.createModal}
-                  selectedJobID={selectedJobID}
-                  {...props}
-                />
-              )}
-            />
-            <Route
-              path="/courses"
-              v-if={
-                (userType === "intern" && isInternshipBegun) ||
-                userType === "employer"
-              }
-              render={(props) => (
-                <MyCourses
-                  user={user}
-                  closeModal={this.closeModal}
-                  createModal={this.createModal}
-                  {...props}
-                />
-              )}
-            />
-            <Route
-              path="/coursedetail/:id"
-              render={(props) => (
-                <CourseDetail
-                  user={user}
-                  closeModal={this.closeModal}
-                  createModal={this.createModal}
-                  {...props}
-                />
-              )}
-            />
-            <Route
-              path="/jobapplication/:jobId"
-              render={(props) => <JobApplication {...props} />}
-            />
-            <Route
-              path="/interndetail/:internId"
-              render={(props) => <InternDetail {...props} />}
-            />
-            <Route
-              path="/faq"
-              render={(props) => <FrequentlyAskedQuestions {...props} />}
-            />
-            <Route
-              path="/cookies"
-              render={(props) => <Cookies {...props} />}
-            />
-            <Route
-              path="/referrenceLetter"
-              render={(props) => <ReferrenceLetter {...props} />}
-            />
-            <Route
-              path="/referrenceLetterLetter"
-              render={(props) => <ReferrenceLetterLetter {...props} />}
-            />
-            <Route
-              path="/helpCenter"
-              render={(props) => <HelpCenter {...props} />}
-            />
-            <Route
-                path="/aboutUs"
-                render={(props) => <AboutUs {...props} />}
-            />
-            <Route
-                v-if={!getCookie('token')}
-                path="/updatepassword/:userType/:verificationKey"
-                render={(props) =>
-                    <UpdatePassword
-                        {...props}
-                        closeModal={this.closeModal}
-                        createModal={this.createModal}
-                    />
-                }
-            />
-            <Route path="/error" render={(props) => <Error {...props} />} />
-          </Switch>
-        </Router>
-      </div>
-        );
-  }
+						path="/myjobs"
+						render={(props) => (
+							<MyJobs
+								user={user}
+								closeModal={this.closeModal}
+								createModal={this.createModal}
+								selectJobID={this.selectJobID.bind(this)}
+								{...props}
+							/>
+						)}
+					/>
+					<Route
+
+						path="/jobs"
+						render={(props) => (
+							<MyJobs2
+								user={user}
+								closeModal={this.closeModal}
+								createModal={this.createModal}
+								selectJobID={this.selectJobID.bind(this)}
+								{...props}
+							/>
+						)}
+					/>
+					<Route
+						path="/messages"
+						render={(props) => (
+							<Messenger
+								user={user}
+								closeModal={this.closeModal}
+								createModal={this.createModal}
+								{...props}
+							/>
+						)}
+					/>
+					<Route
+						path="/mytasks"
+						v-if={
+							(userType === "intern" && isInternshipBegun) ||
+							userType === "employer"
+						}
+						render={(props) => (
+							<MyTasks
+								user={user}
+								closeModal={this.closeModal}
+								createModal={this.createModal}
+								selectedJobID={selectedJobID}
+								{...props}
+							/>
+						)}
+					/>
+					<Route
+						path="/courses"
+						v-if={
+							(userType === "intern" && isInternshipBegun) ||
+							userType === "employer"
+						}
+						render={(props) => (
+							<MyCourses
+								user={user}
+								closeModal={this.closeModal}
+								createModal={this.createModal}
+								{...props}
+							/>
+						)}
+					/>
+					<Route
+						path="/coursedetail/:id"
+						render={(props) => (
+							<CourseDetail
+								user={user}
+								closeModal={this.closeModal}
+								createModal={this.createModal}
+								{...props}
+							/>
+						)}
+					/>
+					<Route
+						path="/jobapplication/:jobId"
+						render={(props) => <JobApplication {...props} />}
+					/>
+					<Route
+						path="/interndetail/:internId"
+						render={(props) => <InternDetail {...props} />}
+					/>
+					<Route
+						path="/faq"
+						render={(props) => <FrequentlyAskedQuestions {...props} />}
+					/>
+					<Route
+						path="/cookies"
+						render={(props) => <Cookies {...props} />}
+					/>
+					<Route
+						path="/referrenceLetter"
+						render={(props) => <ReferrenceLetter {...props} />}
+					/>
+					<Route
+						path="/referrenceLetterLetter"
+						render={(props) => <ReferrenceLetterLetter {...props} />}
+					/>
+					<Route
+						path="/helpCenter"
+						render={(props) => <HelpCenter {...props} />}
+					/>
+					<Route
+						path="/aboutUs"
+						render={(props) => <AboutUs {...props} />}
+					/>
+					<Route
+						v-if={!getCookie('token')}
+						path="/updatepassword/:userType/:verificationKey"
+						render={(props) =>
+							<UpdatePassword
+								{...props}
+								closeModal={this.closeModal}
+								createModal={this.createModal}
+							/>
+						}
+					/>
+					<Route path="/error" render={(props) => <Error {...props} />} />
+				</Switch>
+			</Router>
+		</div>
+		);
+	}
 }
 
 export default App;

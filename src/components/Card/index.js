@@ -8,7 +8,6 @@ import Intern from "./sub-components/Intern";
 import Section from "./sub-components/Section";
 import JobPost from "./sub-components/JobPost";
 import Profile from "./sub-components/Porfile";
-import Profile2 from "./sub-components/Porfile/index2.js";
 import DropDown from "./sub-components/DropDown";
 import JobDetail from "./sub-components/JobDetail";
 import CoverLetter from "./sub-components/CoverLetter";
@@ -24,10 +23,10 @@ class Card extends Component {
   render() {
     let { type, header, children, backgroundColor = '#fff', posts } = this.props;
     return (
-      <div className={`${styles.Card} ${styles[type]} ${posts.length > 1 && styles.multiple}`} style={{ backgroundColor }}>
+      <div className={`${"Card"} ${type} ${posts.length > 1 && "multiple"}`} style={{ backgroundColor }}>
         <div
           v-if={header}
-          className={`${styles.cardHeader} ${styles[header.position]}`}
+          className={`${"cardHeader"} ${header.position}`}
           style={{ backgroundColor }}
         >
           {header.text}
@@ -39,7 +38,6 @@ class Card extends Component {
         <Section v-if={type === "section"} {...this.props} />
         <JobPost v-if={type === "jobPost"} {...this.props} />
         <Profile v-if={type === "profile"} {...this.props} />
-		<Profile2 v-if={type === "profile2"} {...this.props} />
         <DropDown v-if={type === "dropDown"} {...this.props} />
         <JobDetail v-if={type === "jobDetail"} {...this.props} />
         <CoverLetter v-if={type === "coverLetter"} {...this.props} />

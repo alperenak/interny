@@ -70,21 +70,21 @@ class TopBar extends Component {
     loginPages: [
       {
         key: "internLogin",
-        value: "Login as Intern",
+        value: "Intern",
         selected: false,
         disabled: true,
         to: "/login/Intern",
       },
       {
         key: "employerLogin",
-        value: "Login as Company",
+        value: "Company",
         selected: false,
         disabled: true,
         to: "/login/Employer",
       },
       {
         key: "universityLogin",
-        value: "Login as University",
+        value: "University",
         selected: false,
         disabled: true,
         to: "/login/University",
@@ -100,6 +100,13 @@ class TopBar extends Component {
         selected: false,
         icon: userIcon,
         to: "/myAccount",
+      },
+	  {
+        key: "myJobs",
+        value: "Jobs",
+        selected: false,
+        icon: CVIcon,
+        to: "/myJobs",
       },
       {
         key: "coverLetter",
@@ -295,6 +302,13 @@ class TopBar extends Component {
             e.key !== "myCourses" &&
             e.key !== "wfa"
         );
+		state.internSource.splice(2, 0, {
+          key: "myJobs",
+          value: "My Jobs",
+          selected: false,
+          icon: CVIcon,
+          to: "/myJobs",
+        });
         state.internSource.splice(3, 0, {
           key: "myTasks",
           value: "My Tasks",
@@ -352,16 +366,16 @@ class TopBar extends Component {
       <div
         ref={this[`wrapperRef${iconName}`]}
         onClick={() => this.onIconClick(iconName)}
-        className={styles.img}
+        className={"topBar__hamburgerMenu__hamburgerAccountTools__img"}
       >
-        <div v-if={notificaionCount > 0} className={styles.count}>
+        <div v-if={notificaionCount > 0} className={"count"}>
           {notificaionCount}
         </div>
         <img src={icons[`${iconName}Icon`]} alt={"icon"} />
         <div
           v-if={this.state[`${iconName}DropDown`]}
-          className={`${styles.cardContainer} ${
-            position ? styles[position] : ""
+          className={`${"cardContainer"} ${
+            position ? position : ""
           }`}
         >
           <Card
@@ -436,175 +450,176 @@ class TopBar extends Component {
     }
   };
 
-  render() {
+	render() {
 
-    const {
-      scrollTop
-    } = this.state
+		const {
+			scrollTop
+		} = this.state
 
-    let { isAuthorized, user } = this.props;
-    let { loginDropDown, ourDropdown } = this.state;
-    let userType = getCookie("user");
-    const topBarClass = this.state.isScrolled ? `${styles.TopBar} ${styles.fullScreen} ${styles.scroll}` : `${styles.TopBar} ${styles.fullScreen} ${styles.nonscroll}`
-    return (
-      <div className={topBarClass} >
-        <div className={styles.logo}>
-          <Link to={"/"}>
-            <img src={internyLogo} alt={"logo"} />
-          </Link>
-        </div>
+		let { isAuthorized, user } = this.props;
+		let { loginDropDown, ourDropdown } = this.state;
+		let userType = getCookie("user");
+		const topBarClass = this.state.isScrolled ? `${"topBar"} ${"topBar__fullScreen"} ${"topBar__scroll"}` : `${"topBar"} ${"topBar__fullScreen"} ${"topBar__nonscroll"}`
+		return (
+			<div className={topBarClass} >
+				<div class="container">
+					<div class="row">
+						<div class="col-md-2 col-6">
+							<div className={"topBar__logo"}>
+								<Link to={"/"}>
+									<img src={internyLogo} alt={"logo"} />
+								</Link>
+							</div>
+						</div>
+						<div className="col-md-10 col-6 topBar__rightSide">
+							<div className={"topBar__hamburgerMenu"}>
+								<img
+									className={"topBar__hamburgerMenu__hamburgerMenuIcon"}
+									onClick={() => this.openHamburgerMenu()}
+									src={HamburgerMenuIcon}
+									alt={"hamburgerMenu"}
+								/>
+								<SideBar type={"hamburgerMenu"}>
+									<Fragment v-if={!isAuthorized}>
+										{/*<div><Link to={'/'}>Home</Link></div>*/}
+										<div className={"topBar__hamburgerMenu__hamburgerLinks"}>
+											<div>
+												<Link
+													onClick={() => this.closeHamburgerMenu()}
+													to={"/search"}
+												>
+													Browse Internships
+												</Link>
+											</div>
+											<div>
+												<Link
+													onClick={() => this.closeHamburgerMenu()}
+													to={"/packages"}
+												>
+													Our Packages
+												</Link>
+											</div>
+										</div>
+										<div className={"topBar__hamburgerMenu__hamburgerButtons"}>
+											<div
+												onClick={() =>
+													this.setState({ loginDropDown: !this.state.loginDropDown })
+												}
+												className={"topBar__hamburgerMenu__dropdownContainer"}
+											>
+												<Button
+													type={"ghost"}
+													sizeName={"small"}
+													text={"Login"}
+													iconPosition={"left"}
+													responsive={"hamburger"}
+													icon={caret}
+												/>
+												<div v-if={loginDropDown} className={"topBar__hamburgerMenu__dropdown"}>
+													<Card
+														onPress={() => {
+															this.closeHamburgerMenu();
+															this.setState({
+																loginDropDown: !this.state.loginDropDown,
+															});
+														}}
+														type={"dropDown"}
+														externalData={this.state.loginPages}
+													/>
+												</div>
+											</div>
+											<Button
+												to="/signup"
+												type={"secondary"}
+												sizeName={"small"}
+												responsive={"hamburger"}
+												text={"Sign Up"}
+												onButtonClick={() => this.closeHamburgerMenu()}
+											/>
+										</div>
+									</Fragment>
+									<Fragment v-else>
+										<div
+											className={"topBar__hamburgerMenu__hamburgerAccountName"}
+											style={{ cursor: "default" }}
+										>
+											Welcome,{" "}
+											<span className={"topBar__hamburgerMenu__hamburgerAccountName__userName"}>
+												{userType === "intern" ? user.name : user.accountName}{" "}
+												{userType === "intern" && user.surname}
+											</span>
+										</div>
+										<div className={"topBar__hamburgerMenu__hamburgerAccountTools"}>
+											{this.renderIcon("mail", "mail")}
+											{this.renderIcon("bell", "bell")}
+											{this.renderIcon("user", "user")}
+										</div>
+									</Fragment>
+								</SideBar>
+							</div>
+							<div className={"topBar__links"}>
+								<Fragment v-if={!isAuthorized}>
+									<div>
+										<Link to={"/search"} className={this.state.isScrolled ? "topBar__links__scroll" : "topBar__links__nonscroll"}>Browse Internships</Link>
+									</div>
+									<div
+										onMouseOver={() => this.setState({ ourDropdown: true })}
+										onMouseLeave={() => this.setState({ ourDropdown: false })}
+										className={"topBar__links__dropdownContainer"}
+									>
+										<Button
+											type={"link"}
+											sizeName={"default"}
+											text={"\u00a0\u00a0Packages\u00a0\u00a0"}
+											textClass={this.state.isScrolled ? "topBar__links__scroll" : "topBar__links__nonscroll"}
+										/>
+										<div v-if={ourDropdown} className={"topBar__links__dropdownContainer__dropdown"}>
+											<Card type={"dropDown"} externalData={this.state.ourPackages} />
+										</div>
+									</div>
+									<div
+										onMouseOver={() => this.setState({ loginDropDown: true })}
+										onMouseLeave={() => this.setState({ loginDropDown: false })}
+										className={"topBar__links__dropdownContainer"}
+									>
+										<Button
+											type={"primary"}
+											sizeName={"small"}
+											text={"\u00a0\u00a0Login\u00a0\u00a0"}
+											textClass={this.state.isScrolled ? "topBar__links__scroll" : "topBar__links__nonscroll"}
+										/>
+										<div v-if={loginDropDown} className={"topBar__links__dropdownContainer__dropdown"}>
+											<Card type={"dropDown"} externalData={this.state.loginPages} />
+										</div>
 
-        {/*  Hamburger Menu */}
-        <div className={styles.hamburgerMenu}>
-          <img
-            className={styles.hamburgerMenuIcon}
-            onClick={() => this.openHamburgerMenu()}
-            src={HamburgerMenuIcon}
-            alt={"hamburgerMenu"}
-          />
-          <SideBar type={"hamburgerMenu"}>
-            <Fragment v-if={!isAuthorized}>
-              {/*<div><Link to={'/'}>Home</Link></div>*/}
-              <div className={styles.hamburgerLinks}>
-                <div>
-                  <Link
-                    onClick={() => this.closeHamburgerMenu()}
-                    to={"/search"}
-                  >
-                    Browse Internships
-                  </Link>
-                </div>
-                <div>
-                  <Link
-                    onClick={() => this.closeHamburgerMenu()}
-                    to={"/packages"}
-                  >
-                    Our Packages
-                  </Link>
-                </div>
-              </div>
-              <div className={styles.hamburgerButtons}>
-                <div
-                  onClick={() =>
-                    this.setState({ loginDropDown: !this.state.loginDropDown })
-                  }
-                  className={styles.dropdownContainer}
-                >
-                  <Button
-                    type={"ghost"}
-                    sizeName={"small"}
-                    text={"Login"}
-                    iconPosition={"left"}
-                    responsive={"hamburger"}
-                    icon={caret}
-                  />
-                  <div v-if={loginDropDown} className={styles.dropdown}>
-                    <Card
-                      onPress={() => {
-                        this.closeHamburgerMenu();
-                        this.setState({
-                          loginDropDown: !this.state.loginDropDown,
-                        });
-                      }}
-                      type={"dropDown"}
-                      externalData={this.state.loginPages}
-                    />
-                  </div>
-                </div>
-                <Button
-                  to="/signup"
-                  type={"secondary"}
-                  sizeName={"small"}
-                  responsive={"hamburger"}
-                  text={"Sign Up"}
-                  onButtonClick={() => this.closeHamburgerMenu()}
-                />
-              </div>
-            </Fragment>
-            <Fragment v-else>
-              <div
-                className={styles.hamburgerAccountName}
-                style={{ cursor: "default" }}
-              >
-                Welcome,{" "}
-                <span className={styles.userName}>
-                  {userType === "intern" ? user.name : user.accountName}{" "}
-                  {userType === "intern" && user.surname}
-                </span>
-              </div>
-              <div className={styles.hamburgerAccountTools}>
-                {this.renderIcon("mail", "mail")}
-                {this.renderIcon("bell", "bell")}
-                {this.renderIcon("user", "user")}
-              </div>
-            </Fragment>
-          </SideBar>
-        </div>
-        <div className={styles.links}>
-          <Fragment v-if={!isAuthorized}>
-            {/*<div><Link to={'/'}>Home</Link></div>*/}
+									</div>
+									<Button
+										to="/signup"
+										type={"secondary"}
+										sizeName={"small"}
+										text={"Sign Up"}
+									/>
+								</Fragment>
+								<Fragment v-else>
+									<div style={{ cursor: "default" }}>
+										Welcome,{" "}
+										<span className={"topBar__links__userName"}>
+											{userType === "intern" ? user.name : user.accountName}{" "}
+											{userType === "intern" && user.surname}
+										</span>
+									</div>
+									{this.renderIcon("mail")}
+									{this.renderIcon("bell")}
+									{this.renderIcon("user")}
+								</Fragment>
+							</div>
+						</div>
+					</div>
+				</div>
 
-            <div>
-              <Link to={"/search"} className={this.state.isScrolled ? styles.scroll : styles.nonscroll}>Browse Internships</Link>
-            </div>
-
-
-            {/* our packages */}
-            <div
-              onMouseOver={() => this.setState({ ourDropdown: true })}
-              onMouseLeave={() => this.setState({ ourDropdown: false })}
-              className={styles.dropdownContainer}
-            >
-              <Button
-                type={"link"}
-                sizeName={"default"}
-                text={"\u00a0\u00a0Packages\u00a0\u00a0"}
-                textClass={this.state.isScrolled ? styles.scroll : styles.nonscroll}
-              />
-              <div v-if={ourDropdown} className={styles.dropdown}>
-                <Card type={"dropDown"} externalData={this.state.ourPackages} />
-              </div>
-            </div>
-
-            <div
-              onMouseOver={() => this.setState({ loginDropDown: true })}
-              onMouseLeave={() => this.setState({ loginDropDown: false })}
-              className={styles.dropdownContainer}
-            >
-              <Button
-                type={"primary"}
-                sizeName={"small"}
-                text={"\u00a0\u00a0Login\u00a0\u00a0"}
-                textClass={this.state.isScrolled ? styles.scroll : styles.nonscroll}
-              />
-              <div v-if={loginDropDown} className={styles.dropdown}>
-                <Card type={"dropDown"} externalData={this.state.loginPages} />
-              </div>
-
-            </div>
-            <Button
-              to="/signup"
-              type={"secondary"}
-              sizeName={"small"}
-              text={"Sign Up"}
-            />
-          </Fragment>
-          <Fragment v-else>
-            <div style={{ cursor: "default" }}>
-              Welcome,{" "}
-              <span className={styles.userName}>
-                {userType === "intern" ? user.name : user.accountName}{" "}
-                {userType === "intern" && user.surname}
-              </span>
-            </div>
-            {this.renderIcon("mail")}
-            {this.renderIcon("bell")}
-            {this.renderIcon("user")}
-          </Fragment>
-        </div>
-      </div>
-    );
-  }
+			</div>
+		);
+	}
 }
 
 export default TopBar;

@@ -34,9 +34,9 @@ class List extends Component {
         let {externalData, title} = this.props;
         return (
             <>
-                <div v-if={title} className={styles.listHeader}>{title}</div>
+                <div v-if={title} className={"listHeader"}>{title}</div>
                 <ul
-                    className={styles.listWrapper}
+                    className={"listWrapper"}
                     onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
@@ -46,11 +46,11 @@ class List extends Component {
                         return <Link
                             key={el.key}
                             onClick={() => !el.disabled && this.onClickListItem(el.key)}
-                            className={`${el.selected ? styles.selected: ''}`}
+                            className={`${el.selected ? "selected": ''}`}
                             to={el.to}
                         >
                             <div>{el.value}</div>
-                            <div v-if={el.icon} className={styles.icon}>
+                            <div v-if={el.icon} className={"icon"}>
                                 <img src={el.icon} alt={'icon'}/>
                             </div>
                         </Link>

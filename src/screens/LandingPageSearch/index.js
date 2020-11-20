@@ -107,52 +107,60 @@ class LandingPageSearch extends Component {
     });
   };
 
-  render() {
-    let { keyword, location } = this.props.match.params;
-    let { posts, totalCount, loading } = this.state;
-    return (
-      <div className={styles.LandingPageSearch}>
-        <LoadingModal text="Loading" v-if={loading} />
-        <SearchSection
-          isAuthorized
-          defaultKeyword={keyword}
-          browseInternship={true}
-          defaultLocation={location}
-        />
-        <div className={styles.noResult} v-if={posts.length <= 0}>
-          No results found...
-          <div v-if={keyword || location} className={styles.description}>
-            Your search for
-            {keyword === "null" ? "" : ' "' + keyword + '" '}
-            {keyword === "null" || location === "null" ? "" : "in"}
-            {location === "null" ? "" : ' "' + location + '" '}
-            did not return any result
-          </div>
-          <div v-else className={styles.description}>
-            Did not return any result
-          </div>
-        </div>
-        <Card
-          v-if={posts.length > 0}
-          v-for={(pst, i) in posts}
-          key={i}
-          type={"jobPost"}
-          posts={pst}
-        />
-        <div className={styles.buttonContainer}>
-          <Button
-            v-if={posts.length > 0 && totalCount > posts.length}
-            type={"ghost"}
-            text={"Load More"}
-            sizeName={"small"}
-            onButtonClick={() => this.onLoadMore()}
-            width={"160px"}
-          />
-        </div>
-        <Footer />
-      </div>
-    );
-  }
+	render() {
+		let { keyword, location } = this.props.match.params;
+		let { posts, totalCount, loading } = this.state;
+		return (
+			<div className={"landingPageSearch"}>
+				<LoadingModal text="Loading" v-if={loading} />
+				<SearchSection
+					isAuthorized
+					defaultKeyword={keyword}
+					browseInternship={true}
+					defaultLocation={location}
+				/>
+				<div class="container">
+					<div class="row">
+						<div className={"landingPageSearch__noResult"} v-if={posts.length <= 0}>
+							No results found...
+							<div v-if={keyword || location} className={"landingPageSearch__description"}>
+								Your search for
+								{keyword === "null" ? "" : ' "' + keyword + '" '}
+								{keyword === "null" || location === "null" ? "" : "in"}
+								{location === "null" ? "" : ' "' + location + '" '}
+								did not return any result
+							</div>
+							<div v-else className={"landingPageSearch__description"}>
+								Did not return any result
+							</div>
+						</div>
+						<Card
+							v-if={posts.length > 0}
+							v-for={(pst, i) in posts}
+							key={i}
+							type={"jobPost"}
+							posts={pst}
+						/>
+						<div className={"landingPageSearch__buttonContainer"}>
+							<Button
+								v-if={posts.length > 0 && totalCount > posts.length}
+								type={"ghost"}
+								text={"Load More"}
+								sizeName={"small"}
+								onButtonClick={() => this.onLoadMore()}
+								width={"160px"}
+							/>
+						</div>
+					</div>
+
+				</div>
+
+
+
+				<Footer />
+			</div>
+		);
+	}
 }
 
 export default LandingPageSearch;

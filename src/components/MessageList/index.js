@@ -127,56 +127,56 @@ export default class MessageList extends Component {
     );
   };
 
-  render() {
-    return (
-      <div className={styles["message-list"]}>
-        <Toolbar
-          /* title={this.props.contact && this.props.contact.name} */
-          leftItems={[
-            this.props.contact && (
-              <div className={styles["toolbar__left"]}>
-                <img
-                  className={styles["toolbar__avatar"]}
-                  /* style={{
-                    borderRadius: "10%",
-                    height: "50px",
-                  }} */
-                  src={this.props.contact.avatar || this.props.contact.photo}
-                  alt="Sender Avatar"
-                />
-                <div className={styles["toolbar__title"]}>
-                  {this.props.contact && this.props.contact.name}
-                </div>
-              </div>
-            ),
-          ]}
-          rightItems={[
-            <button
-              className={styles["three-dots-button"]}
-              name="popover_opener"
-            >
-              <img
-                src={icon_ellipsis}
-                alt=""
-                name="more_icon"
-                className={styles["more_icon"]}
-                onClick={this.handleClickIcon}
-              />
-            </button>,
-          ]}
-        />
-        {this.state.popover && this.renderPopover()}
+	render() {
+		return (
+			<div className={"messageList"}>
+				<Toolbar
+				  /* title={this.props.contact && this.props.contact.name} */
+				  leftItems={[
+				    this.props.contact && (
+				      <div className={"toolbar__left"}>
+				        <img
+				          className={"toolbar__avatar"}
+				          /* style={{
+				            borderRadius: "10%",
+				            height: "50px",
+				          }} */
+				          src={this.props.contact.avatar || this.props.contact.photo}
+				          alt="Sender Avatar"
+				        />
+				        <div className={"toolbar__title"}>
+				          {this.props.contact && this.props.contact.name}
+				        </div>
+				      </div>
+				    ),
+				  ]}
+				  rightItems={[
+				    <button
+				      className={"three-dots-button"}
+				      name="popover_opener"
+				    >
+				      <img
+				        src={icon_ellipsis}
+				        alt=""
+				        name="more_icon"
+				        className={"more_icon"}
+				        onClick={this.handleClickIcon}
+				      />
+				    </button>
+				  ]}
+				/>
+				{this.state.popover && this.renderPopover()}
 
-        <div id={"message-list"} className={styles["message-list-container"]}>
-          {this.renderMessages()}
-        </div>
+				<div id={"message-list"} className={"message-list-container"}>
+				  {this.renderMessages()}
+				</div>
 
-        <Compose
-          v-if={this.props.contact}
-          receiver={this.props.contact.id}
-          getContacts={this.props.getContacts}
-        />
-      </div>
-    );
-  }
+				<Compose
+				  v-if={this.props.contact}
+				  receiver={this.props.contact.id}
+				  getContacts={this.props.getContacts}
+				/>
+			</div>
+		);
+	}
 }

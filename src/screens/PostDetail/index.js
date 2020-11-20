@@ -172,21 +172,27 @@ class PostDetail extends Component{
     render() {
         let {posts, company, processing} = this.state;
         return (
-            <div className={styles.postDetail}>
+			<div className={"postDetail"}>
                 <LoadingModal text="Loading" v-if={processing} />
-                <div className={styles.cards}>
-                    <Card
-                        type={'jobDetail'}
-                        posts={posts}
-                        v-for={(pst, i) in posts}
-                        key={i}
-                    />
-                    <Card
-                        type={'companyProfile'}
-                        profileObject={company}
-                        getUser={this.getPost}
-                    />
-                </div>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-8">
+							<Card
+		                        type={'jobDetail'}
+		                        posts={posts}
+		                        v-for={(pst, i) in posts}
+		                        key={i}
+		                    />
+						</div>
+						<div class="col-md-4 postDetail__rightBox">
+							<Card
+								type={'companyProfile'}
+								profileObject={company}
+								getUser={this.getPost}
+							/>
+						</div>
+					</div>
+				</div>
             </div>
         );
     }

@@ -97,66 +97,75 @@ class JobApplication extends Component {
         let cv = sections.find(section => section.id === selectedCV);
         let cl = coverLetters?.find(coverLetter => coverLetter.id === selectedCL);
         return (
-            <div className={styles.JobApplication}>
-                <div className={styles.cards}>
-                    <div className={styles.CVs}>
-                        <Card
-                            v-if={page === 0 && cv}
-                            type={'section'}
-                            sections={cv?.items}
-                            header={{text: cv?.header, position: 'center'}}
-                        />
-                        <Card
-                            v-else-if={page === 1 && cl}
-                            type={'coverLetter'}
-                            disabled={true}
-                            header={{text: cl?.title, position: 'center'}}
-                            coverLetter={cl}
-                        />
-                        <Card v-else>
-                            {page === 0 && "There is no cv, please create a cv and try again!"}
-                            {page === 1 && "There is no Cover Letter, please create a Cover Letter and try again!"}
-                        </Card>
-                    </div>
-                    <div className={styles.selection}>
-                        <Card
-                            type={'list'}
-                            externalData={page === 0 ? CVSource : coverLettersSource}
-                            title={page === 0 ?
-                                (CVSource.length > 0 ? 'Select a CV' : 'NO CV AVAILABLE') :
-                                (coverLettersSource.length > 0 ? 'Select a Cover Letter' : 'NO Cover Letter AVAILABLE')
-                            }
-                        />
-                        <Button
-                            to={page === 0 ? '/CVs' : '/coverletters'}
-                            v-if={(CVSource.length <= 0 && page === 0) || (page === 1 && coverLettersSource.length <= 0)}
-                            sizeName={'default'}
-                            text={page === 0 ? 'Create a CV': 'Create a Cover Letter'}
-                            type={'primary'}
-                        />
-                        <Button
-                            onButtonClick={CVSource.length > 0 ? async () => {
-                                if (page === 0) {
-                                    this.setState({ page: 1 })
-                                } else if (page === 1) {
-                                    let res = await store.applyPost(
-                                        getCookie('user_id'),
-                                        jobId,
-                                        selectedCV,
-                                        coverLetters.find(cl => cl.id === selectedCL)
-                                    );
-                                    if (res.status && res.status === 203) {
-                                        window.location.pathname = '/';
-                                    }
-                                }
-                            }: {}}
-                            v-if={(CVSource.length > 0 && page === 0) || (page === 1)}
-                            sizeName={'default'}
-                            text={page === 0 ? 'Continue to Cover Letters' : 'Send Application'}
-                            type={'primary'}
-                        />
-                    </div>
-                </div>
+            <div className={"jobApplication"}>
+				<div class="container">
+					<div className={"jobApplication__cards"}>
+						<div class="row">
+							<div class="col-xl-9 col-lg-9 col-md-12">
+								<div className={"jobApplication__cards__CVs"}>
+									<Card
+										v-if={page === 0 && cv}
+										type={'section'}
+										sections={cv?.items}
+										header={{text: cv?.header, position: 'center'}}
+									/>
+									<Card
+										v-else-if={page === 1 && cl}
+										type={'coverLetter'}
+										disabled={true}
+										header={{text: cl?.title, position: 'center'}}
+										coverLetter={cl}
+									/>
+									<Card v-else>
+										{page === 0 && "There is no cv, please create a cv and try again!"}
+										{page === 1 && "There is no Cover Letter, please create a Cover Letter and try again!"}
+									</Card>
+								</div>
+							</div>
+							<div class="col-xl-3 col-lg-3 col-md-12">
+								<div className={"jobApplication__selection"}>
+									<Card
+										type={'list'}
+										externalData={page === 0 ? CVSource : coverLettersSource}
+										title={page === 0 ?
+											(CVSource.length > 0 ? 'Select a CV' : 'NO CV AVAILABLE') :
+											(coverLettersSource.length > 0 ? 'Select a Cover Letter' : 'NO Cover Letter AVAILABLE')
+										}
+									/>
+									<Button
+										to={page === 0 ? '/CVs' : '/coverletters'}
+										v-if={(CVSource.length <= 0 && page === 0) || (page === 1 && coverLettersSource.length <= 0)}
+										sizeName={'full'}
+										text={page === 0 ? 'Create a CV': 'Create a Cover Letter'}
+										type={'primary'}
+									/>
+									<Button
+										onButtonClick={CVSource.length > 0 ? async () => {
+											if (page === 0) {
+												this.setState({ page: 1 })
+											} else if (page === 1) {
+												let res = await store.applyPost(
+													getCookie('user_id'),
+													jobId,
+													selectedCV,
+													coverLetters.find(cl => cl.id === selectedCL)
+												);
+												if (res.status && res.status === 203) {
+													window.location.pathname = '/';
+												}
+											}
+										}: {}}
+										v-if={(CVSource.length > 0 && page === 0) || (page === 1)}
+										sizeName={'full'}
+										text={page === 0 ? 'Continue to Cover Letters' : 'Send Application'}
+										type={'primary'}
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
             </div>
         );
     }

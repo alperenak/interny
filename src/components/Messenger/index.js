@@ -26,49 +26,51 @@ export default class Messenger extends Component {
       this.setState({ contact: res[0] });
   };
 
-  render() {
-    return (
-      <div className={styles["messenger__container"]}>
-        <div className={styles["messenger"]}>
-          <div className={`${styles["scrollable"]} ${styles["sidebar"]}`}>
-            <ConversationList
-              getContact={this.getContact}
-              contact={this.state.contact}
-              user={this.props.user}
-            />
-          </div>
+	render() {
+		return (
+			<div className={"messengerContainer"}>
+				<div class="container">
+					<div className={"messengerContainer__messenger"}>
+						<div class="row" style={{"margin":0,"height":"100%"}}>
+							<div class="col-md-4" style={{padding:"0"}}>
+								<div className={`${"messengerContainer__scrollable"} ${"messengerContainer__sidebar"}`}>
+									<ConversationList
+										getContact={this.getContact}
+										contact={this.state.contact}
+										user={this.props.user}
+									/>
+								</div>
+							</div>
+							<div class="col-md-8" style={{padding:"0"}}>
+								<div className={`${"messengerContainer__scrollable"} ${"messengerContainer__content"}`}>
+									<MessageList
+										v-if={this.state.contact}
+										contact={this.state.contact}
+										getContacts={this.getContacts}
+									/>
+									<div className={"messengerContainer__noContent"} v-else>
+										<img src={messagesIcon} alt={'messages'} />
+										<div className={"messengerContainer__noContent__title"}>Welcome to Messages</div>
+										<div v-if={getCookie('user') === 'intern'} className={"messengerContainer__noContent__subTitle"}>
+											When an employer contacts you, you can reach messages here.
+										</div>
+										<div v-if={getCookie('user') === 'employer'} className={"messengerContainer__noContent__subTitle"}>
+											You can contact with interns here.
+										</div>
+										<Button
+											v-if={getCookie('user') === 'intern'}
+											type={'primary'}
+											text={'Find Jobs'}
+											to={'/'}
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-          <div className={`${styles["scrollable"]} ${styles["content"]}`}>
-            <MessageList
-              v-if={this.state.contact}
-              contact={this.state.contact}
-              getContacts={this.getContacts}
-            />
-            <div className={styles.noContent} v-else>
-              <img src={messagesIcon} alt={'messages'} />
-              <div className={styles.title}>Welcome to Messages</div>
-              <div
-                  v-if={getCookie('user') === 'intern'}
-                  className={styles.subTitle}
-              >
-                When an employer contacts you, you can reach messages here.
-              </div>
-              <div
-                  v-if={getCookie('user') === 'employer'}
-                  className={styles.subTitle}
-              >
-                You can contact with interns here.
-              </div>
-              <Button
-                v-if={getCookie('user') === 'intern'}
-                type={'primary'}
-                text={'Find Jobs'}
-                to={'/'}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+			</div>
+		);
+	}
 }

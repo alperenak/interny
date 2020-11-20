@@ -1,10 +1,12 @@
-.UserHome {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.userHome {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 
-  & .buttonContainer {
-    margin-bottom: 40px;
-  }
+	&__buttonContainer {
+
+		margin:0 auto;
+		margin-bottom: 40px;
+	}
 }

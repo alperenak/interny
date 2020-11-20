@@ -14,7 +14,7 @@ import { getCookie } from "../../../../utils/cookie";
 class JobPost extends Component {
   renderPostButtons(buttons) {
     return (
-      <div className={`${styles.postButton}`}>
+      <div className={`${"postButton"}`}>
         {buttons.map((btn, i) => {
           return (
             <Button
@@ -42,97 +42,89 @@ class JobPost extends Component {
 
   renderPost = (pst, multiple) => {
     const { selectJob, RedirectControl = (props) => props.is === false ? props.children : <></> } = this.props;
-
     let link = getCookie('token') ? `/postdetail/${pst.id}` : 'signup';
+	return (
+		<Fragment>
+			<div className={`${multiple ? "multiplePost" : "singlePost"}`}>
+				<div class="row">
+					<RedirectControl is={false}>
+						<div class="col-md-3">
+							<Link to={link} className={"itemImage"}>
+					    		<img src={pst.image ? pst.image : ""} alt={"image"} />
+					 		</Link>
+						</div>
+						<div class="col-md-6">
+							<Link
+								to={link}
+								className={"postHeaderWrapper"}
+					  		>
+								<div className={"postHeader"}>{pst.header}</div>
+					  		</Link>
+							<Link to={link} className={"postCompany"}>
+					  			{pst.company}
+					  	  	</Link>
+							<a href="#" onClick={() => selectJob(pst.id)} v-if={pst.location} className={"postLocation"}>
+								<img src={locationIcon} alt={"location"} />
+								{pst.location}
+							</a>
+							<Link to={link} className={"postNote"}>
+					  			{pst.note}
+					  	  	</Link>
+						</div>
+						<div class="col-md-3">
+							{pst.buttons && this.renderPostButtons(pst.buttons)}
+						</div>
+					</RedirectControl>
+				</div>
+				<RedirectControl>
+					<div class="row">
+						<div class="col-md-3">
+							<a href="#" onClick={() => selectJob(pst.id)} className={"itemImage"}>
+		  						<img src={pst.image ? pst.image : ""} alt={"image"} />
+		  					</a>
+						</div>
+						<div class="col-md-6">
+							<a
+								href="#"
+								onClick={() => selectJob(pst.id)}
+								className={"postHeaderWrapper"}
+							>
+								<div className={"postHeader"}>{pst.header}</div>
 
-    return (
-      <Fragment>
-        <div className={`${multiple ? styles.multiplePost : styles.singlePost}`}>
-          <RedirectControl is={false}>
-            <Link to={link} className={styles.itemImage}>
-              <img src={pst.image ? pst.image : ""} alt={"image"} />
-            </Link>
+							</a>
+							<a href="#" onClick={() => selectJob(pst.id)} className={"postCompany"}>
+						   		{pst.company}
+						 	</a>
+							<a href="#" onClick={() => selectJob(pst.id)} v-if={pst.location} className={"postLocation"}>
+								<img src={locationIcon} alt={"location"} />
+								{pst.location}
+							</a>
+							<a href="#" onClick={() => selectJob(pst.id)} className={"postNote"}>
+								{pst.description}
+							</a>
+							<a href="#" onClick={() => selectJob(pst.id)} className={"postNote"}>
+								{pst.note}
+							</a>
+						</div>
+						<div class="col-md-3">
+							<div className={"postDate"}>{pst.date}</div>
+							{pst.buttons && this.renderPostButtons(pst.buttons)}
 
-            <Link
-              to={link}
-              className={styles.postHeaderWrapper}
-            >
-              <div className={styles.postHeader}>{pst.header}</div>
-              <div className={styles.postDate}>{pst.date}</div>
-            </Link>
 
-            <Link to={link} className={styles.postCompany}>
-              {pst.company}
-            </Link>
+						</div>
+					</div>
+				</RedirectControl>
 
-            {pst.buttons && this.renderPostButtons(pst.buttons)}
-
-            <Link
-              to={link}
-              v-if={pst.location}
-              className={styles.postLocation}
-            >
-              <img src={locationIcon} alt={"location"} />
-              {pst.location}
-            </Link>
-
-            <Link to={link} className={styles.postNote}>
-              {pst.description}
-            </Link>
-
-            <Link to={link} className={styles.postNote}>
-              {pst.note}
-            </Link>
-          </RedirectControl>
-
-          <RedirectControl>
-            <a href="#" onClick={() => selectJob(pst.id)} className={styles.itemImage}>
-              <img src={pst.image ? pst.image : ""} alt={"image"} />
-            </a>
-
-            <a
-              href="#"
-              onClick={() => selectJob(pst.id)}
-              className={styles.postHeaderWrapper}
-            >
-              <div className={styles.postHeader}>{pst.header}</div>
-              <div className={styles.postDate}>{pst.date}</div>
-            </a>
-
-            <a href="#" onClick={() => selectJob(pst.id)} className={styles.postCompany}>
-              {pst.company}
-            </a>
-
-            {pst.buttons && this.renderPostButtons(pst.buttons)}
-
-            <a
-              href="#"
-              onClick={() => selectJob(pst.id)}
-              v-if={pst.location}
-              className={styles.postLocation}
-            >
-              <img src={locationIcon} alt={"location"} />
-              {pst.location}
-            </a>
-
-            <a href="#" onClick={() => selectJob(pst.id)} className={styles.postNote}>
-              {pst.description}
-            </a>
-
-            <a href="#" onClick={() => selectJob(pst.id)} className={styles.postNote}>
-              {pst.note}
-            </a>
-          </RedirectControl>
-        </div>
-      </Fragment>
-    );
+			</div>
+		</Fragment>
+	);
   };
 
   renderEmpty = () => {
     let { posts } = this.props;
 
     if (posts.length < 1) {
-      return <div className={styles.noJob}> <span>There is no job post for you...</span> </div>
+      return <div className={"noJob"}> <span>There is no job post for you...</span> </div>
     }
     return;
   }
@@ -143,9 +135,12 @@ class JobPost extends Component {
       <Fragment>
         {posts.map((post, i) => {
           return (
-            <div key={i} className={`${styles.jobPost}`}>
-              {this.renderPost(post, posts.length > 1)}
-            </div>
+			<div class="col-md-12">
+				<div key={i} className={`${"jobPost2"}`}>
+				  {this.renderPost(post, posts.length > 1)}
+				</div>
+			</div>
+
           );
         })}
         {this.renderEmpty()}

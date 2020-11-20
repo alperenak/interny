@@ -103,46 +103,46 @@ class Select extends Component {
         let { name, label, placeholder, size, labelDescription, errorList, disabled, className,selectedValueId } = this.props;
         let { dropDownOpened, selectedValue, selectedValues, value, externalSource } = this.state;
         return (
-            <div ref={this.wrapperRef} onClick={this.onClickInput} className={`${styles.selectWrapper} ${disabled ? styles.disabled : ''} ${className}`}>
+            <div ref={this.wrapperRef} onClick={this.onClickInput} className={`${"selectWrapper"} ${disabled ? "disabled" : ''} ${className}`}>
                 <label v-if={label} htmlFor={name}>
                     {label}
                 </label>
-                <div v-if={labelDescription} className={styles.labelDescription}>
+                <div v-if={labelDescription} className={"labelDescription"}>
                     {labelDescription}
                 </div>
                 <div className={`
-                    ${styles.inputContainer} 
-                    ${dropDownOpened ? styles.focus : ''} 
-                    ${styles[size]} ${errorList.length > 0 ? styles.error : ''}
+                    ${"inputContainer"}
+                    ${dropDownOpened ? "focus" : ''}
+                    ${size} ${errorList.length > 0 ? "error" : ''}
                 `}>
                     <div
                         v-if={selectedValues.length > 0}
-                        className={`${styles.inputSelf}`}
+                        className={`${"inputSelf"}`}
                     >{selectedValues.map((vl, i) => i < selectedValues.length - 1 ? vl.value + ', ' : vl.value)}</div>
                     <div
                         id={selectedValueId ? selectedValueId : null}
                         v-else-if={selectedValue.value?.length > 0}
-                        className={`${styles.inputSelf}`}
+                        className={`${"inputSelf"}`}
                     >{selectedValue.value}</div>
                     <div
                         v-else
-                        className={`${styles.inputPlaceholder}`}
+                        className={`${"inputPlaceholder"}`}
                     >{placeholder}</div>
                     <img src={selectIcon} alt={'selectIcon'} />
                 </div>
                 <ul
                     v-if={dropDownOpened}
-                    className={styles.dropDown}
+                    className={"dropDown"}
                     onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
                     }}
                 >
-                    <div className={styles.searchWrapper}>
+                    <div className={"searchWrapper"}>
                         <img src={searchIcon} alt={'searchIcon'} />
                         <input
                             autoComplete={'off'}
-                            className={styles.searchDropDown}
+                            className={"searchDropDown"}
                             autoFocus={true}
                             type={'text'}
                             disabled={false}
@@ -155,7 +155,7 @@ class Select extends Component {
                         return <li
                             key={el.key}
                             onClick={() => this.onClickListItem(el.key)}
-                            className={`${el.selected ? styles.selected : ''}`}
+                            className={`${el.selected ? "selected" : ''}`}
                         >
                             {el.value}
                         </li>

@@ -11,70 +11,70 @@ class InternList extends Component {
       <Fragment>
         <div
           onClick={() => history.push(`/internDetail/${item.id}`)}
-          className={styles.InternListContainer}
+          className={"InternListContainer"}
         >
-          <div className={styles.profile}>
-            <div className={styles.responsiveTitles}>Student</div>
-            <div className={styles.avatar}>
+          <div className={"profile"}>
+            <div className={"responsiveTitles"}>Student</div>
+            <div className={"avatar"}>
               <img width="100" src={item.avatar} />
             </div>
-            <div className={styles.fullname}>
+            <div className={"fullname"}>
               {item.name + " " + item.surname}
             </div>
-            <div className={styles.phone}>{item.phone}</div>
-            <div className={styles.email}>{item.email}</div>
-            <div className={styles.location}>
+            <div className={"phone"}>{item.phone}</div>
+            <div className={"email"}>{item.email}</div>
+            <div className={"location"}>
               {item.location.country + "," + item.location.city}
             </div>
           </div>
-          <div className={styles.company}>
-            <div className={styles.responsiveTitles}>Company / Program</div>
-            <div className={styles.companyLogo}>
+          <div className={"company"}>
+            <div className={"responsiveTitles"}>Company / Program</div>
+            <div className={"companyLogo"}>
               <img src={item.Internship.Employer.logo} alt={"companyLogo"} />
             </div>
-            <div className={styles.companyName}>
+            <div className={"companyName"}>
               {item.Internship.Employer.legalName}
             </div>
-            <div className={styles.position}>{item.Internship.position}</div>
-            <div className={styles.companyImage}></div>
-            <div className={styles.companyImage}></div>
+            <div className={"position"}>{item.Internship.position}</div>
+            <div className={"companyImage"}></div>
+            <div className={"companyImage"}></div>
           </div>
-          <div className={styles.program}>
-            <div className={styles.responsiveTitles}>Internship Info</div>
-            <div className={styles.startDate}>
+          <div className={"program"}>
+            <div className={"responsiveTitles"}>Internship Info</div>
+            <div className={"startDate"}>
               <article>Start Date : </article>
               &nbsp; {item.Internship.startDate}
             </div>
-            <div className={styles.endDate}>
+            <div className={"endDate"}>
               <article>End Date : </article>
               &nbsp; {item.Internship.endDate}
             </div>
 
-            <div className={styles.duration}>
+            <div className={"duration"}>
               <article>Duration :</article>
               &nbsp;
-              <div className={styles.bar}>
+              <div className={"bar"}>
                 <div
                   style={{ width: duration + "%" }}
-                  className={styles.duration}
+                  className={"duration"}
                 />
               </div>
             </div>
-            <div className={styles.leftDay}>
+            <div className={"leftDay"}>
               <article>Days Left : </article>
               &nbsp; {item.Internship.dayLeft}
             </div>
-            <div className={styles.internshipLength}>
+            <div className={"internshipLength"}>
               <article>Internship Length : </article>
               &nbsp; {item.Internship.internshipLength}
             </div>
           </div>
           {item.Internship.status === "Completed" ? (
-            <div className={styles[item.Internship.status]}>
+            <div className={item.Internship.status}>
               <article>Internship Status : </article> &nbsp;Completed
             </div>
           ) : (
-            <div className={styles[item.Internship.status]}>
+            <div className={item.Internship.status}>
               <article>Internship Status : </article> &nbsp; On Going
             </div>
           )}

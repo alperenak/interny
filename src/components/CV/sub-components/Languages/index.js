@@ -32,11 +32,11 @@ class Languages extends Component {
         let {languages} = this.props.file;
         let {activeEditForms, isCreateFormActive} = this.state;
         return (
-            <div className={styles.Container}>
-                <div className={styles.section}>
-                    <div className={styles.sectionTitle}>
+            <div className={"subContainer"}>
+                <div className={"subContainer__section"}>
+                    <div className={"subContainer__sectionTitle"}>
                         Languages
-                        <img className={styles.plusIcon} src={addIconBlue} alt={'icon'} onClick={() => this.setState({isCreateFormActive: true})} />
+                        <img className={"plusIcon"} src={addIconBlue} alt={'icon'} onClick={() => this.setState({isCreateFormActive: true})} />
                     </div>
                     <div v-if={languages.length === 0 && !isCreateFormActive} style={{ marginBottom: '24px' }}>
                         <Button
@@ -53,14 +53,14 @@ class Languages extends Component {
                         return (
                             <Fragment>
                                 <EditForm v-if={activeEditForms.includes(item.id)} object={item} cv_id={this.props.file.id} onCancel={this.onFormCanceled} />
-                                <div v-else key={j} className={styles.item}>
-                                    <div className={styles.itemDetail}>
-                                        <div v-if={item} className={styles.itemTitle}>{item.title}</div>
+                                <div v-else key={j} className={"subContainer__item"}>
+                                    <div className={"subContainer__itemDetail"}>
+                                        <div v-if={item} className={"subContainer__itemTitle"}>{item.title}</div>
                                     </div>
-                                    <div v-if={item.level} className={styles.itemLocation}>
+                                    <div v-if={item.level} className={"subContainer__itemLocation"}>
                                         {item.level}
                                     </div>
-                                    <div className={styles.buttonsContainer}>
+                                    <div className={"subContainer__buttonsContainer"}>
                                         <Button
                                             type={'ghost'}
                                             text={'Edit'}

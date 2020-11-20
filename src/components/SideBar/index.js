@@ -14,8 +14,8 @@ class SideBar extends Component {
       <Fragment>
         {/* sidebar */}
 
-        <div v-if={!type} className={styles.SideBar}>
-          <div className={styles.logo}>
+        <div v-if={!type} className={"sideBar"}>
+          <div className={"sideBar__logo"}>
             <Link to={"/"}>
               <img src={internyLogo} alt={"logo"} />
             </Link>
@@ -26,7 +26,7 @@ class SideBar extends Component {
         <div
           id="hamburger-menu"
           v-if={type === "hamburgerMenu"}
-          className={styles.hamburgerMenu}
+          className={"sideBar__hamburgerMenu"}
         >
           <img
             onClick={() => {

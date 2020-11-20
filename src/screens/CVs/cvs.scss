@@ -56,13 +56,40 @@
 	justify-content: space-between;
 	align-items: center;
 }
-.cvrow_title{
-	font-family: "Sofia Pro Bold";
-font-size: calc(2px + 15px);
-font-weight: bolder;
-font-stretch: normal;
-font-style: normal;
-letter-spacing: 0.3px;
-color: #2c3f58;
-grid-column: span 2;
+
+
+.cvDetail{
+	margin-top:80px;
+	margin-bottom: 80px;
+	&__profileSection {
+	 	margin-bottom:30px;
+	}
+}
+
+.cvList{
+	margin-top:80px;
+	margin-bottom: 80px;
+	&__cvrow{
+		position: relative;
+		padding: 16px 32px;
+		margin-bottom:25px;
+		border: 1px solid #efefef;
+		border-radius: 12px;
+		background: white;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	&__cvrow_title{
+		font-family: "Sofia Pro Bold";
+		font-size: calc(2px + 15px);
+		font-weight: bolder;
+		font-stretch: normal;
+		font-style: normal;
+		letter-spacing: 0.3px;
+		color: #2c3f58;
+	}
+	&__profileSection {
+	 	margin-bottom:30px;
+	}
 }

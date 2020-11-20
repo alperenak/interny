@@ -1,107 +1,85 @@
 @import '../../helpers/responsiveBreakpointsMixins.scss';
 
-.messenger__container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: #dedee6;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.messenger {
-  display: grid;
-  background: #EFF2FC;
-  grid-template-columns: 350px auto;
-
-  @include large {
-    grid-template-columns: 250px auto;
-  }
-
-  @include medium {
-
-    grid-template-columns: 72px auto;
-  }
-
-  grid-template-rows: 60px auto 60px;
-  grid-column-gap: 1px;
-  grid-row-gap: 1px;
-  max-width: 80%;
-  margin: auto;
-  margin-top: 15vh;
-  border-radius: 10px;
-
-  height: 80vh;
-}
-
-.container {
-  padding: 10px;
-
-  @include medium {
-    padding: 0;
-  }
-}
-
-.scrollable {
-  position: relative;
-
-  overflow: hidden;
-}
-
-.sidebar {
-  grid-row-start: 1;
-  grid-row-end: span 3;
-  border-radius: 10px;
-}
-
-.content {
-  background: white;
-  grid-row-start: 1;
-  grid-row-end: span 3;
-  border-radius: 10px;
-
-  & .noContent {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    margin: auto;
-    width: 100%;
-    height: 100%;
-
-    & img {
-      width: 25%;
-    }
-
-    & .title {
-      font-family: "Sofia Pro Bold";
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 20px;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: 1.2;
-      letter-spacing: normal;
-      text-align: center;
-      color: #2c3f58;
-    }
-    & .subTitle {
-      font-family: "Sofia Pro";
-      font-size: 18px;
-      font-weight: normal;
-      margin-bottom: 20px;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: 1.22;
-      letter-spacing: normal;
-      text-align: center;
-      color: #2c3f58;
-    }
-  }
-}
-
-.footer {
-  grid-column-start: 2;
-  background: white;
+.messengerContainer {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #dedee6;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	@include small{
+		height:auto;
+		overflow: inherit;
+		width: auto;
+	}
+	&__messenger {
+		background: #EFF2FC;
+		max-width: 100%;
+		margin: auto;
+		margin-top: 15vh;
+		border-radius: 10px;
+		height: 80vh;
+		@include small{
+			height:auto;
+			margin-bottom: 5vh;
+		}
+	}
+	&__scrollable {
+		position: relative;
+		overflow: hidden;
+	}
+	&__content {
+		background: white;
+		border-radius: 10px;
+		height: 100%;
+		border-top-left-radius: 0;
+		@include small {
+			border-top-right-radius: 10px;
+		}
+	}
+	&__noContent {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+		margin: auto;
+		width: 100%;
+		height: 100%;
+		& img {
+			width: 25%;
+		}
+		&__title {
+			font-family: "Sofia Pro Bold";
+			font-size: 24px;
+			font-weight: bold;
+			margin-bottom: 20px;
+			font-stretch: normal;
+			font-style: normal;
+			line-height: 1.2;
+			letter-spacing: normal;
+			text-align: center;
+			color: #2c3f58;
+		}
+		&__subTitle {
+			font-family: "Sofia Pro";
+			font-size: 18px;
+			font-weight: normal;
+			margin-bottom: 20px;
+			font-stretch: normal;
+			font-style: normal;
+			line-height: 1.22;
+			letter-spacing: normal;
+			text-align: center;
+			color: #2c3f58;
+		}
+	}
+	&__sidebar {
+		border-radius: 10px;
+		height:100%;
+		border-top-right-radius: 0;
+		@include small {
+			border-top-right-radius: 10px;
+		}
+	}
 }

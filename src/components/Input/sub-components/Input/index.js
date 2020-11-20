@@ -72,22 +72,22 @@ class PlainInput extends Component {
     return (
       <div
         onClick={onClick}
-        className={`${styles.inputWrapper} ${
-          disabled ? styles.disabled : ""
+        className={`${"inputWrapper"} ${
+          disabled ? "disabled" : ""
         } ${className}`}
       >
         <label v-if={label} htmlFor={name}>
           {label}
         </label>
-        <div v-if={labelDescription} className={styles.labelDescription}>
+        <div v-if={labelDescription} className={"labelDescription"}>
           {labelDescription}
         </div>
         <textarea
           v-if={type === "textarea"}
           className={`
-                        ${styles.inputContainer} 
-                        ${type === "textarea" ? styles.textarea : ""} 
-                        ${styles[size]} ${!valid ? styles.error : ""}`}
+                        ${"inputContainer"}
+                        ${type === "textarea" ? "textarea" : ""}
+                        ${size} ${!valid ? "error" : ""}`}
           name={name}
           autoComplete={"off"}
           autoFocus={false}
@@ -109,24 +109,24 @@ class PlainInput extends Component {
         <div
           v-else
           className={`
-                        ${styles.inputContainer} 
-                        ${type === "textarea" ? styles.textArea : ""} 
-                      ${!valid ? styles.error : ""}
-                        ${styles[this.props.className]}
-                        ${styles[size]}`}
+                        ${"inputContainer"}
+                        ${type === "textarea" ? "textArea" : ""}
+                      ${!valid ? "error" : ""}
+                        ${this.props.className}
+                        ${size}`}
         >
           <img
             v-if={icon && icon.position === "left"}
             src={icon.src}
             alt={"icon"}
-            className={`${styles.icon} ${styles[icon.position]}`}
+            className={`${"icon"} ${"icon.position"}`}
           />
           <input
             name={name}
             autoComplete={"off"}
             autoFocus={false}
             type={type}
-            className={size === "compose" ? styles.composeInput : ""}
+            className={size === "compose" ? "composeInput" : ""}
             onKeyDown={onKeyDown}
             disabled={disabled}
             onChange={(e) => this.onChange(e)}
@@ -146,20 +146,20 @@ class PlainInput extends Component {
             v-if={icon && icon.position === "right"}
             src={icon.src}
             alt={"icon"}
-            className={`${styles.icon} ${styles[icon.position]}`}
+            className={`${"icon"} ${"icon.position"}`}
           />
         </div>
         <div
           v-if={errorList.length === 1 && !valid}
-          className={styles.errorMessage}
+          className={"errorMessage"}
         >
           {errorList[0].text}
         </div>
 
-        <ul v-if={errorList.length > 1 && !valid} className={styles.tooltip}>
+        <ul v-if={errorList.length > 1 && !valid} className={"tooltip"}>
           {errorList.map((err, i) => {
             return (
-              <li className={err.valid ? styles.validText : ""} key={i}>
+              <li className={err.valid ? "validText" : ""} key={i}>
                 <img
                   v-if={!err.valid}
                   width={10}
@@ -177,7 +177,7 @@ class PlainInput extends Component {
             );
           })}
         </ul>
-        {disclaimer && <div className={styles.disclaimer}> {disclaimer} </div>}
+        {disclaimer && <div className={"disclaimer"}> {disclaimer} </div>}
       </div>
     );
   }

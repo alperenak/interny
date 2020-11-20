@@ -1,35 +1,58 @@
 @import "../../../../helpers/responsiveBreakpointsMixins.scss";
 
-.auth {
-  display: grid;
-  grid-template-columns: 136px 250px 16px 250px 136px;
+.authWrapper {
+	border: 1px solid #efefef;
+    border-radius: 12px;
+	.hide{
+		display: none;
+	}
+	border-radius: 10px;
+	& .imgContainer {
+		@include medium {
+			display: none;
+		}
+	  	max-width: 100%;
+		height: 100%;
+	  	& .shadow {
+			border-top-left-radius: 10px;
+			border-bottom-left-radius: 10px;
+			z-index: 1;
+			width: 100%;
+			height:100%;
+			overflow: hidden;
+			background-size:cover;
+			background-position: center center;
+			&.intern{
+				background-image: url("../../../../assets/login.png");
+			}
+			&.employer{
+				background-image: url("../../../../assets/company.jpg");
+			}
+			&.university{
+				background-image: url("../../../../assets/university.jpg");
+			}
+			& img {
+				border-top-left-radius: 10px;
+				border-bottom-left-radius: 10px;
+				height: 100%;
+				width: 100%;
+			}
 
-  @include x-large {
-    grid-template-columns: 72px 136px 16px 136px 72px;
-  }
+			& .employerBackground {
+				margin-left: -300px;
+			}
 
-  @include large {
-    grid-template-columns: 72px 136px 16px 136px 72px;
-  }
-
-  @include medium {
-    grid-template-columns: 36px 136px 16px 136px 36px;
-  }
-
-  @include small {
-    grid-template-columns: 12px 100px 16px 100px 12px;
-  }
-
-  & .inputs_container {
-    grid-column: 2 / span 3;
-  }
-
+			& .universtyBackground {
+				margin-left: -300px;
+			}
+	  	}
+	}
   & .switchButtons {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    grid-column: span 5;
+
     color: #2c3f58;
     font-family: "Sofia Pro";
     font-size: calc(2px + 12px);
@@ -83,8 +106,6 @@
   }
 
   & .authHeader {
-    grid-column-start: 2;
-    grid-column-end: span 3;
 
     & .headerText {
       margin: 32px 0 8px;
@@ -114,15 +135,6 @@
   }
 
   & .authButtonContainer {
-    &:nth-child(even) {
-      grid-column-start: 4;
-    }
-
-    &:nth-child(odd) {
-      grid-column-start: 2;
-    }
-
-    grid-column-end: span 1;
 
     & .authButton {
       border: 1px solid #2c3f58;
@@ -190,24 +202,11 @@
       text-decoration: underline;
     }
 
-    &:nth-child(odd) {
-      grid-column-start: 2;
-    }
 
-    &:nth-child(even) {
-      grid-column-start: 4;
-    }
-
-    grid-column-end: span 1;
-
-    &:nth-child(9) {
-      grid-column-end: span 3;
-    }
   }
 
   & .saveButtonContainer {
-    grid-column-start: 4;
-    grid-column-end: span 1;
+
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -223,63 +222,12 @@
     }
   }
 
-  & .imgContainer {
-    @include large {
-      display: none;
-    }
 
-    grid-row-start: -1;
-    grid-column: 1 / span 2;
-    max-width: calc(100% - 20px);
-
-    & .shadow {
-      position: absolute;
-      border-top-left-radius: 10px;
-      border-bottom-left-radius: 10px;
-      z-index: 1;
-      width: 434px;
-      height: 570.8px;
-      top: 0;
-      left: 0;
-      overflow: hidden;
-
-      & img {
-        border-top-left-radius: 10px;
-        border-bottom-left-radius: 10px;
-
-        height: 570.8px;
-        width: auto;
-
-      }
-
-      & .employerBackground {
-        margin-left: -300px;
-      }
-
-      & .universtyBackground {
-        margin-left: -300px;
-      }
-    }
-  }
 
   &.login {
-    grid-template-columns: 396px 96px 170px 16px 170px 96px;
-
-    @include large {
-      grid-template-columns: 0px 96px 170px 16px 170px 96px;
-    }
-
-    @include medium {
-      grid-template-columns: 0px 72px 156px 16px 156px 72px;
-    }
-
-    @include small {
-      grid-template-columns: 0px 8px 96px 16px 96px 8px;
-    }
 
     & .authHeader {
-      grid-column-start: 3;
-      grid-column-end: span 6;
+
       margin: 0 0 32px;
 
       & .headerText {
@@ -291,35 +239,16 @@
       }
     }
 
-    & .inputs_container {
-      grid-column: 3 / span 3;
-    }
+
 
     & .authButtonContainer {
-      &:nth-child(even) {
-        grid-column-start: 3;
-      }
 
-      &:nth-child(odd) {
-        grid-column-start: 5;
-      }
-
-      grid-column-end: span 1;
 
       & .authButton {
         margin: 0 0 32px;
       }
     }
 
-    & .inputsContainer {
-      grid-column-start: 3;
-      grid-column-end: span 3;
-    }
-
-    & .saveButtonContainer {
-      grid-column-start: 1;
-      grid-column-end: span 5;
-    }
 
     & .info {
       position: absolute;
@@ -353,8 +282,7 @@
         font-family: "Sofia Pro";
         font-size: 14px;
         font-weight: lighter;
-        grid-row: 8 / span 2;
-        grid-column: 1 /-1;
+
         word-wrap: break-word;
 
         @include x-large {
@@ -408,7 +336,7 @@
 
     background-color: white;
 
-    & .row {
+    & .arow {
       windows: 100%;
       display: flex;
       flex-direction: row;
@@ -470,9 +398,7 @@
     }
   }
 
-  & .advancedSearch__send-button {
-    grid-column: 1 / span 2;
-  }
+
 }
 
 .modal_outer {
@@ -530,7 +456,7 @@
           font: 11.0px Helvetica;
           color: #000000;
         }
-      
+
         & .p2 {
           margin: 0.0px 0.0px 15.0px 0.0px;
           font: 26.0px Helvetica;
@@ -539,39 +465,39 @@
           & .s1 {
             letter-spacing: 0.2px;
           }
-        
+
           & .s2 {
             font: 11px Symbol;
           }
-          
+
         }
-      
+
         & .p3 {
           margin: 0.0px 0.0px 0.0px 0.0px;
           font: 13.0px Helvetica;
           color: #3f6caf;
         }
-      
+
         & .p4 {
           margin: 0.0px 0.0px 10.0px 36.0px;
           font: 11.0px Helvetica;
           color: #000000;
         }
-      
+
         & .p5 {
           margin: 0.0px 0.0px 0.0px 0.0px;
           font: 11.0px Helvetica;
           color: #3f6caf;
         }
-      
-      
+
+
       & .ul1 .li1 {
         margin: 0.0px 0.0px 10.0px 0.0px;
         font: 11.0px Helvetica;
         color: #000000;
       }
-      
-      
+
+
       & .ul1 {
         list-style-type: disc;
       }

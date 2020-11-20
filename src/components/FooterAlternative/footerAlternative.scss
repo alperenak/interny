@@ -1,6 +1,6 @@
 @import '../../helpers/responsiveBreakpointsMixins.scss';
 
-.footerSection {
+.footerSection2 {
   width: 100vw!important;
   display: flex;
   flex-direction: column;
@@ -21,7 +21,7 @@
       display: flex;
       justify-content: center;
       width: 100%;
-        
+
       @include large {
         width: 65%;
       }

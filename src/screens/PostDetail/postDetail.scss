@@ -1,13 +1,22 @@
-.postDetail {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0 0 80px;
+@import "../../helpers/responsiveBreakpointsMixins.scss";
 
-  & .cards {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-  }
+
+.postDetail {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top:80px;
+	margin-bottom:80px;
+
+	&__cards {
+		display: flex;
+		justify-content: space-between;
+		align-items: start;
+	}
+	&__rightBox{
+		@include medium {
+			margin-top:30px;
+		}
+	}
 }

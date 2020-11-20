@@ -40,26 +40,26 @@ class CVList extends Component {
         let { user } = this.props;
         let { sections, processing } = this.state;
         return (
-            <div className={styles.cvs}>
+            <div className={"cvList"}>
                 {processing && <LoadingModal text="Loading" />}
 				<div class="container">
 					<div class="row">
 						{this.state.sections.length > 0 ? (
-							<div class="col-md-8">
+							<div class="col-md-8 order-xl-1 order-lg-1 order-md-1 order-2">
 								{this.state.sections.map(function(item,index){
 									return(
 										<div class="col-md-12">
-											<div class={styles.cvrow}>
-												<span class={styles.cvrow_title}>{item.title}</span>
+											<div class={"cvList__cvrow"}>
+												<span class={"cvList__cvrow_title"}>{item.title}</span>
 												<div class="cvrow_buttons">
-												<Button
-													type={'ghost'}
-													text={'Edit'}
-													icon={editIconBlue}
-													sizeName={'small'}
-													iconPosition={'left'}
-													to={'/Cvdetail/' + item.id}
-												/>
+													<Button
+														type={'ghost'}
+														text={'Edit'}
+														icon={editIconBlue}
+														sizeName={'small'}
+														iconPosition={'left'}
+														to={'/Cvdetail/' + item.id}
+													/>
 												</div>
 											</div>
 										</div>
@@ -67,12 +67,12 @@ class CVList extends Component {
 								})}
 							</div>
 						):(
-							<div class="col-md-8">
+							<div class="col-md-8 order-xl-1 order-lg-1 order-md-1 order-2">
 								<div>CV yok</div>
 							</div>
 						)}
-						<div class="col-md-4">
-							<div className={styles.profileSection}>
+						<div class="col-md-4 order-xl-2 order-lg-2 order-md-2 order-1">
+							<div className={"cvList__profileSection"}>
 		                        <Card
 		                            type={'profile2'}
 		                            getUser={this.props.getUser}
@@ -88,7 +88,7 @@ class CVList extends Component {
 		                        />
 		                        <Button
 		                            text={'Create new CV'}
-		                            width={'60%'}
+		                            size={'full'}
 		                            icon={addIcon}
 		                            iconPosition={'right'}
 		                            to={'/cvcreate'}

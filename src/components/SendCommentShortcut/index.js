@@ -36,8 +36,8 @@ export default function SendCommentShortcut({
   const [text, setText] = useState(textA);
   const [areYouSure, setAreYouSure] = useState(false);
 
-  const buttonClass = loading || !(text.length > 0) ? `${styles.SCSTool} ${styles.SCSToolButtonBlue} ${styles.disabled}` : `${styles.SCSTool} ${styles.SCSToolButtonBlue}`;
-  const toolsClass = loading ? `${styles.SCSTool} ${styles.disabled}` : `${styles.SCSTool}`;
+  const buttonClass = loading || !(text.length > 0) ? `${"SCSTool"} ${"SCSToolButtonBlue"} ${"disabled"}` : `${"SCSTool"} ${"SCSToolButtonBlue"}`;
+  const toolsClass = loading ? `${"SCSTool"} ${"disabled"}` : `${"SCSTool"}`;
 
   const _textArea = createRef();
 
@@ -120,23 +120,23 @@ export default function SendCommentShortcut({
           setOpen(true)
         };
       }}
-      className={styles.SCSContainer}>
+      className={"SCSContainer"}>
       {
         loading && (
-          <div className={styles.loadingIndicator}>
+          <div className={"loadingIndicator"}>
             <span>Loading...</span>
           </div>
         )
       }
-      <div className={styles.SCSProfileArea}>
+      <div className={"SCSProfileArea"}>
         <img
           src={user.logo || user.avatar} />
       </div>
-      <div className={styles.SCSTextAreaContainer}>
-        <div className={styles.SCSTextArea}>
+      <div className={"SCSTextAreaContainer"}>
+        <div className={"SCSTextArea"}>
           <div>
             <TextareaAutosize ref={_textArea} placeholder={commentMode === 'CREATE' ? 'Write a comment' : (commentMode === 'EDIT' ? 'Editing' : (commentMode === 'DELETE' ? 'Click this area to cancel delete mode' : ''))} defaultValue={text} onClick={() => commentMode === 'DELETE' && setCommentMode('CREATE')} onChange={(v) => setText(v.target.value)} />
-            <div v-if={open} className={styles.SCSToolsArea}>
+            <div v-if={open} className={"SCSToolsArea"}>
               <label onClick={FileSelect} className={toolsClass} v-if={!(commentMode === 'DELETE')}>
                 <img src={attachment} />
               </label>
@@ -144,10 +144,10 @@ export default function SendCommentShortcut({
                 <span>{commentMode === 'CREATE' ? 'Send' : 'Save'}</span>
               </label>
             </div>
-            <div v-if={selectedFiles.length > 0} className={styles.SCSFileArea}>
+            <div v-if={selectedFiles.length > 0} className={"SCSFileArea"}>
               {(Array.isArray(selectedFiles) && selectedFiles.length > 0) && (
                 <>
-                  <div title={areYouSure ? 'Yes, i\'m sure.' : 'Click to remove all files'} className={`${styles.SCSFile} ${styles.removeAllFiles}`} onClick={() => {
+                  <div title={areYouSure ? 'Yes, i\'m sure.' : 'Click to remove all files'} className={`${"SCSFile"} ${"removeAllFiles"}`} onClick={() => {
                     if (areYouSure)
                       setSelectedFiles([])
                     else
@@ -156,7 +156,7 @@ export default function SendCommentShortcut({
                     {areYouSure ? 'Are you sure?' : 'Remove All'}
                   </div>
                   {selectedFiles.map((v, i) => (
-                    <div key={i} title={'Click to remove this file'} className={styles.SCSFile} onClick={() => removeSelectedFile(v)}>
+                    <div key={i} title={'Click to remove this file'} className={"SCSFile"} onClick={() => removeSelectedFile(v)}>
                       {v.name}
                     </div>
                   ))}

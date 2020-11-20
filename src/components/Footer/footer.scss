@@ -1,249 +1,197 @@
 @import '../../helpers/responsiveBreakpointsMixins.scss';
 
 .footerSection {
-  width: 100vw!important;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: start;
-  padding: 64px 228px 0;
-  width: calc(100%);
-  background-color: #2c3f58;
+	width: 100%!important;
+	background-color: #2c3f58;
+	margin-top:100px;
+	padding-top:64px;
+	padding-bottom:34px;
+	&__languages {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 
-  @include medium {
-    padding: 64px 0px 0;
-  }
+		& .selectWrapper {
+			display: flex;
+			height: 40px;
+			padding: 0 10px;
+			border-radius: 5px;
+			border: solid 1.5px;
+			border-color: white;
 
-  & .footerTop {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+			& img {
+				color: white;
+				width: 20px;
+				margin-right: 20px;
+			}
 
-    @include large {
-      align-items: center;
-      flex-direction: column;
-    }
+			& select {
+				background: none;
+				height: 40px;
+				color: white;
+				width: 100px;
+				border-radius: 5px;
+				border-color: white;
+				cursor: pointer;
+				border: none;
+				outline: none;
 
+				& option {
+					width: 100px;
+					height: 50px;
+					color: black;
+				}
+			}
+		}
+	}
 
+	&__stores {
+		display: flex;
+		margin-top: 20px;
+		flex-direction: column;
+		position: relative;
+		align-items: center;
+		justify-content: space-between;
+		height: 100px;
+		&__store {
+			height: 45px;
 
-    & .rightSide {
+			& img {
+				height: 100%;
+				margin: 0;
+			}
+		}
+		&__storePlay {
+			height: 45px;
+			& img {
+				height: 100%;
+				margin: 0;
+			}
+		}
+	}
+	&__companyDescription {
+		width: 100%;
+		@include large {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
 
-      & .languages {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+		& img {
+			height: 45px;
+			margin-bottom: 20px;
+			@include large {
+				margin-bottom: 36px;
+			}
+		}
 
-        & .selectWrapper {
-          display: flex;
-          height: 40px;
-          padding: 0 10px;
-          border-radius: 5px;
-          border: solid 1.5px;
-          border-color: white;
+		&__description {
+			font-family: "Sofia Pro";
+			font-size: calc(2px + 12px);
+			color: #fff;
+			list-style-type: none;
+			line-height: 1.5em;
+			letter-spacing: 0.1px;
 
-          & img {
-            color: white;
-            width: 20px;
-            margin-right: 20px;
-          }
+			@include large {
+				font-size: calc(2px + 12px);
+			}
 
-          & select {
-            background: none;
-            height: 40px;
-            color: white;
-            width: 100px;
-            border-radius: 5px;
-            border-color: white;
-            cursor: pointer;
-            border: none;
-            outline: none;
+			@include large {
+				text-align: center;
+			}
+		}
+	}
+	&__options {
+		display: flex;
+		width: 100%;
+		justify-content: space-around;
+		align-items: center;
+		@include medium {
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+		ul {
+			margin: 0;
+			padding: 0;
+			@include medium {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				margin: 24px 0;
+			}
+			& a {
+				text-decoration: none;
+				color: white;
+			}
+		}
+		& li {
+			color: #fff;
+			list-style-type: none;
+			cursor: pointer;
+			font-size: calc(2px + 14px);
+			padding: 2.5px 0;
+			text-align: center;
+			letter-spacing: normal;
+			width: 120px;
 
-            & option {
-              width: 100px;
-              height: 50px;
-              color: black;
-            }
-          }
-        }
-      }
+			& a {
+				color: #fff;
+			}
 
-      & .stores {
-        display: flex;
-        margin-top: 20px;
-        flex-direction: column;
-        position: relative;
-        align-items: center;
-        justify-content: space-between;
-        height: 100px;
+			@include small {
+				font-size: calc(2px + 12px);
+			}
 
-        & .store {
-          height: 45px;
+			&:hover {
+				font-family: "Sofia Pro Bold";
+			}
+		}
+	}
+	& .footerTop {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
 
-          & img {
-            height: 100%;
-            margin: 0;
-          }
-        }
+		@include large {
+			align-items: center;
+			flex-direction: column;
+		}
+	}
+	&__stroke {
+		height: 1px;
+		background-color: #e0e0e0;
+		width: 100%;
+		margin-top:50px;
+		margin-bottom:30px;
+	}
 
-        & .storePlay {
-          height: 45px;
+	&__rights {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		font-family: "Sofia Pro";
+		font-size: calc(2px + 12px);
+		color: #fff;
+		list-style-type: none;
+		line-height: 1.5em;
+		letter-spacing: 0.1px;
+		margin-bottom: 20px;
+		@include medium {
+			text-align: center;
+		}
+		&__followUs {
+			display: flex;
+			justify-content: center;
 
-
-
-          & img {
-            height: 100%;
-            margin: 0;
-          }
-        }
-      }
-    }
-
-    & .companyDescription {
-
-      width: 23%;
-
-
-      @include large {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        width: 60%;
-        margin: 24px 0px
-      }
-
-      & img {
-        height: 45px;
-        margin-bottom: 20px;
-
-
-        @include large {
-          margin-bottom: 36px;
-
-        }
-      }
-
-      & .description {
-        font-family: "Sofia Pro";
-        font-size: calc(2px + 12px);
-        color: #fff;
-        list-style-type: none;
-        line-height: 1.5em;
-        letter-spacing: 0.1px;
-
-        @include large {
-          font-size: calc(2px + 12px);
-
-        }
-
-        @include large {
-          text-align: center;
-        }
-      }
-
-
-
-    }
-
-    & .options {
-      display: flex;
-      width: 80%;
-      justify-content: space-around;
-      align-items: center;
-
-      @include large {
-        width: 65%;
-      }
-
-      @include medium {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-
-      ul {
-        margin: 0;
-        padding: 0;
-
-        @include medium {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          margin: 24px 0;
-        }
-
-        & a {
-          text-decoration: none;
-          color: white;
-        }
-
-      }
-
-
-      & li {
-        color: #fff;
-        list-style-type: none;
-        cursor: pointer;
-        font-size: calc(2px + 14px);
-        padding: 2.5px 0;
-        text-align: center;
-        letter-spacing: normal;
-        width: 120px;
-
-        & a {
-          color: #fff;
-        }
-
-        @include small {
-          font-size: calc(2px + 12px);
-
-        }
-
-        &:hover {
-          font-family: "Sofia Pro Bold";
-        }
-      }
-    }
-  }
-
-
-
-  & .stroke {
-    height: 1px;
-    background-color: #e0e0e0;
-    width: 100%;
-    margin: 40px 0 20px;
-  }
-
-  & .rights {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    font-family: "Sofia Pro";
-    font-size: calc(2px + 12px);
-    color: #fff;
-    list-style-type: none;
-    line-height: 1.5em;
-    letter-spacing: 0.1px;
-    margin-bottom: 20px;
-
-    @include medium {
-      text-align: center;
-    }
-
-    & .followUs {
-      display: flex;
-      justify-content: center;
-
-      & img {
-        width: 15px;
-        margin: 0 20px;
-      }
-    }
-
-
-
-  }
+			& img {
+				width: 15px;
+				margin: 0 20px;
+			}
+		}
+	}
 }

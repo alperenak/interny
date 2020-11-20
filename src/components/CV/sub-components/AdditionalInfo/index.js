@@ -20,12 +20,12 @@ class AdditionalInfo extends Component {
         let {additional} = this.props.file;
         let {activeEditForm} = this.state;
         return (
-            <div className={styles.Container}>
-                <div className={styles.section}>
-                    <div className={styles.sectionTitle}>
+            <div className={"subContainer"}>
+                <div className={"subContainer__section"}>
+                    <div className={"subContainer__sectionTitle"}>
                         AdditionalInfo
                         <img
-                            className={styles.plusIcon}
+                            className={"plusIcon"}
                             src={editIconBlue}
                             alt={'icon'}
                             onClick={() => this.setState({activeEditForm: true})}
@@ -40,9 +40,9 @@ class AdditionalInfo extends Component {
                         text={'Add additional info'}
                         onButtonClick={() => this.setState({activeEditForm: true})}
                     />
-                    <div v-else-if={additional.length > 0 && !activeEditForm}  className={styles.item}>
-                        <div className={styles.itemDetail}>
-                            <div v-if={additional} className={styles.itemTitle}>{additional}</div>
+                    <div v-else-if={additional.length > 0 && !activeEditForm}  className={"subContainer__item"}>
+                        <div className={"subContainer__itemDetail"}>
+                            <div v-if={additional} className={"subContainer__itemTitle"}>{additional}</div>
                         </div>
                     </div>
                     <EditForm v-else object={additional} cv_id={this.props.file.id} onCancel={this.onFormCanceled} />

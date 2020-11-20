@@ -31,11 +31,11 @@ class DropDown extends Component {
     let { externalData, title, onPress } = this.props;
     return (
       <>
-        <div v-if={title} className={styles.dropDownHeader}>
+        <div v-if={title} className={"dropDownHeader"}>
           {title}
         </div>
         <ul
-          className={styles.dropDownWrapper}
+          className={"dropDownWrapper"}
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -48,18 +48,18 @@ class DropDown extends Component {
                 <Link
                   key={el.key}
                   onClick={() => !el.disabled && this.onClickListItem(el.key)}
-                  className={`${el.selected ? styles.selected : ""}`}
+                  className={`${el.selected ? "selected" : ""}`}
                   to={el.to}
                 >
-                  <div className={styles.messageContainer}>
-                    <div className={styles.title} v-if={el.title}>
+                  <div className={"messageContainer"}>
+                    <div className={"title"} v-if={el.title}>
                       {el.title}
                     </div>
                     <div>{el.value}</div>
                   </div>
                   <div
                     v-if={el.icon || el.unRead}
-                    className={`${styles.icon} ${el.unRead ? styles.read : ""}`}
+                    className={`${"icon"} ${el.unRead ? styles.read : ""}`}
                   >
                     <img v-if={el.icon} src={el.icon} alt={"icon"} />
                   </div>
@@ -67,7 +67,7 @@ class DropDown extends Component {
               );
             })
           ) : (
-            <div className={styles.messageContainer}>No Data</div>
+            <div className={"messageContainer"}>No Data</div>
           )}
         </ul>
       </>

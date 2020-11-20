@@ -8,7 +8,7 @@ $icons: ("large":24px, "default":24px, "small":17px, "tiny":16px);
 $icon-margins: ("large":12px, "default":8px, "small":4px, "tiny":4px);
 
 $variants:( //primary variants
-  primary-hover: (background-color:#1d3f6b, color:white, border:solid 1px #1d3f6b),
+  primary-hover: (background-color:rgba(#1d3f6b,0.6), color:white, border:solid 1px transparent),
   primary-focus: (background-color:#003670, color:white, border:solid 1px #003670),
   primary-disable: (background-color:#cccccc, color:#919191, border:solid 1px #cccccc),
   //secondary variants

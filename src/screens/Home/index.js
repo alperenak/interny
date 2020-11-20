@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 import Footer from "../../components/Footer";
-
+import OwlCarousel from 'react-owl-carousel2';
 /*** Styles ***/
 import styles from "./home.scss";
 import homeCurve from "../../assets/home-curve.svg";
@@ -60,417 +60,396 @@ class Home extends Component {
     pri3: false,
     slideCount: 0,
   };
-  renderSlide() {
-    return (
-      <>
-        <div className="carousel-item active">
-          <img
-            onClick={() => this.setState({ ing: ingBankImage })}
-            onMouseOver={() => this.setState({ ing: ingBankImage })}
-            onMouseLeave={() => this.setState({ ing: ingBankGrayImage })}
-            height={38}
-            src={this.state.ing}
-            alt={"image"}
-          />
-          <img
-            onClick={() => this.setState({ unilever: unileverImage })}
-            onMouseOver={() => this.setState({ unilever: unileverImage })}
-            onMouseLeave={() => this.setState({ unilever: unileverGrayImage })}
-            height={65}
-            src={this.state.unilever}
-            alt={"image"}
-          />
-          <img
-            onClick={() => this.setState({ allianz: allianzImage })}
-            onMouseOver={() => this.setState({ allianz: allianzImage })}
-            onMouseLeave={() => this.setState({ allianz: allianzGrayImage })}
-            height={35}
-            src={this.state.allianz}
-            alt={"image"}
-          />
-          <img
-            onClick={() => this.setState({ vodafone: vodafoneImage })}
-            onMouseOver={() => this.setState({ vodafone: vodafoneImage })}
-            onMouseLeave={() => this.setState({ vodafone: vodafoneGrayImage })}
-            height={62}
-            src={this.state.vodafone}
-            alt={"image"}
-          />
-        </div>
-      </>
-    );
+
+  componentDidMount(){
+
   }
   render() {
+	const options = {
+	    items: 4,
+	    nav: false,
+		dots:false,
+		autoplayTimeout:2500,
+	    rewind: true,
+	    autoplay: true,
+		responsive:{
+			0:{
+				items:1
+			},
+			768 : {
+    			items:4
+    		}
+		}
+	};
     let { items } = this.state;
     return (
-      <div className={styles.Home}>
-        <div className={styles.popularSearchSection}>
-          <div className={styles.popularSearchTitle}>Popular Searches</div>
-          <ul className={styles.cities}>
-            {this.state.cities.map((city, i) => {
-              return (
-                <Link
-                  to={`/search/null/${city}`}
-                  key={"city" + i}
-                  className={styles.city}
-                >
-                  {city}
-                </Link>
-              );
-            })}
-          </ul>
-        </div>
-        <div className={styles.postsSection}>
-          <div className={styles.postsTitle}>
-            Find an Internship and Advance Your Career
-          </div>
-          <div className={styles.postsSubTitle}>
-            Each month, thousands of students get career opportunities via
-            Interny
-          </div>
-          <div className={styles.cards}>
-            <Card
-              v-for={(item, i) in items}
-              type={"jobPost"}
-              key={i}
-              posts={[
-                {
-                  date: "30 days ago",
-                  header:
-                    i === 0
-                      ? "Siemens AG"
-                      : i === 1
-                      ? "Nanodems Corp."
-                      : "Fikrimuhal",
-                  company: "Software Development Engineer",
-                  image: i === 0 ? siemens : i === 1 ? nanodems : fikrimuhal,
-                  buttons: [
-                    {
-                      type: "primary",
-                      text: "20 Days Internship",
-                      sizeName: "small",
-                      responsive: "post",
-                    },
-                  ],
-                  note:
-                    "Responsible for the design, coding, unit testing and documentation of software components and features. Build automation test framework. Work with the software engineering team to meet deliverables. ",
-                },
-              ]}
-            />
-          </div>
-          <div className={styles.discoverBtn}>
-            <Button
-              to={"/search"}
-              type={"ghost"}
-              text={"Discover"}
-              sizeName={"large"}
-            />
-          </div>
-        </div>
+		<div className={"home"}>
+			<div className={"home__popularSearchSection"}>
+				<div className={"home__popularSearchTitle"}>Popular Searches</div>
+				<ul className={"home__cities"}>
+					{this.state.cities.map((city, i) => {
+						return (
+							<Link
+							to={`/search/null/${city}`}
+							key={"city" + i}
+							className={"home__cities__city"}
+							>
+								{city}
+							</Link>
+						);
+					})}
+				</ul>
+			</div>
+			<div className={"home__postsSection"}>
+				<div class="container">
+					<div className={"home__postsSection__postsTitle"}>
+						Find an Internship and Advance Your Career
+					</div>
+					<div className={"home__postsSection__postsSubTitle"}>
+						Each month, thousands of students get career opportunities via Interny
+					</div>
+					<div className={"home__postsSection__cards"}>
+						<div class="row">
+							<Card
+								v-for={(item, i) in items}
+								type={"jobPost"}
+								key={i}
+								posts={[
+									{
+									location:"Istanbul/Turkey",
+									date: "30 days ago",
+									header:
+									i === 0
+									? "Siemens AG"
+									: i === 1
+									? "Nanodems Corp."
+									: "Fikrimuhal",
+									company: "Software Development Engineer",
+									image: i === 0 ? siemens : i === 1 ? nanodems : fikrimuhal,
+									buttons: [
+									{
+									type: "primary",
+									text: i === 0
+									? "4 Weeks Internship"
+									: i === 1
+									? "8 Weeks Internship"
+									: "12 Weeks Internship",
+									sizeName: "small",
+									responsive: "post",
+									},
+									],
 
-        <div className={styles.companiesSection}>
-          <div className={styles.companiesTitle}>Outstanding Companies</div>
-          <div className={styles.companiesSubTitle}>
-            Each year, more than 400 million interns turn to INTERNY as
-            searching for internships
-          </div>
-          <div className={styles.companiesImages}>
-            <div
-              id="carouselExampleSlidesOnly"
-              class="carousel slide"
-              data-ride="carousel"
-              data-interval="5000"
-            >
-              <div className="carousel-inner">
-                <div
-                  className={`carousel-item active ${styles.outstandingCompaniesCard}`}
-                >
-                  <img
-                    onClick={() => this.setState({ ing: ingBankImage })}
-                    onMouseOver={() => this.setState({ ing: ingBankImage })}
-                    onMouseLeave={() =>
-                      this.setState({ ing: ingBankGrayImage })
-                    }
-                    height={38}
-                    src={this.state.ing}
-                    alt={"image"}
-                  />
-                  <img
-                    onClick={() => this.setState({ unilever: unileverImage })}
-                    onMouseOver={() =>
-                      this.setState({ unilever: unileverImage })
-                    }
-                    onMouseLeave={() =>
-                      this.setState({ unilever: unileverGrayImage })
-                    }
-                    height={65}
-                    src={this.state.unilever}
-                    alt={"image"}
-                  />
-                  <img
-                    onClick={() => this.setState({ allianz: allianzImage })}
-                    onMouseOver={() => this.setState({ allianz: allianzImage })}
-                    onMouseLeave={() =>
-                      this.setState({ allianz: allianzGrayImage })
-                    }
-                    height={35}
-                    src={this.state.allianz}
-                    alt={"image"}
-                  />
-                  <img
-                    onClick={() => this.setState({ vodafone: vodafoneImage })}
-                    onMouseOver={() =>
-                      this.setState({ vodafone: vodafoneImage })
-                    }
-                    onMouseLeave={() =>
-                      this.setState({ vodafone: vodafoneGrayImage })
-                    }
-                    height={62}
-                    src={this.state.vodafone}
-                    alt={"image"}
-                  />
-                </div>
-                <div
-                  className={`carousel-item ${styles.outstandingCompaniesCard}`}
-                >
-                  <img
-                    onClick={() => this.setState({ ing: ingBankImage })}
-                    onMouseOver={() => this.setState({ ing: ingBankImage })}
-                    onMouseLeave={() =>
-                      this.setState({ ing: ingBankGrayImage })
-                    }
-                    height={38}
-                    src={this.state.ing}
-                    alt={"image"}
-                  />
-                  <img
-                    onClick={() => this.setState({ unilever: unileverImage })}
-                    onMouseOver={() =>
-                      this.setState({ unilever: unileverImage })
-                    }
-                    onMouseLeave={() =>
-                      this.setState({ unilever: unileverGrayImage })
-                    }
-                    height={65}
-                    src={this.state.unilever}
-                    alt={"image"}
-                  />
-                  <img
-                    onClick={() => this.setState({ allianz: allianzImage })}
-                    onMouseOver={() => this.setState({ allianz: allianzImage })}
-                    onMouseLeave={() =>
-                      this.setState({ allianz: allianzGrayImage })
-                    }
-                    height={35}
-                    src={this.state.allianz}
-                    alt={"image"}
-                  />
-                  <img
-                    onClick={() => this.setState({ vodafone: vodafoneImage })}
-                    onMouseOver={() =>
-                      this.setState({ vodafone: vodafoneImage })
-                    }
-                    onMouseLeave={() =>
-                      this.setState({ vodafone: vodafoneGrayImage })
-                    }
-                    height={62}
-                    src={this.state.vodafone}
-                    alt={"image"}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={styles.browseJobsSection}>
-          <div className={styles.jobsTitle}>
-            <div>
-              Apply here for any of the thousands of internships around the
-              world.
-            </div>
-            <Link to={"signup"} className={styles.prepareCv}>
-              Sign up!
-            </Link>
-          </div>
-          <img src={workingStudentImage} alt={"image"} />
-        </div>
-        <div className={styles.howItWorksSection}>
-          <div className={styles.howItWorksTitle}>How It Works</div>
-          <div className={styles.howItWorksSubTitle}>
-            Each year, more than 400 million interns turn to INTERNY as
-            searching for internships, making over thousands applications every
-            day.
-          </div>
-          <div className={styles.divisions}>
-            <div style={{ marginTop: "45px" }} className={styles.division}>
-              <img className={styles.icon} src={register} />
-              <div className={styles.title}>Join & Apply</div>
-              <div className={styles.description}>
-                Sign up and buy the requested package. Then apply for the
-                internships for acceptance.
-              </div>
-            </div>
-            <div style={{ marginTop: "30px" }} className={styles.division}>
-              <img className={styles.icon} src={comp} />
-              <div className={styles.title}>Competency Analytics</div>
-              <div className={styles.description}>
-                Prove your competency to be the primary candidate of the company
-                you want to apply for. Use CA to determine and improve the
-                competency level if necessary.
-              </div>
-            </div>
-            <div style={{ marginTop: "15px" }} className={styles.division}>
-              <img className={styles.icon} src={application} />
-              <div className={styles.title}>Project Management System</div>
-              <div className={styles.description}>
-                Use PMS to manage tasks assigned for the internship and to
-                contact the company.
-              </div>
-            </div>
-            <div style={{ marginTop: "0px" }} className={styles.division}>
-              <img className={styles.icon} src={duties} />
-              <div className={styles.title}>Reference Letter</div>
-              <div className={styles.description}>
-                Complete the internship process and take your WFA report. If
-                you're over 60% successful according to the WFA, get your signed
-                reference letter.
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={styles.internsSaysSection}>
-          <div className={styles.internsSaysTitle}>
-            What Interns Say About Us
-          </div>
-          <div className={styles.internsSaysSubTitle}>
-            Thousands of university students and recent graduates easily found
-            internships they deserve anywhere in the world
-          </div>
-          <div className={styles.internsSaysImages}>
-            <img src={steveAustin} alt={"image"} />
-            <img className={styles.shadowed} src={chaseBroke} alt={"image"} />
-            <img src={georgeBurgess} alt={"image"} />
-          </div>
-        </div>
-        <div id={"packages-section"} className={styles.packagesSection}>
-          <div className={styles.packagesTitle}>See the Intern Packages</div>
-          <div className={styles.packagesSubTitle}>
-            Click to see detail of packages
-          </div>
-          <div className={styles.packagesCards}>
-            <div
-              onMouseLeave={() => this.setState({ pri1: false })}
-              onMouseOver={() => this.setState({ pri1: true })}
-              className={styles.frontier}
-            >
-              <Card type={"pricing"}>
-                <div className={styles.packageCard}>
-                  <div className={styles.headerDiv}>
-                    <div className={styles.packageTitle}>FREEMIUM</div>
-                    <div className={styles.packagePrice}>$0.00</div>
-                    <div className={styles.packagePaymentDate}>Per Month</div>
-                  </div>
-                  <div className={styles.stroke} />
-                  <div className={styles.descriptionDiv}>
-                    <div className={styles.packageDescription}>
-                      <div>Sign up!</div>
-                      <div>Create CV</div>
-                      <div>Search Internships</div>
-                    </div>
-                    <Button
-                      v-if={this.state.pri1}
-                      type={"primary"}
-                      text={"Buy Now"}
-                      sizeName={"default"}
-                    />
-                    <Button
-                      v-if={!this.state.pri1}
-                      type={"ghost"}
-                      text={"Buy Now"}
-                      sizeName={"default"}
-                    />
-                  </div>
-                </div>
-              </Card>
-            </div>
-            <div
-              onMouseLeave={() => this.setState({ pri2: false })}
-              onMouseOver={() => this.setState({ pri2: true })}
-              className={styles.frontier}
-            >
-              <Card type={"pricing"}>
-                <div className={styles.moneyGuarenteed}>
-                  {/* Money Back Guarenteed */}
-                </div>
-                <div className={styles.packageCardGuaranteed}>
-                  <div className={styles.headerDiv}>
-                    <div className={styles.packageTitle}>INTERN</div>
-                    <div className={styles.packagePrice}>$19,99</div>
-                    <div className={styles.packagePaymentDate}>Per Month</div>
-                  </div>
-                  <div className={styles.stroke} />
-                  <div className={styles.descriptionDiv}>
-                    <div className={styles.packageDescription}>
-                      <div>Apply for Internships</div>
-                      <div>PMS</div>
-                      <div>WFA Report</div>
-                      <div>Reference Letter</div>
-                    </div>
-                    <Button
-                      v-if={this.state.pri2}
-                      type={"primary"}
-                      text={"Buy Now"}
-                      sizeName={"default"}
-                    />
-                    <Button
-                      v-if={!this.state.pri2}
-                      type={"ghost"}
-                      text={"Buy Now"}
-                      sizeName={"default"}
-                    />
-                  </div>
-                </div>
-              </Card>
-            </div>
-            <div
-              onMouseLeave={() => this.setState({ pri3: false })}
-              onMouseOver={() => this.setState({ pri3: true })}
-              className={styles.frontier}
-            >
-              <Card type={"pricing"}>
-                <div className={styles.packageCard}>
-                  <div className={styles.headerDiv}>
-                    <div className={styles.packageTitle}>COMPETENCY</div>
-                    <div className={styles.packagePrice}>$9.99</div>
-                    <div className={styles.packagePaymentDate}>Per Month</div>
-                  </div>
-                  <div className={styles.stroke} />
-                  <div className={styles.descriptionDiv}>
-                    <div className={styles.packageDescription}>
-                      <div>Case Studies</div>
-                      <div>Competency Analytics</div>
-                      <div>Competency Report</div>
-                    </div>
-                    <Button
-                      v-if={this.state.pri3}
-                      type={"primary"}
-                      text={"Buy Now"}
-                      sizeName={"default"}
-                    />
-                    <Button
-                      v-if={!this.state.pri3}
-                      type={"ghost"}
-                      text={"Buy Now"}
-                      sizeName={"default"}
-                    />
-                  </div>
-                </div>
-              </Card>
-            </div>
-          </div>
-        </div>
+									},
+								]}
+							/>
+						</div>
+
+					</div>
+					<div className={"home__postsSection__discoverBtn"}>
+						<Button
+							to={"/search"}
+							type={"ghost"}
+							text={"Discover"}
+							sizeName={"large"}
+						/>
+					</div>
+				</div>
+
+
+			</div>
+
+			<div className={"home__companiesSection"}>
+				<div class="container">
+					<div className={"home__companiesSection__companiesTitle"}>Outstanding Companies</div>
+					<div className="home__companiesSection__companiesSubTitle">
+						Each year, more than 400 million interns turn to INTERNY assearching for internships
+					</div>
+
+					<div className="home__companiesSection__companiesImages">
+					<OwlCarousel ref="car" options={options}>
+						<div class="item">
+							<img
+							  onClick={() => this.setState({ing: ingBankImage})}
+							  onMouseOver={() => this.setState({ing: ingBankImage})}
+							  onMouseLeave={() => this.setState({ing: ingBankGrayImage})}
+							  height={38}
+							  src={this.state.ing}
+							  alt={"image"}
+							/>
+						</div>
+						<div class="item">
+							<img
+							  onClick={() => this.setState({unilever: unileverImage})}
+							  onMouseOver={() => this.setState({unilever: unileverImage})}
+							  onMouseLeave={() => this.setState({unilever: unileverGrayImage})}
+							  height={65}
+							  src={this.state.unilever}
+							  alt={"image"}
+							/>
+						</div>
+						<div class="item">
+							<img
+							  onClick={() => this.setState({allianz: allianzImage})}
+							  onMouseOver={() => this.setState({allianz: allianzImage})}
+							  onMouseLeave={() => this.setState({allianz: allianzGrayImage})}
+							  height={35}
+							  src={this.state.allianz}
+							  alt={"image"}
+							/>
+						</div>
+						<div class="item">
+							<img
+							  onClick={() => this.setState({vodafone: vodafoneImage})}
+							  onMouseOver={() => this.setState({vodafone: vodafoneImage})}
+							  onMouseLeave={() => this.setState({vodafone: vodafoneGrayImage})}
+							  height={62}
+							  src={this.state.vodafone}
+							  alt={"image"}
+							/>
+						</div>
+						<div class="item">
+							<img
+							  onClick={() => this.setState({unilever: unileverImage})}
+							  onMouseOver={() => this.setState({unilever: unileverImage})}
+							  onMouseLeave={() => this.setState({unilever: unileverGrayImage})}
+							  height={65}
+							  src={this.state.unilever}
+							  alt={"image"}
+							/>
+						</div>
+						<div class="item">
+							<img
+							  onClick={() => this.setState({allianz: allianzImage})}
+							  onMouseOver={() => this.setState({allianz: allianzImage})}
+							  onMouseLeave={() => this.setState({allianz: allianzGrayImage})}
+							  height={35}
+							  src={this.state.allianz}
+							  alt={"image"}
+							/>
+						</div>
+						<div class="item">
+							<img
+							  onClick={() => this.setState({vodafone: vodafoneImage})}
+							  onMouseOver={() => this.setState({vodafone: vodafoneImage})}
+							  onMouseLeave={() => this.setState({vodafone: vodafoneGrayImage})}
+							  height={62}
+							  src={this.state.vodafone}
+							  alt={"image"}
+							/>
+						</div>
+					</OwlCarousel>
+
+					</div>
+				</div>
+			</div>
+			<div className={"home__browseJobsSection"}>
+				<div className={"home__browseJobsSection__jobsTitle"}>
+					<div>
+						Apply here for any of the thousands of internships around theworld.
+					</div>
+					<Link to={"signup"} className={"prepareCv"}>
+						Sign up!
+					</Link>
+				</div>
+				<img src={workingStudentImage} alt={"image"} />
+			</div>
+			<div className={"home__howItWorksSection"}>
+				<div class="container">
+					<div className={"home__howItWorksSection__howItWorksTitle"}>How It Works</div>
+					<div className={"home__howItWorksSection__howItWorksSubTitle"}>
+						Each year, more than 400 million interns turn to INTERNY as
+						searching for internships, making over thousands applications every
+						day.
+					</div>
+					<div class="row home__howItWorksSection__row">
+						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
+							<div className={"home__howItWorksSection__division"}>
+								<img className={"home__howItWorksSection__division__icon"} src={register} />
+								<div className={"home__howItWorksSection__division__title"}>Join & Apply</div>
+								<div className={"home__howItWorksSection__division__description"}>
+									Sign up and buy the requested package. Then apply for the internships for acceptance.
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
+							<div className={"home__howItWorksSection__division"}>
+								<img className={"home__howItWorksSection__division__icon"} src={comp} />
+								<div className={"home__howItWorksSection__division__title"}>Competency Analytics</div>
+								<div className={"home__howItWorksSection__division__description"}>
+									Prove your competency to be the primary candidate of the company
+									you want to apply for. Use CA to determine and improve the
+									competency level if necessary.
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
+							<div className={"home__howItWorksSection__division"}>
+								<img className={"home__howItWorksSection__division__icon"} src={application} />
+								<div className={"home__howItWorksSection__division__title"}>Project Management System</div>
+								<div className={"home__howItWorksSection__division__description"}>
+									Use PMS to manage tasks assigned for the internship and to
+									contact the company.
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
+							<div className={"home__howItWorksSection__division"}>
+								<img className={"home__howItWorksSection__division__icon"} src={duties} />
+								<div className={"home__howItWorksSection__division__title"}>Reference Letter</div>
+								<div className={"home__howItWorksSection__division__description"}>
+									Complete the internship process and take your WFA report. If
+									you're over 60% successful according to the WFA, get your signed
+									reference letter.
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div className={"home__internsSaysSection"}>
+				<div class="container">
+					<div className={"home__internsSaysSection__internsSaysTitle"}>
+						What Interns Say About Us
+					</div>
+					<div className={"home__internsSaysSection__internsSaysSubTitle"}>
+						Thousands of university students and recent graduates easily found
+						internships they deserve anywhere in the world
+					</div>
+					<div class="row home__internsSaysSection__row">
+						<div class="col-md-4"><img src={steveAustin} alt={"image"} /></div>
+						<div class="col-md-4"><img src={chaseBroke} alt={"image"} /></div>
+						<div class="col-md-4"><img src={georgeBurgess} alt={"image"} /></div>
+					</div>
+				</div>
+			</div>
+			<div id={"packages-section"} className={"home__packagesSection"}>
+				<div class="container">
+					<div className={"home__packagesSection__packagesTitle"}>See the Intern Packages</div>
+					<div className={"home__packagesSection__packagesSubTitle"}>
+						Click to see detail of packages
+					</div>
+					<div class="row home__packagesSection__row">
+						<div class="col-md-4">
+							<div
+								onMouseLeave={() => this.setState({ pri1: false })}
+								onMouseOver={() => this.setState({ pri1: true })}
+								className={styles.frontier}
+							>
+								<Card type={"pricing"}>
+									<div className={"home__packagesSection__packageCard"}>
+										<div className={"home__packagesSection__packageCard__headerDiv"}>
+											<div className={"home__packagesSection__packageCard__packageTitle"}>FREEMIUM</div>
+											<div className={"home__packagesSection__packageCard__packagePrice"}>$0.00</div>
+											<div className={"home__packagesSection__packageCard__packagePaymentDate"}>Per Month</div>
+										</div>
+										<div className={"home__packagesSection__packageCard__stroke"} />
+										<div className={"home__packagesSection__packageCard__descriptionDiv"}>
+											<div className={"home__packagesSection__packageCard__packageDescription"}>
+												<div>Sign up!</div>
+												<div>Create CV</div>
+												<div>Search Internships</div>
+											</div>
+											<Button
+												v-if={this.state.pri1}
+												type={"primary"}
+												text={"Buy Now"}
+												sizeName={"default"}
+											/>
+											<Button
+												v-if={!this.state.pri1}
+												type={"ghost"}
+												text={"Buy Now"}
+												sizeName={"default"}
+											/>
+										</div>
+									</div>
+								</Card>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div
+								onMouseLeave={() => this.setState({ pri2: false })}
+								onMouseOver={() => this.setState({ pri2: true })}
+								className={styles.frontier}
+							>
+								<Card type={"pricing"}>
+									<div className={"moneyGuarenteed"}>
+									{/* Money Back Guarenteed */}
+									</div>
+									<div className={"home__packagesSection__packageCardGuaranteed"}>
+										<div className={"home__packagesSection__packageCardGuaranteed__headerDiv"}>
+											<div className={"home__packagesSection__packageCardGuaranteed__packageTitle"}>INTERN</div>
+											<div className={"home__packagesSection__packageCardGuaranteed__packagePrice"}>$19,99</div>
+											<div className={"home__packagesSection__packageCardGuaranteed__packagePaymentDate"}>Per Month</div>
+										</div>
+										<div className={"home__packagesSection__packageCardGuaranteed__stroke"} />
+										<div className={"home__packagesSection__packageCardGuaranteed__descriptionDiv"}>
+											<div className={"home__packagesSection__packageCardGuaranteed__packageDescription"}>
+												<div>Apply for Internships</div>
+												<div>PMS</div>
+												<div>WFA Report</div>
+												<div>Reference Letter</div>
+											</div>
+											<Button
+											v-if={this.state.pri2}
+											type={"primary"}
+											text={"Buy Now"}
+											sizeName={"default"}
+											/>
+											<Button
+											v-if={!this.state.pri2}
+											type={"ghost"}
+											text={"Buy Now"}
+											sizeName={"default"}
+											/>
+										</div>
+									</div>
+								</Card>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div
+								onMouseLeave={() => this.setState({ pri3: false })}
+								onMouseOver={() => this.setState({ pri3: true })}
+								className={styles.frontier}
+							>
+								<Card type={"pricing"}>
+									<div className={"home__packagesSection__packageCard"}>
+										<div className={"home__packagesSection__packageCard__headerDiv"}>
+											<div className={"home__packagesSection__packageCard__packageTitle"}>COMPETENCY</div>
+											<div className={"home__packagesSection__packageCard__packagePrice"}>$9.99</div>
+											<div className={"home__packagesSection__packageCard__packagePaymentDate"}>Per Month</div>
+										</div>
+										<div className={"home__packagesSection__packageCard__stroke"} />
+										<div className={"home__packagesSection__packageCard__descriptionDiv"}>
+											<div className={"home__packagesSection__packageCard__packageDescription"}>
+												<div>Case Studies</div>
+												<div>Competency Analytics</div>
+												<div>Competency Report</div>
+											</div>
+											<Button
+												v-if={this.state.pri3}
+												type={"primary"}
+												text={"Buy Now"}
+												sizeName={"default"}
+											/>
+											<Button
+												v-if={!this.state.pri3}
+												type={"ghost"}
+												text={"Buy Now"}
+												sizeName={"default"}
+											/>
+										</div>
+									</div>
+								</Card>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
         <Footer />
-      </div>
+
+    </div>
     );
   }
 }

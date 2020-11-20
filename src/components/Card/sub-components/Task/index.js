@@ -21,28 +21,28 @@ class Task extends Component {
 
         let user = getCookie('user');
         const { RenderMembers } = this.props;
-        const labelClassName = `labelStyle${this.props.labelClass[item.label.toLowerCase()]}`;
+        const labelClassName = `labelStyle${item.label.toLowerCase()}`;
 
         return (
-            <div className={styles.Task}>
-                <div className={styles.title}>{item.title}</div>
-                <div className={`${styles.label} ${styles[labelClassName]}`}>{item.label}</div>
+            <div className={"Task"}>
+                <div className={"title"}>{item.title}</div>
+                <div className={`${"label"} ${labelClassName}`}>{item.label}</div>
                 <div
                     draggable={false}
                     v-if={user === 'employer'}
                     onClick={async (e) => await this.onEditClick(e)}
-                    className={styles.editButton}
+                    className={"editButton"}
                 >
                     <img draggable={false} src={editIcon} alt={'icon'} />
                 </div>
-                <div className={styles.users}>Reporter: <span>{item.Employer}</span></div>
-                <div className={styles.users}>
+                <div className={"users"}>Reporter: <span>{item.Employer}</span></div>
+                <div className={"users"}>
                     Assignee:
                     <RenderMembers styles={styles} renderFor='name' {...this.props} />
                 </div>
-                <div className={styles.description}>{item.description}</div>
+                <div className={"description"}>{item.description}</div>
                 <RenderMembers styles={styles} renderFor='avatar' {...this.props} />
-                <div className={styles.deadline}>
+                <div className={"deadline"}>
                     <img src={clockIcon} alt={'clock'} /> <span>{(new Date(item.deadline)).toLocaleDateString()}</span>
                 </div>
             </div>

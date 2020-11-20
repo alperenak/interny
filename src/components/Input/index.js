@@ -15,7 +15,7 @@ class Input extends Component {
     return (
       <Fragment>
         <PlainInput
-          v-if={["text", "password", "number", "textarea", "modal"].includes(
+          v-if={["text", "password", "number", "textarea", "modal","file"].includes(
             type
           )}
           {...this.props}

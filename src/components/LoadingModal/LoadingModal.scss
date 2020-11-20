@@ -1,4 +1,4 @@
-.wrapper{
+.loadingWrapper{
     position: absolute;
     top: 0;
     left: 0;
@@ -10,10 +10,10 @@
     justify-content: center;
     align-items: center;
     z-index: 1500;
-    & .iconWrapper{
+    &__iconWrapper{
         width: 50px;
         height: 50px;
-        
+
 
         & img{
             width: 50px;
@@ -22,9 +22,9 @@
             -moz-animation:rotate 1s linear infinite;
             animation:rotate 1s linear infinite;
         }
-       
-    } 
-    & .text{
+
+    }
+    &__text{
         margin: 25px 0;
             color: white;
             font-weight: 600;

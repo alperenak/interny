@@ -26,12 +26,12 @@ class CompanyProfile extends Component {
         let {profileObject} = this.props;
         let userType = getCookie('user');
         return (
-            <div className={styles.companyProfileCard}>
-                <div className={styles.profileImage}>
-                    <div v-if={profileObject.avatar || profileObject.logo} className={styles.imageContainer}>
+            <div className={"companyProfileCard"}>
+                <div className={"profileImage"}>
+                    <div v-if={profileObject.avatar || profileObject.logo} className={"imageContainer"}>
                         <img src={profileObject.avatar || profileObject.logo} alt={'profile photo'}/>
                     </div>
-                    <label v-if={userType === 'employer'} className={profileObject.avatar || profileObject.logo ? styles.statusCircle : styles.fileInput} htmlFor="fileInput">
+                    <label v-if={userType === 'employer'} className={profileObject.avatar || profileObject.logo ? "statusCircle" : "fileInput"} htmlFor="fileInput">
                         <img src={addIcon} alt={'icon'} />
                     </label>
                     <input
@@ -43,26 +43,26 @@ class CompanyProfile extends Component {
                         onChange={(e) => this.onFileUpload(e.target.files)}
                     />
                 </div>
-                <div className={styles.headerText}>
+                <div className={"headerText"}>
                     {profileObject.header}
                 </div>
-                <div className={styles.location}>
+                <div className={"location"}>
                     <img src={locationIcon} alt={'location'}/>
                     {profileObject.location}
                 </div>
-                <div className={styles.sections}>
-                    <div className={styles.title}>Sector:</div>
-                    <div className={styles.text}>{profileObject.sector}</div>
+                <div className={"sections"}>
+                    <div className={"title"}>Sector:</div>
+                    <div className={"text"}>{profileObject.sector}</div>
                 </div>
-                <div className={styles.sections}>
-                    <div className={styles.title}>Job Type:</div>
+                <div className={"sections"}>
+                    <div className={"title"}>Job Type:</div>
                     {profileObject.jobType}
                 </div>
-                <div className={styles.sections}>
-                    <div className={styles.title}>Number of Emp:</div>
+                <div className={"sections"}>
+                    <div className={"title"}>Number of Emp:</div>
                     {profileObject.empNum}
                 </div>
-                <div className={styles.description}>
+                <div className={"description"}>
                     {profileObject.description}
                 </div>
             </div>

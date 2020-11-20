@@ -24,29 +24,37 @@ class EditForm extends Component {
         let {editObject} = this.state;
         let {object} = this.props;
         return (
-            <div className={`${styles.editForm} ${styles[this.props.type]}`}>
-                <Input
-                    label={'Language'}
-                    type={'select'}
-                    size={'full'}
-                    externalSource={languages}
-                    defaultValue={languages.find(e => e.value === editObject?.title)}
-                    placeholder={'Select a language'}
-                    onChange={(value, sValue) => this.setState({ editObject: {...editObject, title: sValue.value} })}
-                />
-                <Input
-                    label={'Language Level'}
-                    type={'select'}
-                    size={'full'}
-                    externalSource={languageLevels}
-                    defaultValue={languageLevels.find(e => e.value === editObject?.level)}
-                    placeholder={'Select your level'}
-                    onChange={(value, sValue) => this.setState({ editObject: {...editObject, level: sValue.value} })}
-                />
-                <div className={styles.formButtons}>
-                    <Button text={'Save'} type={'secondary'} sizeName={'default'} onButtonClick={async () => await this.onSaveClick()} />
-                    <Button v-if={this.props.type !== 'create'} text={'Cancel'} type={'ghost'} sizeName={'default'} onButtonClick={() => this.props.onCancel(object?.id)} />
-                </div>
+            <div className={`${"cvEditForm"} ${this.props.type}`}>
+				<div class="row">
+					<div class="col-md-12">
+						<Input
+		                    label={'Language'}
+		                    type={'select'}
+		                    size={'full'}
+		                    externalSource={languages}
+		                    defaultValue={languages.find(e => e.value === editObject?.title)}
+		                    placeholder={'Select a language'}
+		                    onChange={(value, sValue) => this.setState({ editObject: {...editObject, title: sValue.value} })}
+		                />
+					</div>
+					<div class="col-md-12">
+						<Input
+		                    label={'Language Level'}
+		                    type={'select'}
+		                    size={'full'}
+		                    externalSource={languageLevels}
+		                    defaultValue={languageLevels.find(e => e.value === editObject?.level)}
+		                    placeholder={'Select your level'}
+		                    onChange={(value, sValue) => this.setState({ editObject: {...editObject, level: sValue.value} })}
+		                />
+					</div>
+					<div class="col-md-12">
+						<div className={"cvEditForm__formButtons"}>
+		                    <Button text={'Save'} type={'secondary'} sizeName={'default'} onButtonClick={async () => await this.onSaveClick()} />
+		                    <Button v-if={this.props.type !== 'create'} text={'Cancel'} type={'ghost'} sizeName={'default'} onButtonClick={() => this.props.onCancel(object?.id)} />
+		                </div>
+					</div>
+				</div>
             </div>
         );
     }

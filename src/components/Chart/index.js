@@ -14,11 +14,11 @@ export default class Chart extends PureComponent {
     let { type, header } = this.props;
     return (
       <Card type={"chart"}>
-        <div className={styles.Chart}>
-          <div className={`${styles.header} ${styles[type]}`} v-if={header}>
+        <div className={"Chart"}>
+          <div className={`${"header"} ${type}`} v-if={header}>
             {header}
           </div>
-          <div className={styles.pieDiagram}>
+          <div className={"pieDiagram"}>
             <PieDiagram v-if={type === "pie"} />
           </div>
           <LineDiagram v-if={type === "line"} />

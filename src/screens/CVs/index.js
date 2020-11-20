@@ -54,12 +54,12 @@ class CVs extends Component {
         let { user } = this.props;
         let { sections, processing } = this.state;
         return (
-            <div className={styles.cvs}>
+            <div className={"cvDetail"}>
                 {processing && <LoadingModal text="Loading" />}
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
-							<div className={styles.profileSection}>
+							<div className={"cvDetail__profileSection"}>
 								<Card
 									type={'profile'}
 									getUser={this.props.getUser}

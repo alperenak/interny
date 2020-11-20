@@ -23,37 +23,45 @@ class EditForm extends Component {
         let {editObject} = this.state;
         let {type} = this.props;
         return (
-            <div className={`${styles.editForm} ${styles[this.props.type]}`}>
-                <Input
-                    v-if={type === 'create'}
-                    label={'Title'}
-                    labelDescription={'Name your CV'}
-                    type={'text'}
-                    size={'full'}
-                    defaultValue={editObject?.title}
-                    placeholder={'Enter name'}
-                    onChange={(value) => {
-                        if (type === 'create')
-                            this.props.onChange(value, 'title');
-                        this.setState({ editObject: {title: value} })
-                    }}
-                />
-                <Input
-                    label={'Summary'}
-                    type={'textarea'}
-                    size={'full'}
-                    placeholder={'Enter a summary about you'}
-                    defaultValue={editObject?.summary}
-                    onChange={(value) => {
-                        if (type === 'create')
-                            this.props.onChange(value, 'summary');
-                        this.setState({ editObject: {summary: value} })
-                    }}
-                />
-                <div className={styles.formButtons}>
-                    <Button v-if={type !== 'create'} text={'Save'} type={'secondary'} sizeName={'default'} onButtonClick={async () => await this.onSaveClick()} />
-                    <Button v-if={type !== 'create'} text={'Cancel'} type={'ghost'} sizeName={'default'} onButtonClick={() => this.props.onCancel()} />
-                </div>
+            <div className={`${"cvEditForm"} ${this.props.type}`}>
+				<div class="row">
+					<div class="col-md-12">
+						<Input
+		                    v-if={type === 'create'}
+		                    label={'Title'}
+		                    labelDescription={'Name your CV'}
+		                    type={'text'}
+		                    size={'full'}
+		                    defaultValue={editObject?.title}
+		                    placeholder={'Enter name'}
+		                    onChange={(value) => {
+		                        if (type === 'create')
+		                            this.props.onChange(value, 'title');
+		                        this.setState({ editObject: {title: value} })
+		                    }}
+		                />
+					</div>
+					<div class="col-md-12">
+						<Input
+		                    label={'Summary'}
+		                    type={'textarea'}
+		                    size={'full'}
+		                    placeholder={'Enter a summary about you'}
+		                    defaultValue={editObject?.summary}
+		                    onChange={(value) => {
+		                        if (type === 'create')
+		                            this.props.onChange(value, 'summary');
+		                        this.setState({ editObject: {summary: value} })
+		                    }}
+		                />
+					</div>
+					<div class="col-md-12">
+						<div className={"cvEditForm__formButtons"}>
+		                    <Button v-if={type !== 'create'} text={'Save'} type={'secondary'} sizeName={'default'} onButtonClick={async () => await this.onSaveClick()} />
+		                    <Button v-if={type !== 'create'} text={'Cancel'} type={'ghost'} sizeName={'default'} onButtonClick={() => this.props.onCancel()} />
+		                </div>
+					</div>
+				</div>
             </div>
         );
     }

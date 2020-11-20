@@ -11,13 +11,13 @@ import store from "../../store";
 import { getCookie } from "../../utils/cookie";
 
 /*** Styles ***/
-import styles from "./myaccount.scss";
+import styles from "./myAccount.scss";
 
 /*** Styles ***/
 import addIcon from "../../icons/add-circular-outlined-white-button.svg";
 import logo from "../../assets/interny-logo-white.png";
 
-class MyAccount extends Component {
+class myAccountWrapper extends Component {
   state = {
     items: [
       { key: "email", title: "E-mail Address" },
@@ -58,7 +58,7 @@ class MyAccount extends Component {
       <Input
         type={"text"}
         placeholder={`Enter ${title}`}
-        size={"half"}
+        size={"full"}
         onChange={(value) => this.setState({ value })}
       />
     );
@@ -101,123 +101,153 @@ class MyAccount extends Component {
       onButtonClick: (key) => this.onUpdateClick(key),
     },
   ];
-  render() {
-    let { user } = this.props;
-    let { items, processing } = this.state;
-    let duration = (((user?.Internship?.duration - user?.Internship?.dayLeft) / user?.Internship?.duration) * 100);
-    return (
-      <>
-        {processing && <LoadingModal text={"Loading..."} />}
-        <div className={styles.myAccount}>
-          <div className={styles.infoSection}>
-            <Card
-              header={{ text: "Profile Photo", position: "start" }}
-              type={"photo"}
-            >
-              <div className={styles.profileImage}>
-                <div
-                  v-if={user.avatar || user.logo}
-                  className={styles.imageContainer}
-                >
-                  <img src={user.avatar || user.logo} alt={"profile photo"} />
-                </div>
-                <label
-                  className={
-                    user.avatar || user.logo
-                      ? styles.statusCircle
-                      : styles.fileInput
-                  }
-                  htmlFor="fileInput"
-                >
-                  <img src={addIcon} alt={"icon"} />
-                </label>
-                <input
-                  id={"fileInput"}
-                  hidden={true}
-                  accept={"image/*"}
-                  type={"file"}
-                  aria-label={""}
-                  onChange={(e) => this.onFileUpload(e.target.files)}
-                />
-              </div>
-            </Card>
-            <Card v-if={user?.Internship} type={'photo'}>
-              <div className={styles.internship}>
-                <div className={styles.internshipHeader}>Internship</div>
-                <div className={styles.internshipField}>
-                  <span>Position: </span>
-                  <span className={styles.value}>{user?.Internship?.position}</span>
-                </div>
-                <div className={styles.internshipField}>
-                  <span>Start Date: </span>
-                  <span className={styles.value}>{user?.Internship?.startDate}</span>
-                </div>
-                <div className={styles.internshipField}>
-                  <span>End Date: </span>
-                  <span className={styles.value}>{user?.Internship?.endDate}</span>
-                </div>
-                <div className={styles.internshipField}>
-                  <span>Duration: </span>
-                  <div className={styles.bar}>
-                    <div
-                        style={{width: duration+'%'}}
-                        className={styles.duration}
-                    />
-                  </div>
-                </div>
-                <div className={styles.internshipField}>
-                  <span>Day(s) Left: </span>
-                  <span className={styles.value}>{user?.Internship?.dayLeft}</span>
-                </div>
-                <div className={styles.internshipField}>
-                  <span>Internship Length: </span>
-                  <span className={styles.value}>{user?.Internship?.internshipLength}</span>
-                </div>
-                <div className={styles.internshipField}>
-                  <span>Overall Score: </span>
-                  <span className={styles.value}>{user?.Internship?.overAllScore}</span>
-                </div>
-              </div>
-            </Card>
-            <Card v-else type={'logo'} backgroundColor={'#2c3f58'}>
-              <img src={logo} alt={'logo'} />
-              <div className={styles.slogan}>"The way to be a global intern"</div>
-            </Card>
-          </div>
-          <Card
-            type={"myAccount"}
-            header={{ text: "My Account", position: "start" }}
-          >
-            {items.map((item, i) => {
-              return (
-                <div
-                  v-if={user[item.key]}
-                  key={i}
-                  className={styles.MyAccountRow}
-                >
-                  <div className={styles.title}>{item.title}</div>
-                  <div v-if={item.key !== "password"} className={styles.text}>
-                    {item.key === "location"
-                      ? user[item.key].city + " - " + user[item.key].country
-                      : user[item.key]}
-                  </div>
-                  <div v-if={item.key === "password"} className={styles.text}>
-                    **********
-                </div>
-                  <Button
-                    type={"ghost"}
-                    sizeName={"small"}
-                    text={"Update"}
-                    onButtonClick={() => this.onChangeClick(item)}
-                  />
-                </div>
-              );
-            })}
-          </Card>
-        </div>
-      </>
-    );
-  }
+	render() {
+		let { user } = this.props;
+		let { items, processing } = this.state;
+		let duration = (((user?.Internship?.duration - user?.Internship?.dayLeft) / user?.Internship?.duration) * 100);
+		return (
+			<>
+				{processing && <LoadingModal text={"Loading..."} />}
+
+				<div className={"myAccountWrapper"}>
+					<div class="container">
+						<div class="row">
+							<div class="col-xl-3 col-lg-3 col-md-12">
+
+								<div className={"myAccountWrapper__infoSection row"}>
+									<div class="col-xl-12 col-lg-12 col-md-6 myAccountWrapper__photoMargin">
+										<Card
+											header={{ text: "Profile Photo", position: "start" }}
+											type={"photo"}
+										>
+											<div className={"myAccountWrapper__profileImage"}>
+												<div
+												v-if={user.avatar || user.logo}
+												className={"myAccountWrapper__profileImage__imageContainer"}
+												>
+													<img src={user.avatar || user.logo} alt={"profile photo"} />
+												</div>
+												<label
+												className={
+												user.avatar || user.logo
+												? "myAccountWrapper__profileImage__statusCircle"
+												: "myAccountWrapper__profileImage__fileInput"
+												}
+												htmlFor="fileInput"
+												>
+													<img src={addIcon} alt={"icon"} />
+												</label>
+												<input
+													id={"fileInput"}
+													hidden={true}
+													accept={"image/*"}
+													type={"file"}
+													aria-label={""}
+													onChange={(e) => this.onFileUpload(e.target.files)}
+												/>
+											</div>
+										</Card>
+										<div class="myAccountWrapper__spacer"></div>
+									</div>
+									<div class="col-xl-12 col-lg-12 col-md-6 myAccountWrapper__internship__margin myAccountWrapper__mobileMargin">
+										<Card v-if={user?.Internship} type={'photo'}>
+											<div className={"myAccountWrapper__internship"}>
+												<div className={"myAccountWrapper__internship__internshipHeader"}>Internship</div>
+												<div className={"myAccountWrapper__internship__internshipField"}>
+													<span>Position: </span>
+													<span className={"value"}>{user?.Internship?.position}</span>
+												</div>
+												<div className={"myAccountWrapper__internship__internshipField"}>
+													<span>Start Date: </span>
+													<span className={"value"}>{user?.Internship?.startDate}</span>
+												</div>
+												<div className={"myAccountWrapper__internship__internshipField"}>
+													<span>End Date: </span>
+													<span className={"value"}>{user?.Internship?.endDate}</span>
+												</div>
+												<div className={"myAccountWrapper__internship__internshipField"}>
+													<span>Duration: </span>
+													<div className={"bar"}>
+														<div
+														style={{width: duration+'%'}}
+														className={"duration"}
+														/>
+													</div>
+												</div>
+												<div className={"myAccountWrapper__internship__internshipField"}>
+													<span>Day(s) Left: </span>
+													<span className={"value"}>{user?.Internship?.dayLeft}</span>
+												</div>
+												<div className={"myAccountWrapper__internship__internshipField"}>
+													<span>Internship Length: </span>
+													<span className={"value"}>{user?.Internship?.internshipLength}</span>
+												</div>
+												<div className={"myAccountWrapper__internship__internshipField"}>
+													<span>Overall Score: </span>
+													<span className="value">{user?.Internship?.overAllScore}</span>
+												</div>
+											</div>
+										</Card>
+									</div>
+
+
+								</div>
+							</div>
+							<div class="col-xl-9 col-lg-9 col-md-12 myAccountWrapper__mobileMargin">
+
+								<div class="row" style={{"height":"100%"}}>
+									<div class="col-md-12">
+										<Card
+											type={"myAccount"}
+
+										>
+											<>
+											<div class="col-md-12">
+											<div class="cardHeader start">My Account</div>
+											</div>
+
+											{items.map((item, i) => {
+												return (
+													<div class="col-md-12">
+														<div
+														v-if={user[item.key]}
+														key={i}
+														className={"myAccountWrapperRow"}
+														>
+															<div className={"myAccountWrapperRow__title"}>{item.title}</div>
+																<div v-if={item.key !== "password"} className={styles.text}>
+																	{item.key === "location"
+																	? user[item.key].city + " - " + user[item.key].country
+																	: user[item.key]}
+																</div>
+																<div v-if={item.key === "password"} className={styles.text}>
+																	**********
+																</div>
+																<Button
+																	type={"ghost"}
+																	sizeName={"small"}
+																	text={"Update"}
+																	onButtonClick={() => this.onChangeClick(item)}
+																/>
+														</div>
+													</div>
+
+												);
+
+											})}
+											</>
+										</Card>
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</>
+		);
+	}
 }
 
-export default MyAccount;
+export default myAccountWrapper;

@@ -20,32 +20,32 @@ class Button extends Component {
         let {disabled, hoverIcon, loading, icon, iconAutoWidth, iconPosition, text, textClass} = this.props;
         return (
             <Fragment>
-                {(icon && iconPosition.includes('left')) && <img src={icon} alt="" className={`${styles[iconPosition+'-icon']} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
-                {(icon && hoverIcon && iconPosition.includes('left') && !disabled) && <img src={hoverIcon} alt="" className={`${styles[iconPosition+'-icon']} ${styles.hoverIcon} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
-                {(icon && !hoverIcon && iconPosition.includes('left')) && <img src={icon} alt="" className={`${styles[iconPosition+'-icon']} ${styles.hoverIcon} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
+                {(icon && iconPosition.includes('left')) && <img src={icon} alt="" className={`${iconPosition+'-icon'} ${(iconAutoWidth?"autoWidth":'')}`} />}
+                {(icon && hoverIcon && iconPosition.includes('left') && !disabled) && <img src={hoverIcon} alt="" className={`${iconPosition+'-icon'} ${"hoverIcon"} ${(iconAutoWidth?"autoWidth":'')}`} />}
+                {(icon && !hoverIcon && iconPosition.includes('left')) && <img src={icon} alt="" className={`${iconPosition+'-icon'} ${"hoverIcon"} ${(iconAutoWidth?"autoWidth":'')}`} />}
                 <img hidden={!loading} src={loadingIcon} alt={'loading'} />
-                {(icon && iconPosition.includes('center')) && <img src={icon} alt="" className={`${styles[iconPosition+'-icon']} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
-                {(icon && hoverIcon && iconPosition.includes('center') && !disabled) && <img src={hoverIcon} alt="" className={`${styles[iconPosition+'-icon']} ${styles.hoverIcon} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
-                {(icon && !hoverIcon && iconPosition.includes('center')) && <img src={icon} alt="" className={`${styles[iconPosition+'-icon']} ${styles.hoverIcon} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
+                {(icon && iconPosition.includes('center')) && <img src={icon} alt="" className={`${iconPosition+'-icon'} ${(iconAutoWidth?"autoWidth":'')}`} />}
+                {(icon && hoverIcon && iconPosition.includes('center') && !disabled) && <img src={hoverIcon} alt="" className={`${iconPosition+'-icon'} ${"hoverIcon"} ${(iconAutoWidth?"autoWidth":'')}`} />}
+                {(icon && !hoverIcon && iconPosition.includes('center')) && <img src={icon} alt="" className={`${iconPosition+'-icon'} ${"hoverIcon"} ${(iconAutoWidth?"autoWidth":'')}`} />}
                 {!loading && <span className={textClass}>{text}</span>}
-                {(icon && iconPosition.includes('right')) && <img src={icon} alt="" className={`${styles[iconPosition+'-icon']} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
-                {(icon && hoverIcon && iconPosition.includes('right') && !disabled) && <img src={hoverIcon} alt="" className={`${styles[iconPosition+'-icon']} ${styles.hoverIcon} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
-                {(icon && !hoverIcon && iconPosition.includes('right')) && <img src={icon} alt="" className={`${styles[iconPosition+'-icon']} ${styles.hoverIcon} ${(iconAutoWidth?styles.autoWidth:'')}`} />}
+                {(icon && iconPosition.includes('right')) && <img src={icon} alt="" className={`${iconPosition+'-icon'} ${(iconAutoWidth?"autoWidth":'')}`} />}
+                {(icon && hoverIcon && iconPosition.includes('right') && !disabled) && <img src={hoverIcon} alt="" className={`${iconPosition+'-icon'} ${"hoverIcon"} ${(iconAutoWidth?"autoWidth":'')}`} />}
+                {(icon && !hoverIcon && iconPosition.includes('right')) && <img src={icon} alt="" className={`${iconPosition+'-icon'} ${"hoverIcon"} ${(iconAutoWidth?"autoWidth":'')}`} />}
             </Fragment>
         );
     }
     responsiveConverter(responsive){
         if(responsive==='post'){
-            return styles.responsivePost
+            return "responsivePost"
         }
         else if (responsive === 'auth'){
-            return styles.responsiveAuth
+            return "responsiveAuth"
         }
         else if (responsive === 'link'){
-            return styles.responsiveLink
+            return "responsiveLink"
         }
         else if (responsive === 'hamburger'){
-            return styles.responsiveHamburger
+            return "responsiveHamburger"
         }
         else return ''
     }
@@ -55,11 +55,11 @@ class Button extends Component {
         return (
             <Fragment>
                 <Link onClick={onButtonClick} style={{width: width}} v-if={to || isLink} to={to} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}
-                    className={`${styles.btn} ${loading ? styles.loading : ''} ${styles[sizeName]} ${styles[type]} ${this.responsiveConverter(responsive)} ${(disabled?styles.disabled:'')}`}>
+                    className={`${"btn"} ${loading ? "loading" : ''} ${sizeName} ${type} ${this.responsiveConverter(responsive)} ${(disabled?"disabled":'')}`}>
                     {this.renderContent()}
                 </Link>
                 <button style={{width: width}} v-if={!to && !isLink} onClick={onButtonClick} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}
-                    className={`${styles.btn} ${loading ? styles.loading : ''} ${styles[sizeName]} ${styles[type]} ${this.responsiveConverter(responsive)} ${(disabled?styles.disabled:'')}`}>
+                    className={`${"btn"} ${loading ? "loading" : ''} ${sizeName} ${type} ${this.responsiveConverter(responsive)} ${(disabled?"disabled":'')}`}>
                     {this.renderContent()}
                 </button>
             </Fragment>

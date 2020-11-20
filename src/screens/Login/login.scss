@@ -1,12 +1,13 @@
 .login {
     display: flex;
-    position: absolute;
     width: 100%;
-    height: calc(100% - 80px);
-    left: 0;
-    top: 80px;
+	border-radius: 10px;
+	justify-content: center;
+	
 }
 
-.myFlex{
-    flex-direction: row;
+.loginWrapper{
+	height: calc(100vh - 82px);
+	display: flex;
+	align-items: center;
 }

@@ -8,17 +8,17 @@ export class Intern extends Component {
     let selectedFilter = selectedInterns.filter((id) => id === internInfo.id);
     let selected = selectedFilter.length > 0;
 
-    const activeClass = ((selected || allCheck) ? styles.internActive : '');
+    const activeClass = ((selected || allCheck) ? "internActive" : '');
 
     return (
-      <div className={`${styles.intern} ${activeClass}`} onClick={() => {
+      <div className={`${"intern"} ${activeClass}`} onClick={() => {
         this.props.toggleIntern(internInfo)
       }}>
-        <div className={styles.internImage}>
-          <div className={styles.noSelectImage} />
+        <div className={"internImage"}>
+          <div className={"noSelectImage"} />
           <img src={internInfo.avatar} />
         </div>
-        <div className={styles.internName}>
+        <div className={"internName"}>
           <span>{`${internInfo.name} ${internInfo.surname}`}</span>
         </div>
       </div>

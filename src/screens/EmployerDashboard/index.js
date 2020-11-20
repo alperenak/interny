@@ -26,53 +26,76 @@ class Dashboard extends Component {
     render() {
         let {interns} = this.state;
         return (
-            <div className={styles.Dashboard}>
-                <div className={styles.col1}>
-                    <Card header={{text: 'Interns', position: 'start'}} type={'table'}>
-                        <div className={styles.tableContainer}>
-                            {interns.map((intern, i) => {
-                                return (
-                                    <Fragment key={i}>
-                                        <Link to={`/interndetail/${intern.id}`} className={styles.rowContainer}>
-                                            <div className={styles.avatar}><img src={intern.avatar} alt={'avatar'}/></div>
-                                            <div className={styles.internName}>{intern.name} {intern.surname}</div>
-                                        </Link>
-                                    </Fragment>
-                                )
-                            })}
-                        </div>
-                    </Card>
-                    <div className={styles.taskCardContainer}>
-                        <Chart type={'pie'} header={'Task Progress'}/>
-                    </div>
-                </div>
-                <div className={styles.col2}>
-                    <div className={styles.numericCardContainer}>
-                        <Card type={'numeric'}>
-                            <div className={styles.numericDataContainer}>+165</div>
-                        </Card>
-                        <Card type={'numeric'}>
-                            <div className={styles.numericDataContainer}>+165</div>
-                        </Card>
-                        <Card type={'numeric'}>
-                            <div className={styles.numericDataContainer}>+165</div>
-                        </Card>
-                    </div>
-                    <div className={styles.numericCardContainer}>
-                        <Card type={'numeric'}>
-                            <div className={styles.numericDataContainer}>+165</div>
-                        </Card>
-                        <Card type={'numeric'}>
-                            <div className={styles.numericDataContainer}>+165</div>
-                        </Card>
-                        <Card type={'numeric'}>
-                            <div className={styles.numericDataContainer}>+165</div>
-                        </Card>
-                    </div>
-                    <div className={styles.applicationContainer}>
-                        <Chart type={'line'} header={'Applications By Post'}/>
-                    </div>
-                </div>
+            <div className={"dashboard"}>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6">
+							<Card header={{text: 'Interns', position: 'start'}} type={'table'}>
+								<div className={"dashboard__tableContainer"}>
+									{interns.map((intern, i) => {
+										return (
+											<Fragment key={i}>
+												<Link to={`/interndetail/${intern.id}`} className={"dashboard__rowContainer"}>
+													<div className={"dashboard__avatar"}><img src={intern.avatar} alt={'avatar'}/></div>
+													<div className={"dashboard__internName"}>{intern.name} {intern.surname}</div>
+												</Link>
+											</Fragment>
+										)
+									})}
+								</div>
+							</Card>
+						</div>
+						<div class="col-md-6" style={{"display":"flex","justify-content":"space-between","flex-direction":"column"}}>
+							<div className={"row"}>
+								<div class="col-md-4">
+									<Card type={'numeric'}>
+										<div className={"dashboard__numericDataContainer"}>+165</div>
+									</Card>
+								</div>
+								<div class="col-md-4">
+									<Card type={'numeric'}>
+										<div className={"dashboard__numericDataContainer"}>+165</div>
+									</Card>
+								</div>
+								<div class="col-md-4">
+									<Card type={'numeric'}>
+										<div className={"dashboard__numericDataContainer"}>+165</div>
+									</Card>
+								</div>
+							</div>
+							<div className={"row"}>
+								<div class="col-md-4">
+									<Card type={'numeric'}>
+										<div className={"dashboard__numericDataContainer"}>+165</div>
+									</Card>
+								</div>
+								<div class="col-md-4">
+									<Card type={'numeric'}>
+										<div className={"dashboard__numericDataContainer"}>+165</div>
+									</Card>
+								</div>
+								<div class="col-md-4">
+									<Card type={'numeric'}>
+										<div className={"dashboard__numericDataContainer"}>+165</div>
+									</Card>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row" style={{"margin-top":"50px"}}>
+						<div class="col-md-6">
+							<div className={"dashboard__taskCardContainer"}>
+								<Chart type={'pie'} header={'Task Progress'}/>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div className={"dashboard__applicationContainer"}>
+								<Chart type={'line'} header={'Applications By Post'}/>
+							</div>
+						</div>
+					</div>
+				</div>
+
             </div>
         );
     }

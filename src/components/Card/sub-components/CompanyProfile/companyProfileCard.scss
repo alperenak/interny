@@ -1,13 +1,8 @@
 .companyProfileCard {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: start;
-  max-width: 250px;
-
-  @media only screen and (max-width: 1400px) {
-    max-width: 150px;
-  }
+	border: 1px solid #efefef;
+    border-radius: 12px;
+    background-color: white;
+    padding: 16px 32px;
 
   & .profileImage {
     position: relative;

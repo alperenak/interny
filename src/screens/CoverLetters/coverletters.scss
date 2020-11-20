@@ -1,29 +1,30 @@
-.CoverLetters {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+@import '../../helpers/responsiveBreakpointsMixins.scss';
 
-  & .cards {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    width: 100%;
 
-    & .CoverLettersWrapper {
-      width: 100%;
-    }
+.coverLetters {
+	margin-top:80px;
+	margin-bottom:80px;
+	&__cards {
+		display: flex;
+		justify-content: space-between;
+		align-items: start;
+		width: 100%;
+	}
+	&__coverLettersWrapper {
+		width: 100%;
 
-    & .profileSection {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-  }
-}
-
-.link_text{
-  color:#1459b4 ;
-  cursor: pointer;
+	}
+	&__profileSection {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		@include large{
+			margin-bottom:50px;
+		}
+	}
+	&__link_text{
+		color:#1459b4;
+		cursor: pointer;
+	}
 }
