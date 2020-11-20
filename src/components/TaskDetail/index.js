@@ -316,6 +316,7 @@ class TaskDetail extends Component {
 		let user = getCookie('user');
 		const userType = getCookie('user');
 		item.status = value.value;
+		
 		if(value.key == "test"){
 			document.getElementById("modalWrapper__closeIcon").click();
 			this.props.createModal({
@@ -378,7 +379,16 @@ class TaskDetail extends Component {
         const RenderWFA = this.renderWFA.bind(this);
         const RenderLogsAndComments = this.renderLogsAndComments.bind(this);
         const labelClassName = `labelStyle${this.props.labelClass[item.label.toLowerCase()]}`;
-
+		const selectItems = [
+			{ key: "to_do", value: "To Do" },
+			{ key: "in_progress", value: "In Progress" },
+			{ key: "test", value: "Test" },
+		];
+		if(getCookie('user') != 'intern'){
+			selectItems.push({
+				key:'done',value:'Done'
+			})
+		}
         return (
             <div className={"TaskDetail"}>
 				<div class="row">
@@ -410,14 +420,7 @@ class TaskDetail extends Component {
 										  onChange={(value, slValue) =>
 											  this.changeStatus(item,slValue)
 										  }
-										  externalSource={[
-											  { key: "to_do", value: "To Do" },
-											  { key: "in_progress", value: "In Progress" },
-											  { key: "test", value: "Test" },
-											  getCookie('user') == 'intern' ? (null):({
-												  key:'done',value:'Done'
-											  })
-										  ]}
+										  externalSource={selectItems}
 									  />
 								</div>
 							)}
