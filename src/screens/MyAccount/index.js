@@ -11,7 +11,7 @@ import store from "../../store";
 import { getCookie } from "../../utils/cookie";
 
 /*** Styles ***/
-import styles from "./myAccount.scss";
+import styles from "./myaccount.scss";
 
 /*** Styles ***/
 import addIcon from "../../icons/add-circular-outlined-white-button.svg";
