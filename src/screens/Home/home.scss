@@ -1,5 +1,23 @@
 @import "../../helpers/responsiveBreakpointsMixins.scss";
-
+.boxAnimation{
+	&:hover{
+		-webkit-transform: translateY(-4px);
+		-ms-transform: translateY(-4px);
+		transform: translateY(-4px);
+		text-decoration: none;
+		box-shadow: 0 7px 17px rgba(63, 49, 178, .1), 0 5px 10px rgba(63, 49, 178, .06);
+		transition: all .2s;
+	}
+}
+.boxAnimation2{
+	&:hover{
+		-webkit-transform: translateY(-4px);
+		-ms-transform: translateY(-4px);
+		transform: translateY(-4px);
+		text-decoration: none;
+		transition: all .2s;
+	}
+}
 .home {
 	margin-top:-80px;
 
@@ -117,7 +135,7 @@
 		}
 		&__cards {
 			margin-top: 30px;
-			
+
 		}
 		&__discoverBtn {
 			margin-bottom: 50px;
@@ -258,14 +276,11 @@
 		position: relative;
 		width: 100%;
 		margin-top:70px;
-		@include large {
-			height: 500px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			flex-direction: column;
-		}
-
+		height:350px;
+		background-size: cover;
+		background-position: center center;
+		display: flex;
+		align-items: center;
 		&__jobsTitle {
 			font-family: "Sofia Pro Bold";
 			font-size: 30px;
@@ -277,9 +292,7 @@
 			text-align: left;
 			color: white;
 			z-index: 1;
-			padding: 150px 0 0 150px;
-			width: 60%;
-			position: absolute;
+
 
 			@include large {
 				padding: 0
@@ -308,6 +321,7 @@
 
 		& img {
 			width: 100%;
+			opacity: 0.85;
 			@include medium {
 				height: 100%;
 				object-fit: cover;

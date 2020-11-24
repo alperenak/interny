@@ -2,10 +2,12 @@ import React, { Component } from "react";
 /*** Components ***/
 import styles from "./signup.scss";
 import Card from "../../components/Card";
+import FooterAlternative from "../../components/FooterAlternative";
 
 class SignUp extends Component {
   render() {
     return (
+		<>
 		<div class="container">
   			<div class="row">
   				<div class="col-md-12">
@@ -13,6 +15,8 @@ class SignUp extends Component {
       			</div>
 			</div>
 		</div>
+		<FooterAlternative />
+		</>
     );
   }
 }

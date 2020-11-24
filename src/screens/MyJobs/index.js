@@ -478,6 +478,7 @@ class MyJobs extends Component {
 								type={'jobPost'}
 								RedirectControl={this.redirectControl.bind(this)}
 								posts={appliedPosts}
+								anim={false}
 								/>
 								<Card
 								header={{ text: cardText('Saved Jobs'), position: 'center' }}
@@ -485,6 +486,7 @@ class MyJobs extends Component {
 								type={'jobPost'}
 								RedirectControl={this.redirectControl.bind(this)}
 								posts={savedPosts}
+								anim={false}
 								/>
 								<Card
 								header={{ text: cardText('Accepted Jobs'), position: 'center' }}
@@ -492,6 +494,7 @@ class MyJobs extends Component {
 								type={'jobPost'}
 								RedirectControl={this.redirectControl.bind(this)}
 								posts={acceptedPosts}
+								anim={false}
 								/>
 								<Card
 								header={{ text: cardText('Pending Jobs'), position: 'center' }}
@@ -499,6 +502,7 @@ class MyJobs extends Component {
 								type={'jobPost'}
 								RedirectControl={this.redirectControl.bind(this)}
 								posts={pendingPosts}
+								anim={false}
 								/>
 							</RedirectControl>
 							<RedirectControl>
@@ -513,6 +517,7 @@ class MyJobs extends Component {
 								type={'jobPost'}
 								RedirectControl={this.redirectControl.bind(this)}
 								posts={postHistory}
+								anim={false}
 								/>
 								<Card
 								header={{ text: cardText('Active Posts'), position: 'center' }}
@@ -520,6 +525,7 @@ class MyJobs extends Component {
 								type={'jobPost'}
 								RedirectControl={this.redirectControl.bind(this)}
 								posts={activePosts}
+								anim={false}
 								/>
 								<Card
 								header={{ text: cardText('Passive Posts'), position: 'center' }}
@@ -527,6 +533,7 @@ class MyJobs extends Component {
 								type={'jobPost'}
 								RedirectControl={this.redirectControl.bind(this)}
 								posts={passivePosts}
+								anim={false}
 								/>
 							</RedirectControl>
 							<RedirectControl>
@@ -537,6 +544,7 @@ class MyJobs extends Component {
 								type={'jobPost'}
 								RedirectControl={this.redirectControl.bind(this)}
 								posts={jobsForTask}
+								anim={false}
 								/>
 							</RedirectControl>
 						</Fragment>

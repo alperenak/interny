@@ -1,19 +1,19 @@
 @import '../../helpers/responsiveBreakpointsMixins.scss';
 
-$primary: (background-color:#264870, color:white, border:solid 1px #264870);
-$secondary: (background-color:#f97050, color:#fff, border:solid 1px transparent);
+$primary: (background-color:#2b4970, color:white, border:solid 1px #264870);
+$secondary: (background-color:rgba(#f97050,0.9), color:#fff, border:solid 1px transparent);
 $ghost: (background-color:white, color:#2c3f58, border:solid 1px #ddd);
 $link: (background-color:transparent, color:#484848, border:solid 1px transparent);
 $icons: ("large":24px, "default":24px, "small":17px, "tiny":16px);
 $icon-margins: ("large":12px, "default":8px, "small":4px, "tiny":4px);
 
 $variants:( //primary variants
-  primary-hover: (background-color:rgba(#1d3f6b,0.6), color:white, border:solid 1px transparent),
-  primary-focus: (background-color:#003670, color:white, border:solid 1px #003670),
+  primary-hover: (background-color:rgba(#150b50,1), color:white, border:solid 1px transparent),
+  primary-focus: (background-color:#150b50, color:white, border:solid 1px #003670),
   primary-disable: (background-color:#cccccc, color:#919191, border:solid 1px #cccccc),
   //secondary variants
-  secondary-hover: (background-color:rgba(#ff8104, 0.2), color:#ff8104, border:solid 1px transparent),
-  secondary-focus: (background-color:#ff8104, color:white, border:solid 1px #ff8104),
+  secondary-hover: (background-color:rgba(#ff5f01,1), color:#fff, border:solid 1px transparent),
+  secondary-focus: (background-color:rgba(#ff5f01,1), color:white, border:solid 1px #ff5f01),
   secondary-disable: (background-color:#cccccc, color:#919191, border:solid 1px #cccccc),
   //ghost variants
   ghost-hover: (background-color:transparent,color:#2c3f58,border:solid 1px #2c3f58),
@@ -26,10 +26,10 @@ $variants:( //primary variants
 );
 
 // size variants
-$large: (padding:12px 36px, font-size:14px);
-$default: (padding:8px 24px, font-size:14px);
-$small: (padding:8px 24px, font-size:12px);
-$tiny: (padding:4px 12px, font-size:10px);
+$large: (padding:12px 36px, font-size:16px);
+$default: (padding:8px 24px, font-size:16px);
+$small: (padding:8px 24px, font-size:16px);
+$tiny: (padding:4px 12px, font-size:12px);
 
 $types: ("primary":$primary, "secondary":$secondary, "ghost":$ghost, "link":$link);
 $sizes: ("large":$large, "default":$default, "small":$small, "tiny":$tiny);

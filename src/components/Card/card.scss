@@ -10,21 +10,13 @@
   }
 
 
-  &.pricing {
-    height: 400px;
-    border-width: 2px;
-    transition: .3s;
-    &:hover {
-      border: 2px solid #696cff;
-      box-shadow: 0 4px 21px 15px rgba(105, 108, 255, 0.16);
-      -moz-box-shadow: 0 4px 21px 15px rgba(105, 108, 255, 0.16);
-      -o-box-shadow: 0 4px 21px 15px rgba(105, 108, 255, 0.16);
-      -webkit-box-shadow: 0 4px 21px 15px rgba(105, 108, 255, 0.16);
-    }
-    @include large {
-      padding: 16px 16px;
-    }
-  }
+	&.pricing {
+		min-height:450px;
+		padding: 20px;
+		border: 1px solid #efefef;
+		border-radius: 12px;
+		margin-bottom:30px;
+	}
 
   &.internDetail {
     display: flex;

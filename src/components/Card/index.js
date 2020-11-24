@@ -22,8 +22,15 @@ import styles from "./card.scss";
 class Card extends Component {
   render() {
     let { type, header, children, backgroundColor = '#fff', posts } = this.props;
+	var className = "Card";
+	if(type == "jobPost" || type == "pricing"){
+		if(typeof this.props.anim === "undefined"){
+			className += " boxAnimation";
+		}
+
+	}
     return (
-      <div className={`${"Card"} ${type} ${posts.length > 1 && "multiple"}`} style={{ backgroundColor }}>
+      <div className={`${className} ${type} ${posts.length > 1 && "multiple"}`} style={{ backgroundColor }}>
         <div
           v-if={header}
           className={`${"cardHeader"} ${header.position}`}

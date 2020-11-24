@@ -120,23 +120,37 @@ class Home extends Component {
 									date: "30 days ago",
 									header:
 									i === 0
-									? "Siemens AG"
+									? "Siemens AG - Sector 1"
 									: i === 1
-									? "Nanodems Corp."
-									: "Fikrimuhal",
+									? "Nanodems Corp. - Sector 2"
+									: "Fikrimuhal - Sector 3",
 									company: "Software Development Engineer",
 									image: i === 0 ? siemens : i === 1 ? nanodems : fikrimuhal,
+									star: 5,
+
 									buttons: [
 									{
-									type: "primary",
-									text: i === 0
-									? "4 Weeks Internship"
-									: i === 1
-									? "8 Weeks Internship"
-									: "12 Weeks Internship",
-									sizeName: "small",
-									responsive: "post",
+										type: "primary",
+										text: i === 0
+										? "4 Weeks Internship"
+										: i === 1
+										? "8 Weeks Internship"
+										: "12 Weeks Internship",
+										sizeName: "small",
+										width: "120px",
+										responsive: "post",
 									},
+									{
+									  	type: "ghost",
+									  	text: i === 0
+										? "1 Ocak 2021"
+										: i === 1
+										? "20 Ocak 2021"
+										: "10 Ağustos 2021",
+									  	sizeName: "small",
+									  	width: "120px",
+										responsive: "post",
+								    }
 									],
 
 									},
@@ -242,16 +256,21 @@ class Home extends Component {
 					</div>
 				</div>
 			</div>
-			<div className={"home__browseJobsSection"}>
-				<div className={"home__browseJobsSection__jobsTitle"}>
-					<div>
-						Apply here for any of the thousands of internships around theworld.
+			<div className={"home__browseJobsSection"} style={{"background-image":"url("+workingStudentImage+")"}}>
+				<div class="container">
+					<div class="row">
+						<div className={"home__browseJobsSection__jobsTitle"}>
+							<div>
+								Apply here for any of the thousands of internships around theworld.
+							</div>
+							<Link to={"signup"} className={"prepareCv"}>
+								Sign up!
+							</Link>
+						</div>
 					</div>
-					<Link to={"signup"} className={"prepareCv"}>
-						Sign up!
-					</Link>
 				</div>
-				<img src={workingStudentImage} alt={"image"} />
+
+
 			</div>
 			<div className={"home__howItWorksSection"}>
 				<div class="container">
@@ -263,7 +282,7 @@ class Home extends Component {
 					</div>
 					<div class="row home__howItWorksSection__row">
 						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
-							<div className={"home__howItWorksSection__division"}>
+							<div className={"home__howItWorksSection__division boxAnimation2"}  style={{"margin-top":"90px"}}>
 								<img className={"home__howItWorksSection__division__icon"} src={register} />
 								<div className={"home__howItWorksSection__division__title"}>Join & Apply</div>
 								<div className={"home__howItWorksSection__division__description"}>
@@ -272,7 +291,7 @@ class Home extends Component {
 							</div>
 						</div>
 						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
-							<div className={"home__howItWorksSection__division"}>
+							<div className={"home__howItWorksSection__division boxAnimation2"} style={{"margin-top":"60px"}}>
 								<img className={"home__howItWorksSection__division__icon"} src={comp} />
 								<div className={"home__howItWorksSection__division__title"}>Competency Analytics</div>
 								<div className={"home__howItWorksSection__division__description"}>
@@ -283,7 +302,7 @@ class Home extends Component {
 							</div>
 						</div>
 						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
-							<div className={"home__howItWorksSection__division"}>
+							<div className={"home__howItWorksSection__division boxAnimation2"} style={{"margin-top":"30px"}}>
 								<img className={"home__howItWorksSection__division__icon"} src={application} />
 								<div className={"home__howItWorksSection__division__title"}>Project Management System</div>
 								<div className={"home__howItWorksSection__division__description"}>
@@ -293,7 +312,7 @@ class Home extends Component {
 							</div>
 						</div>
 						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
-							<div className={"home__howItWorksSection__division"}>
+							<div className={"home__howItWorksSection__division boxAnimation2"}>
 								<img className={"home__howItWorksSection__division__icon"} src={duties} />
 								<div className={"home__howItWorksSection__division__title"}>Reference Letter</div>
 								<div className={"home__howItWorksSection__division__description"}>
@@ -316,9 +335,9 @@ class Home extends Component {
 						internships they deserve anywhere in the world
 					</div>
 					<div class="row home__internsSaysSection__row">
-						<div class="col-md-4"><img src={steveAustin} alt={"image"} /></div>
-						<div class="col-md-4"><img src={chaseBroke} alt={"image"} /></div>
-						<div class="col-md-4"><img src={georgeBurgess} alt={"image"} /></div>
+						<div class="col-md-4 boxAnimation2"><img src={steveAustin} alt={"image"} /></div>
+						<div class="col-md-4 boxAnimation2"><img src={chaseBroke} alt={"image"} /></div>
+						<div class="col-md-4 boxAnimation2"><img src={georgeBurgess} alt={"image"} /></div>
 					</div>
 				</div>
 			</div>
@@ -386,8 +405,8 @@ class Home extends Component {
 										<div className={"home__packagesSection__packageCardGuaranteed__descriptionDiv"}>
 											<div className={"home__packagesSection__packageCardGuaranteed__packageDescription"}>
 												<div>Apply for Internships</div>
-												<div>PMS</div>
-												<div>WFA Report</div>
+												<div data-toggle="tooltip" title="Project Management System">PMS</div>
+												<div data-toggle="tooltip" title="Workforce Analytics">WFA Report</div>
 												<div>Reference Letter</div>
 											</div>
 											<Button

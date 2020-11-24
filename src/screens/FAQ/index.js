@@ -2,7 +2,7 @@ import React, {Component, Fragment} from "react";
 
 /*** Components ***/
 import Accordion from "../../components/Accordion";
-
+import Footer from "../../components/Footer";
 /*** Store ***/
 import store from "../../store";
 
@@ -375,59 +375,88 @@ let dummy_data = {
 class FAQ extends Component {
   state = { question_type: "intern", data: {} };
 
-  componentDidMount = async () => {
-    let response = await store.faqData();
-    if (response) {
-      this.setState({ data: response.data });
-    }
-  };
+	componentDidMount = async () => {
+		let response = await store.faqData();
+		if (response) {
+			this.setState({ data: response.data });
+		}
+	};
 
-  renderRightBar = () => {
-    return (
-      <div className={styles.questions}>
-        <Card>
-          {dummy_data[this.state.question_type].map((data) => {
-            return <Accordion title={data.question} content={data.answer} />;
-          })}
-        </Card>
-      </div>
-    );
-  };
+	renderRightBar = () => {
+		return (
+			<div className="faq__questions">
+				<Card>
+					{dummy_data[this.state.question_type].map((data) => {
+						return <Accordion title={data.question} content={data.answer} />;
+					})}
+				</Card>
+			</div>
+		);
+	};
 
-  renderLeftBar = () => {
-    let {question_type} = this.state;
-    return (
-      <Card type={'list'} externalData={[
-        {
-          key: 'FAQ for Interns',
-          value: 'FAQ for Interns',
-          selected: question_type === 'intern',
-          onChange: () => this.setState({ question_type: "intern" })
-        },
-        {
-          key: 'FAQ for Employers',
-          value: 'FAQ for Employers',
-          selected: question_type === 'employer',
-          onChange: () => this.setState({ question_type: "employer" })
-        },
-        {
-          key: 'FAQ for Universities',
-          value: 'FAQ for Universities',
-          selected: question_type === 'university',
-          onChange: () => this.setState({ question_type: "university" })
-        }
-      ]}/>
-    );
-  };
+	renderLeftBar = () => {
+		let {question_type} = this.state;
+		return (
+			<Card type={'list'} externalData={[
+				{
+					key: 'FAQ for Interns',
+					value: 'FAQ for Interns',
+					selected: question_type === 'intern',
+					onChange: () => this.setState({ question_type: "intern" })
+				},
+				{
+					key: 'FAQ for Employers',
+					value: 'FAQ for Employers',
+					selected: question_type === 'employer',
+					onChange: () => this.setState({ question_type: "employer" })
+				},
+				{
+					key: 'FAQ for Universities',
+					value: 'FAQ for Universities',
+					selected: question_type === 'university',
+					onChange: () => this.setState({ question_type: "university" })
+				}
+			]}/>
+		);
+	};
 
-  render() {
-    return (
-      <div className={styles.faq_container}>
-        {this.renderLeftBar()}
-        {this.renderRightBar()}
-      </div>
-    );
-  }
+	render() {
+		return (
+			<>
+				<div className={"faq"}>
+					<div class="container">
+						<div class="row">
+							<div class="col-md-3">
+								{this.renderLeftBar()}
+							</div>
+							<div class="col-md-9">
+								<div id="accordion">
+									{dummy_data[this.state.question_type].map((data,index) => {
+										return(
+											<div class="card" style={{"width":"100%"}}>
+												<div class="card-header" id={"headingOne" + index}>
+													<button class="btn" data-toggle="collapse" data-target={"#collapseOne" + index} aria-expanded="true" aria-controls={"collapseOne" + index}>
+														{data.question}
+													</button>
+												</div>
+
+												<div id={"collapseOne" + index} class="collapse" aria-labelledby={"headingOne" + index} data-parent="#accordion">
+													<div class="card-body">
+														{data.answer}
+													</div>
+												</div>
+											</div>
+										);
+									})}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<Footer />
+			</>
+		);
+	}
 }
 
 export default FAQ;

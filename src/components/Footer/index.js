@@ -15,6 +15,8 @@ import linkedin from "../../icons/linkedin.svg";
 import appStore from "../../icons/app-store-badge.svg";
 import googlePlay from "../../icons/google-play-badge.svg";
 import location from "../../icons/location-white.svg";
+import instagram from "../../icons/instagram.svg";
+import youtube from "../../icons/youtube.svg";
 import EarthGrid from "../../icons/earth-grid-symbol.svg";
 
 class Footer extends Component {
@@ -145,6 +147,12 @@ class Footer extends Component {
 							</a>
 							<a href={"https://www.linkedin.com/company/internynet/"} target={"blank"}>
 								<img src={linkedin} alt={linkedin} />
+							</a>
+							<a href={"https://instagram.com/internynet/"} target={"blank"}>
+								<img src={instagram} alt={instagram} />
+							</a>
+							<a href={"https://youtube.com/internynet/"} target={"blank"}>
+								<img src={youtube} alt={youtube} />
 							</a>
 						</div>
 					</div>

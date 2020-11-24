@@ -443,7 +443,7 @@ class TopBar extends Component {
     const scrollY = window.scrollY
     // console.log(scrollY)
 
-    if (window.scrollY > 155) {
+    if (window.scrollY > 1) {
       this.setState({isScrolled: true});
     } else {
       this.setState({isScrolled: false});
@@ -488,7 +488,7 @@ class TopBar extends Component {
 													onClick={() => this.closeHamburgerMenu()}
 													to={"/search"}
 												>
-													Browse Internships
+													Internships
 												</Link>
 											</div>
 											<div>
@@ -560,7 +560,7 @@ class TopBar extends Component {
 							<div className={"topBar__links"}>
 								<Fragment v-if={!isAuthorized}>
 									<div>
-										<Link to={"/search"} className={this.state.isScrolled ? "topBar__links__scroll" : "topBar__links__nonscroll"}>Browse Internships</Link>
+										<Link to={"/search"} className={this.state.isScrolled ? "topBar__links__scroll" : "topBar__links__nonscroll"}>Internships</Link>
 									</div>
 									<div
 										onMouseOver={() => this.setState({ ourDropdown: true })}
@@ -570,7 +570,7 @@ class TopBar extends Component {
 										<Button
 											type={"link"}
 											sizeName={"default"}
-											text={"\u00a0\u00a0Packages\u00a0\u00a0"}
+											text={"\u00a0\u00a0HOW?\u00a0\u00a0"}
 											textClass={this.state.isScrolled ? "topBar__links__scroll" : "topBar__links__nonscroll"}
 										/>
 										<div v-if={ourDropdown} className={"topBar__links__dropdownContainer__dropdown"}>
@@ -586,7 +586,6 @@ class TopBar extends Component {
 											type={"primary"}
 											sizeName={"small"}
 											text={"\u00a0\u00a0Login\u00a0\u00a0"}
-											textClass={this.state.isScrolled ? "topBar__links__scroll" : "topBar__links__nonscroll"}
 										/>
 										<div v-if={loginDropDown} className={"topBar__links__dropdownContainer__dropdown"}>
 											<Card type={"dropDown"} externalData={this.state.loginPages} />

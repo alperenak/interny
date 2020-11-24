@@ -10,6 +10,7 @@ import styles from "./jobPost.scss";
 import locationIcon from "../../../../icons/location.svg";
 import { Link } from "react-router-dom";
 import { getCookie } from "../../../../utils/cookie";
+import BeautyStars from 'beauty-stars';
 
 class JobPost extends Component {
   renderPostButtons(buttons) {
@@ -60,6 +61,22 @@ class JobPost extends Component {
 					  		>
 								<div className={"postHeader"}>{pst.header}</div>
 					  		</Link>
+							{pst.star ? (
+								<div style={{"margin-top":"10px","margin-bottom":"10px"}}>
+									<BeautyStars
+										value={5}
+										onChange={value => this.setState({ value })}
+										size={16}
+									/>
+								</div>
+							):(null)}
+							{pst.startTime ? (
+								<div style={{"margin-top":"10px","margin-bottom":"10px"}}>
+									<Link to={link} className={"postCompany"}>
+							  			{"Start Time: " + pst.startTime}
+							  	  	</Link>
+								</div>
+							):(null)}
 							<Link to={link} className={"postCompany"}>
 					  			{pst.company}
 					  	  	</Link>
@@ -67,6 +84,7 @@ class JobPost extends Component {
 								<img src={locationIcon} alt={"location"} />
 								{pst.location}
 							</a>
+
 							<Link to={link} className={"postNote"}>
 					  			{pst.note}
 					  	  	</Link>
