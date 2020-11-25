@@ -95,7 +95,7 @@ class Footer extends Component {
 											<Link to="/signup">Sitemap</Link>
 											</li>
 											<li>
-											<Link to="/">Affilate</Link>
+											<Link to="/affiliate">Affilate</Link>
 											</li>
 											<li>
 											<Link to="/faq">Investor</Link>

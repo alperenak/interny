@@ -70,13 +70,7 @@ class JobPost extends Component {
 									/>
 								</div>
 							):(null)}
-							{pst.startTime ? (
-								<div style={{"margin-top":"10px","margin-bottom":"10px"}}>
-									<Link to={link} className={"postCompany"}>
-							  			{"Start Time: " + pst.startTime}
-							  	  	</Link>
-								</div>
-							):(null)}
+
 							<Link to={link} className={"postCompany"}>
 					  			{pst.company}
 					  	  	</Link>
@@ -84,7 +78,13 @@ class JobPost extends Component {
 								<img src={locationIcon} alt={"location"} />
 								{pst.location}
 							</a>
-
+							{pst.startTime ? (
+								<div style={{"margin-top":"10px","margin-bottom":"10px"}}>
+									<Link to={link} className={"postCompany"}>
+							  			{"Start Time: " + pst.startTime}
+							  	  	</Link>
+								</div>
+							):(null)}
 							<Link to={link} className={"postNote"}>
 					  			{pst.note}
 					  	  	</Link>

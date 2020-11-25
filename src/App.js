@@ -13,6 +13,7 @@ import LoadingModal from "./components/LoadingModal";
 /*** Screens ***/
 import Home from "./screens/Home";
 import SignUp from "./screens/SignUp";
+import Affiliate from "./screens/Affiliate";
 import UserHome from "./screens/UserHome";
 import CVs from "./screens/CVs/index.js";
 import CVList from "./screens/CVs/list.js";
@@ -122,7 +123,6 @@ class App extends React.Component {
   };
 
   checkStatus = (status) => {
-    console.log(status);
     if(status){
       this.setState({consentTaken:true})
     }
@@ -391,6 +391,10 @@ class App extends React.Component {
 					<Route
 						path="/aboutUs"
 						render={(props) => <AboutUs {...props} />}
+					/>
+					<Route
+						path="/affiliate"
+						render={(props) => <Affiliate {...props} />}
 					/>
 					<Route
 						v-if={!getCookie('token')}

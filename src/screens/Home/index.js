@@ -127,7 +127,11 @@ class Home extends Component {
 									company: "Software Development Engineer",
 									image: i === 0 ? siemens : i === 1 ? nanodems : fikrimuhal,
 									star: 5,
-
+									startTime:i === 0
+									? "1 Ocak 2021"
+									: i === 1
+									? "20 Ocak 2021"
+									: "10 Ağustos 2021",
 									buttons: [
 									{
 										type: "primary",
@@ -140,17 +144,7 @@ class Home extends Component {
 										width: "120px",
 										responsive: "post",
 									},
-									{
-									  	type: "ghost",
-									  	text: i === 0
-										? "1 Ocak 2021"
-										: i === 1
-										? "20 Ocak 2021"
-										: "10 Ağustos 2021",
-									  	sizeName: "small",
-									  	width: "120px",
-										responsive: "post",
-								    }
+
 									],
 
 									},
@@ -437,7 +431,7 @@ class Home extends Component {
 										<div className={"home__packagesSection__packageCard__headerDiv"}>
 											<div className={"home__packagesSection__packageCard__packageTitle"}>COMPETENCY</div>
 											<div className={"home__packagesSection__packageCard__packagePrice"}>$9.99</div>
-											<div className={"home__packagesSection__packageCard__packagePaymentDate"}>Per Month</div>
+											<div className={"home__packagesSection__packageCard__packagePaymentDate"}>Per Report</div>
 										</div>
 										<div className={"home__packagesSection__packageCard__stroke"} />
 										<div className={"home__packagesSection__packageCard__descriptionDiv"}>

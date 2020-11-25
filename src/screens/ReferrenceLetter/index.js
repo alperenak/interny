@@ -6,7 +6,7 @@ import Button from "../../components/Button";
 import store from "../../store";
 import LoadingModal from "../../components/LoadingModal";
 import { Link } from "react-router-dom";
-import Footer from "../../components/Footer";
+import FooterAlternative from "../../components/FooterAlternative";
 
 class ReferrenceLetter extends Component {
 	state = {
@@ -56,7 +56,7 @@ class ReferrenceLetter extends Component {
 						</div>
 					</div>
 				</div>
-				<Footer />
+				<FooterAlternative />
 			</>
 		);
 	}

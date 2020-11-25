@@ -43,7 +43,7 @@ class TopBar extends Component {
 
     scrollTop: 0,
 
-
+	pathname:"",
     isScrolled: false,
 
     mailDropDown: false,
@@ -53,19 +53,26 @@ class TopBar extends Component {
     ourDropdown: false,
     ourPackages: [
       {
-        key: "companyPackages",
-        value: "Company Packages",
-        selected: false,
-        disabled: true,
-        to: "",
-      },
-      {
-        key: "internyPackages",
-        value: "Interny Packages",
+        key: "intern",
+        value: "Intern",
         selected: false,
         disabled: true,
         to: "/packages",
       },
+      {
+        key: "company",
+        value: "Company",
+        selected: false,
+        disabled: true,
+        to: "/packages",
+      },
+	  {
+		key: "university",
+		value: "University",
+		selected: false,
+		disabled: true,
+		to: "/packages",
+	  },
     ],
     loginPages: [
       {
@@ -197,6 +204,7 @@ class TopBar extends Component {
   };
 
   async componentDidMount() {
+
     document.addEventListener("mousedown", this.handleClickOutside);
     this.setSelectedPage();
     if (getCookie("token")) {
@@ -266,6 +274,7 @@ class TopBar extends Component {
   }
 
   componentDidUpdate(prevProps) {
+
     if (!Object.is(prevProps.location.pathname, this.props.location.pathname)) {
       this.setSelectedPage();
     }
@@ -394,6 +403,9 @@ class TopBar extends Component {
 
   setSelectedPage = () => {
     let userType = getCookie("user");
+	this.setState({
+		pathname:this.props.location.pathname
+	})
     if (userType) {
       this.state[`${userType}Source`].map(
         (e) => (e.selected = e.to === this.props.location.pathname)
@@ -441,13 +453,14 @@ class TopBar extends Component {
 
   handleScroll = () => {
     const scrollY = window.scrollY
-    // console.log(scrollY)
 
-    if (window.scrollY > 1) {
+	if (window.scrollY > 1) {
       this.setState({isScrolled: true});
     } else {
       this.setState({isScrolled: false});
     }
+
+
   };
 
 	render() {
@@ -459,7 +472,12 @@ class TopBar extends Component {
 		let { isAuthorized, user } = this.props;
 		let { loginDropDown, ourDropdown } = this.state;
 		let userType = getCookie("user");
-		const topBarClass = this.state.isScrolled ? `${"topBar"} ${"topBar__fullScreen"} ${"topBar__scroll"}` : `${"topBar"} ${"topBar__fullScreen"} ${"topBar__nonscroll"}`
+		let topBarClass = "";
+		if(this.state.pathname == "/" || this.state.pathname.indexOf('search') != -1){
+			topBarClass = this.state.isScrolled ? `${"topBar"} ${"topBar__fullScreen"} ${"topBar__scroll"}` : `${"topBar"} ${"topBar__fullScreen"} ${"topBar__nonscroll"}`;
+		}else{
+			topBarClass = `${"topBar"} ${"topBar__fullScreen"} ${"topBar__scroll"}`;
+		}
 		return (
 			<div className={topBarClass} >
 				<div class="container">

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM, { Link } from "react-dom";
 import styles from "./referrenceLetterLetter.scss";
-import Footer from "../../components/Footer";
+import FooterAlternative from "../../components/FooterAlternative";
 
 
 class ReferrenceLetterLetter extends Component {
@@ -32,7 +32,7 @@ class ReferrenceLetterLetter extends Component {
 						</div>
 					</div>
 	            </div>
-				<Footer />
+				<FooterAlternative />
 			</>
         );
     }

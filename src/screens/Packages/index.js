@@ -109,7 +109,7 @@ class Packages extends Component {
 											<div className={"packagesSection__packageCard__headerDiv"}>
 												<div className={"packagesSection__packageCard__packageTitle"}>COMPETENCY</div>
 												<div className={"packagesSection__packageCard__packagePrice"}>$9.99</div>
-												<div className={"packagesSection__packageCard__packagePaymentDate"}>Per Month</div>
+												<div className={"packagesSection__packageCard__packagePaymentDate"}>Per Report</div>
 											</div>
 											<div className={"packagesSection__packageCard__stroke"} />
 											<div className={"packagesSection__packageCard__descriptionDiv"}>
