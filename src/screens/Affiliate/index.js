@@ -31,7 +31,7 @@ class Affiliate extends Component {
 		],
 	};
     return (
-		<>
+		<div style={{"background":"#f6f8fa"}}>
 			<div class="affiliate__header" style={{"background-image":"url("+handshake+")"}}>
 				<div class="affiliate__mask"></div>
 				<div class="container">
@@ -254,12 +254,13 @@ class Affiliate extends Component {
 								text={"Send"}
 								sizeName={"default"}
 							/>
+
 						</div>
 					</div>
 				</div>
 			</div>
 			<FooterAlternative />
-		</>
+		</div>
     );
   }
 }

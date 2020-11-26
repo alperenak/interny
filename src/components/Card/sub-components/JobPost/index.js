@@ -89,7 +89,7 @@ class JobPost extends Component {
 					  			{pst.note}
 					  	  	</Link>
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-3" style={{"display": "flex","align-items":"center","justify-content":"center"}}>
 							{pst.buttons && this.renderPostButtons(pst.buttons)}
 						</div>
 					</RedirectControl>

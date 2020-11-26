@@ -70,14 +70,14 @@ class Packages extends Component {
 										<div className={"packagesSection__packageCardGuaranteed"}>
 											<div className={"packagesSection__packageCardGuaranteed__headerDiv"}>
 												<div className={"packagesSection__packageCardGuaranteed__packageTitle"}>INTERN</div>
-												<div className={"packagesSection__packageCardGuaranteed__packagePrice"}>$19,99</div>
+												<div className={"packagesSection__packageCardGuaranteed__packagePrice"}>$24.99</div>
 												<div className={"packagesSection__packageCardGuaranteed__packagePaymentDate"}>Per Month</div>
 											</div>
 											<div className={"packagesSection__packageCardGuaranteed__stroke"} />
 											<div className={"packagesSection__packageCardGuaranteed__descriptionDiv"}>
 												<div className={"packagesSection__packageCardGuaranteed__packageDescription"}>
 													<div>Apply for Internships</div>
-													<div data-toggle="tooltip" title="Project Management System">PMS</div>
+													<div data-toggle="tooltip" title="Interny Management System">İMSᵖᵐ</div>
 													<div data-toggle="tooltip" title="Workforce Analytics">WFA Report</div>
 													<div>Reference Letter</div>
 												</div>
@@ -108,14 +108,14 @@ class Packages extends Component {
 										<div className={"packagesSection__packageCard"}>
 											<div className={"packagesSection__packageCard__headerDiv"}>
 												<div className={"packagesSection__packageCard__packageTitle"}>COMPETENCY</div>
-												<div className={"packagesSection__packageCard__packagePrice"}>$9.99</div>
+												<div className={"packagesSection__packageCard__packagePrice"}>$12.49</div>
 												<div className={"packagesSection__packageCard__packagePaymentDate"}>Per Report</div>
 											</div>
 											<div className={"packagesSection__packageCard__stroke"} />
 											<div className={"packagesSection__packageCard__descriptionDiv"}>
 												<div className={"packagesSection__packageCard__packageDescription"}>
 													<div>Case Studies</div>
-													<div>Competency Analytics</div>
+													<div data-toggle="tooltip" title="Interny Management System">İCCᵗᵐ</div>
 													<div>Competency Report</div>
 												</div>
 												<Button

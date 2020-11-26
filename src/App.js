@@ -39,7 +39,10 @@ import Cookies from "./screens/Cookies"
 import ReferrenceLetter from "./screens/ReferrenceLetter";
 import ReferrenceLetterLetter from "./screens/ReferrenceLetterLetter";
 import HelpCenter from "./screens/HelpCenter";
+import HelpCenterDetail from "./screens/HelpCenter/detail.js";
+import HelpCenterDetail2 from "./screens/HelpCenter/detail2.js";
 import AboutUs from "./screens/AboutUs";
+import BusinessPage from "./screens/internyPages/business.js";
 
 /*** Styles ***/
 import styles from "./app.scss";
@@ -377,6 +380,10 @@ class App extends React.Component {
 						render={(props) => <Cookies {...props} />}
 					/>
 					<Route
+						path="/aboutUs"
+						render={(props) => <AboutUs {...props} />}
+					/>
+					<Route
 						path="/referrenceLetter"
 						render={(props) => <ReferrenceLetter {...props} />}
 					/>
@@ -389,12 +396,24 @@ class App extends React.Component {
 						render={(props) => <HelpCenter {...props} />}
 					/>
 					<Route
-						path="/aboutUs"
-						render={(props) => <AboutUs {...props} />}
+						path="/affiliate"
+						render={(props) => <Affiliate {...props} />}
+					/>
+					<Route
+						path="/helpCenterDetail"
+						render={(props) => <HelpCenterDetail {...props} />}
+					/>
+					<Route
+						path="/helpCenterDetail2"
+						render={(props) => <HelpCenterDetail2 {...props} />}
 					/>
 					<Route
 						path="/affiliate"
 						render={(props) => <Affiliate {...props} />}
+					/>
+					<Route
+						path="/internyBusiness"
+						render={(props) => <BusinessPage {...props} />}
 					/>
 					<Route
 						v-if={!getCookie('token')}

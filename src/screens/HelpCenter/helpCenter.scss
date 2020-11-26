@@ -1,61 +1,22 @@
-.content {
-
-    background-color: #EFF2FC;
-    padding: 4rem;
-    margin: 0 10rem 0 10rem;
-    border-color: #dadeea;
-    border-width: 7px;
-    border-radius: 4%;
-    border-style: solid;
-
-      & .p1 {
-        margin: 0.0px 0.0px 10.0px 0.0px;
-        font: 11.0px Helvetica;
-        color: #000000;
-      }
-    
-      & .p2 {
-        margin: 0.0px 0.0px 15.0px 0.0px;
-        font: 26.0px Helvetica;
-        color: #13284b;
-
-        & .s1 {
-          letter-spacing: 0.2px;
-        }
-      
-        & .s2 {
-          font: 11px Symbol;
-        }
-        
-      }
-    
-      & .p3 {
-        margin: 0.0px 0.0px 0.0px 0.0px;
-        font: 13.0px Helvetica;
-        color: #3f6caf;
-      }
-    
-      & .p4 {
-        margin: 0.0px 0.0px 10.0px 36.0px;
-        font: 11.0px Helvetica;
-        color: #000000;
-      }
-    
-      & .p5 {
-        margin: 0.0px 0.0px 0.0px 0.0px;
-        font: 11.0px Helvetica;
-        color: #3f6caf;
-      }
-    
-    
-    & .ul1 .li1 {
-      margin: 0.0px 0.0px 10.0px 0.0px;
-      font: 11.0px Helvetica;
-      color: #000000;
-    }
-    
-    
-    & .ul1 {
-      list-style-type: disc;
-    }
+.helpCenter {
+	&__title{
+		text-align: center;
+		span{
+			font-family: "Sofia Pro Bold";
+    		font-size: 20px;
+    		color: #2c3f58;
+    		text-align: center;
+		}
+		margin-bottom:20px;
+		margin-top:80px;
+	}
+	&__searchInput{
+		label{
+			display: none;
+		}
+	}
+	&__contactForm{
+		margin-top:80px;
+		margin-bottom:80px;
+	}
 }

@@ -2,7 +2,7 @@ import React, {Component, Fragment} from "react";
 
 /*** Components ***/
 import Accordion from "../../components/Accordion";
-import Footer from "../../components/Footer";
+import FooterAlternative from "../../components/FooterAlternative";
 /*** Store ***/
 import store from "../../store";
 
@@ -422,7 +422,7 @@ class FAQ extends Component {
 
 	render() {
 		return (
-			<>
+			<div style={{"background":"#f6f8fa"}}>
 				<div className={"faq"}>
 					<div class="container">
 						<div class="row">
@@ -453,8 +453,8 @@ class FAQ extends Component {
 						</div>
 					</div>
 				</div>
-				<Footer />
-			</>
+				<FooterAlternative />
+			</div>
 		);
 	}
 }

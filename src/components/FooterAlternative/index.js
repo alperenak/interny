@@ -22,39 +22,6 @@ class FooterAlternative extends Component {
 			<div className={"footerSection2"}>
 				<div class="container">
 					<div class="row">
-						<div class="col-md-8">
-							<div className={"footerSection2__options"}>
-								<ul className={"footerSection2__options__links"}>
-									<li>
-										<Link to="/faq">About Us</Link>
-									</li>
-									<li>
-									<span className={"dot"}></span>
-									</li>
-									<li>
-										<Link to="/faq">Careers</Link>
-									</li>
-									<li>
-									<span className={"dot"}></span>
-									</li>
-									<li>
-										<Link to="/referrenceLetter">Help Center</Link>
-									</li>
-									<li>
-									<span className={"dot"}></span>
-									</li>
-									<li>
-										<Link to="/faq">Internships</Link>
-									</li>
-									<li>
-									<span className={"dot"}></span>
-									</li>
-									<li>
-										<Link to="/faq">FAQ</Link>
-									</li>
-								</ul>
-							</div>
-						</div>
 						<div class="col-md-4">
 							<div className={"footerSection2__rights"}>
 								2020 • INTERNY Inc. © All rights reserved.
@@ -73,6 +40,43 @@ class FooterAlternative extends Component {
 									</a>
 								</div>
 							</div>
+						</div>
+						<div class="col-md-8">
+
+
+							<div className={"footerSection2__options"}>
+								<ul className={"footerSection2__options__links"}>
+									<li>
+										<Link to="/aboutUs">About Us</Link>
+									</li>
+									<li>
+									<span className={"dot"}></span>
+									</li>
+									<li>
+										<Link to="/faq">Careers</Link>
+									</li>
+									<li>
+									<span className={"dot"}></span>
+									</li>
+									<li>
+										<Link to="/helpCenter">Help Center</Link>
+									</li>
+									<li>
+									<span className={"dot"}></span>
+									</li>
+									<li>
+										<Link to="/faq">Internships</Link>
+									</li>
+									<li>
+									<span className={"dot"}></span>
+									</li>
+									<li>
+										<Link to="/faq">FAQ</Link>
+									</li>
+								</ul>
+							</div>
+
+
 						</div>
 					</div>
 				</div>

@@ -7,7 +7,7 @@ import FooterAlternative from "../../components/FooterAlternative";
 class SignUp extends Component {
   render() {
     return (
-		<>
+		<div style={{"background":"#f6f8fa"}}>
 		<div class="container">
   			<div class="row">
   				<div class="col-md-12">
@@ -16,7 +16,7 @@ class SignUp extends Component {
 			</div>
 		</div>
 		<FooterAlternative />
-		</>
+		</div>
     );
   }
 }

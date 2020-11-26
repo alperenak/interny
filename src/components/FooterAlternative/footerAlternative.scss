@@ -4,10 +4,12 @@
 	width: 100%;
 	padding-top:20px;
 	padding-bottom: 20px;
+	background-color: #f6f8fa;
     &__options {
 
       width: 100%;
-
+	  display: flex;
+	  justify-content: flex-end;
       &__links{
           flex-direction: row;
 
@@ -109,6 +111,6 @@
     line-height: 1.5em;
     letter-spacing: 0.1px;
     margin-bottom: 20px;
-	text-align: right;
+	text-align: left;
   }
 }

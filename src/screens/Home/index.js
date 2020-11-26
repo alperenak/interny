@@ -24,7 +24,7 @@ import ingBankImage from "../../assets/ing-bank.png";
 import ingBankGrayImage from "../../assets/ing-bank gray.png";
 import unileverImage from "../../assets/unilever.png";
 import unileverGrayImage from "../../assets/unilevergray.png";
-import workingStudentImage from "../../assets/workingStudent.jpg";
+import workingStudentImage from "../../assets/workingStudent.png";
 import register from "../../icons/register.svg";
 import comp from "../../icons/comp.svg";
 import application from "../../icons/application.svg";
@@ -128,10 +128,10 @@ class Home extends Component {
 									image: i === 0 ? siemens : i === 1 ? nanodems : fikrimuhal,
 									star: 5,
 									startTime:i === 0
-									? "1 Ocak 2021"
+									? "May 4ᵗʰ"
 									: i === 1
-									? "20 Ocak 2021"
-									: "10 Ağustos 2021",
+									? "April 5ᵗʰ"
+									: "December 1ᵗʰ",
 									buttons: [
 									{
 										type: "primary",
@@ -392,14 +392,14 @@ class Home extends Component {
 									<div className={"home__packagesSection__packageCardGuaranteed"}>
 										<div className={"home__packagesSection__packageCardGuaranteed__headerDiv"}>
 											<div className={"home__packagesSection__packageCardGuaranteed__packageTitle"}>INTERN</div>
-											<div className={"home__packagesSection__packageCardGuaranteed__packagePrice"}>$19,99</div>
+											<div className={"home__packagesSection__packageCardGuaranteed__packagePrice"}>$24.99</div>
 											<div className={"home__packagesSection__packageCardGuaranteed__packagePaymentDate"}>Per Month</div>
 										</div>
 										<div className={"home__packagesSection__packageCardGuaranteed__stroke"} />
 										<div className={"home__packagesSection__packageCardGuaranteed__descriptionDiv"}>
 											<div className={"home__packagesSection__packageCardGuaranteed__packageDescription"}>
 												<div>Apply for Internships</div>
-												<div data-toggle="tooltip" title="Project Management System">PMS</div>
+												<div data-toggle="tooltip" title="Interny Management System">İMSᵖᵐ</div>
 												<div data-toggle="tooltip" title="Workforce Analytics">WFA Report</div>
 												<div>Reference Letter</div>
 											</div>
@@ -430,14 +430,14 @@ class Home extends Component {
 									<div className={"home__packagesSection__packageCard"}>
 										<div className={"home__packagesSection__packageCard__headerDiv"}>
 											<div className={"home__packagesSection__packageCard__packageTitle"}>COMPETENCY</div>
-											<div className={"home__packagesSection__packageCard__packagePrice"}>$9.99</div>
+											<div className={"home__packagesSection__packageCard__packagePrice"}>$12.49</div>
 											<div className={"home__packagesSection__packageCard__packagePaymentDate"}>Per Report</div>
 										</div>
 										<div className={"home__packagesSection__packageCard__stroke"} />
 										<div className={"home__packagesSection__packageCard__descriptionDiv"}>
 											<div className={"home__packagesSection__packageCard__packageDescription"}>
 												<div>Case Studies</div>
-												<div>Competency Analytics</div>
+												<div data-toggle="tooltip" title="Interny Management System">İCCᵗᵐ</div>
 												<div>Competency Report</div>
 											</div>
 											<Button
