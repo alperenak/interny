@@ -23,7 +23,7 @@ class Footer extends Component {
 	render() {
 		return (
 			<div className={"footerSection"}>
-				<div class="container">
+				<div class="container" style={{"max-width":"90%"}}>
 					<div className={"footerSection__footerTop"}>
 						<div class="row">
 							<div class="col-xl-3 col-lg-12 col-12">
@@ -49,66 +49,77 @@ class Footer extends Component {
 							</div>
 							<div class="col-xl-6 col-lg-12 col-12">
 								<div className={"footerSection__options"}>
-									<div className={styles.knowUs}>
-										<ul>
-											<li>
-											<Link to="/aboutUs">About Us</Link>
-											</li>
-											<li>
-											<Link to="/helpCenter">Help Center</Link>
-											</li>
-											<li>
-											<Link to="/faq">Terms</Link>
-											</li>
-											<li>
-											<Link to="/faq">Privacy Policy</Link>
-											</li>
-											<li>
-											<Link to="/faq">Cookies Policy</Link>
-											</li>
-										</ul>
-									</div>
-									<div className={styles.knowUs}>
-										<ul>
-											<li>
-											<Link to="/faq">FAQ</Link>
-											</li>
-											<li>
-											<Link to="/faq">Blog</Link>
-											</li>
-											<li>
-											<Link to="/referrenceLetter">Referrence Letter</Link>
-											</li>
-											<li>
-											<Link to="/faq">Gift</Link>
-											</li>
-											<li>
-											<Link to="/signup">
-											Careers
-											</Link>
-											</li>
-										</ul>
-									</div>
-									<div className={styles.knowUs}>
-										<ul>
-											<li v-if={!getCookie("token")}>
-											<Link to="/signup">Sitemap</Link>
-											</li>
-											<li>
-											<Link to="/affiliate">Affilate</Link>
-											</li>
-											<li>
-											<Link to="/faq">Investor</Link>
-											</li>
+									<div class="row">
+										<div class="col-md-4">
+											<div className={styles.knowUs}>
+												<ul>
+													<li>
+													<Link to="/aboutUs">About Us</Link>
+													</li>
+													<li>
+													<Link to="/helpCenter">Help Center</Link>
+													</li>
+													<li>
+													<Link to="/faq">Terms</Link>
+													</li>
+													<li>
+													<Link to="/faq">Privacy Policy</Link>
+													</li>
+													<li>
+													<Link to="/faq">Cookies Policy</Link>
+													</li>
+												</ul>
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div className={styles.knowUs}>
+												<ul>
+													<li>
+													<Link to="/faq">FAQ</Link>
+													</li>
+													<li>
+													<Link to="/faq">Blog</Link>
+													</li>
+													<li>
+													<Link to="/referrenceLetter">Referrence Letter</Link>
+													</li>
+													<li>
+													<Link to="/faq">Gift</Link>
+													</li>
+													<li>
+													<Link to="/signup">
+													Careers
+													</Link>
+													</li>
+												</ul>
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div className={styles.knowUs}>
+												<ul>
+													<li v-if={!getCookie("token")}>
+													<Link to="/signup">Sitemap</Link>
+													</li>
+													<li>
+													<Link to="/affiliate">Affilate</Link>
+													</li>
+													<li>
+													<Link to="/investor">Investor</Link>
+													</li>
 
-											<li>
-											<Link to="/faq">INTERNY for Bussiness</Link>
-											</li>
-											<li>
-											<Link to="/helpCenter">INTERNY for University</Link>
-											</li>
-										</ul>
+													<li>
+													<Link to="/internyBusiness">INTERNY for Bussiness</Link>
+													</li>
+													<li>
+													<Link to="/internyUniversity">INTERNY for University</Link>
+													</li>
+												</ul>
+											</div>
+										</div>
 									</div>
+
+
+
 								</div>
 							</div>
 							<div class="col-xl-3 col-lg-12 col-12">

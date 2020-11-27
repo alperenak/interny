@@ -104,15 +104,7 @@
 		}
 	}
 	&__options {
-		display: flex;
-		width: 100%;
-		justify-content: space-around;
-		align-items: center;
-		@include medium {
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-		}
+
 		ul {
 			margin: 0;
 			padding: 0;
@@ -132,11 +124,10 @@
 			color: #fff;
 			list-style-type: none;
 			cursor: pointer;
-			font-size: 14px;
+			font-size: 16px;
 			padding: 2.5px 0;
 			text-align: center;
 			letter-spacing: normal;
-			width: 120px;
 
 			& a {
 				color: #fff;

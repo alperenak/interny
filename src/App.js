@@ -43,6 +43,8 @@ import HelpCenterDetail from "./screens/HelpCenter/detail.js";
 import HelpCenterDetail2 from "./screens/HelpCenter/detail2.js";
 import AboutUs from "./screens/AboutUs";
 import BusinessPage from "./screens/internyPages/business.js";
+import UniversityPage from "./screens/internyPages/university.js";
+import InvestorPage from "./screens/internyPages/investor.js";
 
 /*** Styles ***/
 import styles from "./app.scss";
@@ -414,6 +416,14 @@ class App extends React.Component {
 					<Route
 						path="/internyBusiness"
 						render={(props) => <BusinessPage {...props} />}
+					/>
+					<Route
+						path="/internyUniversity"
+						render={(props) => <UniversityPage {...props} />}
+					/>
+					<Route
+						path="/investor"
+						render={(props) => <InvestorPage {...props} />}
 					/>
 					<Route
 						v-if={!getCookie('token')}

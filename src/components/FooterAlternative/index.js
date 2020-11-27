@@ -25,20 +25,6 @@ class FooterAlternative extends Component {
 						<div class="col-md-4">
 							<div className={"footerSection2__rights"}>
 								2020 • INTERNY Inc. © All rights reserved.
-								<div className={"footerSection2__followUs"}>
-									<a href={"https://www.facebook.com/internynet/"} target={"blank"}>
-										<img src={facebook} alt={facebook} />
-									</a>
-									<a href={"https://twitter.com/internynet/"} target={"blank"}>
-										<img src={twitter} alt={twitter} />
-									</a>
-									<a
-									href={"https://www.linkedin.com/company/internynet/"}
-									target={"blank"}
-									>
-										<img src={linkedin} alt={linkedin} />
-									</a>
-								</div>
 							</div>
 						</div>
 						<div class="col-md-8">

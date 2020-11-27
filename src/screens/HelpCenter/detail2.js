@@ -55,6 +55,7 @@ class HelpCenterDetail2 extends Component {
 						<div class="row" style={{"justify-content":"center"}}>
 							<div class="col-md-7">
 								<div class="affiliate__content">
+									<p>HELP CENTER</p>
 									<p>Her zaman faydalı, insanların daima isteyebileceği, hiçbir zaman modası geçmeyecek bir ürünü, yani yüzlerce kategoride yer alan binlerce online kursu tanıtın!</p>
 								</div>
 							</div>

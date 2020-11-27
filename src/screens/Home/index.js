@@ -128,10 +128,10 @@ class Home extends Component {
 									image: i === 0 ? siemens : i === 1 ? nanodems : fikrimuhal,
 									star: 5,
 									startTime:i === 0
-									? "May 4ᵗʰ"
+									? "May 4ᵗʰ Week"
 									: i === 1
-									? "April 5ᵗʰ"
-									: "December 1ᵗʰ",
+									? "April 5ᵗʰ Week"
+									: "December 1ᵗʰ Week",
 									buttons: [
 									{
 										type: "primary",
@@ -255,7 +255,7 @@ class Home extends Component {
 					<div class="row">
 						<div className={"home__browseJobsSection__jobsTitle"}>
 							<div>
-								Apply here for any of the thousands of internships around theworld.
+								Apply here for any of the thousands of internships around the world.
 							</div>
 							<Link to={"signup"} className={"prepareCv"}>
 								Sign up!
@@ -290,7 +290,7 @@ class Home extends Component {
 								<div className={"home__howItWorksSection__division__title"}>Competency Analytics</div>
 								<div className={"home__howItWorksSection__division__description"}>
 									Prove your competency to be the primary candidate of the company
-									you want to apply for. Use CA to determine and improve the
+									you want to apply for. Use İCCᵗᵐ to determine and improve the
 									competency level if necessary.
 								</div>
 							</div>
@@ -300,7 +300,7 @@ class Home extends Component {
 								<img className={"home__howItWorksSection__division__icon"} src={application} />
 								<div className={"home__howItWorksSection__division__title"}>Project Management System</div>
 								<div className={"home__howItWorksSection__division__description"}>
-									Use PMS to manage tasks assigned for the internship and to
+									Use İMSᵖᵐ to manage tasks assigned for the internship and to
 									contact the company.
 								</div>
 							</div>
@@ -436,8 +436,8 @@ class Home extends Component {
 										<div className={"home__packagesSection__packageCard__stroke"} />
 										<div className={"home__packagesSection__packageCard__descriptionDiv"}>
 											<div className={"home__packagesSection__packageCard__packageDescription"}>
-												<div>Case Studies</div>
 												<div data-toggle="tooltip" title="Interny Management System">İCCᵗᵐ</div>
+												<div >Competenct Analytics</div>
 												<div>Competency Report</div>
 											</div>
 											<Button

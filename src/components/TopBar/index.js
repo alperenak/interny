@@ -54,21 +54,21 @@ class TopBar extends Component {
     ourPackages: [
       {
         key: "intern",
-        value: "Intern",
+        value: "For Intern",
         selected: false,
         disabled: true,
         to: "/packages",
       },
       {
         key: "company",
-        value: "Company",
+        value: "For Company",
         selected: false,
         disabled: true,
         to: "/packages",
       },
 	  {
 		key: "university",
-		value: "University",
+		value: "For University",
 		selected: false,
 		disabled: true,
 		to: "/packages",
@@ -588,7 +588,7 @@ class TopBar extends Component {
 										<Button
 											type={"link"}
 											sizeName={"default"}
-											text={"\u00a0\u00a0HOW?\u00a0\u00a0"}
+											text={"\u00a0\u00a0HOW TO\u00a0\u00a0"}
 											textClass={this.state.isScrolled ? "topBar__links__scroll" : "topBar__links__nonscroll"}
 										/>
 										<div v-if={ourDropdown} className={"topBar__links__dropdownContainer__dropdown"}>

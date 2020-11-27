@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 /*** Styles ***/
 import styles from "./aboutUs.scss";
-
+import handshake from "../../assets/handshake.jpg";
 import Footer from "../../components/Footer";
 
 class AboutUs extends Component {
@@ -9,19 +9,18 @@ class AboutUs extends Component {
     render() {
         return (
             <div>
-                <div className="bg-light">
-                    <div className="container py-5">
-                        <div className="row h-100 align-items-center py-5">
-                            <div className={`col-lg-6 ${styles.aboutUs}`} >
-                                <h1 className="display-4">About Us</h1>
-                                <p className="lead text-muted mb-0">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                    eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+			<div class="affiliate__header" style={{"background-image":"url("+handshake+")"}}>
+				<div class="affiliate__mask"></div>
+				<div class="container">
+					<div class="row" style={{"justify-content":"center"}}>
+						<div class="col-md-7">
+							<div class="affiliate__content">
+								<p>ABOUT US</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
                 <div className="bg-white py-5">
                     <div className="container py-5">
                         <div className="row align-items-center mb-5">

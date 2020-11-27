@@ -80,17 +80,20 @@ class JobPost extends Component {
 							</a>
 							{pst.startTime ? (
 								<div style={{"margin-top":"10px","margin-bottom":"10px"}}>
-									<Link to={link} className={"postCompany"}>
-							  			{"Start Time: " + pst.startTime}
-							  	  	</Link>
+
 								</div>
 							):(null)}
 							<Link to={link} className={"postNote"}>
 					  			{pst.note}
 					  	  	</Link>
 						</div>
-						<div class="col-md-3" style={{"display": "flex","align-items":"center","justify-content":"center"}}>
+						<div class="col-md-3" style={{"display": "flex","flex-direction":"column","align-items":"center","justify-content":"center"}}>
 							{pst.buttons && this.renderPostButtons(pst.buttons)}
+							{pst.startTime ? (
+							<Link to={link} className={"postCompany"}>
+								{"Start: " + pst.startTime}
+							</Link>
+							):(null)}
 						</div>
 					</RedirectControl>
 				</div>

@@ -14,7 +14,7 @@ import manage_program from "../../assets/manage-program.png";
 
 
 
-class BusinessPage extends Component {
+class UniversityPage extends Component {
 	state = {
 
 	  pri1: false,
@@ -36,7 +36,7 @@ class BusinessPage extends Component {
 						<div class="row" style={{"justify-content":"center"}}>
 							<div class="col-md-7">
 								<div class="affiliate__content">
-									<p>INTERNY FOR BUSINESS</p>
+									<p>INTERNY FOR UNIVERSITY</p>
 								</div>
 							</div>
 						</div>
@@ -66,7 +66,7 @@ class BusinessPage extends Component {
 							</div>
 							<div class="col-md-6">
 								<div class="internyPage__step__title">
-									<span>Post an Internship Application Worldwide</span>
+									<span>Join Interny University</span>
 								</div>
 								<p>
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -76,7 +76,7 @@ class BusinessPage extends Component {
 						<div class="row internyPage__step">
 							<div class="col-md-6">
 								<div class="internyPage__step__title">
-									<span>Review-Contact Applicants</span>
+									<span>Monitor Students</span>
 								</div>
 								<p>
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -92,33 +92,7 @@ class BusinessPage extends Component {
 							</div>
 							<div class="col-md-6">
 								<div class="internyPage__step__title">
-									<span>Start Internship Program</span>
-								</div>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-								</p>
-							</div>
-						</div>
-						<div class="row internyPage__step">
-							<div class="col-md-6">
-								<div class="internyPage__step__title">
-									<span>Manage Internship Programs</span>
-								</div>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-								</p>
-							</div>
-							<div class="col-md-6">
-								<img src={manage_program}  style={{"width":"90%"}}/>
-							</div>
-						</div>
-						<div class="row internyPage__step">
-							<div class="col-md-6">
-								<img src={start_internship}  style={{"width":"90%"}}/>
-							</div>
-							<div class="col-md-6">
-								<div class="internyPage__step__title">
-									<span>Be Reference to Interns</span>
+									<span>Review Internship Reports</span>
 								</div>
 								<p>
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -259,4 +233,4 @@ class BusinessPage extends Component {
     }
 }
 
-export default BusinessPage;
+export default UniversityPage;

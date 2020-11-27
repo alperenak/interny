@@ -47,8 +47,8 @@ class ReferrenceLetter extends Component {
 									/>
 								</div>
 								<div class="col-md-12">
-									<div className={"referrenceLetter__button"}>
-										<Link className={"referrenceButton"} to="/referrenceLetterLetter">Send</Link>
+									<div className={"referrenceLetter__button"} style={{"margin-top":"30px"}}>
+										<Link className={"referrenceButton"} to="/referrenceLetterLetter">Download</Link>
 
 									</div>
 								</div>
