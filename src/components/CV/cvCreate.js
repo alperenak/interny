@@ -96,7 +96,7 @@ class CvCreate extends Component {
 			                        }}
 			                    />
 			                    <Button
-			                        v-if={page !== 0 && page !== 1}
+			                        
 			                        type={'secondary'}
 			                        text={'Previous'}
 

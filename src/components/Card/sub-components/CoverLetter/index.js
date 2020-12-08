@@ -3,7 +3,7 @@ import React, { Component } from "react";
 /*** Components ***/
 import Input from "../../../Input";
 import Button from "../../../Button";
-
+import CKEditor from "react-ckeditor-component";
 /*** Icons ***/
 import downArrow from "../../../../icons/chevron-down-outline.svg";
 
@@ -59,14 +59,13 @@ class CoverLetter extends Component {
     let { buttons } = this.state;
     return (
       <>
-        <Input
-          v-if={coverLetter}
-          type={"textarea"}
-          size={"large"}
-          defaultValue={coverLetter?.text}
-          onChange={onChange}
-          disabled={disabled}
-        />
+		<CKEditor
+			activeClass="p10"
+			content={coverLetter?.text}
+			events={{
+				"change": onChange
+			}}
+		/>
         <div v-if={showButtons} className={"buttonContainer"}>
           <Button
             v-for={(btn, i) in buttons}
@@ -85,11 +84,7 @@ class CoverLetter extends Component {
   renderEditSection = () => {
     return (
       <div className={"editSection"}>
-        <textarea
-          className={"input"}
-          defaultValue={this.props.coverLetter?.text}
-          disabled={true}
-        ></textarea>
+        <div dangerouslySetInnerHTML={{ __html: this.props.coverLetter?.text }} />
         <Button
           type={"secondary"}
           disabled={false}

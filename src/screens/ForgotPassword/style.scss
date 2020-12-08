@@ -1,0 +1,32 @@
+.forgotPasswordWrapper{
+	background:#f6f8fa;
+	height:100vh;
+}
+.forgotPassword{
+	height:calc( 100vh - 150px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	&__header {
+		font-family: "Sofia Pro Bold";
+		color: #2c3f58;
+		font-size: 36px;
+		font-weight: 600;
+		margin-top: 30px;
+		text-align: center;
+    }
+
+    &__description {
+		font-family: "Sofia Pro";
+		color: #202e3b;
+		text-align: center;
+		margin-top: 15px;
+		margin-bottom:30px;
+    }
+	&__button {
+	  align-self: flex-end;
+	  border-radius: 5px;
+	  margin-top: 25px;
+	}
+}

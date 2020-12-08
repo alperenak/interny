@@ -60,13 +60,13 @@ class Footer extends Component {
 													<Link to="/helpCenter">Help Center</Link>
 													</li>
 													<li>
-													<Link to="/faq">Terms</Link>
+													<Link to="/terms">Terms</Link>
 													</li>
 													<li>
-													<Link to="/faq">Privacy Policy</Link>
+													<Link to="/privacy">Privacy Policy</Link>
 													</li>
 													<li>
-													<Link to="/faq">Cookies Policy</Link>
+													<Link to="/cookies">Cookies Policy</Link>
 													</li>
 												</ul>
 											</div>
@@ -84,7 +84,7 @@ class Footer extends Component {
 													<Link to="/referrenceLetter">Referrence Letter</Link>
 													</li>
 													<li>
-													<Link to="/faq">Gift</Link>
+													<Link to="/gift">Gift</Link>
 													</li>
 													<li>
 													<Link to="/signup">

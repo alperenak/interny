@@ -79,7 +79,7 @@ class Authentication extends Component {
         text: "Forgot your password?",
         type: "link",
         onButtonClick: () => {
-          this.setState({ forgotPasswordMode: true });
+          window.location.href="/ForgotPassword";
         },
       },
     ],
@@ -128,7 +128,7 @@ class Authentication extends Component {
         clickable: " Terms and Conditions",
         value: "checkboxStatus",
         onClick: () => {
-          this.setState({ terms: true });
+          window.location.href="/terms";
         },
       },
       {
@@ -138,7 +138,7 @@ class Authentication extends Component {
         clickable: " Privacy Policy",
         value: "checkboxStatus",
         onClick: () => {
-          this.setState({ privacyPolicy: true });
+          window.location.href="/privacy";
         },
       },
     ],

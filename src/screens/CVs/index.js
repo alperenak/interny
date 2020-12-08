@@ -78,7 +78,7 @@ class CVs extends Component {
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-md-8">
 							<div class="progress" style={{"justify-content":"space-between","border-radius":"10px","margin-bottom":"30px"}}>
 								{this.renderProgressBar()}
 							</div>
@@ -89,6 +89,19 @@ class CVs extends Component {
 									getCVs={this.getCVs}
 								/>
 							):(null)}
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="cvRightBox">
+								<div>
+								<a href="#" class="cvRightBox__link">Download CV</a>
+								</div>
+								<div>
+								<a href="#" class="cvRightBox__link">Share CV</a>
+								</div>
+								<div>
+								<a href="#" class="cvRightBox__link">Delete CV</a>
+								</div>
 							</div>
 						</div>
 					</div>

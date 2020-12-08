@@ -5,6 +5,7 @@ import Card from "../../components/Card";
 import Button from "../../components/Button";
 import SearchSection from "../../components/SearchSection";
 import LoadingModal from '../../components/LoadingModal'
+import CKEditor from "react-ckeditor-component";
 
 /*** Utils ***/
 import store from "../../store";
@@ -21,6 +22,8 @@ import Footer from "../../components/Footer";
 class CoverLetters extends Component {
   state = {
     coverLetters: [],
+	content: 'content',
+
     newLetter: {
       title: "",
       text: "",
@@ -28,6 +31,19 @@ class CoverLetters extends Component {
     processing: true
   };
 
+
+   onBlur(evt){
+	 console.log("onBlur event called with event info: ", evt);
+   }
+
+   afterPaste(evt){
+	 console.log("afterPaste event called with event info: ", evt);
+   }
+  updateContent(newContent) {
+	 this.setState({
+		 content: newContent
+	 })
+ }
   async componentDidMount() {
     let response = await this.getCoverLetters();
 
@@ -51,7 +67,15 @@ class CoverLetters extends Component {
     this.setState({ coverLetters });
     return res;
   };
-
+  onChange = (evt) =>{
+	  console.log("onChange fired with event info: ", evt);
+	  var newContent = evt.editor.getData();
+	  console.log(newContent);
+	  this.setState((state) => {
+		  state.newLetter.text = newContent;
+		  return state;
+		});
+  };
   renderModalButtons = () => [
     {
       type: "ghost",
@@ -108,7 +132,7 @@ class CoverLetters extends Component {
   onCoverLetterChange = (value, id) => {
     this.setState((state) => {
       let { coverLetters } = state;
-      coverLetters.find((cl) => cl.id === id).text = value;
+      coverLetters.find((cl) => cl.id === id).text = value.editor.getData();
       return state;
     });
   };
@@ -135,13 +159,15 @@ class CoverLetters extends Component {
 				placeholder={"Enter name"}
 				onChange={(value) => this.onCreateCoverLetterTitle(value)}
 				/>
-				<Input
-				type={"textarea"}
-				size={"full"}
-				label={"Cover Letter Content"}
-				placeholder={"Cover letter..."}
-				onChange={(value) => this.onCreateCoverLetter(value)}
-				/>
+				<CKEditor
+              		activeClass="p10"
+              		content={this.state.newLetter.text}
+              		events={{
+                		"blur": this.onBlur,
+                		"afterPaste": this.afterPaste,
+                		"change": this.onChange
+              		}}
+             	/>
 			</Fragment>
 		);
 	};

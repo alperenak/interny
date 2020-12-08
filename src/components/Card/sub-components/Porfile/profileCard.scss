@@ -32,6 +32,7 @@
     & .statusCircle {
       position: absolute;
       cursor: pointer;
+	  display: flex;
       top: -5px;
       right: -5px;
       width: 24px;

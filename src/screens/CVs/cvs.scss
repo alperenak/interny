@@ -1,3 +1,22 @@
+.cvRightBox{
+	width: 100%;
+	padding: 20px;
+	border: 1px solid #efefef;
+	border-radius: 12px;
+	&__link{
+		font-family: "Sofia Pro Bold";
+		font-size: calc(2px + 15px);
+		font-weight: bolder;
+		font-stretch: normal;
+		font-style: normal;
+		letter-spacing: 0.3px;
+		color: #2c3f58;
+	}
+	div{
+		margin-bottom: 30px;
+	}
+}
+
 .CVs {
   width: 100%;
 }

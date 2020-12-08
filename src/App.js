@@ -45,7 +45,11 @@ import AboutUs from "./screens/AboutUs";
 import BusinessPage from "./screens/internyPages/business.js";
 import UniversityPage from "./screens/internyPages/university.js";
 import InvestorPage from "./screens/internyPages/investor.js";
-
+import Gift from "./screens/Gift/index.js";
+import ForgotPassword from "./screens/ForgotPassword/index.js";
+import PrivacyPage from "./screens/internyPages/privacy.js";
+import TermPage from "./screens/internyPages/terms.js";
+import CookiesPage from "./screens/internyPages/cookies.js";
 /*** Styles ***/
 import styles from "./app.scss";
 
@@ -377,10 +381,7 @@ class App extends React.Component {
 						path="/faq"
 						render={(props) => <FrequentlyAskedQuestions {...props} />}
 					/>
-					<Route
-						path="/cookies"
-						render={(props) => <Cookies {...props} />}
-					/>
+
 					<Route
 						path="/aboutUs"
 						render={(props) => <AboutUs {...props} />}
@@ -424,6 +425,26 @@ class App extends React.Component {
 					<Route
 						path="/investor"
 						render={(props) => <InvestorPage {...props} />}
+					/>
+					<Route
+						path="/gift"
+						render={(props) => <Gift {...props} />}
+					/>
+					<Route
+						path="/forgotPassword"
+						render={(props) => <ForgotPassword {...props} />}
+					/>
+					<Route
+						path="/privacy"
+						render={(props) => <PrivacyPage {...props} />}
+					/>
+					<Route
+						path="/terms"
+						render={(props) => <TermPage {...props} />}
+					/>
+					<Route
+						path="/cookies"
+						render={(props) => <CookiesPage {...props} />}
 					/>
 					<Route
 						v-if={!getCookie('token')}

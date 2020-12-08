@@ -9,6 +9,14 @@
 		transition: all .2s;
 	}
 }
+.boxAnimationActive{
+	-webkit-transform: translateY(-4px);
+	-ms-transform: translateY(-4px);
+	transform: translateY(-4px);
+	text-decoration: none;
+	box-shadow: 0 7px 17px rgba(63, 49, 178, .1), 0 5px 10px rgba(63, 49, 178, .06);
+	transition: all .2s;
+}
 .boxAnimation2{
 	&:hover{
 		-webkit-transform: translateY(-4px);
