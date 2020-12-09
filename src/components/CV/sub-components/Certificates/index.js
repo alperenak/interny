@@ -8,7 +8,7 @@ import addIconBlue from "../../../../icons/add-circular-outlined-button.svg";
 import EditForm from "./editForm";
 import store from "../../../../store";
 import addIcon from "../../../../icons/add-circular-outlined-black-button.svg";
-
+import removeIconBlue from '../../../../icons/minus-circular-button.svg';
 class Certificates extends Component {
     state = {
         activeEditForms: [],
@@ -38,7 +38,11 @@ class Certificates extends Component {
                 <div className={"subContainer__section"}>
                     <div className={"subContainer__sectionTitle"}>
                         Certificates
-                        <img className={"plusIcon"} src={addIconBlue} alt={'icon'} onClick={() => this.setState({isCreateFormActive: true})} />
+						{this.state.isCreateFormActive ? (
+							<img className={"plusIcon"} src={removeIconBlue} alt={'icon'} onClick={() => this.setState({isCreateFormActive: !this.state.isCreateFormActive})} />
+						):(
+							<img className={"plusIcon"} src={addIconBlue} alt={'icon'} onClick={() => this.setState({isCreateFormActive: !this.state.isCreateFormActive})} />
+						)}
                     </div>
                     <div v-if={certificates.length === 0 && !isCreateFormActive} style={{ marginBottom: '24px' }}>
                         <Button

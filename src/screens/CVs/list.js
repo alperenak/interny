@@ -33,7 +33,8 @@ class CVList extends Component {
     getCVs = async () => {
         let id = getCookie('user_id');
         let res = await store.getCVs(id);
-        this.setState({ sections: [...(res)], processing: false });
+		window.location.href = '/Cvdetail/' + res[0].id;
+        //this.setState({ sections: [...(res)], processing: false });
     };
 
     render() {
@@ -42,61 +43,7 @@ class CVList extends Component {
         return (
             <div className={"cvList"}>
                 {processing && <LoadingModal text="Loading" />}
-				<div class="container">
-					<div class="row">
-						{this.state.sections.length > 0 ? (
-							<div class="col-md-8 order-xl-1 order-lg-1 order-md-1 order-2">
-								{this.state.sections.map(function(item,index){
-									return(
-										<div class="col-md-12">
-											<div class={"cvList__cvrow"}>
-												<span class={"cvList__cvrow_title"}>{item.title}</span>
-												<div class="cvrow_buttons">
-													<Button
-														type={'ghost'}
-														text={'Edit'}
-														icon={editIconBlue}
-														sizeName={'small'}
-														iconPosition={'left'}
-														to={'/Cvdetail/' + item.id}
-													/>
-												</div>
-											</div>
-										</div>
-									);
-								})}
-							</div>
-						):(
-							<div class="col-md-8 order-xl-1 order-lg-1 order-md-1 order-2">
-								<div>CV yok</div>
-							</div>
-						)}
-						<div class="col-md-4 order-xl-2 order-lg-2 order-md-2 order-1">
-							<div className={"cvList__profileSection"}>
-		                        <Card
-		                            type={'profile2'}
-		                            getUser={this.props.getUser}
-		                            profileObject={{
-		                                avatar: user.avatar,
-		                                status: 'active',
-		                                header: `${user.name} ${user.surname}`,
-		                                location: 'Istanbul - Turkey',
-		                                sector: 'Software',
-		                                position: 'Full Time',
-		                                education: 'Graduate',
-		                            }}
-		                        />
-		                        <Button
-		                            text={'Create new CV'}
-		                            size={'full'}
-		                            icon={addIcon}
-		                            iconPosition={'right'}
-		                            to={'/cvcreate'}
-		                        />
-		                    </div>
-						</div>
-					</div>
-				</div>
+			
             </div>
         );
     }

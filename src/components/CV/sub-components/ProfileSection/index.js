@@ -41,7 +41,7 @@ class ProfileSection extends Component {
         }
         let location = country && city ? `${city} - ${country}` : (country ? `${country}` : city ? `${city}` : ``);
         return (
-            <div className={"profileSection"}>
+            <div className={"profileSectionCV"}>
                 <div className={"profileSection__name"}>
                     {file.name}
                     <div className={"profileSection__buttonsContainer"}>

@@ -1,10 +1,13 @@
-.profileCard {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
 
+.profileButton{
+	position: absolute;
+	right:40px;
+}
+.profileCard {
+	display: flex;
+	flex-direction: row;
   & .profileImage {
+	  margin-right: 20px;
     position: relative;
     display: flex;
     justify-content: center;
@@ -58,11 +61,6 @@
   }
 
   & .profileHeader {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 24px;
     & .headerText {
       font-family: "Sofia Pro Bold";
       font-size: calc(2px + 24px);

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 /*** Utils ***/
 import store from "../../../../store";
 import {getCookie} from "../../../../utils/cookie";
-
+import Button from "../../../../components/Button";
 /*** Styles ***/
 import styles from './profileCard.scss';
 
@@ -52,22 +52,15 @@ class Profile extends Component {
                         {profileObject.location}
                     </div>
                 </div>
-                <div className={"profileProperties"}>
-                    <div className={"propertyContainer"}>
-                        <div className={"property"}>{profileObject.sector}</div>
-                        <div className={"propertyTitle"}>Sector</div>
-                    </div>
-                    <div className={"stroke"}/>
-                    <div className={"propertyContainer"}>
-                        <div className={"property"}>{profileObject.position}</div>
-                        <div className={"propertyTitle"}>Job Type</div>
-                    </div>
-                    <div className={"stroke"}/>
-                    <div className={"propertyContainer"}>
-                        <div className={"property"}>{profileObject.education}</div>
-                        <div className={"propertyTitle"}>Education</div>
-                    </div>
-                </div>
+				<div className={"profileButton"}>
+					<Button
+						type={"ghost"}
+						text={"Edit"}
+						sizeName={"small"}
+						width={"80px"}
+					/>
+				</div>
+
             </div>
         );
     }

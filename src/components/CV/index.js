@@ -20,9 +20,6 @@ class CV extends Component {
             <div className={"cvDetailCom"}>
 				<div class="row">
 					<div class="col-md-12">
-						<ProfileSection file={file} getCVs={getCVs} />
-					</div>
-					<div class="col-md-12">
 						<Experiences file={file} getCVs={getCVs} />
 					</div>
 					<div class="col-md-12">

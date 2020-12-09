@@ -8,6 +8,7 @@ import store from '../../store';
 import { getCookie } from "../../utils/cookie";
 import Input from "../Input";
 import editIcon from '../../icons/note-outlined-symbol-blue.svg';
+import Button from "../../components/Button";
 class TaskDetail extends Component {
 
     state = {
@@ -166,25 +167,11 @@ class TaskDetail extends Component {
         }
 
         const Master = ({ children }) => {
-            if (!this.state.doRate && !isEvaluated)
-                return (
-                    <div className={"doRateArea"}>
-                        <div className={"doRateAreaString"}>
-                            <span>do you want to rate this task?</span>
-                        </div>
-                        <div className={"doRateAreaButtons"}>
-                            <button type={'button'} className={"doRateAreaButtonGreen"} onClick={() => this.setState({ doRate: true })}>
-                                yes, i'll do
-                            </button>
-                        </div>
-                    </div>
-                );
-            else
-                return (
-                    <div className={"questionsContainer"}>
-                        {children}
-                    </div>
-                );
+			return (
+				<div className={"questionsContainer"}>
+					{children}
+				</div>
+			);
         }
 
         const Rates = ({ item }) => {
@@ -313,11 +300,12 @@ class TaskDetail extends Component {
 		);
 	}
 	async changeStatus(item,value){
+
 		let user = getCookie('user');
 		const userType = getCookie('user');
-		item.status = value.value;
-		
-		if(value.key == "test"){
+		item.status = value;
+
+		if(value == "test"){
 			document.getElementById("modalWrapper__closeIcon").click();
 			this.props.createModal({
 			  header: `Dosya Yükle`,
@@ -327,9 +315,9 @@ class TaskDetail extends Component {
 		}else{
 			if (user === 'intern') {
 	            let userId = getCookie('user_id');
-	            await store.moveInternTask(userId, { taskId: item.id, status: value.key });
+	            await store.moveInternTask(userId, { taskId: item.id, status: value });
 	        } else {
-	            await store.moveEmployerTask({ taskId: item.id, status: value.key });
+	            await store.moveEmployerTask({ taskId: item.id, status: value });
 	        }
 			this.setState({
 				statusEdit:false,
@@ -400,33 +388,37 @@ class TaskDetail extends Component {
 									<RenderMembers renderFor='avatarFromDetail' style={styles} {...this.props} />
 								</div>
 							</div>
-							{!this.state.statusEdit ? (
-								<div class="TaskDetail__header__infoDiv">
-
-									<span><b>List:</b></span>
-									<a class="status" href="javascript:void(0);" onClick={() => this.setState({statusEdit:true})}>{this.state.item.status} <img src={editIcon} alt={'icon'} /></a>
-								</div>
+							{this.state.item.status =="In Test" && getCookie('user') != 'intern' ? (
+								<Button
+									type={"ghost"}
+									text={"Done"}
+									sizeName={"small"}
+									width={"115px"}
+									onButtonClick={() => this.changeStatus(this.state.item,"done")}
+								/>
 							):(
 								<div class="TaskDetail__header__infoDiv">
-									<Input
-										  id={"status"}
-										  type={"select"}
-										  width={"150px"}
-										  label={"Status"}
-										  labelDescription={""}
-										  defaultValue={"To Do"}
-										  selectedValueId={"to_do"}
-										  placeholder={"Status"}
-										  onChange={(value, slValue) =>
-											  this.changeStatus(item,slValue)
-										  }
-										  externalSource={selectItems}
-									  />
+									{this.state.item.status  == "In Progress" ? (
+										<Button
+											type={"ghost"}
+											text={"Send for Approval"}
+											sizeName={"small"}
+											width={"115px"}
+											onButtonClick={() => this.changeStatus(this.state.item,"test")}
+										/>
+									):(
+										<>
+											<span><b>List:</b></span>
+											<a class="status" href="javascript:void(0);">{this.state.item.status}</a>
+										</>
+									)}
+
 								</div>
 							)}
 
+
 							<div class="TaskDetail__header__infoDiv">
-								<span><b>Label:</b></span>
+								<span><b>Type:</b></span>
 								<span className={"label"}>{item.label}</span>
 							</div>
 							<div class="TaskDetail__header__infoDiv">

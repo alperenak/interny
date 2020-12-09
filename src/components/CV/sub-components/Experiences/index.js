@@ -3,6 +3,9 @@ import styles from "../substyles.scss";
 import {formatDate} from "../../../../utils/functions";
 import Button from "../../../Button";
 import addIconBlue from '../../../../icons/add-circular-outlined-button.svg';
+import removeIconBlue from '../../../../icons/minus-circular-button.svg';
+
+
 import editIconBlue from '../../../../icons/note-outlined-symbol-blue.svg';
 import binIconBlue from '../../../../icons/recycling-bin-blue.svg';
 import EditForm from "./editForm";
@@ -38,7 +41,12 @@ class Experiences extends Component {
                 <div className={"subContainer__section"}>
                     <div className={"subContainer__sectionTitle"}>
                         Work Experience
-                        <img className={"plusIcon"} src={addIconBlue} alt={'icon'} onClick={() => this.setState({isCreateFormActive: true})} />
+						{this.state.isCreateFormActive ? (
+							<img className={"plusIcon"} src={removeIconBlue} alt={'icon'} onClick={() => this.setState({isCreateFormActive: !this.state.isCreateFormActive})} />
+						):(
+							<img className={"plusIcon"} src={addIconBlue} alt={'icon'} onClick={() => this.setState({isCreateFormActive: !this.state.isCreateFormActive})} />
+						)}
+
                     </div>
                     <div v-if={experiences.length === 0 && !isCreateFormActive} style={{ marginBottom: '24px' }}>
                         <Button
