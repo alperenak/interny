@@ -10,6 +10,7 @@ import worldwide from "../../assets/worldwide.png";
 import review_applicant from "../../assets/review-applicant.png";
 import start_internship from "../../assets/start-internship.png";
 import manage_program from "../../assets/manage-program.png";
+import investorBg from "../../assets/investorBg.png";
 class InvestorPage extends Component {
 	state = {
 		pri1: false,
@@ -23,16 +24,9 @@ class InvestorPage extends Component {
         return (
 			<>
 			<div class="internyPage">
-				<div class="affiliate__header" style={{"background-image":"url("+handshake+")"}}>
-					<div class="affiliate__mask"></div>
-					<div class="container">
-						<div class="row" style={{"justify-content":"center"}}>
-							<div class="col-md-7">
-								<div class="affiliate__content">
-									<p>INVESTOR</p>
-								</div>
-							</div>
-						</div>
+				<div class="affiliate__header">
+					<div class="container" style={{"background-image":"url("+investorBg+")"}}>
+						<p>INVESTOR</p>
 					</div>
 				</div>
 				<div class="internyPage__twoBox">

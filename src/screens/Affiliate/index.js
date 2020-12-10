@@ -6,7 +6,7 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import handshake from "../../assets/handshake.jpg";
 import discover from "../../icons/discover.svg";
-
+import affiliateBg from "../../assets/affiliateBg.png";
 class Affiliate extends Component {
   render() {
 	let dummy_data = {
@@ -32,22 +32,9 @@ class Affiliate extends Component {
 	};
     return (
 		<div style={{"background":"#f6f8fa"}}>
-			<div class="affiliate__header" style={{"background-image":"url("+handshake+")"}}>
-				<div class="affiliate__mask"></div>
-				<div class="container">
-					<div class="row" style={{"justify-content":"center"}}>
-						<div class="col-md-7">
-							<div class="affiliate__content">
-								<p>AFFLIATE</p>
-								<p>Her zaman faydalı, insanların daima isteyebileceği, hiçbir zaman modası geçmeyecek bir ürünü, yani yüzlerce kategoride yer alan binlerce online kursu tanıtın!</p>
-								<Button
-									type={"secondary"}
-									text={"Become a Partner"}
-									sizeName={"default"}
-								/>
-							</div>
-						</div>
-					</div>
+			<div class="affiliate__header">
+				<div class="container" style={{"background-image":"url("+affiliateBg+")"}}>
+					<p>AFFILIATE</p>
 				</div>
 			</div>
 			<div class="affiliate__triple">

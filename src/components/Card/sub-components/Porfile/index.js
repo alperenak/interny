@@ -58,6 +58,7 @@ class Profile extends Component {
 						text={"Edit"}
 						sizeName={"small"}
 						width={"80px"}
+						to={"/myAccount"}
 					/>
 				</div>
 

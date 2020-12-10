@@ -4,7 +4,7 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import FooterAlternative from "../../components/FooterAlternative";
 import styles from "./helpCenter.scss";
-import handshake from "../../assets/help-center.jpg";
+import helpCenterBg from "../../assets/helpCenterBg.png";
 import discover from "../../icons/discover.svg";
 
 class HelpCenter extends Component {
@@ -13,17 +13,9 @@ class HelpCenter extends Component {
         return (
 			<div style={{"background":"#f6f8fa"}}>
             <div className={"helpCenter"}>
-				<div class="affiliate__header" style={{"background-image":"url("+handshake+")"}}>
-					<div class="affiliate__mask"></div>
-					<div class="container">
-						<div class="row" style={{"justify-content":"center"}}>
-							<div class="col-md-7">
-								<div class="affiliate__content">
-									<p>HELP CENTER</p>
-									<p>Her zaman faydalı, insanların daima isteyebileceği, hiçbir zaman modası geçmeyecek bir ürünü, yani yüzlerce kategoride yer alan binlerce online kursu tanıtın!</p>
-								</div>
-							</div>
-						</div>
+				<div class="affiliate__header">
+					<div class="container" style={{"background-image":"url("+helpCenterBg+")"}}>
+						<p>HELP CENTER</p>
 					</div>
 				</div>
 				<div className="helpCenter__search">

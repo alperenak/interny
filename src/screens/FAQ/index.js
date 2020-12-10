@@ -9,7 +9,7 @@ import store from "../../store";
 /*** Styles ***/
 import styles from "./faq.scss";
 import Card from "../../components/Card";
-
+import affiliateBg from "../../assets/affiliateBg.png";
 let dummy_data = {
   intern: [
     { question: "What is an internship?", answer: "An internship refers to the period that a person spends working in different\n" +
@@ -423,6 +423,11 @@ class FAQ extends Component {
 	render() {
 		return (
 			<div style={{"background":"#f6f8fa"}}>
+			<div class="affiliate__header">
+				<div class="container" style={{"background-image":"url("+affiliateBg+")"}}>
+					<p>FAQ</p>
+				</div>
+			</div>
 				<div className={"faq"}>
 					<div class="container">
 						<div class="row">

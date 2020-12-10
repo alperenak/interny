@@ -65,7 +65,7 @@ class Skills extends Component {
                                     <div className={"subContainer__buttonsContainer"}>
                                         <Button
                                             type={'ghost'}
-                                            text={'Edit'}
+                                            text={''}
                                             icon={editIconBlue}
                                             sizeName={'small'}
                                             iconPosition={'left'}

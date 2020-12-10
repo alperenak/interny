@@ -43,7 +43,6 @@ class CVList extends Component {
         return (
             <div className={"cvList"}>
                 {processing && <LoadingModal text="Loading" />}
-			
             </div>
         );
     }

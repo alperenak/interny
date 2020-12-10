@@ -9,7 +9,7 @@
 		justify-content: space-between;
 		align-items: center;
 		font-family: "Sofia Pro Bold";
-		font-size: calc(2px + 16px);
+		font-size: 24px;
 		color: #2c3f58;
 		padding: 0 0 15px;
 		margin-bottom: 20px;
@@ -28,6 +28,8 @@
 		justify-content: center;
 		align-items: flex-start;
 		width: 100%;
+		border-bottom: 2px solid rgba(44,63,88,0.065);
+		margin-bottom: 50px;
 	}
 	&__buttonsContainer {
 		display: flex;
@@ -89,9 +91,10 @@
 }
 
 .cvEditForm {
-	background-color: #EFF2FC;
+	background-color: #f6f8fa;
 	padding:20px;
 	width: 100%;
+	margin-bottom:30px;
 	&.create {
 		background-color: transparent;
 	}

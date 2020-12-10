@@ -11,7 +11,7 @@ import worldwide from "../../assets/worldwide.png";
 import review_applicant from "../../assets/review-applicant.png";
 import start_internship from "../../assets/start-internship.png";
 import manage_program from "../../assets/manage-program.png";
-
+import universityBg from "../../assets/universityBg.png";
 
 
 class UniversityPage extends Component {
@@ -30,16 +30,9 @@ class UniversityPage extends Component {
         return (
 			<>
             <div class="internyPage">
-				<div class="affiliate__header" style={{"background-image":"url("+handshake+")"}}>
-					<div class="affiliate__mask"></div>
-					<div class="container">
-						<div class="row" style={{"justify-content":"center"}}>
-							<div class="col-md-7">
-								<div class="affiliate__content">
-									<p>INTERNY FOR UNIVERSITY</p>
-								</div>
-							</div>
-						</div>
+				<div class="affiliate__header">
+					<div class="container" style={{"background-image":"url("+universityBg+")"}}>
+						<p>INTERNY FOR UNIVERSITY</p>
 					</div>
 				</div>
 				<div class="internyPage__why">

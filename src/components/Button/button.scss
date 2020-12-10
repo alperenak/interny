@@ -28,7 +28,7 @@ $variants:( //primary variants
 // size variants
 $large: (padding:12px 36px, font-size:16px);
 $default: (padding:8px 24px, font-size:16px);
-$small: (padding:8px 24px, font-size:16px);
+$small: (padding:8px 10px, font-size:16px);
 $tiny: (padding:4px 12px, font-size:12px);
 
 $types: ("primary":$primary, "secondary":$secondary, "ghost":$ghost, "link":$link);

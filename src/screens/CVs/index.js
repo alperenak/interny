@@ -20,7 +20,7 @@ import binIconBlue from '../../icons/recycling-bin-blue.svg';
 import LoadingModal from '../../components/LoadingModal';
 import downloadIcon from '../../assets/download-icon.png';
 import uploadIcon from '../../assets/upload-icon.png';
-
+import FooterAlternative from "../../components/FooterAlternative";
 
 class CVs extends Component {
     state = {
@@ -67,6 +67,7 @@ class CVs extends Component {
         let { user } = this.props;
         let { sections, processing } = this.state;
         return (
+			<>
             <div className={"cvDetail"}>
                 {processing && <LoadingModal text="Loading" />}
 				<div class="container">
@@ -92,7 +93,7 @@ class CVs extends Component {
 					</div>
 					<div class="row">
 						<div class="col-md-8">
-							<span class="stepTitle">Complete the Steps</span>
+							<span class="stepTitle">Complete the Details</span>
 							<div class="progress" style={{"margin-top":"15px","justify-content":"space-between","border-radius":"10px","margin-bottom":"30px"}}>
 								{this.renderProgressBar()}
 							</div>
@@ -161,13 +162,25 @@ class CVs extends Component {
 										</div>
 									);
 								})}
+								{this.state.sections.length < 3 ? (
 
+									<Button
+									   text={'Create new CV'}
+
+									   icon={addIcon}
+									   iconPosition={'right'}
+									   to={'/cvcreate'}
+								   />
+								):(null)}
 
 							</div>
 						</div>
 					</div>
 				</div>
+
             </div>
+			<FooterAlternative />
+			</>
         );
     }
 }

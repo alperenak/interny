@@ -473,7 +473,7 @@ class TopBar extends Component {
 		let { loginDropDown, ourDropdown } = this.state;
 		let userType = getCookie("user");
 		let topBarClass = "";
-		if(this.state.pathname == "/" || this.state.pathname.indexOf('search') != -1){
+		if(this.state.pathname == "/"){
 			topBarClass = this.state.isScrolled ? `${"topBar"} ${"topBar__fullScreen"} ${"topBar__scroll"}` : `${"topBar"} ${"topBar__fullScreen"} ${"topBar__nonscroll"}`;
 		}else{
 			topBarClass = `${"topBar"} ${"topBar__fullScreen"} ${"topBar__scroll"}`;

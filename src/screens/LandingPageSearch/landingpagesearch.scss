@@ -1,9 +1,11 @@
 .landingPageSearch {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-
+	margin-top:80px;
+	margin-bottom:80px;
+	&__filter{
+		padding: 20px;
+		border: 1px solid #efefef;
+		border-radius: 12px;
+	}
 	&__noResult {
 		width: 100%;
 		font-family: "Sofia Pro Bold";
@@ -18,8 +20,8 @@
 		color: #2c3f58;
 	}
 	&__buttonContainer {
-		margin:0 auto;
 		margin-bottom: 40px;
-
+		display: flex;
+		justify-content: center;
 	}
 }
