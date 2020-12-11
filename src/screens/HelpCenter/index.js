@@ -60,9 +60,7 @@ class HelpCenter extends Component {
 									<span class="affiliate__tripleBox__title">
 										INTERN
 									</span>
-									<span class="affiliate__tripleBox__description">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-									</span>
+
 								</div>
 								</a>
 							</div>
@@ -72,9 +70,7 @@ class HelpCenter extends Component {
 									<span class="affiliate__tripleBox__title">
 										COMPANY
 									</span>
-									<span class="affiliate__tripleBox__description">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-									</span>
+
 								</div>
 							</div>
 							<div class="col-md-4">
@@ -83,9 +79,7 @@ class HelpCenter extends Component {
 									<span class="affiliate__tripleBox__title">
 										UNIVERSITY
 									</span>
-									<span class="affiliate__tripleBox__description">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-									</span>
+									
 								</div>
 							</div>
 						</div>

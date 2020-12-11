@@ -2,7 +2,7 @@ import React, {Component, Fragment} from "react";
 
 /*** Components ***/
 import Accordion from "../../components/Accordion";
-import FooterAlternative from "../../components/FooterAlternative";
+import Footer from "../../components/Footer";
 /*** Store ***/
 import store from "../../store";
 
@@ -458,7 +458,7 @@ class FAQ extends Component {
 						</div>
 					</div>
 				</div>
-				<FooterAlternative />
+				<Footer />
 			</div>
 		);
 	}

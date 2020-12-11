@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 /*** Components ***/
 import styles from "./style.scss";
-import FooterAlternative from "../../components/FooterAlternative";
+import Footer from "../../components/Footer";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import handshake from "../../assets/handshake.jpg";
@@ -42,34 +42,34 @@ class Affiliate extends Component {
 					<div class="row">
 						<div class="col-md-4">
 							<div class="affiliate__tripleBox">
-								<img src={discover} />
+
 								<span class="affiliate__tripleBox__title">
-									Lorem ipsum dolor sit amet
+									Explore
 								</span>
 								<span class="affiliate__tripleBox__description">
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+									Explore the INTERNY platform and package details.
 								</span>
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="affiliate__tripleBox">
-								<img src={discover} />
+
 								<span class="affiliate__tripleBox__title">
-									Lorem ipsum dolor sit amet
+									Include Network
 								</span>
 								<span class="affiliate__tripleBox__description">
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+									Inform your network about the INTERNY platform.
 								</span>
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="affiliate__tripleBox">
-								<img src={discover} />
+
 								<span class="affiliate__tripleBox__title">
-									Lorem ipsum dolor sit amet
+									Make Money
 								</span>
 								<span class="affiliate__tripleBox__description">
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+									Become a partner to the earnings from your reference.
 								</span>
 							</div>
 						</div>
@@ -80,58 +80,51 @@ class Affiliate extends Component {
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12" style={{"text-align":"center"}}>
-							<span class="affiliate__timeline__title">NASIL PARA KAZANILIR?</span>
+							<span class="affiliate__timeline__title"> How will you earn?</span>
 						</div>
 						<div class="col-md-12">
 							<ul class="timeline">
 								<li>
 									<div class="timeline-badge primary"><i class="glyphicon glyphicon-check"></i></div>
 									<div class="timeline-panel">
-										<div class="timeline-heading">
-											<h4 class="timeline-title">Mussum ipsum cacilds</h4>
-											<p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p>
-										</div>
+
 										<div class="timeline-body">
-											<p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo.
-											Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
+											<p>
+											Get involved in the INTERNY affiliate program. Sign up for the world's first global remote online internship platform as a partner.
+
+											</p>
 										</div>
 									</div>
 								</li>
 								<li class="timeline-inverted">
 									<div class="timeline-badge primary"><i class="glyphicon glyphicon-credit-card"></i></div>
 									<div class="timeline-panel">
-										<div class="timeline-heading">
-											<h4 class="timeline-title">Mussum ipsum cacilds</h4>
-										</div>
+
 										<div class="timeline-body">
-											<p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo.
-											Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-											<p>Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. Interagi no mé, cursus quis, vehicula ac nisi. Aenean vel dui dui. Nullam leo erat, aliquet quis tempus a, posuere ut mi. Ut scelerisque neque et turpis posuere
-											pulvinar pellentesque nibh ullamcorper. Pharetra in mattis molestie, volutpat elementum justo. Aenean ut ante turpis. Pellentesque laoreet mé vel lectus scelerisque interdum cursus velit auctor. Lorem ipsum dolor sit amet, consectetur adipiscing
-											elit. Etiam ac mauris lectus, non scelerisque augue. Aenean justo massa.</p>
+											<p>
+												Access your referral code and start using your referral code.
+											</p>
 										</div>
 									</div>
 								</li>
 								<li>
 									<div class="timeline-badge primary"><i class="glyphicon glyphicon-credit-card"></i></div>
 										<div class="timeline-panel">
-											<div class="timeline-heading">
-												<h4 class="timeline-title">Mussum ipsum cacilds</h4>
-											</div>
+
 											<div class="timeline-body">
-												<p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo.
-												Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
+												<p>
+													Share your referral code. You can share your referral code with your network on your website, social media accounts, etc.
+												</p>
 											</div>
 									</div>
 								</li>
 								<li class="timeline-inverted">
 									<div class="timeline-panel">
-										<div class="timeline-heading">
-											<h4 class="timeline-title">Mussum ipsum cacilds</h4>
-										</div>
+
 										<div class="timeline-body">
-											<p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo.
-											Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
+											<p>
+												Qualify for commission. Be a 10% share in the income of INTERNY packages purchased with the links you share.
+											</p>
 										</div>
 									</div>
 								</li>
@@ -143,6 +136,9 @@ class Affiliate extends Component {
 			<div className={"faq"}>
 				<div class="container">
 					<div class="row">
+						<div class="col-md-12" style={{"text-align":"center","margin-bottom":"30px"}}>
+							<span class="affiliate__timeline__title">FAQ for the Affiliate Program</span>
+						</div>
 						<div class="col-md-12">
 							<div id="accordion">
 								{dummy_data["intern"].map((data,index) => {
@@ -170,6 +166,9 @@ class Affiliate extends Component {
 			<div className="affiliate__contact">
 				<div class="container">
 					<div class="row">
+						<div class="col-md-12" style={{"text-align":"center","margin-bottom":"30px"}}>
+							<span class="affiliate__timeline__title">You can contact us with any questions.</span>
+						</div>
 						<div class="col-md-6">
 							<Input
 								type={"text"}
@@ -247,7 +246,7 @@ class Affiliate extends Component {
 					</div>
 				</div>
 			</div>
-			<FooterAlternative />
+			<Footer />
 		</div>
     );
   }

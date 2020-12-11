@@ -29,27 +29,76 @@ class myAccountWrapper extends Component {
       { key: "membershipStatus", title: "Membership" },
       { key: "phone", title: "Phone" },
       { key: "location", title: "Location" },
+	  { key: "gradStatus", title: "Graduation Status" },
+	  { key: "linkedinUrl", title: "Linkedin Url" },
     ],
     value: "",
-    processing: false
-  };
+	country:"",
+	city:"",
+	user:{
+		location:{},
 
+		university:{}
+	},
+    processing: true
+  };
+	async componentDidMount(){
+		const userData = await this.props.getUser();
+		if(getCookie("user") == "intern"){
+			this.setState({
+				department:userData.data["university"].department,
+				faculty:userData.data["university"].faculty,
+				studentNumber:userData.data["university"].studentNumber,
+				university:userData.data["university"].university,
+				universityMail:userData.data["university"].universityMail,
+				country:userData.data["location"].country,
+				city:userData.data["location"].city,
+				user:userData.data,
+				processing:false
+			});
+		}else{
+			this.setState({
+
+				user:userData.data,
+				processing:false
+			});
+		}
+
+	}
   onFileUpload = async (files) => {
     let uploadData = await store.uploadImageType(files[0].type);
     let res = await store.uploadImage(uploadData.url, files[0]);
     if (res) {
       await store.uploadImageKey(uploadData.key);
     }
-    await this.props.getUser();
+    const response = await this.props.getUser();
+	 this.setState({ user:response.data,processing: false })
   };
 
   onChangeClick = (item) => {
-    if (item.key !== "membershipStatus") {
-      this.props.createModal({
-        header: `Update ${item.title}`,
-        content: () => this.renderModalContent(item.title),
-        buttons: this.renderModalButtons(item.key),
-      });
+    if (item !== "membershipStatus") {
+		if(item == "location"){
+			this.props.createModal({
+			  header: `Update Location`,
+			  content: () => this.renderModalContentLoc("Location"),
+			  buttons: this.renderModalButtons("location"),
+			});
+		}
+		else if(item == "university"){
+			this.props.createModal({
+			  header: `Update University`,
+			  content: () => this.renderModalContentUni("University"),
+			  buttons: this.renderModalButtons("university"),
+			});
+		}
+		else{
+			this.props.createModal({
+			  header: `Update ${item.title}`,
+			  content: () => this.renderModalContent(item),
+			  buttons: this.renderModalButtons(item),
+			});
+		}
+
     }
   };
 
@@ -63,26 +112,107 @@ class myAccountWrapper extends Component {
       />
     );
   }
+  renderModalContentLoc(title) {
+    return (
+		<>
+			<Input
+			  type={"text"}
+			  placeholder={`Country`}
+			  size={"full"}
+			  onChange={(value) => this.setState({country:value})}
+			  defaultValue={this.state.country}
+			/>
+			<Input
+			  type={"text"}
+			  placeholder={`City`}
+			  size={"full"}
+			  onChange={(value) => this.setState({city:value})}
+			  defaultValue={this.state.city}
+			/>
+		</>
+
+    );
+  }
+  renderModalContentUni(title) {
+    return (
+		<>
+			<Input
+			  type={"text"}
+			  placeholder={`department`}
+			  size={"full"}
+			  onChange={(value) => this.setState({department:value})}
+			  defaultValue={this.state.department}
+			/>
+			<Input
+			  type={"text"}
+			  placeholder={`Faculty`}
+			  size={"full"}
+			  onChange={(value) => this.setState({faculty:value})}
+			  defaultValue={this.state.faculty}
+			/>
+			<Input
+			  type={"text"}
+			  placeholder={`Student Number`}
+			  size={"full"}
+			  onChange={(value) => this.setState({studentNumber:value})}
+			  defaultValue={this.state.studentNumber}
+			/>
+			<Input
+			  type={"text"}
+			  placeholder={`University`}
+			  size={"full"}
+			  onChange={(value) => this.setState({university:value})}
+			  defaultValue={this.state.university}
+			/>
+			<Input
+			  type={"text"}
+			  placeholder={`University Mail`}
+			  size={"full"}
+			  onChange={(value) => this.setState({universityMail:value})}
+			  defaultValue={this.state.universityMail}
+			/>
+		</>
+
+    );
+  }
   onUpdateClick = async (key) => {
-    this.setState({ processing: true })
-    console.log(this.state.processing);
+    this.setState({ processing: true });
+
     if (getCookie("user") === "intern") {
-      await store.editIntern(this.props.user.id, {
-        field: key,
-        value: this.state.value,
-      });
+		var postData = {};
+
+		if(key == "location"){
+			postData =  {
+				location:{
+					city: this.state.city,
+					country: this.state.country,
+				}
+		  	};
+		}
+		else if(key == "university"){
+			postData =  {
+				university:{
+					department: this.state.department,
+					faculty: this.state.faculty,
+					studentNumber: this.state.studentNumber,
+					university: this.state.university,
+					universityMail: this.state.universityMail,
+				}
+		  	};
+		}
+		else{
+			postData[key] = this.state.value;
+		}
+
+		await store.editIntern(this.props.user.id, key, postData);
     } else {
-      await store.editEmployer(this.props.user.id, {
-        field: key,
-        value: this.state.value,
-      });
+      await store.editEmployer(this.props.user.id,key,postData);
     }
     this.setState({ value: "" });
     let response = await this.props.getUser();
 
-
     if (response) {
-      this.setState({ processing: false })
+      this.setState({ user:response.data,processing: false })
       this.props.closeModal();
     }
   }
@@ -98,12 +228,13 @@ class myAccountWrapper extends Component {
       type: "primary",
       text: "Update",
       sizeName: "default",
-      onButtonClick: (key) => this.onUpdateClick(key),
+      onButtonClick: () => this.onUpdateClick(key),
     },
   ];
 	render() {
 		let { user } = this.props;
 		let { items, processing } = this.state;
+
 		let duration = (((user?.Internship?.duration - user?.Internship?.dayLeft) / user?.Internship?.duration) * 100);
 		return (
 			<>
@@ -122,8 +253,8 @@ class myAccountWrapper extends Component {
 										>
 											<div className={"myAccountWrapper__profileImage"}>
 												<div
-												v-if={user.avatar || user.logo}
-												className={"myAccountWrapper__profileImage__imageContainer"}
+													v-if={user.avatar || user.logo}
+													className={"myAccountWrapper__profileImage__imageContainer"}
 												>
 													<img src={user.avatar || user.logo} alt={"profile photo"} />
 												</div>
@@ -199,42 +330,166 @@ class myAccountWrapper extends Component {
 									<div class="col-md-12">
 										<Card
 											type={"myAccount"}
-
 										>
 											<>
-											<div class="col-md-12">
-											<div class="cardHeader start">My Account</div>
-											</div>
-
-											{items.map((item, i) => {
-												return (
+												<div class="col-md-12">
+													<div class="cardHeader start">My Account</div>
+												</div>
+												<div class="col-md-12">
+													<div className={"myAccountWrapperRow"}>
+														<div className={"myAccountWrapperRow__title"}>E-mail Address</div>
+															<div className={styles.text}>
+																{this.state.user["email"]}
+															</div>
+															<Button
+																type={"ghost"}
+																sizeName={"small"}
+																text={"Update"}
+																onButtonClick={() => this.onChangeClick('email')}
+															/>
+													</div>
+												</div>
+												<div class="col-md-12">
+													<div className={"myAccountWrapperRow"}>
+														<div className={"myAccountWrapperRow__title"}>Password</div>
+															<div className={styles.text}>
+																*************
+															</div>
+															<Button
+																type={"ghost"}
+																sizeName={"small"}
+																text={"Update"}
+																onButtonClick={() => this.onChangeClick('password')}
+															/>
+													</div>
+												</div>
+												{getCookie("user") == "intern" ? (
+													<>
 													<div class="col-md-12">
-														<div
-														v-if={user[item.key]}
-														key={i}
-														className={"myAccountWrapperRow"}
-														>
-															<div className={"myAccountWrapperRow__title"}>{item.title}</div>
-																<div v-if={item.key !== "password"} className={styles.text}>
-																	{item.key === "location"
-																	? user[item.key].city + " - " + user[item.key].country
-																	: user[item.key]}
-																</div>
-																<div v-if={item.key === "password"} className={styles.text}>
-																	**********
+														<div className={"myAccountWrapperRow"}>
+															<div className={"myAccountWrapperRow__title"}>Name</div>
+																<div className={styles.text}>
+																	{this.state.user["name"]}
 																</div>
 																<Button
 																	type={"ghost"}
 																	sizeName={"small"}
 																	text={"Update"}
-																	onButtonClick={() => this.onChangeClick(item)}
+																	onButtonClick={() => this.onChangeClick('name')}
 																/>
 														</div>
 													</div>
 
-												);
+													<div class="col-md-12">
+														<div className={"myAccountWrapperRow"}>
+															<div className={"myAccountWrapperRow__title"}>Surname</div>
+																<div className={styles.text}>
+																	{this.state.user["surname"]}
+																</div>
+																<Button
+																	type={"ghost"}
+																	sizeName={"small"}
+																	text={"Update"}
+																	onButtonClick={() => this.onChangeClick('surname')}
+																/>
+														</div>
+													</div>
+													</>
+												):(null)}
 
-											})}
+												<div class="col-md-12">
+													<div className={"myAccountWrapperRow"}>
+														<div className={"myAccountWrapperRow__title"}>Membership</div>
+															<div className={styles.text}>
+																{this.state.user["membershipStatus"]}
+															</div>
+															<Button
+																type={"ghost"}
+																sizeName={"small"}
+																text={"Update"}
+																onButtonClick={() => this.onChangeClick('membershipStatus')}
+															/>
+													</div>
+												</div>
+												<div class="col-md-12">
+													<div className={"myAccountWrapperRow"}>
+														<div className={"myAccountWrapperRow__title"}>Phone</div>
+															<div className={styles.text}>
+																{this.state.user["phone"]}
+															</div>
+															<Button
+																type={"ghost"}
+																sizeName={"small"}
+																text={"Update"}
+																onButtonClick={() => this.onChangeClick('phone')}
+															/>
+													</div>
+												</div>
+												{getCookie("user") == "intern" ? (
+													<div class="col-md-12">
+														<div className={"myAccountWrapperRow"}>
+															<div className={"myAccountWrapperRow__title"}>Location</div>
+																<div className={styles.text}>
+																	{this.state.user["location"].country + "-"+ this.state.user["location"].city}
+																</div>
+																<Button
+																	type={"ghost"}
+																	sizeName={"small"}
+																	text={"Update"}
+																	onButtonClick={() => this.onChangeClick('location')}
+																/>
+														</div>
+													</div>
+												):(null)}
+
+													{getCookie("user") == "intern" ? (
+														<div class="col-md-12">
+															<div className={"myAccountWrapperRow"}>
+																<div className={"myAccountWrapperRow__title"}>University</div>
+																	<div className={styles.text}>
+																		{this.state.user["university"].university}
+																	</div>
+																	<Button
+																		type={"ghost"}
+																		sizeName={"small"}
+																		text={"Update"}
+																		onButtonClick={() => this.onChangeClick('university')}
+																	/>
+															</div>
+														</div>
+													):(null)}
+													{getCookie("user") == "intern" ? (
+														<div class="col-md-12">
+															<div className={"myAccountWrapperRow"}>
+																<div className={"myAccountWrapperRow__title"}>Graduation Status</div>
+																	<div className={styles.text}>
+																		{this.state.user["gradStatus"]}
+																	</div>
+																	<Button
+																		type={"ghost"}
+																		sizeName={"small"}
+																		text={"Update"}
+																		onButtonClick={() => this.onChangeClick('gradStatus')}
+																	/>
+															</div>
+														</div>
+													):(null)}
+
+
+												<div class="col-md-12">
+													<div className={"myAccountWrapperRow"}>
+														<div className={"myAccountWrapperRow__title"}>Linkedin</div>
+															<div className={styles.text}>
+																{this.state.user["linkedinUrl"]}
+															</div>
+															<Button
+																type={"ghost"}
+																sizeName={"small"}
+																text={"Update"}
+																onButtonClick={() => this.onChangeClick('linkedinUrl')}
+															/>
+													</div>
+												</div>
 											</>
 										</Card>
 									</div>

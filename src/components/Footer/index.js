@@ -87,9 +87,9 @@ class Footer extends Component {
 													<Link to="/gift">Gift</Link>
 													</li>
 													<li>
-													<Link to="/signup">
+													<a href="https://www.linkedin.com/company/internynet">
 													Careers
-													</Link>
+													</a>
 													</li>
 												</ul>
 											</div>

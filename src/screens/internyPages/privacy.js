@@ -20,6 +20,9 @@ class PrivacyPage extends Component {
 			<>
 			<div class="container" style={{"margin-top":"100px"}}>
 	          <div class="row">
+			  <div class="col-md-12" style={{"text-align":"center","margin-bottom":"30px"}}>
+				 <span class="affiliate__timeline__title">Privacy Policy</span>
+			 </div>
 	            <div>
 	              <p class={"p1"}>Last updated: October 10, 2020</p>
 	              <p class={"p1"}>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>

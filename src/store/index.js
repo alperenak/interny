@@ -183,18 +183,17 @@ let store = {
       errorMessageBuilder
     );
   },
-  async editIntern(id, { field, value }) {
+  async editIntern(id, type,data) {
+
     let baseUrl = config.baseUrl;
-    let path = `/intern/${id}/${field}`;
+    let path = `/intern/${id}/`;
     let tokenCookieName = "token";
-    let payload = {
-      [field]: value,
-    };
+
     return await http.makePutRequest(
       path,
       baseUrl,
       tokenCookieName,
-      payload,
+      data,
       errorMessageBuilder
     );
   },
@@ -209,7 +208,7 @@ let store = {
       errorMessageBuilder
     );
   },
-  async editEmployer(id, { field, value }) {
+  async editEmployer(id, type,data) {
     let baseUrl = config.baseUrl;
     let path = `/employer/${id}/${field}`;
     let tokenCookieName = "token";
@@ -220,7 +219,7 @@ let store = {
       path,
       baseUrl,
       tokenCookieName,
-      payload,
+      data,
       errorMessageBuilder
     );
   },

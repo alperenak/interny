@@ -19,7 +19,11 @@ class TermPage extends Component {
         return (
 			<>
 			<div class="container" style={{"margin-top":"100px"}}>
+
 	          <div class="row">
+			  <div class="col-md-12" style={{"text-align":"center","margin-bottom":"30px"}}>
+				  <span class="affiliate__timeline__title">Terms and Conditions</span>
+			  </div>
 	            <div>
 				<p className={"p1"}> Last updated: October 10, 2020</p>
 				<p className={"p1"}>Please read these terms and conditions carefully before using Our Service.</p>
