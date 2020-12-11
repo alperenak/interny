@@ -75,7 +75,7 @@ class myAccountWrapper extends Component {
 	 this.setState({ user:response.data,processing: false })
   };
 
-  onChangeClick = (item) => {
+  onChangeClick = (item,title = "",value={}) => {
     if (item !== "membershipStatus") {
 		if(item == "location"){
 			this.props.createModal({
@@ -91,23 +91,115 @@ class myAccountWrapper extends Component {
 			  buttons: this.renderModalButtons("university"),
 			});
 		}
+		else if(item == "englishUsage"){
+			this.props.createModal({
+			  header: `English Usage`,
+			  content: () => this.renderModalContentUsage("English Usage"),
+			  buttons: this.renderModalButtons("englishUsage"),
+			});
+		}
+		else if(item == "mainLanguage"){
+
+			this.props.createModal({
+			  header: `Main Language`,
+			  content: () => this.renderModalContentMLanguage("Main Language"),
+			  buttons: this.renderModalButtons("mainLanguage"),
+			});
+		}
+		else if(item == "sectors"){
+
+			this.props.createModal({
+			  header: `Sectors`,
+			  content: () => this.renderModalContentSectors("Sectors"),
+			  buttons: this.renderModalButtons("sectors"),
+			});
+		}
 		else{
 			this.props.createModal({
-			  header: `Update ${item.title}`,
-			  content: () => this.renderModalContent(item),
+			  header: `Update ${title}`,
+			  content: () => this.renderModalContent(item,value),
 			  buttons: this.renderModalButtons(item),
 			});
 		}
 
     }
   };
+	renderModalContentUsage(title,value){
+		return (
+			<>
+				<Input
+					type={"select"}
+					id={"englishUsage"}
+					label={"English Usage"}
+					size={"full"}
+					labelDescription={"Choose one below"}
 
-  renderModalContent(title) {
+					onChange={(value, slValue) => {
+						this.setState({ englishUsage: slValue.key });
+					}}
+					placeholder={"English Usage"}
+					externalSource={[
+						{ key: "true", value: "Yes" },
+						{ key: "false", value: "No" },
+					]}
+				/>
+			</>
+
+	    );
+	}
+	renderModalContentMLanguage(title,value){
+		return (
+			<>
+				<Input
+					type={"select"}
+					id={"mainLanguage"}
+					label={"Main Language"}
+					size={"full"}
+					labelDescription={"Choose one below"}
+					onChange={(value, slValue) => {
+						this.setState({ mainLanguage: slValue.key });
+					}}
+					placeholder={"Main Language"}
+					externalSource={[
+						{ key: "tr", value: "Turkey" },
+						{ key: "en", value: "English" },
+						{ key: "it", value: "Italian" },
+					]}
+				/>
+			</>
+
+		);
+	}
+	renderModalContentSectors(title,value){
+		return (
+			<>
+				<Input
+					type={"select"}
+					id={"sectors"}
+					label={"Sectors"}
+					size={"full"}
+					labelDescription={"Choose one below"}
+					onChange={(value, slValue) => {
+						this.setState({ sectors: slValue.key });
+					}}
+					placeholder={"Sectors"}
+					externalSource={[
+						{ key: "energy", value: "Energy" },
+						{ key: "it", value: "IT" },
+						{ key: "agency", value: "Agency" },
+					]}
+				/>
+			</>
+
+		);
+	}
+  renderModalContent(title,value) {
     return (
       <Input
         type={"text"}
         placeholder={`Enter ${title}`}
         size={"full"}
+		defaultValue={value}
         onChange={(value) => this.setState({ value })}
       />
     );
@@ -177,32 +269,46 @@ class myAccountWrapper extends Component {
   }
   onUpdateClick = async (key) => {
     this.setState({ processing: true });
+	var postData = {};
 
+	if(key == "location"){
+		postData =  {
+			location:{
+				city: this.state.city,
+				country: this.state.country,
+			}
+		};
+	}
+	else if(key == "university"){
+		postData =  {
+			university:{
+				department: this.state.department,
+				faculty: this.state.faculty,
+				studentNumber: this.state.studentNumber,
+				university: this.state.university,
+				universityMail: this.state.universityMail,
+			}
+		};
+	}
+	else if(key == "englishUsage"){
+		postData = {
+			englishUsage:this.state.englishUsage
+		}
+	}
+	else if(key == "mainLanguage"){
+		postData = {
+			mainLanguage:this.state.mainLanguage
+		}
+	}
+	else if(key == "sectors"){
+		postData = {
+			sectors:this.state.sectors
+		}
+	}
+	else{
+		postData[key] = this.state.value;
+	}
     if (getCookie("user") === "intern") {
-		var postData = {};
-
-		if(key == "location"){
-			postData =  {
-				location:{
-					city: this.state.city,
-					country: this.state.country,
-				}
-		  	};
-		}
-		else if(key == "university"){
-			postData =  {
-				university:{
-					department: this.state.department,
-					faculty: this.state.faculty,
-					studentNumber: this.state.studentNumber,
-					university: this.state.university,
-					universityMail: this.state.universityMail,
-				}
-		  	};
-		}
-		else{
-			postData[key] = this.state.value;
-		}
 
 		await store.editIntern(this.props.user.id, key, postData);
     } else {
@@ -345,7 +451,7 @@ class myAccountWrapper extends Component {
 																type={"ghost"}
 																sizeName={"small"}
 																text={"Update"}
-																onButtonClick={() => this.onChangeClick('email')}
+																onButtonClick={() => this.onChangeClick('email',"E-mail Address",this.state.user["email"])}
 															/>
 													</div>
 												</div>
@@ -359,7 +465,7 @@ class myAccountWrapper extends Component {
 																type={"ghost"}
 																sizeName={"small"}
 																text={"Update"}
-																onButtonClick={() => this.onChangeClick('password')}
+																onButtonClick={() => this.onChangeClick('password',"Password","")}
 															/>
 													</div>
 												</div>
@@ -375,7 +481,7 @@ class myAccountWrapper extends Component {
 																	type={"ghost"}
 																	sizeName={"small"}
 																	text={"Update"}
-																	onButtonClick={() => this.onChangeClick('name')}
+																	onButtonClick={() => this.onChangeClick('name',"Name",this.state.user["name"])}
 																/>
 														</div>
 													</div>
@@ -390,13 +496,157 @@ class myAccountWrapper extends Component {
 																	type={"ghost"}
 																	sizeName={"small"}
 																	text={"Update"}
-																	onButtonClick={() => this.onChangeClick('surname')}
+																	onButtonClick={() => this.onChangeClick('surname','Surname',this.state.user["surname"])}
 																/>
 														</div>
 													</div>
 													</>
 												):(null)}
 
+												{getCookie("user") == "employer" ? (
+													<div class="col-md-12">
+														<div className={"myAccountWrapperRow"}>
+															<div className={"myAccountWrapperRow__title"}>Legal Name</div>
+																<div className={styles.text}>
+																	{this.state.user["legalName"]}
+																</div>
+																<Button
+																	type={"ghost"}
+																	sizeName={"small"}
+																	text={"Update"}
+																	onButtonClick={() => this.onChangeClick('legalName',"Legal Name",this.state.user["legalName"])}
+																/>
+														</div>
+													</div>
+												):(null)}
+												{getCookie("user") == "employer" ? (
+													<div class="col-md-12">
+														<div className={"myAccountWrapperRow"}>
+															<div className={"myAccountWrapperRow__title"}>Description</div>
+																<div className={styles.text}>
+																	{this.state.user["description"]}
+																</div>
+																<Button
+																	type={"ghost"}
+																	sizeName={"small"}
+																	text={"Update"}
+																	onButtonClick={() => this.onChangeClick('description','Description',this.state.user["description"])}
+																/>
+														</div>
+													</div>
+												):(null)}
+												{getCookie("user") == "employer" ? (
+													<div class="col-md-12">
+														<div className={"myAccountWrapperRow"}>
+															<div className={"myAccountWrapperRow__title"}>Employee Number</div>
+																<div className={styles.text}>
+																	{this.state.user["employeeNumber"]}
+																</div>
+																<Button
+																	type={"ghost"}
+																	sizeName={"small"}
+																	text={"Update"}
+																	onButtonClick={() => this.onChangeClick('employeeNumber','Employee Number',this.state.user["employeeNumber"])}
+																/>
+														</div>
+													</div>
+												):(null)}
+												{getCookie("user") == "employer" ? (
+													<div class="col-md-12">
+														<div className={"myAccountWrapperRow"}>
+															<div className={"myAccountWrapperRow__title"}>Main Language</div>
+																<div className={styles.text}>
+																	{this.state.user["mainLanguage"]}
+																</div>
+																<Button
+																	type={"ghost"}
+																	sizeName={"small"}
+																	text={"Update"}
+																	onButtonClick={() => this.onChangeClick('mainLanguage','Main Language',this.state.user["mainLanguage"])}
+																/>
+														</div>
+													</div>
+												):(null)}
+												{getCookie("user") == "employer" ? (
+													<div class="col-md-12">
+														<div className={"myAccountWrapperRow"}>
+															<div className={"myAccountWrapperRow__title"}>English Usage</div>
+																<div className={styles.text}>
+																	{this.state.user["englishUsage"] ? ("Yes"):("No")}
+																</div>
+																<Button
+																	type={"ghost"}
+																	sizeName={"small"}
+																	text={"Update"}
+																	onButtonClick={() => this.onChangeClick('englishUsage','English Usage',this.state.user["englishUsage"])}
+																/>
+														</div>
+													</div>
+												):(null)}
+												{getCookie("user") == "employer" ? (
+													<div class="col-md-12">
+														<div className={"myAccountWrapperRow"}>
+															<div className={"myAccountWrapperRow__title"}>Sectors</div>
+																<div className={styles.text}>
+																	{this.state.user["sectors"]}
+																</div>
+																<Button
+																	type={"ghost"}
+																	sizeName={"small"}
+																	text={"Update"}
+																	onButtonClick={() => this.onChangeClick('sectors','Sectors',this.state.user["sectors"])}
+																/>
+														</div>
+													</div>
+												):(null)}
+												{getCookie("user") == "employer" ? (
+													<div class="col-md-12">
+														<div className={"myAccountWrapperRow"}>
+															<div className={"myAccountWrapperRow__title"}>Address</div>
+																<div className={styles.text}>
+																	{this.state.user["address"]}
+																</div>
+																<Button
+																	type={"ghost"}
+																	sizeName={"small"}
+																	text={"Update"}
+																	onButtonClick={() => this.onChangeClick('address','Address',this.state.user["address"])}
+																/>
+														</div>
+													</div>
+												):(null)}
+												{getCookie("user") == "employer" ? (
+													<div class="col-md-12">
+														<div className={"myAccountWrapperRow"}>
+															<div className={"myAccountWrapperRow__title"}>Vat Number</div>
+																<div className={styles.text}>
+																	{this.state.user["vatNumber"]}
+																</div>
+																<Button
+																	type={"ghost"}
+																	sizeName={"small"}
+																	text={"Update"}
+																	onButtonClick={() => this.onChangeClick('vatNumber','Vat Number',this.state.user["vatNumber"])}
+																/>
+														</div>
+													</div>
+												):(null)}
+												{getCookie("user") == "employer" ? (
+													<div class="col-md-12">
+														<div className={"myAccountWrapperRow"}>
+															<div className={"myAccountWrapperRow__title"}>Website</div>
+																<div className={styles.text}>
+																	{this.state.user["websiteUrl"]}
+																</div>
+																<Button
+																	type={"ghost"}
+																	sizeName={"small"}
+																	text={"Update"}
+																	onButtonClick={() => this.onChangeClick('websiteUrl','Website',this.state.user["websiteUrl"])}
+																/>
+														</div>
+													</div>
+												):(null)}
 												<div class="col-md-12">
 													<div className={"myAccountWrapperRow"}>
 														<div className={"myAccountWrapperRow__title"}>Membership</div>

@@ -210,11 +210,9 @@ let store = {
   },
   async editEmployer(id, type,data) {
     let baseUrl = config.baseUrl;
-    let path = `/employer/${id}/${field}`;
+    let path = `/employer/${id}/`;
     let tokenCookieName = "token";
-    let payload = {
-      [field]: value,
-    };
+
     return await http.makePutRequest(
       path,
       baseUrl,
