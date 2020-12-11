@@ -671,7 +671,7 @@ class myAccountWrapper extends Component {
 																type={"ghost"}
 																sizeName={"small"}
 																text={"Update"}
-																onButtonClick={() => this.onChangeClick('phone')}
+																onButtonClick={() => this.onChangeClick('phone','Phone',this.state.user["phone"])}
 															/>
 													</div>
 												</div>
@@ -686,7 +686,7 @@ class myAccountWrapper extends Component {
 																	type={"ghost"}
 																	sizeName={"small"}
 																	text={"Update"}
-																	onButtonClick={() => this.onChangeClick('location')}
+																	onButtonClick={() => this.onChangeClick('location','Location',this.state.user["location"])}
 																/>
 														</div>
 													</div>
@@ -703,7 +703,7 @@ class myAccountWrapper extends Component {
 																		type={"ghost"}
 																		sizeName={"small"}
 																		text={"Update"}
-																		onButtonClick={() => this.onChangeClick('university')}
+																		onButtonClick={() => this.onChangeClick('university','University',this.state.user["university"])}
 																	/>
 															</div>
 														</div>
@@ -719,7 +719,7 @@ class myAccountWrapper extends Component {
 																		type={"ghost"}
 																		sizeName={"small"}
 																		text={"Update"}
-																		onButtonClick={() => this.onChangeClick('gradStatus')}
+																		onButtonClick={() => this.onChangeClick('gradStatus','Graduation Status',this.state.user["gradStatus"])}
 																	/>
 															</div>
 														</div>
@@ -736,7 +736,7 @@ class myAccountWrapper extends Component {
 																type={"ghost"}
 																sizeName={"small"}
 																text={"Update"}
-																onButtonClick={() => this.onChangeClick('linkedinUrl')}
+																onButtonClick={() => this.onChangeClick('linkedinUrl','Linkedin',this.state.user["linkedinUrl"])}
 															/>
 													</div>
 												</div>
