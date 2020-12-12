@@ -47,7 +47,7 @@ class Footer extends Component {
 									</div>
 								</div>
 							</div>
-							<div class="col-xl-6 col-lg-12 col-12">
+							<div class="col-xl-7 col-lg-12 col-12">
 								<div className={"footerSection__options"}>
 									<div class="row">
 										<div class="col-md-4">
@@ -122,8 +122,8 @@ class Footer extends Component {
 
 								</div>
 							</div>
-							<div class="col-xl-3 col-lg-12 col-12">
-								<div className={styles.rightSide}>
+							<div class="col-xl-2 col-lg-12 col-12">
+								<div className={"footerSection__rightSide"}>
 									<div className={"footerSection__languages"}>
 										<div className={"selectWrapper"}>
 											<img src={EarthGrid} />
@@ -135,11 +135,11 @@ class Footer extends Component {
 										</div>
 									</div>
 									<div className={"footerSection__stores"}>
-										<a href={"/"} className={"footerSection__stores__store"}>
-											<img src={appStore} alt={"store"} />
-										</a>
 										<a href={"/"} className={"footerSection__stores__storePlay"}>
 											<img src={googlePlay} alt={"store"} />
+										</a>
+										<a href={"/"} className={"footerSection__stores__store"}>
+											<img src={appStore} alt={"store"} />
 										</a>
 									</div>
 								</div>
