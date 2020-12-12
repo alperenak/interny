@@ -128,9 +128,7 @@ class Footer extends Component {
 										<div className={"selectWrapper"}>
 											<img src={EarthGrid} />
 											<select>
-												<option>Turkish</option>
 												<option>English</option>
-												<option>Deutsch</option>
 											</select>
 										</div>
 									</div>
