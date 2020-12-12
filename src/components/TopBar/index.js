@@ -54,21 +54,21 @@ class TopBar extends Component {
     ourPackages: [
       {
         key: "intern",
-        value: "For Intern",
+        value: <span><i>for</i> Intern</span>,
         selected: false,
         disabled: true,
         to: "/packages",
       },
       {
         key: "company",
-        value: "For Company",
+        value: <span><i>for</i> Company</span>,
         selected: false,
         disabled: true,
         to: "/packages",
       },
       {
         key: "university",
-        value: "For University",
+        value: <span><i>for</i> University</span>,
         selected: false,
         disabled: true,
         to: "/packages",
