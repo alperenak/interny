@@ -27,8 +27,6 @@
 	}
 }
 .home {
-	margin-top:-80px;
-
 	&__popularSearchSection {
 		display: flex;
 		flex-direction: column;
@@ -36,9 +34,6 @@
 		align-items: center;
 		background-color: white;
 		width: 100%;
-		@include medium{
-		margin-top:140px;
-		}
 	}
 	&__cities {
 		width: 100%;

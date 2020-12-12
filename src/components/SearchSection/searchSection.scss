@@ -13,15 +13,17 @@
 	align-items: center;
 	justify-content: center;
 	width: 100%;
+	margin-bottom: 2rem;
 
-	@include medium {
-		margin-bottom:60px;
-	}
 	&__bgColor{
 		background-color: #f6f8fa;
 		width: 100%;
 		padding-top: 100px;
-		padding-bottom: 70px;
+		padding-bottom: 40px;
+		@include medium {
+			padding-top: 60px;
+			padding-bottom: 60px;
+		}
 	}
 	&__slogan {
 		z-index: 1;
