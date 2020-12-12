@@ -395,7 +395,6 @@ class Home extends Component {
 										<div className={"home__packagesSection__packageCard__headerDiv"}>
 											<div className={"home__packagesSection__packageCard__packageTitle"}>FREEMIUM</div>
 											<div className={"home__packagesSection__packageCard__packagePrice"}>$0.00</div>
-											<div className={"home__packagesSection__packageCard__packagePaymentDate"}>Per Month</div>
 										</div>
 										<div className={"home__packagesSection__packageCard__stroke"} />
 										<div className={"home__packagesSection__packageCard__descriptionDiv"}>
@@ -407,13 +406,13 @@ class Home extends Component {
 											<Button
 												v-if={this.state.pri1}
 												type={"primary"}
-												text={"Buy Now"}
+												text={"Details"}
 												sizeName={"default"}
 											/>
 											<Button
 												v-if={!this.state.pri1}
 												type={"ghost"}
-												text={"Buy Now"}
+												text={"Details"}
 												sizeName={"default"}
 											/>
 										</div>
@@ -441,20 +440,20 @@ class Home extends Component {
 										<div className={"home__packagesSection__packageCardGuaranteed__descriptionDiv"}>
 											<div className={"home__packagesSection__packageCardGuaranteed__packageDescription"}>
 												<div>Apply for Internships</div>
-												<div data-toggle="tooltip" title="Interny Management System">İMSᵖᵐ</div>
+												<div class="bold" data-toggle="tooltip" title="Interny Management System">iMSᵖᵐ</div>
 												<div data-toggle="tooltip" title="Workforce Analytics">WFA Report</div>
 												<div>Reference Letter</div>
 											</div>
 											<Button
 											v-if={this.state.pri2}
 											type={"primary"}
-											text={"Buy Now"}
+											text={"Details"}
 											sizeName={"default"}
 											/>
 											<Button
 											v-if={!this.state.pri2}
 											type={"ghost"}
-											text={"Buy Now"}
+											text={"Details"}
 											sizeName={"default"}
 											/>
 										</div>
@@ -478,20 +477,20 @@ class Home extends Component {
 										<div className={"home__packagesSection__packageCard__stroke"} />
 										<div className={"home__packagesSection__packageCard__descriptionDiv"}>
 											<div className={"home__packagesSection__packageCard__packageDescription"}>
-												<div data-toggle="tooltip" title="Interny Management System">İCCᵗᵐ</div>
+												<div class="bold" data-toggle="tooltip" title="Interny Management System">iCCᵗᵐ</div>
 												<div >Competenct Analytics</div>
 												<div>Competency Report</div>
 											</div>
 											<Button
 												v-if={this.state.pri3}
 												type={"primary"}
-												text={"Buy Now"}
+												text={"Details"}
 												sizeName={"default"}
 											/>
 											<Button
 												v-if={!this.state.pri3}
 												type={"ghost"}
-												text={"Buy Now"}
+												text={"Details"}
 												sizeName={"default"}
 											/>
 										</div>
