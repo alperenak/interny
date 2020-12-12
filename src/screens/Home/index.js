@@ -276,7 +276,7 @@ class Home extends Component {
 					</div>
 					<div class="row home__howItWorksSection__row">
 						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
-							<div className={"home__howItWorksSection__division boxAnimation2"}  style={{"margin-top":"90px"}}>
+							<div className={"home__howItWorksSection__division boxAnimation2"}>
 								<img className={"home__howItWorksSection__division__icon"} src={register} />
 								<div className={"home__howItWorksSection__division__title"}>Join & Apply</div>
 								<div className={"home__howItWorksSection__division__description"}>
@@ -285,7 +285,7 @@ class Home extends Component {
 							</div>
 						</div>
 						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
-							<div className={"home__howItWorksSection__division boxAnimation2"} style={{"margin-top":"60px"}}>
+							<div className={"home__howItWorksSection__division boxAnimation2"}>
 								<img className={"home__howItWorksSection__division__icon"} src={comp} />
 								<div className={"home__howItWorksSection__division__title"}>Competency Analytics</div>
 								<div className={"home__howItWorksSection__division__description"}>
@@ -296,7 +296,7 @@ class Home extends Component {
 							</div>
 						</div>
 						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
-							<div className={"home__howItWorksSection__division boxAnimation2"} style={{"margin-top":"30px"}}>
+							<div className={"home__howItWorksSection__division boxAnimation2"}>
 								<img className={"home__howItWorksSection__division__icon"} src={application} />
 								<div className={"home__howItWorksSection__division__title"}>Project Management System</div>
 								<div className={"home__howItWorksSection__division__description"}>
