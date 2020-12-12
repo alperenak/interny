@@ -29,9 +29,10 @@ import register from "../../icons/register.svg";
 import comp from "../../icons/comp.svg";
 import application from "../../icons/application.svg";
 import duties from "../../icons/duties.svg";
-import promotion from "../../icons/promotion.svg";
-import rightArrow from "../../icons/right-arrow.svg";
-import leftArrow from "../../icons/left-arrow.svg";
+import hiwOne from "../../icons/hiw-one.png";
+import hiwTwo from "../../icons/hiw-two.png";
+import hiwThree from "../../icons/hiw-three.png";
+import hiwFour from "../../icons/hiw-four.png";
 
 class Home extends Component {
   state = {
@@ -277,6 +278,7 @@ class Home extends Component {
 					<div class="row home__howItWorksSection__row">
 						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
 							<div className={"home__howItWorksSection__division boxAnimation2"}>
+								<img className={"home__howItWorksSection__division__topLeftIcon"} src={hiwOne}></img>
 								<img className={"home__howItWorksSection__division__icon"} src={register} />
 								<div className={"home__howItWorksSection__division__title"}>Join & Apply</div>
 								<div className={"home__howItWorksSection__division__description"}>
@@ -286,6 +288,7 @@ class Home extends Component {
 						</div>
 						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
 							<div className={"home__howItWorksSection__division boxAnimation2"}>
+								<img className={"home__howItWorksSection__division__topLeftIcon"} src={hiwTwo}></img>
 								<img className={"home__howItWorksSection__division__icon"} src={comp} />
 								<div className={"home__howItWorksSection__division__title"}>Interny Competency Center: iCCᵗᵐ</div>
 								<div className={"home__howItWorksSection__division__description"}>
@@ -295,6 +298,7 @@ class Home extends Component {
 						</div>
 						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
 							<div className={"home__howItWorksSection__division boxAnimation2"}>
+								<img className={"home__howItWorksSection__division__topLeftIcon"} src={hiwThree}></img>
 								<img className={"home__howItWorksSection__division__icon"} src={application} />
 								<div className={"home__howItWorksSection__division__title"}>Interny Management System: iMSᵗᵐ</div>
 								<div className={"home__howItWorksSection__division__description"}>
@@ -304,6 +308,7 @@ class Home extends Component {
 						</div>
 						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
 							<div className={"home__howItWorksSection__division boxAnimation2"}>
+								<img className={"home__howItWorksSection__division__topLeftIcon"} src={hiwFour}></img>
 								<img className={"home__howItWorksSection__division__icon"} src={duties} />
 								<div className={"home__howItWorksSection__division__title"}>Reference Letter</div>
 								<div className={"home__howItWorksSection__division__description"}>
