@@ -6,10 +6,15 @@ import Button from "../../components/Button";
 import Card from "../../components/Card";
 import Footer from "../../components/Footer";
 import OwlCarousel from 'react-owl-carousel2';
+import InternComment from '../../components/InternComment';
 /*** Styles ***/
 import styles from "./home.scss";
 import homeCurve from "../../assets/home-curve.svg";
 /*** Icons ***/
+import cenkAvatar from "../../assets/cenkAvatar.png";
+import kateAvatar from "../../assets/kateAvatar.jpg";
+import samanAvatar from "../../assets/samanAvatar.png";
+
 import chaseBroke from "../../assets/chaseBroke.png";
 import steveAustin from "../../assets/steveAustin.png";
 import georgeBurgess from "../../assets/georgeBurgess.png";
@@ -33,6 +38,31 @@ import hiwOne from "../../icons/hiw-one.png";
 import hiwTwo from "../../icons/hiw-two.png";
 import hiwThree from "../../icons/hiw-three.png";
 import hiwFour from "../../icons/hiw-four.png";
+
+const INTERN_COMMENTS = [
+	{
+		avatar: cenkAvatar,
+		title: "CENK S.",
+		subTitle: "TR (MAN)",
+		text: `I thought that I lost the opportunity to do an internship abroad due to the pandemic. 
+		However, I registered with INTERNY and got the opportunity to do an internship at a technology company in the Netherlands. 
+		Thank you.`
+	},
+	{
+		avatar: kateAvatar,
+		title: "KATE L.",
+		subTitle: "USA (WOMAN)",
+		text: `After completing my education, I wanted to do an internship in Europe for my personal development. 
+		I completed my internship in the UK using INTERNY. Thanks to this, I gained experience outside the USA. I was very satisfied.`
+	},
+	{
+		avatar: samanAvatar,
+		title: "SAMAN bA",
+		subTitle: "UAE (MAN)",
+		text: `I easily had the opportunity to work for a company in Germany without any visa problems with INTERNY. 
+		In this way, I had the opportunity to learn the working principles of German companies before going to Germany. Thank you so much.`
+	}
+]
 
 class Home extends Component {
   state = {
@@ -59,7 +89,7 @@ class Home extends Component {
     pri1: false,
     pri2: false,
     pri3: false,
-    slideCount: 0,
+	slideCount: 0,
   };
 
   componentDidMount(){
@@ -329,9 +359,21 @@ class Home extends Component {
 						internships they deserve anywhere in the world
 					</div>
 					<div class="row home__internsSaysSection__row">
-						<div class="col-md-4 boxAnimation2"><img src={steveAustin} alt={"image"} /></div>
-						<div class="col-md-4 boxAnimation2"><img src={chaseBroke} alt={"image"} /></div>
-						<div class="col-md-4 boxAnimation2"><img src={georgeBurgess} alt={"image"} /></div>
+						{
+							INTERN_COMMENTS.map((comment, index) => {
+								return(
+									<div class="col-md-4 boxAnimation2" key={comment.title}>
+										<InternComment
+											card={index % 2 == 0}
+											avatar={comment.avatar}
+											title={comment.title}
+											subTitle={comment.subTitle}
+											text={comment.text}
+										/>
+									</div>
+								);
+							})
+						}
 					</div>
 				</div>
 			</div>
