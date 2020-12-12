@@ -287,21 +287,18 @@ class Home extends Component {
 						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
 							<div className={"home__howItWorksSection__division boxAnimation2"}>
 								<img className={"home__howItWorksSection__division__icon"} src={comp} />
-								<div className={"home__howItWorksSection__division__title"}>Competency Analytics</div>
+								<div className={"home__howItWorksSection__division__title"}>Interny Competency Center: iCCᵗᵐ</div>
 								<div className={"home__howItWorksSection__division__description"}>
-									Prove your competency to be the primary candidate of the company
-									you want to apply for. Use İCCᵗᵐ to determine and improve the
-									competency level if necessary.
+									Use iCCᵗᵐ to prove and improve the competency to be the primary candidate if necessary.
 								</div>
 							</div>
 						</div>
 						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
 							<div className={"home__howItWorksSection__division boxAnimation2"}>
 								<img className={"home__howItWorksSection__division__icon"} src={application} />
-								<div className={"home__howItWorksSection__division__title"}>Project Management System</div>
+								<div className={"home__howItWorksSection__division__title"}>Interny Management System: iMSᵗᵐ</div>
 								<div className={"home__howItWorksSection__division__description"}>
-									Use İMSᵖᵐ to manage tasks assigned for the internship and to
-									contact the company.
+									Use iMSᵗᵐ to manage tasks assigned for the internship and to contact the company.
 								</div>
 							</div>
 						</div>
@@ -310,9 +307,7 @@ class Home extends Component {
 								<img className={"home__howItWorksSection__division__icon"} src={duties} />
 								<div className={"home__howItWorksSection__division__title"}>Reference Letter</div>
 								<div className={"home__howItWorksSection__division__description"}>
-									Complete the internship process and take your WFA report. If
-									you're over 60% successful according to the WFA, get your signed
-									reference letter.
+									Take your WFA report. If you're over 60% successful, get your signed Reference Letter.
 								</div>
 							</div>
 						</div>
