@@ -66,13 +66,13 @@ class TopBar extends Component {
         disabled: true,
         to: "/packages",
       },
-	  {
-		key: "university",
-		value: "For University",
-		selected: false,
-		disabled: true,
-		to: "/packages",
-	  },
+      {
+        key: "university",
+        value: "For University",
+        selected: false,
+        disabled: true,
+        to: "/packages",
+      },
     ],
     loginPages: [
       {
