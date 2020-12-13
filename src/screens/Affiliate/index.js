@@ -246,13 +246,12 @@ class Affiliate extends Component {
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-md-12" style={{ display: 'flex', justifyContent: 'flex-end'}}>
 							<Button
 								type={"primary"}
 								text={"Send"}
 								sizeName={"default"}
 							/>
-
 						</div>
 					</div>
 				</div>
