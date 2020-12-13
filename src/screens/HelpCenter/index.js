@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM, { Link } from 'react-dom';
-import styles from './helpCenter.scss';
+import './helpCenter.scss';
 
 //Components
 import Input from '../../components/Input';
