@@ -4,7 +4,7 @@ import './helpCenter.scss';
 //Components
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import FooterAlternative from '../../components/FooterAlternative';
+import Footer from '../../components/Footer';
 import ContactForm from './contactForm';
 import Divider from './divider';
 
@@ -264,7 +264,7 @@ class HelpCenter extends Component {
 						</div>
 					</div>
 				</div>
-				<FooterAlternative />
+				<Footer />
 			</div>
 		);
 	}
