@@ -87,6 +87,8 @@ class WhyUsePage extends Component {
       title,
       stepData,
       videoEmbedLink,
+      packagesTitle,
+      packagesSubtitle,
       packagesData,
     } = this.props;
     return (
@@ -113,8 +115,8 @@ class WhyUsePage extends Component {
             </div>
           </div>
           <WhyUsePackages
-            title="See the Business Packages"
-            subtitle="Click to see detail of packages"
+            title={packagesTitle}
+            subtitle={packagesSubtitle}
             packagesData={packagesData}
           />
         </div>
