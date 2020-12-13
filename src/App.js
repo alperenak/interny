@@ -40,6 +40,7 @@ import ReferrenceLetter from "./screens/ReferrenceLetter";
 import ReferrenceLetterLetter from "./screens/ReferrenceLetterLetter";
 import HelpCenter from "./screens/HelpCenter";
 import AboutUs from "./screens/AboutUs";
+import InternPage from "./screens/internyPages/intern.js";
 import BusinessPage from "./screens/internyPages/business.js";
 import UniversityPage from "./screens/internyPages/university.js";
 import InvestorPage from "./screens/internyPages/investor.js";
@@ -403,6 +404,10 @@ class App extends React.Component {
 					<Route
 						path="/affiliate"
 						render={(props) => <Affiliate {...props} />}
+					/>
+					<Route
+						path="/internyInterns"
+						render={(props) => <InternPage {...props} />}
 					/>
 					<Route
 						path="/internyBusiness"
