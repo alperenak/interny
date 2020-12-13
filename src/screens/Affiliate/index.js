@@ -129,6 +129,7 @@ class Affiliate extends Component {
 									</div>
 								</li>
 								<li class="timeline-inverted">
+									<div class="timeline-badge primary"><i class="glyphicon glyphicon-credit-card"></i></div>
 									<div class="timeline-panel">
 
 										<div class="timeline-body">
