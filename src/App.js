@@ -39,7 +39,6 @@ import Cookies from "./screens/Cookies"
 import ReferrenceLetter from "./screens/ReferrenceLetter";
 import ReferrenceLetterLetter from "./screens/ReferrenceLetterLetter";
 import HelpCenter from "./screens/HelpCenter";
-import HelpCenterDetail from "./screens/HelpCenter/detail.js";
 import AboutUs from "./screens/AboutUs";
 import BusinessPage from "./screens/internyPages/business.js";
 import UniversityPage from "./screens/internyPages/university.js";
@@ -400,10 +399,6 @@ class App extends React.Component {
 					<Route
 						path="/affiliate"
 						render={(props) => <Affiliate {...props} />}
-					/>
-					<Route
-						path="/helpCenterDetail"
-						render={(props) => <HelpCenterDetail {...props} />}
 					/>
 					<Route
 						path="/affiliate"
