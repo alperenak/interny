@@ -15,6 +15,9 @@ class AboutUs extends Component {
 					</div>
 				</div>
                 <div className="bg-white py-5">
+                        <div className="col-lg-12" style={{textAlign: 'center'}}>
+                            <p>Welcome to INTERNY, the world's first global remote online internship platform.</p>
+                        </div>
                     <div className="container py-5">
                         <div className="row align-items-center mb-5">
                             <div className="col-lg-6 order-2 order-lg-1">
