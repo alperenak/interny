@@ -46,6 +46,9 @@ class Affiliate extends Component {
 			</div>
 			<div class="affiliate__triple">
 				<div class="container">
+					<p style={{ textAlign: 'center', marginBottom: 80 }}>
+						Join the INTERNY affiliate program at the world's first global remote online internship platform, and start taking advantage of opportunities.
+					</p>
 					<div class="row">
 						<div class="col-md-4">
 							<div class="affiliate__tripleBox">
