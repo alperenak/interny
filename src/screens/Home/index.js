@@ -43,7 +43,7 @@ const INTERN_COMMENTS = [
 	{
 		avatar: cenkAvatar,
 		title: "CENK S.",
-		subTitle: "TR (MAN)",
+		subTitle: "TR",
 		text: `I thought that I lost the opportunity to do an internship abroad due to the pandemic. 
 		However, I registered with INTERNY and got the opportunity to do an internship at a technology company in the Netherlands. 
 		Thank you.`
@@ -51,14 +51,14 @@ const INTERN_COMMENTS = [
 	{
 		avatar: kateAvatar,
 		title: "KATE L.",
-		subTitle: "USA (WOMAN)",
+		subTitle: "USA",
 		text: `After completing my education, I wanted to do an internship in Europe for my personal development. 
 		I completed my internship in the UK using INTERNY. Thanks to this, I gained experience outside the USA. I was very satisfied.`
 	},
 	{
 		avatar: samanAvatar,
 		title: "SAMAN bA",
-		subTitle: "UAE (MAN)",
+		subTitle: "UAE",
 		text: `I easily had the opportunity to work for a company in Germany without any visa problems with INTERNY. 
 		In this way, I had the opportunity to learn the working principles of German companies before going to Germany. Thank you so much.`
 	}

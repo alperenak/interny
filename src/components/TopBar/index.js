@@ -588,7 +588,7 @@ class TopBar extends Component {
 										<Button
 											type={"link"}
 											sizeName={"default"}
-											text={"\u00a0\u00a0HOW TO\u00a0\u00a0"}
+											text={"\u00a0\u00a0How to Use\u00a0\u00a0"}
 											textClass={this.state.isScrolled ? "topBar__links__scroll" : "topBar__links__nonscroll"}
 										/>
 										<div v-if={ourDropdown} className={"topBar__links__dropdownContainer__dropdown"}>
