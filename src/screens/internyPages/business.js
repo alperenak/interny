@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import styles from "./style.scss";
+import "./style.scss";
 
 // Components
-import Button from "../../components/Button";
-import Card from "../../components/Card";
-import FooterAlternative from "../../components/FooterAlternative";
+import Footer from "../../components/Footer";
+import BusinessPackage from "./businessPackages";
 
 // Assets
 import worldwide from "../../assets/worldwide.png";
@@ -38,13 +37,6 @@ const STEP_DATA = [
 ]
 
 class BusinessPage extends Component {
-	state = {
-
-	  pri1: false,
-	  pri2: false,
-	  pri3: false,
-
-	};
 
 	renderSteps = () => {
 		return STEP_DATA.map((step, index) => {
@@ -123,133 +115,9 @@ class BusinessPage extends Component {
 						</div>
 					</div>
 				</div>
-				<div id={"packages-section"} className={"home__packagesSection"}>
-					<div class="container">
-						<div className={"home__packagesSection__packagesTitle"}>See the Intern Packages</div>
-						<div className={"home__packagesSection__packagesSubTitle"}>
-							Click to see detail of packages
-						</div>
-						<div class="row home__packagesSection__row">
-							<div class="col-md-4">
-								<div
-									onMouseLeave={() => this.setState({ pri1: false })}
-									onMouseOver={() => this.setState({ pri1: true })}
-									className={styles.frontier}
-								>
-									<Card type={"pricing"}>
-										<div className={"home__packagesSection__packageCard"}>
-											<div className={"home__packagesSection__packageCard__headerDiv"}>
-												<div className={"home__packagesSection__packageCard__packageTitle"}>FREEMIUM</div>
-												<div className={"home__packagesSection__packageCard__packagePrice"}>$0.00</div>
-												<div className={"home__packagesSection__packageCard__packagePaymentDate"}>Per Month</div>
-											</div>
-											<div className={"home__packagesSection__packageCard__stroke"} />
-											<div className={"home__packagesSection__packageCard__descriptionDiv"}>
-												<div className={"home__packagesSection__packageCard__packageDescription"}>
-													<div>Sign up!</div>
-													<div>Create CV</div>
-													<div>Search Internships</div>
-												</div>
-												<Button
-													v-if={this.state.pri1}
-													type={"primary"}
-													text={"Buy Now"}
-													sizeName={"default"}
-												/>
-												<Button
-													v-if={!this.state.pri1}
-													type={"ghost"}
-													text={"Buy Now"}
-													sizeName={"default"}
-												/>
-											</div>
-										</div>
-									</Card>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div
-									onMouseLeave={() => this.setState({ pri2: false })}
-									onMouseOver={() => this.setState({ pri2: true })}
-									className={styles.frontier}
-								>
-									<Card type={"pricing"}>
-										<div className={"moneyGuarenteed"}>
-										{/* Money Back Guarenteed */}
-										</div>
-										<div className={"home__packagesSection__packageCardGuaranteed"}>
-											<div className={"home__packagesSection__packageCardGuaranteed__headerDiv"}>
-												<div className={"home__packagesSection__packageCardGuaranteed__packageTitle"}>INTERN</div>
-												<div className={"home__packagesSection__packageCardGuaranteed__packagePrice"}>$24.99</div>
-												<div className={"home__packagesSection__packageCardGuaranteed__packagePaymentDate"}>Per Month</div>
-											</div>
-											<div className={"home__packagesSection__packageCardGuaranteed__stroke"} />
-											<div className={"home__packagesSection__packageCardGuaranteed__descriptionDiv"}>
-												<div className={"home__packagesSection__packageCardGuaranteed__packageDescription"}>
-													<div>Apply for Internships</div>
-													<div data-toggle="tooltip" title="Interny Management System">iMS™</div>
-													<div data-toggle="tooltip" title="Workforce Analytics">WFA Report</div>
-													<div>Reference Letter</div>
-												</div>
-												<Button
-												v-if={this.state.pri2}
-												type={"primary"}
-												text={"Buy Now"}
-												sizeName={"default"}
-												/>
-												<Button
-												v-if={!this.state.pri2}
-												type={"ghost"}
-												text={"Buy Now"}
-												sizeName={"default"}
-												/>
-											</div>
-										</div>
-									</Card>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div
-									onMouseLeave={() => this.setState({ pri3: false })}
-									onMouseOver={() => this.setState({ pri3: true })}
-									className={styles.frontier}
-								>
-									<Card type={"pricing"}>
-										<div className={"home__packagesSection__packageCard"}>
-											<div className={"home__packagesSection__packageCard__headerDiv"}>
-												<div className={"home__packagesSection__packageCard__packageTitle"}>COMPETENCY</div>
-												<div className={"home__packagesSection__packageCard__packagePrice"}>$12.49</div>
-												<div className={"home__packagesSection__packageCard__packagePaymentDate"}>Per Report</div>
-											</div>
-											<div className={"home__packagesSection__packageCard__stroke"} />
-											<div className={"home__packagesSection__packageCard__descriptionDiv"}>
-												<div className={"home__packagesSection__packageCard__packageDescription"}>
-													<div>Case Studies</div>
-													<div data-toggle="tooltip" title="Interny Management System">iCC™</div>
-													<div>Competency Report</div>
-												</div>
-												<Button
-													v-if={this.state.pri3}
-													type={"primary"}
-													text={"Buy Now"}
-													sizeName={"default"}
-												/>
-												<Button
-													v-if={!this.state.pri3}
-													type={"ghost"}
-													text={"Buy Now"}
-													sizeName={"default"}
-												/>
-											</div>
-										</div>
-									</Card>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				<BusinessPackage />
 			</div>
-			<FooterAlternative />
+			<Footer />
 			</>
         );
     }
