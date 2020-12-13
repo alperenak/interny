@@ -1,229 +1,117 @@
-import React, { Component } from "react";
-import ReactDOM, { Link } from "react-dom";
-import Input from "../../components/Input";
-import Button from "../../components/Button";
-import Card from "../../components/Card";
+import React, { Component } from 'react';
+import './style.scss';
 
-import FooterAlternative from "../../components/FooterAlternative";
-import styles from "./style.scss";
-import handshake from "../../assets/help-center.jpg";
-import worldwide from "../../assets/worldwide.png";
-import review_applicant from "../../assets/review-applicant.png";
-import start_internship from "../../assets/start-internship.png";
-import manage_program from "../../assets/manage-program.png";
-import universityBg from "../../assets/universityBg.png";
+// Components
+import WhyUsePage from './whyUsePage';
 
+// Assets
+import worldwide from '../../assets/worldwide.png';
+import review_applicant from '../../assets/review-applicant.png';
+import manage_program from '../../assets/manage-program.png';
+import universityBg from '../../assets/universityBg.png';
+
+const DESCRIPTION_DATA = [
+	`Welcome to INTERNY, the world's first remote online internship platform. You will find everything you need and more during the internship process on the platform. It enables the internship process to be managed from the beginning to the end of the internship. It enables the internship to be done in a company anywhere in the world, at any time and place. All that needs to apply to companies' applications as an intern. Get acceptance from the company, and complete the tasks assigned.`,
+	`As a university, you can follow the entire internship process of your students completely FREE. You can manage your university's internship processes in the most detailed way by purchasing the premium packages. These packages are created for bulk sales for your students registered to your university and offer your students the unique features you want:`,
+];
+
+const STEP_DATA = [
+	{
+		title: 'Join & Follow',
+		description:
+			"First of all, you need to create a user account for your university as interny@universitydomain. You can register on behalf of your university with the user account you have made. In this way, you can follow all your students' internship status and detail from the panel specially prepared for universities.",
+		image: worldwide,
+	},
+	{
+		title: 'E-Learning',
+		description:
+			"By joining the Interny E-Learning system, you can enable your students to access your E-Learning contents. E-Learning is a system with contents created for interns' development, whose contents are presented to interns within the platform. In addition, you can see in detail your students' progress with their E-Learning content. You can follow the progress of your students with E-Learning Analytics created using artificial intelligence.",
+		image: review_applicant,
+	},
+	{
+		title: 'Manage',
+		description:
+			"You can buy any of the premium packages specially prepared for universities. In this way, you can enable your students to do internships. Besides, you can check the internship processes of your students in detail. You can view your students' current status in their internships in detail by using the panel that will open when you log in with your university user account.",
+		image: manage_program,
+	},
+];
+
+const PACKAGES_DATA = [
+	{
+		id: 'packageOne',
+		title: 'UNIVERSITY Essential',
+		price: '$7499',
+		payment: 'per 4 Weeks per 500 Interns',
+		highlights: [
+			{
+				heading: 'INTERN Package',
+				description:
+					"This package includes the ability to apply for internships anywhere in the world for your students. Also, it provides for the Interny Management System's use to follow the internship tasks between the internship and the company. Besides, you observe your students' workforce analytics and provide a reference letter to your students for completed internships.",
+			},
+		],
+	},
+	{
+		id: 'packageTwo',
+		title: 'UNIVERSITY Standart',
+		price: '$12499',
+		payment: 'per 4 Weeks per 500 Interns',
+		highlights: [
+			{
+				heading: 'UNIVERSITY Essential Package',
+				description:
+					'By purchasing the UNIVERSITY Standart package, you will also purchase all UNIVERSITY Essential package features.',
+			},
+			{
+				heading: 'COMPETENCY Package (1 Competency)',
+				description:
+					'You will have your students analyze 1 of the 15 core competencies that international organizations value most now and for the future.',
+			},
+			{
+				heading: 'Emergency Internship Service',
+				description:
+					"You do not need your students' acceptance phase; you can guarantee that they will start their internship.",
+			},
+		],
+	},
+	{
+		id: 'packageThree',
+		title: 'UNIVERSITY Plus',
+		price: '$17499',
+		payment: 'per 4 Weeks per 500 Interns',
+		highlights: [
+			{
+				heading: 'UNIVERSITY Standard Package',
+				description:
+					'By purchasing the UNIVERSITY Plus package, you will also purchase all UNIVERSITY Standard package features. ',
+			},
+			{
+				heading: 'COMPETENCY Package (All Competencies)',
+				description:
+					'You will have your students analyze all 15 core competencies that international organizations value most now and for the future.',
+			},
+			{
+				heading: 'Language Support Service',
+				description:
+					"You can evaluate the language support service to prevent your students from experiencing language problems during their international companies' internship.",
+			},
+		],
+	},
+];
 
 class UniversityPage extends Component {
-	state = {
-
-	  pri1: false,
-	  pri2: false,
-	  pri3: false,
-
-	};
-
-	componentDidMount(){
-
+	render() {
+		return (
+			<WhyUsePage
+				headerBackground={universityBg}
+				header="INTERNY FOR UNIVERSITY"
+				descriptionList={DESCRIPTION_DATA}
+				title="How to Use the Platform as a University?"
+				stepData={STEP_DATA}
+				videoEmbedLink="https://www.youtube.com/embed/Na8m4GPqA30"
+				packagesData={PACKAGES_DATA}
+			/>
+		);
 	}
-    render() {
-        return (
-			<>
-            <div class="internyPage">
-				<div class="affiliate__header">
-					<div class="container" style={{"background-image":"url("+universityBg+")"}}>
-						<p>INTERNY FOR UNIVERSITY</p>
-					</div>
-				</div>
-				<div class="internyPage__why">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="internyPage__why__title">
-									<span>WHY USE INTERNY</span>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<p class="internyPage__why__desc">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="internyPage__steps">
-					<div class="container">
-						<div class="row internyPage__step">
-							<div class="col-md-6">
-								<img src={worldwide}  style={{"width":"90%"}}/>
-							</div>
-							<div class="col-md-6">
-								<div class="internyPage__step__title">
-									<span>Join Interny University</span>
-								</div>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-								</p>
-							</div>
-						</div>
-						<div class="row internyPage__step">
-							<div class="col-md-6">
-								<div class="internyPage__step__title">
-									<span>Monitor Students</span>
-								</div>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-								</p>
-							</div>
-							<div class="col-md-6">
-								<img src={review_applicant}  style={{"width":"90%"}}/>
-							</div>
-						</div>
-						<div class="row internyPage__step">
-							<div class="col-md-6">
-								<img src={start_internship}  style={{"width":"90%"}}/>
-							</div>
-							<div class="col-md-6">
-								<div class="internyPage__step__title">
-									<span>Review Internship Reports</span>
-								</div>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div id={"packages-section"} className={"home__packagesSection"}>
-					<div class="container">
-						<div className={"home__packagesSection__packagesTitle"}>See the Intern Packages</div>
-						<div className={"home__packagesSection__packagesSubTitle"}>
-							Click to see detail of packages
-						</div>
-						<div class="row home__packagesSection__row">
-							<div class="col-md-4">
-								<div
-									onMouseLeave={() => this.setState({ pri1: false })}
-									onMouseOver={() => this.setState({ pri1: true })}
-									className={styles.frontier}
-								>
-									<Card type={"pricing"}>
-										<div className={"home__packagesSection__packageCard"}>
-											<div className={"home__packagesSection__packageCard__headerDiv"}>
-												<div className={"home__packagesSection__packageCard__packageTitle"}>FREEMIUM</div>
-												<div className={"home__packagesSection__packageCard__packagePrice"}>$0.00</div>
-												<div className={"home__packagesSection__packageCard__packagePaymentDate"}>Per Month</div>
-											</div>
-											<div className={"home__packagesSection__packageCard__stroke"} />
-											<div className={"home__packagesSection__packageCard__descriptionDiv"}>
-												<div className={"home__packagesSection__packageCard__packageDescription"}>
-													<div>Sign up!</div>
-													<div>Create CV</div>
-													<div>Search Internships</div>
-												</div>
-												<Button
-													v-if={this.state.pri1}
-													type={"primary"}
-													text={"Buy Now"}
-													sizeName={"default"}
-												/>
-												<Button
-													v-if={!this.state.pri1}
-													type={"ghost"}
-													text={"Buy Now"}
-													sizeName={"default"}
-												/>
-											</div>
-										</div>
-									</Card>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div
-									onMouseLeave={() => this.setState({ pri2: false })}
-									onMouseOver={() => this.setState({ pri2: true })}
-									className={styles.frontier}
-								>
-									<Card type={"pricing"}>
-										<div className={"moneyGuarenteed"}>
-										{/* Money Back Guarenteed */}
-										</div>
-										<div className={"home__packagesSection__packageCardGuaranteed"}>
-											<div className={"home__packagesSection__packageCardGuaranteed__headerDiv"}>
-												<div className={"home__packagesSection__packageCardGuaranteed__packageTitle"}>INTERN</div>
-												<div className={"home__packagesSection__packageCardGuaranteed__packagePrice"}>$24.99</div>
-												<div className={"home__packagesSection__packageCardGuaranteed__packagePaymentDate"}>Per Month</div>
-											</div>
-											<div className={"home__packagesSection__packageCardGuaranteed__stroke"} />
-											<div className={"home__packagesSection__packageCardGuaranteed__descriptionDiv"}>
-												<div className={"home__packagesSection__packageCardGuaranteed__packageDescription"}>
-													<div>Apply for Internships</div>
-													<div data-toggle="tooltip" title="Interny Management System">iMS™</div>
-													<div data-toggle="tooltip" title="Workforce Analytics">WFA Report</div>
-													<div>Reference Letter</div>
-												</div>
-												<Button
-												v-if={this.state.pri2}
-												type={"primary"}
-												text={"Buy Now"}
-												sizeName={"default"}
-												/>
-												<Button
-												v-if={!this.state.pri2}
-												type={"ghost"}
-												text={"Buy Now"}
-												sizeName={"default"}
-												/>
-											</div>
-										</div>
-									</Card>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div
-									onMouseLeave={() => this.setState({ pri3: false })}
-									onMouseOver={() => this.setState({ pri3: true })}
-									className={styles.frontier}
-								>
-									<Card type={"pricing"}>
-										<div className={"home__packagesSection__packageCard"}>
-											<div className={"home__packagesSection__packageCard__headerDiv"}>
-												<div className={"home__packagesSection__packageCard__packageTitle"}>COMPETENCY</div>
-												<div className={"home__packagesSection__packageCard__packagePrice"}>$12.49</div>
-												<div className={"home__packagesSection__packageCard__packagePaymentDate"}>Per Report</div>
-											</div>
-											<div className={"home__packagesSection__packageCard__stroke"} />
-											<div className={"home__packagesSection__packageCard__descriptionDiv"}>
-												<div className={"home__packagesSection__packageCard__packageDescription"}>
-													<div>Case Studies</div>
-													<div data-toggle="tooltip" title="Interny Management System">iCC™</div>
-													<div>Competency Report</div>
-												</div>
-												<Button
-													v-if={this.state.pri3}
-													type={"primary"}
-													text={"Buy Now"}
-													sizeName={"default"}
-												/>
-												<Button
-													v-if={!this.state.pri3}
-													type={"ghost"}
-													text={"Buy Now"}
-													sizeName={"default"}
-												/>
-											</div>
-										</div>
-									</Card>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<FooterAlternative />
-			</>
-        );
-    }
 }
 
 export default UniversityPage;
