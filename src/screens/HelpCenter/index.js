@@ -103,7 +103,7 @@ class HelpCenter extends Component {
 	scrollToContactForm = () => {
 		const offset = this.getOffset(this.contactFormRef.current);
 		window.scrollTo({
-			top: offset.top,
+			top: offset.top - 100,
 			left: offset.left,
 			behavior: 'smooth',
 		});
@@ -235,11 +235,17 @@ class HelpCenter extends Component {
 					</div>
 					<div class="affiliate__triple">
 						<div class="container">
+							<div class="helpCenter__title" style={{ margin: "40px 0"}}>
+								<span>Who are you having problems as?</span>
+							</div>
 							<div class="row">{this.renderFirstStep()}</div>
 							<div ref={this.secondStepRef}>
 								{this.state.firstOption && (
 									<div>
 										<Divider />
+										<div class="helpCenter__title" style={{ margin: "40px 0"}}>
+											<span>In which area are you having problems?</span>
+										</div>
 										<div class="row">{this.renderSecondStep()}</div>
 									</div>
 								)}
@@ -248,6 +254,9 @@ class HelpCenter extends Component {
 								{this.state.secondOption && (
 									<div>
 										<Divider />
+										<div class="helpCenter__title" style={{ margin: "40px 0"}}>
+											<span>Can you share your problem with us?</span>
+										</div>
 										<div class="row">{this.renderContactForm()}</div>
 									</div>
 								)}
