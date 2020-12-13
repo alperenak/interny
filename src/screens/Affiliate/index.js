@@ -1,12 +1,19 @@
 import React, { Component } from "react";
-/*** Components ***/
+
+/*** Styles ***/
 import styles from "./style.scss";
+
+/*** Components ***/
 import Footer from "../../components/Footer";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
-import handshake from "../../assets/handshake.jpg";
-import discover from "../../icons/discover.svg";
+
+/*** Assets ***/
+import explore from "../../icons/explore.png";
+import includeNetwork from "../../icons/include-network.png";
+import makeMoney from "../../icons/make-money.png";
 import affiliateBg from "../../assets/affiliateBg.png";
+
 class Affiliate extends Component {
   render() {
 	let dummy_data = {
@@ -42,7 +49,7 @@ class Affiliate extends Component {
 					<div class="row">
 						<div class="col-md-4">
 							<div class="affiliate__tripleBox">
-
+								<img src={explore} alt="Explore"></img>
 								<span class="affiliate__tripleBox__title">
 									Explore
 								</span>
@@ -53,7 +60,7 @@ class Affiliate extends Component {
 						</div>
 						<div class="col-md-4">
 							<div class="affiliate__tripleBox">
-
+								<img src={includeNetwork} alt="Include network"></img>
 								<span class="affiliate__tripleBox__title">
 									Include Network
 								</span>
@@ -64,7 +71,7 @@ class Affiliate extends Component {
 						</div>
 						<div class="col-md-4">
 							<div class="affiliate__tripleBox">
-
+								<img src={makeMoney} alt="Make money"></img>
 								<span class="affiliate__tripleBox__title">
 									Make Money
 								</span>
