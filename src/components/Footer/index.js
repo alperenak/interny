@@ -78,7 +78,7 @@ class Footer extends Component {
 													<Link to="/faq">FAQ</Link>
 													</li>
 													<li>
-													<Link to="/faq">Blog</Link>
+														<span>Blog</span>
 													</li>
 													<li>
 													<Link to="/referrenceLetter">Referrence Letter</Link>
