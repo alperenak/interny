@@ -98,7 +98,7 @@ class Footer extends Component {
 											<div className={styles.knowUs}>
 												<ul>
 													<li v-if={!getCookie("token")}>
-													<Link to="/signup">Sitemap</Link>
+														<span>Sitemap</span>
 													</li>
 													<li>
 													<Link to="/affiliate">Affiliate</Link>
