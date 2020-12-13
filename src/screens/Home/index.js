@@ -6,10 +6,15 @@ import Button from "../../components/Button";
 import Card from "../../components/Card";
 import Footer from "../../components/Footer";
 import OwlCarousel from 'react-owl-carousel2';
+import InternComment from '../../components/InternComment';
 /*** Styles ***/
 import styles from "./home.scss";
 import homeCurve from "../../assets/home-curve.svg";
 /*** Icons ***/
+import cenkAvatar from "../../assets/cenkAvatar.png";
+import kateAvatar from "../../assets/kateAvatar.jpg";
+import samanAvatar from "../../assets/samanAvatar.png";
+
 import chaseBroke from "../../assets/chaseBroke.png";
 import steveAustin from "../../assets/steveAustin.png";
 import georgeBurgess from "../../assets/georgeBurgess.png";
@@ -29,9 +34,35 @@ import register from "../../icons/register.svg";
 import comp from "../../icons/comp.svg";
 import application from "../../icons/application.svg";
 import duties from "../../icons/duties.svg";
-import promotion from "../../icons/promotion.svg";
-import rightArrow from "../../icons/right-arrow.svg";
-import leftArrow from "../../icons/left-arrow.svg";
+import hiwOne from "../../icons/hiw-one.png";
+import hiwTwo from "../../icons/hiw-two.png";
+import hiwThree from "../../icons/hiw-three.png";
+import hiwFour from "../../icons/hiw-four.png";
+
+const INTERN_COMMENTS = [
+	{
+		avatar: cenkAvatar,
+		title: "CENK S.",
+		subTitle: "TR (MAN)",
+		text: `I thought that I lost the opportunity to do an internship abroad due to the pandemic. 
+		However, I registered with INTERNY and got the opportunity to do an internship at a technology company in the Netherlands. 
+		Thank you.`
+	},
+	{
+		avatar: kateAvatar,
+		title: "KATE L.",
+		subTitle: "USA (WOMAN)",
+		text: `After completing my education, I wanted to do an internship in Europe for my personal development. 
+		I completed my internship in the UK using INTERNY. Thanks to this, I gained experience outside the USA. I was very satisfied.`
+	},
+	{
+		avatar: samanAvatar,
+		title: "SAMAN bA",
+		subTitle: "UAE (MAN)",
+		text: `I easily had the opportunity to work for a company in Germany without any visa problems with INTERNY. 
+		In this way, I had the opportunity to learn the working principles of German companies before going to Germany. Thank you so much.`
+	}
+]
 
 class Home extends Component {
   state = {
@@ -58,7 +89,7 @@ class Home extends Component {
     pri1: false,
     pri2: false,
     pri3: false,
-    slideCount: 0,
+	slideCount: 0,
   };
 
   componentDidMount(){
@@ -276,7 +307,8 @@ class Home extends Component {
 					</div>
 					<div class="row home__howItWorksSection__row">
 						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
-							<div className={"home__howItWorksSection__division boxAnimation2"}  style={{"margin-top":"90px"}}>
+							<div className={"home__howItWorksSection__division boxAnimation2"}>
+								<img className={"home__howItWorksSection__division__topLeftIcon"} src={hiwOne}></img>
 								<img className={"home__howItWorksSection__division__icon"} src={register} />
 								<div className={"home__howItWorksSection__division__title"}>Join & Apply</div>
 								<div className={"home__howItWorksSection__division__description"}>
@@ -285,34 +317,32 @@ class Home extends Component {
 							</div>
 						</div>
 						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
-							<div className={"home__howItWorksSection__division boxAnimation2"} style={{"margin-top":"60px"}}>
+							<div className={"home__howItWorksSection__division boxAnimation2"}>
+								<img className={"home__howItWorksSection__division__topLeftIcon"} src={hiwTwo}></img>
 								<img className={"home__howItWorksSection__division__icon"} src={comp} />
-								<div className={"home__howItWorksSection__division__title"}>Competency Analytics</div>
+								<div className={"home__howItWorksSection__division__title"}>Interny Competency Center: iCCᵗᵐ</div>
 								<div className={"home__howItWorksSection__division__description"}>
-									Prove your competency to be the primary candidate of the company
-									you want to apply for. Use İCCᵗᵐ to determine and improve the
-									competency level if necessary.
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
-							<div className={"home__howItWorksSection__division boxAnimation2"} style={{"margin-top":"30px"}}>
-								<img className={"home__howItWorksSection__division__icon"} src={application} />
-								<div className={"home__howItWorksSection__division__title"}>Project Management System</div>
-								<div className={"home__howItWorksSection__division__description"}>
-									Use İMSᵖᵐ to manage tasks assigned for the internship and to
-									contact the company.
+									Use iCCᵗᵐ to prove and improve the competency to be the primary candidate if necessary.
 								</div>
 							</div>
 						</div>
 						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
 							<div className={"home__howItWorksSection__division boxAnimation2"}>
+								<img className={"home__howItWorksSection__division__topLeftIcon"} src={hiwThree}></img>
+								<img className={"home__howItWorksSection__division__icon"} src={application} />
+								<div className={"home__howItWorksSection__division__title"}>Interny Management System: iMSᵗᵐ</div>
+								<div className={"home__howItWorksSection__division__description"}>
+									Use iMSᵗᵐ to manage tasks assigned for the internship and to contact the company.
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
+							<div className={"home__howItWorksSection__division boxAnimation2"}>
+								<img className={"home__howItWorksSection__division__topLeftIcon"} src={hiwFour}></img>
 								<img className={"home__howItWorksSection__division__icon"} src={duties} />
 								<div className={"home__howItWorksSection__division__title"}>Reference Letter</div>
 								<div className={"home__howItWorksSection__division__description"}>
-									Complete the internship process and take your WFA report. If
-									you're over 60% successful according to the WFA, get your signed
-									reference letter.
+									Take your WFA report. If you're over 60% successful, get your signed Reference Letter.
 								</div>
 							</div>
 						</div>
@@ -329,9 +359,21 @@ class Home extends Component {
 						internships they deserve anywhere in the world
 					</div>
 					<div class="row home__internsSaysSection__row">
-						<div class="col-md-4 boxAnimation2"><img src={steveAustin} alt={"image"} /></div>
-						<div class="col-md-4 boxAnimation2"><img src={chaseBroke} alt={"image"} /></div>
-						<div class="col-md-4 boxAnimation2"><img src={georgeBurgess} alt={"image"} /></div>
+						{
+							INTERN_COMMENTS.map((comment, index) => {
+								return(
+									<div class="col-md-4 boxAnimation2" key={comment.title}>
+										<InternComment
+											card={index % 2 == 0}
+											avatar={comment.avatar}
+											title={comment.title}
+											subTitle={comment.subTitle}
+											text={comment.text}
+										/>
+									</div>
+								);
+							})
+						}
 					</div>
 				</div>
 			</div>
@@ -353,7 +395,6 @@ class Home extends Component {
 										<div className={"home__packagesSection__packageCard__headerDiv"}>
 											<div className={"home__packagesSection__packageCard__packageTitle"}>FREEMIUM</div>
 											<div className={"home__packagesSection__packageCard__packagePrice"}>$0.00</div>
-											<div className={"home__packagesSection__packageCard__packagePaymentDate"}>Per Month</div>
 										</div>
 										<div className={"home__packagesSection__packageCard__stroke"} />
 										<div className={"home__packagesSection__packageCard__descriptionDiv"}>
@@ -365,13 +406,13 @@ class Home extends Component {
 											<Button
 												v-if={this.state.pri1}
 												type={"primary"}
-												text={"Buy Now"}
+												text={"Details"}
 												sizeName={"default"}
 											/>
 											<Button
 												v-if={!this.state.pri1}
 												type={"ghost"}
-												text={"Buy Now"}
+												text={"Details"}
 												sizeName={"default"}
 											/>
 										</div>
@@ -399,20 +440,20 @@ class Home extends Component {
 										<div className={"home__packagesSection__packageCardGuaranteed__descriptionDiv"}>
 											<div className={"home__packagesSection__packageCardGuaranteed__packageDescription"}>
 												<div>Apply for Internships</div>
-												<div data-toggle="tooltip" title="Interny Management System">İMSᵖᵐ</div>
+												<div class="bold" data-toggle="tooltip" title="Interny Management System">iMSᵖᵐ</div>
 												<div data-toggle="tooltip" title="Workforce Analytics">WFA Report</div>
 												<div>Reference Letter</div>
 											</div>
 											<Button
 											v-if={this.state.pri2}
 											type={"primary"}
-											text={"Buy Now"}
+											text={"Details"}
 											sizeName={"default"}
 											/>
 											<Button
 											v-if={!this.state.pri2}
 											type={"ghost"}
-											text={"Buy Now"}
+											text={"Details"}
 											sizeName={"default"}
 											/>
 										</div>
@@ -436,20 +477,20 @@ class Home extends Component {
 										<div className={"home__packagesSection__packageCard__stroke"} />
 										<div className={"home__packagesSection__packageCard__descriptionDiv"}>
 											<div className={"home__packagesSection__packageCard__packageDescription"}>
-												<div data-toggle="tooltip" title="Interny Management System">İCCᵗᵐ</div>
+												<div class="bold" data-toggle="tooltip" title="Interny Management System">iCCᵗᵐ</div>
 												<div >Competenct Analytics</div>
 												<div>Competency Report</div>
 											</div>
 											<Button
 												v-if={this.state.pri3}
 												type={"primary"}
-												text={"Buy Now"}
+												text={"Details"}
 												sizeName={"default"}
 											/>
 											<Button
 												v-if={!this.state.pri3}
 												type={"ghost"}
-												text={"Buy Now"}
+												text={"Details"}
 												sizeName={"default"}
 											/>
 										</div>
