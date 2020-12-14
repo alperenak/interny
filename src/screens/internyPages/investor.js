@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import './style.scss';
 
 // Components
-import Input from '../../components/Input';
-import Button from '../../components/Button';
 import Footer from '../../components/Footer';
 import HighlightBox from '../../components/HighlightBox';
+import ContactForm from '../../components/ContactForm';
 
 // Assets
 import investorBg from '../../assets/investorBg.png';
@@ -47,6 +46,10 @@ class InvestorPage extends Component {
 				</div>
 			);
 		});
+	};
+
+	handleContactFormData = (formData) => {
+		console.log('Contact form data: ', formData);
 	};
 
 	render() {
@@ -131,86 +134,16 @@ class InvestorPage extends Component {
 							<div class="row">{this.renderBoxes()}</div>
 						</div>
 					</div>
-					<div className="affiliate__contact">
-						<div class="container">
-							<div class="row">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
 								<div
 									class="col-md-12"
 									style={{ 'text-align': 'center', 'margin-bottom': '30px' }}
 								>
-									<span class="affiliate__timeline__title">
-										You can contact us with any questions.
-                  					</span>
+									<span class="affiliate__timeline__title">You can contact us with any questions.</span>
 								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<Input
-										type={'text'}
-										placeholder={'Name'}
-										size={'full'}
-										onChange={(value) => {
-											this.setState({ city: value });
-										}}
-										label={'Name'}
-									/>
-								</div>
-								<div class="col-md-6">
-									<Input
-										type={'text'}
-										placeholder={'Surname'}
-										size={'full'}
-										onChange={(value) => {
-											this.setState({ city: value });
-										}}
-										label={'Surname'}
-									/>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<Input
-										type={'text'}
-										placeholder={'E-mail'}
-										size={'full'}
-										onChange={(value) => {
-											this.setState({ city: value });
-										}}
-										label={'E-mail'}
-									/>
-								</div>
-								<div class="col-md-6">
-									<Input
-										type={'text'}
-										placeholder={'Phone'}
-										size={'full'}
-										onChange={(value) => {
-											this.setState({ city: value });
-										}}
-										label={'Phone'}
-									/>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12">
-									<Input
-										type={'textarea'}
-										placeholder={'Message'}
-										size={'full'}
-										onChange={(value) => {
-											this.setState({ city: value });
-										}}
-										label={'Message'}
-									/>
-								</div>
-							</div>
-							<div class="row">
-								<div
-									class="col-md-12"
-									style={{ display: 'flex', justifyContent: 'flex-end' }}
-								>
-									<Button type={'primary'} text={'Send'} sizeName={'default'} />
-								</div>
+								<ContactForm onSendClick={this.handleContactFormData} />
 							</div>
 						</div>
 					</div>
