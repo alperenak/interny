@@ -1,20 +1,33 @@
 import React, {Component, Fragment} from 'react';
-
-/*** Components ***/
+/*
 import Card from "../../components/Card";
 import LoadingModal from "../../components/LoadingModal";
 import WFA from "../../components/WFA";
 
-/*** Styles ***/
 import styles from './interndetail.scss';
 
-/*** Utils ***/
 import store from "../../store";
+*/
+import WFA from "../../components/WFA";
+
+import store from "../../store";
+
+import "../ReferrenceLetter/referrenceLetter.scss";
+
+// Components
+import Input from "../../components/Input";
+import LoadingModal from "../../components/LoadingModal";
+import FooterAlternative from "../../components/FooterAlternative";
+import Button from "../../components/Button";
+
+// Assets
+import wfa from "../../assets/intern-WFA_wait.png";
 
 class InternDetail extends Component {
     state = {
         processing: true,
-        intern: {}
+		intern: {},
+		renderSec: true
     };
 
     async componentDidMount() {
@@ -29,9 +42,10 @@ class InternDetail extends Component {
 		if(duration > 100){
 			duration = 100;
 		}
-        return (
+		console.log(this.state.renderSec)
+		/*
+		return (
             <Fragment>
-
                 <div className={"internDetailWrapper"}>
                     <LoadingModal text="Loading" v-if={processing} />
 					<div class="container">
@@ -141,8 +155,43 @@ class InternDetail extends Component {
 					</div>
                 </div>
                 <WFA internId={this.props.match.params.internId}/>
-            </Fragment>
-        );
+			</Fragment>
+			
+		);
+		*/
+		return (
+			<div className="pageWrapper">
+				<div className={"referrenceLetter"}>
+					<LoadingModal text="Loading" v-if={this.state.processing} />
+					<div class="container">
+						<div style={{ display: 'flex', justifyContent: 'center' }}>
+							<img className="referrenceLetter__image" src={wfa} alt="Referrence Letter" />
+						</div>
+						<div className={"referrenceLetter__modal"}>
+							<div class="row">
+								<div class="col-md-12">
+									<div className={"referrenceLetter__header"}>WFA</div>
+									<div className={"referrenceLetter__description"}>
+										Welcome to the Workforce Analytics: WFA. You must first complete an internship to access the WFA report and reference letter.
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div className={"referrenceLetter__buttonWrapper"} >
+										<Button
+											type='secondary'
+											text='Learn More'
+											to={"/internyInterns"} 
+											textClass='referrenceLetter__buttonWrapper__text'
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<FooterAlternative />
+			</div>
+		);
     }
 }
 

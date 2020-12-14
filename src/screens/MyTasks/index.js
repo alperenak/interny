@@ -21,6 +21,15 @@ import Button from "../../components/Button";
 // Intern list
 import InternList from "../../components/InternList";
 import errors from "../../utils/errorTexts"
+import WFA from "../../components/WFA";
+
+import "../ReferrenceLetter/referrenceLetter.scss";
+
+// Components
+import FooterAlternative from "../../components/FooterAlternative";
+
+// Assets
+import image from "../../assets/intern-ims_wait.png";
 
 
 class MyTasks extends Component {
@@ -505,6 +514,7 @@ class MyTasks extends Component {
 
     render() {
         const user = getCookie('user');
+        /*
         return (
             <div class="MyTasks">
 				<div class="container">
@@ -543,6 +553,40 @@ class MyTasks extends Component {
             		{user === 'employer' && <div onClick={() => this.onCreateClick()} className={"createIcon"}><img src={createIcon} alt={'icon'} /></div>}
 				</div>
             </div>
+        );
+        */
+        return(
+            <div className="pageWrapper">
+				<div className={"referrenceLetter"}>
+					<LoadingModal text="Loading" v-if={this.state.processing} />
+					<div class="container">
+						<div style={{ display: 'flex', justifyContent: 'center' }}>
+							<img className="referrenceLetter__image" src={image} alt="My Tasks" />
+						</div>
+						<div className={"referrenceLetter__modal"}>
+							<div class="row">
+								<div class="col-md-12">
+									<div className={"referrenceLetter__header"}>My Tasks</div>
+									<div className={"referrenceLetter__description"}>
+                                        Welcome to the Interny Management System: iMSTM. You do not have a task assignment yet. Click to apply for internships.
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div className={"referrenceLetter__buttonWrapper"} >
+										<Button
+											type='secondary'
+											text='Learn More'
+											to={"/internyInterns"} 
+											textClass='referrenceLetter__buttonWrapper__text'
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<FooterAlternative />
+			</div>
         );
     }
 }

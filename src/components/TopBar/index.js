@@ -108,6 +108,13 @@ class TopBar extends Component {
         icon: userIcon,
         to: "/myAccount",
       },
+      {
+        key: "myCompetency",
+        value: "Competency",
+        selected: false,
+        icon: CVIcon,
+        to: "/myCompetency",
+      },
 	  {
         key: "myJobs",
         value: "Jobs",
@@ -157,6 +164,13 @@ class TopBar extends Component {
         to: "/myAccount",
       },
       {
+        key: "internPool",
+        value: "Intern Pool",
+        selected: false,
+        icon: CVIcon,
+        to: "/internPool",
+      },
+      {
         key: "myJobs",
         value: "Jobs",
         selected: false,
@@ -171,11 +185,11 @@ class TopBar extends Component {
         to: "/mytasks",
       },
       {
-        key: "myCourses",
+        key: "businessCourses",
         value: "e-Learning",
         selected: false,
         icon: bookIcon,
-        to: "/courses",
+        to: "/businessCourses",
       },
       {
         key: "myMessages",
@@ -311,7 +325,7 @@ class TopBar extends Component {
             e.key !== "myCourses" &&
             e.key !== "wfa"
         );
-		state.internSource.splice(2, 0, {
+		    state.internSource.splice(2, 0, {
           key: "myJobs",
           value: "My Jobs",
           selected: false,

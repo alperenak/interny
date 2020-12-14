@@ -12,6 +12,17 @@ import store from "../../store";
 /*** Style ***/
 import styles from './employerdashboard.scss'
 
+import WFA from "../../components/WFA";
+
+import "../ReferrenceLetter/referrenceLetter.scss";
+
+// Components
+import Input from "../../components/Input";
+import FooterAlternative from "../../components/FooterAlternative";
+
+// Assets
+import image from "../../assets/company-ims_wait.png";
+
 class Dashboard extends Component {
     state = {
         interns: []
@@ -24,7 +35,42 @@ class Dashboard extends Component {
     }
 
     render() {
-        let {interns} = this.state;
+		let {interns} = this.state;
+		
+		return (
+			<div className="pageWrapper">
+				<div className={"referrenceLetter"}>
+					<LoadingModal text="Loading" v-if={this.state.processing} />
+					<div class="container">
+						<div style={{ display: 'flex', justifyContent: 'center' }}>
+							<img className="referrenceLetter__image" src={image} alt="Dashboard" />
+						</div>
+						<div className={"referrenceLetter__modal"}>
+							<div class="row">
+								<div class="col-md-12">
+									<div className={"referrenceLetter__header"}>Dashboard </div>
+									<div className={"referrenceLetter__description"}>
+									Welcome to Interny Dashboard 
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div className={"referrenceLetter__buttonWrapper"} >
+										<Button
+											type='secondary'
+											text='Learn More'
+											to={"/internyUniversity"} 
+											textClass='referrenceLetter__buttonWrapper__text'
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<FooterAlternative />
+			</div>
+		);
+		/*
         return (
             <div className={"dashboard"}>
 				<div class="container">
@@ -97,7 +143,8 @@ class Dashboard extends Component {
 				</div>
 
             </div>
-        );
+		);
+		*/
     }
 }
 

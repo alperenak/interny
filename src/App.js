@@ -16,6 +16,8 @@ import SignUp from "./screens/SignUp";
 import Affiliate from "./screens/Affiliate";
 import UserHome from "./screens/UserHome";
 import CVs from "./screens/CVs/index.js";
+import Competency from "./screens/Competency/index.js";
+import InternPool from "./screens/InternPool/index.js";
 import CVShow from "./screens/CVs/view.js";
 import CVList from "./screens/CVs/list.js";
 import CoverLetters from "./screens/CoverLetters";
@@ -27,10 +29,11 @@ import PostDetail from "./screens/PostDetail";
 import Error from "./screens/Error";
 import Login from "./screens/Login";
 import MyAccount from "./screens/MyAccount";
-import Dashboard from "./screens/EmployerDashboard";
+import Dashboard from "./screens/EmployerDashboard/index2.js";
 import MyTasks from "./screens/MyTasks";
 import Packages from "./screens/Packages";
 import MyCourses from "./screens/MyCourses";
+import BusinessCourses from "./screens/BusinessCourses";
 import FrequentlyAskedQuestions from "./screens/FAQ";
 import CourseDetail from "./screens/CourseDetail";
 import UniverstyDashboard from "./screens/universtyDashboard/universtyDashboard";
@@ -50,6 +53,8 @@ import ForgotPassword from "./screens/ForgotPassword/index.js";
 import PrivacyPage from "./screens/internyPages/privacy.js";
 import TermPage from "./screens/internyPages/terms.js";
 import CookiesPage from "./screens/internyPages/cookies.js";
+import UniversityBrowse from "./screens/UniversityBrowse";
+import UniversityOpen from "./screens/UniversityOpen";
 /*** Styles ***/
 import styles from "./app.scss";
 
@@ -279,6 +284,30 @@ class App extends React.Component {
 						)}
 					/>
 					<Route
+						path="/myCompetency"
+						render={(props) => (
+							<Competency
+								getUser={this.getUser}
+								user={user}
+								closeModal={this.closeModal}
+								createModal={this.createModal}
+								{...props}
+							/>
+						)}
+					/>
+					<Route
+						path="/internPool"
+						render={(props) => (
+							<InternPool
+								getUser={this.getUser}
+								user={user}
+								closeModal={this.closeModal}
+								createModal={this.createModal}
+								{...props}
+							/>
+						)}
+					/>
+					<Route
 						path="/cvcreate"
 						render={(props) => (
 							<CvCreate
@@ -363,6 +392,51 @@ class App extends React.Component {
 						}
 						render={(props) => (
 							<MyCourses
+								user={user}
+								closeModal={this.closeModal}
+								createModal={this.createModal}
+								{...props}
+							/>
+						)}
+					/>
+					<Route
+						path="/universityopen"
+						v-if={
+							(userType === "intern" && isInternshipBegun) ||
+							userType === "employer"
+						}
+						render={(props) => (
+							<UniversityOpen
+								user={user}
+								closeModal={this.closeModal}
+								createModal={this.createModal}
+								{...props}
+							/>
+						)}
+					/>
+					<Route
+						path="/universityBrowse"
+						v-if={
+							(userType === "intern" && isInternshipBegun) ||
+							userType === "employer"
+						}
+						render={(props) => (
+							<UniversityBrowse
+								user={user}
+								closeModal={this.closeModal}
+								createModal={this.createModal}
+								{...props}
+							/>
+						)}
+					/>
+					<Route
+						path="/businessCourses"
+						v-if={
+							(userType === "intern" && isInternshipBegun) ||
+							userType === "employer"
+						}
+						render={(props) => (
+							<BusinessCourses
 								user={user}
 								closeModal={this.closeModal}
 								createModal={this.createModal}

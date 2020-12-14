@@ -9,7 +9,7 @@ import store from "../../store";
 import { getCookie } from "../../utils/cookie";
 
 /*** Styles ***/
-import styles from "./mycourses.scss";
+import styles from "./businesscourses.scss";
 import LoadingModal from "../../components/LoadingModal";
 
 import WFA from "../../components/WFA";
@@ -21,9 +21,9 @@ import Input from "../../components/Input";
 import FooterAlternative from "../../components/FooterAlternative";
 
 // Assets
-import image from "../../assets/intern-E-learning_wait.png";
+import image from "../../assets/company-E-learning_wait.png";
 
-class MyCourses extends Component {
+class BusinessCourses extends Component {
   state = {
     courses: [],
     company: {},
@@ -82,7 +82,7 @@ class MyCourses extends Component {
 								<div class="col-md-12">
 									<div className={"referrenceLetter__header"}>e-Learning </div>
 									<div className={"referrenceLetter__description"}>
-                    Welcome to the Interny E-Learning System. You do not have any learning content yet. You need to first apply for internships.
+                    Welcome to the Interny E-Learning System. You need to purchase the E-LEARNING package to use this system. Click to buy.
 									</div>
 								</div>
 								<div class="col-md-12">
@@ -90,7 +90,7 @@ class MyCourses extends Component {
 										<Button
 											type='secondary'
 											text='Learn More'
-											to={"/internyInterns"} 
+											to={"/internyBusiness"} 
 											textClass='referrenceLetter__buttonWrapper__text'
 										/>
 									</div>
@@ -132,4 +132,4 @@ class MyCourses extends Component {
   }
 }
 
-export default MyCourses;
+export default BusinessCourses;

@@ -9,7 +9,7 @@ import store from "../../store";
 import { getCookie } from "../../utils/cookie";
 
 /*** Styles ***/
-import styles from "./mycourses.scss";
+import styles from "./competency.scss";
 import LoadingModal from "../../components/LoadingModal";
 
 import WFA from "../../components/WFA";
@@ -21,9 +21,9 @@ import Input from "../../components/Input";
 import FooterAlternative from "../../components/FooterAlternative";
 
 // Assets
-import image from "../../assets/intern-E-learning_wait.png";
+import image from "../../assets/intern-icc_wait.png";
 
-class MyCourses extends Component {
+class Competency extends Component {
   state = {
     courses: [],
     company: {},
@@ -75,14 +75,14 @@ class MyCourses extends Component {
 					<LoadingModal text="Loading" v-if={this.state.processing} />
 					<div class="container">
 						<div style={{ display: 'flex', justifyContent: 'center' }}>
-							<img className="referrenceLetter__image" src={image} alt="e-Learning" />
+							<img className="referrenceLetter__image" src={image} alt="Competency" />
 						</div>
 						<div className={"referrenceLetter__modal"}>
 							<div class="row">
 								<div class="col-md-12">
-									<div className={"referrenceLetter__header"}>e-Learning </div>
+									<div className={"referrenceLetter__header"}>Competency </div>
 									<div className={"referrenceLetter__description"}>
-                    Welcome to the Interny E-Learning System. You do not have any learning content yet. You need to first apply for internships.
+                    Welcome to the Interny Competency Center: iCCTM. You need to purchase the COMPETENCY package to use iCCTM. Click to buy.
 									</div>
 								</div>
 								<div class="col-md-12">
@@ -132,4 +132,4 @@ class MyCourses extends Component {
   }
 }
 
-export default MyCourses;
+export default Competency;

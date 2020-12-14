@@ -1,0 +1,33 @@
+.Competency {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0 80px;
+
+  & .cards {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+
+    & .courses {
+      width: 100%;
+    }
+
+    & .profileSection {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+}
+.comingSoon {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  color: #7286a0;
+  font-weight: 600;
+}
