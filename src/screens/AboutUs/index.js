@@ -3,6 +3,7 @@ import React, { Component, Fragment } from "react";
 import styles from "./aboutUs.scss";
 import aboutBg from "../../assets/aboutBg.png";
 import Footer from "../../components/Footer";
+import { Link } from "react-router-dom";
 
 class AboutUs extends Component {
 
@@ -26,14 +27,17 @@ class AboutUs extends Component {
                                 <p className="font-italic text-muted mb-4">
 									INTERNY, which enables the internship process to be carried out from the beginning to the end, is a platform that aims to allow interns to get global work experience wherever and whenever they want.
                                 </p>
-                                <a href="/search" className="btn btn-light px-5 rounded-pill shadow-sm">
-                                    Find Interships
-                                </a>
+                                <Link to="/internyInterns">
+                                    <span className="btn btn-light px-5 rounded-pill shadow-sm">
+                                        Find Interships
+                                    </span>
+                                </Link>
+
                             </div>
                             <div className="col-lg-5 px-5 mx-auto order-1 order-lg-2">
                                 <img
                                     src="https://i.pinimg.com/originals/8c/22/4c/8c224c88cbfcf226e3ee5d215e4930fa.png"
-                                    alt
+                                    alt="Man standing"
                                     className="img-fluid mb-4 mb-lg-0"
                                 />
                             </div>
@@ -42,7 +46,7 @@ class AboutUs extends Component {
                             <div className="col-lg-5 px-5 mx-auto">
                                 <img
                                     src="https://user-images.githubusercontent.com/32520017/98449172-64f0e880-2142-11eb-881f-d25cce802856.png"
-                                    alt
+                                    alt="Company"
                                     className="img-fluid mb-4 mb-lg-0"
                                 />
                             </div>
@@ -52,9 +56,12 @@ class AboutUs extends Component {
                                 <p className="font-italic text-muted mb-4">
                                     INTERNY is a platform that enables companies to find interns with whom they perform the global internship process remotely and online from the beginning to the end.
                                 </p>
-                                <a href="#" className="btn btn-light px-5 rounded-pill shadow-sm">
-                                    Create Internship Program
-                                </a>
+
+                                <Link to="/internyBusiness">
+                                    <span className="btn btn-light px-5 rounded-pill shadow-sm">
+                                        Create Internship Program
+                                    </span>
+                                </Link>
                             </div>
                         </div>
                         <div className="row align-items-center mb-5">
@@ -64,14 +71,16 @@ class AboutUs extends Component {
                                 <p className="font-italic text-muted mb-4">
                                     INTERNY offers universities the opportunity to follow all their students' global remote online internship processes reliably and transparently from one place.
                                 </p>
-                                <a href="/search" className="btn btn-light px-5 rounded-pill shadow-sm">
-                                    Monitor Student's Internships
-                                </a>
+                                <Link to="/internyUniversity">
+                                    <span className="btn btn-light px-5 rounded-pill shadow-sm">
+                                        Monitor Student's Internships
+                                    </span>
+                                </Link>
                             </div>
                             <div className="col-lg-5 px-5 mx-auto order-1 order-lg-2">
                                 <img
                                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQPyeh4kLjISqqLr86Y309CvH8hvegmduMBkw&usqp=CAU"
-                                    alt
+                                    alt="University"
                                     className="img-fluid mb-4 mb-lg-0"
                                 />
                             </div>
