@@ -6,7 +6,7 @@ import ToolbarButton from "../ToolbarButton";
 import Toolbar from "../Toolbar";
 import store from "../../store";
 import Button from "../Button";
-import messagesIcon from "../../assets/messages.svg";
+import messagesIcon from "../../assets/Messageicon.png";
 import {getCookie} from "../../utils/cookie";
 
 export default class Messenger extends Component {
