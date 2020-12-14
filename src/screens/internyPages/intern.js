@@ -5,11 +5,12 @@ import './style.scss';
 import WhyUsePage from './whyUsePage';
 
 // Assets
-import worldwide from '../../assets/worldwide.png';
-import review_applicant from '../../assets/review-applicant.png';
-import start_internship from '../../assets/start-internship.png';
-import manage_program from '../../assets/manage-program.png';
 import companyBg from '../../assets/companyBg.png';
+import joinAndApply from '../../assets/joinAndApply.png';
+import iccTMPortfolio from '../../assets/iccTMPortfolio.png';
+import imsTMWorkTime from '../../assets/imsTMWorkTime.png';
+import referrenceReccomendationLetter from '../../assets/referrenceReccomendationLetter.png';
+
 
 const DESCRIPTION_DATA = [
   `Welcome to INTERNY, the world's first remote online internship platform. You will find everything you need and more during the internship process on the platform. It allows you to do your internship at any company anywhere in the world, wherever and whenever you want. All you have to do is apply for internships, get acceptance, and complete the assigned tasks thoroughly.`,
@@ -21,25 +22,25 @@ const STEP_DATA = [
     title: 'Join & Apply',
     description:
       'You can log into your account by registering. You can attract the attention of companies looking for interns by editing your CV with your verified account. Now, you can start searching for the internship applications of companies. You have the opportunity to view company postings by filtering them as you wish. If you buy the INTERN package, you can apply to companies. You will start a new internship adventure at the company you have accepted.',
-    image: worldwide,
+    image: joinAndApply,
   },
   {
     title: 'iCC™',
     description:
       "You will solve the core competency case studies with Interny Competence Center (iCC™), where the interns' competencies are analyzed. By purchasing the Competency package, you will have the opportunity to see your level of 15 different core competencies. These competencies are evaluated using artificial intelligence and delivered to you as entirely reliable results. In this way, you will prove your competence both to the companies you apply to and yourself.",
-    image: review_applicant,
+    image: iccTMPortfolio,
   },
   {
     title: 'iMS™',
     description:
       "INTERNY internship process is followed using Interny Management System (iMS™). You will be able to access the company's task assignments and share its completed tasks via iMS™. Besides,  you will always contact the company using the messaging service throughout the internship process. Also, at the end of your internship, you will evaluate each other with the company.",
-    image: start_internship,
+    image: imsTMWorkTime,
   },
   {
     title: 'Reference Letter',
     description:
       'Your performance in your internship is evaluated using Workforce Analytics (WFA). Moreover, you will have the opportunity to see your internship efficiency with the WFA report created using artificial intelligence. If you achieve a success rate of 60% or more, you will be eligible for the reference letter to be signed by the company. Therefore, you will have a verifiable reference letter from INTERNY that you can use when applying to companies for the rest of your business life.',
-    image: manage_program,
+    image: referrenceReccomendationLetter,
   },
 ];
 
