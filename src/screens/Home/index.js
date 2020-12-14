@@ -320,9 +320,9 @@ class Home extends Component {
 							<div className={"home__howItWorksSection__division boxAnimation2"}>
 								<img className={"home__howItWorksSection__division__topLeftIcon"} src={hiwTwo}></img>
 								<img className={"home__howItWorksSection__division__icon"} src={comp} />
-								<div className={"home__howItWorksSection__division__title"}>Interny Competency Center: iCCᵗᵐ</div>
+								<div className={"home__howItWorksSection__division__title"}>Interny Competency Center: iCC™</div>
 								<div className={"home__howItWorksSection__division__description"}>
-									Use iCCᵗᵐ to prove and improve the competency to be the primary candidate if necessary.
+									Use iCC™ to prove and improve the competency to be the primary candidate if necessary.
 								</div>
 							</div>
 						</div>
@@ -330,9 +330,9 @@ class Home extends Component {
 							<div className={"home__howItWorksSection__division boxAnimation2"}>
 								<img className={"home__howItWorksSection__division__topLeftIcon"} src={hiwThree}></img>
 								<img className={"home__howItWorksSection__division__icon"} src={application} />
-								<div className={"home__howItWorksSection__division__title"}>Interny Management System: iMSᵗᵐ</div>
+								<div className={"home__howItWorksSection__division__title"}>Interny Management System: iMS™</div>
 								<div className={"home__howItWorksSection__division__description"}>
-									Use iMSᵗᵐ to manage tasks assigned for the internship and to contact the company.
+									Use iMS™ to manage tasks assigned for the internship and to contact the company.
 								</div>
 							</div>
 						</div>
@@ -440,7 +440,7 @@ class Home extends Component {
 										<div className={"home__packagesSection__packageCardGuaranteed__descriptionDiv"}>
 											<div className={"home__packagesSection__packageCardGuaranteed__packageDescription"}>
 												<div>Apply for Internships</div>
-												<div class="bold" data-toggle="tooltip" title="Interny Management System">iMSᵖᵐ</div>
+												<div class="bold" data-toggle="tooltip" title="Interny Management System">iMS™</div>
 												<div data-toggle="tooltip" title="Workforce Analytics">WFA Report</div>
 												<div>Reference Letter</div>
 											</div>
@@ -477,7 +477,7 @@ class Home extends Component {
 										<div className={"home__packagesSection__packageCard__stroke"} />
 										<div className={"home__packagesSection__packageCard__descriptionDiv"}>
 											<div className={"home__packagesSection__packageCard__packageDescription"}>
-												<div class="bold" data-toggle="tooltip" title="Interny Management System">iCCᵗᵐ</div>
+												<div class="bold" data-toggle="tooltip" title="Interny Management System">iCC™</div>
 												<div >Competenct Analytics</div>
 												<div>Competency Report</div>
 											</div>

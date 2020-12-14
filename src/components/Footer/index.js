@@ -78,10 +78,10 @@ class Footer extends Component {
 													<Link to="/faq">FAQ</Link>
 													</li>
 													<li>
-													<Link to="/faq">Blog</Link>
+														<span>Blog</span>
 													</li>
 													<li>
-													<Link to="/referrenceLetter">Referrence Letter</Link>
+													<Link to="/referrenceLetter">Reference Letter</Link>
 													</li>
 													<li>
 													<Link to="/gift">Gift</Link>
@@ -98,10 +98,10 @@ class Footer extends Component {
 											<div className={styles.knowUs}>
 												<ul>
 													<li v-if={!getCookie("token")}>
-													<Link to="/signup">Sitemap</Link>
+														<span>Sitemap</span>
 													</li>
 													<li>
-													<Link to="/affiliate">Affilate</Link>
+													<Link to="/affiliate">Affiliate</Link>
 													</li>
 													<li>
 													<Link to="/investor">Investor</Link>
@@ -157,10 +157,10 @@ class Footer extends Component {
 							<a href={"https://www.linkedin.com/company/internynet/"} target={"blank"}>
 								<img src={linkedin} alt={linkedin} />
 							</a>
-							<a href={"https://instagram.com/internynet/"} target={"blank"}>
+							<a href={"https://www.instagram.com/internyinc/"} target={"blank"}>
 								<img src={instagram} alt={instagram} />
 							</a>
-							<a href={"https://youtube.com/internynet/"} target={"blank"}>
+							<a href={"https://www.youtube.com/channel/UCG_eex16oz2W7hEKo1bAIzw/"} target={"blank"}>
 								<img src={youtube} alt={youtube} />
 							</a>
 						</div>
