@@ -1,12 +1,15 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import styles from "./referrenceLetter.scss";
-import Input from "../../components/Input";
-import Button from "../../components/Button";
-import store from "../../store";
-import LoadingModal from "../../components/LoadingModal";
 import { Link } from "react-router-dom";
+import "./referrenceLetter.scss";
+
+// Components
+import Input from "../../components/Input";
+import LoadingModal from "../../components/LoadingModal";
 import FooterAlternative from "../../components/FooterAlternative";
+
+// Assets
+import referrenceLetter from "../../assets/referenceLetter.png";
+
 
 class ReferrenceLetter extends Component {
 	state = {
@@ -16,10 +19,13 @@ class ReferrenceLetter extends Component {
 
 	render() {
 		return (
-			<>
+			<div className="pageWrapper">
 				<div className={"referrenceLetter"}>
 					<LoadingModal text="Loading" v-if={this.state.processing} />
 					<div class="container">
+						<div style={{ display: 'flex', justifyContent: 'center' }}>
+							<img className="referrenceLetter__image" src={referrenceLetter} alt="Referrence Letter" />
+						</div>
 						<div className={"referrenceLetter__modal"}>
 							<div class="row">
 								<div class="col-md-12">
@@ -57,7 +63,7 @@ class ReferrenceLetter extends Component {
 					</div>
 				</div>
 				<FooterAlternative />
-			</>
+			</div>
 		);
 	}
 }
