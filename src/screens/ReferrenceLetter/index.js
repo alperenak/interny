@@ -31,7 +31,7 @@ class ReferrenceLetter extends Component {
 								<div class="col-md-12">
 									<div className={"referrenceLetter__header"}>Referrence Letter</div>
 									<div className={"referrenceLetter__description"}>
-										Enter the Referrence Letter Code and Intern Last Name. Then you can see the Referrence Letter.
+										Enter the details below. Then you can check the Referrence Letter.
 									</div>
 								</div>
 								<div class="col-md-6">
