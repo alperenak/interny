@@ -90,7 +90,7 @@ class UniversityOpen extends Component {
 									<Button
 										type='secondary'
 										text='Learn More'
-										to={"/internyUniversity"} 
+										to={"/internyBusiness"} 
 										textClass='referrenceLetter__buttonWrapper__text'
 									/>
 								</div>
