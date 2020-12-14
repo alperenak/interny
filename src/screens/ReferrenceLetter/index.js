@@ -1,21 +1,31 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import "./referrenceLetter.scss";
 
 // Components
 import Input from "../../components/Input";
 import LoadingModal from "../../components/LoadingModal";
 import FooterAlternative from "../../components/FooterAlternative";
+import Button from "../../components/Button";
 
 // Assets
 import referrenceLetter from "../../assets/referenceLetter.png";
-
 
 class ReferrenceLetter extends Component {
 	state = {
 		value: "",
 		processing: false
 	};
+
+	renderModalContent = () => {
+		return <p>No records were found.</p>
+	}
+
+	handleDownloadClick = () => {
+		this.props.createModal({
+			header: `Referrence Letter`,
+			content: this.renderModalContent
+		  });
+	}
 
 	render() {
 		return (
@@ -39,7 +49,7 @@ class ReferrenceLetter extends Component {
 										label={'Referrence Letter Code'}
 										type="text"
 										size={'large'}
-										placeholder="Referrence Letter Coed"
+										placeholder="Referrence Letter Code"
 										onChange={value => this.setState({ value })}
 									/>
 								</div>
@@ -53,9 +63,13 @@ class ReferrenceLetter extends Component {
 									/>
 								</div>
 								<div class="col-md-12">
-									<div className={"referrenceLetter__button"} style={{"margin-top":"30px"}}>
-										<Link className={"referrenceButton"} to="/referrenceLetterLetter">Download</Link>
-
+									<div className={"referrenceLetter__buttonWrapper"} >
+										<Button
+											type='secondary'
+											text='Download'
+											textClass='referrenceLetter__buttonWrapper__text'
+											onButtonClick={this.handleDownloadClick}
+										/>
 									</div>
 								</div>
 							</div>

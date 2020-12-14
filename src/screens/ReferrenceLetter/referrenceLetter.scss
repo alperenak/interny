@@ -48,29 +48,14 @@
 		width: 80%;
 		margin-bottom: 30px;
 	}
-	&__button {
+	&__buttonWrapper {
 		display: flex;
     	justify-content: center;
-		border-radius: 5px;
-		margin-top: 25px;
+		margin-top: 30px;
 
-		& .referrenceButton{
-			border-radius: 12px;
-			box-sizing: unset;
-			border: none;
-			font-weight: normal;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			cursor: pointer;
-			margin: 6px;
-			font-family: "Sofia Pro";
-			background-color: #f97050;
-			color: #fff;
-			border: solid 1px transparent;
-			padding: 8px 24px;
+		&__text {
+			padding: 0 2rem;
 			font-size: 12px;
-			width: 160px;
 		}
 	}
 }
