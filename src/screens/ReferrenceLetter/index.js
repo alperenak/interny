@@ -11,10 +11,16 @@ import Button from "../../components/Button";
 import referrenceLetter from "../../assets/referenceLetter.png";
 
 class ReferrenceLetter extends Component {
-	state = {
-		value: "",
-		processing: false
-	};
+
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			referrenceLetterCode: "",
+			internLastName: "",
+			processing: false
+		};
+	}
 
 	renderModalContent = () => {
 		return <p>No records were found.</p>
@@ -50,7 +56,7 @@ class ReferrenceLetter extends Component {
 										type="text"
 										size={'large'}
 										placeholder="Referrence Letter Code"
-										onChange={value => this.setState({ value })}
+										onChange={referrenceLetterCode => this.setState({ referrenceLetterCode })}
 									/>
 								</div>
 								<div class="col-md-6">
@@ -59,7 +65,7 @@ class ReferrenceLetter extends Component {
 										type="text"
 										size={'large'}
 										placeholder="Intern Last Name"
-										onChange={value => this.setState({ value })}
+										onChange={internLastName => this.setState({ internLastName })}
 									/>
 								</div>
 								<div class="col-md-12">

@@ -1,5 +1,61 @@
-.giftPage{
-	.labelDescription{
-		display: none;
+.pageWrapper {
+	min-height: calc(100vh - 88px);
+	display: flex;
+	flex-direction: column;
+}
+
+.gift {
+	flex: 1;
+	padding-top: 40px;
+	background-color: #f6f8fa;
+
+	&__image {
+		width: 200px;
+		height: 200px;
+	}
+
+	&__header {
+		font-family: "Sofia Pro Bold";
+		color: #2c3f58;
+		font-size: 36px;
+		font-weight: normal;
+		margin-top: 30px;
+		text-align: center;
+	}
+	&__description {
+		font-family: "Sofia Pro";
+		color: #202e3b;
+		text-align: center;
+		margin-top: 30px;
+		margin-bottom:30px;
+		font-size: 16px;
+	}
+
+    &__modal {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		border-radius: 10px;
+		background-color: #f6f8fa;
+    }
+	&__input_wrapper {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-content: space-around;
+		width: 80%;
+		margin-bottom: 30px;
+	}
+	&__buttonWrapper {
+		display: flex;
+    	justify-content: center;
+		margin-top: 30px;
+
+		&__text {
+			padding: 0 2rem;
+			font-size: 12px;
+		}
 	}
 }

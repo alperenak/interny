@@ -136,8 +136,11 @@ const PACKAGES_DATA = [
   },
 ];
 
-class BusinessPage extends Component {
+class InternPage extends Component {
   render() {
+    const { location } = this.props;
+    const isCameFromGift = location && location.state && location.state.from === "gift";
+    const giftData = isCameFromGift ? location.state : undefined;
     return (
       <WhyUsePage
         headerBackground={companyBg}
@@ -149,9 +152,10 @@ class BusinessPage extends Component {
         packagesTitle="See the Intern Packages"
         packagesSubtitle="Click to see detail of packages"
         packagesData={PACKAGES_DATA}
+        giftData={giftData}
       />
     );
   }
 }
 
-export default BusinessPage;
+export default InternPage;

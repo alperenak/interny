@@ -5,7 +5,29 @@ import './style.scss';
 import Footer from '../../components/Footer';
 import WhyUsePackages from './whyUsePackages';
 
+// Util
+import { getOffset } from '../../utils/offset';
+
 class WhyUsePage extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.packagesRef = React.createRef();
+  }
+
+  componentDidMount() {
+    if(this.props.giftData) {
+      this.scrollToPackages();
+    }
+  }
+
+  componentDidUpdate() {
+    if(this.props.giftData) {
+      this.scrollToPackages();
+    }
+  }
+
   renderDescriptions = (descriptionList) => {
     return (
       <div class="row">
@@ -79,6 +101,15 @@ class WhyUsePage extends Component {
     );
   };
 
+	scrollToPackages = () => {
+		const offset = getOffset(this.packagesRef.current);
+		window.scrollTo({
+			top: offset.top - 100,
+			left: offset.left,
+			behavior: 'smooth',
+		});
+	};
+
   render() {
     const {
       headerBackground,
@@ -114,11 +145,13 @@ class WhyUsePage extends Component {
               {this.renderVideo(videoEmbedLink)}
             </div>
           </div>
-          <WhyUsePackages
-            title={packagesTitle}
-            subtitle={packagesSubtitle}
-            packagesData={packagesData}
-          />
+          <div ref={this.packagesRef}>
+            <WhyUsePackages
+              title={packagesTitle}
+              subtitle={packagesSubtitle}
+              packagesData={packagesData}
+            />
+          </div>
         </div>
         <Footer />
       </>
