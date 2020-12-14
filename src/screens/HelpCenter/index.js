@@ -22,6 +22,9 @@ import task from '../../icons/task.png';
 import university from '../../icons/university.png';
 import wfaReferenceLetter from '../../icons/wfa-reference-letter.png';
 
+// Util
+import { getOffset } from '../../utils/offset';
+
 const FIRST_STEP = [
 	{ id: 'intern', title: 'Intern', icon: intern },
 	{ id: 'company', title: 'Company', icon: company },
@@ -79,20 +82,8 @@ class HelpCenter extends Component {
 		}
 	}
 
-	getOffset = (element) => {
-		let top = 0;
-		let left = 0;
-		do {
-			top += element.offsetTop || 0;
-			left += element.offsetLeft || 0;
-			element = element.offsetParent;
-		} while (element);
-
-		return { top, left };
-	};
-
 	scrollToSecondStep = () => {
-		const offset = this.getOffset(this.secondStepRef.current);
+		const offset = getOffset(this.secondStepRef.current);
 		window.scrollTo({
 			top: offset.top - 100,
 			left: offset.left,
@@ -101,7 +92,7 @@ class HelpCenter extends Component {
 	};
 
 	scrollToContactForm = () => {
-		const offset = this.getOffset(this.contactFormRef.current);
+		const offset = getOffset(this.contactFormRef.current);
 		window.scrollTo({
 			top: offset.top - 100,
 			left: offset.left,
