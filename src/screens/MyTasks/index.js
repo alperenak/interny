@@ -568,7 +568,7 @@ class MyTasks extends Component {
 								<div class="col-md-12">
 									<div className={"referrenceLetter__header"}>My Tasks</div>
 									<div className={"referrenceLetter__description"}>
-                                        Welcome to the Interny Management System: iMSTM. You do not have a task assignment yet. Click to apply for internships.
+                                        Welcome to the Interny Management System: iMS™. You do not have a task assignment yet. Click to apply for internships.
 									</div>
 								</div>
 								<div class="col-md-12">

@@ -468,7 +468,7 @@ class MyJobs2 extends Component {
 								<div class="col-md-12">
 									<div className={"referrenceLetter__header"}>Tasks </div>
 									<div className={"referrenceLetter__description"}>
-                  Welcome to the Interny Management System: iMSTM. There is no ongoing internship process. Click to post an internship. 
+                  Welcome to the Interny Management System: iMS™. There is no ongoing internship process. Click to post an internship. 
 									</div>
 								</div>
 								<div class="col-md-12">

@@ -82,7 +82,7 @@ class Competency extends Component {
 								<div class="col-md-12">
 									<div className={"referrenceLetter__header"}>Competency </div>
 									<div className={"referrenceLetter__description"}>
-                    Welcome to the Interny Competency Center: iCCTM. You need to purchase the COMPETENCY package to use iCCTM. Click to buy.
+                    Welcome to the Interny Competency Center: iCC™. You need to purchase the COMPETENCY package to use iCC™. Click to buy.
 									</div>
 								</div>
 								<div class="col-md-12">
