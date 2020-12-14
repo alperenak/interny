@@ -36,7 +36,7 @@ class Certificates extends Component {
         return (
             <div className={"subContainer"}>
                 <div className={"subContainer__section"}>
-                    <div className={"subContainer__sectionTitle"}>
+                    <div className={"subContainer__sectionTitle editButtonAdd"}>
                         Certificates
 						{this.state.isCreateFormActive ? (
 							<img className={"plusIcon"} src={removeIconBlue} alt={'icon'} onClick={() => this.setState({isCreateFormActive: !this.state.isCreateFormActive})} />
@@ -50,7 +50,7 @@ class Certificates extends Component {
                             icon={addIcon}
                             hoverIcon={addIconBlue}
                             iconPosition={'left'}
-                            text={'Add a certificare'}
+                            text={'Add a certificate'}
                             onButtonClick={() => this.setState({isCreateFormActive: true})}
                         />
                     </div>

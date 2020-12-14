@@ -16,6 +16,7 @@ import SignUp from "./screens/SignUp";
 import Affiliate from "./screens/Affiliate";
 import UserHome from "./screens/UserHome";
 import CVs from "./screens/CVs/index.js";
+import CVShow from "./screens/CVs/view.js";
 import CVList from "./screens/CVs/list.js";
 import CoverLetters from "./screens/CoverLetters";
 import JobApplication from "./screens/JobApplication";
@@ -257,6 +258,18 @@ class App extends React.Component {
 						path="/Cvdetail/:id"
 						render={(props) => (
 							<CVs
+								getUser={this.getUser}
+								user={user}
+								closeModal={this.closeModal}
+								createModal={this.createModal}
+								{...props}
+							/>
+						)}
+					/>
+					<Route
+						path="/CvPreview/:id"
+						render={(props) => (
+							<CVShow
 								getUser={this.getUser}
 								user={user}
 								closeModal={this.closeModal}

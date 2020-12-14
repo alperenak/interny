@@ -21,9 +21,13 @@ import LoadingModal from "../../components/LoadingModal";
 import searchIcon from "../../icons/colorfulSearch.svg";
 import locationIcon from "../../icons/colorfulLocation.svg";
 import closeIcon from "../../icons/close-outline.svg";
+import BeautyStars from 'beauty-stars';
+import { Multiselect } from "multiselect-react-dropdown";
 
 class LandingPageSearch extends Component {
   state = {
+	langs: [{name: 'English', id: "en"},{name: 'Italian', id: "it"},,{name: 'Turkish', id: "tr"}],
+	prefLang:[],
     posts: [],
     offset: 0,
     limit: 5,
@@ -163,6 +167,7 @@ class LandingPageSearch extends Component {
       posts: [...this.state.posts, ...posts],
       offset: offset + limit,
       loading: false,
+	  rating:0
     });
   };
 
@@ -272,6 +277,7 @@ class LandingPageSearch extends Component {
     advanced_rate,
     advanced_industry,
     } = this.props;
+	const self = this;
     return (
   	<div className={"advancedSearchDropdown2"} onClick={() => {this.setState({ advancedSearch: false });}}>
   		<div className={"advancedSearchDropdown2__inputs"} onClick={(e) => {e.stopPropagation();}}>
@@ -349,119 +355,60 @@ class LandingPageSearch extends Component {
   						id={"industry"}
   						placeholder={"Tech."}
   						size={"full"}
-  						labelDescription={"Enter an industry"}
+  						labelDescription={"Enter an sector"}
   						defaultValue={advanced_industry !== "null" ? advanced_industry : ""}
   						onChange={(value) => {
   						  this.setState({ advanced_industry: value });
   						}}
-  						label={"Industry"}
+  						label={"Sector"}
   					/>
   				</div>
   				<div class="col-md-12" style={{"margin-top":"10px"}}>
-  					<label htmlFor="advanced_employee_min" className="advancedSearchDropdown2__inputLabel">Employee Number</label>{" "}
   					<div class="row">
-  						<div class="col-md-6">
-  							<div className={"advancedSearchDropdown2__two-inputs-wrapper__input-wrapper"}>
-  								<div className={"advancedSearchDropdown2__two-inputs-wrapper__input-wrapper__description"}>Min</div>
-  								<div className={"advancedSearchDropdown2__two-inputs-wrapper__input-wrapper__input"}>
-  									<input
-  										name="advanced_employee_min"
-  										placeholder="Min. Employee"
-  										onChange={(e) => {
-  											e.preventDefault();
-  											this.setState({
-  												advanced_employee: {
-  													min: e.target.value,
-  													max: this.state.advanced_employee.max,
-  												},
-  											});
-  										}}
-  										value={this.state.advanced_employee.min}
-  									/>
-  								</div>
-  							</div>
-  						</div>
-  						<div class="col-md-6">
-  							<div className={"advancedSearchDropdown2__two-inputs-wrapper__input-wrapper"}>
-  								<div className={"advancedSearchDropdown2__two-inputs-wrapper__input-wrapper__description"}>Max</div>
-  								<div className={"advancedSearchDropdown2__two-inputs-wrapper__input-wrapper__input"}>
-  									<input
-  										name="advanced_employee_max"
-  										placeholder="Max. Employee"
-  										onChange={(e) => {
-  											console.log(e);
-  											e.preventDefault();
-  											this.setState({
-  												advanced_employee: {
-  													min: this.state.advanced_employee.min,
-  													max: e.target.value,
-  												},
-  											});
-  										}}
-  										value={this.state.advanced_employee.max}
-  									/>
-  								</div>
-  							</div>
-  						</div>
+						<div class="col-md-12">
+							<Input
+								type={"select"}
+								id={"internType"}
+								label={"Employee Number"}
+								size={"full"}
+								labelDescription={"Choose one below"}
+								defaultValue={
+									this.state.advanced_employee
+								}
+								onChange={(value, slValue) => {
+									this.setState({ advanced_employee: slValue.value });
+								}}
+								placeholder={"Select employee number"}
+								externalSource={[
+									{ key: "1-10", value: "1-10"},
+									{ key: "11-50", value: "11-50" },
+									{ key: "51-100", value: "51-100" },
+									{ key: "101-250", value: "101-250" },
+									{ key: "250+", value: "250+" },
+								]}
+							/>
+						</div>
+
   					</div>
   				</div>
-  			</div>
-  			<div class="row">
-  				<div class="col-md-12">
-  					<Input
-  						type={"select"}
-  						id={"internType"}
-  						label={"Intern Type"}
-  						size={"full"}
-  						labelDescription={"Choose one below"}
-  						defaultValue={
-  							this.state.advanced_intern_type !== "null"
-  							? this.state.advanced_intern_type
-  							: ""
-  						}
-  						onChange={(value, slValue) => {
-  							this.setState({ advanced_intern_type: slValue.value });
-  						}}
-  						placeholder={"Select intern type"}
-  						externalSource={[
-  							{ key: "Student", value: "Student", selected: true },
-  							{ key: "Newly Graduated", value: "Newly Graduated" },
-  						]}
-  					/>
+				<div class="col-md-12" style={{"margin-top":"10px"}}>
+  					<div class="row">
+						<div class="col-md-12">
+							<div class="inputWrapper">
+								<label for="">Rating</label>
+								<div class="labelDescription" style={{"margin-bottom":"10px"}}>Select a rating star</div>
+								<BeautyStars
+									value={this.state.rating}
+									onChange={value => this.setState({ rating:value })}
+									size={16}
+								/>
+							</div>
+
+						</div>
+
+  					</div>
   				</div>
-  				<div class="col-md-12">
-  					<Input
-  						id={"duration"}
-  						type={"select"}
-  						size={"full"}
-  						label={"Duration"}
-  						labelDescription={"Choose one below"}
-  						defaultValue={
-  							this.state.advanced_duration !== "null"
-  							? this.state.advanced_duration
-  							: ""
-  						}
-  						selectedValueId={"duration"}
-  						placeholder={"Select duration"}
-  						onChange={(value, slValue) =>
-  							this.setState({ advanced_duration: slValue.value })
-  						}
-  						externalSource={[
-  							{ key: "4 weeks", value: "4 weeks" },
-  							{ key: "5 weeks", value: "5 weeks" },
-  							{ key: "6 weeks", value: "6 weeks" },
-  							{ key: "7 weeks", value: "7 weeks" },
-  							{ key: "8 weeks", value: "8 weeks" },
-  							{ key: "9 weeks", value: "9 weeks" },
-  							{ key: "10 weeks", value: "10 weeks" },
-  							{ key: "11 weeks", value: "11 weeks" },
-  							{ key: "12 weeks", value: "12 weeks" },
-  						]}
-  					/>
-  				</div>
-  			</div>
-  			<div class="row">
-  				<div class="col-md-12" style={{"margin-top":"10px"}}>
+				<div class="col-md-12" style={{"margin-top":"10px"}}>
   					<label htmlFor="advanced_intern_quota" className="advancedSearchDropdown2__inputLabel">Intern Quota</label>{" "}
   					<div class="row">
   						<div class="col-md-6">
@@ -508,54 +455,194 @@ class LandingPageSearch extends Component {
   						</div>
   					</div>
   				</div>
-  				<div class="col-md-12">
-  					<label htmlFor="advanced_rate" className="advancedSearchDropdown2__inputLabel">Rate</label>{" "}
+				<div class="col-md-12" style={{"margin-top":"10px"}}>
   					<div class="row">
-  						<div class="col-md-6">
-  							<div className={"advancedSearchDropdown2__two-inputs-wrapper__input-wrapper"}>
-  								<div className={"advancedSearchDropdown2__two-inputs-wrapper__input-wrapper__description"}>Min</div>
-  								<div className={"advancedSearchDropdown2__two-inputs-wrapper__input-wrapper__input"}>
-  									<input
-  										name="advanced_rate"
-  										placeholder="Minimum"
-  										onChange={(e) => {
-  										e.preventDefault();
-  										this.setState({
-  										advanced_rate: {
-  										min: e.target.value,
-  										max: this.state.advanced_rate.max,
-  										},
-  										});
-  										}}
-  										value={this.state.advanced_rate.min}
-  									/>
-  								</div>
-  							</div>
-  						</div>
-  						<div class="col-md-6">
-  							<div className={"advancedSearchDropdown2__two-inputs-wrapper__input-wrapper"}>
-  								<div className={"advancedSearchDropdown2__two-inputs-wrapper__input-wrapper__description"}>Max</div>
-  								<div className={"advancedSearchDropdown2__two-inputs-wrapper__input-wrapper__input"}>
-  									<input
-  									name="advanced_rate"
-  									placeholder="Maximum"
-  									onChange={(e) => {
-  									e.preventDefault();
-  									this.setState({
-  									advanced_rate: {
-  									max: e.target.value,
-  									min: this.state.advanced_rate.min,
-  									},
-  									});
+						<div class="col-md-12">
+							<Input
+								type={"select"}
+								id={"internType"}
+								label={"Begin Period"}
+								size={"full"}
+								labelDescription={"Choose one below"}
+								defaultValue={
+									this.state.begin_period
+								}
+								onChange={(value, slValue) => {
+									this.setState({ begin_period: slValue.value });
+								}}
+								placeholder={"Select begin period"}
+								externalSource={[
+									{ key: "Jan1", value: "January - 1st Week"},
+									{ key: "May2", value: "May – 2nd Week" },
+									{ key: "June3", value: "June – 3rd Week" },
+									{ key: "Oct4", value: "October – 4th Week" },
+								]}
+							/>
+						</div>
 
-  									console.log(this.state.advanced_rate);
-  									}}
-  									value={this.state.advanced_rate.max}
-  									/>
-  								</div>
-  							</div>
-  						</div>
   					</div>
+  				</div>
+				<div class="col-md-12" style={{"margin-top":"10px"}}>
+  					<div class="row">
+						<div class="col-md-12">
+							<Input
+								type={"select"}
+								id={"internType"}
+								label={"Length"}
+								size={"full"}
+								labelDescription={"Choose one below"}
+								defaultValue={
+									this.state.length
+								}
+								onChange={(value, slValue) => {
+									this.setState({ length: slValue.value });
+								}}
+								placeholder={"Select Length"}
+								externalSource={[
+									{ key: "4", value: "4 Weeks"},
+									{ key: "8", value: "8 Weeks" },
+									{ key: "12", value: "12 Weeks" },
+								]}
+							/>
+						</div>
+
+  					</div>
+  				</div>
+				<div class="col-md-12" style={{"margin-top":"10px"}}>
+  					<div class="row">
+						<div class="col-md-12">
+							<Input
+								type={"select"}
+								id={"internType"}
+								label={"Preferred GPA"}
+								size={"full"}
+								labelDescription={"Choose one below"}
+								defaultValue={
+									this.state.gpas
+								}
+								onChange={(value, slValue) => {
+									this.setState({ gpas: slValue.value });
+								}}
+								placeholder={"Select Length"}
+								externalSource={[
+									{ key: "-", value: "-"},
+									{ key: "2/4", value: "2/4 or Higher" },
+									{ key: "2.5/4", value: "2.5/4 or Higher" },
+									{ key: "3/4", value: "3/4 or Higher" },
+									{ key: "3.5/4", value: "3.5/4 or Higher" },
+								]}
+							/>
+						</div>
+
+  					</div>
+  				</div>
+				<div class="col-md-12" style={{"margin-top":"10px"}}>
+  					<div class="row">
+						<div class="col-md-12">
+							<div class="inputWrapper">
+								<label for="">Preferred Language</label>
+								<div class="labelDescription" style={{"margin-bottom":"10px"}}>Select a language</div>
+								<Multiselect
+									style={{
+										searchBox: {
+											"border-radius": "12px",
+		 									"box-shadow": "0 6px 12px 0 rgba(215,219,252,0.55)",
+		 									"background-color": "#ffffff",
+		 									"border": "1px solid #d6dfea",
+											"font-family": "Sofia Pro",
+											"color": "#AFB8C3",
+											"font-size": "calc(2px + 11px)",
+											height:50
+									      },
+									}}
+									options={this.state.langs} // Options to display in the dropdown
+									selectedValues={this.state.prefLang} // Preselected value to persist in dropdown
+									onSelect={(a) => {
+										self.setState({
+											prefLang:a
+										})
+									}} // Function will trigger on select event
+									onRemove={(a) => {
+										self.setState({
+											prefLang:a
+										})
+									}} // Function will trigger on remove event
+									displayValue="name" // Property name to display in the dropdown options
+									/>
+							</div>
+
+						</div>
+
+  					</div>
+  				</div>
+				<div class="col-md-12" style={{"margin-top":"10px"}}>
+  					<div class="row">
+						<div class="col-md-12">
+							<Input
+								type={"select"}
+								id={"internType"}
+								label={"Application Type"}
+								size={"full"}
+								labelDescription={"Choose one below"}
+								defaultValue={
+									this.state.appType
+								}
+								onChange={(value, slValue) => {
+									this.setState({ appType: slValue.value });
+								}}
+								placeholder={"Select Application Type"}
+								externalSource={[
+									{ key: "local", value: "Local"},
+									{ key: "global", value: "Global" },
+								]}
+							/>
+						</div>
+
+  					</div>
+  				</div>
+  			</div>
+  			<div class="row">
+  				<div class="col-md-12">
+  					<Input
+  						type={"select"}
+  						id={"internType"}
+  						label={"Intern Type"}
+  						size={"full"}
+  						labelDescription={"Choose one below"}
+  						defaultValue={
+  							this.state.advanced_intern_type !== "null"
+  							? this.state.advanced_intern_type
+  							: ""
+  						}
+  						onChange={(value, slValue) => {
+  							this.setState({ advanced_intern_type: slValue.value });
+  						}}
+  						placeholder={"Select intern type"}
+  						externalSource={[
+  							{ key: "University Student", value: "Student", selected: true },
+  							{ key: "Newly Graduated", value: "Newly Graduated" },
+  						]}
+  					/>
+  				</div>
+				<div class="col-md-12">
+  					<Input
+  						type={"select"}
+  						id={"internType"}
+  						label={"Salary"}
+  						size={"full"}
+  						labelDescription={"Choose one below"}
+  						defaultValue={
+  							this.state.salary
+  						}
+  						onChange={(value, slValue) => {
+  							this.setState({ salary: slValue.value });
+  						}}
+  						placeholder={"Select salary"}
+  						externalSource={[
+  							{ key: "yes", value: "Yes"},
+  							{ key: "no", value: "No" },
+  						]}
+  					/>
   				</div>
   			</div>
 
@@ -564,30 +651,56 @@ class LandingPageSearch extends Component {
 					<div class="col-md-6">
 						<Button
 							type={"secondary"}
-							text={"Find Internship"}
+							text={"Find"}
 							loading={this.state.advanced_search_processing}
 							onButtonClick={async () => {
 								this.setState({ advanced_search_processing: true });
+								console.log({
+									keyword: this.state.advanced_keyword,
+									location: this.state.advanced_location,
+									country: this.state.advanced_country,
+									city: this.state.advanced_city,
+									employee: this.state.advanced_employee,
+									intern_type: this.state.advanced_intern_type,
+									duration: this.state.advanced_duration,
+									intern_quota_min: this.state.advanced_intern_quota.min,
+									intern_quota_max: this.state.advanced_intern_quota.max,
+									rate: this.state.rating,
+									industry: this.state.advanced_industry,
+									begin_period:this.state.begin_period,
+									salary:this.state.salary,
+									appType:this.state.appType,
+									prefLang:this.state.prefLang,
+									gpas:this.state.gpas,
+									length:this.state.length,
+									begin_period:this.state.begin_period
+								});
 								let payload = {
-								keyword: this.state.advanced_keyword,
-								location: this.state.advanced_location,
-								country: this.state.advanced_country,
-								city: this.state.advanced_city,
-								employee_min: this.state.advanced_employee.min,
-								employee_max: this.state.advanced_employee.max,
-								intern_type: this.state.advanced_intern_type,
-								duration: this.state.advanced_duration,
-								intern_quota_min: this.state.advanced_intern_quota.min,
-								intern_quota_max: this.state.advanced_intern_quota.max,
-								rate_min: this.state.advanced_rate.min,
-								rate_max: this.state.advanced_rate.max,
-								industry: this.state.advanced_industry,
+									keyword: this.state.advanced_keyword,
+									location: this.state.advanced_location,
+									country: this.state.advanced_country,
+									city: this.state.advanced_city,
+									employee: this.state.advanced_employee,
+									intern_type: this.state.advanced_intern_type,
+									duration: this.state.advanced_duration,
+									intern_quota_min: this.state.advanced_intern_quota.min,
+									intern_quota_max: this.state.advanced_intern_quota.max,
+									rate: this.state.rating,
+									industry: this.state.advanced_industry,
+									begin_period:this.state.begin_period,
+									salary:this.state.salary,
+									appType:this.state.appType,
+									prefLang:this.state.prefLang,
+									gpas:this.state.gpas,
+									length:this.state.length,
+									begin_period:this.state.begin_period
+
+
 								};
 								let response = await store.advancedSearch(payload,this.props.browseInternship ?'jobs':'job');
 								let posts = response.data.results.map((pst) => {
 							      return this.fillPosts(pst);
 							    });
-								console.log(posts);
 								if (response)
 									this.setState({
 										total:response.data.total,

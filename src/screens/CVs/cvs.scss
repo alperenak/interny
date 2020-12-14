@@ -1,3 +1,28 @@
+.cvShow{
+	.profileButton{
+		display: none;
+	}
+	.plusIcon{
+		display: none;
+	}
+	.subContainer__buttonsContainer{
+		display: none;
+	}
+	.statusCircle{
+		display: none!important;
+	}
+	.btn.link{
+		display: none;
+	}
+}
+
+.cvTitle{
+	font-family: "Sofia Pro Bold";
+	font-size: calc(2px + 24px);
+	color: #2c3f58;
+	margin-bottom:30px;
+}
+
 .stepTitle{
 	font-family: "Sofia Pro";
 	font-size: calc(2px + 15px);
@@ -38,7 +63,15 @@
 		font-style: normal;
 		letter-spacing: 0.3px;
 		color: #2c3f58;
-
+	}
+	&__linkActive{
+		font-family: "Sofia Pro Bold";
+		font-size: calc(2px + 15px);
+		font-weight: bolder;
+		font-stretch: normal;
+		font-style: normal;
+		letter-spacing: 0.3px;
+		color: #0056b3;
 	}
 	&__linkWrapper{
 		border-bottom:1px solid #e0e2f1;

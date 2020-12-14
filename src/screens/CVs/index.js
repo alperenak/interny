@@ -13,6 +13,8 @@ import { formCVData, onCVFormChange } from "../../utils/functions";
 import styles from './cvs.scss';
 /*** Icons ***/
 import addIcon from '../../icons/add-circular-outlined-white-button.svg';
+import previewIcon from '../../icons/text-paper-sheet-symbol.svg';
+
 import editIcon from '../../icons/note-outlined-symbol.svg';
 import editIconBlue from '../../icons/note-outlined-symbol-blue.svg';
 import binIcon from '../../icons/recycling-bin.svg';
@@ -37,14 +39,12 @@ class CVs extends Component {
         let id = getCookie('user_id');
         let res = await store.getCVs(id);
 		const self = this;
-		res = res.filter(function(item){
-			return item.id !== self.props.match.params.id
-		})
         this.setState({ sections: [...(res)], processing: false });
     };
     getCVs = async () => {
         let id = getCookie('user_id');
         let res = await store.getCV(this.props.match.params.id);
+
         this.setState({ cv: res });
     };
 	renderProgressBar(){
@@ -63,9 +63,9 @@ class CVs extends Component {
 		return divs;
 	}
     render() {
-		console.log(this.state.sections)
         let { user } = this.props;
         let { sections, processing } = this.state;
+		const self = this;
         return (
 			<>
             <div className={"cvDetail"}>
@@ -73,6 +73,7 @@ class CVs extends Component {
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
+							<div class="cvTitle">{this.state.cv.title}</div>
 							<div className={"cvDetail__profileSection"}>
 								<Card
 									type={'profile'}
@@ -125,6 +126,14 @@ class CVs extends Component {
 										<img src={uploadIcon} width="16" height="16"/>
 									</div>
 								</div>
+								<div class="cvRightBox__linkWrapper">
+									<div class="cvRightBox__linkInfo">
+										<a href={"/CvPreview/" + this.state.cv.id} target="_blank" class="cvRightBox__link">Preview CV</a>
+									</div>
+									<div class="cvRightBox__button">
+										<img src={previewIcon} width="16" height="16"/>
+									</div>
+								</div>
 								<div class="cvRightBox__privacyWrapper" style={{"margin-top":"30px"}}>
 									<span class="cvRightBox__link">
 										Privacy Settings
@@ -152,7 +161,12 @@ class CVs extends Component {
 									return(
 										<div class="cvRightBox__linkWrapper">
 											<div class="cvRightBox__linkInfo">
-												<a href={'/Cvdetail/' + item.id} class="cvRightBox__link">{item.title}</a>
+												{item.id == self.props.match.params.id ? (
+													<a href={'/Cvdetail/' + item.id} class="cvRightBox__linkActive">{item.title}</a>
+												):(
+													<a href={'/Cvdetail/' + item.id} class="cvRightBox__link">{item.title}</a>
+												)}
+
 											</div>
 											<div class="cvRightBox__button">
 												<a href={'/Cvdetail/' + item.id}>
