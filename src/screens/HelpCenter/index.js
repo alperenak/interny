@@ -5,7 +5,7 @@ import './helpCenter.scss';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Footer from '../../components/Footer';
-import ContactForm from './contactForm';
+import ContactForm from '../../components/ContactForm';
 import Divider from './divider';
 
 // Assets

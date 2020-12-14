@@ -5,10 +5,11 @@ import './style.scss';
 import WhyUsePage from './whyUsePage';
 
 // Assets
-import worldwide from '../../assets/worldwide.png';
-import review_applicant from '../../assets/review-applicant.png';
-import manage_program from '../../assets/manage-program.png';
 import universityBg from '../../assets/universityBg.png';
+
+import join from '../../assets/join.png';
+import learningLanguages from '../../assets/learningLanguages.png';
+import management from '../../assets/management.png';
 
 const DESCRIPTION_DATA = [
 	`Welcome to INTERNY, the world's first remote online internship platform. You will find everything you need and more during the internship process on the platform. It enables the internship process to be managed from the beginning to the end of the internship. It enables the internship to be done in a company anywhere in the world, at any time and place. All that needs to apply to companies' applications as an intern. Get acceptance from the company, and complete the tasks assigned.`,
@@ -20,19 +21,19 @@ const STEP_DATA = [
 		title: 'Join & Follow',
 		description:
 			"First of all, you need to create a user account for your university as interny@universitydomain. You can register on behalf of your university with the user account you have made. In this way, you can follow all your students' internship status and detail from the panel specially prepared for universities.",
-		image: worldwide,
+		image: join,
 	},
 	{
 		title: 'E-Learning',
 		description:
 			"By joining the Interny E-Learning system, you can enable your students to access your E-Learning contents. E-Learning is a system with contents created for interns' development, whose contents are presented to interns within the platform. In addition, you can see in detail your students' progress with their E-Learning content. You can follow the progress of your students with E-Learning Analytics created using artificial intelligence.",
-		image: review_applicant,
+		image: learningLanguages,
 	},
 	{
 		title: 'Manage',
 		description:
 			"You can buy any of the premium packages specially prepared for universities. In this way, you can enable your students to do internships. Besides, you can check the internship processes of your students in detail. You can view your students' current status in their internships in detail by using the panel that will open when you log in with your university user account.",
-		image: manage_program,
+		image: management,
 	},
 ];
 

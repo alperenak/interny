@@ -5,11 +5,11 @@ import './style.scss';
 import WhyUsePage from './whyUsePage';
 
 // Assets
-import worldwide from '../../assets/worldwide.png';
-import review_applicant from '../../assets/review-applicant.png';
-import start_internship from '../../assets/start-internship.png';
-import manage_program from '../../assets/manage-program.png';
 import companyBg from '../../assets/companyBg.png';
+import joinAddUser from '../../assets/joinAddUser.png';
+import imsOrganizingProjects from '../../assets/imsOrganizingProjects.png';
+import eLearningBlogPost from '../../assets/eLearningBlogPost.png';
+import referrenceReccomendationLetter from '../../assets/referrenceReccomendationLetter.png';
 
 const DESCRIPTION_DATA = [
   `Welcome to INTERNY, the world's first remote online internship platform. 
@@ -30,25 +30,25 @@ const STEP_DATA = [
     title: 'Join & Publish',
     description:
       'You can create a company account to work with any interns anywhere in the world. After logging in with your verified account, you can post free advertisements for interns to apply to your company. You can start the internship process by determining the interns you want. You can also purchase one of the COMPANY or HIRING packages to see the Interny Internship Pool.',
-    image: worldwide,
+    image: joinAddUser,
   },
   {
     title: 'iMS™',
     description:
       "You can follow your intern's internship process with whom you started to work on the Interny Management System (iMS™). Using iMS™, you can assign a task to your intern. When the assigned task for your intern is completed, it will be communicated to you via iMS™. Also, you will always be able to communicate with your intern using the messaging service. At the end of the internship period, you will evaluate each other mutually and complete the internship.",
-    image: review_applicant,
+    image: imsOrganizingProjects,
   },
   {
     title: 'E-Learning',
     description:
       "You can support the improvement of your interns with E-Learning, a unique service offered to companies. When you purchase the E-Learning package, you will have the opportunity to share your company content or Interny E-Learning contents with your interns. You will follow all your interns' developments in this process with E-Learning Analytics created using artificial intelligence.",
-    image: start_internship,
+    image: eLearningBlogPost,
   },
   {
     title: 'Confirm Reference Letter',
     description:
       'The internship performance of the intern is evaluated using Workforce Analytics (WFA). At the end of the internship, a WFA report is prepared using artificial intelligence. Interns who are determined to have 60% or more success in the WFA report will be entitled to get a reference letter. The reference letter signed by you will be presented to your intern, who is entitled to the reference letter at the end of the internship.',
-    image: manage_program,
+    image: referrenceReccomendationLetter,
   },
 ];
 

@@ -1,12 +1,24 @@
+.pageWrapper {
+	min-height: calc(100vh - 88px);
+	display: flex;
+	flex-direction: column;
+}
+
 .referrenceLetter {
-	padding-top: 80px;
-	height: calc(100vh - 160px);
+	flex: 1;
+	padding-top: 40px;
 	background-color: #f6f8fa;
+
+	&__image {
+		width: 200px;
+		height: 200px;
+	}
+
 	&__header {
 		font-family: "Sofia Pro Bold";
 		color: #2c3f58;
 		font-size: 36px;
-		font-weight: 600;
+		font-weight: normal;
 		margin-top: 30px;
 		text-align: center;
 	}
@@ -16,6 +28,7 @@
 		text-align: center;
 		margin-top: 30px;
 		margin-bottom:30px;
+		font-size: 16px;
 	}
 
     &__modal {
@@ -35,29 +48,14 @@
 		width: 80%;
 		margin-bottom: 30px;
 	}
-	&__button {
+	&__buttonWrapper {
 		display: flex;
     	justify-content: center;
-		border-radius: 5px;
-		margin-top: 25px;
+		margin-top: 30px;
 
-		& .referrenceButton{
-			border-radius: 12px;
-			box-sizing: unset;
-			border: none;
-			font-weight: normal;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			cursor: pointer;
-			margin: 6px;
-			font-family: "Sofia Pro";
-			background-color: #f97050;
-			color: #fff;
-			border: solid 1px transparent;
-			padding: 8px 24px;
+		&__text {
+			padding: 0 2rem;
 			font-size: 12px;
-			width: 160px;
 		}
 	}
 }

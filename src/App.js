@@ -400,7 +400,13 @@ class App extends React.Component {
 					/>
 					<Route
 						path="/referrenceLetter"
-						render={(props) => <ReferrenceLetter {...props} />}
+						render={(props) => (
+							<ReferrenceLetter 
+								closeModal={this.closeModal}
+								createModal={this.createModal} 
+								{...props}
+							/>
+						)}
 					/>
 					<Route
 						path="/referrenceLetterLetter"
