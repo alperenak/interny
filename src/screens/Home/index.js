@@ -167,10 +167,10 @@ class Home extends Component {
 									{
 										type: "primary",
 										text: i === 0
-										? "4 Weeks Internship"
+										? "4 Weeks"
 										: i === 1
-										? "8 Weeks Internship"
-										: "12 Weeks Internship",
+										? "8 Weeks"
+										: "12 Weeks",
 										sizeName: "small",
 										width: "120px",
 										responsive: "post",
