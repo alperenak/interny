@@ -229,15 +229,28 @@ class TopBar extends Component {
       let jobNotifications = res
         .filter((e) => e.type === "job")
         .map((notif) => {
-          return {
-            key: notif.id,
-            value: notif.message,
-            title: notif.title,
-            selected: false,
-            icon: bellIcon,
-            unRead: notif.isRead,
-            onChange: this.onNotificationItemClick,
-          };
+          if(!notif.isRead){
+            return {
+              key: notif.id,
+              value: notif.message,
+              title: notif.title,
+              selected: false,
+              icon: bellIcon,
+              unRead: !notif.isRead,
+              onChange: this.onNotificationItemClick,
+            };
+          }
+          else{
+            return {
+              key: notif.id,
+              value: notif.message,
+              title: notif.title,
+              selected: false,
+              icon: "",
+              unRead: !notif.isRead,
+              onChange: this.onNotificationItemClick,
+            };
+          }
         });
       let mailNotifications = res
         .filter((e) => e.type === "message")
