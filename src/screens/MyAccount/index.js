@@ -16,9 +16,10 @@ import styles from "./myaccount.scss";
 /*** Styles ***/
 import addIcon from "../../icons/add-circular-outlined-white-button.svg";
 import logo from "../../assets/interny-logo-white.png";
-
+import Switch from "react-switch";
 class myAccountWrapper extends Component {
   state = {
+
     items: [
       { key: "email", title: "E-mail Address" },
       { key: "password", title: "Password" },
@@ -53,14 +54,19 @@ class myAccountWrapper extends Component {
 				universityMail:userData.data["university"].universityMail,
 				country:userData.data["location"].country,
 				city:userData.data["location"].city,
+				phoneNumber:userData.data["phone"],
+				phoneCode:userData.data["phoneCode"],
 				user:userData.data,
-				processing:false
+				processing:false,
+				notifSettings:this.state.notifSettings,
+				emailSettings:this.state.emailSettings
 			});
 		}else{
 			this.setState({
-
 				user:userData.data,
-				processing:false
+				processing:false,
+				notifSettings:this.state.notifSettings,
+				emailSettings:this.state.emailSettings
 			});
 		}
 
@@ -82,6 +88,13 @@ class myAccountWrapper extends Component {
 			  header: `Update Location`,
 			  content: () => this.renderModalContentLoc("Location"),
 			  buttons: this.renderModalButtons("location"),
+			});
+		}
+		if(item == "phone"){
+			this.props.createModal({
+			  header: `Update Phone number`,
+			  content: () => this.renderModalContentPhone("phone"),
+			  buttons: this.renderModalButtons("phone"),
 			});
 		}
 		else if(item == "university"){
@@ -114,6 +127,20 @@ class myAccountWrapper extends Component {
 			  buttons: this.renderModalButtons("sectors"),
 			});
 		}
+		else if(item == "gradStatus"){
+			this.props.createModal({
+			  header: `Graduation Status`,
+			  content: () => this.renderModalContentGraduation("Graduation Status"),
+			  buttons: this.renderModalButtons("gradStatus"),
+			});
+		}
+		else if(item == "preferences"){
+			this.props.createModal({
+			  header: `Preferences`,
+			  content: () => this.renderModalContentPref("Preferences"),
+			  buttons: this.renderModalButtons("preferences"),
+			});
+		}
 		else{
 			this.props.createModal({
 			  header: `Update ${title}`,
@@ -124,6 +151,75 @@ class myAccountWrapper extends Component {
 
     }
   };
+	  renderModalContentPref(title){
+		  return(
+			  <div class="row">
+			  	<div class="col-md-12">
+					<label>
+
+		          		<Switch onChange={() => this.setState({notifSettings:!this.state.notifSettings})} checked={this.state.notifSettings} />
+						<span>Notification</span>
+		        	</label>
+				</div>
+				<div class="col-md-12">
+					<label>
+            			<Switch onChange={() => this.setState({emailSettings:!this.state.emailSettings})} checked={this.state.emailSettings} />
+						<span>Email</span>
+          			</label>
+				</div>
+
+			</div>
+		  );
+	  }
+  	renderModalContentGraduation(title){
+		return (
+			<>
+			<Input
+				type={"select"}
+				id={"internType"}
+				label={"Graduation Status"}
+				size={"full"}
+				labelDescription={"Choose one below"}
+				defaultValue={
+					this.state.gradStatus
+				}
+				onChange={(value, slValue) => {
+					this.setState({ gradStatus: slValue.value });
+				}}
+				placeholder={"Select graduation status"}
+				externalSource={[
+					{ key: "University Student", value: "Student"},
+					{ key: "Newly Graduated", value: "Newly Graduated" },
+				]}
+			/>
+			</>
+		);
+	}
+  	renderModalContentPhone(title){
+		return (
+			<div class="row">
+				<div class="col-md-4">
+					<Input
+					  type={"text"}
+					  placeholder={`Phone Code(+90)`}
+					  size={"full"}
+					  onChange={(value) => this.setState({phoneCode:value})}
+					  defaultValue={this.state.phoneCode}
+					/>
+				</div>
+				<div class="col-md-8">
+					<Input
+					  type={"text"}
+					  placeholder={`Phone`}
+					  size={"full"}
+					  onChange={(value) => this.setState({phoneNumber:value})}
+					  defaultValue={this.state.phoneNumber}
+					/>
+				</div>
+
+			</div>
+	    );
+	}
 	renderModalContentUsage(title,value){
 		return (
 			<>
@@ -270,7 +366,19 @@ class myAccountWrapper extends Component {
   onUpdateClick = async (key) => {
     this.setState({ processing: true });
 	var postData = {};
-
+	if(key == "email"){
+		if(this.validateEmail(this.state.value) == false){
+			this.setState({ processing: false });
+			alert('Please enter a valid e-mail address');
+			return false;
+		}
+	}
+	if(key == "phone"){
+		postData = {
+			phoneNumber:this.state.phoneNumber,
+			phoneCode:this.state.phoneCode
+		}
+	}
 	if(key == "location"){
 		postData =  {
 			location:{
@@ -305,6 +413,17 @@ class myAccountWrapper extends Component {
 			sectors:this.state.sectors
 		}
 	}
+	else if(key == "gradStatus"){
+		postData = {
+			gradStatus:this.state.gradStatus
+		}
+	}
+	else if(key == "preferences"){
+		postData = {
+			notifSettings:this.state.notifSettings,
+			emailSettings:this.state.emailSettings
+		}
+	}
 	else{
 		postData[key] = this.state.value;
 	}
@@ -337,11 +456,19 @@ class myAccountWrapper extends Component {
       onButtonClick: () => this.onUpdateClick(key),
     },
   ];
+  	validateEmail(email) {
+		this.setState({value:email})
+  		const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  		return re.test(email);
+	}
 	render() {
 		let { user } = this.props;
 		let { items, processing } = this.state;
-
 		let duration = (((user?.Internship?.duration - user?.Internship?.dayLeft) / user?.Internship?.duration) * 100);
+		duration = 10;
+		if(user?.Internship?.dayLeft <= 0){
+			duration = 0;
+		}
 		return (
 			<>
 				{processing && <LoadingModal text={"Loading..."} />}
@@ -413,7 +540,9 @@ class myAccountWrapper extends Component {
 												</div>
 												<div className={"myAccountWrapper__internship__internshipField"}>
 													<span>Day(s) Left: </span>
-													<span className={"value"}>{user?.Internship?.dayLeft}</span>
+													<span className={"value"}>
+														{user?.Internship?.dayLeft <= 0 ? (0):(user?.Internship?.dayLeft)}
+													</span>
 												</div>
 												<div className={"myAccountWrapper__internship__internshipField"}>
 													<span>Internship Length: </span>
@@ -455,20 +584,7 @@ class myAccountWrapper extends Component {
 															/>
 													</div>
 												</div>
-												<div class="col-md-12">
-													<div className={"myAccountWrapperRow"}>
-														<div className={"myAccountWrapperRow__title"}>Password</div>
-															<div className={styles.text}>
-																*************
-															</div>
-															<Button
-																type={"ghost"}
-																sizeName={"small"}
-																text={"Update"}
-																onButtonClick={() => this.onChangeClick('password',"Password","")}
-															/>
-													</div>
-												</div>
+
 												{getCookie("user") == "intern" ? (
 													<>
 													<div class="col-md-12">
@@ -661,21 +777,23 @@ class myAccountWrapper extends Component {
 															/>
 													</div>
 												</div>
-												<div class="col-md-12">
-													<div className={"myAccountWrapperRow"}>
-														<div className={"myAccountWrapperRow__title"}>Phone</div>
-															<div className={styles.text}>
-																{this.state.user["phone"]}
-															</div>
-															<Button
-																type={"ghost"}
-																sizeName={"small"}
-																text={"Update"}
-																onButtonClick={() => this.onChangeClick('phone','Phone',this.state.user["phone"])}
-															/>
-													</div>
-												</div>
+
 												{getCookie("user") == "intern" ? (
+													<>
+													<div class="col-md-12">
+														<div className={"myAccountWrapperRow"}>
+															<div className={"myAccountWrapperRow__title"}>Phone</div>
+																<div className={styles.text}>
+																	{this.state.user["phone"]}
+																</div>
+																<Button
+																	type={"ghost"}
+																	sizeName={"small"}
+																	text={"Update"}
+																	onButtonClick={() => this.onChangeClick('phone','Phone',this.state.user["phone"])}
+																/>
+														</div>
+													</div>
 													<div class="col-md-12">
 														<div className={"myAccountWrapperRow"}>
 															<div className={"myAccountWrapperRow__title"}>Location</div>
@@ -690,6 +808,7 @@ class myAccountWrapper extends Component {
 																/>
 														</div>
 													</div>
+													</>
 												):(null)}
 
 													{getCookie("user") == "intern" ? (
@@ -737,6 +856,20 @@ class myAccountWrapper extends Component {
 																sizeName={"small"}
 																text={"Update"}
 																onButtonClick={() => this.onChangeClick('linkedinUrl','Linkedin',this.state.user["linkedinUrl"])}
+															/>
+													</div>
+												</div>
+												<div class="col-md-12">
+													<div className={"myAccountWrapperRow"}>
+														<div className={"myAccountWrapperRow__title"}>Preferences</div>
+															<div className={styles.text}>
+
+															</div>
+															<Button
+																type={"ghost"}
+																sizeName={"small"}
+																text={"Update"}
+																onButtonClick={() => this.onChangeClick('preferences','Preferences',"")}
 															/>
 													</div>
 												</div>

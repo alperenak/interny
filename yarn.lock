@@ -10049,6 +10049,11 @@ react-indiana-drag-scroll@^1.6.1:
     easy-bem "^1.0.0"
     prop-types "^15.7.0"
 
+react-input-checkbox@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/react-input-checkbox/-/react-input-checkbox-0.1.6.tgz#65010dd79ba4cf28acf945b802a06bc94a14494e"
+  integrity sha512-dxn+mojz+JIMjCVUlOJUZj+bQhv8dmPRfpbk7IT0hgzwOJAIq0udx/JUGUDw7bYjSM5quV0BylPLp6HoC6AwLA==
+
 react-is@^16.12.0, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
@@ -10228,6 +10233,13 @@ react-step-progress-bar@^1.0.3:
     classnames "^2.2.6"
     invariant "^2.2.4"
     react-transition-group "^2.4.0"
+
+react-switch@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/react-switch/-/react-switch-5.0.1.tgz#449277f4c3aed5286fffd0f50d5cbc2a23330406"
+  integrity sha512-Pa5kvqRfX85QUCK1Jv0rxyeElbC3aNpCP5hV0LoJpU/Y6kydf0t4kRriQ6ZYA4kxWwAYk/cH51T4/sPzV9mCgQ==
+  dependencies:
+    prop-types "^15.6.2"
 
 react-transition-group@^2.4.0, react-transition-group@^2.5.0:
   version "2.9.0"
