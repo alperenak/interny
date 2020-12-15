@@ -21,8 +21,11 @@ import styles from "./card.scss";
 
 class Card extends Component {
   render() {
-    let { type, header, children, backgroundColor = '#fff', posts } = this.props;
-	var className = "Card";
+    let { type, header, children, iconName, backgroundColor = '#fff', posts } = this.props;
+  var className = "Card";
+  if(iconName == "bell"){
+    className += " bellDropDown";
+  }
 	if(type == "jobPost" || type == "pricing"){
 		if(typeof this.props.anim === "undefined"){
 			className += " boxAnimation";

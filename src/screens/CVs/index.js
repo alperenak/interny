@@ -157,36 +157,35 @@ class CVs extends Component {
 							</div>
 							<div class="cvListBox">
 								<h3 class="cvListBox__title">My CV's</h3>
-								{this.state.sections.map(function(item,index){
-									return(
-										<div class="cvRightBox__linkWrapper">
-											<div class="cvRightBox__linkInfo">
-												{item.id == self.props.match.params.id ? (
-													<a href={'/Cvdetail/' + item.id} class="cvRightBox__linkActive">{item.title}</a>
-												):(
-													<a href={'/Cvdetail/' + item.id} class="cvRightBox__link">{item.title}</a>
-												)}
+									{this.state.sections.map(function(item,index){
+										return(
+											<div class="cvRightBox__linkWrapper">
+												<div class="cvRightBox__linkInfo">
+													{item.id == self.props.match.params.id ? (
+														<a href={'/Cvdetail/' + item.id} class="cvRightBox__linkActive">{item.title}</a>
+													):(
+														<a href={'/Cvdetail/' + item.id} class="cvRightBox__link">{item.title}</a>
+													)}
 
+												</div>
+												<div class="cvRightBox__button">
+													<a href={'/Cvdetail/' + item.id}>
+														<img src={editIcon} width="16" height="16"/>
+													</a>
+												</div>
 											</div>
-											<div class="cvRightBox__button">
-												<a href={'/Cvdetail/' + item.id}>
-													<img src={editIcon} width="16" height="16"/>
-												</a>
-											</div>
-										</div>
-									);
-								})}
-								{this.state.sections.length < 3 ? (
+										);
+									})}
+									{this.state.sections.length < 3 ? (
 
-									<Button
-									   text={'Create new CV'}
+										<Button
+										text={'Create new CV'}
 
-									   icon={addIcon}
-									   iconPosition={'right'}
-									   to={'/cvcreate'}
-								   />
-								):(null)}
-
+										icon={addIcon}
+										iconPosition={'right'}
+										to={'/cvcreate'}
+									/>
+									):(null)}
 							</div>
 						</div>
 					</div>

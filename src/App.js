@@ -250,7 +250,7 @@ class App extends React.Component {
 					<Route
 						path="/CVs"
 						render={(props) => (
-							<CVList
+							<CVs
 								getUser={this.getUser}
 								user={user}
 								closeModal={this.closeModal}

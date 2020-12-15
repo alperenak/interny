@@ -185,6 +185,13 @@
     height: fit-content;
   }
 
+  &.bellDropDown {
+    margin: 0;
+    border-radius: 6px;
+    padding: 8px 16px;
+    width: 240px;
+    height: fit-content;
+  }
   &.internList {
     transition: 0.3s;
 

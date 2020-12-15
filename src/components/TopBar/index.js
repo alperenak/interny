@@ -234,8 +234,8 @@ class TopBar extends Component {
             value: notif.message,
             title: notif.title,
             selected: false,
-            icon: "",
-            unRead: !notif.isRead,
+            icon: bellIcon,
+            unRead: notif.isRead,
             onChange: this.onNotificationItemClick,
           };
         });
@@ -403,6 +403,7 @@ class TopBar extends Component {
         >
           <Card
             type={"dropDown"}
+            iconName={iconName}
             onPress={() => this.closeHamburgerMenu()}
             externalData={[
               ...this.state[
@@ -554,7 +555,7 @@ class TopBar extends Component {
 															this.setState({
 																loginDropDown: !this.state.loginDropDown,
 															});
-														}}
+                            }}
 														type={"dropDown"}
 														externalData={this.state.loginPages}
 													/>

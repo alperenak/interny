@@ -33,8 +33,8 @@ class CVList extends Component {
     getCVs = async () => {
         let id = getCookie('user_id');
         let res = await store.getCVs(id);
-		window.location.href = '/Cvdetail/' + res[0].id;
-        //this.setState({ sections: [...(res)], processing: false });
+		//window.location.href = '/Cvdetail/' + res[0].id;
+        this.setState({ sections: [...(res)], processing: false });
     };
 
     render() {

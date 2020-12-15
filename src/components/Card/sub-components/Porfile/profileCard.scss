@@ -1,11 +1,12 @@
 
-.profileButton{
-	position: absolute;
-	right:40px;
-}
+
 .profileCard {
 	display: flex;
-	flex-direction: row;
+  flex-direction: row;
+  &.profileButton{
+    float:right;
+    display:block;
+  }
   & .profileImage {
 	  margin-right: 20px;
     position: relative;
