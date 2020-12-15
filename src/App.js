@@ -267,7 +267,7 @@ class App extends React.Component {
 						)}
 					/>
 					<Route
-						path="/CvPreview/:id"
+						path="/CvPreview/:id/:download"
 						render={(props) => (
 							<CVShow
 								getUser={this.getUser}

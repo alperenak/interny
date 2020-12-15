@@ -27,7 +27,7 @@ class Profile extends Component {
         let userType = getCookie('user');
         return (
             <div className={"profileCard"}>
-                <div className={"profileImage"}>
+                <div v-if={profileObject.avatar != 'none'} className={"profileImage"}>
                     <div v-if={profileObject.avatar} className={"imageContainer"}>
                         <img src={profileObject.avatar} alt={'profile photo'}/>
                     </div>
