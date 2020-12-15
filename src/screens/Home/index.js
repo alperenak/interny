@@ -477,7 +477,7 @@ class Home extends Component {
 										<div className={"home__packagesSection__packageCard__stroke"} />
 										<div className={"home__packagesSection__packageCard__descriptionDiv"}>
 											<div className={"home__packagesSection__packageCard__packageDescription"}>
-												<div class="bold" data-toggle="tooltip" title="Interny Management System">iCC™</div>
+												<div class="bold" data-toggle="tooltip" title="Interny Competency Center">iCC™</div>
 												<div >Competenct Analytics</div>
 												<div>Competency Report</div>
 											</div>
