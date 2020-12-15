@@ -307,26 +307,78 @@
 }
 
 .advancedSearchDropdown {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 
+	width: 100%;
+	padding: 25px;
+	.row{
+		margin-bottom:30px;
+	}
   & .backButton {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    left: 50px;
-    top: 50px;
-    z-index: 11;
-    cursor: pointer;
 
+    cursor: pointer;
+	position:absolute;
+	left:25px;
+	top:25px;
     & img {
       width: 50px;
       height: 50px;
     }
   }
+  & .arow {
+	windows: 100%;
 
+	&.header {
+	  color: #2c3f58;
+	  font-size: large;
+	  font-weight: 600;
+	  border-bottom: 1px solid #2c3f5894;
+	  align-self: center;
+	  padding: 10px 0 10px 0;
+	}
+
+	&.big_header {
+	  color: #2c3f58;
+	  font-size: xx-large;
+	  font-weight: 600;
+	  align-self: center;
+	  padding: 25px 0 25px 0;
+	  text-align: center;
+	}
+
+	& .phoneInput {
+	  position: relative;
+	  cursor: text;
+	  margin: 8px 0;
+	  width: 268px;
+
+	  & label {
+		font-family: "Sofia Pro Bold";
+		font-size: calc(2px + 12px);
+		font-weight: 700;
+		color: #2c3f58;
+		letter-spacing: 0.5px;
+		padding: 0 1px;
+	  }
+
+	  & .phoneInput__input {
+		display: flex;
+		outline: none;
+		justify-content: center;
+		align-items: center;
+		background: #fff;
+		border: 1px solid #d6dfea;
+		border-radius: 4px;
+		padding: 12px 16px;
+		margin: 8px 0 0;
+
+		& input {
+		  outline: none;
+		  border: none;
+		  width: 200px;
+		}
+	  }
+	}
+  }
   & .advancedSearchDropdown__inputs {
     position: relative;
     width: 45vw;
@@ -336,66 +388,7 @@
 
     background-color: white;
 
-    & .arow {
-      windows: 100%;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: flex-start;
 
-      &.header {
-        color: #2c3f58;
-        font-size: large;
-        font-weight: 600;
-        border-bottom: 1px solid #2c3f5894;
-        width: 50%;
-        align-self: center;
-        padding: 10px 0 10px 0;
-      }
-
-      &.big_header {
-        color: #2c3f58;
-        font-size: xx-large;
-        font-weight: 600;
-        width: 50%;
-        align-self: center;
-        padding: 25px 0 25px 0;
-      }
-
-      & .phoneInput {
-        position: relative;
-        cursor: text;
-        margin: 8px 0;
-        width: 268px;
-
-        & label {
-          font-family: "Sofia Pro Bold";
-          font-size: calc(2px + 12px);
-          font-weight: 700;
-          color: #2c3f58;
-          letter-spacing: 0.5px;
-          padding: 0 1px;
-        }
-
-        & .phoneInput__input {
-          display: flex;
-          outline: none;
-          justify-content: center;
-          align-items: center;
-          background: #fff;
-          border: 1px solid #d6dfea;
-          border-radius: 4px;
-          padding: 12px 16px;
-          margin: 8px 0 0;
-
-          & input {
-            outline: none;
-            border: none;
-            width: 200px;
-          }
-        }
-      }
-    }
   }
 
 

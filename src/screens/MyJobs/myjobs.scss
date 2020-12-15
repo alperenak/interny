@@ -1,4 +1,20 @@
 @import '../../helpers/responsiveBreakpointsMixins.scss';
+.jobCreateForm{
+	.labelDescription{
+		display: none!important;
+	}
+	.selectWrapper label{
+		font-size: 18px;
+		font-weight: normal;
+font-stretch: normal;
+font-style: normal;
+line-height: 1.22;
+letter-spacing: normal;
+text-align: left;
+color: #2c3f58;
+padding: 0 1px;
+	}
+}
 .jobPost{
 	padding: 16px 32px;
 	border: 1px solid #efefef;

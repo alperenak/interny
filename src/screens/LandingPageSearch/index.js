@@ -143,21 +143,22 @@ class LandingPageSearch extends Component {
     });
 
 	let payload = {
-	offset:offset,
-	limit:limit,
-	keyword: this.state.advanced_keyword,
-	location: this.state.advanced_location,
-	country: this.state.advanced_country,
-	city: this.state.advanced_city,
-	employee_min: this.state.advanced_employee.min,
-	employee_max: this.state.advanced_employee.max,
-	intern_type: this.state.advanced_intern_type,
-	duration: this.state.advanced_duration,
-	intern_quota_min: this.state.advanced_intern_quota.min,
-	intern_quota_max: this.state.advanced_intern_quota.max,
-	rate_min: this.state.advanced_rate.min,
-	rate_max: this.state.advanced_rate.max,
-	industry: this.state.advanced_industry,
+		keyword: this.state.advanced_keyword,
+		location: this.state.advanced_location,
+		country: this.state.advanced_country,
+		city: this.state.advanced_city,
+		empNum: this.state.advanced_employee,
+		intern_type: this.state.advanced_intern_type,
+		quota:this.state.quota,
+		rate: this.state.rating,
+		industry: this.state.advanced_industry,
+		begin_period:this.state.begin_period,
+		salary:this.state.salary,
+		appType:this.state.appType,
+		languages:this.state.prefLang,
+		gpa:this.state.gpas,
+		duration:this.state.length,
+		begin_period:this.state.begin_period
 	};
 	let response = await store.advancedSearch(payload,this.props.browseInternship ?'jobs':'job');
 	let posts = response.data.results.map((pst) => {
@@ -310,7 +311,7 @@ class LandingPageSearch extends Component {
   						labelDescription={"Enter a location"}
   						defaultValue={
   						this.state.tagsLabeladvanced_location !== "null"
-  						? this.stateadvanced_location
+  						? this.state.advanced_location
   						: ""
   						}
   						onChange={(value) => this.setState({ advanced_location: value })}
@@ -409,52 +410,26 @@ class LandingPageSearch extends Component {
   					</div>
   				</div>
 				<div class="col-md-12" style={{"margin-top":"10px"}}>
-  					<label htmlFor="advanced_intern_quota" className="advancedSearchDropdown2__inputLabel">Intern Quota</label>{" "}
   					<div class="row">
-  						<div class="col-md-6">
-  							<div className={"advancedSearchDropdown2__two-inputs-wrapper__input-wrapper"}>
-  								<div className={"advancedSearchDropdown2__two-inputs-wrapper__input-wrapper__description"}>Min</div>
-  								<div className={"advancedSearchDropdown2__two-inputs-wrapper__input-wrapper__input"}>
-  									<input
-  										name="advanced_intern_quota"
-  										placeholder="Minimum"
-  										onChange={(e) => {
-  										e.preventDefault();
-  										this.setState({
-  										advanced_intern_quota: {
-  										min: e.target.value,
-  										max: this.state.advanced_intern_quota.max,
-  										},
-  										});
-  										}}
-  										value={this.state.advanced_intern_quota.min}
-  									/>
-  								</div>
-  							</div>
-  						</div>
-  						<div class="col-md-6">
-  							<div className={"advancedSearchDropdown2__two-inputs-wrapper__input-wrapper"}>
-  								<div className={"advancedSearchDropdown2__two-inputs-wrapper__input-wrapper__description"}>Max</div>
-  								<div className={"advancedSearchDropdown2__two-inputs-wrapper__input-wrapper__input"}>
-  									<input
-  										name="advanced_intern_quota"
-  										placeholder="Maximum"
-  										onChange={(e) => {
-  										e.preventDefault();
-  										this.setState({
-  										advanced_intern_quota: {
-  										min: this.state.advanced_intern_quota.min,
-  										max: e.target.value,
-  										},
-  										});
-  										}}
-  										value={this.state.advanced_intern_quota.max}
-  									/>
-  								</div>
-  							</div>
-  						</div>
+						<div class="col-md-12">
+							<Input
+								type={"text"}
+								id={"industry"}
+								placeholder={"Quota"}
+								size={"full"}
+								labelDescription={"Enter an quota"}
+								defaultValue={this.state.quota}
+								onChange={(value) => {
+									this.setState({ quota: value });
+								}}
+								label={"Quota"}
+							/>
+
+						</div>
+
   					</div>
   				</div>
+
 				<div class="col-md-12" style={{"margin-top":"10px"}}>
   					<div class="row">
 						<div class="col-md-12">
@@ -655,47 +630,24 @@ class LandingPageSearch extends Component {
 							loading={this.state.advanced_search_processing}
 							onButtonClick={async () => {
 								this.setState({ advanced_search_processing: true });
-								console.log({
-									keyword: this.state.advanced_keyword,
-									location: this.state.advanced_location,
-									country: this.state.advanced_country,
-									city: this.state.advanced_city,
-									employee: this.state.advanced_employee,
-									intern_type: this.state.advanced_intern_type,
-									duration: this.state.advanced_duration,
-									intern_quota_min: this.state.advanced_intern_quota.min,
-									intern_quota_max: this.state.advanced_intern_quota.max,
-									rate: this.state.rating,
-									industry: this.state.advanced_industry,
-									begin_period:this.state.begin_period,
-									salary:this.state.salary,
-									appType:this.state.appType,
-									prefLang:this.state.prefLang,
-									gpas:this.state.gpas,
-									length:this.state.length,
-									begin_period:this.state.begin_period
-								});
+
 								let payload = {
 									keyword: this.state.advanced_keyword,
 									location: this.state.advanced_location,
 									country: this.state.advanced_country,
 									city: this.state.advanced_city,
-									employee: this.state.advanced_employee,
+									empNum: this.state.advanced_employee,
 									intern_type: this.state.advanced_intern_type,
-									duration: this.state.advanced_duration,
-									intern_quota_min: this.state.advanced_intern_quota.min,
-									intern_quota_max: this.state.advanced_intern_quota.max,
+									quota:this.state.quota,
 									rate: this.state.rating,
 									industry: this.state.advanced_industry,
 									begin_period:this.state.begin_period,
 									salary:this.state.salary,
 									appType:this.state.appType,
-									prefLang:this.state.prefLang,
-									gpas:this.state.gpas,
-									length:this.state.length,
+									languages:this.state.prefLang,
+									gpa:this.state.gpas,
+									duration:this.state.length,
 									begin_period:this.state.begin_period
-
-
 								};
 								let response = await store.advancedSearch(payload,this.props.browseInternship ?'jobs':'job');
 								let posts = response.data.results.map((pst) => {

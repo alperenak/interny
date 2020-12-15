@@ -8,6 +8,7 @@ import store from '../../store';
 import { getCookie } from '../../utils/cookie';
 import { formButtons, formItems } from './formItems';
 import { formJobData, onJobFormChange } from '../../utils/functions';
+import CKEditor from "react-ckeditor-component";
 
 /*** Styles ***/
 import styles from './myjobs.scss';
@@ -17,9 +18,14 @@ import Button from '../../components/Button';
 import addIcon from '../../icons/add-circular-outlined-white-button.svg';
 import Form from '../../components/Form';
 import LoadingModal from '../../components/LoadingModal';
+import Input from "../../components/Input";
+import { Multiselect } from "multiselect-react-dropdown";
+
 
 class MyJobs extends Component {
   state = {
+	  langs: [{name: 'English', id: "en"},{name: 'Italian', id: "it"},,{name: 'Turkish', id: "tr"}],
+	  prefLang:[],
     appliedPosts: [],
     savedPosts: [],
     acceptedPosts: [],
@@ -357,29 +363,294 @@ class MyJobs extends Component {
       },
     },
   ];
-
+  onChange = (evt) =>{
+	var newContent = evt.editor.getData();
+	this.setState((state) => {
+		state.description = newContent;
+		return state;
+	  });
+  };
   onCreateClick = async () => {
     this.props.createModal({
+		size:"large",
       header: 'Create Job',
       content: this.renderCreatePostForm,
     });
   };
 
-  renderCreatePostForm = () => {
-    return (
-      <Form
-        formItems={formItems()}
-        formButtons={formButtons()}
-        formDataFormatter={formJobData}
-        onFormChange={onJobFormChange}
-        onSubmit={this.onCreateFormSubmit}
-        onCancel={this.props.closeModal}
-      />
-    );
-  };
+	renderCreatePostForm = () => {
+		const self = this;
+		return (
+			<div class="jobCreateForm">
+				<div class="row">
+					<div class="col-md-6">
+						<Input
+							type={"select"}
+							id={"internshipLength"}
+							label={"Internship Length"}
+							size={"full"}
+							labelDescription={"Choose one below"}
+							onChange={(value, slValue) => {
+								this.setState({ internshipLength: slValue.key });
+							}}
+							placeholder={"Internship Length"}
+							externalSource={[
+								{ key: 4, value: '4 weeks', selected: false },
+								{ key: 8, value: '8 weeks', selected: false },
+								{ key: 12, value: '12 weeks', selected: false },
+							]}
+						/>
+					</div>
+					<div class="col-md-6">
+						<Input
+							type={"text"}
+							placeholder={`Position`}
+							size={"full"}
+							defaultValue={this.state.position}
+							onChange={(value) => this.setState({ position:value })}
+							label={"Position"}
+						/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="inputWrapper">
+							<label for="">Description</label>
+						</div>
+						<CKEditor
+							activeClass="p10"
+							content={this.state.description}
+							events={{
+								"change": this.onChange
+							}}
+						/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<Input
+							type={"textarea"}
+							placeholder={`Qualifications`}
+							size={"full"}
+							defaultValue={this.state.qualifications}
+							onChange={(value) => this.setState({ qualifications:value })}
+							label={"Qualifications"}
+						/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<Input
+							type={"select"}
+							id={"internLevel"}
+							label={"Intern Level"}
+							size={"full"}
+							labelDescription={"Choose one below"}
+							onChange={(value, slValue) => {
+								this.setState({ internLevel: slValue.key });
+							}}
+							placeholder={"Internship Length"}
+							externalSource={[
+								{ key: 'newlyGraduated', value: 'Newly Graduated', selected: false },
+								{ key: 'universityStudent', value: 'University Student', selected: false },
+							]}
+						/>
+					</div>
+
+					<div class="col-md-6">
+						<div class="inputWrapper">
+							<label for="">Preferred Language</label>
+							<Multiselect
+								style={{
+									searchBox: {
+										"border-radius": "12px",
+										"box-shadow": "0 6px 12px 0 rgba(215,219,252,0.55)",
+										"background-color": "#ffffff",
+										"border": "1px solid #d6dfea",
+										"font-family": "Sofia Pro",
+										"color": "#AFB8C3",
+										"font-size": "calc(2px + 11px)",
+										height:50
+									  },
+								}}
+								options={this.state.langs} // Options to display in the dropdown
+								selectedValues={this.state.prefLang} // Preselected value to persist in dropdown
+								onSelect={(a) => {
+									self.setState({
+										prefLang:a
+									})
+								}} // Function will trigger on select event
+								onRemove={(a) => {
+									self.setState({
+										prefLang:a
+									})
+								}} // Function will trigger on remove event
+								displayValue="name" // Property name to display in the dropdown options
+								/>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<Input
+							type={"text"}
+							id={"industry"}
+							placeholder={"Preferred Profession"}
+							size={"full"}
+							labelDescription={"Enter an Preferred Profession"}
+							defaultValue={this.state.pref_prof}
+							onChange={(value) => {
+								this.setState({ pref_prof: value });
+							}}
+							label={"Preferred Profession"}
+						/>
+					</div>
+
+					<div class="col-md-6">
+						<div class="inputWrapper">
+							<label for="">Preferred Competency</label>
+							<Multiselect
+								style={{
+									searchBox: {
+										"border-radius": "12px",
+										"box-shadow": "0 6px 12px 0 rgba(215,219,252,0.55)",
+										"background-color": "#ffffff",
+										"border": "1px solid #d6dfea",
+										"font-family": "Sofia Pro",
+										"color": "#AFB8C3",
+										"font-size": "calc(2px + 11px)",
+										height:50
+									  },
+								}}
+								options={this.state.langs} // Options to display in the dropdown
+								selectedValues={this.state.prefComp} // Preselected value to persist in dropdown
+								onSelect={(a) => {
+									self.setState({
+										prefComp:a
+									})
+								}} // Function will trigger on select event
+								onRemove={(a) => {
+									self.setState({
+										prefComp:a
+									})
+								}} // Function will trigger on remove event
+								displayValue="name" // Property name to display in the dropdown options
+								/>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<Input
+							type={"select"}
+							id={"applicationType"}
+							label={"Application Type"}
+							size={"full"}
+							labelDescription={"Choose one below"}
+							onChange={(value, slValue) => {
+								this.setState({ applicationType: slValue.key });
+							}}
+							placeholder={"Application Type"}
+							externalSource={[
+								{ key: 'local', value: 'Local', selected: false },
+							    { key: 'global', value: 'Global', selected: false },
+							]}
+						/>
+
+					</div>
+					<div class="col-md-6">
+						<Input
+							type={"select"}
+							id={"gpa"}
+							label={"Preferred GPA"}
+							size={"full"}
+							labelDescription={"Choose one below"}
+							onChange={(value, slValue) => {
+								this.setState({ gpa: slValue.key });
+							}}
+							placeholder={"Preferred GPA"}
+							externalSource={[
+								{ key: "-", value: "-"},
+								{ key: "2/4", value: "2/4 or Higher" },
+								{ key: "2.5/4", value: "2.5/4 or Higher" },
+								{ key: "3/4", value: "3/4 or Higher" },
+								{ key: "3.5/4", value: "3.5/4 or Higher" },
+							]}
+						/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<Input
+							type={"select"}
+							id={"internType"}
+							label={"Begin Period"}
+							size={"full"}
+							labelDescription={"Choose one below"}
+							defaultValue={
+								this.state.begin_period
+							}
+							onChange={(value, slValue) => {
+								this.setState({ begin_period: slValue.value });
+							}}
+							placeholder={"Select begin period"}
+							externalSource={[
+								{ key: "Jan1", value: "January - 1st Week"},
+								{ key: "May2", value: "May – 2nd Week" },
+								{ key: "June3", value: "June – 3rd Week" },
+								{ key: "Oct4", value: "October – 4th Week" },
+							]}
+						/>
+					</div>
+					<div class="col-md-6">
+						<Input
+							type={"text"}
+							id={"industry"}
+							placeholder={"Quota"}
+							size={"full"}
+							labelDescription={"Enter an quota"}
+							defaultValue={this.state.quota}
+							onChange={(value) => {
+								this.setState({ quota: value });
+							}}
+							label={"Quota"}
+						/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<Input
+							type={"text"}
+							id={"industry"}
+							placeholder={"Salary Additional if necessary"}
+							size={"full"}
+							labelDescription={"Enter an salary"}
+							defaultValue={this.state.salary}
+							onChange={(value) => {
+								this.setState({ salary: value });
+							}}
+							label={"Salary Additional if necessary"}
+						/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<Button
+							type={"primary"}
+							text={"Create"}
+							onButtonClick={this.onCreateFormSubmit}
+						/>
+					</div>
+				</div>
+			</div>
+		);
+	};
 
   onCreateFormSubmit = async (payload) => {
-    const internshipLength = parseInt(payload.internshipLength.split(' ')[0]);
+	  /*
+    const internshipLength = parseInt(this.state.internshipLength);
     const addedDays = internshipLength * 7;
 
     const endDate = new Date(payload.startDate);
@@ -387,8 +658,38 @@ class MyJobs extends Component {
     endDate.setDate(endDate.getDate() + addedDays);
 
     payload.endDate = endDate;
-
-    await store.createPost(payload);
+	this.setState({endDate:endDate})
+	*/
+	console.log({
+		internshipLength:this.state.internshipLength,
+		position:this.state.position,
+		description:this.state.description,
+		qualifications:this.state.qualifications,
+		internLevel:this.state.internLevel,
+		languages:this.state.prefLang,
+		applicationType:this.state.applicationType,
+		gpa:this.state.gpa,
+		startDate:this.state.begin_period,
+		internQuota:this.state.quota,
+		salary:this.state.salary,
+		competency:this.state.prefComp,
+		profession:this.state.pref_prof
+	});
+    await store.createPost({
+	internshipLength:this.state.internshipLength,
+	position:this.state.position,
+	description:this.state.description,
+	qualifications:this.state.qualifications,
+	internLevel:this.state.internLevel,
+	languages:this.state.prefLang,
+	applicationType:this.state.applicationType,
+	gpa:this.state.gpa,
+	startDate:this.state.begin_period,
+	internQuota:this.state.quota,
+	salary:this.state.salary,
+	competency:this.state.prefComp,
+	profession:this.state.pref_prof
+	});
     this.props.closeModal();
     await this.getJobPosts();
   };

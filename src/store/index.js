@@ -13,36 +13,49 @@ let store = {
       location,
       country,
       city,
-      employee_min,
-      employee_max,
+      empNum,
       intern_type,
-      duration,
-      intern_quota_min,
-      intern_quota_max,
-      rate_min,
-      rate_max,
-      industry,
+	  quota,
+	  rate,
+	  industry,
+	  begin_period,
+	  salary,
+	  appType,
+	  languages,
+	  gpa,
+	  duration,
     } = payload;
 
     let query = `keyword=${encodeURIComponent(
       keyword
-    )}&location=${encodeURIComponent(location)}&country=${encodeURIComponent(
+    )}&location=${encodeURIComponent(location)}
+	&country=${encodeURIComponent(
       country
-    )}&city=${encodeURIComponent(city)}&employee_min=${encodeURIComponent(
-      employee_min
-    )}&employee_max=${encodeURIComponent(
-      employee_max
+    )}
+	&city=${encodeURIComponent(city)}
+	&empNum=${encodeURIComponent(
+      empNum
     )}&intern_type=${encodeURIComponent(
       intern_type
+    )}&quota=${encodeURIComponent(
+      quota
+    )}&rate=${encodeURIComponent(
+      rate
+    )}&industry=${encodeURIComponent(
+      industry
+    )}
+	&begin_period=${encodeURIComponent(begin_period)}
+	&languages=${encodeURIComponent(
+      languages
+    )}&gpa=${encodeURIComponent(
+      gpa
     )}&duration=${encodeURIComponent(
       duration
-    )}&intern_quota_min=${encodeURIComponent(
-      intern_quota_min
-    )}&intern_quota_max=${encodeURIComponent(
-      intern_quota_max
-    )}&rate_min=${encodeURIComponent(rate_min)}&rate_max=${encodeURIComponent(
-      rate_max
-    )}&industry=${encodeURIComponent(industry)}`;
+    )}
+	&salary=${encodeURIComponent(
+      salary
+    )}
+	&appType=${encodeURIComponent(appType)}`;
 
     let tokenCookieName = "token";
     let baseUrl = config.baseUrl;

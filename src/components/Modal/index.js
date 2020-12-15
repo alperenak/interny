@@ -10,7 +10,8 @@ import styles from './modal.scss';
 import cancelIcon from "../../assets/cancel.png";
 class Modal extends Component {
     render() {
-        let { closeModal, width, backgroundColor = '#fff', header, declaration, content, buttons, modalSize = 'small' } = this.props;
+        let { closeModal, width, backgroundColor = '#fff', header, declaration, content, buttons, modalSize } = this.props;
+
         const modalSizeClass = modalSize === 'small' ? "modalWrapper__modalSmall" : "modalWrapper__modalLarge";
 
         return (
@@ -62,7 +63,6 @@ class Modal extends Component {
         );
     }
 }
-
 export default Modal;
 
 Modal.propTypes = {

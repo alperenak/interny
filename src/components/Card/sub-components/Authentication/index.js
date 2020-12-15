@@ -390,7 +390,6 @@ class Authentication extends Component {
       department == "" ||
       uni_mail == "" ||
       student_number == "" ||
-      phone == "" ||
       graduation_status == "" ||
       country == "" ||
       city == ""
@@ -423,7 +422,8 @@ class Authentication extends Component {
         universityMail: uni_mail,
         studentNumber: student_number,
       },
-      phone,
+      phoneCode:this.state.phoneCode,
+	  phoneNumber:this.state.phoneNumber,
       gradStatus: graduation_status,
       location: {
         country,
@@ -494,147 +494,169 @@ class Authentication extends Component {
       city,
     } = this.state;
 
-    return (
-      <div className={"advancedSearchDropdown"}>
-        <div
-          className={"backButton"}
-          onClick={() => {
-            this.setState({ getAdditionalInfo: false });
-          }}
-        >
-          <img src={backIcon} alt="" />
-        </div>
-        <div
-          className={"advancedSearchDropdown__inputs"}
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-        >
-          <div className={`${"arow"} ${"big_header"}`}>
-            Complete Your Account
-          </div>
-
-          <div className={`${"arow"} ${"header"}`}>
-            University Information
-          </div>
-
-          <div className={"arow"}>
-            <Input
-              type={"text"}
-              placeholder={"Ankara University"}
-              size={"half"}
-              defaultValue={university !== "null" ? university : ""}
-              onChange={(value) => this.setState({ university: value })}
-              label={"University"}
-            />
-          </div>
-
-          <div className={"arow"}>
-            <Input
-              type={"text"}
-              placeholder={"Engineering Faculty"}
-              size={"half"}
-              defaultValue={faculty !== "null" ? faculty : ""}
-              onChange={(value) => this.setState({ faculty: value })}
-              label={"Faculty"}
-            />
-
-            <Input
-              type={"text"}
-              placeholder={"Computer Science"}
-              size={"half"}
-              defaultValue={department !== "null" ? department : ""}
-              onChange={(value) => this.setState({ department: value })}
-              label={"Department"}
-            />
-          </div>
-
-          <div className={"arow"}>
-            <Input
-              type={"text"}
-              placeholder={"example@uni.edu.tr"}
-              size={"half"}
-              defaultValue={uni_mail !== "null" ? uni_mail : ""}
-              onChange={(value) => this.setState({ uni_mail: value })}
-              label={"University Mail"}
-            />
-
-            <Input
-              type={"text"}
-              placeholder={"18264155"}
-              size={"half"}
-              defaultValue={student_number !== "null" ? student_number : ""}
-              onChange={(value) => {
-                this.setState({ student_number: value });
-              }}
-              label={"Student Number"}
-            />
-          </div>
-
-          <div className={`${"arow"} ${"header"}`}>
-            Personal Information
-          </div>
-
-          <div className={"arow"}>
-            <div className={"phoneInput"}>
-              <label>Phone</label>
-              <div className={"phoneInput__input"}>
-                <PhoneInput
-                  defaultCountry="TR"
-                  value={phone}
-                  onChange={(value) => this.setState({ phone: value })}
-                />
-              </div>
-            </div>
-
-            <Input
-              type={"select"}
-              label={"Graduation Status"}
-              onChange={(value, slValue) => {
-                this.setState({ graduation_status: slValue.value });
-              }}
-              externalSource={[
-                { key: "Student", value: "Student", selected: true },
-                { key: "Newly Graduated", value: "Newly Graduated" },
-              ]}
-            />
-          </div>
-
-          <div className="arow">
-            <Input
-              type={"text"}
-              placeholder={"Turkey"}
-              size={"half"}
-              defaultValue={country !== "null" ? country : ""}
-              onChange={(value) => this.setState({ country: value })}
-              label={"Country"}
-            />
-
-            <Input
-              type={"text"}
-              placeholder={"Istanbul"}
-              size={"half"}
-              defaultValue={city !== "null" ? city : ""}
-              onChange={(value) => {
-                this.setState({ city: value });
-              }}
-              label={"City"}
-            />
-          </div>
-
-          <div className={"arow"}>
-            <div className={"advancedSearch__send-button"}>
-              <Button
-                type={"secondary"}
-                text={"Complete Account"}
-                sizeName={"large"}
-                onButtonClick={this.onCompleteAccount}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+		return (
+			<div className={"advancedSearchDropdown"}>
+				<div class="row">
+					<div class="col-md-12">
+						<div
+							className={"backButton"}
+							onClick={() => {
+							this.setState({ getAdditionalInfo: false });
+							}}
+						>
+							<img src={backIcon} alt="" />
+						</div>
+						<div className={`${"arow"} ${"big_header"}`}>
+							Complete Your Account
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div className={`${"arow"} ${"header"}`}>
+							University Information
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<Input
+						type={"text"}
+						placeholder={"Ankara University"}
+						size={"full"}
+						defaultValue={university !== "null" ? university : ""}
+						onChange={(value) => this.setState({ university: value })}
+						label={"University"}
+						/>
+					</div>
+					<div class="col-md-4">
+						<Input
+						type={"text"}
+						placeholder={"Engineering Faculty"}
+						size={"full"}
+						defaultValue={faculty !== "null" ? faculty : ""}
+						onChange={(value) => this.setState({ faculty: value })}
+						label={"Faculty"}
+						/>
+					</div>
+					<div class="col-md-4">
+						<Input
+						type={"text"}
+						placeholder={"Computer Science"}
+						size={"full"}
+						defaultValue={department !== "null" ? department : ""}
+						onChange={(value) => this.setState({ department: value })}
+						label={"Department"}
+						/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<Input
+						type={"text"}
+						placeholder={"example@uni.edu.tr"}
+						size={"full"}
+						defaultValue={uni_mail !== "null" ? uni_mail : ""}
+						onChange={(value) => this.setState({ uni_mail: value })}
+						label={"University Mail"}
+						/>
+					</div>
+					<div class="col-md-6">
+						<Input
+						type={"text"}
+						placeholder={"18264155"}
+						size={"full"}
+						defaultValue={student_number !== "null" ? student_number : ""}
+						onChange={(value) => {
+						this.setState({ student_number: value });
+						}}
+						label={"Student Number"}
+						/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div className={`${"arow"} ${"header"}`}>
+						Personal Information
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-4">
+								<Input
+								  type={"text"}
+								  placeholder={`Phone Code(+90)`}
+								  size={"full"}
+								  onChange={(value) => this.setState({phoneCode:value})}
+								  defaultValue={this.state.phoneCode}
+								/>
+							</div>
+							<div class="col-md-8">
+								<Input
+								  type={"text"}
+								  placeholder={`Phone`}
+								  size={"full"}
+								  onChange={(value) => this.setState({phoneNumber:value})}
+								  defaultValue={this.state.phoneNumber}
+								/>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<Input
+						type={"select"}
+						label={"Graduation Status"}
+						size={"full"}
+						onChange={(value, slValue) => {
+						this.setState({ graduation_status: slValue.value });
+						}}
+						externalSource={[
+						{ key: "Student", value: "Student", selected: true },
+						{ key: "Newly Graduated", value: "Newly Graduated" },
+						]}
+						/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<Input
+						type={"text"}
+						placeholder={"Turkey"}
+						size={"full"}
+						defaultValue={country !== "null" ? country : ""}
+						onChange={(value) => this.setState({ country: value })}
+						label={"Country"}
+						/>
+					</div>
+					<div class="col-md-6">
+						<Input
+						type={"text"}
+						placeholder={"Istanbul"}
+						size={"full"}
+						defaultValue={city !== "null" ? city : ""}
+						onChange={(value) => {
+						this.setState({ city: value });
+						}}
+						label={"City"}
+						/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div className={"advancedSearch__send-button"}>
+							<Button
+								type={"secondary"}
+								text={"Complete Account"}
+								sizeName={"large"}
+								onButtonClick={this.onCompleteAccount}
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+		);
   };
 
   renderAuth = () => {
