@@ -1,0 +1,27 @@
+.pageHeader {
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 230px;
+  .container {
+    width: 100%;
+    height: 230px;
+    background-position: top right;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  p {
+    font-size: 23px;
+    line-height: 1;
+    color: #ffffff;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 0 !important;
+    font-family: 'Sofia Pro Bold';
+    font-size: 60px;
+    color: #2c3f58;
+  }
+}
