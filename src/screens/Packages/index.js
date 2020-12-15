@@ -114,7 +114,7 @@ class Packages extends Component {
 											<div className={"packagesSection__packageCard__stroke"} />
 											<div className={"packagesSection__packageCard__descriptionDiv"}>
 												<div className={"packagesSection__packageCard__packageDescription"}>
-													<div data-toggle="tooltip" title="Interny Management System">iCC™</div>
+													<div data-toggle="tooltip" title="Interny Competency Center">iCC™</div>
 													<div >Competenct Analytics</div>
 													<div>Competency Report</div>
 												</div>
