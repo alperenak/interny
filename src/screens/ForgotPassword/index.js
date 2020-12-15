@@ -16,6 +16,42 @@ class ForgotPassword extends Component {
 		value:""
 	}
 
+	onClick = async () => {
+		this.setState({ processing: true });
+		let res = await store.sendForgot(this.props.userType, this.state.value);
+		this.setState({ processing: false });
+		if (res.status === 200) {
+		  this.props.createModal({
+			header: "Success",
+			declaration: "The email has been sent!",
+			buttons: [
+			  {
+				type: "primary",
+				text: "OK",
+				sizeName: "default",
+				onButtonClick: () => {
+				  this.props.closeModal();
+				  window.location.pathname = `/`;
+				},
+			  },
+			],
+		  });
+		} else {
+		  this.props.createModal({
+			header: res.data.title,
+			declaration: res.data.message,
+			buttons: [
+			  {
+				type: "primary",
+				text: "OK",
+				sizeName: "default",
+				onButtonClick: () => this.props.closeModal(),
+			  },
+			],
+		  });
+		}
+	  };
+
     render() {
         return (
 			<div class="forgotPasswordWrapper">
