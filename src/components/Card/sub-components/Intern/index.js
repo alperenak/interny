@@ -7,6 +7,8 @@ import Card from "../../index";
 
 /*** Utils ***/
 import store from '../../../../store';
+import ToolkitProvider from 'react-bootstrap-table2-toolkit';
+import defstyles from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.css';
 
 /*** Styles ***/
 import styles from './intern.scss';

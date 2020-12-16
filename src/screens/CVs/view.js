@@ -31,19 +31,13 @@ class CVView extends Component {
 
     async componentDidMount() {
         await this.getCVs();
-		await this.getCVList();
+        await this.getCVs();
     }
-	getCVList = async () => {
-        let id = getCookie('user_id');
-        let res = await store.getCVs(id);
-		const self = this;
-        this.setState({ sections: [...(res)], processing: false });
-    };
     getCVs = async () => {
         let id = getCookie('user_id');
         let res = await store.getCV(this.props.match.params.id);
-
-        this.setState({ cv: res });
+		const self = this;
+        this.setState({ cv: res, processing: false });
     };
 	renderProgressBar(){
 		const divs = [];
@@ -61,8 +55,9 @@ class CVView extends Component {
 		return divs;
 	}
     render() {
-        let { user } = this.props;
-        let { sections, processing } = this.state;
+		let { user } = this.props;
+		let { cv, processing } = this.state;
+		console.log(user)
 		const self = this;
         return (
 			<>
@@ -71,15 +66,18 @@ class CVView extends Component {
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
-							<div class="cvTitle">{this.state.cv.title}</div>
+							{user.legalName === undefined ? (
+							<div class="cvTitle">{cv.title}</div>
+							) : (
+								null
+							)}
 							<div className={"cvDetail__profileSection"}>
 								<Card
 									type={'profile'}
-									getUser={this.props.getUser}
 									profileObject={{
-										avatar: user.avatar,
+										avatar: cv.avatar,
 										status: 'active',
-										header: `${user.name} ${user.surname}`,
+										header: cv.name,
 										location: 'Istanbul - Turkey',
 										sector: 'Software',
 										position: 'Full Time',
@@ -97,7 +95,7 @@ class CVView extends Component {
 							{typeof this.state.cv.id !== "undefined" ? (
 								<CV
 									file={this.state.cv}
-									getCVs={this.getCVs}
+									getCVs={this.state.cv}
 								/>
 							):(null)}
 							</div>
