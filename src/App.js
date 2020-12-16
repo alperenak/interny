@@ -186,11 +186,11 @@ class App extends React.Component {
 					</Route>
 					<Route
 						path="/search/:keyword/:location"
-						render={(props) => <LandingPageSearch {...props} />}
+						render={(props) => <LandingPageSearch {...props} isAuthorized={isAuthorized} />}
 					/>
 					<Route
 						path="/search"
-						render={(props) => <LandingPageSearch {...props} />}
+						render={(props) => <LandingPageSearch {...props} isAuthorized={isAuthorized} />}
 					/>
 					<Route
 						path="/faq"

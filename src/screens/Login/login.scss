@@ -6,10 +6,11 @@
 }
 
 .loginWrapper{
-	height: calc(100vh - 82px);
 	display: flex;
 	align-items: center;
 	background-color: #f6f8fa;
+	flex: 1;
+	padding: 1rem 0;
 }
 .footerSection2{
 	background-color: #f6f8fa;

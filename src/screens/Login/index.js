@@ -7,18 +7,18 @@ import FooterAlternative from "../../components/FooterAlternative";
 class Login extends Component {
 	render() {
 		return (
-			<>
-				<div class="loginWrapper">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-12">
+			<div className="pageWrapper">
+				<div className="loginWrapper">
+					<div className="container">
+						<div className="row">
+							<div className="col-md-12">
 								<Card type={"login"} {...this.props} />
 							</div>
 						</div>
 					</div>
 				</div>
 				<FooterAlternative />
-			</>
+			</div>
 		);
 	}
 }

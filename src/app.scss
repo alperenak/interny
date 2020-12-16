@@ -83,3 +83,9 @@
   font-weight: bold;
   font-family: "Sofia Pro Bold";
 }
+
+.pageWrapper {
+	min-height: calc(100vh - 88px);
+	display: flex;
+	flex-direction: column;
+}

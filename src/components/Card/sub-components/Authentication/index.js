@@ -46,16 +46,6 @@ class Authentication extends Component {
         onButtonClick: async () => this.onContinueClick(),
       },
     ],
-    authButtons: [
-      {
-        text: "Log in with Google+",
-        styles: "google",
-      },
-      {
-        text: "Log in with Facebook",
-        styles: "facebook",
-      },
-    ],
     loginInputs: [
       {
         key: "email",
@@ -661,7 +651,7 @@ class Authentication extends Component {
 
   renderAuth = () => {
     let { type } = this.props;
-    let { page, buttons, authButtons, authInputs, loginInputs } = this.state;
+    let { page, buttons, authInputs, loginInputs } = this.state;
     return (
 		<div class={"row authWrapper " + type}>
 			<div class={"col-md-6"} style={{"padding-left":0}}>
@@ -717,42 +707,6 @@ class Authentication extends Component {
 							? "Company"
 							: this.props.match.params.user}
 						</div>
-					</div>
-					<div
-						v-if={type === "auth"}
-						v-for={(btn, i) in authButtons}
-						key={"authBtn" + i}
-						className={"authButtonContainer"}
-					>
-					<div
-						onMouseEnter={() => {
-							if (btn.styles === "facebook")
-							this.setState({ facebookIcon: facebookWhiteIcon });
-						}}
-						onMouseUp={() => {
-							if (btn.styles === "facebook")
-							this.setState({ facebookIcon: facebookWhiteIcon });
-						}}
-						onMouseLeave={() => {
-							if (btn.styles === "facebook")
-							this.setState({ facebookIcon: facebookIcon });
-						}}
-						className={`${"authButton"} ${btn.styles} }`}
-					>
-						<img
-							className={
-								btn.text?.includes("Google")
-								? "facebookIcon"
-								: "googleIcon"
-							}
-							src={
-								btn.styles === "google"
-								? this.state.googleIcon
-								: this.state.facebookIcon
-							}
-						/>
-						{btn.text}
-					</div>
 					</div>
 					{type === "login" ? loginInputs.map((inp, i) => {
 						if (inp.type === "link") {
@@ -823,43 +777,7 @@ class Authentication extends Component {
 							onButtonClick={btn.onButtonClick}
 						/>
 					</div>
-					<div
-						v-for={(btn, i) in authButtons}
-						key={"loginBtn" + i}
-						v-if={type === "login"}
-						className={"authButtonContainer"}
-					>
-						<div
-							onMouseEnter={() => {
-								if (btn.styles === "facebook")
-								this.setState({ facebookIcon: facebookWhiteIcon });
-							}}
-							onMouseUp={() => {
-								if (btn.styles === "facebook")
-								this.setState({ facebookIcon: facebookWhiteIcon });
-							}}
-							onMouseLeave={() => {
-								if (btn.styles === "facebook")
-								this.setState({ facebookIcon: facebookIcon });
-							}}
-							className={`${"authButton"} ${btn.styles} }`}
-						>
-							<img
-								className={
-									btn.text?.includes("Google")
-									? "facebookIcon"
-									: "googleIcon"
-								}
-								src={
-									btn.styles === "google"
-									? this.state.googleIcon
-									: this.state.facebookIcon
-								}
-							/>
-							{btn.text}
-						</div>
-					</div>
-				</div>
+        </div>
 			</div>
 		</div>
     );
