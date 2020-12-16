@@ -77,7 +77,7 @@ class PostDetail extends Component{
             state.company = {
                 logo: user.logo,
                 header: user.legalName,
-                location: `${pst?.jobLocation?.country} - ${pst?.jobLocation?.city}`,
+                location: `${user?.location?.country} - ${user?.location?.city}`,
                 sector: pst?.industry,
                 jobType: pst?.jobType,
                 empNum: user?.employeeNumber,

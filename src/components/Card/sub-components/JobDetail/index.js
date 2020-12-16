@@ -59,7 +59,12 @@ class JobDetail extends Component {
 									</div>
 								</div>
 								<div class="col-md-12">
-									<div className={"jobDetail2__postDescription"}>{pst.description}</div>
+									<div className={"jobDetail2__postDescription"}>
+                                        <div
+                                            dangerouslySetInnerHTML={{
+                                                __html: pst.description
+                                            }}></div>
+									</div>
 								</div>
 								<div class="col-md-12">
 									<div v-if={pst.qualifications} className={"jobDetail2__postDescription"}>Qualifications:</div>

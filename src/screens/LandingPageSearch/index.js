@@ -292,7 +292,6 @@ class LandingPageSearch extends Component {
   						type={"text"}
   						placeholder={"Software Developer"}
   						size={"full"}
-  						labelDescription={"Position, keyword or company"}
   						defaultValue={
   						this.state.advanced_keyword !== "null"
   						? this.state.advanced_keyword
@@ -302,22 +301,7 @@ class LandingPageSearch extends Component {
   						label={"Keyword"}
   					/>
   				</div>
-  				<div class="col-md-12">
-  					<Input
-  						id={"location"}
-  						type={"text"}
-  						placeholder={"Software Developer"}
-  						size={"full"}
-  						labelDescription={"Enter a location"}
-  						defaultValue={
-  						this.state.tagsLabeladvanced_location !== "null"
-  						? this.state.advanced_location
-  						: ""
-  						}
-  						onChange={(value) => this.setState({ advanced_location: value })}
-  						label={"Location"}
-  					/>
-  				</div>
+
   			</div>
   			<div class="row">
   				<div class="col-md-12">
@@ -326,7 +310,6 @@ class LandingPageSearch extends Component {
   						type={"text"}
   						placeholder={"Turkey"}
   						size={"full"}
-  						labelDescription={"Enter a country"}
   						defaultValue={
   						this.state.advanced_country !== "null"
   						? this.state.advanced_country
@@ -342,7 +325,6 @@ class LandingPageSearch extends Component {
   						type={"text"}
   						placeholder={"Istanbul"}
   						size={"full"}
-  						labelDescription={"Enter a city"}
   						defaultValue={advanced_city !== "null" ? advanced_city : "sads"}
   						onChange={(value) => this.setState({ advanced_city: value })}
   						label={"City"}
@@ -356,7 +338,6 @@ class LandingPageSearch extends Component {
   						id={"industry"}
   						placeholder={"Tech."}
   						size={"full"}
-  						labelDescription={"Enter an sector"}
   						defaultValue={advanced_industry !== "null" ? advanced_industry : ""}
   						onChange={(value) => {
   						  this.setState({ advanced_industry: value });
@@ -372,7 +353,6 @@ class LandingPageSearch extends Component {
 								id={"internType"}
 								label={"Employee Number"}
 								size={"full"}
-								labelDescription={"Choose one below"}
 								defaultValue={
 									this.state.advanced_employee
 								}
@@ -397,7 +377,7 @@ class LandingPageSearch extends Component {
 						<div class="col-md-12">
 							<div class="inputWrapper">
 								<label for="">Rating</label>
-								<div class="labelDescription" style={{"margin-bottom":"10px"}}>Select a rating star</div>
+								{/*<div class="labelDescription" style={{"margin-bottom":"10px"}}>Select a rating star</div>*/}
 								<BeautyStars
 									value={this.state.rating}
 									onChange={value => this.setState({ rating:value })}
@@ -417,7 +397,6 @@ class LandingPageSearch extends Component {
 								id={"industry"}
 								placeholder={"Quota"}
 								size={"full"}
-								labelDescription={"Enter an quota"}
 								defaultValue={this.state.quota}
 								onChange={(value) => {
 									this.setState({ quota: value });
@@ -438,7 +417,6 @@ class LandingPageSearch extends Component {
 								id={"internType"}
 								label={"Begin Period"}
 								size={"full"}
-								labelDescription={"Choose one below"}
 								defaultValue={
 									this.state.begin_period
 								}
@@ -465,7 +443,6 @@ class LandingPageSearch extends Component {
 								id={"internType"}
 								label={"Length"}
 								size={"full"}
-								labelDescription={"Choose one below"}
 								defaultValue={
 									this.state.length
 								}
@@ -491,14 +468,13 @@ class LandingPageSearch extends Component {
 								id={"internType"}
 								label={"Preferred GPA"}
 								size={"full"}
-								labelDescription={"Choose one below"}
 								defaultValue={
 									this.state.gpas
 								}
 								onChange={(value, slValue) => {
 									this.setState({ gpas: slValue.value });
 								}}
-								placeholder={"Select Length"}
+								placeholder={"Select Preferred GPA"}
 								externalSource={[
 									{ key: "-", value: "-"},
 									{ key: "2/4", value: "2/4 or Higher" },
@@ -511,45 +487,68 @@ class LandingPageSearch extends Component {
 
   					</div>
   				</div>
-				<div class="col-md-12" style={{"margin-top":"10px"}}>
-  					<div class="row">
+				<div className="col-md-12" style={{"margin-top": "10px"}}>
+					<div className="row">
+						<div className="col-md-12">
+							<Input
+								type={"select"}
+								id={"internType"}
+								label={"Preferred Language"}
+								size={"full"}
+								defaultValue={
+									this.state.langs
+								}
+								onChange={(value, slValue) => {
+									this.setState({prefLang: slValue.key});
+								}}
+								placeholder={"Select Preferred Language"}
+								externalSource= {[{key: 'English', id: "en", value: 'English'},{key: 'Italian', id: "it", value: 'Italian'},{key: 'Turkish', id: "tr", value: 'Turkish'}]}
+							/>
+						</div>
+
+					</div>
+				</div>
+				{/*
+					<div class="col-md-12" style={{"margin-top": "10px"}}>
+					<div class="row">
 						<div class="col-md-12">
 							<div class="inputWrapper">
 								<label for="">Preferred Language</label>
-								<div class="labelDescription" style={{"margin-bottom":"10px"}}>Select a language</div>
+								<div class="labelDescription" style={{"margin-bottom": "10px"}}>Select a language</div>
 								<Multiselect
 									style={{
 										searchBox: {
 											"border-radius": "12px",
-		 									"box-shadow": "0 6px 12px 0 rgba(215,219,252,0.55)",
-		 									"background-color": "#ffffff",
-		 									"border": "1px solid #d6dfea",
+											"box-shadow": "0 6px 12px 0 rgba(215,219,252,0.55)",
+											"background-color": "#ffffff",
+											"border": "1px solid #d6dfea",
 											"font-family": "Sofia Pro",
 											"color": "#AFB8C3",
 											"font-size": "calc(2px + 11px)",
-											height:50
-									      },
+											height: 50
+										},
 									}}
 									options={this.state.langs} // Options to display in the dropdown
 									selectedValues={this.state.prefLang} // Preselected value to persist in dropdown
 									onSelect={(a) => {
 										self.setState({
-											prefLang:a
+											prefLang: a
 										})
 									}} // Function will trigger on select event
 									onRemove={(a) => {
 										self.setState({
-											prefLang:a
+											prefLang: a
 										})
 									}} // Function will trigger on remove event
 									displayValue="name" // Property name to display in the dropdown options
-									/>
+								/>
 							</div>
 
 						</div>
 
-  					</div>
-  				</div>
+					</div>
+				</div>
+				*/}
 				<div class="col-md-12" style={{"margin-top":"10px"}}>
   					<div class="row">
 						<div class="col-md-12">
@@ -558,7 +557,6 @@ class LandingPageSearch extends Component {
 								id={"internType"}
 								label={"Application Type"}
 								size={"full"}
-								labelDescription={"Choose one below"}
 								defaultValue={
 									this.state.appType
 								}
@@ -583,7 +581,6 @@ class LandingPageSearch extends Component {
   						id={"internType"}
   						label={"Intern Type"}
   						size={"full"}
-  						labelDescription={"Choose one below"}
   						defaultValue={
   							this.state.advanced_intern_type !== "null"
   							? this.state.advanced_intern_type
@@ -592,7 +589,7 @@ class LandingPageSearch extends Component {
   						onChange={(value, slValue) => {
   							this.setState({ advanced_intern_type: slValue.value });
   						}}
-  						placeholder={"Select intern type"}
+  						placeholder={"Select Intern Type"}
   						externalSource={[
   							{ key: "University Student", value: "Student", selected: true },
   							{ key: "Newly Graduated", value: "Newly Graduated" },
@@ -605,14 +602,13 @@ class LandingPageSearch extends Component {
   						id={"internType"}
   						label={"Salary"}
   						size={"full"}
-  						labelDescription={"Choose one below"}
   						defaultValue={
   							this.state.salary
   						}
   						onChange={(value, slValue) => {
   							this.setState({ salary: slValue.value });
   						}}
-  						placeholder={"Select salary"}
+  						placeholder={"Select Salary"}
   						externalSource={[
   							{ key: "yes", value: "Yes"},
   							{ key: "no", value: "No" },

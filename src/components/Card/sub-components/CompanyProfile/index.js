@@ -24,6 +24,7 @@ class CompanyProfile extends Component {
 
     render() {
         let {profileObject} = this.props;
+        console.log(profileObject);
         let userType = getCookie('user');
         return (
             <div className={"companyProfileCard"}>
