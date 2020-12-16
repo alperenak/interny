@@ -21,6 +21,7 @@ import CVs from "./screens/CVs/index.js";
 import Competency from "./screens/Competency/index.js";
 import InternPool from "./screens/InternPool/index.js";
 import CVShow from "./screens/CVs/view.js";
+import CVDownload from "./screens/CVs/download.js";
 import CVList from "./screens/CVs/list.js";
 import CoverLetters from "./screens/CoverLetters";
 import JobApplication from "./screens/JobApplication";
@@ -274,7 +275,7 @@ class App extends React.Component {
 						)}
 					/>
 					<Route
-						path="/CvPreview/:id/:download"
+						path="/CvPreview/:id"
 						render={(props) => (
 							<CVShow
 								getUser={this.getUser}
@@ -285,6 +286,18 @@ class App extends React.Component {
 							/>
 						)}
 					/>
+						<Route
+							path="/CvDownload/:id"
+							render={(props) => (
+								<CVDownload
+									getUser={this.getUser}
+									user={user}
+									closeModal={this.closeModal}
+									createModal={this.createModal}
+									{...props}
+								/>
+							)}
+						/>
 					<Route
 						path="/myCompetency"
 						render={(props) => (
