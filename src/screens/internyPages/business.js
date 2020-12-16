@@ -12,11 +12,11 @@ import eLearningBlogPost from '../../assets/eLearningBlogPost.png';
 import referrenceReccomendationLetter from '../../assets/referrenceReccomendationLetter.png';
 
 const DESCRIPTION_DATA = [
-  `Welcome to INTERNY, the world's first remote online internship platform. 
-    You will find everything you need and more during the internship process on the platform. 
-    It fulfills all your internship needs, and allows you to manage the internship process in detail. 
-	It allows you to do a job with any intern you want anywhere in the world with task assignments. 
-	All you have to do is to publish a detailed internship, choose any of the interns who apply to your 
+  `Welcome to INTERNY, the world's first remote online internship platform.
+    You will find everything you need and more during the internship process on the platform.
+    It fulfills all your internship needs, and allows you to manage the internship process in detail.
+	It allows you to do a job with any intern you want anywhere in the world with task assignments.
+	All you have to do is to publish a detailed internship, choose any of the interns who apply to your
 	company and follow up the assignments on time with their explanations.`,
   `It is entirely FREE for companies to register to INTERNY,
 	publish internships, and manage the internship process in
@@ -134,7 +134,7 @@ class BusinessPage extends Component {
     return (
       <WhyUsePage
         headerBackground={companyBg}
-        header="INTERNY FOR BUSINESS"
+        header="How to Use?"
         descriptionList={DESCRIPTION_DATA}
         title="How to Use the Platform as a Company?"
         stepData={STEP_DATA}
@@ -142,6 +142,7 @@ class BusinessPage extends Component {
         packagesTitle="See the Business Packages"
         packagesSubtitle="Click to see detail of packages"
         packagesData={PACKAGES_DATA}
+		type="company"
       />
     );
   }

@@ -25,37 +25,53 @@ let store = {
 	  gpa,
 	  duration,
     } = payload;
-
-    let query = `keyword=${encodeURIComponent(
-      keyword
-    )}&location=${encodeURIComponent(location)}
-	&country=${encodeURIComponent(
-      country
-    )}
-	&city=${encodeURIComponent(city)}
-	&empNum=${encodeURIComponent(
-      empNum
-    )}&intern_type=${encodeURIComponent(
-      intern_type
-    )}&quota=${encodeURIComponent(
-      quota
-    )}&rate=${encodeURIComponent(
-      rate
-    )}&industry=${encodeURIComponent(
-      industry
-    )}
-	&begin_period=${encodeURIComponent(begin_period)}
-	&languages=${encodeURIComponent(
-      languages
-    )}&gpa=${encodeURIComponent(
-      gpa
-    )}&duration=${encodeURIComponent(
-      duration
-    )}
-	&salary=${encodeURIComponent(
-      salary
-    )}
-	&appType=${encodeURIComponent(appType)}`;
+	let query = "";
+	if(typeof keyword !== "undefined"){
+		query += "keyword=" + encodeURIComponent(keyword) + "&";
+	}
+	if(typeof location !== "undefined"){
+		query += "location=" +encodeURIComponent(location) + "&";
+	}
+	if(typeof country !== "undefined"){
+		query += "country=" + encodeURIComponent(country) + "&";
+	}
+	if(typeof city !== "undefined"){
+		query += "city=" + encodeURIComponent(city) + "&";
+	}
+	if(typeof empNum !== "undefined"){
+		query += "empNum=" + encodeURIComponent(empNum) + "&";
+	}
+	if(typeof intern_type !== "undefined"){
+		query += "intern_type=" + encodeURIComponent(intern_type) + "&";
+	}
+	if(typeof quota !== "undefined"){
+		query += "quota=" + encodeURIComponent(quota) + "&";
+	}
+	if(typeof rate !== "undefined"){
+		query += "rate=" + encodeURIComponent(rate) + "&";
+	}
+	if(typeof industry !== "undefined"){
+		query += "industry=" + encodeURIComponent(industry) + "&";
+	}
+	if(typeof begin_period !== "undefined"){
+		query += "begin_period=" + encodeURIComponent(begin_period) + "&";
+	}
+	if(typeof languages !== "undefined"){
+		query += "languages=" + encodeURIComponent(languages) + "&";
+	}
+	if(typeof gpa !== "undefined"){
+		query += "gpa=" + encodeURIComponent(gpa) + "&";
+	}
+	if(typeof duration !== "undefined"){
+		query += "duration=" + encodeURIComponent(duration) + "&";
+	}
+	if(typeof salary !== "undefined"){
+		query += "salary=" + encodeURIComponent(salary) + "&";
+	}
+	if(typeof appType !== "undefined"){
+		query += "appType=" + encodeURIComponent(appType) + "&";
+	}
+    console.log(query);
 
     let tokenCookieName = "token";
     let baseUrl = config.baseUrl;

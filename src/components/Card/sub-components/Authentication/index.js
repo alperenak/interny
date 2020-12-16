@@ -69,7 +69,7 @@ class Authentication extends Component {
         text: "Forgot your password?",
         type: "link",
         onButtonClick: () => {
-          window.location.href="/ForgotPassword";
+          window.location.href="/ForgotPassword/" + this.props.match.params.user.toLowerCase();
         },
       },
     ],
@@ -126,7 +126,7 @@ class Authentication extends Component {
         type: "checkbox",
         sizeName: "full",
         clickable: " Privacy Policy",
-        value: "checkboxStatus",
+        value: "checkboxStatus2",
         onClick: () => {
           window.location.href="/privacy";
         },
@@ -148,6 +148,7 @@ class Authentication extends Component {
     terms: false,
     privacyPolicy: false,
     checkboxStatus: false,
+	checkboxStatus2: false,
     forgotPasswordMode: false,
   };
 
@@ -186,6 +187,18 @@ class Authentication extends Component {
       return state;
     });
     if (this.props.type === "auth") {
+		if(!this.state.checkboxStatus || !this.state.checkboxStatus2){
+			this.setState((state) => {
+		      state.buttons.map((btn) => {
+		        btn.loading = false;
+		        return btn;
+		      });
+		      return state;
+		    });
+			alert('Please fill in all fields and make a selection.');
+			return false;
+		}
+
       if (this.state.page === "Employer") {
         await this.onCreateEmployer();
       } else await this.onCreateIntern();
@@ -354,6 +367,9 @@ class Authentication extends Component {
   onInputChange = (key, value) => {
     if (value.hasOwnProperty("checkboxStatus")) {
       return this.setState({ checkboxStatus: value.checkboxStatus });
+    }
+	if (value.hasOwnProperty("checkboxStatus2")) {
+      return this.setState({ checkboxStatus2: value.checkboxStatus2 });
     }
     this.setState({
       submitObject: { ...this.state.submitObject, [key]: value },
@@ -769,7 +785,6 @@ class Authentication extends Component {
 							v-for={(btn, i) in buttons}
 							key={"btn" + i}
 							type={btn.type}
-							disabled={type === "auth" && !this.state.checkboxStatus}
 							sizeName={btn.sizeName}
 							width={btn.width}
 							loading={btn.loading}

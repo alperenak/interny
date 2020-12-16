@@ -87,10 +87,11 @@ class AboutUs extends Component {
                         </div>
                     </div>
                 </div>
-                
+
 
 
                 <div className={`container ${styles.myCarousel}`}>
+				<div class="col-md-12" style={{"text-align":"center","margin-bottom":"30px"}}><span class="affiliate__timeline__title">Our Locations</span></div>
                 <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>

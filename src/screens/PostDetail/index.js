@@ -136,7 +136,7 @@ class PostDetail extends Component{
     };
 
     onEditClick = async () => {
-        this.props.createModal({ header: 'Edit Post', content: this.renderEditPostForm });
+        this.props.createModal({ size:"large",header: 'Edit Post', content: this.renderEditPostForm });
     };
 
     onViewApplicantsClick = async (id) => {
@@ -216,7 +216,7 @@ class PostDetail extends Component{
               rows: [
               ],
         };
-        
+
         applicants.forEach((app) => {
             let primaryButtonText = '';
             let primaryFunc = () => {};
@@ -293,9 +293,9 @@ class PostDetail extends Component{
                     data={appForm}
                 />
             </Fragment>
-        );        
+        );
     };
-    
+
     onEditFormSubmit = async (payload) => {
         await store.editPost(payload);
         this.props.closeModal();

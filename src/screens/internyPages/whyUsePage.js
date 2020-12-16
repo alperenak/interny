@@ -89,8 +89,8 @@ class WhyUsePage extends Component {
           {/* This is a dummy video. It will be replaced with another video. */}
           <iframe
             title="steps-video"
-            width="560"
-            height="315"
+			style={{"width":"100%"}}
+            height="500"
             src={videoEmbedLink}
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -150,6 +150,7 @@ class WhyUsePage extends Component {
               title={packagesTitle}
               subtitle={packagesSubtitle}
               packagesData={packagesData}
+			  type={this.props.type}
             />
           </div>
         </div>

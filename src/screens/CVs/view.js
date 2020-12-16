@@ -69,26 +69,26 @@ class CVView extends Component {
 		console.log("bbbb", PDF_Width+"  "+PDF_Height);
 		var canvas_image_width = HTML_Width;
 		var canvas_image_height = HTML_Height;
-		
+
 		var totalPDFPages = Math.ceil(HTML_Height/PDF_Height)-1;
 		console.log("cccc", totalPDFPages)
-		
+
 		html2canvas(document.getElementsByClassName("cvDetail cvShow")[0],{scale: 3, allowTaint:true}).then(function(canvas) {
 			canvas.getContext('2d');
-			
+
 			console.log("dddd", canvas.width+"  "+canvas.height);
 
 			//[PDF_Width, PDF_Height]
 			var imgData = canvas.toDataURL("image/jpeg", 1.0);
 			var pdf = new jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
 			pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin,canvas_image_width,canvas_image_height);
-			
-			
-			for (var i = 1; i <= totalPDFPages; i++) { 
+
+
+			for (var i = 1; i <= totalPDFPages; i++) {
 				pdf.addPage();
 				pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height*i)+(top_left_margin*4),canvas_image_width,canvas_image_height);
 			}
-			
+
 			pdf.save("my_cv");
 		});
     };
@@ -151,7 +151,7 @@ class CVView extends Component {
 							):(null)}
 							</div>
 						</div>
-						
+
 					</div>
 				</div>
 

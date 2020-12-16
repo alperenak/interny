@@ -18,7 +18,7 @@ class ForgotPassword extends Component {
 
 	onClick = async () => {
 		this.setState({ processing: true });
-		let res = await store.sendForgot(this.props.userType, this.state.value);
+		let res = await store.sendForgot(this.props.match.params.type, this.state.value);
 		this.setState({ processing: false });
 		if (res.status === 200) {
 		  this.props.createModal({

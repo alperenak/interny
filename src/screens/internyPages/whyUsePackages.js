@@ -25,7 +25,10 @@ export default class BusinessPackage extends Component {
         className={styles.frontier}
       >
         <Card type={'pricing'}>
-          {moneyBackGuaranteed && <div className={'moneyGuarenteed'}></div>}
+			{this.props.type == "intern" ? (
+				moneyBackGuaranteed && <div className={'moneyGuarenteed'}></div>
+			):(null)}
+
           <div className="home__packagesSection__packageCard">
             <div className="home__packagesSection__packageCard__headerDiv">
               <div className="home__packagesSection__packageCard__packageTitle">
@@ -56,13 +59,13 @@ export default class BusinessPackage extends Component {
               <Button
                 v-if={isHovered}
                 type={'primary'}
-                text={'Details'}
+                text={'Buy Now'}
                 sizeName={'default'}
               />
               <Button
                 v-if={!isHovered}
                 type={'ghost'}
-                text={'Details'}
+                text={'Buy Now'}
                 sizeName={'default'}
               />
             </div>

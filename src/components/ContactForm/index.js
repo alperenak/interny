@@ -92,15 +92,7 @@ class ContactForm extends Component {
                             class="col-md-12"
                             style={{ display: 'flex', justifyContent: 'flex-end' }}
                         >
-                            {
-                                onBackClick &&
-                                <Button
-                                    type="secondary"
-                                    text="Back"
-                                    sizeName="default"
-                                    onButtonClick={() => onBackClick()}
-                                />
-                            }
+                            
                             <Button
                                 type="primary"
                                 text="Send"

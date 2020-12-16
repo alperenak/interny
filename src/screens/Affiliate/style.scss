@@ -149,6 +149,9 @@
 	position: relative;
 	-webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
 	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+	height: 150px;
+	display: flex;
+	align-items: center;
 	@include small{
 		width: 100%;
 	}
@@ -227,7 +230,9 @@
 	margin-top: 0;
 	color: inherit;
 }
-
+.timeline-body{
+	display: flex;
+}
 .timeline-body > p,
 .timeline-body > ul {
 	margin-bottom: 0;

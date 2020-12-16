@@ -104,7 +104,7 @@ class UniversityPage extends Component {
 		return (
 			<WhyUsePage
 				headerBackground={universityBg}
-				header="INTERNY FOR UNIVERSITY"
+				header="How to Use?"
 				descriptionList={DESCRIPTION_DATA}
 				title="How to Use the Platform as a University?"
 				stepData={STEP_DATA}

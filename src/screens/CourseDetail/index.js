@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import YouTube from "react-youtube";
-import { Document, Page } from 'react-pdf/dist/esm/entry.webpack';
 
 /*** Components ***/
 import Card from "../../components/Card";
@@ -96,16 +95,7 @@ class CourseDetail extends Component {
     };
 
     renderPDFReader(file) {
-        let {pageNumber, numPages} = this.state;
-        return <div>
-            <Document
-                file={file}
-                onLoadSuccess={this.onDocumentLoadSuccess}
-            >
-                <Page pageNumber={pageNumber} />
-            </Document>
-            <p>Page {pageNumber} of {numPages}</p>
-        </div>;
+
     }
 
     render() {
@@ -113,65 +103,7 @@ class CourseDetail extends Component {
         let {contents, courseSource, hover, course} = this.state;
         return (
             <div className={styles.MyCourses}>
-                <Card header={{text: course.name, position: 'center'}}>
-                    <div className={styles.courseImage}><img src={course.image} alt={'img'} /></div>
-                    <div className={styles.language}>Language: <span>{`${course.language}`}</span></div>
-                    <div className={styles.duration}>Duration: <span>{`${course.duration}`}</span></div>
-                    <div className={styles.duration}>Description: <span>{`${course.description}`}</span></div>
-                </Card>
-                <div className={styles.cards}>
-                    <div className={styles.courses}>
-                        <Card
-                            type={'courseSection'}
-                            course={cnt}
-                            v-for={(cnt, i) in contents}
-                            key={i}
-                        >
-                            <div
-                                onMouseOver={() => this.setState({ hover: i })}
-                                onMouseLeave={() => this.setState({ hover: '' })}
-                                className={styles.courseHeader}
-                                onClick={() => this.onListItemClick(cnt)}
-                            >
-                                <div v-if={cnt.type === 'video'} className={styles.playIcon}>
-                                    <img v-if={i !== hover} src={playIcon} alt={'icon'} />
-                                    <img v-else src={playIconWhite} alt={'icon'} />
-                                </div>
-                                <div v-else className={styles.playIcon}>
-                                    <img v-if={i !== hover} src={fileIcon} alt={'icon'} />
-                                    <img v-else src={fileIconWhite} alt={'icon'} />
-                                </div>
-                                <div>
-                                    {cnt.name}
-                                </div>
-                            </div>
-                            <div className={styles.courseDuration}>{cnt.duration}</div>
-                        </Card>
-                        <Button
-                            v-if={userType === 'employer'}
-                            text={'Add a content'}
-                            type={'ghost'}
-                            sizeName={'default'}
-                            width={'105px'}
-                            onButtonClick={() => this.createContent()}
-                        />
-                    </div>
-                    <div className={styles.profileSection}>
-                        <Card
-                            type={'list'}
-                            header={{text: 'Sections', position: 'center'}}
-                            externalData={courseSource}
-                        />
-                        <Button
-                            v-if={userType === 'employer'}
-                            text={'Create a section'}
-                            type={'primary'}
-                            sizeName={'default'}
-                            width={'125px'}
-                            onButtonClick={() => this.createSection()}
-                        />
-                    </div>
-                </div>
+
             </div>
         );
     }

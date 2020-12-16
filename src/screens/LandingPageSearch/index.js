@@ -31,15 +31,14 @@ import closeIcon from "../../icons/close-outline.svg";
 class LandingPageSearch extends Component {
   state = {
 	langs: [{name: 'English', id: "en"},{name: 'Italian', id: "it"},,{name: 'Turkish', id: "tr"}],
-	prefLang:[],
+
     posts: [],
     offset: 0,
     limit: 5,
     isAuthorized: false,
     totalCount: 0,
     loading: true,
-	keyword: "",
-    location: "",
+
     searches: [
       "Manchester",
       "London",
@@ -54,16 +53,6 @@ class LandingPageSearch extends Component {
     externalSource: [],
     dynamic: "",
     advancedSearch: false,
-    advanced_keyword: "",
-    advanced_industry: "",
-    advanced_location: "",
-    advanced_country: "",
-    advanced_city: "",
-    advanced_employee: {
-      min: 0,
-      max: 0,
-    },
-    advanced_intern_type: "",
     advanced_duration: "",
     advanced_intern_quota: {
       min: 0,
@@ -285,7 +274,7 @@ class LandingPageSearch extends Component {
 	const self = this;
     return (
   	<div className={"advancedSearchDropdown2"} onClick={() => {this.setState({ advancedSearch: false });}}>
-  		<div className={"advancedSearchDropdown2__inputs"} onClick={(e) => {e.stopPropagation();}}>
+  		<div className={"advancedSearchDropdown2__inputs"} style={{"height":"auto"}} onClick={(e) => {e.stopPropagation();}}>
   			<div className={`${"only_mobile"} ${"advancedSearchDropdown2__inputs__close_icon"}`} onClick={() => {this.setState({ advancedSearch: false });}}>
   				<img src={closeIcon} alt="" />
   			</div>
@@ -323,18 +312,20 @@ class LandingPageSearch extends Component {
   						label={"Country"}
   					/>
   				</div>
-  				<div class="col-md-12">
-  					<Input
-  						id={"city"}
-  						type={"text"}
-  						placeholder={"Istanbul"}
-  						size={"full"}
-  						defaultValue={advanced_city !== "null" ? advanced_city : "sads"}
-  						onChange={(value) => this.setState({ advanced_city: value })}
-  						label={"City"}
-  					/>
-  				</div>
   			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<Input
+						id={"city"}
+						type={"text"}
+						placeholder={"Istanbul"}
+						size={"full"}
+						defaultValue={advanced_city !== "null" ? advanced_city : "sads"}
+						onChange={(value) => this.setState({ advanced_city: value })}
+						label={"City"}
+					/>
+				</div>
+			</div>
   			<div class="row">
   				<div class="col-md-12">
   					<Input
@@ -349,235 +340,167 @@ class LandingPageSearch extends Component {
   						label={"Sector"}
   					/>
   				</div>
-  				<div class="col-md-12" style={{"margin-top":"10px"}}>
-  					<div class="row">
-						<div class="col-md-12">
-							<Input
-								type={"select"}
-								id={"internType"}
-								label={"Employee Number"}
-								size={"full"}
-								defaultValue={
-									this.state.advanced_employee
-								}
-								onChange={(value, slValue) => {
-									this.setState({ advanced_employee: slValue.value });
-								}}
-								placeholder={"Select employee number"}
-								externalSource={[
-									{ key: "1-10", value: "1-10"},
-									{ key: "11-50", value: "11-50" },
-									{ key: "51-100", value: "51-100" },
-									{ key: "101-250", value: "101-250" },
-									{ key: "250+", value: "250+" },
-								]}
-							/>
-						</div>
-
-  					</div>
-  				</div>
-				<div class="col-md-12" style={{"margin-top":"10px"}}>
-  					<div class="row">
-						<div class="col-md-12">
-							<div class="inputWrapper">
-								<label for="">Rating</label>
-								{/*<div class="labelDescription" style={{"margin-bottom":"10px"}}>Select a rating star</div>*/}
-								<BeautyStars
-									value={this.state.rating}
-									onChange={value => this.setState({ rating:value })}
-									size={16}
-								/>
-							</div>
-
-							</div>
-
-  					</div>
-  				</div>
-				<div class="col-md-12" style={{"margin-top":"10px"}}>
-  					<div class="row">
-						<div class="col-md-12">
-							<Input
-								type={"text"}
-								id={"industry"}
-								placeholder={"Quota"}
-								size={"full"}
-								defaultValue={this.state.quota}
-								onChange={(value) => {
-									this.setState({ quota: value });
-								}}
-								label={"Quota"}
-							/>
-
-							</div>
-
-						</div>
-					</div>
-
-				<div class="col-md-12" style={{"margin-top":"10px"}}>
-  					<div class="row">
-						<div class="col-md-12">
-							<Input
-								type={"select"}
-								id={"internType"}
-								label={"Begin Period"}
-								size={"full"}
-								defaultValue={
-									this.state.begin_period
-								}
-								onChange={(value, slValue) => {
-									this.setState({ begin_period: slValue.value });
-								}}
-								placeholder={"Select begin period"}
-								externalSource={[
-									{ key: "Jan1", value: "January - 1st Week"},
-									{ key: "May2", value: "May – 2nd Week" },
-									{ key: "June3", value: "June – 3rd Week" },
-									{ key: "Oct4", value: "October – 4th Week" },
-								]}
-							/>
-						</div>
-
-  					</div>
-  				</div>
-				<div class="col-md-12" style={{"margin-top":"10px"}}>
-  					<div class="row">
-						<div class="col-md-12">
-							<Input
-								type={"select"}
-								id={"internType"}
-								label={"Length"}
-								size={"full"}
-								defaultValue={
-									this.state.length
-								}
-								onChange={(value, slValue) => {
-									this.setState({ length: slValue.value });
-								}}
-								placeholder={"Select Length"}
-								externalSource={[
-									{ key: "4", value: "4 Weeks"},
-									{ key: "8", value: "8 Weeks" },
-									{ key: "12", value: "12 Weeks" },
-								]}
-							/>
-						</div>
-
-  					</div>
-  				</div>
-				<div class="col-md-12" style={{"margin-top":"10px"}}>
-  					<div class="row">
-						<div class="col-md-12">
-							<Input
-								type={"select"}
-								id={"internType"}
-								label={"Preferred GPA"}
-								size={"full"}
-								defaultValue={
-									this.state.gpas
-								}
-								onChange={(value, slValue) => {
-									this.setState({ gpas: slValue.value });
-								}}
-								placeholder={"Select Preferred GPA"}
-								externalSource={[
-									{ key: "-", value: "-"},
-									{ key: "2/4", value: "2/4 or Higher" },
-									{ key: "2.5/4", value: "2.5/4 or Higher" },
-									{ key: "3/4", value: "3/4 or Higher" },
-									{ key: "3.5/4", value: "3.5/4 or Higher" },
-								]}
-							/>
-						</div>
-
-  					</div>
-  				</div>
-				<div className="col-md-12" style={{"margin-top": "10px"}}>
-					<div className="row">
-						<div className="col-md-12">
-							<Input
-								type={"select"}
-								id={"internType"}
-								label={"Preferred Language"}
-								size={"full"}
-								defaultValue={
-									this.state.langs
-								}
-								onChange={(value, slValue) => {
-									this.setState({prefLang: slValue.key});
-								}}
-								placeholder={"Select Preferred Language"}
-								externalSource= {[{key: 'English', id: "en", value: 'English'},{key: 'Italian', id: "it", value: 'Italian'},{key: 'Turkish', id: "tr", value: 'Turkish'}]}
-							/>
-						</div>
-
-					</div>
-				</div>
-				{/*
-					<div class="col-md-12" style={{"margin-top": "10px"}}>
-					<div class="row">
-						<div class="col-md-12">
-							<div class="inputWrapper">
-								<label for="">Preferred Language</label>
-								<div class="labelDescription" style={{"margin-bottom": "10px"}}>Select a language</div>
-								<Multiselect
-									style={{
-										searchBox: {
-											"border-radius": "12px",
-											"box-shadow": "0 6px 12px 0 rgba(215,219,252,0.55)",
-											"background-color": "#ffffff",
-											"border": "1px solid #d6dfea",
-											"font-family": "Sofia Pro",
-											"color": "#AFB8C3",
-											"font-size": "calc(2px + 11px)",
-											height: 50
-										},
-									}}
-									options={this.state.langs} // Options to display in the dropdown
-									selectedValues={this.state.prefLang} // Preselected value to persist in dropdown
-									onSelect={(a) => {
-										self.setState({
-											prefLang: a
-										})
-									}} // Function will trigger on select event
-									onRemove={(a) => {
-										self.setState({
-											prefLang: a
-										})
-									}} // Function will trigger on remove event
-									displayValue="name" // Property name to display in the dropdown options
-								/>
-							</div>
-
-							</div>
-
-					</div>
-				</div>
-				*/}
-				<div class="col-md-12" style={{"margin-top":"10px"}}>
-  					<div class="row">
-						<div class="col-md-12">
-							<Input
-								type={"select"}
-								id={"internType"}
-								label={"Application Type"}
-								size={"full"}
-								defaultValue={
-									this.state.appType
-								}
-								onChange={(value, slValue) => {
-									this.setState({ appType: slValue.value });
-								}}
-								placeholder={"Select Application Type"}
-								externalSource={[
-									{ key: "local", value: "Local"},
-									{ key: "global", value: "Global" },
-								]}
-							/>
-						</div>
-
-  					</div>
-  				</div>
   			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<Input
+						type={"select"}
+						id={"internType"}
+						label={"Employee Number"}
+						size={"full"}
+						defaultValue={
+							this.state.advanced_employee
+						}
+						onChange={(value, slValue) => {
+							this.setState({ advanced_employee: slValue.value });
+						}}
+						placeholder={"Select employee number"}
+						externalSource={[
+							{ key: "1-10", value: "1-10"},
+							{ key: "11-50", value: "11-50" },
+							{ key: "51-100", value: "51-100" },
+							{ key: "101-250", value: "101-250" },
+							{ key: "250+", value: "250+" },
+						]}
+					/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="inputWrapper">
+						<label for="">Rating</label>
+						{/*<div class="labelDescription" style={{"margin-bottom":"10px"}}>Select a rating star</div>*/}
+						<BeautyStars
+							value={this.state.rating}
+							onChange={value => this.setState({ rating:value })}
+							size={16}
+						/>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<Input
+						type={"text"}
+						id={"industry"}
+						placeholder={"Quota"}
+						size={"full"}
+						defaultValue={this.state.quota}
+						onChange={(value) => {
+							this.setState({ quota: value });
+						}}
+						label={"Quota"}
+					/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<Input
+						type={"select"}
+						id={"internType"}
+						label={"Begin Period"}
+						size={"full"}
+						defaultValue={
+							this.state.begin_period
+						}
+						onChange={(value, slValue) => {
+							this.setState({ begin_period: slValue.value });
+						}}
+						placeholder={"Select begin period"}
+						externalSource={[
+							{ key: "Jan1", value: "January - 1st Week"},
+							{ key: "May2", value: "May – 2nd Week" },
+							{ key: "June3", value: "June – 3rd Week" },
+							{ key: "Oct4", value: "October – 4th Week" },
+						]}
+					/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<Input
+						type={"select"}
+						id={"internType"}
+						label={"Length"}
+						size={"full"}
+						defaultValue={
+							this.state.length
+						}
+						onChange={(value, slValue) => {
+							this.setState({ length: slValue.value });
+						}}
+						placeholder={"Select Length"}
+						externalSource={[
+							{ key: "4", value: "4 Weeks"},
+							{ key: "8", value: "8 Weeks" },
+							{ key: "12", value: "12 Weeks" },
+						]}
+					/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<Input
+						type={"select"}
+						id={"internType"}
+						label={"Preferred GPA"}
+						size={"full"}
+						defaultValue={
+							this.state.gpas
+						}
+						onChange={(value, slValue) => {
+							this.setState({ gpas: slValue.value });
+						}}
+						placeholder={"Select Preferred GPA"}
+						externalSource={[
+							{ key: "-", value: "-"},
+							{ key: "2/4", value: "2/4 or Higher" },
+							{ key: "2.5/4", value: "2.5/4 or Higher" },
+							{ key: "3/4", value: "3/4 or Higher" },
+							{ key: "3.5/4", value: "3.5/4 or Higher" },
+						]}
+					/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<Input
+						type={"select"}
+						id={"internType"}
+						label={"Preferred Language"}
+						size={"full"}
+						defaultValue={
+							this.state.langs
+						}
+						onChange={(value, slValue) => {
+							this.setState({prefLang: slValue.key});
+						}}
+						placeholder={"Select Preferred Language"}
+						externalSource= {[{key: 'English', id: "en", value: 'English'},{key: 'Italian', id: "it", value: 'Italian'},{key: 'Turkish', id: "tr", value: 'Turkish'}]}
+					/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<Input
+						type={"select"}
+						id={"internType"}
+						label={"Application Type"}
+						size={"full"}
+						defaultValue={
+							this.state.appType
+						}
+						onChange={(value, slValue) => {
+							this.setState({ appType: slValue.value });
+						}}
+						placeholder={"Select Application Type"}
+						externalSource={[
+							{ key: "local", value: "Local"},
+							{ key: "global", value: "Global" },
+						]}
+					/>
+				</div>
+			</div>
   			<div class="row">
   				<div class="col-md-12">
   					<Input
@@ -663,13 +586,7 @@ class LandingPageSearch extends Component {
 								}}
 							/>
 						</div>
-						<div class="col-md-6">
-							<Button
-								onButtonClick={() => this.resetInputs()}
-								isLink={true}
-								text={"Clear"}
-							/>
-						</div>
+
 					</div>
 				</div>
 			</div>

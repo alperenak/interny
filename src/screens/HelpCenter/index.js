@@ -195,7 +195,7 @@ class HelpCenter extends Component {
 							<div class="row">
 								<div class="col-md-12">
 									<div class="helpCenter__title">
-										<span>HOW WE CAN WE HELP YOU?</span>
+										<span>How Can We Help You?</span>
 									</div>
 								</div>
 							</div>

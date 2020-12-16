@@ -12,7 +12,9 @@ import LoadingModal from "./components/LoadingModal";
 
 /*** Screens ***/
 import Home from "./screens/Home";
-import SignUp from "./screens/SignUp";
+import SignUp from "./screens/SignUp/index.js";
+import Verification from "./screens/SignUp/verification.js";
+
 import Affiliate from "./screens/Affiliate";
 import UserHome from "./screens/UserHome";
 import CVs from "./screens/CVs/index.js";
@@ -250,7 +252,7 @@ class App extends React.Component {
 					<Route
 						path="/CVs"
 						render={(props) => (
-							<CVs
+							<CVList
 								getUser={this.getUser}
 								user={user}
 								closeModal={this.closeModal}
@@ -475,9 +477,9 @@ class App extends React.Component {
 					<Route
 						path="/referrenceLetter"
 						render={(props) => (
-							<ReferrenceLetter 
+							<ReferrenceLetter
 								closeModal={this.closeModal}
-								createModal={this.createModal} 
+								createModal={this.createModal}
 								{...props}
 							/>
 						)}
@@ -519,8 +521,12 @@ class App extends React.Component {
 						render={(props) => <Gift {...props} />}
 					/>
 					<Route
-						path="/forgotPassword"
-						render={(props) => <ForgotPassword {...props} />}
+						path="/forgotPassword/:type"
+						render={(props) => <ForgotPassword {...props} closeModal={this.closeModal} createModal={this.createModal}/>}
+					/>
+					<Route
+						path="/emailVerification/:code"
+						render={(props) => <Verification {...props} closeModal={this.closeModal} createModal={this.createModal}/>}
 					/>
 					<Route
 						path="/privacy"

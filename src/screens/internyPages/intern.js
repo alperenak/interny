@@ -5,7 +5,7 @@ import './style.scss';
 import WhyUsePage from './whyUsePage';
 
 // Assets
-import companyBg from '../../assets/companyBg.png';
+import companyBg from '../../assets/howInternBg.png';
 import joinAndApply from '../../assets/joinAndApply.png';
 import iccTMPortfolio from '../../assets/iccTMPortfolio.png';
 import imsTMWorkTime from '../../assets/imsTMWorkTime.png';
@@ -100,12 +100,12 @@ const PACKAGES_DATA = [
           '',
       },
       {
-        heading: 'Language Support Service (+$19.99 per 4 Weeks Internship)',
+        heading: 'Language Support Service (+$19.99)',
         description:
           'Suppose you have any language problems for global internships. In that case, you can request Language Support Service for some languages ​​by paying an additional $19.99 for the INTERN package to overcome the language problem. You can take and deliver your tasks in the language you prefer with the Language Support Service.',
       },
       {
-        heading: 'Emergency Internship Service (+ $19.99 per 4 Weeks Internship)',
+        heading: 'Emergency Internship Service (+$19.99)',
         description:
           'INTERNY offers an Emergency Internship Service for an additional $19.99 to the INTERN package so that you can start your internship in any country and sector within 30 days. This service aims to ensure that you only start the internship within 30 days, and the internship approval processes usually continue. The fact that this additional service is purchased does not mean that your internship will be approved exactly.',
       },
@@ -137,25 +137,27 @@ const PACKAGES_DATA = [
 ];
 
 class InternPage extends Component {
-  render() {
-    const { location } = this.props;
-    const isCameFromGift = location && location.state && location.state.from === "gift";
-    const giftData = isCameFromGift ? location.state : undefined;
-    return (
-      <WhyUsePage
-        headerBackground={companyBg}
-        header="INTERNY FOR INTERNS"
-        descriptionList={DESCRIPTION_DATA}
-        title="How to Use the Platform as an Intern?"
-        stepData={STEP_DATA}
-        videoEmbedLink="https://www.youtube.com/embed/cRcTKfziGOE"
-        packagesTitle="See the Intern Packages"
-        packagesSubtitle="Click to see detail of packages"
-        packagesData={PACKAGES_DATA}
-        giftData={giftData}
-      />
-    );
-  }
+	render() {
+		const { location } = this.props;
+		const isCameFromGift = location && location.state && location.state.from === "gift";
+		const giftData = isCameFromGift ? location.state : undefined;
+		return (
+			<WhyUsePage
+				headerBackground={companyBg}
+				header="How to Use?"
+				descriptionList={DESCRIPTION_DATA}
+				title="How to Use the Platform as an Intern?"
+				stepData={STEP_DATA}
+				videoEmbedLink="https://www.youtube.com/embed/cRcTKfziGOE"
+				packagesTitle="See the Intern Packages"
+				packagesSubtitle="Click to see detail of packages"
+				packagesData={PACKAGES_DATA}
+				giftData={giftData}
+				type={"intern"}
+			/>
+
+		);
+	}
 }
 
 export default InternPage;

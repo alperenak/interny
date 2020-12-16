@@ -111,6 +111,7 @@ class CVs extends Component {
 							<div class="cvRightBox">
 								<div class="cvRightBox__linkWrapper">
 									<div class="cvRightBox__linkInfo">
+
 										<a href={"/CvPreview/" + this.state.cv.id + "/download"} target="_blank" class="cvRightBox__link">Download CV</a>
 										<span>Last Update 30 Apr 2020</span>
 									</div>

@@ -8,32 +8,37 @@ import ContactForm from '../../components/ContactForm';
 
 // Assets
 import investorBg from '../../assets/investorBg.png';
-import wfaReferenceLetter from '../../icons/wfa-reference-letter.png';
+import saas from '../../assets/SaaS.png';
+import firstplatform from '../../assets/The First Platform.png';
+import worldwide from '../../assets/Worldwide2.png';
+import genz from '../../assets/Generation Z.png';
+import eastwest from '../../assets/East - West.png';
+import artint from '../../assets/Artificial Intelligence.png';
 
 const HIGHLIGHT_BOXES = [
 	{
 		title: 'SaaS',
-		icon: wfaReferenceLetter,
+		icon: saas,
 	},
 	{
 		title: 'The First Platform',
-		icon: wfaReferenceLetter,
+		icon: firstplatform,
 	},
 	{
 		title: 'Worldwide',
-		icon: wfaReferenceLetter,
+		icon: worldwide,
 	},
 	{
 		title: 'Generation-Z',
-		icon: wfaReferenceLetter,
+		icon: genz,
 	},
 	{
 		title: 'East-West Bridge',
-		icon: wfaReferenceLetter,
+		icon: eastwest,
 	},
 	{
 		title: 'Artificial Intelligence',
-		icon: wfaReferenceLetter,
+		icon: artint,
 	},
 ];
 

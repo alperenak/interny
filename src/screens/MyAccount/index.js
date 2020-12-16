@@ -82,6 +82,7 @@ class myAccountWrapper extends Component {
   };
 
   onChangeClick = (item,title = "",value={}) => {
+
     if (item !== "membershipStatus") {
 		if(item == "location"){
 			this.props.createModal({
@@ -89,6 +90,7 @@ class myAccountWrapper extends Component {
 			  content: () => this.renderModalContentLoc("Location"),
 			  buttons: this.renderModalButtons("location"),
 			});
+			return false;
 		}
 		if(item == "phone"){
 			this.props.createModal({
@@ -96,6 +98,7 @@ class myAccountWrapper extends Component {
 			  content: () => this.renderModalContentPhone("phone"),
 			  buttons: this.renderModalButtons("phone"),
 			});
+			return false;
 		}
 		else if(item == "university"){
 			this.props.createModal({
@@ -103,6 +106,7 @@ class myAccountWrapper extends Component {
 			  content: () => this.renderModalContentUni("University"),
 			  buttons: this.renderModalButtons("university"),
 			});
+			return false;
 		}
 		else if(item == "englishUsage"){
 			this.props.createModal({
@@ -110,6 +114,7 @@ class myAccountWrapper extends Component {
 			  content: () => this.renderModalContentUsage("English Usage"),
 			  buttons: this.renderModalButtons("englishUsage"),
 			});
+			return false;
 		}
 		else if(item == "mainLanguage"){
 
@@ -118,6 +123,7 @@ class myAccountWrapper extends Component {
 			  content: () => this.renderModalContentMLanguage("Main Language"),
 			  buttons: this.renderModalButtons("mainLanguage"),
 			});
+			return false;
 		}
 		else if(item == "sectors"){
 
@@ -126,6 +132,7 @@ class myAccountWrapper extends Component {
 			  content: () => this.renderModalContentSectors("Sectors"),
 			  buttons: this.renderModalButtons("sectors"),
 			});
+			return false;
 		}
 		else if(item == "gradStatus"){
 			this.props.createModal({
@@ -133,6 +140,7 @@ class myAccountWrapper extends Component {
 			  content: () => this.renderModalContentGraduation("Graduation Status"),
 			  buttons: this.renderModalButtons("gradStatus"),
 			});
+			return false;
 		}
 		else if(item == "preferences"){
 			this.props.createModal({
@@ -140,6 +148,7 @@ class myAccountWrapper extends Component {
 			  content: () => this.renderModalContentPref("Preferences"),
 			  buttons: this.renderModalButtons("preferences"),
 			});
+			return false;
 		}
 		else{
 			this.props.createModal({
@@ -147,6 +156,7 @@ class myAccountWrapper extends Component {
 			  content: () => this.renderModalContent(item,value),
 			  buttons: this.renderModalButtons(item),
 			});
+			return false;
 		}
 
     }
@@ -794,23 +804,23 @@ class myAccountWrapper extends Component {
 																/>
 														</div>
 													</div>
-													<div class="col-md-12">
-														<div className={"myAccountWrapperRow"}>
-															<div className={"myAccountWrapperRow__title"}>Location</div>
-																<div className={styles.text}>
-																	{this.state.user["location"].country + "-"+ this.state.user["location"].city}
-																</div>
-																<Button
-																	type={"ghost"}
-																	sizeName={"small"}
-																	text={"Update"}
-																	onButtonClick={() => this.onChangeClick('location','Location',this.state.user["location"])}
-																/>
-														</div>
-													</div>
+
 													</>
 												):(null)}
-
+												<div class="col-md-12">
+													<div className={"myAccountWrapperRow"}>
+														<div className={"myAccountWrapperRow__title"}>Location</div>
+															<div className={styles.text}>
+																{this.state.user["location"].country + "-"+ this.state.user["location"].city}
+															</div>
+															<Button
+																type={"ghost"}
+																sizeName={"small"}
+																text={"Update"}
+																onButtonClick={() => this.onChangeClick('location','Location',this.state.user["location"])}
+															/>
+													</div>
+												</div>
 													{getCookie("user") == "intern" ? (
 														<div class="col-md-12">
 															<div className={"myAccountWrapperRow"}>
