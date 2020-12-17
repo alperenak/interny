@@ -790,7 +790,8 @@ class Authentication extends Component {
 							loading={btn.loading}
 							text={btn.text}
 							onButtonClick={btn.onButtonClick}
-						/>
+                            disabled={type === "auth" && (!this.state.checkboxStatus || !this.state.checkboxStatus2)}
+                        />
 					</div>
         </div>
 			</div>

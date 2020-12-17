@@ -80,7 +80,10 @@ class ForgotPassword extends Component {
 						</div>
 						<div class="row">
 							<div class="col-md-12">
-								<Button text={'Send Password'} type={'secondary'} onButtonClick={async () => await this.onClick()} />
+								<div className={"forgotPassword__buttonWrapper"} >
+
+									<Button text={'Reset Password'} type={'secondary'} onButtonClick={async () => await this.onClick()} />
+								</div>
 							</div>
 						</div>
 					</div>

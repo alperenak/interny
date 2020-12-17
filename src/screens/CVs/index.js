@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 /*** Components ***/
 import Card from "../../components/Card";
 import Button from "../../components/Button";
@@ -47,6 +48,13 @@ class CVs extends Component {
 
         this.setState({ cv: res });
     };
+	onDeleteSubmit = async() => {
+		let id = getCookie('user_id');
+		let res = await store.deleteCV(id);
+		if (res) {
+			this.props.history.push("/CVs");
+		}
+	};
 	renderProgressBar(){
 		const divs = [];
 		for (var i = 1; i <= this.state.cv.total; i++) {
@@ -153,7 +161,7 @@ class CVs extends Component {
 									</div>
 								</div>
 								<div class="cvRightBox__privacyWrapper">
-									<a href="#" class="cvRightBox__deleteLink">Delete CV</a>
+									<a onClick={() => this.onDeleteSubmit()} href="#"  className="cvRightBox__deleteLink">Delete CV</a>
 								</div>
 							</div>
 							<div class="cvListBox">
