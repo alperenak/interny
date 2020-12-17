@@ -21,10 +21,28 @@ import LoadingModal from '../../components/LoadingModal';
 import Input from "../../components/Input";
 import { Multiselect } from "multiselect-react-dropdown";
 
+import FooterAlternative from "../../components/FooterAlternative";
 
 class MyJobs extends Component {
   state = {
 	  langs: [{name: 'English', id: "en"},{name: 'Italian', id: "it"},,{name: 'Turkish', id: "tr"}],
+	  compents:[
+		  {name: 'Analytical Thinking', id: "Analytical Thinking"},
+		  {name: 'Problem Solving', id: "Problem Solving"},
+		  {name: 'Collaboration and Teamwork', id: "Collaboration and Teamwork"},
+		  {name: 'Focus on Success', id: "Focus on Success"},
+		  {name: 'Result Oriented', id: "Result Oriented"},
+		  {name: 'Use of Technology', id: " Use of Technology"},
+		  {name: 'Flexibility', id: "Flexibility"},
+		  {name: 'Critical Thinking', id: "Critical Thinking"},
+		  {name: 'Leadership', id: "Leadership"},
+		  {name: 'Creative Thinking', id: "Creative Thinking"},
+		  {name: 'Stress Management', id: "Stress Management"},
+		  {name: 'Emotional Resilience', id: "Emotional Resilience"},
+		  {name: 'Communication', id: "Communication"},
+		  {name: 'Planning and Organization', id: "Planning and Organization"},
+		  {name: 'Active Learning', id: "Active Learning"},
+	  ],
 	  prefLang:[],
     appliedPosts: [],
     savedPosts: [],
@@ -34,7 +52,7 @@ class MyJobs extends Component {
     activePosts: [],
     passivePosts: [],
     jobsForTask: [],
-    page: 0,
+    page: 1,
     internPostPageSource: [
       {
         key: 'ApplicationHistory',
@@ -66,23 +84,26 @@ class MyJobs extends Component {
       },
     ],
     employerPostPageSource: [
-      {
-        key: 'PostHistory',
-        value: 'Post History',
-        selected: true,
-        to: '/myJobs',
-        onChange: () => this.setState({ page: 0 }),
-      },
+		getCookie('user') == 'company' ? (
+			{
+	          key: 'PostHistory',
+	          value: 'Post History',
+	          selected: true,
+	          to: '/myJobs',
+	          onChange: () => this.setState({ page: 0 }),
+	        }
+		):({})
+		,
       {
         key: 'ActivePosts',
-        value: 'Active Posts',
+        value: 'Active',
         selected: false,
         to: '/myJobs',
         onChange: () => this.setState({ page: 1 }),
       },
       {
         key: 'PassivePosts',
-        value: 'Passive Posts',
+        value: 'Passive',
         selected: false,
         to: '/myJobs',
         onChange: () => this.setState({ page: 2 }),
@@ -373,7 +394,7 @@ class MyJobs extends Component {
   onCreateClick = async () => {
     this.props.createModal({
 		size:"large",
-      header: 'Create Job',
+      header: 'Create Internship',
       content: this.renderCreatePostForm,
     });
   };
@@ -381,6 +402,7 @@ class MyJobs extends Component {
 	renderCreatePostForm = () => {
 		const self = this;
 		return (
+
 			<div class="jobCreateForm">
 				<div class="row">
 					<div class="col-md-6">
@@ -523,7 +545,7 @@ class MyJobs extends Component {
 										height:50
 									  },
 								}}
-								options={this.state.langs} // Options to display in the dropdown
+								options={this.state.compents} // Options to display in the dropdown
 								selectedValues={this.state.prefComp} // Preselected value to persist in dropdown
 								onSelect={(a) => {
 									self.setState({
@@ -746,6 +768,7 @@ class MyJobs extends Component {
     const cardText = (text) =>
       this.state.redirected !== false ? 'please choose a job' : text;
     return (
+		<div style={{"background-color":"#f6f8fa"}}>
 		<div className={"MyJobs"}>
 			<div class="container">
 				<div class="row">
@@ -758,7 +781,7 @@ class MyJobs extends Component {
 								/>
 								<Button
 								v-if={userType === 'employer'}
-								text={'Create new Job'}
+								text={'Create Internship'}
 								width={'60%'}
 								icon={addIcon}
 								iconPosition={'right'}
@@ -812,16 +835,9 @@ class MyJobs extends Component {
 						</Fragment>
 						<Fragment v-else-if={userType === 'employer'}>
 							<RedirectControl is={false}>
+
 								<Card
-								header={{ text: cardText('Post History'), position: 'center' }}
-								v-if={page === 0}
-								type={'jobPost'}
-								RedirectControl={this.redirectControl.bind(this)}
-								posts={postHistory}
-								anim={false}
-								/>
-								<Card
-								header={{ text: cardText('Active Posts'), position: 'center' }}
+								header={{ text: cardText('Active'), position: 'center' }}
 								v-if={page === 1}
 								type={'jobPost'}
 								RedirectControl={this.redirectControl.bind(this)}
@@ -829,7 +845,7 @@ class MyJobs extends Component {
 								anim={false}
 								/>
 								<Card
-								header={{ text: cardText('Passive Posts'), position: 'center' }}
+								header={{ text: cardText('Passive'), position: 'center' }}
 								v-if={page === 2}
 								type={'jobPost'}
 								RedirectControl={this.redirectControl.bind(this)}
@@ -854,6 +870,8 @@ class MyJobs extends Component {
 			</div>
 			{error && this.renderNoPermission(error)}
 			{processing && <LoadingModal text='Loading' />}
+		</div>
+		<FooterAlternative />
 		</div>
     );
   }

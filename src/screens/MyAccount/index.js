@@ -5,6 +5,7 @@ import Card from "../../components/Card";
 import Button from "../../components/Button";
 import LoadingModal from '../../components/LoadingModal'
 import Input from "../../components/Input";
+import FooterAlternative from "../../components/FooterAlternative";
 
 /*** Utils ***/
 import store from "../../store";
@@ -480,7 +481,7 @@ class myAccountWrapper extends Component {
 			duration = 0;
 		}
 		return (
-			<>
+			<div style={{"background-color":"#f6f8fa"}}>
 				{processing && <LoadingModal text={"Loading..."} />}
 
 				<div className={"myAccountWrapper"}>
@@ -893,7 +894,8 @@ class myAccountWrapper extends Component {
 						</div>
 					</div>
 				</div>
-			</>
+				<FooterAlternative />
+			</div>
 		);
 	}
 }
