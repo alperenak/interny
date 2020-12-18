@@ -25,16 +25,16 @@
 		}
 
 		p{
-			font-size: 23px;
 			line-height: 1;
 			color: #ffffff;
 			text-align: center;
 			position:absolute;
 			bottom:0;
-			margin-bottom: 0!important;
+			margin-bottom: -6px !important;
 			font-family: "Sofia Pro Bold";
-    		font-size: 60px;
+    		font-size: 90px;
     		color: #2c3f58;
+			letter-spacing: -5px; 
 		}
 	}
 	&__content{

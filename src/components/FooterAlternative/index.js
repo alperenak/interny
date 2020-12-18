@@ -39,7 +39,7 @@ class FooterAlternative extends Component {
 									<span className={"dot"}></span>
 									</li>
 									<li>
-										<Link to="/faq">Careers</Link>
+										<Link to="/careers">Careers</Link>
 									</li>
 									<li>
 									<span className={"dot"}></span>
@@ -51,7 +51,7 @@ class FooterAlternative extends Component {
 									<span className={"dot"}></span>
 									</li>
 									<li>
-										<Link to="/faq">Internships</Link>
+										<Link to="/search/null/null">Internships</Link>
 									</li>
 									<li>
 									<span className={"dot"}></span>

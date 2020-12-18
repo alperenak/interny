@@ -619,7 +619,7 @@ class MyJobs extends Component {
 							}}
 							placeholder={"Select begin period"}
 							externalSource={[
-								{ key: "Jan1", value: "January - 1st Week"},
+								{ key: "Jan1", value: "January - 4st Week"},
 								{ key: "May2", value: "May – 2nd Week" },
 								{ key: "June3", value: "June – 3rd Week" },
 								{ key: "Oct4", value: "October – 4th Week" },
@@ -644,16 +644,22 @@ class MyJobs extends Component {
 				<div class="row">
 					<div class="col-md-12">
 						<Input
-							type={"text"}
-							id={"industry"}
-							placeholder={"Salary Additional if necessary"}
+							type={"select"}
+							id={"internType"}
+							label={"Salary"}
 							size={"full"}
-							labelDescription={"Enter an salary"}
-							defaultValue={this.state.salary}
-							onChange={(value) => {
-								this.setState({ salary: value });
+							labelDescription={"Choose one below"}
+							defaultValue={
+								this.state.salary
+							}
+							onChange={(value, slValue) => {
+								this.setState({ salary: slValue.value });
 							}}
-							label={"Salary Additional if necessary"}
+							placeholder={"Select salary"}
+							externalSource={[
+								{ key: "Yes", value: "Yes"},
+								{ key: "No", value: "No" },
+							]}
 						/>
 					</div>
 				</div>

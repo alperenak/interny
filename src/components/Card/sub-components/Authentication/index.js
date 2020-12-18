@@ -219,7 +219,7 @@ class Authentication extends Component {
     if (res.status === 200) {
       this.props.createModal({
         header: "Success",
-        declaration: "The account has been created successfully!",
+        declaration: "The account has been created successfully!Verification mail has been sent. ",
         buttons: [
           {
             type: "primary",
@@ -247,7 +247,7 @@ class Authentication extends Component {
     if (res.status === 200) {
       this.props.createModal({
         header: "Success",
-        declaration: "The account has been created successfully!",
+        declaration: "The account has been created successfully!Verification mail has been sent.",
         buttons: [
           {
             type: "primary",
@@ -299,7 +299,7 @@ class Authentication extends Component {
           setCookie("user", this.props.match.params.user.toLowerCase(), {});
           setCookie("user_id", res.data.id, {});
           setCookie("isInProgram", !!res?.data?.Internship, {});
-          window.location.pathname = `/`;
+          window.location.pathname = `/search/null/null`;
         } else if (!res.data.isCompleted) {
           this.setState({ getAdditionalInfo: true });
         }

@@ -187,7 +187,7 @@ class HelpCenter extends Component {
 							class="container"
 							style={{ 'background-image': 'url(' + helpCenterBg + ')' }}
 						>
-							<p>HELP CENTER</p>
+							<p>Help Center</p>
 						</div>
 					</div>
 					<div className="helpCenter__search">

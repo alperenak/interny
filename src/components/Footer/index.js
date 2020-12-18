@@ -146,6 +146,7 @@ class Footer extends Component {
 					</div>
 					<div className={"footerSection__stroke"} />
 					<div className={"footerSection__rights"}>
+						
 						2020 • INTERNY Inc. © All rights reserved.
 						<div className={"footerSection__rights__followUs"}>
 							<a href={"https://www.facebook.com/internynet/"} target={"blank"}>

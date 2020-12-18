@@ -22,7 +22,7 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 
 // Assets
-import companyBg from '../../assets/companyBg.png';
+import companyBg from '../../assets/internshipsBg.png';
 import searchIcon from "../../icons/colorfulSearch.svg";
 import locationIcon from "../../icons/colorfulLocation.svg";
 import closeIcon from "../../icons/close-outline.svg";
@@ -293,6 +293,7 @@ class LandingPageSearch extends Component {
   						onChange={(value) => this.setState({ advanced_keyword: value })}
   						label={"Keyword"}
   					/>
+					<hr/>
   				</div>
 
   			</div>
@@ -301,7 +302,7 @@ class LandingPageSearch extends Component {
   					<Input
   						id={"country"}
   						type={"text"}
-  						placeholder={"Turkey"}
+  						placeholder={"USA"}
   						size={"full"}
   						defaultValue={
   						this.state.advanced_country !== "null"
@@ -318,7 +319,7 @@ class LandingPageSearch extends Component {
 					<Input
 						id={"city"}
 						type={"text"}
-						placeholder={"Istanbul"}
+						placeholder={"California"}
 						size={"full"}
 						defaultValue={advanced_city !== "null" ? advanced_city : "sads"}
 						onChange={(value) => this.setState({ advanced_city: value })}

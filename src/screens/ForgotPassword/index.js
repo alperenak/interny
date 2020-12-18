@@ -67,8 +67,8 @@ class ForgotPassword extends Component {
 								</div>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-md-12">
+						<div class="row" style={{"justify-content": "center","text-align": "center"}}>
+							<div class="col-md-6">
 								<Input
 									label={'E-mail Address'}
 									type="text"

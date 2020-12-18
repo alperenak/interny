@@ -514,15 +514,15 @@ class App extends React.Component {
 						render={(props) => <Affiliate {...props} />}
 					/>
 					<Route
-						path="/internyInterns"
+						path="/howtointern"
 						render={(props) => <InternPage {...props} />}
 					/>
 					<Route
-						path="/internyBusiness"
+						path="/howtocompany"
 						render={(props) => <BusinessPage {...props} />}
 					/>
 					<Route
-						path="/internyUniversity"
+						path="/howtouniversity"
 						render={(props) => <UniversityPage {...props} />}
 					/>
 					<Route

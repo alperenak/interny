@@ -57,21 +57,21 @@ class TopBar extends Component {
         value: <span><i>for</i> Intern</span>,
         selected: false,
         disabled: true,
-        to: "/internyInterns",
+        to: "/howtointern",
       },
       {
         key: "company",
         value: <span><i>for</i> Company</span>,
         selected: false,
         disabled: true,
-        to: "/internyBusiness",
+        to: "/howtocompany",
       },
       {
         key: "university",
         value: <span><i>for</i> University</span>,
         selected: false,
         disabled: true,
-        to: "/internyUniversity",
+        to: "/howtouniversity",
       },
     ],
     loginPages: [
@@ -530,20 +530,17 @@ class TopBar extends Component {
 										{/*<div><Link to={'/'}>Home</Link></div>*/}
 										<div className={"topBar__hamburgerMenu__hamburgerLinks"}>
 											<div>
-												<Link
-													onClick={() => this.closeHamburgerMenu()}
-													to={"/search"}
-												>
-													Internships
-												</Link>
+
+												<Link to={"/search"} onClick={() => this.closeHamburgerMenu()}>Internships</Link>
 											</div>
 											<div>
-												<Link
-													onClick={() => this.closeHamburgerMenu()}
-													to={"/packages"}
-												>
-													Our Packages
-												</Link>
+												<Link to={"/howtointern"} onClick={() => this.closeHamburgerMenu()}>Intern</Link>
+											</div>
+											<div>
+												<Link to={"/howtocompany"} onClick={() => this.closeHamburgerMenu()}>Company</Link>
+											</div>
+											<div>
+												<Link to={"/howtouniversity"} onClick={() => this.closeHamburgerMenu()}>University</Link>
 											</div>
 										</div>
 										<div className={"topBar__hamburgerMenu__hamburgerButtons"}>

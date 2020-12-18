@@ -66,14 +66,14 @@ class InvestorPage extends Component {
 							class="container"
 							style={{ 'background-image': 'url(' + investorBg + ')' }}
 						>
-							<p>INVESTOR</p>
+							<p>Investor</p>
 						</div>
 					</div>
 					<div class="internyPage__twoBox">
 						<div class="container">
 							<div class="row">
 								<div class="col-md-12">
-									<div class="internyPage__box">
+									<div class="internyPage__box" style={{"text-align":"justify"}}>
 										<span>Company Profile</span>
 										<p>
 											INTERNY Inc. is the world's first remote online internship
@@ -92,7 +92,7 @@ class InvestorPage extends Component {
 						<div class="container">
 							<div class="row">
 								<div class="col-md-6">
-									<div class="internyPage__box">
+									<div class="internyPage__box" style={{"text-align":"left"}}>
 										<span>Mission Statement</span>
 										<p>
 											INTERNY aims to bring together interns and companies
@@ -108,7 +108,7 @@ class InvestorPage extends Component {
 									</div>
 								</div>
 								<div class="col-md-6">
-									<div class="internyPage__box">
+									<div class="internyPage__box" style={{"text-align":"right"}}>
 										<span>Why Invest</span>
 										<p>
 											INTERNY Inc. offers the opportunity to find each other for

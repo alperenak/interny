@@ -1,7 +1,17 @@
 .faq {
 	padding-top:80px;
-
-
+	&__plus{
+		width: 28px;
+		height: 28px;
+		background-image: url("../../assets/plus.png");
+		background-size: 28px 28px;
+	}
+	&__minus{
+		width: 28px;
+		height: 28px;
+		background-image: url("../../assets/minus.png");
+		background-size: 28px 28px;
+	}
 	.card{
 		margin-bottom:30px;
 	}
