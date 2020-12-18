@@ -219,7 +219,7 @@ class Authentication extends Component {
     if (res.status === 200) {
       this.props.createModal({
         header: "Success",
-        declaration: "The account has been created successfully!Verification mail has been sent. ",
+        declaration: "Verification mail has been sent. ",
         buttons: [
           {
             type: "primary",

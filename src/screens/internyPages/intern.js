@@ -148,7 +148,7 @@ class InternPage extends Component {
 				descriptionList={DESCRIPTION_DATA}
 				title="How to Use the Platform as an Intern?"
 				stepData={STEP_DATA}
-				videoEmbedLink="https://www.youtube.com/embed/cRcTKfziGOE"
+				videoEmbedLink="https://www.youtube.com/embed/2Nw6nkw6JCA"
 				packagesTitle="See the Intern Packages"
 				packagesSubtitle="Click to see detail of packages"
 				packagesData={PACKAGES_DATA}

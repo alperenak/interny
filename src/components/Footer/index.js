@@ -108,10 +108,10 @@ class Footer extends Component {
 													</li>
 
 													<li>
-													<Link to="/internyBusiness">INTERNY for Bussiness</Link>
+													<Link to="/howtocompany">INTERNY for Bussiness</Link>
 													</li>
 													<li>
-													<Link to="/internyUniversity">INTERNY for University</Link>
+													<Link to="/howtouniversity">INTERNY for University</Link>
 													</li>
 												</ul>
 											</div>

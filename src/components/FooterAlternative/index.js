@@ -39,7 +39,9 @@ class FooterAlternative extends Component {
 									<span className={"dot"}></span>
 									</li>
 									<li>
-										<Link to="/careers">Careers</Link>
+										<a href="https://www.linkedin.com/company/internynet">
+											Careers
+										</a>
 									</li>
 									<li>
 									<span className={"dot"}></span>

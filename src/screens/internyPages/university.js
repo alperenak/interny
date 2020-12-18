@@ -108,7 +108,7 @@ class UniversityPage extends Component {
 				descriptionList={DESCRIPTION_DATA}
 				title="How to Use the Platform as a University?"
 				stepData={STEP_DATA}
-				videoEmbedLink="https://www.youtube.com/embed/Na8m4GPqA30"
+				videoEmbedLink="https://www.youtube.com/embed/2Nw6nkw6JCA"
 				packagesTitle="See the University Packages"
 				packagesSubtitle="Click to see detail of packages"
 				packagesData={PACKAGES_DATA}
