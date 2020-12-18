@@ -58,6 +58,7 @@ import TermPage from "./screens/internyPages/terms.js";
 import CookiesPage from "./screens/internyPages/cookies.js";
 import UniversityBrowse from "./screens/UniversityBrowse";
 import UniversityOpen from "./screens/UniversityOpen";
+import ScrollToTop from "./scrolltop.js";
 /*** Styles ***/
 import styles from "./app.scss";
 
@@ -157,6 +158,7 @@ class App extends React.Component {
 				<LoadingModal text="Loading" v-if={loading} />
 
 				<Router>
+					<ScrollToTop />
 					<Route
 						path="/"
 						render={(props) => (
@@ -198,6 +200,7 @@ class App extends React.Component {
 					<Route
 						path="/faq"
 						render={(props) => <FrequentlyAskedQuestions {...props} />}
+						onEnter={() => console.log('dsad')}
 					/>
 					<Route
 						path="/packages"
