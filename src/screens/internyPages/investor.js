@@ -92,7 +92,7 @@ class InvestorPage extends Component {
 						<div class="container">
 							<div class="row">
 								<div class="col-md-6">
-									<div class="internyPage__box" style={{"text-align":"left"}}>
+									<div class="internyPage__box" style={{"text-align":"justify"}}>
 										<span>Mission Statement</span>
 										<p>
 											INTERNY aims to bring together interns and companies
@@ -108,7 +108,7 @@ class InvestorPage extends Component {
 									</div>
 								</div>
 								<div class="col-md-6">
-									<div class="internyPage__box" style={{"text-align":"right"}}>
+									<div class="internyPage__box" style={{"text-align":"justify"}}>
 										<span>Why Invest</span>
 										<p>
 											INTERNY Inc. offers the opportunity to find each other for
