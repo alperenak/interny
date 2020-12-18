@@ -234,7 +234,7 @@ class FAQ extends Component {
 		return (
 			<div style={{"background":"#f6f8fa"}}>
 			<div class="affiliate__header">
-				<div class="container" style={{"background-image":"url("+affiliateBg+")"}}>
+				<div class="container headerBackground" style={{"background-image":"url("+affiliateBg+")"}}>
 					<p>Faq</p>
 				</div>
 			</div>

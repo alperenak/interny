@@ -63,7 +63,7 @@ class InvestorPage extends Component {
 				<div class="internyPage">
 					<div class="affiliate__header">
 						<div
-							class="container"
+							class="container headerBackground"
 							style={{ 'background-image': 'url(' + investorBg + ')' }}
 						>
 							<p>Investor</p>

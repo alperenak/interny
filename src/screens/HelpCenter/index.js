@@ -184,7 +184,7 @@ class HelpCenter extends Component {
 				<div className={'helpCenter'}>
 					<div class="affiliate__header">
 						<div
-							class="container"
+							class="container headerBackground"
 							style={{ 'background-image': 'url(' + helpCenterBg + ')' }}
 						>
 							<p>Help Center</p>
