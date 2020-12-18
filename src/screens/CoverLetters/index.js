@@ -17,7 +17,7 @@ import styles from "./coverletters.scss";
 /*** Icons ***/
 import addIcon from "../../icons/add-circular-outlined-white-button.svg";
 import Input from "../../components/Input";
-import Footer from "../../components/Footer";
+import FooterAlternative from "../../components/FooterAlternative";
 
 class CoverLetters extends Component {
   state = {
@@ -176,7 +176,7 @@ class CoverLetters extends Component {
 		let { coverLetters, processing } = this.state;
 		let { user } = this.props;
 		return (
-			<>
+			<div style={{"background-color":"#f6f8fa"}}>
 				{processing && <LoadingModal text={"Loading..."} />}
 				<div className={"coverLetters"}>
 					<div class="container">
@@ -235,7 +235,8 @@ class CoverLetters extends Component {
 						</div>
 					</div>
 				</div>
-			</>
+				<FooterAlternative />
+			</div>
 		);
 	}
 }

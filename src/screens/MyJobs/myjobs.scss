@@ -24,7 +24,10 @@ padding: 0 1px;
 	border:0;
 }
 .MyJobs {
-	margin-top:80px;
+	.jobPost{
+		background-color: white!important;
+	}
+	padding:80px;
 	margin-bottom:80px;
 	&__listButtonContainer {
 		display: flex;

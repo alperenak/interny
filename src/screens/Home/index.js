@@ -44,22 +44,22 @@ const INTERN_COMMENTS = [
 		avatar: cenkAvatar,
 		title: "CENK S.",
 		subTitle: "TR",
-		text: `I thought that I lost the opportunity to do an internship abroad due to the pandemic. 
-		However, I registered with INTERNY and got the opportunity to do an internship at a technology company in the Netherlands. 
+		text: `I thought that I lost the opportunity to do an internship abroad due to the pandemic.
+		However, I registered with INTERNY and got the opportunity to do an internship at a technology company in the Netherlands.
 		Thank you.`
 	},
 	{
 		avatar: kateAvatar,
 		title: "KATE L.",
 		subTitle: "USA",
-		text: `After completing my education, I wanted to do an internship in Europe for my personal development. 
+		text: `After completing my education, I wanted to do an internship in Europe for my personal development.
 		I completed my internship in the UK using INTERNY. Thanks to this, I gained experience outside the USA. I was very satisfied.`
 	},
 	{
 		avatar: samanAvatar,
 		title: "SAMAN bA",
 		subTitle: "UAE",
-		text: `I easily had the opportunity to work for a company in Germany without any visa problems with INTERNY. 
+		text: `I easily had the opportunity to work for a company in Germany without any visa problems with INTERNY.
 		In this way, I had the opportunity to learn the working principles of German companies before going to Germany. Thank you so much.`
 	}
 ]
@@ -147,7 +147,7 @@ class Home extends Component {
 								key={i}
 								posts={[
 									{
-									location:"Istanbul/Turkey",
+									location:"California/USA",
 									date: "30 days ago",
 									header:
 									i === 0
@@ -161,7 +161,7 @@ class Home extends Component {
 									startTime:i === 0
 									? "May 4ᵗʰ Week"
 									: i === 1
-									? "April 5ᵗʰ Week"
+									? "April 4ᵗʰ Week"
 									: "December 1ᵗʰ Week",
 									buttons: [
 									{
@@ -309,7 +309,6 @@ class Home extends Component {
 						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
 							<div className={"home__howItWorksSection__division boxAnimation2"}>
 								<img className={"home__howItWorksSection__division__topLeftIcon"} src={hiwOne}></img>
-								<img className={"home__howItWorksSection__division__icon"} src={register} />
 								<div className={"home__howItWorksSection__division__title"}>Join & Apply</div>
 								<div className={"home__howItWorksSection__division__description"}>
 									Sign up and buy the requested package. Then apply for the internships for acceptance.
@@ -319,7 +318,6 @@ class Home extends Component {
 						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
 							<div className={"home__howItWorksSection__division boxAnimation2"}>
 								<img className={"home__howItWorksSection__division__topLeftIcon"} src={hiwTwo}></img>
-								<img className={"home__howItWorksSection__division__icon"} src={comp} />
 								<div className={"home__howItWorksSection__division__title"}>Interny Competency Center: iCC™</div>
 								<div className={"home__howItWorksSection__division__description"}>
 									Use iCC™ to prove and improve the competency to be the primary candidate if necessary.
@@ -329,7 +327,6 @@ class Home extends Component {
 						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
 							<div className={"home__howItWorksSection__division boxAnimation2"}>
 								<img className={"home__howItWorksSection__division__topLeftIcon"} src={hiwThree}></img>
-								<img className={"home__howItWorksSection__division__icon"} src={application} />
 								<div className={"home__howItWorksSection__division__title"}>Interny Management System: iMS™</div>
 								<div className={"home__howItWorksSection__division__description"}>
 									Use iMS™ to manage tasks assigned for the internship and to contact the company.
@@ -339,7 +336,6 @@ class Home extends Component {
 						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
 							<div className={"home__howItWorksSection__division boxAnimation2"}>
 								<img className={"home__howItWorksSection__division__topLeftIcon"} src={hiwFour}></img>
-								<img className={"home__howItWorksSection__division__icon"} src={duties} />
 								<div className={"home__howItWorksSection__division__title"}>Reference Letter</div>
 								<div className={"home__howItWorksSection__division__description"}>
 									Take your WFA report. If you're over 60% successful, get your signed Reference Letter.

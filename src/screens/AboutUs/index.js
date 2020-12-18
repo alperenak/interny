@@ -11,8 +11,8 @@ class AboutUs extends Component {
         return (
             <div>
 				<div class="affiliate__header">
-					<div class="container" style={{"background-image":"url("+aboutBg+")"}}>
-						<p>ABOUT US</p>
+					<div class="container aboutBg" style={{"background-image":"url("+aboutBg+")"}}>
+						<p>About Us</p>
 					</div>
 				</div>
                 <div className="bg-white py-5">
@@ -77,7 +77,7 @@ class AboutUs extends Component {
                                     </span>
                                 </Link>
                             </div>
-                            <div className="col-lg-5 px-5 mx-auto order-1 order-lg-2">
+                            <div className="col-lg-5 px-5 mx-auto order-1 order-lg-2" style={{"text-align": "center"}}>
                                 <img
                                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQPyeh4kLjISqqLr86Y309CvH8hvegmduMBkw&usqp=CAU"
                                     alt="University"

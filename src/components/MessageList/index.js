@@ -118,8 +118,8 @@ export default class MessageList extends Component {
 
   renderPopover = () => {
     return (
-      <div className={styles["popover"]}>
-        <button className={styles["popover__button"]}>
+      <div className={"popover"}>
+        <button className={"popover__button"}>
           <img src={icon_trash} />
           Clear
         </button>

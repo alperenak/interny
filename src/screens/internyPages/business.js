@@ -138,7 +138,7 @@ class BusinessPage extends Component {
         descriptionList={DESCRIPTION_DATA}
         title="How to Use the Platform as a Company?"
         stepData={STEP_DATA}
-        videoEmbedLink="https://www.youtube.com/embed/bNpx7gpSqbY"
+        videoEmbedLink="https://www.youtube.com/embed/HnTSDWNE9Hw"
         packagesTitle="See the Business Packages"
         packagesSubtitle="Click to see detail of packages"
         packagesData={PACKAGES_DATA}

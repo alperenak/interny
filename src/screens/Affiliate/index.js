@@ -41,7 +41,7 @@ class Affiliate extends Component {
 		<div style={{"background":"#f6f8fa"}}>
 			<div class="affiliate__header">
 				<div class="container" style={{"background-image":"url("+affiliateBg+")"}}>
-					<p>AFFILIATE</p>
+					<p>Affiliate</p>
 				</div>
 			</div>
 			<div class="affiliate__triple">
@@ -52,7 +52,7 @@ class Affiliate extends Component {
 					<div class="row">
 						<div class="col-md-4">
 							<div class="affiliate__tripleBox">
-								<img src={explore} alt="Explore"></img>
+								<img src={explore} alt="Explore" width="40"></img>
 								<span class="affiliate__tripleBox__title">
 									Explore
 								</span>
@@ -63,7 +63,7 @@ class Affiliate extends Component {
 						</div>
 						<div class="col-md-4">
 							<div class="affiliate__tripleBox">
-								<img src={includeNetwork} alt="Include network"></img>
+								<img src={includeNetwork} alt="Include network" width="40"></img>
 								<span class="affiliate__tripleBox__title">
 									Include Network
 								</span>
@@ -74,7 +74,7 @@ class Affiliate extends Component {
 						</div>
 						<div class="col-md-4">
 							<div class="affiliate__tripleBox">
-								<img src={makeMoney} alt="Make money"></img>
+								<img src={makeMoney} alt="Make money" width="40"></img>
 								<span class="affiliate__tripleBox__title">
 									Make Money
 								</span>
@@ -144,7 +144,7 @@ class Affiliate extends Component {
 					</div>
 				</div>
 			</div>
-			<div className={"faq"}>
+			<div className={"faq"} style={{"display":"none"}}>
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12" style={{"text-align":"center","margin-bottom":"30px"}}>
@@ -174,7 +174,7 @@ class Affiliate extends Component {
 					</div>
 				</div>
 			</div>
-			<div className="affiliate__contact">
+			<div className="affiliate__contact" style={{"margin-bottom":"60px","margin-top":"60px"}}>
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12" style={{"text-align":"center","margin-bottom":"30px"}}>

@@ -9,7 +9,9 @@ import store from "../../store";
 /*** Styles ***/
 import styles from "./faq.scss";
 import Card from "../../components/Card";
-import affiliateBg from "../../assets/affiliateBg.png";
+import affiliateBg from "../../assets/faqBg.png";
+
+
 let dummy_data = {
   intern: [
     { question: "What is an internship?", answer: "An internship refers to the period that a person spends working in different\n" +
@@ -233,7 +235,7 @@ class FAQ extends Component {
 			<div style={{"background":"#f6f8fa"}}>
 			<div class="affiliate__header">
 				<div class="container" style={{"background-image":"url("+affiliateBg+")"}}>
-					<p>FAQ</p>
+					<p>Faq</p>
 				</div>
 			</div>
 				<div className={"faq"}>
@@ -243,22 +245,12 @@ class FAQ extends Component {
 								{this.renderLeftBar()}
 							</div>
 							<div class="col-md-9">
+
 								<div id="accordion">
+
 									{dummy_data[this.state.question_type].map((data,index) => {
 										return(
-											<div class="card" style={{"width":"100%"}}>
-												<div class="card-header" id={"headingOne" + index}>
-													<button class="btn" data-toggle="collapse" data-target={"#collapseOne" + index} aria-expanded="true" aria-controls={"collapseOne" + index}>
-														{data.question}
-													</button>
-												</div>
-
-												<div id={"collapseOne" + index} class="collapse" aria-labelledby={"headingOne" + index} data-parent="#accordion">
-													<div class="card-body">
-														{data.answer}
-													</div>
-												</div>
-											</div>
+											<Accordion title={data.question} content={data.answer} />
 										);
 									})}
 								</div>

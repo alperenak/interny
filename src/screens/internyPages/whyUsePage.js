@@ -72,7 +72,7 @@ class WhyUsePage extends Component {
             <div class="internyPage__step__title">
               <span>{step.title}</span>
             </div>
-            <p>{step.description}</p>
+            <p class="internyPage__step__p">{step.description}</p>
           </div>
         </div>
       );

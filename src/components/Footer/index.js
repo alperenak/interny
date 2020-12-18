@@ -108,10 +108,10 @@ class Footer extends Component {
 													</li>
 
 													<li>
-													<Link to="/internyBusiness">INTERNY for Bussiness</Link>
+													<Link to="/howtocompany">INTERNY for Bussiness</Link>
 													</li>
 													<li>
-													<Link to="/internyUniversity">INTERNY for University</Link>
+													<Link to="/howtouniversity">INTERNY for University</Link>
 													</li>
 												</ul>
 											</div>
@@ -146,6 +146,7 @@ class Footer extends Component {
 					</div>
 					<div className={"footerSection__stroke"} />
 					<div className={"footerSection__rights"}>
+						
 						2020 • INTERNY Inc. © All rights reserved.
 						<div className={"footerSection__rights__followUs"}>
 							<a href={"https://www.facebook.com/internynet/"} target={"blank"}>

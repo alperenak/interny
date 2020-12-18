@@ -5,6 +5,7 @@ import Card from "../../components/Card";
 import Button from "../../components/Button";
 import LoadingModal from '../../components/LoadingModal'
 import Input from "../../components/Input";
+import FooterAlternative from "../../components/FooterAlternative";
 
 /*** Utils ***/
 import store from "../../store";
@@ -480,7 +481,7 @@ class myAccountWrapper extends Component {
 			duration = 0;
 		}
 		return (
-			<>
+			<div style={{"background-color":"#f6f8fa"}}>
 				{processing && <LoadingModal text={"Loading..."} />}
 
 				<div className={"myAccountWrapper"}>
@@ -588,7 +589,7 @@ class myAccountWrapper extends Component {
 															</div>
 															<Button
 																type={"ghost"}
-																sizeName={"small"}
+																sizeName={"large"}
 																text={"Update"}
 																onButtonClick={() => this.onChangeClick('email',"E-mail Address",this.state.user["email"])}
 															/>
@@ -605,7 +606,7 @@ class myAccountWrapper extends Component {
 																</div>
 																<Button
 																	type={"ghost"}
-																	sizeName={"small"}
+																	sizeName={"large"}
 																	text={"Update"}
 																	onButtonClick={() => this.onChangeClick('name',"Name",this.state.user["name"])}
 																/>
@@ -620,7 +621,7 @@ class myAccountWrapper extends Component {
 																</div>
 																<Button
 																	type={"ghost"}
-																	sizeName={"small"}
+																	sizeName={"large"}
 																	text={"Update"}
 																	onButtonClick={() => this.onChangeClick('surname','Surname',this.state.user["surname"])}
 																/>
@@ -638,7 +639,7 @@ class myAccountWrapper extends Component {
 																</div>
 																<Button
 																	type={"ghost"}
-																	sizeName={"small"}
+																	sizeName={"large"}
 																	text={"Update"}
 																	onButtonClick={() => this.onChangeClick('legalName',"Legal Name",this.state.user["legalName"])}
 																/>
@@ -654,7 +655,7 @@ class myAccountWrapper extends Component {
 																</div>
 																<Button
 																	type={"ghost"}
-																	sizeName={"small"}
+																	sizeName={"large"}
 																	text={"Update"}
 																	onButtonClick={() => this.onChangeClick('description','Description',this.state.user["description"])}
 																/>
@@ -670,7 +671,7 @@ class myAccountWrapper extends Component {
 																</div>
 																<Button
 																	type={"ghost"}
-																	sizeName={"small"}
+																	sizeName={"large"}
 																	text={"Update"}
 																	onButtonClick={() => this.onChangeClick('employeeNumber','Employee Number',this.state.user["employeeNumber"])}
 																/>
@@ -686,7 +687,7 @@ class myAccountWrapper extends Component {
 																</div>
 																<Button
 																	type={"ghost"}
-																	sizeName={"small"}
+																	sizeName={"large"}
 																	text={"Update"}
 																	onButtonClick={() => this.onChangeClick('mainLanguage','Main Language',this.state.user["mainLanguage"])}
 																/>
@@ -702,7 +703,7 @@ class myAccountWrapper extends Component {
 																</div>
 																<Button
 																	type={"ghost"}
-																	sizeName={"small"}
+																	sizeName={"large"}
 																	text={"Update"}
 																	onButtonClick={() => this.onChangeClick('englishUsage','English Usage',this.state.user["englishUsage"])}
 																/>
@@ -718,7 +719,7 @@ class myAccountWrapper extends Component {
 																</div>
 																<Button
 																	type={"ghost"}
-																	sizeName={"small"}
+																	sizeName={"large"}
 																	text={"Update"}
 																	onButtonClick={() => this.onChangeClick('sectors','Sectors',this.state.user["sectors"])}
 																/>
@@ -734,7 +735,7 @@ class myAccountWrapper extends Component {
 																</div>
 																<Button
 																	type={"ghost"}
-																	sizeName={"small"}
+																	sizeName={"large"}
 																	text={"Update"}
 																	onButtonClick={() => this.onChangeClick('address','Address',this.state.user["address"])}
 																/>
@@ -750,7 +751,7 @@ class myAccountWrapper extends Component {
 																</div>
 																<Button
 																	type={"ghost"}
-																	sizeName={"small"}
+																	sizeName={"large"}
 																	text={"Update"}
 																	onButtonClick={() => this.onChangeClick('vatNumber','Vat Number',this.state.user["vatNumber"])}
 																/>
@@ -766,7 +767,7 @@ class myAccountWrapper extends Component {
 																</div>
 																<Button
 																	type={"ghost"}
-																	sizeName={"small"}
+																	sizeName={"large"}
 																	text={"Update"}
 																	onButtonClick={() => this.onChangeClick('websiteUrl','Website',this.state.user["websiteUrl"])}
 																/>
@@ -781,7 +782,7 @@ class myAccountWrapper extends Component {
 															</div>
 															<Button
 																type={"ghost"}
-																sizeName={"small"}
+																sizeName={"large"}
 																text={"Update"}
 																onButtonClick={() => this.onChangeClick('membershipStatus')}
 															/>
@@ -798,7 +799,7 @@ class myAccountWrapper extends Component {
 																</div>
 																<Button
 																	type={"ghost"}
-																	sizeName={"small"}
+																	sizeName={"large"}
 																	text={"Update"}
 																	onButtonClick={() => this.onChangeClick('phone','Phone',this.state.user["phone"])}
 																/>
@@ -815,7 +816,7 @@ class myAccountWrapper extends Component {
 															</div>
 															<Button
 																type={"ghost"}
-																sizeName={"small"}
+																sizeName={"large"}
 																text={"Update"}
 																onButtonClick={() => this.onChangeClick('location','Location',this.state.user["location"])}
 															/>
@@ -830,7 +831,7 @@ class myAccountWrapper extends Component {
 																	</div>
 																	<Button
 																		type={"ghost"}
-																		sizeName={"small"}
+																		sizeName={"large"}
 																		text={"Update"}
 																		onButtonClick={() => this.onChangeClick('university','University',this.state.user["university"])}
 																	/>
@@ -846,7 +847,7 @@ class myAccountWrapper extends Component {
 																	</div>
 																	<Button
 																		type={"ghost"}
-																		sizeName={"small"}
+																		sizeName={"large"}
 																		text={"Update"}
 																		onButtonClick={() => this.onChangeClick('gradStatus','Graduation Status',this.state.user["gradStatus"])}
 																	/>
@@ -863,7 +864,7 @@ class myAccountWrapper extends Component {
 															</div>
 															<Button
 																type={"ghost"}
-																sizeName={"small"}
+																sizeName={"large"}
 																text={"Update"}
 																onButtonClick={() => this.onChangeClick('linkedinUrl','Linkedin',this.state.user["linkedinUrl"])}
 															/>
@@ -877,7 +878,7 @@ class myAccountWrapper extends Component {
 															</div>
 															<Button
 																type={"ghost"}
-																sizeName={"small"}
+																sizeName={"large"}
 																text={"Update"}
 																onButtonClick={() => this.onChangeClick('preferences','Preferences',"")}
 															/>
@@ -893,7 +894,8 @@ class myAccountWrapper extends Component {
 						</div>
 					</div>
 				</div>
-			</>
+				<FooterAlternative />
+			</div>
 		);
 	}
 }
