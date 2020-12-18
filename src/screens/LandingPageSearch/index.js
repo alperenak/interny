@@ -604,7 +604,7 @@ class LandingPageSearch extends Component {
 					!isAuthorized &&
 					<PageHeader
 						backgroundImage={companyBg}
-						title="INTERNSHIPS"
+						title="Detail Search"
 					/>
 				}
 				<div className={"landingPageSearch"}>
