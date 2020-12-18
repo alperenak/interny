@@ -1,3 +1,5 @@
+@import "../../helpers/responsiveBreakpointsMixins.scss";
+
 .faq {
 	padding-top:80px;
 	&__plus{
@@ -77,5 +79,11 @@
 			margin-right: auto;
 			padding: 20px 0 20px 0;
 		}
+	}
+}
+
+.headerBackground{
+	@include medium{
+		background-image: none!important;
 	}
 }

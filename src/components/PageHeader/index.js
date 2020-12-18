@@ -7,7 +7,7 @@ export default class PageHeader extends Component {
         return (
             <div class="pageHeader">
                 <div
-                    class="container"
+                    class="container headerBackground"
                     style={{ 'background-image': 'url(' + backgroundImage + ')' }}
                 >
                     <p>{title}</p>

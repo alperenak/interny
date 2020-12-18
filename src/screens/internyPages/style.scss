@@ -1,3 +1,5 @@
+@import "../../helpers/responsiveBreakpointsMixins.scss";
+
 .internyPage{
 	padding-bottom:80px;
 	background-color: #f6f8fa;
@@ -48,5 +50,11 @@
 	}
 	&__reports{
 		margin-top:80px;
+	}
+}
+
+.headerBackground{
+	@include medium{
+		background-image: none!important;
 	}
 }
