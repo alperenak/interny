@@ -793,6 +793,44 @@ let store = {
       errorMessageBuilder
     );
   },
+  async getLinkCode(id) {
+    let baseUrl = config.baseUrl;
+    let path = `/referral/share`;
+    let tokenCookieName = "token";
+    return await http.makeGetRequest(
+      path,
+      baseUrl,
+      tokenCookieName,
+      errorMessageBuilder
+    );
+  },
+  async sendEmailRef(email) {
+    let baseUrl = config.baseUrl;
+    let path = `/referral/share`;
+    let tokenCookieName = "token";
+	var payload = {
+		email:email
+	}
+    return await http.makePostRequest(
+      path,
+      baseUrl,
+      tokenCookieName,
+	  payload,
+      errorMessageBuilder
+    );
+  },
+  async sendRefCode(email) {
+    let baseUrl = config.baseUrl;
+    let path = `/referral/use?code=` + email;
+    let tokenCookieName = "token";
+
+    return await http.makeGetRequest(
+      path,
+      baseUrl,
+      tokenCookieName,
+      errorMessageBuilder
+    );
+  },
 };
 
 export default store;

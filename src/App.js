@@ -59,6 +59,8 @@ import CookiesPage from "./screens/internyPages/cookies.js";
 import UniversityBrowse from "./screens/UniversityBrowse";
 import UniversityOpen from "./screens/UniversityOpen";
 import ScrollToTop from "./scrolltop.js";
+import Referrals from "./screens/Referrals/index.js";
+
 /*** Styles ***/
 import styles from "./app.scss";
 
@@ -212,6 +214,16 @@ class App extends React.Component {
 					/>
 					<Route
 						path="/signup"
+						render={(props) => (
+							<SignUp
+								closeModal={this.closeModal}
+								createModal={this.createModal}
+								{...props}
+							/>
+						)}
+					/>
+					<Route
+						path="/referral/:code"
 						render={(props) => (
 							<SignUp
 								closeModal={this.closeModal}
@@ -555,6 +567,18 @@ class App extends React.Component {
 					<Route
 						path="/cookies"
 						render={(props) => <CookiesPage {...props} />}
+					/>
+					<Route
+						path="/referrals"
+						render={(props) => (
+							<Referrals
+								user={user}
+								closeModal={this.closeModal}
+								createModal={this.createModal}
+								getUser={this.getUser}
+								{...props}
+							/>
+						)}
 					/>
 					<Route
 						v-if={!getCookie('token')}

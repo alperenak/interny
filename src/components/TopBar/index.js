@@ -143,6 +143,13 @@ class TopBar extends Component {
         icon: mailIcon,
         to: "/messages",
       },
+	  {
+        key: "referral",
+        value: "Referral",
+        selected: false,
+        icon: userIcon,
+        to: "/referrals",
+      },
       {
         key: "Log Out",
         value: "Log Out",
@@ -197,6 +204,13 @@ class TopBar extends Component {
         selected: false,
         icon: mailIcon,
         to: "/messages",
+      },
+	  {
+        key: "referral",
+        value: "Referral",
+        selected: false,
+        icon: userIcon,
+        to: "/referrals",
       },
       {
         key: "Log Out",
