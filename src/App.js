@@ -1,6 +1,9 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import CookieConsent from 'react-cookie-consent-notification';
+// the hoc
+import { withNamespaces } from 'react-i18next';
+import i18n from './i18n';
 
 /*** Components ***/
 import TopBar from "./components/TopBar";
@@ -66,7 +69,7 @@ import styles from "./app.scss";
 import { eraseCookie, getCookie } from "./utils/cookie";
 import store from "./store";
 
-class App extends React.Component {
+class App  extends React.Component {
   state = {
     isAuthorized: true,
     user: {},
@@ -133,7 +136,10 @@ class App extends React.Component {
       modal: { header, declaration, backgroundColor, content, buttons, size, visibility: true },
     });
   };
-
+	changeLanguage = (lng) => {
+		console.log(lng)
+		i18n.changeLanguage(lng);
+	}
   closeModal = () => {
     this.setState({
       modal: { header: "", declaration: "", backgroundColor: '#fff', size: 'small', visibility: false },
@@ -147,16 +153,14 @@ class App extends React.Component {
   }
 
 
-
 	render() {
 		let { isAuthorized, user, modal, userType, isInternshipBegun, selectedJobID, loading } = this.state;
 		const cookieClass = this.state.consentTaken ? `${"hidden"} ${"myCookie"}` : "myCookie"
 		const appClass = this.state.consentTaken ? `${"App"} ${"fullScreen"} ${"paddingTop"}` : `${"App"} ${"fullScreen"}`
-
+		const { t } = this.props;
 		return (
 			<div className={appClass}>
 				<LoadingModal text="Loading" v-if={loading} />
-
 				<Router>
 					<ScrollToTop />
 					<Route
@@ -587,4 +591,4 @@ class App extends React.Component {
 	}
 }
 
-export default App;
+export default withNamespaces()(App);

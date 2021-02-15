@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 /*** Components ***/
 import Card from "../Card";
 import Button from "../Button";
+import { withNamespaces } from 'react-i18next';
+import i18n from '../../i18n';
 
 /*** Utils ***/
 import store from "../../store";
@@ -35,7 +37,6 @@ class TopBar extends Component {
     this.wrapperRefmail = React.createRef();
     this.wrapperRefbell = React.createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
-
     this.myRef = React.createRef()
   }
 
@@ -54,7 +55,7 @@ class TopBar extends Component {
     ourPackages: [
       {
         key: "intern",
-        value: <span><i>for</i> Intern</span>,
+        value: i18n.language !== 'tr'? <span><i>for</i> Intern</span> : <span> Stajyer </span> ,
         selected: false,
         disabled: true,
         to: "/howtointern",
@@ -496,7 +497,7 @@ class TopBar extends Component {
 		const {
 			scrollTop
 		} = this.state
-
+        const {t} = this.props;
 		let { isAuthorized, user } = this.props;
 		let { loginDropDown, ourDropdown } = this.state;
 		let userType = getCookie("user");
@@ -531,7 +532,7 @@ class TopBar extends Component {
 										<div className={"topBar__hamburgerMenu__hamburgerLinks"}>
 											<div>
 
-												<Link to={"/search"} onClick={() => this.closeHamburgerMenu()}>Internships</Link>
+												<Link to={"/search"} onClick={() => this.closeHamburgerMenu()}>{t('navbar_internships')}</Link>
 											</div>
 											<div>
 												<Link to={"/howtointern"} onClick={() => this.closeHamburgerMenu()}>Intern</Link>
@@ -553,7 +554,7 @@ class TopBar extends Component {
 												<Button
 													type={"ghost"}
 													sizeName={"small"}
-													text={"Login"}
+													text={('navbar_login')}
 													iconPosition={"left"}
 													responsive={"hamburger"}
 													icon={caret}
@@ -576,7 +577,7 @@ class TopBar extends Component {
 												type={"secondary"}
 												sizeName={"small"}
 												responsive={"hamburger"}
-												text={"Sign Up"}
+												text={t('navbar_sign_up')}
 												onButtonClick={() => this.closeHamburgerMenu()}
 											/>
 										</div>
@@ -586,7 +587,7 @@ class TopBar extends Component {
 											className={"topBar__hamburgerMenu__hamburgerAccountName"}
 											style={{ cursor: "default" }}
 										>
-											Welcome,{" "}
+                                          {t('navbar_welcome')},{" "}
 											<span className={"topBar__hamburgerMenu__hamburgerAccountName__userName"}>
 												{userType === "intern" ? user.name : user.accountName}{" "}
 												{userType === "intern" && user.surname}
@@ -603,7 +604,7 @@ class TopBar extends Component {
 							<div className={"topBar__links"}>
 								<Fragment v-if={!isAuthorized}>
 									<div>
-										<Link to={"/search"} className={this.state.isScrolled ? "topBar__links__scroll" : "topBar__links__nonscroll"}>Internships</Link>
+										<Link to={"/search"} className={this.state.isScrolled ? "topBar__links__scroll" : "topBar__links__nonscroll"}>{t('navbar_internships')}</Link>
 									</div>
 									<div
 										onMouseOver={() => this.setState({ ourDropdown: true })}
@@ -628,7 +629,7 @@ class TopBar extends Component {
 										<Button
 											type={"primary"}
 											sizeName={"small"}
-											text={"\u00a0\u00a0Login\u00a0\u00a0"}
+											text={t('navbar_login')}
 										/>
 										<div v-if={loginDropDown} className={"topBar__links__dropdownContainer__dropdown"}>
 											<Card type={"dropDown"} externalData={this.state.loginPages} />
@@ -639,7 +640,7 @@ class TopBar extends Component {
 										to="/signup"
 										type={"secondary"}
 										sizeName={"small"}
-										text={"Sign Up"}
+										text={t("navbar_sign_up")}
 									/>
 								</Fragment>
 								<Fragment v-else>
@@ -664,4 +665,4 @@ class TopBar extends Component {
 	}
 }
 
-export default TopBar;
+export default withNamespaces()(TopBar);

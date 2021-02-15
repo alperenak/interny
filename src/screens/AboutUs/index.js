@@ -4,32 +4,36 @@ import styles from "./aboutUs.scss";
 import aboutBg from "../../assets/aboutBg.png";
 import Footer from "../../components/Footer";
 import { Link } from "react-router-dom";
+// the hoc
+import { withNamespaces } from 'react-i18next';
 
 class AboutUs extends Component {
 
     render() {
+        const { t } = this.props;
+        {t('')}
         return (
             <div>
 				<div class="affiliate__header">
 					<div class="container aboutBg" style={{"background-image":"url("+aboutBg+")"}}>
-						<p>About Us</p>
+						<p>{t('about_us')}</p>
 					</div>
 				</div>
                 <div className="bg-white py-5">
                         <div className="col-lg-12" style={{textAlign: 'center'}}>
-                            <p>Welcome to INTERNY, the world's first global remote online internship platform.</p>
+                            <p>{t('about_us_welcome_to')}</p>
                         </div>
                     <div className="container py-5">
                         <div className="row align-items-center mb-5">
                             <div className="col-lg-6 order-2 order-lg-1">
                                 <i className="fa fa-bar-chart fa-2x mb-3 text-primary" />
-                                <h2 className="font-weight-light">Intern</h2>
+                                <h2 className="font-weight-light">{t('about_us_intern')}</h2>
                                 <p className="font-italic text-muted mb-4">
-									INTERNY, which enables the internship process to be carried out from the beginning to the end, is a platform that aims to allow interns to get global work experience wherever and whenever they want.
+                                    {t('about_us_intern_text')}
                                 </p>
                                 <Link to="/internyInterns">
                                     <span className="btn btn-light px-5 rounded-pill shadow-sm">
-                                        Find Interships
+                                        {t('about_us_intern_button')}
                                     </span>
                                 </Link>
 
@@ -52,14 +56,14 @@ class AboutUs extends Component {
                             </div>
                             <div className="col-lg-6">
                                 <i className="fa fa-leaf fa-2x mb-3 text-primary" />
-                                <h2 className="font-weight-light">Company</h2>
+                                <h2 className="font-weight-light">{t('about_us_company')}</h2>
                                 <p className="font-italic text-muted mb-4">
-                                    INTERNY is a platform that enables companies to find interns with whom they perform the global internship process remotely and online from the beginning to the end.
+                                    {t('about_us_company_text')}
                                 </p>
 
                                 <Link to="/internyBusiness">
                                     <span className="btn btn-light px-5 rounded-pill shadow-sm">
-                                        Create Internship Program
+                                        {t('about_us_company_button')}
                                     </span>
                                 </Link>
                             </div>
@@ -67,13 +71,13 @@ class AboutUs extends Component {
                         <div className="row align-items-center mb-5">
                             <div className="col-lg-6 order-2 order-lg-1">
                                 <i className="fa fa-bar-chart fa-2x mb-3 text-primary" />
-                                <h2 className="font-weight-light">University</h2>
+                                <h2 className="font-weight-light">{t('about_us_university')}</h2>
                                 <p className="font-italic text-muted mb-4">
-                                    INTERNY offers universities the opportunity to follow all their students' global remote online internship processes reliably and transparently from one place.
+                                    {t('about_us_university_text')}
                                 </p>
                                 <Link to="/internyUniversity">
                                     <span className="btn btn-light px-5 rounded-pill shadow-sm">
-                                        Monitor Student's Internships
+                                        {t('about_us_university_button')}
                                     </span>
                                 </Link>
                             </div>
@@ -91,7 +95,7 @@ class AboutUs extends Component {
 
 
                 <div className={`container ${styles.myCarousel}`}>
-				<div class="col-md-12" style={{"text-align":"center","margin-bottom":"30px"}}><span class="affiliate__timeline__title">Our Locations</span></div>
+				<div class="col-md-12" style={{"text-align":"center","margin-bottom":"30px"}}><span class="affiliate__timeline__title">{t('about_us_locations')}</span></div>
                 <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -157,4 +161,4 @@ class AboutUs extends Component {
     }
 }
 
-export default AboutUs;
+export default withNamespaces()(AboutUs);

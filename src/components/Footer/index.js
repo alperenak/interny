@@ -6,7 +6,9 @@ import styles from "./footer.scss";
 
 /*** Utils ***/
 import { getCookie } from "../../utils/cookie";
-
+// the hoc
+import { withNamespaces } from 'react-i18next';
+import i18n from '../../i18n';
 /*** Icons ***/
 import internyLogo from "../../assets/interny-logo-white.png";
 import facebook from "../../icons/facebook.svg";
@@ -20,7 +22,27 @@ import youtube from "../../icons/youtube.svg";
 import EarthGrid from "../../icons/earth-grid-symbol.svg";
 
 class Footer extends Component {
+	state = {
+		options: [
+			{
+				name: 'Turkish',
+				value: 'tr',
+			},
+			{
+				name: 'English',
+				value: 'en',
+			}
+		],
+		value: 'tr',
+	};
+	handleChange = (event) => {
+		this.setState({ value: event.target.value });
+		i18n.changeLanguage(event.target.value);
+	};
 	render() {
+		const { options, value } = this.state;
+		const { t } = this.props;
+
 		return (
 			<div className={"footerSection"}>
 				<div class="container" style={{"max-width":"90%"}}>
@@ -40,10 +62,7 @@ class Footer extends Component {
 										"The way to be a global intern"
 									</div>
 									<div className={"footerSection__companyDescription__description"}>
-										Provides a complete online service for anyone looking for a new
-										internship worldwide. We are not a recruitment agency. We are an
-										online internship platform that supports the intern and the
-										company from the beginning to the end of the internship process.
+										{t('footer_description')}
 									</div>
 								</div>
 							</div>
@@ -54,19 +73,19 @@ class Footer extends Component {
 											<div className={styles.knowUs}>
 												<ul>
 													<li>
-													<Link to="/aboutUs">About Us</Link>
+													<Link to="/aboutUs">{t('footer_about_us')}</Link>
 													</li>
 													<li>
-													<Link to="/helpCenter">Help Center</Link>
+													<Link to="/helpCenter">{t('footer_help_center')}</Link>
 													</li>
 													<li>
-													<Link to="/terms">Terms</Link>
+													<Link to="/terms">{t('footer_terms')}</Link>
 													</li>
 													<li>
-													<Link to="/privacy">Privacy Policy</Link>
+													<Link to="/privacy">{t('footer_privacy_policy')}</Link>
 													</li>
 													<li>
-													<Link to="/cookies">Cookies Policy</Link>
+													<Link to="/cookies">{t('footer_cookies_policy')}</Link>
 													</li>
 												</ul>
 											</div>
@@ -75,20 +94,20 @@ class Footer extends Component {
 											<div className={styles.knowUs}>
 												<ul>
 													<li>
-													<Link to="/faq">FAQ</Link>
+													<Link to="/faq">{t('footer_faq')}</Link>
 													</li>
 													<li>
-														<span>Blog</span>
+														<span>{t('footer_blog')}</span>
 													</li>
 													<li>
-													<Link to="/referrenceLetter">Reference Letter</Link>
+													<Link to="/referrenceLetter">{t('footer_reference_letter')}</Link>
 													</li>
 													<li>
-													<Link to="/gift">Gift</Link>
+													<Link to="/gift">{t('footer_gift')}</Link>
 													</li>
 													<li>
 													<a href="https://www.linkedin.com/company/internynet">
-													Careers
+														{t('footer_careers')}
 													</a>
 													</li>
 												</ul>
@@ -98,20 +117,20 @@ class Footer extends Component {
 											<div className={styles.knowUs}>
 												<ul>
 													<li v-if={!getCookie("token")}>
-														<span>Sitemap</span>
+														<span>{t('footer_sitemap')}</span>
 													</li>
 													<li>
-													<Link to="/affiliate">Affiliate</Link>
+													<Link to="/affiliate">{t('footer_affiliate')}</Link>
 													</li>
 													<li>
-													<Link to="/investor">Investor</Link>
+													<Link to="/investor">{t('footer_investor')}</Link>
 													</li>
 
 													<li>
-													<Link to="/howtocompany">INTERNY for Bussiness</Link>
+													<Link to="/howtocompany">{t('footer_interny_for_business')}</Link>
 													</li>
 													<li>
-													<Link to="/howtouniversity">INTERNY for University</Link>
+													<Link to="/howtouniversity">{t('footer_interny_for_university')}</Link>
 													</li>
 												</ul>
 											</div>
@@ -127,8 +146,12 @@ class Footer extends Component {
 									<div className={"footerSection__languages"}>
 										<div className={"selectWrapper"}>
 											<img src={EarthGrid} />
-											<select>
-												<option>English</option>
+											<select onChange={this.handleChange} value={value}>
+												{options.map(item => (
+													<option key={item.value} value={item.value}>
+														{item.name}
+													</option>
+												))}
 											</select>
 										</div>
 									</div>
@@ -147,7 +170,7 @@ class Footer extends Component {
 					<div className={"footerSection__stroke"} />
 					<div className={"footerSection__rights"}>
 						
-						2020 • INTERNY Inc. © All rights reserved.
+						2020 • INTERNY Inc. © {t('footer_all_rights_reserved')}
 						<div className={"footerSection__rights__followUs"}>
 							<a href={"https://www.facebook.com/internynet/"} target={"blank"}>
 								<img src={facebook} alt={facebook} />
@@ -175,4 +198,4 @@ class Footer extends Component {
 	}
 }
 
-export default Footer;
+export default withNamespaces()(Footer);

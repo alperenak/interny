@@ -38,6 +38,7 @@ import hiwOne from "../../icons/hiw-one.png";
 import hiwTwo from "../../icons/hiw-two.png";
 import hiwThree from "../../icons/hiw-three.png";
 import hiwFour from "../../icons/hiw-four.png";
+import { withNamespaces } from 'react-i18next';
 
 const INTERN_COMMENTS = [
 	{
@@ -113,10 +114,12 @@ class Home extends Component {
 		}
 	};
     let { items } = this.state;
-    return (
+  	const { t } = this.props;
+
+	  return (
 		<div className={"home"}>
 			<div className={"home__popularSearchSection"}>
-				<div className={"home__popularSearchTitle"}>Popular Searches</div>
+				<div className={"home__popularSearchTitle"}>{t('landing_popular_searches')}</div>
 				<ul className={"home__cities"}>
 					{this.state.cities.map((city, i) => {
 						return (
@@ -134,10 +137,10 @@ class Home extends Component {
 			<div className={"home__postsSection"}>
 				<div class="container">
 					<div className={"home__postsSection__postsTitle"}>
-						Find an Internship and Advance Your Career
+						{t('landing_internships_list_title')}
 					</div>
 					<div className={"home__postsSection__postsSubTitle"}>
-						Each month, thousands of students get career opportunities via Interny
+						{t('landing_internships_list_definition')}
 					</div>
 					<div className={"home__postsSection__cards"}>
 						<div class="row">
@@ -188,7 +191,7 @@ class Home extends Component {
 						<Button
 							to={"/search"}
 							type={"ghost"}
-							text={"Discover"}
+							text={t('landing_internships_list_discover')}
 							sizeName={"large"}
 						/>
 					</div>
@@ -199,9 +202,9 @@ class Home extends Component {
 
 			<div className={"home__companiesSection"}>
 				<div class="container">
-					<div className={"home__companiesSection__companiesTitle"}>Outstanding Companies</div>
+					<div className={"home__companiesSection__companiesTitle"}>{t('landing_outstanding_companies')}</div>
 					<div className="home__companiesSection__companiesSubTitle">
-						Each year, more than 400 million interns turn to INTERNY assearching for internships
+						{t('landing_outstanding_companies_text')}
 					</div>
 
 					<div className="home__companiesSection__companiesImages">
@@ -286,10 +289,10 @@ class Home extends Component {
 					<div class="row">
 						<div className={"home__browseJobsSection__jobsTitle"}>
 							<div>
-								Apply here for any of the thousands of internships around the world.
+								{t('landing_on_image_text')}
 							</div>
 							<Link to={"signup"} className={"prepareCv"}>
-								Sign up!
+								{t('landing_on_image_signup')}
 							</Link>
 						</div>
 					</div>
@@ -299,46 +302,44 @@ class Home extends Component {
 			</div>
 			<div className={"home__howItWorksSection"}>
 				<div class="container">
-					<div className={"home__howItWorksSection__howItWorksTitle"}>How It Works</div>
+					<div className={"home__howItWorksSection__howItWorksTitle"}>{t('landing_how_it_works')}</div>
 					<div className={"home__howItWorksSection__howItWorksSubTitle"}>
-						Each year, more than 400 million interns turn to INTERNY as
-						searching for internships, making over thousands applications every
-						day.
+						{t('landing_how_it_works_definition')}
 					</div>
 					<div class="row home__howItWorksSection__row">
 						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
 							<div className={"home__howItWorksSection__division boxAnimation2"}>
 								<img className={"home__howItWorksSection__division__topLeftIcon"} src={hiwOne}></img>
-								<div className={"home__howItWorksSection__division__title"}>Join & Apply</div>
+								<div className={"home__howItWorksSection__division__title"}>{t('landing_how_it_works_card1_title')}</div>
 								<div className={"home__howItWorksSection__division__description"}>
-									Sign up and buy the requested package. Then apply for the internships for acceptance.
+									{t('landing_how_it_works_card1_text')}
 								</div>
 							</div>
 						</div>
 						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
 							<div className={"home__howItWorksSection__division boxAnimation2"}>
 								<img className={"home__howItWorksSection__division__topLeftIcon"} src={hiwTwo}></img>
-								<div className={"home__howItWorksSection__division__title"}>Interny Competency Center: iCC™</div>
+								<div className={"home__howItWorksSection__division__title"}>{t('landing_how_it_works_card2_title')}</div>
 								<div className={"home__howItWorksSection__division__description"}>
-									Use iCC™ to prove and improve the competency to be the primary candidate if necessary.
+									{t('landing_how_it_works_card2_text')}
 								</div>
 							</div>
 						</div>
 						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
 							<div className={"home__howItWorksSection__division boxAnimation2"}>
 								<img className={"home__howItWorksSection__division__topLeftIcon"} src={hiwThree}></img>
-								<div className={"home__howItWorksSection__division__title"}>Interny Management System: iMS™</div>
+								<div className={"home__howItWorksSection__division__title"}>{t('landing_how_it_works_card3_title')}</div>
 								<div className={"home__howItWorksSection__division__description"}>
-									Use iMS™ to manage tasks assigned for the internship and to contact the company.
+									{t('landing_how_it_works_card3_text')}
 								</div>
 							</div>
 						</div>
 						<div class="col-xl-3 col-lg-6 col-md-6 col-12">
 							<div className={"home__howItWorksSection__division boxAnimation2"}>
 								<img className={"home__howItWorksSection__division__topLeftIcon"} src={hiwFour}></img>
-								<div className={"home__howItWorksSection__division__title"}>Reference Letter</div>
+								<div className={"home__howItWorksSection__division__title"}>{t('landing_how_it_works_card4_title')}</div>
 								<div className={"home__howItWorksSection__division__description"}>
-									Take your WFA report. If you're over 60% successful, get your signed Reference Letter.
+									{t('landing_how_it_works_card4_text')}
 								</div>
 							</div>
 						</div>
@@ -348,11 +349,10 @@ class Home extends Component {
 			<div className={"home__internsSaysSection"}>
 				<div class="container">
 					<div className={"home__internsSaysSection__internsSaysTitle"}>
-						What Interns Say About Us
+						{t('landing_what_interns_say_title')}
 					</div>
 					<div className={"home__internsSaysSection__internsSaysSubTitle"}>
-						Thousands of university students and recent graduates easily found
-						internships they deserve anywhere in the world
+						{t('landing_what_interns_say_text')}
 					</div>
 					<div class="row home__internsSaysSection__row">
 						{
@@ -375,9 +375,9 @@ class Home extends Component {
 			</div>
 			<div id={"packages-section"} className={"home__packagesSection"}>
 				<div class="container">
-					<div className={"home__packagesSection__packagesTitle"}>See the Intern Packages</div>
+					<div className={"home__packagesSection__packagesTitle"}>{t('landing_see_intern_packages_title')}</div>
 					<div className={"home__packagesSection__packagesSubTitle"}>
-						Click to see detail of packages
+						{t('landing_see_intern_packages_text')}
 					</div>
 					<div class="row home__packagesSection__row">
 						<div class="col-md-4">
@@ -389,26 +389,26 @@ class Home extends Component {
 								<Card type={"pricing"}>
 									<div className={"home__packagesSection__packageCard"}>
 										<div className={"home__packagesSection__packageCard__headerDiv"}>
-											<div className={"home__packagesSection__packageCard__packageTitle"}>FREEMIUM</div>
-											<div className={"home__packagesSection__packageCard__packagePrice"}>$0.00</div>
+											<div className={"home__packagesSection__packageCard__packageTitle"}>{t('landing_packages_freemium_title')}</div>
+											<div className={"home__packagesSection__packageCard__packagePrice"}>{t('landing_packages_freemium_price')}</div>
 										</div>
 										<div className={"home__packagesSection__packageCard__stroke"} />
 										<div className={"home__packagesSection__packageCard__descriptionDiv"}>
 											<div className={"home__packagesSection__packageCard__packageDescription"}>
-												<div>Sign up!</div>
-												<div>Create CV</div>
-												<div>Search Internships</div>
+												<div>{t('landing_packages_freemium_item1')}</div>
+												<div>{t('landing_packages_freemium_item2')}</div>
+												<div>{t('landing_packages_freemium_item3')}</div>
 											</div>
 											<Button
 												v-if={this.state.pri1}
 												type={"primary"}
-												text={"Details"}
+												text={t('landing_packages_details')}
 												sizeName={"default"}
 											/>
 											<Button
 												v-if={!this.state.pri1}
 												type={"ghost"}
-												text={"Details"}
+												text={t('landing_packages_details')}
 												sizeName={"default"}
 											/>
 										</div>
@@ -428,28 +428,28 @@ class Home extends Component {
 									</div>
 									<div className={"home__packagesSection__packageCardGuaranteed"}>
 										<div className={"home__packagesSection__packageCardGuaranteed__headerDiv"}>
-											<div className={"home__packagesSection__packageCardGuaranteed__packageTitle"}>INTERN</div>
-											<div className={"home__packagesSection__packageCardGuaranteed__packagePrice"}>$24.99</div>
-											<div className={"home__packagesSection__packageCardGuaranteed__packagePaymentDate"}>Per Month</div>
+											<div className={"home__packagesSection__packageCardGuaranteed__packageTitle"}>{t('landing_packages_intern_title')}</div>
+											<div className={"home__packagesSection__packageCardGuaranteed__packagePrice"}>{t('landing_packages_intern_price')}</div>
+											<div className={"home__packagesSection__packageCardGuaranteed__packagePaymentDate"}>{t('landing_packages_intern_info')}</div>
 										</div>
 										<div className={"home__packagesSection__packageCardGuaranteed__stroke"} />
 										<div className={"home__packagesSection__packageCardGuaranteed__descriptionDiv"}>
 											<div className={"home__packagesSection__packageCardGuaranteed__packageDescription"}>
-												<div>Apply for Internships</div>
-												<div class="bold" data-toggle="tooltip" title="Interny Management System">iMS™</div>
-												<div data-toggle="tooltip" title="Workforce Analytics">WFA Report</div>
-												<div>Reference Letter</div>
+												<div>{t('landing_packages_intern_item1')}</div>
+												<div class="bold" data-toggle="tooltip" title="Interny Management System">{t('landing_packages_intern_item2')}</div>
+												<div data-toggle="tooltip" title="Workforce Analytics">{t('landing_packages_intern_item3')}</div>
+												<div>{t('landing_packages_intern_item4')}</div>
 											</div>
 											<Button
 											v-if={this.state.pri2}
 											type={"primary"}
-											text={"Details"}
+											text={t('landing_packages_details')}
 											sizeName={"default"}
 											/>
 											<Button
 											v-if={!this.state.pri2}
 											type={"ghost"}
-											text={"Details"}
+											text={t('landing_packages_details')}
 											sizeName={"default"}
 											/>
 										</div>
@@ -466,27 +466,27 @@ class Home extends Component {
 								<Card type={"pricing"}>
 									<div className={"home__packagesSection__packageCard"}>
 										<div className={"home__packagesSection__packageCard__headerDiv"}>
-											<div className={"home__packagesSection__packageCard__packageTitle"}>COMPETENCY</div>
-											<div className={"home__packagesSection__packageCard__packagePrice"}>$12.49</div>
-											<div className={"home__packagesSection__packageCard__packagePaymentDate"}>Per Report</div>
+											<div className={"home__packagesSection__packageCard__packageTitle"}>{t('landing_packages_competency_title')}</div>
+											<div className={"home__packagesSection__packageCard__packagePrice"}>{t('landing_packages_competency_price')}</div>
+											<div className={"home__packagesSection__packageCard__packagePaymentDate"}>{t('landing_packages_competency_info')}</div>
 										</div>
 										<div className={"home__packagesSection__packageCard__stroke"} />
 										<div className={"home__packagesSection__packageCard__descriptionDiv"}>
 											<div className={"home__packagesSection__packageCard__packageDescription"}>
-												<div class="bold" data-toggle="tooltip" title="Interny Competency Center">iCC™</div>
-												<div >Competenct Analytics</div>
-												<div>Competency Report</div>
+												<div class="bold" data-toggle="tooltip" title="Interny Competency Center">{t('landing_packages_competency_item1')}</div>
+												<div >{t('landing_packages_competency_item2')}</div>
+												<div>{t('landing_packages_competency_item3')}</div>
 											</div>
 											<Button
 												v-if={this.state.pri3}
 												type={"primary"}
-												text={"Details"}
+												text={t('landing_packages_details')}
 												sizeName={"default"}
 											/>
 											<Button
 												v-if={!this.state.pri3}
 												type={"ghost"}
-												text={"Details"}
+												text={t('landing_packages_details')}
 												sizeName={"default"}
 											/>
 										</div>
@@ -504,4 +504,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withNamespaces()(Home);

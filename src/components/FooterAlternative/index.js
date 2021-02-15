@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { withNamespaces } from 'react-i18next';
 
 /*** Styles ***/
 import styles from "./footerAlternative.scss";
@@ -18,13 +19,14 @@ import EarthGrid from "../../icons/earth-grid-symbol.svg";
 
 class FooterAlternative extends Component {
 	render() {
+		const {t} = this.props;
 		return (
 			<div className={"footerSection2"}>
 				<div class="container">
 					<div class="row">
 						<div class="col-md-4">
 							<div className={"footerSection2__rights"}>
-								2020 • INTERNY Inc. © All rights reserved.
+								2020 • INTERNY Inc. © {t('footer_all_rights_reserved')}
 							</div>
 						</div>
 						<div class="col-md-8">
@@ -33,33 +35,33 @@ class FooterAlternative extends Component {
 							<div className={"footerSection2__options"}>
 								<ul className={"footerSection2__options__links"}>
 									<li>
-										<Link to="/aboutUs">About Us</Link>
+										<Link to="/aboutUs">{t('footer_about_us')}</Link>
 									</li>
 									<li>
 									<span className={"dot"}></span>
 									</li>
 									<li>
 										<a href="https://www.linkedin.com/company/internynet">
-											Careers
+											{t('footer_careers')}
 										</a>
 									</li>
 									<li>
 									<span className={"dot"}></span>
 									</li>
 									<li>
-										<Link to="/helpCenter">Help Center</Link>
+										<Link to="/helpCenter">{t('footer_help_center')}</Link>
 									</li>
 									<li>
 									<span className={"dot"}></span>
 									</li>
 									<li>
-										<Link to="/search/null/null">Internships</Link>
+										<Link to="/search/null/null">{t('footer_internships')}</Link>
 									</li>
 									<li>
 									<span className={"dot"}></span>
 									</li>
 									<li>
-										<Link to="/faq">FAQ</Link>
+										<Link to="/faq">{t('footer_faq')}</Link>
 									</li>
 								</ul>
 							</div>
@@ -73,4 +75,4 @@ class FooterAlternative extends Component {
 	}
 }
 
-export default FooterAlternative;
+export default withNamespaces()(FooterAlternative);

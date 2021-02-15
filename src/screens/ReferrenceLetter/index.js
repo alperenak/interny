@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./referrenceLetter.scss";
+import { withNamespaces } from 'react-i18next';
 
 // Components
 import Input from "../../components/Input";
@@ -34,6 +35,7 @@ class ReferrenceLetter extends Component {
 	}
 
 	render() {
+		const {t} = this.props;
 		return (
 			<div className="pageWrapper">
 				<div className={"referrenceLetter"}>
@@ -45,14 +47,14 @@ class ReferrenceLetter extends Component {
 						<div className={"referrenceLetter__modal"}>
 							<div class="row">
 								<div class="col-md-12">
-									<div className={"referrenceLetter__header"}>Referrence Letter</div>
+									<div className={"referrenceLetter__header"}>{t('reference_letter_title')}</div>
 									<div className={"referrenceLetter__description"}>
-										Enter the details below. Then you can check the Referrence Letter.
+										{t('reference_letter_text')}
 									</div>
 								</div>
 								<div class="col-md-6">
 									<Input
-										label={'Referrence Letter Code'}
+										label={t('reference_letter_code')}
 										type="text"
 										size={'large'}
 										placeholder="Referrence Letter Code"
@@ -61,7 +63,7 @@ class ReferrenceLetter extends Component {
 								</div>
 								<div class="col-md-6">
 									<Input
-										label={'Intern Last Name'}
+										label={t('reference_letter_intern_last_name')}
 										type="text"
 										size={'large'}
 										placeholder="Intern Last Name"
@@ -72,7 +74,7 @@ class ReferrenceLetter extends Component {
 									<div className={"referrenceLetter__buttonWrapper"} >
 										<Button
 											type='secondary'
-											text='Download'
+											text={t('reference_letter_download')}
 											textClass='referrenceLetter__buttonWrapper__text'
 											onButtonClick={this.handleDownloadClick}
 										/>
@@ -88,4 +90,4 @@ class ReferrenceLetter extends Component {
 	}
 }
 
-export default ReferrenceLetter;
+export default withNamespaces()(ReferrenceLetter);

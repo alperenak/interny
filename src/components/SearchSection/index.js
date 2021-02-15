@@ -16,6 +16,7 @@ import closeIcon from "../../icons/close-outline.svg";
 /*** Store ***/
 import store from "../../store";
 import { getCookie, setCookie } from "../../utils/cookie";
+import { withNamespaces } from 'react-i18next';
 
 class SearchSection extends Component {
   state = {
@@ -510,9 +511,8 @@ class SearchSection extends Component {
 
 	render() {
 		let { keyword, location } = this.state;
-		let { browseInternship } = this.props;
+		let { browseInternship ,t } = this.props;
 		const backgroundImageClass = this.props.consentTaken ? "searchSection__backgroundImageCookiesGone" : "searchSection__backgroundImage"
-
 		return (
 			<div className={`${"searchSection"} ${this.props.page === "home" && backgroundImageClass}`}>
 				<div class="searchSection__bgColor">
@@ -520,11 +520,11 @@ class SearchSection extends Component {
 						<div class="row">
 							<div class="col-md-12">
 								<div v-if={this.props.page === "home"} className={"searchSection__slogan"}>
-									The <span style={{ color: "#f97050" }}>Easiest</span> Way to Get Your{" "}
-									<span style={{ color: "#696cff" }}>New Internship</span>
+									{t('landing_search_title_word')} <span style={{ color: "#f97050" }}>{t('landing_search_title_word_orange')}</span> {t('landing_search_title_word_word2')}{" "}
+									<span style={{ color: "#696cff" }}>{t('landing_search_title_word_blue')}</span> {t('landing_search_title_word_word3')}
 								</div>
 								<div v-if={this.props.page === "home"} className={"searchSection__subSlogan"}>
-									Find the career you deserve
+									{t('landing_search_title2')}
 								</div>
 							</div>
 						</div>
@@ -537,10 +537,10 @@ class SearchSection extends Component {
 											placeholder={"Software Developer"}
 											size={"full"}
 											icon={{ src: searchIcon, position: "right" }}
-											labelDescription={"Enter position name, keyword or company name"}
-											defaultValue={keyword !== "null" ? keyword : ""}
+											labelDescription={t('landing_search_keyword_definition')
+									}											defaultValue={keyword !== "null" ? keyword : ""}
 											onChange={(value) => this.setState({ keyword: value })}
-											label={"Keyword"}
+											label={t('landing_search_keyword')}
 										/>
 									</div>
 								</div>
@@ -551,10 +551,10 @@ class SearchSection extends Component {
 											placeholder={"Istanbul, Turkey"}
 											size={"full"}
 											icon={{ src: locationIcon, position: "right" }}
-											labelDescription={"Enter city name, country or state name"}
+											labelDescription={t('landing_search_location_definition')}
 											defaultValue={location !== "null" ? location : ""}
 											onChange={(value) => this.setState({ location: value })}
-											label={"Location"}
+											label={t('landing_search_location')}
 										/>
 									</div>
 								</div>
@@ -562,7 +562,7 @@ class SearchSection extends Component {
 									<div className={"searchSection__searchBars__findJob"}>
 										<Button
 											type={"secondary"}
-											text={"Find Internship"}
+											text={t('landing_search_find_button')}
 											sizeName={"large"}
 											to={`/search/${keyword ? keyword : null}/${
 											location ? location : null
@@ -595,9 +595,9 @@ class SearchSection extends Component {
 
 					<div v-if={this.props.page === "home"} className={"searchSection__prepareCv"}>
 						<Link to={"SignUp"} className={"underlined"}>
-							Prepare your CV
+									{t('landing_prepare_cv')}
 						</Link>{" "}
-						- Easily apply to thousands of jobs from anywhere
+						- {t('landing_prepare_cv_definition')}
 					</div>
 					<Fragment v-else>
 						<ul className={"searchSection__searches"}>
@@ -663,4 +663,4 @@ class SearchSection extends Component {
 	}
 }
 
-export default SearchSection;
+export default withNamespaces()(SearchSection);
