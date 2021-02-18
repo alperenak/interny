@@ -46,7 +46,7 @@ class Dashboard extends Component {
                         <Chart type={'pie'} header={'Task Progress'}/>
                     </div>
                 </div>
-                <div className={styles.col2}>
+                <div className={styles.col2}> 
                     <div className={styles.numericCardContainer}>
                         <Card type={'numeric'}>
                             <div className={styles.numericDataContainer}>+165</div>

@@ -1,5 +1,4 @@
 @import '../../helpers/responsiveBreakpointsMixins.scss' ;
-
 .Chart {
   @include medium{
     display: flex;
@@ -21,8 +20,14 @@
     letter-spacing: -0.17px;
     color: #2c3f58;
   }
-  & .pieDiagram{
-
+  & .pieDiagram {
+    margin-left: -30px;
+    margin-top: -24px;
   }
 }
 
+.recharts-surface {
+  @include medium{
+    transform: scale(0.3);
+  }
+}

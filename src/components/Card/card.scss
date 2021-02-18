@@ -114,8 +114,8 @@
   }
 
   &.table {
-    height: 191px;
-    width: 400px;
+    max-height: 400px;
+    width: 500px;
     margin: 10px 10px 20px;
     overflow: hidden;
 
@@ -180,7 +180,7 @@
 
   &.chart {
     height: 350px;
-    width: 400px;
+    width: 500px;
     margin: 10px;
 
     @include medium {

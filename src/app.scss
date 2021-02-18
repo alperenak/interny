@@ -1,41 +1,37 @@
-@import './helpers/responsiveBreakpointsMixins.scss';
+@import "./helpers/responsiveBreakpointsMixins.scss";
 
 * {
   box-sizing: border-box;
 }
 
 .App {
-
-  background-color: #EFF2FC;
+  background-color: #eff2fc;
   // width: calc(100% - 208px);
   // height: calc(100% - 144px);
   // padding: 112px 64px 32px 144px;
   // position: relative;
 
-
   &.fullScreen {
     width: unset;
-
 
     // @include small {
     //   padding: 112px 5% 32px 5%;
     // }
-    &.paddingTop{
+    &.paddingTop {
       padding-top: 112px;
     }
   }
 
   & .hidden {
     bottom: -100px !important;
-    opacity: 0!important;
+    opacity: 0 !important;
   }
 
   & .myCookie {
-
     & * {
       box-sizing: content-box;
     }
-    transition: .8s cubic-bezier(0.48, -0.62, 0.51, 1.68);
+    transition: 0.8s cubic-bezier(0.48, -0.62, 0.51, 1.68);
     opacity: 1;
     max-width: 50rem;
     margin-left: auto;
@@ -56,9 +52,7 @@
     z-index: 900;
     text-align: center;
     opacity: 0.8;
-
   }
-
 
   & .temp {
     display: flex;
@@ -77,4 +71,37 @@
     -webkit-box-shadow: 0 0 0 30px white inset !important;
     -webkit-text-fill-color: #2c3f58 !important;
   }
+}
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+::-webkit-scrollbar-button {
+  width: 3px;
+  height: 3px;
+}
+::-webkit-scrollbar-thumb {
+  background: #2c3f58;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #253346;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #1d2734;
+}
+::-webkit-scrollbar-track {
+  background: #c2c2c2;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #c2c2c2;
+}
+::-webkit-scrollbar-track:active {
+  background: #d6d6d6;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
 }

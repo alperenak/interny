@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import CookieConsent from 'react-cookie-consent-notification';
+import CookieConsent from "react-cookie-consent-notification";
 
 /*** Components ***/
 import TopBar from "./components/TopBar";
@@ -33,7 +33,7 @@ import CourseDetail from "./screens/CourseDetail";
 import UniverstyDashboard from "./screens/universtyDashboard/universtyDashboard";
 import InternDetail from "./screens/InternDetail";
 import UpdatePassword from "./screens/UpdatePassword";
-import Cookies from "./screens/Cookies"
+import Cookies from "./screens/Cookies";
 import ReferrenceLetter from "./screens/ReferrenceLetter";
 import ReferrenceLetterLetter from "./screens/ReferrenceLetterLetter";
 import HelpCenter from "./screens/HelpCenter";
@@ -45,6 +45,7 @@ import styles from "./app.scss";
 /*** Utils ***/
 import { eraseCookie, getCookie } from "./utils/cookie";
 import store from "./store";
+import Campaign from "./screens/Campaign";
 
 class App extends React.Component {
   state = {
@@ -55,21 +56,20 @@ class App extends React.Component {
     modal: {
       header: "",
       declaration: "",
-      size: 'small',
-      backgroundColor: '#fff',
+      size: "small",
+      backgroundColor: "#fff",
       content: {},
       buttons: [],
       visibility: false,
       isInternshipBegun: false,
       /*default: null*/
-      selectedJobID: '5f640f3dc782454860f792f1',
+      selectedJobID: "5f640f3dc782454860f792f1",
     },
     consentTaken: false,
-
   };
 
   selectJobID(selectedJobID, callback = () => null) {
-    this.setState({ selectedJobID }, callback.bind(this))
+    this.setState({ selectedJobID }, callback.bind(this));
   }
 
   async componentDidMount() {
@@ -108,31 +108,62 @@ class App extends React.Component {
     }
   };
 
-  createModal = ({ header, declaration, backgroundColor = '#fff', content, buttons, size = 'small' }) => {
+  createModal = ({
+    header,
+    declaration,
+    backgroundColor = "#fff",
+    content,
+    buttons,
+    size = "small",
+  }) => {
     this.setState({
-      modal: { header, declaration, backgroundColor, content, buttons, size, visibility: true },
+      modal: {
+        header,
+        declaration,
+        backgroundColor,
+        content,
+        buttons,
+        size,
+        visibility: true,
+      },
     });
   };
 
   closeModal = () => {
     this.setState({
-      modal: { header: "", declaration: "", backgroundColor: '#fff', size: 'small', visibility: false },
+      modal: {
+        header: "",
+        declaration: "",
+        backgroundColor: "#fff",
+        size: "small",
+        visibility: false,
+      },
     });
   };
 
   checkStatus = (status) => {
     console.log(status);
-    if(status){
-      this.setState({consentTaken:true})
+    if (status) {
+      this.setState({ consentTaken: true });
     }
-  }
-
-
+  };
 
   render() {
-    let { isAuthorized, user, modal, userType, isInternshipBegun, selectedJobID, loading } = this.state;
-    const cookieClass = this.state.consentTaken ? `${styles.hidden} ${styles.myCookie}` : styles.myCookie
-    const appClass = this.state.consentTaken ? `${styles.App} ${styles.fullScreen} ${styles.paddingTop}` : `${styles.App} ${styles.fullScreen}`
+    let {
+      isAuthorized,
+      user,
+      modal,
+      userType,
+      isInternshipBegun,
+      selectedJobID,
+      loading,
+    } = this.state;
+    const cookieClass = this.state.consentTaken
+      ? `${styles.hidden} ${styles.myCookie}`
+      : styles.myCookie;
+    const appClass = this.state.consentTaken
+      ? `${styles.App} ${styles.fullScreen} ${styles.paddingTop}`
+      : `${styles.App} ${styles.fullScreen}`;
 
     return (
       <div className={appClass}>
@@ -140,14 +171,16 @@ class App extends React.Component {
         <CookieConsent
           consentFunction={this.checkStatus}
           className={cookieClass}
-          buttonText={'Allow'}
-          buttonBackground={'#EFF2FC'}
-          buttonColor={'#112B49'}
+          buttonText={"Allow"}
+          buttonBackground={"#EFF2FC"}
+          buttonColor={"#112B49"}
         >
-          This website uses cookies to improve
-          service, for analytical and advertising purposes.
-          Please read our <a href={'/cookies'} style={{color: '#EFF2FC'}}>Cookie Policy</a>.
-          Confirm your consent to the use of cookies.
+          This website uses cookies to improve service, for analytical and
+          advertising purposes. Please read our{" "}
+          <a href={"/cookies"} style={{ color: "#EFF2FC" }}>
+            Cookie Policy
+          </a>
+          . Confirm your consent to the use of cookies.
         </CookieConsent>
         <Router>
           <Route
@@ -177,13 +210,21 @@ class App extends React.Component {
               <Dashboard v-if={userType === "employer"} />
             </Route>
             <Route v-else exact path="/">
-              <SearchSection v-if={!isAuthorized} page={"home"} consentTaken={this.state.consentTaken} />
+              <SearchSection
+                v-if={!isAuthorized}
+                page={"home"}
+                consentTaken={this.state.consentTaken}
+              />
 
               <Home />
             </Route>
             <Route
               path="/search/:keyword/:location"
               render={(props) => <LandingPageSearch {...props} />}
+            />
+            <Route
+              path="/campaign"
+              render={(props) => <Campaign {...props} />}
             />
             <Route
               path="/search"
@@ -256,7 +297,7 @@ class App extends React.Component {
                 />
               )}
             />
-			<Route
+            <Route
               path="/Cvdetail/:id"
               render={(props) => (
                 <CVs
@@ -370,10 +411,7 @@ class App extends React.Component {
               path="/faq"
               render={(props) => <FrequentlyAskedQuestions {...props} />}
             />
-            <Route
-              path="/cookies"
-              render={(props) => <Cookies {...props} />}
-            />
+            <Route path="/cookies" render={(props) => <Cookies {...props} />} />
             <Route
               path="/referrenceLetter"
               render={(props) => <ReferrenceLetter {...props} />}
@@ -386,26 +424,23 @@ class App extends React.Component {
               path="/helpCenter"
               render={(props) => <HelpCenter {...props} />}
             />
+            <Route path="/aboutUs" render={(props) => <AboutUs {...props} />} />
             <Route
-                path="/aboutUs"
-                render={(props) => <AboutUs {...props} />}
-            />
-            <Route
-                v-if={!getCookie('token')}
-                path="/updatepassword/:userType/:verificationKey"
-                render={(props) =>
-                    <UpdatePassword
-                        {...props}
-                        closeModal={this.closeModal}
-                        createModal={this.createModal}
-                    />
-                }
+              v-if={!getCookie("token")}
+              path="/updatepassword/:userType/:verificationKey"
+              render={(props) => (
+                <UpdatePassword
+                  {...props}
+                  closeModal={this.closeModal}
+                  createModal={this.createModal}
+                />
+              )}
             />
             <Route path="/error" render={(props) => <Error {...props} />} />
           </Switch>
         </Router>
       </div>
-        );
+    );
   }
 }
 
