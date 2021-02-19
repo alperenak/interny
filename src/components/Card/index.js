@@ -18,22 +18,32 @@ import InternList from "./sub-components/InternList";
 
 /*** Styles ***/
 import styles from "./card.scss";
+import CampaignCard from "./sub-components/Campaign";
 
 class Card extends Component {
   render() {
-    let { type, header, children, iconName, backgroundColor = '#fff', posts } = this.props;
-  var className = "Card";
-  if(iconName == "bell"){
-    className += " bellDropDown";
-  }
-	if(type == "jobPost" || type == "pricing"){
-		if(typeof this.props.anim === "undefined"){
-			className += " boxAnimation";
-		}
-
-	}
+    let {
+      type,
+      header,
+      children,
+      iconName,
+      backgroundColor = "#fff",
+      posts,
+    } = this.props;
+    var className = "Card";
+    if (iconName == "bell") {
+      className += " bellDropDown";
+    }
+    if (type == "jobPost" || type == "pricing") {
+      if (typeof this.props.anim === "undefined") {
+        className += " boxAnimation";
+      }
+    }
     return (
-      <div className={`${className} ${type} ${posts.length > 1 && "multiple"}`} style={{ backgroundColor }}>
+      <div
+        className={`${className} ${type} ${posts.length > 1 && "multiple"}`}
+        style={{ backgroundColor }}
+      >
         <div
           v-if={header}
           className={`${"cardHeader"} ${header.position}`}
@@ -51,6 +61,7 @@ class Card extends Component {
         <DropDown v-if={type === "dropDown"} {...this.props} />
         <JobDetail v-if={type === "jobDetail"} {...this.props} />
         <CoverLetter v-if={type === "coverLetter"} {...this.props} />
+        <CampaignCard v-if={type === "campaign"} {...this.props} />
         <CompanyProfile v-if={type === "companyProfile"} {...this.props} />
         <InternList v-if={type === "internList"} {...this.props} />
         <Authentication

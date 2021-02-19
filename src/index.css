@@ -1,24 +1,19 @@
 @font-face {
+  font-family: "Sofia Pro";
 
-  font-family: 'Sofia Pro';
+  src: url("./assets/SofiaProRegular.ttf"); /* IE9 Compat Modes */
 
-  src: url('./assets/SofiaProRegular.ttf'); /* IE9 Compat Modes */
-
-  src: local('Sofia Pro'), local('SofiaPro'),
-
-  url('./assets/SofiaProRegular.ttf') format('truetype'); /* Safari, Android, iOS */
-
+  src: local("Sofia Pro"), local("SofiaPro"),
+    url("./assets/SofiaProRegular.ttf") format("truetype"); /* Safari, Android, iOS */
 }
 
 @font-face {
-  font-family: 'Sofia Pro Bold';
+  font-family: "Sofia Pro Bold";
 
-  src: url('./assets/Sofia Pro Bold.ttf'); /* IE9 Compat Modes */
+  src: url("./assets/Sofia Pro Bold.ttf"); /* IE9 Compat Modes */
 
-  src: local('Sofia Pro Bold'), local('SofiaProBold'),
-
-  url('./assets/Sofia Pro Bold.ttf') format('truetype'); /* Safari, Android, iOS */
-
+  src: local("Sofia Pro Bold"), local("SofiaProBold"),
+    url("./assets/Sofia Pro Bold.ttf") format("truetype"); /* Safari, Android, iOS */
 }
 
 body {
@@ -26,11 +21,16 @@ body {
   font-family: "Sofia Pro";
 }
 
-input, textarea {
+input,
+textarea {
   font-family: "Sofia Pro";
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+html {
+  scroll-behavior: smooth;
 }
