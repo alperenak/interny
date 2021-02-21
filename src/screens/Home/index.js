@@ -495,11 +495,13 @@ class Home extends Component {
                           type={"primary"}
                           text={t("landing_packages_details")}
                           sizeName={"default"}
+                          onButtonClick={() => alert("")}
                         />
                         <Button
                           v-if={!this.state.pri1}
                           type={"ghost"}
                           text={t("landing_packages_details")}
+                          onButtonClick={() => alert("")}
                           sizeName={"default"}
                         />
                       </div>

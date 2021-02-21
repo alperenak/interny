@@ -27,7 +27,7 @@ class InternPool extends Component {
   state = {
     courses: [],
     company: {},
-    processing: false
+    processing: false,
   };
 
   async componentDidMount() {
@@ -53,8 +53,7 @@ class InternPool extends Component {
       },
     });
 
-    if (resCompany)
-      this.setState({ processing: false })
+    if (resCompany) this.setState({ processing: false });
   }
 
   createCourse = () => {
@@ -70,38 +69,44 @@ class InternPool extends Component {
     let userType = getCookie("user");
     let { courses, company, processing } = this.state;
     return (
-			<div className="pageWrapper">
-				<div className={"referrenceLetter"}>
-					<LoadingModal text="Loading" v-if={this.state.processing} />
-					<div class="container">
-						<div style={{ display: 'flex', justifyContent: 'center' }}>
-							<img className="referrenceLetter__image" src={image} alt="Intern Pool" />
-						</div>
-						<div className={"referrenceLetter__modal"}>
-							<div class="row">
-								<div class="col-md-12">
-									<div className={"referrenceLetter__header"}>Intern Pool </div>
-									<div className={"referrenceLetter__description"}>
-                    Welcome to the Global Intern Pool. You need to purchase the BUSINESS package or HIRING package to use this service. Click to buy.
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div className={"referrenceLetter__buttonWrapper"} >
-										<Button
-											type='secondary'
-											text='Learn More'
-											to={"/internyBusiness"} 
-											textClass='referrenceLetter__buttonWrapper__text'
-										/>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<FooterAlternative />
-			</div>
-		);
+      <div className="pageWrapper">
+        <div className={"referrenceLetter"}>
+          <LoadingModal text="Loading" v-if={this.state.processing} />
+          <div class="container">
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <img
+                className="referrenceLetter__image"
+                src={image}
+                alt="Intern Pool"
+              />
+            </div>
+            <div className={"referrenceLetter__modal"}>
+              <div class="row">
+                <div class="col-md-12">
+                  <div className={"referrenceLetter__header"}>Intern Pool </div>
+                  <div className={"referrenceLetter__description"}>
+                    Welcome to the Global Intern Pool. You need to purchase the
+                    BUSINESS package or HIRING package to use this service.
+                    Click to buy.
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div className={"referrenceLetter__buttonWrapper"}>
+                    <Button
+                      type="secondary"
+                      text="Learn More"
+                      to={"/howtocompany"}
+                      textClass="referrenceLetter__buttonWrapper__text"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <FooterAlternative />
+      </div>
+    );
     /* <div className={styles.MyCourses}>
         <div className={styles.cards}>
           <div className={styles.courses}>

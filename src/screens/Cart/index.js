@@ -1,67 +1,69 @@
-import React, { useState, useEffect } from 'react';
-import styles from './cart.scss';
-import Card from '../../components/Card';
-import store from '../../store';
-import { getCookie } from '../../utils/cookie';
-import { loadStripe } from '@stripe/stripe-js';
+import React, { useState, useEffect } from "react";
+import styles from "./cart.scss";
+import Card from "../../components/Card";
+import store from "../../store";
+import { getCookie } from "../../utils/cookie";
+import { loadStripe } from "@stripe/stripe-js";
 
 const index = () => {
   const [cartItems, setCartItems] = useState([]);
   const [packages, setPackage] = useState(null);
   const [quant, setQuant] = useState(null);
-
+  const [cartData, setCartData] = useState([]);
   const stripePromise = loadStripe(
-    'pk_test_51HbnvBEexm5jHOGxsnPBjTeexZZrnUKtEubUerAetv5O2Fljp44qfZrkAAhxrfjbZV5eQXXMu7MUFtRlGCOw1yYa00uN8yHFlW'
+    "pk_test_51HbnvBEexm5jHOGxsnPBjTeexZZrnUKtEubUerAetv5O2Fljp44qfZrkAAhxrfjbZV5eQXXMu7MUFtRlGCOw1yYa00uN8yHFlW"
   );
 
   const quantityButtons = [
     {
-      type: 'primary',
-      text: '+1',
-      sizeName: 'small',
-      width: '85px',
-      onButtonClick: async () => {
-        console.log('add 1?');
-      },
+      type: "primary",
+      text: "+1",
+      sizeName: "small",
+      width: "85px",
+      onButtonClick: async () => {},
     },
   ];
 
   const INTERN_PACKAGES = {
     competency: {
-      id: 'competency',
-      name: 'Competency Package',
+      id: "competency",
+      name: "Competency Package",
       price: 1249,
-      currency: 'usd',
+      currency: "usd",
       img:
-        'https://cdn.shopify.com/s/files/1/0142/5565/2928/products/premium_package_260x.png',
+        "https://cdn.shopify.com/s/files/1/0142/5565/2928/products/premium_package_260x.png",
     },
     intern: {
-      id: 'intern',
-      name: 'Intern Package',
+      id: "intern",
+      name: "Intern Package",
       price: 2449,
-      currency: 'usd',
+      currency: "usd",
       img:
-        'https://cdn.shopify.com/s/files/1/0142/5565/2928/products/premium_package_260x.png',
+        "https://cdn.shopify.com/s/files/1/0142/5565/2928/products/premium_package_260x.png",
     },
     freemium: {
-      id: 'freemium',
-      name: 'Freemium Package',
+      id: "freemium",
+      name: "Freemium Package",
       price: 0,
-      currency: 'usd',
+      currency: "usd",
       img:
-        'https://cdn.shopify.com/s/files/1/0142/5565/2928/products/premium_package_260x.png',
+        "https://cdn.shopify.com/s/files/1/0142/5565/2928/products/premium_package_260x.png",
     },
   };
+  useEffect(() => {
+    let getCartData = JSON.parse(localStorage.getItem("cartData"));
+    setCartData(getCartData);
+  }, []);
 
   useEffect(() => {
     if (packages === null) {
       setPackage(
-        INTERN_PACKAGES[JSON.parse(localStorage.getItem('cartItems'))]
+        INTERN_PACKAGES[JSON.parse(localStorage.getItem("cartItems"))]
       );
     }
 
     if (packages) {
-      setQuant(JSON.parse(localStorage.getItem('quantity')));
+      setQuant(JSON.parse(localStorage.getItem("quantity")));
       setCartItems([
         {
           package: packages.id,
@@ -71,55 +73,53 @@ const index = () => {
         },
       ]);
     }
-  }, [packages, JSON.parse(localStorage.getItem('quantity'))]);
+  }, [packages, JSON.parse(localStorage.getItem("quantity"))]);
 
   const COMPANY_PACKAGES = {
     hiring: {
       price: 4999,
-      name: 'Hiring Package',
-      currency: 'usd',
+      name: "Hiring Package",
+      currency: "usd",
       img:
-        'https://cdn.shopify.com/s/files/1/0142/5565/2928/products/premium_package_260x.png',
+        "https://cdn.shopify.com/s/files/1/0142/5565/2928/products/premium_package_260x.png",
     },
     business: {
       price: 4999,
-      currency: 'usd',
-      name: 'Business Package',
+      currency: "usd",
+      name: "Business Package",
       img:
-        'https://cdn.shopify.com/s/files/1/0142/5565/2928/products/premium_package_260x.png',
+        "https://cdn.shopify.com/s/files/1/0142/5565/2928/products/premium_package_260x.png",
     },
     elearning: {
       price: 2999,
-      currency: 'usd',
-      name: 'E-Learning Package',
+      currency: "usd",
+      name: "E-Learning Package",
       img:
-        'https://cdn.shopify.com/s/files/1/0142/5565/2928/products/premium_package_260x.png',
+        "https://cdn.shopify.com/s/files/1/0142/5565/2928/products/premium_package_260x.png",
     },
   };
 
   const payButton = [
     {
-      type: 'primary',
-      text: 'Pay with stripe',
-      sizeName: 'large',
-      width: '85px',
+      type: "primary",
+      text: "Pay with stripe",
+      sizeName: "large",
+      width: "85px",
       onButtonClick: async () => {
         const items = cartItems.map((item) => {
           return {
             ...item,
-            quantity: JSON.parse(localStorage.getItem('quantity')),
+            quantity: JSON.parse(localStorage.getItem("quantity")),
           };
         });
         const stripe = await stripePromise;
-
         const response = await fetch(
-          'https://interny-backend-prod.herokuapp.com/payment/intern/5f5145c6cb4ec4130143bbd4',
+          "https://interny-backend-prod.herokuapp.com/payment/intern/5f5145c6cb4ec4130143bbd4",
           {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               packages: items,
-              // packages: cartItems,
             }),
           }
         );
@@ -132,35 +132,44 @@ const index = () => {
         });
         console.log(result);
         if (result.error) {
-          console.log('error');
+          console.log("error");
         }
       },
     },
   ];
+  let quantity = localStorage.getItem("quantity");
   const paymentItems = [
     {
       id: 1,
-      header: 'Total: xxx$',
+      header: `Total:${
+        localStorage.getItem("cartData") !== null
+          ? (
+              Number(
+                JSON.parse(localStorage.getItem("cartData")).price.slice(1)
+              ) * Number(quantity)
+            ).toFixed(2)
+          : ""
+      } $`,
       buttons: payButton,
     },
   ];
 
   return (
-    <div style={{ 'background-color': '#f6f8fa', minHeight: '100vh' }}>
-      <div className='cart'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-md-8'>
+    <div style={{ "background-color": "#f6f8fa", minHeight: "100vh" }}>
+      <div className="cart">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-8">
               <Card
-                header={{ text: 'Cart Items', position: 'center' }}
-                type={'cartItem'}
+                header={{ text: "Cart Items", position: "center" }}
+                type={"cartItem"}
                 items={cartItems}
               />
             </div>
-            <div className='col-md-4'>
+            <div className="col-md-4">
               <Card
-                header={{ text: 'Payment', position: 'center' }}
-                type={'cartItem'}
+                header={{ text: "Payment", position: "center" }}
+                type={"cartItem"}
                 items={paymentItems}
               />
             </div>

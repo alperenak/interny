@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import styles from './style.scss';
+import React, { Component } from "react";
+import styles from "./style.scss";
 
 // Components
-import Button from '../../components/Button';
-import Card from '../../components/Card';
+import Button from "../../components/Button";
+import Card from "../../components/Card";
 
 export default class BusinessPackage extends Component {
   constructor(props) {
@@ -16,9 +16,10 @@ export default class BusinessPackage extends Component {
     };
   }
 
-  addToCart = (id) => {
-    console.log(id);
-    localStorage.setItem('cartItems', JSON.stringify(id));
+  addToCart = (buyingData) => {
+    localStorage.setItem("cartData", JSON.stringify(buyingData));
+    localStorage.setItem("cartItems", JSON.stringify(buyingData.id));
+    localStorage.setItem("quantity", JSON.stringify(1));
   };
 
   renderPackageCard = (packageData, moneyBackGuaranteed) => {
@@ -29,30 +30,30 @@ export default class BusinessPackage extends Component {
         onMouseEnter={() => this.setState({ [packageData.id]: true })}
         className={styles.frontier}
       >
-        <Card type={'pricing'}>
-          {this.props.type == 'intern'
-            ? moneyBackGuaranteed && <div className={'moneyGuarenteed'}></div>
+        <Card type={"pricing"}>
+          {this.props.type == "intern"
+            ? moneyBackGuaranteed && <div className={"moneyGuarenteed"}></div>
             : null}
 
-          <div className='home__packagesSection__packageCard'>
-            <div className='home__packagesSection__packageCard__headerDiv'>
-              <div className='home__packagesSection__packageCard__packageTitle'>
+          <div className="home__packagesSection__packageCard">
+            <div className="home__packagesSection__packageCard__headerDiv">
+              <div className="home__packagesSection__packageCard__packageTitle">
                 {packageData.title}
               </div>
-              <div className='home__packagesSection__packageCard__packagePrice'>
+              <div className="home__packagesSection__packageCard__packagePrice">
                 {packageData.price}
               </div>
-              <div className='home__packagesSection__packageCard__packagePaymentDate'>
+              <div className="home__packagesSection__packageCard__packagePaymentDate">
                 {packageData.payment}
               </div>
             </div>
-            <div className='home__packagesSection__packageCard__stroke' />
-            <div className='home__packagesSection__packageCard__descriptionDiv'>
-              <div className='home__packagesSection__packageCard__packageDescription'>
+            <div className="home__packagesSection__packageCard__stroke" />
+            <div className="home__packagesSection__packageCard__descriptionDiv">
+              <div className="home__packagesSection__packageCard__packageDescription">
                 {packageData.highlights.map((highlight, index) => {
                   return (
                     <div
-                      data-toggle='tooltip'
+                      data-toggle="tooltip"
                       title={highlight.description}
                       key={index}
                     >
@@ -63,16 +64,41 @@ export default class BusinessPackage extends Component {
               </div>
               <Button
                 v-if={isHovered}
-                type={'primary'}
-                text={'Buy Now'}
-                sizeName={'default'}
-                onButtonClick={this.addToCart(packageData.id)}
+                type={"primary"}
+                text={"Buy Now"}
+                to={packageData.id === "freemium" ? "/login/Intern" : "/cart"}
+                sizeName={"default"}
+                onButtonClick={() => {
+                  if (packageData.id !== "freemium") {
+                    let buyingData = {
+                      id: packageData.id,
+                      title: packageData.title,
+                      price: packageData.price,
+                      payment: packageData.payment,
+                    };
+                    this.addToCart(buyingData);
+                  }
+                }}
               />
               <Button
                 v-if={!isHovered}
-                type={'ghost'}
-                text={'Buy Now'}
-                sizeName={'default'}
+                to={
+                  packageData.title === "FREEMIUM" ? "/login/Intern" : "/cart"
+                }
+                type={"ghost"}
+                text={"Buy Now"}
+                sizeName={"default"}
+                onButtonClick={() => {
+                  if (packageData.id !== "freemium") {
+                    let buyingData = {
+                      id: packageData.id,
+                      title: packageData.title,
+                      price: packageData.price,
+                      payment: packageData.payment,
+                    };
+                    this.addToCart(buyingData);
+                  }
+                }}
               />
             </div>
           </div>
@@ -86,20 +112,20 @@ export default class BusinessPackage extends Component {
     const { title, subtitle, packagesData } = this.props;
 
     return (
-      <div id={'packages-section'} className='home__packagesSection'>
-        <div className='container'>
-          <div className='home__packagesSection__packagesTitle'>{title}</div>
-          <div className='home__packagesSection__packagesSubTitle'>
+      <div id={"packages-section"} className="home__packagesSection">
+        <div className="container">
+          <div className="home__packagesSection__packagesTitle">{title}</div>
+          <div className="home__packagesSection__packagesSubTitle">
             {subtitle}
           </div>
-          <div className='row home__packagesSection__row'>
-            <div className='col-md-4'>
+          <div className="row home__packagesSection__row">
+            <div className="col-md-4">
               {this.renderPackageCard(packagesData[0])}
             </div>
-            <div className='col-md-4'>
+            <div className="col-md-4">
               {this.renderPackageCard(packagesData[1], true)}
             </div>
-            <div className='col-md-4'>
+            <div className="col-md-4">
               {this.renderPackageCard(packagesData[2])}
             </div>
           </div>

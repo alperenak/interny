@@ -717,10 +717,12 @@ class TopBar extends Component {
                     text={t("navbar_sign_up")}
                   />
                   {/* <Button to={"/cart"} text={"Cart SVG"} type={"primary"} /> */}
-                  <div className="CartIcon">
-                    <img width="30" height="30" src={CartIcon} />
-                    <div className="cartItemCount"></div>
-                  </div>
+                  <Link to="/cart">
+                    <div className="cartIcon">
+                      <img width="30" height="30" src={CartIcon} />
+                      {/* <div className="cartItemCount">2</div> */}
+                    </div>
+                  </Link>
                 </Fragment>
                 <Fragment v-else>
                   <div style={{ cursor: "default" }}>
@@ -733,10 +735,11 @@ class TopBar extends Component {
                   {this.renderIcon("mail")}
                   {this.renderIcon("bell")}
                   {this.renderIcon("user")}
-                  <Button to={"/cart"} text={"Cart SVG"} type={"primary"} />
-                  <div className="CartIcon">
-                    <img src={CartIcon} />
-                  </div>
+                  <Link to="/cart">
+                    <div className="CartIcon">
+                      <img width="30" height="30" src={CartIcon} />
+                    </div>
+                  </Link>
                 </Fragment>
               </div>
             </div>

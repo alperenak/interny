@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
-import './style.scss';
+import React, { Component } from "react";
+import "./style.scss";
 
 // Components
-import Footer from '../../components/Footer';
-import WhyUsePackages from './whyUsePackages';
+import Footer from "../../components/Footer";
+import WhyUsePackages from "./whyUsePackages";
 
 // Util
-import { getOffset } from '../../utils/offset';
+import { getOffset } from "../../utils/offset";
 
 class WhyUsePage extends Component {
-
   constructor(props) {
     super(props);
 
@@ -17,13 +16,13 @@ class WhyUsePage extends Component {
   }
 
   componentDidMount() {
-    if(this.props.giftData) {
+    if (this.props.giftData) {
       this.scrollToPackages();
     }
   }
 
   componentDidUpdate() {
-    if(this.props.giftData) {
+    if (this.props.giftData) {
       this.scrollToPackages();
     }
   }
@@ -58,7 +57,7 @@ class WhyUsePage extends Component {
 
   renderSteps = (stepData) => {
     return stepData.map((step, index) => {
-      const flexDirection = index % 2 === 0 ? 'row' : 'row-reverse';
+      const flexDirection = index % 2 === 0 ? "row" : "row-reverse";
       return (
         <div
           class="row internyPage__step"
@@ -66,7 +65,7 @@ class WhyUsePage extends Component {
           style={{ flexDirection }}
         >
           <div class="col-md-6">
-            <img src={step.image} alt={step.title} style={{ width: '90%' }} />
+            <img src={step.image} alt={step.title} style={{ width: "90%" }} />
           </div>
           <div class="col-md-6">
             <div class="internyPage__step__title">
@@ -84,12 +83,12 @@ class WhyUsePage extends Component {
       <div class="row">
         <div
           class="col-md-12"
-          style={{ display: 'flex', justifyContent: 'center' }}
+          style={{ display: "flex", justifyContent: "center" }}
         >
           {/* This is a dummy video. It will be replaced with another video. */}
           <iframe
             title="steps-video"
-			style={{"width":"100%"}}
+            style={{ width: "100%" }}
             height="500"
             src={videoEmbedLink}
             frameborder="0"
@@ -101,14 +100,14 @@ class WhyUsePage extends Component {
     );
   };
 
-	scrollToPackages = () => {
-		const offset = getOffset(this.packagesRef.current);
-		window.scrollTo({
-			top: offset.top - 100,
-			left: offset.left,
-			behavior: 'smooth',
-		});
-	};
+  scrollToPackages = () => {
+    const offset = getOffset(this.packagesRef.current);
+    window.scrollTo({
+      top: offset.top - 100,
+      left: offset.left,
+      behavior: "smooth",
+    });
+  };
 
   render() {
     const {
@@ -128,7 +127,7 @@ class WhyUsePage extends Component {
           <div class="affiliate__header">
             <div
               class="container headerBackground"
-              style={{ 'background-image': 'url(' + headerBackground + ')' }}
+              style={{ "background-image": "url(" + headerBackground + ")" }}
             >
               <p>{header}</p>
             </div>
@@ -150,7 +149,7 @@ class WhyUsePage extends Component {
               title={packagesTitle}
               subtitle={packagesSubtitle}
               packagesData={packagesData}
-			  type={this.props.type}
+              type={this.props.type}
             />
           </div>
         </div>

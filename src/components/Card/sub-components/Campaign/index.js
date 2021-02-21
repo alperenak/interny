@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./campaign.scss";
 import PackageBox from "../../../../assets/packageBox.png";
+import { Link } from "react-router-dom";
 
 export default class CampaignCard extends React.Component {
   componentDidMount() {}
@@ -31,7 +32,19 @@ export default class CampaignCard extends React.Component {
             ))}
           </div>
         </div>
-        <div className="campaignBuyButton">BUY NOW </div>
+        <div
+          className="campaignBuyButton"
+          onClick={() => {
+            window.location.href = "/cart";
+            localStorage.setItem(
+              "cartData",
+              JSON.stringify({ price: "$27.99" })
+            );
+            localStorage.setItem("cartItems", JSON.stringify("intern"));
+          }}
+        >
+          BUY NOW
+        </div>
       </div>
     );
   }
