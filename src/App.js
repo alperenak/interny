@@ -72,7 +72,6 @@ import styles from "./app.scss";
 import { eraseCookie, getCookie } from "./utils/cookie";
 import store from "./store";
 import Campaign from "./screens/Campaign";
-import AlertBox from "./components/Alert";
 
 class App extends React.Component {
   state = {
@@ -220,6 +219,7 @@ class App extends React.Component {
             content={modal.content}
             buttons={modal.buttons}
           />
+
           <Switch>
             <Route v-if={isAuthorized} exact path="/">
               <UserHome v-if={userType === "intern"} />

@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 /*** Components ***/
 import Card from "../Card";
 import Button from "../Button";
-import { withNamespaces } from 'react-i18next';
-import i18n from '../../i18n';
+import { withNamespaces } from "react-i18next";
+import i18n from "../../i18n";
 
 /*** Utils ***/
 import store from "../../store";
@@ -28,6 +28,7 @@ import bookIcon from "../../icons/book-outline.svg";
 import wfaIcon from "../../icons/wfa.svg";
 import HamburgerMenuIcon from "../../icons/menu-three-filled-rounded-lines-symbol.svg";
 import SideBar from "../SideBar";
+import CartIcon from "../../icons/cart-outline.svg";
 
 class TopBar extends Component {
   constructor(props) {
@@ -37,14 +38,13 @@ class TopBar extends Component {
     this.wrapperRefmail = React.createRef();
     this.wrapperRefbell = React.createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
-    this.myRef = React.createRef()
+    this.myRef = React.createRef();
   }
 
   state = {
-
     scrollTop: 0,
 
-	pathname:"",
+    pathname: "",
     isScrolled: false,
 
     mailDropDown: false,
@@ -55,21 +55,36 @@ class TopBar extends Component {
     ourPackages: [
       {
         key: "intern",
-        value: i18n.language !== 'tr'? <span><i>for</i> Intern</span> : <span> Stajyer </span> ,
+        value:
+          i18n.language !== "tr" ? (
+            <span>
+              <i>for</i> Intern
+            </span>
+          ) : (
+            <span> Stajyer </span>
+          ),
         selected: false,
         disabled: true,
         to: "/howtointern",
       },
       {
         key: "company",
-        value: <span><i>for</i> Company</span>,
+        value: (
+          <span>
+            <i>for</i> Company
+          </span>
+        ),
         selected: false,
         disabled: true,
         to: "/howtocompany",
       },
       {
         key: "university",
-        value: <span><i>for</i> University</span>,
+        value: (
+          <span>
+            <i>for</i> University
+          </span>
+        ),
         selected: false,
         disabled: true,
         to: "/howtouniversity",
@@ -116,7 +131,7 @@ class TopBar extends Component {
         icon: CVIcon,
         to: "/myCompetency",
       },
-	  {
+      {
         key: "myJobs",
         value: "Jobs",
         selected: false,
@@ -144,7 +159,7 @@ class TopBar extends Component {
         icon: mailIcon,
         to: "/messages",
       },
-	  {
+      {
         key: "referral",
         value: "Referral",
         selected: false,
@@ -206,7 +221,7 @@ class TopBar extends Component {
         icon: mailIcon,
         to: "/messages",
       },
-	  {
+      {
         key: "referral",
         value: "Referral",
         selected: false,
@@ -233,7 +248,6 @@ class TopBar extends Component {
   };
 
   async componentDidMount() {
-
     document.addEventListener("mousedown", this.handleClickOutside);
     this.setSelectedPage();
     if (getCookie("token")) {
@@ -244,7 +258,7 @@ class TopBar extends Component {
       let jobNotifications = res
         .filter((e) => e.type === "job")
         .map((notif) => {
-          if(!notif.isRead){
+          if (!notif.isRead) {
             return {
               key: notif.id,
               value: notif.message,
@@ -254,8 +268,7 @@ class TopBar extends Component {
               unRead: !notif.isRead,
               onChange: this.onNotificationItemClick,
             };
-          }
-          else{
+          } else {
             return {
               key: notif.id,
               value: notif.message,
@@ -312,11 +325,9 @@ class TopBar extends Component {
       this.setState({ bellSource: data });
     }
     document.addEventListener("scroll", this.handleScroll);
-
   }
 
   componentDidUpdate(prevProps) {
-
     if (!Object.is(prevProps.location.pathname, this.props.location.pathname)) {
       this.setSelectedPage();
     }
@@ -353,7 +364,7 @@ class TopBar extends Component {
             e.key !== "myCourses" &&
             e.key !== "wfa"
         );
-		    state.internSource.splice(2, 0, {
+        state.internSource.splice(2, 0, {
           key: "myJobs",
           value: "My Jobs",
           selected: false,
@@ -425,9 +436,7 @@ class TopBar extends Component {
         <img src={icons[`${iconName}Icon`]} alt={"icon"} />
         <div
           v-if={this.state[`${iconName}DropDown`]}
-          className={`${"cardContainer"} ${
-            position ? position : ""
-          }`}
+          className={`${"cardContainer"} ${position ? position : ""}`}
         >
           <Card
             type={"dropDown"}
@@ -446,9 +455,9 @@ class TopBar extends Component {
 
   setSelectedPage = () => {
     let userType = getCookie("user");
-	this.setState({
-		pathname:this.props.location.pathname
-	})
+    this.setState({
+      pathname: this.props.location.pathname,
+    });
     if (userType) {
       this.state[`${userType}Source`].map(
         (e) => (e.selected = e.to === this.props.location.pathname)
@@ -495,188 +504,247 @@ class TopBar extends Component {
   }
 
   handleScroll = () => {
-    const scrollY = window.scrollY
+    const scrollY = window.scrollY;
 
-	if (window.scrollY > 1) {
-      this.setState({isScrolled: true});
+    if (window.scrollY > 1) {
+      this.setState({ isScrolled: true });
     } else {
-      this.setState({isScrolled: false});
+      this.setState({ isScrolled: false });
     }
-
-
   };
 
-	render() {
-
-		const {
-			scrollTop
-		} = this.state
-        const {t} = this.props;
-		let { isAuthorized, user } = this.props;
-		let { loginDropDown, ourDropdown } = this.state;
-		let userType = getCookie("user");
-		let topBarClass = "";
-		if(this.state.pathname == "/"){
-			topBarClass = this.state.isScrolled ? `${"topBar"} ${"topBar__fullScreen"} ${"topBar__scroll"}` : `${"topBar"} ${"topBar__fullScreen"} ${"topBar__nonscroll"}`;
-		}else{
-			topBarClass = `${"topBar"} ${"topBar__fullScreen"} ${"topBar__scroll"}`;
-		}
-		return (
-			<div className={topBarClass} >
-				<div class="container">
-					<div class="row">
-						<div class="col-md-2 col-6">
-							<div className={"topBar__logo"}>
-								<Link to={"/"}>
-									<img src={internyLogo} alt={"logo"} />
-								</Link>
-							</div>
-						</div>
-						<div className="col-md-10 col-6 topBar__rightSide">
-							<div className={"topBar__hamburgerMenu"}>
-								<img
-									className={"topBar__hamburgerMenu__hamburgerMenuIcon"}
-									onClick={() => this.openHamburgerMenu()}
-									src={HamburgerMenuIcon}
-									alt={"hamburgerMenu"}
-								/>
-								<SideBar type={"hamburgerMenu"}>
-									<Fragment v-if={!isAuthorized}>
-										{/*<div><Link to={'/'}>Home</Link></div>*/}
-										<div className={"topBar__hamburgerMenu__hamburgerLinks"}>
-											<div>
-
-												<Link to={"/search"} onClick={() => this.closeHamburgerMenu()}>{t('navbar_internships')}</Link>
-											</div>
-											<div>
-												<Link to={"/howtointern"} onClick={() => this.closeHamburgerMenu()}>Intern</Link>
-											</div>
-											<div>
-												<Link to={"/howtocompany"} onClick={() => this.closeHamburgerMenu()}>Company</Link>
-											</div>
-											<div>
-												<Link to={"/howtouniversity"} onClick={() => this.closeHamburgerMenu()}>University</Link>
-											</div>
-										</div>
-										<div className={"topBar__hamburgerMenu__hamburgerButtons"}>
-											<div
-												onClick={() =>
-													this.setState({ loginDropDown: !this.state.loginDropDown })
-												}
-												className={"topBar__hamburgerMenu__dropdownContainer"}
-											>
-												<Button
-													type={"ghost"}
-													sizeName={"small"}
-													text={('navbar_login')}
-													iconPosition={"left"}
-													responsive={"hamburger"}
-													icon={caret}
-												/>
-												<div v-if={loginDropDown} className={"topBar__hamburgerMenu__dropdown"}>
-													<Card
-														onPress={() => {
-															this.closeHamburgerMenu();
-															this.setState({
-																loginDropDown: !this.state.loginDropDown,
-															});
+  render() {
+    const { scrollTop } = this.state;
+    const { t } = this.props;
+    let { isAuthorized, user } = this.props;
+    let { loginDropDown, ourDropdown } = this.state;
+    let userType = getCookie("user");
+    let topBarClass = "";
+    if (this.state.pathname == "/") {
+      topBarClass = this.state.isScrolled
+        ? `${"topBar"} ${"topBar__fullScreen"} ${"topBar__scroll"}`
+        : `${"topBar"} ${"topBar__fullScreen"} ${"topBar__nonscroll"}`;
+    } else {
+      topBarClass = `${"topBar"} ${"topBar__fullScreen"} ${"topBar__scroll"}`;
+    }
+    return (
+      <div className={topBarClass}>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-2 col-6">
+              <div className={"topBar__logo"}>
+                <Link to={"/"}>
+                  <img src={internyLogo} alt={"logo"} />
+                </Link>
+              </div>
+            </div>
+            <div className="col-md-10 col-6 topBar__rightSide">
+              <div className={"topBar__hamburgerMenu"}>
+                <img
+                  className={"topBar__hamburgerMenu__hamburgerMenuIcon"}
+                  onClick={() => this.openHamburgerMenu()}
+                  src={HamburgerMenuIcon}
+                  alt={"hamburgerMenu"}
+                />
+                <SideBar type={"hamburgerMenu"}>
+                  <Fragment v-if={!isAuthorized}>
+                    {/*<div><Link to={'/'}>Home</Link></div>*/}
+                    <div className={"topBar__hamburgerMenu__hamburgerLinks"}>
+                      <div>
+                        <Link
+                          to={"/search"}
+                          onClick={() => this.closeHamburgerMenu()}
+                        >
+                          {t("navbar_internships")}
+                        </Link>
+                      </div>
+                      <div>
+                        <Link
+                          to={"/howtointern"}
+                          onClick={() => this.closeHamburgerMenu()}
+                        >
+                          Intern
+                        </Link>
+                      </div>
+                      <div>
+                        <Link
+                          to={"/howtocompany"}
+                          onClick={() => this.closeHamburgerMenu()}
+                        >
+                          Company
+                        </Link>
+                      </div>
+                      <div>
+                        <Link
+                          to={"/howtouniversity"}
+                          onClick={() => this.closeHamburgerMenu()}
+                        >
+                          University
+                        </Link>
+                      </div>
+                    </div>
+                    <div className={"topBar__hamburgerMenu__hamburgerButtons"}>
+                      <div
+                        onClick={() =>
+                          this.setState({
+                            loginDropDown: !this.state.loginDropDown,
+                          })
+                        }
+                        className={"topBar__hamburgerMenu__dropdownContainer"}
+                      >
+                        <Button
+                          type={"ghost"}
+                          sizeName={"small"}
+                          text={"navbar_login"}
+                          iconPosition={"left"}
+                          responsive={"hamburger"}
+                          icon={caret}
+                        />
+                        <div
+                          v-if={loginDropDown}
+                          className={"topBar__hamburgerMenu__dropdown"}
+                        >
+                          <Card
+                            onPress={() => {
+                              this.closeHamburgerMenu();
+                              this.setState({
+                                loginDropDown: !this.state.loginDropDown,
+                              });
                             }}
-														type={"dropDown"}
-														externalData={this.state.loginPages}
-													/>
-												</div>
-											</div>
-											<Button
-												to="/signup"
-												type={"secondary"}
-												sizeName={"small"}
-												responsive={"hamburger"}
-												text={t('navbar_sign_up')}
-												onButtonClick={() => this.closeHamburgerMenu()}
-											/>
-										</div>
-									</Fragment>
-									<Fragment v-else>
-										<div
-											className={"topBar__hamburgerMenu__hamburgerAccountName"}
-											style={{ cursor: "default" }}
-										>
-                                          {t('navbar_welcome')},{" "}
-											<span className={"topBar__hamburgerMenu__hamburgerAccountName__userName"}>
-												{userType === "intern" ? user.name : user.accountName}{" "}
-												{userType === "intern" && user.surname}
-											</span>
-										</div>
-										<div className={"topBar__hamburgerMenu__hamburgerAccountTools"}>
-											{this.renderIcon("mail", "mail")}
-											{this.renderIcon("bell", "bell")}
-											{this.renderIcon("user", "user")}
-										</div>
-									</Fragment>
-								</SideBar>
-							</div>
-							<div className={"topBar__links"}>
-								<Fragment v-if={!isAuthorized}>
-									<div>
-										<Link to={"/search"} className={this.state.isScrolled ? "topBar__links__scroll" : "topBar__links__nonscroll"}>{t('navbar_internships')}</Link>
-									</div>
-									<div
-										onMouseOver={() => this.setState({ ourDropdown: true })}
-										onMouseLeave={() => this.setState({ ourDropdown: false })}
-										className={"topBar__links__dropdownContainer"}
-									>
-										<Button
-											type={"link"}
-											sizeName={"default"}
-											text={"\u00a0\u00a0How to Use\u00a0\u00a0"}
-											textClass={this.state.isScrolled ? "topBar__links__scroll" : "topBar__links__nonscroll"}
-										/>
-										<div v-if={ourDropdown} className={"topBar__links__dropdownContainer__dropdown"}>
-											<Card type={"dropDown"} externalData={this.state.ourPackages} />
-										</div>
-									</div>
-									<div
-										onMouseOver={() => this.setState({ loginDropDown: true })}
-										onMouseLeave={() => this.setState({ loginDropDown: false })}
-										className={"topBar__links__dropdownContainer"}
-									>
-										<Button
-											type={"primary"}
-											sizeName={"small"}
-											text={t('navbar_login')}
-										/>
-										<div v-if={loginDropDown} className={"topBar__links__dropdownContainer__dropdown"}>
-											<Card type={"dropDown"} externalData={this.state.loginPages} />
-										</div>
-
-									</div>
-									<Button
-										to="/signup"
-										type={"secondary"}
-										sizeName={"small"}
-										text={t("navbar_sign_up")}
-									/>
-								</Fragment>
-								<Fragment v-else>
-									<div style={{ cursor: "default" }}>
-										Welcome,{" "}
-										<span className={"topBar__links__userName"}>
-											{userType === "intern" ? user.name : user.accountName}{" "}
-											{userType === "intern" && user.surname}
-										</span>
-									</div>
-									{this.renderIcon("mail")}
-									{this.renderIcon("bell")}
-									{this.renderIcon("user")}
-								</Fragment>
-							</div>
-						</div>
-					</div>
-				</div>
-
-			</div>
-		);
-	}
+                            type={"dropDown"}
+                            externalData={this.state.loginPages}
+                          />
+                        </div>
+                      </div>
+                      <Button
+                        to="/signup"
+                        type={"secondary"}
+                        sizeName={"small"}
+                        responsive={"hamburger"}
+                        text={t("navbar_sign_up")}
+                        onButtonClick={() => this.closeHamburgerMenu()}
+                      />
+                    </div>
+                  </Fragment>
+                  <Fragment v-else>
+                    <div
+                      className={"topBar__hamburgerMenu__hamburgerAccountName"}
+                      style={{ cursor: "default" }}
+                    >
+                      {t("navbar_welcome")},{" "}
+                      <span
+                        className={
+                          "topBar__hamburgerMenu__hamburgerAccountName__userName"
+                        }
+                      >
+                        {userType === "intern" ? user.name : user.accountName}{" "}
+                        {userType === "intern" && user.surname}
+                      </span>
+                    </div>
+                    <div
+                      className={"topBar__hamburgerMenu__hamburgerAccountTools"}
+                    >
+                      {this.renderIcon("mail", "mail")}
+                      {this.renderIcon("bell", "bell")}
+                      {this.renderIcon("user", "user")}
+                    </div>
+                  </Fragment>
+                </SideBar>
+              </div>
+              <div className={"topBar__links"}>
+                <Fragment v-if={!isAuthorized}>
+                  <div>
+                    <Link
+                      to={"/search"}
+                      className={
+                        this.state.isScrolled
+                          ? "topBar__links__scroll"
+                          : "topBar__links__nonscroll"
+                      }
+                    >
+                      {t("navbar_internships")}
+                    </Link>
+                  </div>
+                  <div
+                    onMouseOver={() => this.setState({ ourDropdown: true })}
+                    onMouseLeave={() => this.setState({ ourDropdown: false })}
+                    className={"topBar__links__dropdownContainer"}
+                  >
+                    <Button
+                      type={"link"}
+                      sizeName={"default"}
+                      text={"\u00a0\u00a0How to Use\u00a0\u00a0"}
+                      textClass={
+                        this.state.isScrolled
+                          ? "topBar__links__scroll"
+                          : "topBar__links__nonscroll"
+                      }
+                    />
+                    <div
+                      v-if={ourDropdown}
+                      className={"topBar__links__dropdownContainer__dropdown"}
+                    >
+                      <Card
+                        type={"dropDown"}
+                        externalData={this.state.ourPackages}
+                      />
+                    </div>
+                  </div>
+                  <div
+                    onMouseOver={() => this.setState({ loginDropDown: true })}
+                    onMouseLeave={() => this.setState({ loginDropDown: false })}
+                    className={"topBar__links__dropdownContainer"}
+                  >
+                    <Button
+                      type={"primary"}
+                      sizeName={"small"}
+                      text={t("navbar_login")}
+                    />
+                    <div
+                      v-if={loginDropDown}
+                      className={"topBar__links__dropdownContainer__dropdown"}
+                    >
+                      <Card
+                        type={"dropDown"}
+                        externalData={this.state.loginPages}
+                      />
+                    </div>
+                  </div>
+                  <Button
+                    to="/signup"
+                    type={"secondary"}
+                    sizeName={"small"}
+                    text={t("navbar_sign_up")}
+                  />
+                  {/* <Button to={"/cart"} text={"Cart SVG"} type={"primary"} /> */}
+                  <div className="CartIcon">
+                    <img width="30" height="30" src={CartIcon} />
+                    <div className="cartItemCount"></div>
+                  </div>
+                </Fragment>
+                <Fragment v-else>
+                  <div style={{ cursor: "default" }}>
+                    Welcome,
+                    <span className={"topBar__links__userName"}>
+                      {userType === "intern" ? user.name : user.accountName}{" "}
+                      {userType === "intern" && user.surname}
+                    </span>
+                  </div>
+                  {this.renderIcon("mail")}
+                  {this.renderIcon("bell")}
+                  {this.renderIcon("user")}
+                  <Button to={"/cart"} text={"Cart SVG"} type={"primary"} />
+                  <div className="CartIcon">
+                    <img src={CartIcon} />
+                  </div>
+                </Fragment>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default withNamespaces()(TopBar);

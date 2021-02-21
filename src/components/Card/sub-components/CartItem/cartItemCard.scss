@@ -1,0 +1,217 @@
+@import '../../../../helpers/responsiveBreakpointsMixins.scss';
+
+.noItems {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+
+  & > span {
+    opacity: 0.8;
+  }
+}
+
+.jobPost2 {
+  position: relative;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
+  position: relative;
+  padding: 16px 32px;
+  border: 1px solid #efefef;
+  border-radius: 12px;
+  background-color: white;
+  & .multiplePost {
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    padding: 16px 0;
+
+    @include small {
+      display: flex;
+      flex-direction: column;
+    }
+
+    & .postButton {
+      top: 36px;
+    }
+  }
+
+  & .singlePost {
+    width: 100%;
+    @include small {
+      .col-md-3,
+      .col-md-6 {
+        justify-content: center;
+        display: flex;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  }
+
+  & .itemImage {
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 104px;
+    height: 104px;
+    border-radius: 32px;
+    border: 1px solid #eee;
+    -webkit-box-shadow: 0px 18px 18px 0px rgba(#2c3f58, 0.1);
+    -moz-box-shadow: 0px 18px 18px 0px rgba(#2c3f58, 0.1);
+    box-shadow: 0px 18px 18px 0px rgba(#2c3f58, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+    margin-right: 20px;
+    grid-column: span 1;
+    grid-row: span 5;
+    align-self: center;
+
+    @include medium {
+      width: 80px;
+      height: 80px;
+    }
+
+    & img {
+      width: 100%;
+    }
+  }
+
+  & .postHeaderWrapper {
+    display: flex;
+    grid-column: span 3;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    & .postHeader {
+      font-family: 'Sofia Pro Bold';
+      font-size: calc(2px + 15px);
+      font-weight: bolder;
+      font-stretch: normal;
+      font-style: normal;
+      letter-spacing: 0.3px;
+      color: #2c3f58;
+
+      @include medium {
+        font-size: calc(2px + 12px);
+      }
+
+      @include small {
+        font-size: calc(2px + 10px);
+      }
+    }
+
+    & .postDate {
+      font-size: calc(2px + 12px);
+      font-weight: lighter;
+      font-stretch: normal;
+      font-style: normal;
+      letter-spacing: -0.24px;
+      color: #949494;
+      margin-right: 6px;
+
+      @include medium {
+        font-size: calc(2px + 10px);
+      }
+
+      @include small {
+        font-size: calc(2px + 8px);
+      }
+    }
+  }
+
+  & .postCompany {
+    font-size: calc(2px + 15px);
+    margin: 4px 0 0;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.28px;
+    color: #2c567e;
+
+    @include medium {
+      font-size: calc(2px + 11px);
+    }
+
+    @include small {
+      font-size: calc(2px + 9px);
+    }
+  }
+
+  & .postLocation {
+    display: flex;
+    margin: 4px 0 0;
+    font-size: calc(2px + 13px);
+    font-weight: lighter;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.24px;
+    color: #949494;
+
+    @include medium {
+      font-size: calc(2px + 10px);
+    }
+
+    @include small {
+      font-size: calc(2px + 8px);
+    }
+
+    & img {
+      height: 18px;
+      width: 11px;
+      margin-right: 4px;
+    }
+  }
+
+  & .postButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    width: fit-content;
+    height: fit-content;
+
+    @include medium {
+      margin-left: 32px;
+      width: 80%;
+      height: 80%;
+    }
+
+    @include small {
+      margin: 0;
+      width: 100%;
+      height: fit-content;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+  & .postNote {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin: 12px 0 0;
+    font-size: calc(2px + 13px);
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.24px;
+    color: #949494;
+
+    @include medium {
+      font-size: calc(2px + 10px);
+    }
+
+    @include small {
+      font-size: calc(2px + 8px);
+    }
+  }
+}

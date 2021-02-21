@@ -15,6 +15,7 @@ import CompanyProfile from "./sub-components/CompanyProfile";
 import Authentication from "./sub-components/Authentication";
 import Course from "./sub-components/Course";
 import InternList from "./sub-components/InternList";
+import CartItem from "./sub-components/CartItem";
 
 /*** Styles ***/
 import styles from "./card.scss";
@@ -52,6 +53,7 @@ class Card extends Component {
           {header.text}
         </div>
         <List v-if={type === "list"} {...this.props} />
+        <CartItem v-if={type === "cartItem"} {...this.props} />
         <Task v-if={type === "task"} {...this.props} />
         <Intern v-if={type === "intern"} {...this.props} />
         <Course v-if={type === "course"} {...this.props} />
@@ -61,9 +63,9 @@ class Card extends Component {
         <DropDown v-if={type === "dropDown"} {...this.props} />
         <JobDetail v-if={type === "jobDetail"} {...this.props} />
         <CoverLetter v-if={type === "coverLetter"} {...this.props} />
-        <CampaignCard v-if={type === "campaign"} {...this.props} />
         <CompanyProfile v-if={type === "companyProfile"} {...this.props} />
         <InternList v-if={type === "internList"} {...this.props} />
+        <CampaignCard v-if={type === "campaign"} {...this.props} />
         <Authentication
           v-if={type === "auth" || type === "login"}
           {...this.props}
