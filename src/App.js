@@ -68,6 +68,7 @@ import styles from "./app.scss";
 import { eraseCookie, getCookie } from "./utils/cookie";
 import store from "./store";
 import Campaign from "./screens/Campaign";
+import AlertBox from "./components/Alert";
 
 class App extends React.Component {
   state = {
