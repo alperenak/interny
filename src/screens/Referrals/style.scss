@@ -1,0 +1,48 @@
+.referrals{
+	background-color: #f6f8fa;
+	padding-top: 80px;
+	padding-bottom: 80px;
+	&__title{
+		font-family: "Sofia Pro Bold";
+		color: #2c3f58;
+		font-size: 36px;
+		margin-top:20px;
+	}
+	&__desc{
+		font-family: "Sofia Pro";
+		color: #2c3f58;
+		font-size: 18px;
+		margin-top:20px;
+	}
+	&__linkBox{
+		padding: 16px 32px;
+		border: 1px solid #efefef;
+		border-radius: 12px;
+		background-color: white;
+		width: 100%;
+		.inputWrapper.disabled .inputContainer{
+			background: white;
+		}
+	}
+	&__bg{
+		padding: 32px;
+		margin-right: 0;
+		margin-left: 0;
+		border: 1px solid #efefef;
+		border-radius: 12px;
+		background-color: white;
+	}
+	&__infoBox{
+		border: 1px solid #efefef;
+		border-radius: 12px;
+		background-color: white;
+		padding: 16px 32px;
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+		font-family: "Sofia Pro Bold";
+		color: #2c3f58;
+		font-size: 20px;
+		margin-bottom:20px;
+	}
+}

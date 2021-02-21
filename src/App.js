@@ -17,7 +17,9 @@ import LoadingModal from "./components/LoadingModal";
 import Home from "./screens/Home";
 import SignUp from "./screens/SignUp/index.js";
 import Verification from "./screens/SignUp/verification.js";
-
+import Cart from "./screens/Cart/index.js";
+import PaymentSuccess from "./screens/PaymentSuccess/index.js";
+import PaymentCancel from "./screens/PaymentCancel/index.js";
 import Affiliate from "./screens/Affiliate";
 import UserHome from "./screens/UserHome";
 import CVs from "./screens/CVs/index.js";
@@ -61,6 +63,8 @@ import CookiesPage from "./screens/internyPages/cookies.js";
 import UniversityBrowse from "./screens/UniversityBrowse";
 import UniversityOpen from "./screens/UniversityOpen";
 import ScrollToTop from "./scrolltop.js";
+import Referrals from "./screens/Referrals/index.js";
+
 /*** Styles ***/
 import styles from "./app.scss";
 
@@ -617,6 +621,15 @@ class App extends React.Component {
               )}
             />
             <Route path="/error" render={(props) => <Error {...props} />} />
+            <Route path="/cart" render={(props) => <Cart {...props} />} />
+            <Route
+              path="/payments/success"
+              render={(props) => <PaymentSuccess {...props} />}
+            />
+            <Route
+              path="/payments/cancel"
+              render={(props) => <PaymentCancel {...props} />}
+            />
           </Switch>
         </Router>
         <CookieConsent
