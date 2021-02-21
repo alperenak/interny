@@ -11,7 +11,6 @@ import iccTMPortfolio from '../../assets/iccTMPortfolio.png';
 import imsTMWorkTime from '../../assets/imsTMWorkTime.png';
 import referrenceReccomendationLetter from '../../assets/referrenceReccomendationLetter.png';
 
-
 const DESCRIPTION_DATA = [
   `Welcome to INTERNY, the world's first remote online internship platform. You will find everything you need and more during the internship process on the platform. It allows you to do your internship at any company anywhere in the world, wherever and whenever you want. All you have to do is apply for internships, get acceptance, and complete the assigned tasks thoroughly.`,
   `It is entirely FREE for university students and recent graduates to register, create a CV and search for internships anywhere in the world. You can use this unique platform more efficiently by purchasing the premium packages below that you think are suitable for you.`,
@@ -46,7 +45,7 @@ const STEP_DATA = [
 
 const PACKAGES_DATA = [
   {
-    id: 'packageOne',
+    id: 'freemium',
     title: 'FREEMIUM',
     price: '$0',
     payment: '',
@@ -69,9 +68,9 @@ const PACKAGES_DATA = [
     ],
   },
   {
-    id: 'packageTwo',
+    id: 'intern',
     title: 'INTERN',
-    price: '$24.99',
+    price: '$34.99',
     payment: 'per 4 Weeks Internship',
     highlights: [
       {
@@ -96,23 +95,22 @@ const PACKAGES_DATA = [
       },
       {
         heading: 'Additional Features:',
-        description:
-          '',
+        description: '',
       },
       {
-        heading: 'Language Support Service (+$19.99)',
+        heading: 'Language Support Service (+$34.99)',
         description:
           'Suppose you have any language problems for global internships. In that case, you can request Language Support Service for some languages ​​by paying an additional $19.99 for the INTERN package to overcome the language problem. You can take and deliver your tasks in the language you prefer with the Language Support Service.',
       },
       {
-        heading: 'Emergency Internship Service (+$19.99)',
+        heading: 'Emergency Internship Service (+$34.99)',
         description:
           'INTERNY offers an Emergency Internship Service for an additional $19.99 to the INTERN package so that you can start your internship in any country and sector within 30 days. This service aims to ensure that you only start the internship within 30 days, and the internship approval processes usually continue. The fact that this additional service is purchased does not mean that your internship will be approved exactly.',
       },
     ],
   },
   {
-    id: 'packageThree',
+    id: 'competency',
     title: 'COMPETENCY',
     price: '$12.49',
     payment: 'per Competency or $49.99 for All Competencies',
@@ -137,27 +135,27 @@ const PACKAGES_DATA = [
 ];
 
 class InternPage extends Component {
-	render() {
-		const { location } = this.props;
-		const isCameFromGift = location && location.state && location.state.from === "gift";
-		const giftData = isCameFromGift ? location.state : undefined;
-		return (
-			<WhyUsePage
-				headerBackground={companyBg}
-				header="How to Use?"
-				descriptionList={DESCRIPTION_DATA}
-				title="How to Use the Platform as an Intern?"
-				stepData={STEP_DATA}
-				videoEmbedLink="https://www.youtube.com/embed/2Nw6nkw6JCA"
-				packagesTitle="See the Intern Packages"
-				packagesSubtitle="Click to see detail of packages"
-				packagesData={PACKAGES_DATA}
-				giftData={giftData}
-				type={"intern"}
-			/>
-
-		);
-	}
+  render() {
+    const { location } = this.props;
+    const isCameFromGift =
+      location && location.state && location.state.from === 'gift';
+    const giftData = isCameFromGift ? location.state : undefined;
+    return (
+      <WhyUsePage
+        headerBackground={companyBg}
+        header='How to Use?'
+        descriptionList={DESCRIPTION_DATA}
+        title='How to Use the Platform as an Intern?'
+        stepData={STEP_DATA}
+        videoEmbedLink='https://www.youtube.com/embed/2Nw6nkw6JCA'
+        packagesTitle='See the Intern Packages'
+        packagesSubtitle='Click to see detail of packages'
+        packagesData={PACKAGES_DATA}
+        giftData={giftData}
+        type={'intern'}
+      />
+    );
+  }
 }
 
 export default InternPage;
