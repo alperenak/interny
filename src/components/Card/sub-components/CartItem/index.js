@@ -50,21 +50,24 @@ class CartItems extends Component {
     return (
       <Fragment>
         <div className={`${multiple ? "multiplePost" : "singlePost"}`}>
-          <div class="row">
-            <RedirectControl is={false}>
-              {pst.image && (
+          <RedirectControl is={false}>
+            <div class="row">
+              {pst.images && (
                 <div class="col-md-3">
                   <Link to={link} className={"itemImage"}>
-                    <img src={pst.image ? pst.image : ""} alt={"image"} />
+                    <img
+                      src={pst.images[0] ? pst.images[0] : ""}
+                      alt={"image"}
+                    />
                   </Link>
                 </div>
               )}
-              <div class={pst.image ? "col-md-6" : "col-md-12"}>
+              <div class={pst.images ? "col-md-6" : "col-md-12"}>
                 <Link to={link} className={"postHeaderWrapper"}>
-                  <div className={"postHeader"}>{pst.header}</div>
+                  <div className={"postHeader"}>{pst.name}</div>
                 </Link>
                 <Link to={link} className={"postCompany"}>
-                  {pst.company}
+                  {pst.description}
                 </Link>
                 <a
                   href="#"
@@ -80,7 +83,7 @@ class CartItems extends Component {
                 </Link>
               </div>
               <div
-                class={pst.image ? "col-md-3" : "col-md-12"}
+                class={pst.images ? "col-md-3" : "col-md-12"}
                 style={{
                   display: "flex",
                   "flex-direction": "column",
@@ -104,8 +107,8 @@ class CartItems extends Component {
                   />
                 )}
               </div>
-            </RedirectControl>
-          </div>
+            </div>
+          </RedirectControl>
           <RedirectControl>
             <div class="row">
               <div class="col-md-3">
@@ -163,6 +166,7 @@ class CartItems extends Component {
 
   render() {
     let { items } = this.props;
+    console.log(this.props);
     return (
       <Fragment>
         {items.map((item, i) => {
