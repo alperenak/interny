@@ -17,8 +17,11 @@ export default class BusinessPackage extends Component {
   }
 
   addToCart = (buyingData) => {
+    if (buyingData.id === "competency")
+      localStorage.setItem("cartItems", JSON.stringify("prod_Izc2wh6slRMxZj"));
+    else if (buyingData.id === "intern")
+      localStorage.setItem("cartItems", JSON.stringify("prod_IzbtUye5fy9r8g"));
     localStorage.setItem("cartData", JSON.stringify(buyingData));
-    localStorage.setItem("cartItems", JSON.stringify(buyingData.id));
     localStorage.setItem("quantity", JSON.stringify(1));
   };
 

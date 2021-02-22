@@ -201,7 +201,9 @@ class Home extends Component {
           {/* <div className="CampaignBrandingTitle">Summer Internship</div> */}
           <div className="SummerInternshipButtonWrapper">
             <Link to="/campaign">
-              <div className="SummerInternshipButton">GET DISCOUNT</div>
+              <div className="SummerInternshipButton">
+                {t("landing_packages_competency_get_campaign")}
+              </div>
             </Link>
           </div>
         </div>

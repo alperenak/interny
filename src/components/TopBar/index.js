@@ -514,6 +514,7 @@ class TopBar extends Component {
   };
 
   render() {
+    console.log(this.props);
     const { scrollTop } = this.state;
     const { t } = this.props;
     let { isAuthorized, user } = this.props;
@@ -740,6 +741,19 @@ class TopBar extends Component {
                       <img width="30" height="30" src={CartIcon} />
                     </div>
                   </Link>
+                  <div style={{ marginLeft: 20 }}>
+                    <Button
+                      type={"primary"}
+                      sizeName={"small"}
+                      text={"Buy Package"}
+                      to="/howtointern"
+                    />
+                  </div>
+                  {/* <Button
+                    type={"primary"}
+                    sizeName={"small"}
+                    text={"Buy Package"}
+                  /> */}
                 </Fragment>
               </div>
             </div>

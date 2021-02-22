@@ -1,28 +1,40 @@
 import React from "react";
 import styles from "./campaign.scss";
-import PackageBox from "../../../../assets/packageBox.png";
+import PackageBox from "../../../../assets/packagebox.png";
 import { Link } from "react-router-dom";
+import { withNamespaces } from "react-i18next";
 
-export default class CampaignCard extends React.Component {
+class CampaignCard extends React.Component {
   componentDidMount() {}
 
   render() {
-    const { title } = this.props;
+    const { t } = this.props;
+    console.log(this.props);
+    const staticData = [
+      t("campaign_package_card_campaign_details_item1"),
+      t("campaign_package_card_campaign_details_item2"),
+      t("campaign_package_card_campaign_details_item3"),
+      t("campaign_package_card_campaign_details_item4"),
+      t("campaign_package_card_campaign_details_item5"),
+    ];
     return (
       <div className="campaignCardContainer">
         <img src={PackageBox} className="campaignPackageImage" />
-        <div className="campaignTitle">SUMMER INTERNSHIP</div>
+        <div className="campaignTitle">{t("campaign_package_card_title")}</div>
         <div className="campaignDetailSection">
           <div className="campaignDiscountPart">
             <div className="campaignDiscountPercentSection">
               <div className="campaignDiscountPercent">
-                <span>60%</span> {" \n Discount"}
+                <span>{t("campaign_package_card_discount_percent")}</span>{" "}
+                {` \n ${t("campaign_package_card_discount_percent_text")} `}
               </div>
             </div>
             <div className="campaignDiscountCostSection">
-              <div className="campaignDiscountCost">$27.99</div>
+              <div className="campaignDiscountCost">
+                {t("campaign_package_card_discount_cost")}
+              </div>
               <div className="campaignDiscountCostDetail">
-                per 4 weeks intenship
+                {t("campaign_package_card_discount_cost_detail")}
               </div>
             </div>
           </div>
@@ -40,20 +52,17 @@ export default class CampaignCard extends React.Component {
               "cartData",
               JSON.stringify({ price: "$27.99" })
             );
-            localStorage.setItem("cartItems", JSON.stringify("intern"));
+            localStorage.setItem(
+              "cartItems",
+              JSON.stringify("prod_IzbtUye5fy9r8g")
+            );
           }}
         >
-          BUY NOW
+          {t("campaign_package_card_discount_buy_button")}
         </div>
       </div>
     );
   }
 }
 
-const staticData = [
-  "⦁ Internship Start Guarantee",
-  "⦁ iMS™",
-  "⦁ WFA Report",
-  "⦁ Reference Letter",
-  "⦁ Language Support Service \n (+ $19.99)",
-];
+export default withNamespaces()(CampaignCard);
