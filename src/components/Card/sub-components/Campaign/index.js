@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./campaign.scss";
-import PackageBox from "../../../../assets/packageBox.png";
+import PackageBox from "../../../../assets/packagebox.png";
 import { Link } from "react-router-dom";
 
 export default class CampaignCard extends React.Component {
