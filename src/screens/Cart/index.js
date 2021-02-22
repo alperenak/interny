@@ -40,9 +40,18 @@ const index = () => {
       });
   }, []);
   useEffect(() => {
-
+    // let getCartData = JSON.parse(localStorage.getItem("cartData"));
+    // setCartData(getCartData);
     let userId = getCookie("user_id");
-  
+    // const response = await fetch(`https://7daa7d8bcc08.ngrok.io/payment/interny/${userId}`, {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({
+    //     packages: items,
+    //   }),
+    // });
+  }, []);
+
   const payButton = [
     {
       type: "primary",
