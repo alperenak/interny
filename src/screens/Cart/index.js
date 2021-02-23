@@ -65,7 +65,7 @@ const index = () => {
           let userId = getCookie("user_id");
           let quantity = JSON.parse(localStorage.getItem("quantity"));
           const response = fetch(
-            `https://interny-backend-prod.herokuapp.com/intern/${userId}`,
+            `https://interny-backend-prod.herokuapp.com/payment/intern/${userId}`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
