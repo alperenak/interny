@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import BeautyStars from 'beauty-stars';
+import BeautyStars from "beauty-stars";
 
 /*** Components ***/
 import { Multiselect } from "multiselect-react-dropdown";
@@ -22,15 +22,20 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 
 // Assets
-import companyBg from '../../assets/internshipsBg.png';
+import companyBg from "../../assets/internshipsBg.png";
 import searchIcon from "../../icons/colorfulSearch.svg";
 import locationIcon from "../../icons/colorfulLocation.svg";
 import closeIcon from "../../icons/close-outline.svg";
-
+import { withNamespaces } from "react-i18next";
 
 class LandingPageSearch extends Component {
   state = {
-	langs: [{name: 'English', id: "en"},{name: 'Italian', id: "it"},,{name: 'Turkish', id: "tr"}],
+    langs: [
+      { name: "English", id: "en" },
+      { name: "Italian", id: "it" },
+      ,
+      { name: "Turkish", id: "tr" },
+    ],
 
     posts: [],
     offset: 0,
@@ -92,6 +97,7 @@ class LandingPageSearch extends Component {
   }
 
   returnPostRequest = async () => {
+    let { t } = this.props;
     let { offset, limit } = this.state;
     let { keyword, location } = this.props.match.params;
     let token = getCookie("token");
@@ -123,7 +129,7 @@ class LandingPageSearch extends Component {
         },
       ],
       description: pst.description,
-      note: "987 views",
+      note: `987 ${t("search_post_view")}`,
     },
   ];
 
@@ -135,531 +141,548 @@ class LandingPageSearch extends Component {
       return state;
     });
 
-	let payload = {
-		keyword: this.state.advanced_keyword,
-		location: this.state.advanced_location,
-		country: this.state.advanced_country,
-		city: this.state.advanced_city,
-		empNum: this.state.advanced_employee,
-		intern_type: this.state.advanced_intern_type,
-		quota:this.state.quota,
-		rate: this.state.rating,
-		industry: this.state.advanced_industry,
-		begin_period:this.state.begin_period,
-		salary:this.state.salary,
-		appType:this.state.appType,
-		languages:this.state.prefLang,
-		gpa:this.state.gpas,
-		duration:this.state.length,
-		begin_period:this.state.begin_period
-	};
-	let response = await store.advancedSearch(payload,this.props.browseInternship ?'jobs':'job');
-	let posts = response.data.results.map((pst) => {
-	  return this.fillPosts(pst);
-	});
-	this.setState({
+    let payload = {
+      keyword: this.state.advanced_keyword,
+      location: this.state.advanced_location,
+      country: this.state.advanced_country,
+      city: this.state.advanced_city,
+      empNum: this.state.advanced_employee,
+      intern_type: this.state.advanced_intern_type,
+      quota: this.state.quota,
+      rate: this.state.rating,
+      industry: this.state.advanced_industry,
+      begin_period: this.state.begin_period,
+      salary: this.state.salary,
+      appType: this.state.appType,
+      languages: this.state.prefLang,
+      gpa: this.state.gpas,
+      duration: this.state.length,
+      begin_period: this.state.begin_period,
+    };
+    let response = await store.advancedSearch(
+      payload,
+      this.props.browseInternship ? "jobs" : "job"
+    );
+    let posts = response.data.results.map((pst) => {
+      return this.fillPosts(pst);
+    });
+    this.setState({
       posts: [...this.state.posts, ...posts],
       offset: offset + limit,
       loading: false,
-	  rating:0
+      rating: 0,
     });
   };
 
   resetInputs() {
     this.setState({
-  	keyword: "",
-  	location: "",
-  	searches: [
-  	  "Manchester",
-  	  "London",
-  	  "Oxford",
-  	  "Newcastle",
-  	  "Birmingham",
-  	  "Norwich",
-  	  "Bath",
-  	  "Bristol",
-  	],
-  	tags: [],
-  	externalSource: [],
-  	dynamic: "",
-  	advancedSearch: false,
-  	advanced_keyword: "",
-  	advanced_industry: "",
-  	advanced_location: "",
-  	advanced_country: "",
-  	advanced_city: "",
-  	advanced_employee: {
-  	  min: 0,
-  	  max: 0,
-  	},
-  	advanced_intern_type: "",
-  	advanced_duration: "",
-  	advanced_intern_quota: {
-  	  min: 0,
-  	  max: 0,
-  	},
-  	advanced_rate: {
-  	  min: 0,
-  	  max: 0,
-  	},
+      keyword: "",
+      location: "",
+      searches: [
+        "Manchester",
+        "London",
+        "Oxford",
+        "Newcastle",
+        "Birmingham",
+        "Norwich",
+        "Bath",
+        "Bristol",
+      ],
+      tags: [],
+      externalSource: [],
+      dynamic: "",
+      advancedSearch: false,
+      advanced_keyword: "",
+      advanced_industry: "",
+      advanced_location: "",
+      advanced_country: "",
+      advanced_city: "",
+      advanced_employee: {
+        min: 0,
+        max: 0,
+      },
+      advanced_intern_type: "",
+      advanced_duration: "",
+      advanced_intern_quota: {
+        min: 0,
+        max: 0,
+      },
+      advanced_rate: {
+        min: 0,
+        max: 0,
+      },
     });
     setTimeout(() => {
-  	this.setState({
-  	  advancedSearch: true,
-  	});
+      this.setState({
+        advancedSearch: true,
+      });
     }, 10);
   }
 
   getTagValue(name) {
     return this.state.tags.find((item) => {
-  	return item.name === "keyword";
+      return item.name === "keyword";
     }).value;
   }
 
   sendRequestTags() {
     let payload = {
-  	keyword: this.getTagValue("keyword"),
-  	location: this.getTagValue("location"),
-  	country: this.getTagValue("country"),
-  	city: this.getTagValue("city"),
-  	employee_min: this.getTagValue("keyword"),
-  	employee_max: this.getTagValue("keyword"),
-  	intern_type: this.getTagValue("type"),
-  	duration: this.getTagValue("keyword"),
-  	intern_quota_min: this.getTagValue("keyword"),
-  	intern_quota_max: this.getTagValue("keyword"),
-  	rate_min: this.getTagValue("keyword"),
-  	rate_max: this.getTagValue("keyword"),
-  	industry: this.getTagValue("keyword"),
+      keyword: this.getTagValue("keyword"),
+      location: this.getTagValue("location"),
+      country: this.getTagValue("country"),
+      city: this.getTagValue("city"),
+      employee_min: this.getTagValue("keyword"),
+      employee_max: this.getTagValue("keyword"),
+      intern_type: this.getTagValue("type"),
+      duration: this.getTagValue("keyword"),
+      intern_quota_min: this.getTagValue("keyword"),
+      intern_quota_max: this.getTagValue("keyword"),
+      rate_min: this.getTagValue("keyword"),
+      rate_max: this.getTagValue("keyword"),
+      industry: this.getTagValue("keyword"),
     };
   }
   addTags() {
+    let { t } = this.props;
     this.setState({
-  	tags: [
-  	  { name: "keyword", value: this.state.advanced_keyword },
-  	  { name: "location", value: this.state.advanced_location },
-  	  { name: "industry", value: this.state.advanced_industry },
-  	  { name: "country", value: this.state.advanced_country },
-  	  { name: "duration", value: this.state.advanced_duration },
-  	  {
-  		name: "intern quota",
-  		value: `${this.state.advanced_intern_quota.min} - ${this.state.advanced_intern_quota.max} `,
-  	  },
-  	  {
-  		name: "Rate",
-  		value: `${this.state.advanced_rate.min} - ${this.state.advanced_rate.max} `,
-  	  },
-  	  {
-  		name: "employee",
-  		value: `${this.state.advanced_employee.min} - ${this.state.advanced_employee.max} `,
-  	  },
-  	  { name: "city", value: this.state.advanced_city },
-  	  { name: "type", value: this.state.advanced_intern_type },
-  	],
+      tags: [
+        { name: "keyword", value: this.state.advanced_keyword },
+        { name: "location", value: this.state.advanced_location },
+        { name: "industry", value: this.state.advanced_industry },
+        { name: "country", value: this.state.advanced_country },
+        { name: "duration", value: this.state.advanced_duration },
+        {
+          name: "intern quota",
+          value: `${this.state.advanced_intern_quota.min} - ${this.state.advanced_intern_quota.max} `,
+        },
+        {
+          name: "Rate",
+          value: `${this.state.advanced_rate.min} - ${this.state.advanced_rate.max} `,
+        },
+        {
+          name: "employee",
+          value: `${this.state.advanced_employee.min} - ${this.state.advanced_employee.max} `,
+        },
+        { name: "city", value: this.state.advanced_city },
+        { name: "type", value: this.state.advanced_intern_type },
+      ],
     });
   }
   renderAdvancedSearch = () => {
     let {
-    advanced_keyword,
-    advanced_location,
-    advanced_country,
-    advanced_city,
-    advanced_employee,
-    advanced_intern_type,
-    advanced_duration,
-    advanced_intern_quota,
-    advanced_rate,
-    advanced_industry,
+      advanced_keyword,
+      advanced_location,
+      advanced_country,
+      advanced_city,
+      advanced_employee,
+      advanced_intern_type,
+      advanced_duration,
+      advanced_intern_quota,
+      advanced_rate,
+      advanced_industry,
+      t,
     } = this.props;
-	const self = this;
+    const self = this;
     return (
-  	<div className={"advancedSearchDropdown2"} onClick={() => {this.setState({ advancedSearch: false });}}>
-  		<div className={"advancedSearchDropdown2__inputs"} style={{"height":"auto"}} onClick={(e) => {e.stopPropagation();}}>
-  			<div className={`${"only_mobile"} ${"advancedSearchDropdown2__inputs__close_icon"}`} onClick={() => {this.setState({ advancedSearch: false });}}>
-  				<img src={closeIcon} alt="" />
-  			</div>
-  			<div class="row">
-  				<div class="col-md-12">
-  					<Input
-  						id={"keyword"}
-  						type={"text"}
-  						placeholder={"Software Developer"}
-  						size={"full"}
-  						defaultValue={
-  						this.state.advanced_keyword !== "null"
-  						? this.state.advanced_keyword
-  						: ""
-  						}
-  						onChange={(value) => this.setState({ advanced_keyword: value })}
-  						label={"Keyword"}
-  					/>
-					<hr/>
-  				</div>
+      <div
+        className={"advancedSearchDropdown2"}
+        onClick={() => {
+          this.setState({ advancedSearch: false });
+        }}
+      >
+        <div
+          className={"advancedSearchDropdown2__inputs"}
+          style={{ height: "auto" }}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          <div
+            className={`${"only_mobile"} ${"advancedSearchDropdown2__inputs__close_icon"}`}
+            onClick={() => {
+              this.setState({ advancedSearch: false });
+            }}
+          >
+            <img src={closeIcon} alt="" />
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <Input
+                id={"keyword"}
+                type={"text"}
+                placeholder={"Software Developer"}
+                size={"full"}
+                defaultValue={
+                  this.state.advanced_keyword !== "null"
+                    ? this.state.advanced_keyword
+                    : ""
+                }
+                onChange={(value) => this.setState({ advanced_keyword: value })}
+                label={t("search_input_keyword")}
+              />
+              <hr />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <Input
+                id={"country"}
+                type={"text"}
+                placeholder={"USA"}
+                size={"full"}
+                defaultValue={
+                  this.state.advanced_country !== "null"
+                    ? this.state.advanced_country
+                    : ""
+                }
+                onChange={(value) => this.setState({ advanced_country: value })}
+                label={t("search_input_country")}
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <Input
+                id={"city"}
+                type={"text"}
+                placeholder={"California"}
+                size={"full"}
+                defaultValue={advanced_city !== "null" ? advanced_city : "sads"}
+                onChange={(value) => this.setState({ advanced_city: value })}
+                label={t("search_input_city")}
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <Input
+                type={"text"}
+                id={"industry"}
+                placeholder={"Tech."}
+                size={"full"}
+                defaultValue={
+                  advanced_industry !== "null" ? advanced_industry : ""
+                }
+                onChange={(value) => {
+                  this.setState({ advanced_industry: value });
+                }}
+                label={t("search_input_sector")}
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <Input
+                type={"select"}
+                id={"internType"}
+                label={t("search_input_employee_number")}
+                size={"full"}
+                defaultValue={this.state.advanced_employee}
+                onChange={(value, slValue) => {
+                  this.setState({ advanced_employee: slValue.value });
+                }}
+                placeholder={t("search_input_employee_number_placeholder")}
+                externalSource={[
+                  { key: "1-10", value: "1-10" },
+                  { key: "11-50", value: "11-50" },
+                  { key: "51-100", value: "51-100" },
+                  { key: "101-250", value: "101-250" },
+                  { key: "250+", value: "250+" },
+                ]}
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="inputWrapper">
+                <label for="">{t("search_input_rating")}</label>
+                {/*<div class="labelDescription" style={{"margin-bottom":"10px"}}>Select a rating star</div>*/}
+                <BeautyStars
+                  value={this.state.rating}
+                  onChange={(value) => this.setState({ rating: value })}
+                  size={16}
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <Input
+                type={"text"}
+                id={"industry"}
+                placeholder={t("search_input_quota")}
+                size={"full"}
+                defaultValue={this.state.quota}
+                onChange={(value) => {
+                  this.setState({ quota: value });
+                }}
+                label={t("search_input_quota")}
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <Input
+                type={"select"}
+                id={"internType"}
+                label={t("search_input_begin_period")}
+                size={"full"}
+                defaultValue={this.state.begin_period}
+                onChange={(value, slValue) => {
+                  this.setState({ begin_period: slValue.value });
+                }}
+                placeholder={t("search_input_begin_period_placeholder")}
+                externalSource={[
+                  { key: "Jan1", value: "January - 1st Week" },
+                  { key: "May2", value: "May – 2nd Week" },
+                  { key: "June3", value: "June – 3rd Week" },
+                  { key: "Oct4", value: "October – 4th Week" },
+                ]}
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <Input
+                type={"select"}
+                id={"internType"}
+                label={t("search_input_length")}
+                size={"full"}
+                defaultValue={this.state.length}
+                onChange={(value, slValue) => {
+                  this.setState({ length: slValue.value });
+                }}
+                placeholder={t("search_input_length_placeholder")}
+                externalSource={[
+                  { key: "4", value: "4 Weeks" },
+                  { key: "8", value: "8 Weeks" },
+                  { key: "12", value: "12 Weeks" },
+                ]}
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <Input
+                type={"select"}
+                id={"internType"}
+                label={t("search_input_preferred_gpa")}
+                size={"full"}
+                defaultValue={this.state.gpas}
+                onChange={(value, slValue) => {
+                  this.setState({ gpas: slValue.value });
+                }}
+                placeholder={t("search_input_preferred_gpa_placeholder")}
+                externalSource={[
+                  { key: "-", value: "-" },
+                  { key: "2/4", value: "2/4 or Higher" },
+                  { key: "2.5/4", value: "2.5/4 or Higher" },
+                  { key: "3/4", value: "3/4 or Higher" },
+                  { key: "3.5/4", value: "3.5/4 or Higher" },
+                ]}
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <Input
+                type={"select"}
+                id={"internType"}
+                label={t("search_input_preferred_language")}
+                size={"full"}
+                defaultValue={this.state.langs}
+                onChange={(value, slValue) => {
+                  this.setState({ prefLang: slValue.key });
+                }}
+                placeholder={t("search_input_preferred_language_placeholder")}
+                externalSource={[
+                  { key: "English", id: "en", value: "English" },
+                  { key: "Italian", id: "it", value: "Italian" },
+                  { key: "Turkish", id: "tr", value: "Turkish" },
+                ]}
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <Input
+                type={"select"}
+                id={"internType"}
+                label={t("search_input_application_type")}
+                size={"full"}
+                defaultValue={this.state.appType}
+                onChange={(value, slValue) => {
+                  this.setState({ appType: slValue.value });
+                }}
+                placeholder={t("search_input_application_type_placeholder")}
+                externalSource={[
+                  { key: "local", value: "Local" },
+                  { key: "global", value: "Global" },
+                ]}
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <Input
+                type={"select"}
+                id={"internType"}
+                label={t("search_input_intern_type")}
+                size={"full"}
+                defaultValue={
+                  this.state.advanced_intern_type !== "null"
+                    ? this.state.advanced_intern_type
+                    : ""
+                }
+                onChange={(value, slValue) => {
+                  this.setState({ advanced_intern_type: slValue.value });
+                }}
+                placeholder={t("search_input_intern_type_placeholder")}
+                externalSource={[
+                  {
+                    key: "University Student",
+                    value: "Student",
+                    selected: true,
+                  },
+                  { key: "Newly Graduated", value: "Newly Graduated" },
+                ]}
+              />
+            </div>
+            <div class="col-md-12">
+              <Input
+                type={"select"}
+                id={"internType"}
+                label={t("search_input_salary")}
+                size={"full"}
+                defaultValue={this.state.salary}
+                onChange={(value, slValue) => {
+                  this.setState({ salary: slValue.value });
+                }}
+                placeholder={t("search_input_salary_placeholder")}
+                externalSource={[
+                  { key: "yes", value: "Yes" },
+                  { key: "no", value: "No" },
+                ]}
+              />
+            </div>
+          </div>
 
-  			</div>
-  			<div class="row">
-  				<div class="col-md-12">
-  					<Input
-  						id={"country"}
-  						type={"text"}
-  						placeholder={"USA"}
-  						size={"full"}
-  						defaultValue={
-  						this.state.advanced_country !== "null"
-  						? this.state.advanced_country
-  						: ""
-  						}
-  						onChange={(value) => this.setState({ advanced_country: value })}
-  						label={"Country"}
-  					/>
-  				</div>
-  			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<Input
-						id={"city"}
-						type={"text"}
-						placeholder={"California"}
-						size={"full"}
-						defaultValue={advanced_city !== "null" ? advanced_city : "sads"}
-						onChange={(value) => this.setState({ advanced_city: value })}
-						label={"City"}
-					/>
-				</div>
-			</div>
-  			<div class="row">
-  				<div class="col-md-12">
-  					<Input
-  						type={"text"}
-  						id={"industry"}
-  						placeholder={"Tech."}
-  						size={"full"}
-  						defaultValue={advanced_industry !== "null" ? advanced_industry : ""}
-  						onChange={(value) => {
-  						  this.setState({ advanced_industry: value });
-  						}}
-  						label={"Sector"}
-  					/>
-  				</div>
-  			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<Input
-						type={"select"}
-						id={"internType"}
-						label={"Employee Number"}
-						size={"full"}
-						defaultValue={
-							this.state.advanced_employee
-						}
-						onChange={(value, slValue) => {
-							this.setState({ advanced_employee: slValue.value });
-						}}
-						placeholder={"Select employee number"}
-						externalSource={[
-							{ key: "1-10", value: "1-10"},
-							{ key: "11-50", value: "11-50" },
-							{ key: "51-100", value: "51-100" },
-							{ key: "101-250", value: "101-250" },
-							{ key: "250+", value: "250+" },
-						]}
-					/>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="inputWrapper">
-						<label for="">Rating</label>
-						{/*<div class="labelDescription" style={{"margin-bottom":"10px"}}>Select a rating star</div>*/}
-						<BeautyStars
-							value={this.state.rating}
-							onChange={value => this.setState({ rating:value })}
-							size={16}
-						/>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<Input
-						type={"text"}
-						id={"industry"}
-						placeholder={"Quota"}
-						size={"full"}
-						defaultValue={this.state.quota}
-						onChange={(value) => {
-							this.setState({ quota: value });
-						}}
-						label={"Quota"}
-					/>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<Input
-						type={"select"}
-						id={"internType"}
-						label={"Begin Period"}
-						size={"full"}
-						defaultValue={
-							this.state.begin_period
-						}
-						onChange={(value, slValue) => {
-							this.setState({ begin_period: slValue.value });
-						}}
-						placeholder={"Select begin period"}
-						externalSource={[
-							{ key: "Jan1", value: "January - 1st Week"},
-							{ key: "May2", value: "May – 2nd Week" },
-							{ key: "June3", value: "June – 3rd Week" },
-							{ key: "Oct4", value: "October – 4th Week" },
-						]}
-					/>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<Input
-						type={"select"}
-						id={"internType"}
-						label={"Length"}
-						size={"full"}
-						defaultValue={
-							this.state.length
-						}
-						onChange={(value, slValue) => {
-							this.setState({ length: slValue.value });
-						}}
-						placeholder={"Select Length"}
-						externalSource={[
-							{ key: "4", value: "4 Weeks"},
-							{ key: "8", value: "8 Weeks" },
-							{ key: "12", value: "12 Weeks" },
-						]}
-					/>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<Input
-						type={"select"}
-						id={"internType"}
-						label={"Preferred GPA"}
-						size={"full"}
-						defaultValue={
-							this.state.gpas
-						}
-						onChange={(value, slValue) => {
-							this.setState({ gpas: slValue.value });
-						}}
-						placeholder={"Select Preferred GPA"}
-						externalSource={[
-							{ key: "-", value: "-"},
-							{ key: "2/4", value: "2/4 or Higher" },
-							{ key: "2.5/4", value: "2.5/4 or Higher" },
-							{ key: "3/4", value: "3/4 or Higher" },
-							{ key: "3.5/4", value: "3.5/4 or Higher" },
-						]}
-					/>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<Input
-						type={"select"}
-						id={"internType"}
-						label={"Preferred Language"}
-						size={"full"}
-						defaultValue={
-							this.state.langs
-						}
-						onChange={(value, slValue) => {
-							this.setState({prefLang: slValue.key});
-						}}
-						placeholder={"Select Preferred Language"}
-						externalSource= {[{key: 'English', id: "en", value: 'English'},{key: 'Italian', id: "it", value: 'Italian'},{key: 'Turkish', id: "tr", value: 'Turkish'}]}
-					/>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<Input
-						type={"select"}
-						id={"internType"}
-						label={"Application Type"}
-						size={"full"}
-						defaultValue={
-							this.state.appType
-						}
-						onChange={(value, slValue) => {
-							this.setState({ appType: slValue.value });
-						}}
-						placeholder={"Select Application Type"}
-						externalSource={[
-							{ key: "local", value: "Local"},
-							{ key: "global", value: "Global" },
-						]}
-					/>
-				</div>
-			</div>
-  			<div class="row">
-  				<div class="col-md-12">
-  					<Input
-  						type={"select"}
-  						id={"internType"}
-  						label={"Intern Type"}
-  						size={"full"}
-  						defaultValue={
-  							this.state.advanced_intern_type !== "null"
-  							? this.state.advanced_intern_type
-  							: ""
-  						}
-  						onChange={(value, slValue) => {
-  							this.setState({ advanced_intern_type: slValue.value });
-  						}}
-  						placeholder={"Select Intern Type"}
-  						externalSource={[
-  							{ key: "University Student", value: "Student", selected: true },
-  							{ key: "Newly Graduated", value: "Newly Graduated" },
-  						]}
-  					/>
-  				</div>
-				<div class="col-md-12">
-  					<Input
-  						type={"select"}
-  						id={"internType"}
-  						label={"Salary"}
-  						size={"full"}
-  						defaultValue={
-  							this.state.salary
-  						}
-  						onChange={(value, slValue) => {
-  							this.setState({ salary: slValue.value });
-  						}}
-  						placeholder={"Select Salary"}
-  						externalSource={[
-  							{ key: "yes", value: "Yes"},
-  							{ key: "no", value: "No" },
-  						]}
-  					/>
-  				</div>
-  			</div>
+          <div className={"advancedSearchDropdown2__send-button"}>
+            <div class="row">
+              <div class="col-md-6">
+                <Button
+                  type={"secondary"}
+                  text={t("search_input_button")}
+                  loading={this.state.advanced_search_processing}
+                  onButtonClick={async () => {
+                    this.setState({ advanced_search_processing: true });
 
-				<div className={"advancedSearchDropdown2__send-button"}>
-					<div class="row">
-						<div class="col-md-6">
-							<Button
-								type={"secondary"}
-								text={"Find"}
-								loading={this.state.advanced_search_processing}
-								onButtonClick={async () => {
-									this.setState({ advanced_search_processing: true });
-
-									let payload = {
-										keyword: this.state.advanced_keyword,
-										location: this.state.advanced_location,
-										country: this.state.advanced_country,
-										city: this.state.advanced_city,
-										empNum: this.state.advanced_employee,
-										intern_type: this.state.advanced_intern_type,
-										quota:this.state.quota,
-										rate: this.state.rating,
-										industry: this.state.advanced_industry,
-										begin_period:this.state.begin_period,
-										salary:this.state.salary,
-										appType:this.state.appType,
-										languages:this.state.prefLang,
-										gpa:this.state.gpas,
-										duration:this.state.length,
-										begin_period:this.state.begin_period
-									};
-									let response = await store.advancedSearch(payload,this.props.browseInternship ?'jobs':'job');
-									let posts = response.data.results.map((pst) => {
-									return this.fillPosts(pst);
-									});
-									if (response)
-										this.setState({
-											total:response.data.total,
-											posts:posts,
-											advancedSearch: false,
-											advanced_search_processing: false,
-										});
-								}}
-							/>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
+                    let payload = {
+                      keyword: this.state.advanced_keyword,
+                      location: this.state.advanced_location,
+                      country: this.state.advanced_country,
+                      city: this.state.advanced_city,
+                      empNum: this.state.advanced_employee,
+                      intern_type: this.state.advanced_intern_type,
+                      quota: this.state.quota,
+                      rate: this.state.rating,
+                      industry: this.state.advanced_industry,
+                      begin_period: this.state.begin_period,
+                      salary: this.state.salary,
+                      appType: this.state.appType,
+                      languages: this.state.prefLang,
+                      gpa: this.state.gpas,
+                      duration: this.state.length,
+                      begin_period: this.state.begin_period,
+                    };
+                    let response = await store.advancedSearch(
+                      payload,
+                      this.props.browseInternship ? "jobs" : "job"
+                    );
+                    let posts = response.data.results.map((pst) => {
+                      return this.fillPosts(pst);
+                    });
+                    if (response)
+                      this.setState({
+                        total: response.data.total,
+                        posts: posts,
+                        advancedSearch: false,
+                        advanced_search_processing: false,
+                      });
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   };
-	render() {
-		const { isAuthorized } = this.props;
-		let { keyword, location } = this.props.match.params;
-		let { posts, totalCount, loading } = this.state;
-		return (
-			<div>
-				{
-					!isAuthorized &&
-					<PageHeader
-						backgroundImage={companyBg}
-						title="Detail Search"
-					/>
-				}
-				<div className={"landingPageSearch"}>
-					<LoadingModal text="Loading" v-if={loading} />
-					<div class="container">
-						<div class="row">
-							<div class="col-md-4">
-								<div class="landingPageSearch__filter">
-									{this.renderAdvancedSearch()}
-								</div>
-							</div>
-							<div class="col-md-8">
-								<div className={"landingPageSearch__noResult"} v-if={posts.length <= 0}>
-									No results found...
-									<div v-if={keyword || location} className={"landingPageSearch__description"}>
-										Your search for
-										{keyword === "null" ? "" : ' "' + keyword + '" '}
-										{keyword === "null" || location === "null" ? "" : "in"}
-										{location === "null" ? "" : ' "' + location + '" '}
-										did not return any result
-									</div>
-									<div v-else className={"landingPageSearch__description"}>
-										Did not return any result
-									</div>
-								</div>
-								<Card
-									v-if={posts.length > 0}
-									v-for={(pst, i) in posts}
-									key={i}
-									type={"jobPost"}
-									posts={pst}
-								/>
-								<div className={"landingPageSearch__buttonContainer"}>
-									<Button
-										v-if={posts.length > 0 && totalCount > posts.length}
-										type={"ghost"}
-										text={"Load More"}
-										sizeName={"small"}
-										onButtonClick={() => this.onLoadMore()}
-										width={"160px"}
-									/>
-								</div>
-							</div>
+  render() {
+    let { t } = this.props;
+    const { isAuthorized } = this.props;
+    let { keyword, location } = this.props.match.params;
+    let { posts, totalCount, loading } = this.state;
+    return (
+      <div>
+        {!isAuthorized && (
+          <PageHeader backgroundImage={companyBg} title={t("search_title")} />
+        )}
+        <div className={"landingPageSearch"}>
+          <LoadingModal text="Loading" v-if={loading} />
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="landingPageSearch__filter">
+                  {this.renderAdvancedSearch()}
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div
+                  className={"landingPageSearch__noResult"}
+                  v-if={posts.length <= 0}
+                >
+                  {t("search_post_not_result")}
+                  <div
+                    v-if={keyword || location}
+                    className={"landingPageSearch__description"}
+                  >
+                    {t("search_post_not_result_description_part1")}
+                    {keyword === "null" ? "" : ' "' + keyword + '" '}
+                    {keyword === "null" || location === "null" ? "" : "in"}
+                    {location === "null" ? "" : ' "' + location + '" '}
+                    {t("search_post_not_result_description_part2")}
+                  </div>
+                  <div v-else className={"landingPageSearch__description"}>
+                    {t("search_post_not_result_explain")}
+                  </div>
+                </div>
+                <Card
+                  v-if={posts.length > 0}
+                  v-for={(pst, i) in posts}
+                  key={i}
+                  type={"jobPost"}
+                  posts={pst}
+                />
+                <div className={"landingPageSearch__buttonContainer"}>
+                  <Button
+                    v-if={posts.length > 0 && totalCount > posts.length}
+                    type={"ghost"}
+                    text={"Load More"}
+                    sizeName={"small"}
+                    onButtonClick={() => this.onLoadMore()}
+                    width={"160px"}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
 
-						</div>
-
-					</div>
-
-
-
-					<Footer />
-				</div>
-			</div>
-		);
-	}
+          <Footer />
+        </div>
+      </div>
+    );
+  }
 }
 
-export default LandingPageSearch;
+export default withNamespaces()(LandingPageSearch);
