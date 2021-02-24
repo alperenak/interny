@@ -10,6 +10,7 @@ import joinAndApply from "../../assets/joinAndApply.png";
 import iccTMPortfolio from "../../assets/iccTMPortfolio.png";
 import imsTMWorkTime from "../../assets/imsTMWorkTime.png";
 import referrenceReccomendationLetter from "../../assets/referrenceReccomendationLetter.png";
+import { withNamespaces } from "react-i18next";
 
 const DESCRIPTION_DATA = [
   `Welcome to INTERNY, the world's first remote online internship platform. You will find everything you need and more during the internship process on the platform. It allows you to do your internship at any company anywhere in the world, wherever and whenever you want. All you have to do is apply for internships, get acceptance, and complete the assigned tasks thoroughly.`,
@@ -135,22 +136,147 @@ const PACKAGES_DATA = [
 ];
 
 class InternPage extends Component {
+  renderData(type) {
+    let { t } = this.props;
+    if (type === "packages") {
+      return [
+        {
+          id: "freemium",
+          title: t("howtouse_packages_intern_freemium_name"),
+          price: "$0",
+          payment: "",
+          highlights: [
+            {
+              heading: t("howtouse_packages_intern_freemium_detail1"),
+              description:
+                "You can start using the new generation internship system by registering free of charge on the platform.",
+            },
+            {
+              heading: t("howtouse_packages_intern_freemium_detail2"),
+              description:
+                "You can create a CV that introduces yourself in detail to apply for internships.",
+            },
+            {
+              heading: t("howtouse_packages_intern_freemium_detail3"),
+              description:
+                "You can search for an internship anywhere in the world in the most detailed way.",
+            },
+          ],
+        },
+        {
+          id: "intern",
+          title: t("howtouse_packages_intern_intern_name"),
+          price: "$34.99",
+          payment: t("howtouse_packages_intern_intern_payment"),
+          highlights: [
+            {
+              heading: t("howtouse_packages_intern_intern_detail1"),
+              description:
+                "Apply to thousands of companies around the world. If you are not accepted from any company within two months, your money will be refunded.",
+            },
+            {
+              heading: t("howtouse_packages_intern_intern_detail2"),
+              description:
+                "Use Interny Management System (iMS™) to manage tasks assigned for the internship and contact the company. Task assignments will be given to you to be completed at a specific time. The company and you will evaluate each other at the end of each task. ",
+            },
+            {
+              heading: t("howtouse_packages_intern_intern_detail3"),
+              description:
+                "Workforce Analytics (WFA) Report is created due to all the data obtained according to company feedback and artificial intelligence during the internship process. This report evaluates in detail the success of the internship process. Your university can also follow the internship process with WFA.",
+            },
+            {
+              heading: t("howtouse_packages_intern_intern_detail4"),
+              description:
+                "Overall internship success is obtained as a result of the WFA Report. Suppose your WFA overall score is above 60%. In that case, you can get a Reference Letter signed by the company that summarizes what you have done during the internship process.",
+            },
+            {
+              heading: t("howtouse_packages_intern_intern_detail5"),
+              description: "",
+            },
+            {
+              heading: t("howtouse_packages_intern_intern_detail6"),
+              description:
+                "Suppose you have any language problems for global internships. In that case, you can request Language Support Service for some languages ​​by paying an additional $19.99 for the INTERN package to overcome the language problem. You can take and deliver your tasks in the language you prefer with the Language Support Service.",
+            },
+            {
+              heading: t("howtouse_packages_intern_intern_detail7"),
+              description:
+                "INTERNY offers an Emergency Internship Service for an additional $19.99 to the INTERN package so that you can start your internship in any country and sector within 30 days. This service aims to ensure that you only start the internship within 30 days, and the internship approval processes usually continue. The fact that this additional service is purchased does not mean that your internship will be approved exactly.",
+            },
+          ],
+        },
+        {
+          id: "competency",
+          title: t("howtouse_packages_intern_competency_name"),
+          price: "$12.49",
+          payment: t("howtouse_packages_intern_competency_payment"),
+          highlights: [
+            {
+              heading: t("howtouse_packages_intern_competency_detail1"),
+              description:
+                "Interny Competency Center (iCC™) includes a set of unique five different case studies just for you to measure the 15 core competencies that international organizations value the most now and for the future.",
+            },
+            {
+              heading: t("howtouse_packages_intern_competency_detail2"),
+              description:
+                "Case studies are meticulously evaluated to determine your core competencies using artificial intelligence.",
+            },
+            {
+              heading: t("howtouse_packages_intern_competency_detail3"),
+              description:
+                "Detailed competency report containing the data obtained from Competency Analytics, the meanings of competency results, and improvement suggestions.",
+            },
+          ],
+        },
+      ];
+    } else if (type === "step") {
+      return [
+        {
+          title: t("howtouse_steps_join_and_apply_title"),
+          description: t("howtouse_steps_join_and_apply_description"),
+          image: joinAndApply,
+        },
+        {
+          title: t("howtouse_steps_icc_title"),
+          description: t("howtouse_steps_icc_description"),
+          image: iccTMPortfolio,
+        },
+        {
+          title: t("howtouse_steps_ims_title"),
+          description: t("howtouse_steps_ims_description"),
+          image: imsTMWorkTime,
+        },
+        {
+          title: t("howtouse_steps_reference_letter_title"),
+          description: t("howtouse_steps_reference_letter_description"),
+          image: referrenceReccomendationLetter,
+        },
+      ];
+    } else if (type === "description") {
+      return [
+        t("howtouse_intern_welcome_to_interny"),
+        t("howtouse_intern_welcome_to_interny_paragraph2"),
+      ];
+    }
+  }
+
   render() {
-    const { location } = this.props;
+    const { location, t } = this.props;
     const isCameFromGift =
       location && location.state && location.state.from === "gift";
     const giftData = isCameFromGift ? location.state : undefined;
+
     return (
       <WhyUsePage
         headerBackground={companyBg}
-        header="How to Use?"
-        descriptionList={DESCRIPTION_DATA}
-        title="How to Use the Platform as an Intern?"
-        stepData={STEP_DATA}
+        header={t("howtouse_header")}
+        descriptionList={this.renderData("description")}
+        title={t("howtouse_header_title")}
+        stepData={this.renderData("step")}
         videoEmbedLink="https://www.youtube.com/embed/2Nw6nkw6JCA"
-        packagesTitle="See the Intern Packages"
-        packagesSubtitle="Click to see detail of packages"
-        packagesData={PACKAGES_DATA}
+        packagesTitle={t("howtouse_see_intern_packages")}
+        packagesSubtitle={t("howtouse_click_see_detail_packages")}
+        packagesData={this.renderData("packages")}
         giftData={giftData}
         type={"intern"}
       />
@@ -158,4 +284,4 @@ class InternPage extends Component {
   }
 }
 
-export default InternPage;
+export default withNamespaces()(InternPage);
