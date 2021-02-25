@@ -4,8 +4,9 @@ import styles from "./style.scss";
 // Components
 import Button from "../../components/Button";
 import Card from "../../components/Card";
+import { withNamespaces } from "react-i18next";
 
-export default class BusinessPackage extends Component {
+class BusinessPackage extends Component {
   constructor(props) {
     super(props);
 
@@ -27,6 +28,7 @@ export default class BusinessPackage extends Component {
 
   renderPackageCard = (packageData, moneyBackGuaranteed) => {
     const isHovered = this.state[packageData.id];
+    let { t } = this.props;
     return (
       <div
         onMouseLeave={() => this.setState({ [packageData.id]: false })}
@@ -68,7 +70,7 @@ export default class BusinessPackage extends Component {
               <Button
                 v-if={isHovered}
                 type={"primary"}
-                text={"Buy Now"}
+                text={t("howtouse_button_title")}
                 to={packageData.id === "freemium" ? "/login/Intern" : "/cart"}
                 sizeName={"default"}
                 onButtonClick={() => {
@@ -89,7 +91,7 @@ export default class BusinessPackage extends Component {
                   packageData.title === "FREEMIUM" ? "/login/Intern" : "/cart"
                 }
                 type={"ghost"}
-                text={"Buy Now"}
+                text={t("howtouse_button_title")}
                 sizeName={"default"}
                 onButtonClick={() => {
                   if (packageData.id !== "freemium") {
@@ -137,3 +139,4 @@ export default class BusinessPackage extends Component {
     );
   }
 }
+export default withNamespaces()(BusinessPackage);

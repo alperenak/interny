@@ -69,22 +69,28 @@ class TopBar extends Component {
       },
       {
         key: "company",
-        value: (
-          <span>
-            <i>for</i> Company
-          </span>
-        ),
+        value:
+          i18n.language !== "tr" ? (
+            <span>
+              <i>for</i> Company
+            </span>
+          ) : (
+            <span> Şirket </span>
+          ),
         selected: false,
         disabled: true,
         to: "/howtocompany",
       },
       {
         key: "university",
-        value: (
-          <span>
-            <i>for</i> University
-          </span>
-        ),
+        value:
+          i18n.language !== "tr" ? (
+            <span>
+              <i>for</i> University
+            </span>
+          ) : (
+            <span> Üniversite </span>
+          ),
         selected: false,
         disabled: true,
         to: "/howtouniversity",
@@ -93,21 +99,21 @@ class TopBar extends Component {
     loginPages: [
       {
         key: "internLogin",
-        value: "Intern",
+        value: this.props.t("topbar_login_subtitle_intern"),
         selected: false,
         disabled: true,
         to: "/login/Intern",
       },
       {
         key: "employerLogin",
-        value: "Company",
+        value: this.props.t("topbar_login_subtitle_company"),
         selected: false,
         disabled: true,
         to: "/login/Employer",
       },
       {
         key: "universityLogin",
-        value: "University",
+        value: this.props.t("topbar_login_subtitle_university"),
         selected: false,
         disabled: true,
         to: "/login/University",
@@ -674,7 +680,9 @@ class TopBar extends Component {
                     <Button
                       type={"link"}
                       sizeName={"default"}
-                      text={"\u00a0\u00a0How to Use\u00a0\u00a0"}
+                      text={`\u00a0\u00a0${t(
+                        "topbar_howtouse_title"
+                      )}\u00a0\u00a0`}
                       textClass={
                         this.state.isScrolled
                           ? "topBar__links__scroll"
