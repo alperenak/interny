@@ -96,7 +96,7 @@ class InvestorPage extends Component {
                     class="internyPage__box"
                     style={{ "text-align": "justify" }}
                   >
-                    <span>{t("investor_subtitle_mission")}</span>
+                    <span>{t("investor_subtitle_mission_statement")}</span>
                     <p>{t("investor_description_mission_statement")} </p>
                   </div>
                 </div>

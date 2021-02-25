@@ -101,6 +101,8 @@ class App extends React.Component {
   async componentDidMount() {
     await this.getUser();
     this.setState({ loading: false });
+    let language = localStorage.getItem("language");
+    if (language) i18n.changeLanguage(language);
   }
 
   getUser = async () => {
