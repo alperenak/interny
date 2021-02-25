@@ -602,7 +602,7 @@ class TopBar extends Component {
                         <Button
                           type={"ghost"}
                           sizeName={"small"}
-                          text={"navbar_login"}
+                          text={t("navbar_login")}
                           iconPosition={"left"}
                           responsive={"hamburger"}
                           icon={caret}
