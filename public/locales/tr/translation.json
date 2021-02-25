@@ -427,5 +427,33 @@
   "investor_card_generation_z": "Z Kuşağı",
   "investor_card_east_west_bridge": "Doğu-Batı Köprüsü",
   "investor_card_ai": "Yapay Zeka",
-  "investor_contact": "Her türlü sorunuz için bizimle iletişime geçebilirsiniz."
+  "investor_contact": "Her türlü sorunuz için bizimle iletişime geçebilirsiniz.",
+
+  "help_center_title": "Yardım Merkezi",
+  "help_center_how_help": "Nasıl Yardımcı Olabiliriz?",
+  "help_center_search": "ARAS",
+  "help_center_having_problems": "Hangisi olarak sorun yaşıyorsunuz?",
+  "help_center_which_area": "Hangi alanda sorun yaşıyorsunuz?",
+  "help_center_share_us": "Probleminizi bizimle paylaşabilir misiniz?",
+
+  "help_center_card_main_intern": "STAJYER",
+  "help_center_card_intern_application": "BAŞVURU",
+  "help_center_card_intern_competency": "YETKİNLİK",
+  "help_center_card_intern_language": "DİL",
+  "help_center_card_intern_task": "GÖREV",
+  "help_center_card_intern_wfa": "WFA/REFERANS MEKTUBU",
+  "help_center_card_intern_other": "DİĞER?",
+
+  "help_center_card_main_company": "ŞİRKET",
+  "help_center_card_company_application": "İLAN",
+  "help_center_card_company_e_learning": "E-ÖĞRENME",
+  "help_center_card_company_language": "DİL",
+  "help_center_card_company_task": "GÖREV",
+  "help_center_card_company_packages": "PAKETLER",
+  "help_center_card_company_other": "DİĞER?",
+
+  "help_center_card_main_university": "ÜNİVERSİTE",
+  "help_center_card_university_language": "DİL",
+  "help_center_card_university_packages": "PAKETLER",
+  "help_center_card_university_other": "DİĞER?"
 }

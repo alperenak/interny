@@ -428,5 +428,33 @@
   "investor_card_generation_z": "Generation-Z",
   "investor_card_east_west_bridge": "East-West Bridge",
   "investor_card_ai": "Artificial Intelligence",
-  "investor_contact": "You can contact us with any questions."
+  "investor_contact": "You can contact us with any questions.",
+
+  "help_center_title": "Help Center",
+  "help_center_how_help": "How Can We Help You?",
+  "help_center_search": "SEARCH",
+  "help_center_having_problems": "Who are you having problems as?",
+  "help_center_which_area": "In which area are you having problems?",
+  "help_center_share_us": "Can you share your problem with us?",
+
+  "help_center_card_main_intern": "INTERN",
+  "help_center_card_intern_application": "APPLICATION",
+  "help_center_card_intern_competency": "COMPETENCY",
+  "help_center_card_intern_language": "LANGUAGE",
+  "help_center_card_intern_task": "TASK",
+  "help_center_card_intern_wfa": "WFA/REFERENCE LETTER",
+  "help_center_card_intern_other": "OTHER",
+
+  "help_center_card_main_company": "ŞİRKET",
+  "help_center_card_company_application": "APPLICATION",
+  "help_center_card_company_e_learning": "E-LEARNING",
+  "help_center_card_company_language": "LANGUAGE",
+  "help_center_card_company_task": "TASK",
+  "help_center_card_company_packages": "PACKAGES",
+  "help_center_card_company_other": "OTHER",
+
+  "help_center_card_main_university": "UNIVERSITY",
+  "help_center_card_university_language": "LANGUAGE",
+  "help_center_card_university_packages": "PACKAGES",
+  "help_center_card_university_other": "OTHER"
 }
