@@ -61,7 +61,7 @@ class TopBar extends Component {
               <i>for</i> Intern
             </span>
           ) : (
-            <span> Stajyer için... </span>
+            <span> Stajyer </span>
           ),
         selected: false,
         disabled: true,
@@ -75,7 +75,7 @@ class TopBar extends Component {
               <i>for</i> Company
             </span>
           ) : (
-            <span> Şirket için... </span>
+            <span> Şirket </span>
           ),
         selected: false,
         disabled: true,
@@ -89,7 +89,7 @@ class TopBar extends Component {
               <i>for</i> University
             </span>
           ) : (
-            <span> Üniversite için... </span>
+            <span> Üniversite </span>
           ),
         selected: false,
         disabled: true,
@@ -99,21 +99,21 @@ class TopBar extends Component {
     loginPages: [
       {
         key: "internLogin",
-        value: "Intern",
+        value: this.props.t("topbar_login_subtitle_intern"),
         selected: false,
         disabled: true,
         to: "/login/Intern",
       },
       {
         key: "employerLogin",
-        value: "Company",
+        value: this.props.t("topbar_login_subtitle_company"),
         selected: false,
         disabled: true,
         to: "/login/Employer",
       },
       {
         key: "universityLogin",
-        value: "University",
+        value: this.props.t("topbar_login_subtitle_university"),
         selected: false,
         disabled: true,
         to: "/login/University",

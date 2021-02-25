@@ -283,6 +283,9 @@
 
   "topbar_howtouse_title": "Nasıl Kullanılır",
   "topbar_howtouse_subtitle_company": "şirket",
+  "topbar_login_subtitle_intern": "Stajyer",
+  "topbar_login_subtitle_company": "Şirket",
+  "topbar_login_subtitle_university": "Üniversite",
 
   "faqs_intern_question_what_internship": "Staj nedir?",
   "faqs_intern_answer_what_internship": "Staj, bir kimsenin meslek bilgisini artırmak amacıyla herhangi bir kuruluşta çalışarak geçirdiği dönemi ifade etmektedir. Staj yapmanın en temel amacı, iş dünyası ile ilgili deneyim kazanmaktır.",
@@ -402,5 +405,11 @@
   "faq_title": "SSS",
   "faq_for_intern": "Stajler için SSS",
   "faq_for_company": "Şirketler için SSS",
-  "faq_for_univesty": "Üniversiteler için SSS"
+  "faq_for_univesty": "Üniversiteler için SSS",
+
+  "gift_title": "Hediye",
+  "gift_description": "Dilediğiniz kişiye staj hediyesi göndermek için aşağıdaki alanları doldurabilirsiniz.",
+  "gift_input_email": "E-mail",
+  "gift_input_quantitiy": "Adet",
+  "gift_input_send": "Gönder"
 }

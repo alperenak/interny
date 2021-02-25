@@ -284,6 +284,9 @@
 
   "topbar_howtouse_title": "How to Use",
   "topbar_howtouse_subtitle_company": "company",
+  "topbar_login_subtitle_intern": "Stajyer",
+  "topbar_login_subtitle_company": "Şirket",
+  "topbar_login_subtitle_university": "Üniversite",
 
   "faqs_intern_question_what_internship": "What is an internship?",
   "faqs_intern_answer_what_internship": "Internship refers to the period that a person spends working in any organization to increase professional knowledge. The primary purpose of doing an internship is to get experience in the business.",
@@ -403,5 +406,11 @@
   "faq_title": "FAQ",
   "faq_for_intern": "FAQ for Interns",
   "faq_for_company": "FAQ for Companies",
-  "faq_for_univesty": "FAQ for Universities"
+  "faq_for_univesty": "FAQ for Universities",
+
+  "gift_title": "Gift",
+  "gift_description": "You can fill in the fields below to send an internship gift to anyone you wish.",
+  "gift_input_email": "E-mail",
+  "gift_input_quantitiy": "Quantity",
+  "gift_input_send": "Send"
 }
