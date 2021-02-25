@@ -61,7 +61,7 @@ class TopBar extends Component {
               <i>for</i> Intern
             </span>
           ) : (
-            <span> Stajyer </span>
+            <span> Stajyer için... </span>
           ),
         selected: false,
         disabled: true,
@@ -69,22 +69,28 @@ class TopBar extends Component {
       },
       {
         key: "company",
-        value: (
-          <span>
-            <i>for</i> Company
-          </span>
-        ),
+        value:
+          i18n.language !== "tr" ? (
+            <span>
+              <i>for</i> Company
+            </span>
+          ) : (
+            <span> Şirket için... </span>
+          ),
         selected: false,
         disabled: true,
         to: "/howtocompany",
       },
       {
         key: "university",
-        value: (
-          <span>
-            <i>for</i> University
-          </span>
-        ),
+        value:
+          i18n.language !== "tr" ? (
+            <span>
+              <i>for</i> University
+            </span>
+          ) : (
+            <span> Üniversite için... </span>
+          ),
         selected: false,
         disabled: true,
         to: "/howtouniversity",
@@ -674,7 +680,9 @@ class TopBar extends Component {
                     <Button
                       type={"link"}
                       sizeName={"default"}
-                      text={"\u00a0\u00a0How to Use\u00a0\u00a0"}
+                      text={`\u00a0\u00a0${t(
+                        "topbar_howtouse_title"
+                      )}\u00a0\u00a0`}
                       textClass={
                         this.state.isScrolled
                           ? "topBar__links__scroll"
