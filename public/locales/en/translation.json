@@ -412,5 +412,21 @@
   "gift_description": "You can fill in the fields below to send an internship gift to anyone you wish.",
   "gift_input_email": "E-mail",
   "gift_input_quantitiy": "Quantity",
-  "gift_input_send": "Send"
+  "gift_input_send": "Send",
+
+  "investor_title": "Investor",
+  "investor_subtitle_company_profile": "Company Profile",
+  "investor_description_company_profile": "INTERNY Inc. is the world's first remote online internship platform company, headquartered in Silicon Valley, California. It also has offices in Rotterdam, Istanbul, London, and Dubai. INTERNY Inc., which provides a global remote online internship opportunity in the globalized world, offers its investors the chance to high profit",
+  "investor_subtitle_mission-statement": "Mission Statement",
+  "investor_description_mission-statement": "INTERNY aims to bring together interns and companies around the world and offers a remote online internship adventure. In this way, it brings together companies in developed countries and interns in developing countries, eliminates the borders between countries, and creates equal opportunities. Also, it offers a brand new internship experience for both companies, interns, and universities with its platforms that appeal to the more digitized Z generation.",
+  "investor_subtitle__why_invest": "Why Invest",
+  "investor_description__why_invest": "INTERNY Inc. offers the opportunity to find each other for all interns and companies and allows internships to be managed through the platform from beginning to the end of the internship. It is the first company in the world to have a remote online internship platform. INTERNY Inc. carries out its operations alone in a vast market. Moreover, it is a company that is open to growth and offers its investors the opportunity to profit with its team of expert and fully open mind people.",
+  "investor_why_interny": "Why Interny?",
+  "investor_card_saas": "SaaS",
+  "investor_card_first_platform": "The First Platform",
+  "investor_card_world_wide": "Worldwide",
+  "investor_card_generation_z": "Generation-Z",
+  "investor_card_east_west_bridge": "East-West Bridge",
+  "investor_card_ai": "Artificial Intelligence",
+  "investor_contact": "You can contact us with any questions."
 }

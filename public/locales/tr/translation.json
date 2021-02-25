@@ -411,5 +411,21 @@
   "gift_description": "Dilediğiniz kişiye staj hediyesi göndermek için aşağıdaki alanları doldurabilirsiniz.",
   "gift_input_email": "E-mail",
   "gift_input_quantitiy": "Adet",
-  "gift_input_send": "Gönder"
+  "gift_input_send": "Gönder",
+
+  "investor_title": "Yatırımcı",
+  "investor_subtitle_company_profile": "Şirket Profili",
+  "investor_description_company_profile": "INTERNY Inc., merkezi Silikon Vadisi, Kaliforniya, ABD’de bulunan, dünyanın ilk uzaktan online staj platformu şirketidir. Ayrıca Rotterdam, İstanbul, Londra ve Dubai'de ofisleri bulunmaktadır. Küreselleşen dünyada global uzaktan online staj imkanı sağlayan INTERNY Inc., yatırımcılarına yüksek kazanç şansı sunmaktadır.",
+  "investor_subtitle_mission-statement": "Görev Beyanı",
+  "investor_description_mission_statement": "INTERNY, stajyerleri ve şirketleri dünya çapında bir araya getirmeyi amaçlamakta ve uzaktan bir online staj deneyimi sunmaktadır. Bu sayede gelişmiş ülkelerdeki şirketleri ve gelişmekte olan ülkelerdeki stajyerleri bir araya getirerek ülkeler arası sınırları ortadan kaldırmakta ve fırsat eşitliği yaratmaktadır. Ayrıca dijitalleşen Z kuşağına hitap eden platformları ile hem şirketler, hem stajyerler hem de üniversiteler için yepyeni bir staj deneyimi sunmaktadır.",
+  "investor_subtitle_why_invest": "Neden Yatırım",
+  "investor_description_why_invest": "INTERNY Inc., tüm stajyerler ve şirketler için birbirini bulma fırsatı sunmakta ve stajların, stajın başından sonuna kadar platform üzerinden yönetilmesine olanak sağlamaktadır. Dünyanın uzaktan online staj platformuna sahip ilk şirketidir. INTERNY Inc., geniş bir pazarda faaliyetlerini tek başına yürütmektedir. Ayrıca, uzman ve tamamen açık fikirli insanlardan oluşan ekibi ile büyümeye açıktır ve yatırımcılarına güçlü kazanç fırsatları sunmaktadır.",
+  "investor_why_interny": "Neden Interny?",
+  "investor_card_saas": "SaaS",
+  "investor_card_first_platform": "İlk Platform",
+  "investor_card_world_wide": "Global",
+  "investor_card_generation_z": "Z Kuşağı",
+  "investor_card_east_west_bridge": "Doğu-Batı Köprüsü",
+  "investor_card_ai": "Yapay Zeka",
+  "investor_contact": "Her türlü sorunuz için bizimle iletişime geçebilirsiniz."
 }

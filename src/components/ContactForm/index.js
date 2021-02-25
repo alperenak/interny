@@ -1,110 +1,111 @@
-import React, { Component } from 'react';
-import './style.scss';
+import React, { Component } from "react";
+import "./style.scss";
 
 // Components
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import Input from "../../components/Input";
+import Button from "../../components/Button";
+import { withNamespaces } from "react-i18next";
 
 class ContactForm extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            name: '',
-            surname: '',
-            email: '',
-            phone: '',
-            message: '',
-        };
-    }
+    this.state = {
+      name: "",
+      surname: "",
+      email: "",
+      phone: "",
+      message: "",
+    };
+  }
 
-    render() {
-        const { onBackClick, onSendClick } = this.props;
-        const formData = {
-            ...this.state,
-        };
-        return (
-            <div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <Input
-                                type="text"
-                                placeholder="Name"
-                                size="full"
-                                onChange={(value) => {
-                                    this.setState({ name: value });
-                                }}
-                                label="Name"
-                            />
-                        </div>
-                        <div class="col-md-6">
-                            <Input
-                                type="text"
-                                placeholder="Surname"
-                                size="full"
-                                onChange={(value) => {
-                                    this.setState({ surname: value });
-                                }}
-                                label="Surname"
-                            />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <Input
-                                type="text"
-                                placeholder="E-mail"
-                                size="full"
-                                onChange={(value) => {
-                                    this.setState({ email: value });
-                                }}
-                                label="E-mail"
-                            />
-                        </div>
-                        <div class="col-md-6">
-                            <Input
-                                type="text"
-                                placeholder="Phone"
-                                size="full"
-                                onChange={(value) => {
-                                    this.setState({ phone: value });
-                                }}
-                                label="Phone"
-                            />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <Input
-                                type="textarea"
-                                placeholder="Message"
-                                size="full"
-                                onChange={(value) => {
-                                    this.setState({ message: value });
-                                }}
-                                label="Message"
-                            />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div
-                            class="col-md-12"
-                            style={{ display: 'flex', justifyContent: 'flex-end' }}
-                        >
-                            
-                            <Button
-                                type="primary"
-                                text="Send"
-                                sizeName="default"
-                                onButtonClick={() => onSendClick(formData)}
-                            />
-                        </div>
-                    </div>
-                </div>
+  render() {
+    let { t } = this.props;
+    const { onBackClick, onSendClick } = this.props;
+    const formData = {
+      ...this.state,
+    };
+    return (
+      <div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <Input
+                type="text"
+                placeholder={t("affiliate_label_name_same_with_placeholder")}
+                size="full"
+                onChange={(value) => {
+                  this.setState({ name: value });
+                }}
+                label={t("affiliate_label_name_same_with_placeholder")}
+              />
             </div>
-        );
-    }
+            <div class="col-md-6">
+              <Input
+                type="text"
+                placeholder={t("affiliate_label_surname_same_with_placeholder")}
+                size="full"
+                onChange={(value) => {
+                  this.setState({ surname: value });
+                }}
+                label={t("affiliate_label_surname_same_with_placeholder")}
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <Input
+                type="text"
+                placeholder={t("affiliate_label_email_same_with_placeholder")}
+                size="full"
+                onChange={(value) => {
+                  this.setState({ email: value });
+                }}
+                label={t("affiliate_label_email_same_with_placeholder")}
+              />
+            </div>
+            <div class="col-md-6">
+              <Input
+                type="text"
+                placeholder={t("affiliate_label_phone_same_with_placeholder")}
+                size="full"
+                onChange={(value) => {
+                  this.setState({ phone: value });
+                }}
+                label={t("affiliate_label_phone_same_with_placeholder")}
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <Input
+                type="textarea"
+                placeholder={t("affiliate_label_message_same_with_placeholder")}
+                size="full"
+                onChange={(value) => {
+                  this.setState({ message: value });
+                }}
+                label={t("affiliate_label_message_same_with_placeholder")}
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div
+              class="col-md-12"
+              style={{ display: "flex", justifyContent: "flex-end" }}
+            >
+              <Button
+                type="primary"
+                text={t("affiliate_button_send")}
+                sizeName="default"
+                onButtonClick={() => onSendClick(formData)}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default ContactForm;
+export default withNamespaces()(ContactForm);
