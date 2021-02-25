@@ -6,11 +6,18 @@
   align-items: center;
   width: 100%;
   background: #f6f8fa;
-
+  & .SummerIntershipTitle {
+    margin: 20px 0;
+    color: #2b4970;
+    font-family: "Sofia Pro Bold";
+  }
   & .CampaignWrapper {
     width: 1113px;
     @include x-large {
       width: 95%;
+    }
+    & .getPadding {
+      padding: 0 2rem;
     }
     & .CampaignBranding {
       display: flex;
@@ -81,11 +88,6 @@
           background: #c04040;
         }
       }
-      & .SummerIntershipTitle {
-        margin: 20px 0;
-        color: #2b4970;
-        font-family: "Sofia Pro Bold";
-      }
     }
     & .RowReverse {
       flex-direction: row-reverse;
@@ -116,5 +118,6 @@
   }
   & .flexOne {
     flex: 1;
+    text-align: justify;
   }
 }
