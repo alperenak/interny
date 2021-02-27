@@ -8,6 +8,7 @@ import Card from "../../components/Card";
 import { withNamespaces } from "react-i18next";
 import FooterAlternative from "../../components/FooterAlternative";
 import Accordion from "../../components/Accordion";
+import Footer from "../../components/Footer";
 class Campaign extends React.Component {
   componentDidMount() {}
 
@@ -258,8 +259,7 @@ class Campaign extends React.Component {
             </div>
           </div>
         </div>
-
-        <FooterAlternative />
+        <Footer />
       </>
     );
   }

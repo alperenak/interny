@@ -738,7 +738,11 @@ class TopBar extends Component {
                     <Link to="/cart">
                       <div className="cartIcon">
                         <img width="30" height="30" src={CartIcon} />
-                        {/* <div className="cartItemCount">2</div> */}
+                        {localStorage.getItem("cartItems") ? (
+                          <div className="cartItemCount">1</div>
+                        ) : (
+                          ""
+                        )}
                       </div>
                     </Link>
                   </Fragment>
@@ -754,8 +758,13 @@ class TopBar extends Component {
                     {this.renderIcon("bell")}
                     {this.renderIcon("user")}
                     <Link to="/cart">
-                      <div className="CartIcon">
+                      <div className="cartIcon">
                         <img width="30" height="30" src={CartIcon} />
+                        {localStorage.getItem("cartItems") ? (
+                          <div className="cartItemCount">1</div>
+                        ) : (
+                          ""
+                        )}
                       </div>
                     </Link>
                     <div className="marginLeft">
@@ -763,7 +772,7 @@ class TopBar extends Component {
                         type={"primary"}
                         sizeName={"small"}
                         text={"Buy Package"}
-                        to="/howtointern"
+                        to="/campaign"
                       />
                     </div>
                     {/* <Button

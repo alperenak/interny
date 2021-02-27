@@ -4,14 +4,16 @@
   font-family: "Sofia Pro";
 
   &.disabled {
-    cursor: not-allowed!important;
+    cursor: not-allowed !important;
 
     & .inputContainer {
       background: #ddd;
     }
 
-    & > div, label, input {
-      cursor: not-allowed!important;
+    & > div,
+    label,
+    input {
+      cursor: not-allowed !important;
     }
   }
 
@@ -49,7 +51,7 @@
     padding: 14px 16px;
     z-index: 12;
     max-height: 200px;
-    overflow: scroll;
+    overflow-y: auto;
 
     & .searchWrapper {
       position: sticky;
@@ -57,7 +59,7 @@
       width: 100%;
       margin-top: -14px;
       top: -14px;
-      border-bottom: 1px solid #EFF2FC;
+      border-bottom: 1px solid #eff2fc;
       display: flex;
       flex-direction: row;
       padding: 12px 0 12px;
@@ -71,24 +73,23 @@
         width: 100%;
 
         &::placeholder {
-          color: #AFB8C3;
+          color: #afb8c3;
           font-size: calc(2px + 12px);
         }
         &::-moz-placeholder {
-          color: #AFB8C3;
+          color: #afb8c3;
           font-size: calc(2px + 12px);
         }
         &::-ms-input-placeholder {
-          color: #AFB8C3;
+          color: #afb8c3;
           font-size: calc(2px + 12px);
         }
         &::-webkit-input-placeholder {
-          color: #AFB8C3;
+          color: #afb8c3;
           font-size: calc(2px + 11px);
         }
       }
     }
-
 
     & li {
       cursor: pointer;
@@ -157,9 +158,9 @@
       font-family: "Sofia Pro";
       margin: 0;
       background: transparent;
-      color: #AFB8C3;
+      color: #afb8c3;
       font-size: calc(2px + 11px);
-      padding: .5px 0;
+      padding: 0.5px 0;
       width: 100%;
     }
   }

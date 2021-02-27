@@ -495,7 +495,7 @@ class myAccountWrapper extends Component {
         <div className={"myAccountWrapper"}>
           <div class="container">
             <div class="row">
-              <div class="col-xl-3 col-lg-3 col-md-12">
+              <div class="col-xl-3 col-lg-3">
                 <div className={"myAccountWrapper__infoSection row"}>
                   <div class="col-xl-12 col-lg-12 col-md-6 myAccountWrapper__photoMargin">
                     <Card

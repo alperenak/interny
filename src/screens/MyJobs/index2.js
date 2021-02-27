@@ -1,16 +1,16 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from "react";
 
 /*** Components ***/
-import Card from '../../components/Card';
+import Card from "../../components/Card";
 
 /*** Utils ***/
-import store from '../../store';
-import { getCookie } from '../../utils/cookie';
-import { formButtons, formItems } from './formItems';
-import { formJobData, onJobFormChange } from '../../utils/functions';
+import store from "../../store";
+import { getCookie } from "../../utils/cookie";
+import { formButtons, formItems } from "./formItems";
+import { formJobData, onJobFormChange } from "../../utils/functions";
 
 /*** Styles ***/
-import styles from './myjobs.scss';
+import styles from "./myjobs.scss";
 
 import WFA from "../../components/WFA";
 
@@ -24,10 +24,10 @@ import FooterAlternative from "../../components/FooterAlternative";
 import image from "../../assets/company-ims_wait.png";
 
 /*** Icons ***/
-import Button from '../../components/Button';
-import addIcon from '../../icons/add-circular-outlined-white-button.svg';
-import Form from '../../components/Form';
-import LoadingModal from '../../components/LoadingModal';
+import Button from "../../components/Button";
+import addIcon from "../../icons/add-circular-outlined-white-button.svg";
+import Form from "../../components/Form";
+import LoadingModal from "../../components/LoadingModal";
 
 class MyJobs2 extends Component {
   state = {
@@ -42,54 +42,54 @@ class MyJobs2 extends Component {
     page: 0,
     internPostPageSource: [
       {
-        key: 'ApplicationHistory',
-        value: 'Application History',
+        key: "ApplicationHistory",
+        value: "Application History",
         selected: true,
-        to: '/myJobs',
+        to: "/myJobs",
         onChange: () => this.setState({ page: 0 }),
       },
       {
-        key: 'SavedJobs',
-        value: 'Saved Jobs',
+        key: "SavedJobs",
+        value: "Saved Jobs",
         selected: false,
-        to: '/myJobs',
+        to: "/myJobs",
         onChange: () => this.setState({ page: 1 }),
       },
       {
-        key: 'AcceptedJobs',
-        value: 'Accepted Jobs',
+        key: "AcceptedJobs",
+        value: "Accepted Jobs",
         selected: false,
-        to: '/myJobs',
+        to: "/myJobs",
         onChange: () => this.setState({ page: 2 }),
       },
       {
-        key: 'PendingJobs',
-        value: 'Pending Jobs',
+        key: "PendingJobs",
+        value: "Pending Jobs",
         selected: false,
-        to: '/myJobs',
+        to: "/myJobs",
         onChange: () => this.setState({ page: 3 }),
       },
     ],
     employerPostPageSource: [
       {
-        key: 'PostHistory',
-        value: 'Post History',
+        key: "PostHistory",
+        value: "Post History",
         selected: true,
-        to: '/myJobs',
+        to: "/myJobs",
         onChange: () => this.setState({ page: 0 }),
       },
       {
-        key: 'ActivePosts',
-        value: 'Active Posts',
+        key: "ActivePosts",
+        value: "Active Posts",
         selected: false,
-        to: '/myJobs',
+        to: "/myJobs",
         onChange: () => this.setState({ page: 1 }),
       },
       {
-        key: 'PassivePosts',
-        value: 'Passive Posts',
+        key: "PassivePosts",
+        value: "Passive Posts",
         selected: false,
-        to: '/myJobs',
+        to: "/myJobs",
         onChange: () => this.setState({ page: 2 }),
       },
     ],
@@ -99,7 +99,7 @@ class MyJobs2 extends Component {
   };
 
   redirectControl(props) {
-    const { children = '', is = true } = props;
+    const { children = "", is = true } = props;
 
     if ((this.state.redirected !== false) === is) {
       // when redirected is true
@@ -111,15 +111,15 @@ class MyJobs2 extends Component {
     if (!this.props.selectJobID) return;
 
     const callbackMethod = () => {
-      this.props.history.push('/mytasks');
+      this.props.history.push("/mytasks");
     };
 
     this.props.selectJobID(selectedJOBId, callbackMethod);
   };
 
   async componentDidUpdate() {
-    let userType = getCookie('user');
-    if (userType === 'employer') {
+    let userType = getCookie("user");
+    if (userType === "employer") {
       if (
         this.state.redirected !== false &&
         !(this.state.jobsForTask.length > 0)
@@ -139,22 +139,22 @@ class MyJobs2 extends Component {
     }
     //
 
-    let userType = getCookie('user');
-    if (userType === 'intern') {
+    let userType = getCookie("user");
+    if (userType === "intern") {
       await this.getSavedPosts();
       await this.getPosts();
-    } else if (userType === 'employer') {
-     await this.getJobsForTask();
-	 this.setState({ processing:false });
+    } else if (userType === "employer") {
+      await this.getJobsForTask();
+      this.setState({ processing: false });
     }
   }
 
   fillPosts = (pst, buttons) => {
-    let city = pst?.jobLocation?.city ? pst?.jobLocation?.city : '';
-    let country = pst?.jobLocation?.country ? pst?.jobLocation?.country : '';
+    let city = pst?.jobLocation?.city ? pst?.jobLocation?.city : "";
+    let country = pst?.jobLocation?.country ? pst?.jobLocation?.country : "";
     let location = pst?.jobLocation
-      ? `${country}${country && city ? ' - ' : ''}${city}`
-      : '';
+      ? `${country}${country && city ? " - " : ""}${city}`
+      : "";
 
     let currentDate = new Date();
     let startDate = new Date(pst.startDate).toLocaleDateString();
@@ -166,14 +166,14 @@ class MyJobs2 extends Component {
 
     return {
       id: pst.id,
-      date: pst.age === '0' ? 'Today' : pst.age + ' days ago',
+      date: pst.age === "0" ? "Today" : pst.age + " days ago",
       header: pst.Employer.legalName,
       company: pst.position,
       image: pst.Employer.logo,
       location: `${location}`,
       buttons: buttons,
       description: pst.description,
-      note: pst.views ? pst.views : '0 view',
+      note: pst.views ? pst.views : "0 view",
       isStarted: pst.isStarted,
       isFinished: pst.isFinished,
       canStart,
@@ -181,7 +181,7 @@ class MyJobs2 extends Component {
   };
 
   async getSavedPosts() {
-    let savedPostsRes = await store.getSavedPost(getCookie('user_id'));
+    let savedPostsRes = await store.getSavedPost(getCookie("user_id"));
     let savedPosts = savedPostsRes.map((pst) => {
       return this.fillPosts(pst, this.savedButtons(pst.id));
     });
@@ -189,7 +189,7 @@ class MyJobs2 extends Component {
   }
 
   async getPosts() {
-    let userId = getCookie('user_id');
+    let userId = getCookie("user_id");
     let appliedPostsRes = await store.getAppliedPost(userId);
     let appliedPosts = appliedPostsRes.map((pst) => {
       return this.fillPosts(pst.Job, this.appliedButtons(pst.id));
@@ -217,7 +217,7 @@ class MyJobs2 extends Component {
 
   //
   async getJobsForTask() {
-    let id = getCookie('user_id');
+    let id = getCookie("user_id");
     let postsRes = await store.getEmployerPostsStarted(id);
 
     let jobsForTask = postsRes.map((pst) => {
@@ -228,16 +228,16 @@ class MyJobs2 extends Component {
   }
   goBoardButton = (pst) => [
     {
-      type: 'primary',
-      text: 'Go to board',
-      sizeName: 'small',
-      width: '85px',
+      type: "primary",
+      text: "Go to board",
+      sizeName: "small",
+      width: "85px",
       onButtonClick: () => this.jobIDSelector(pst.id),
     },
   ];
 
   async getJobPosts() {
-    let id = getCookie('user_id');
+    let id = getCookie("user_id");
     let postsRes = await store.getEmployerPosts(id);
     let activePostsRes = await store.getActivePosts(id);
     let passivePostsRes = await store.getPassivePosts(id);
@@ -263,12 +263,12 @@ class MyJobs2 extends Component {
 
   appliedButtons = (id) => [
     {
-      type: 'primary',
-      text: 'Withdraw',
-      sizeName: 'small',
-      width: '85px',
+      type: "primary",
+      text: "Withdraw",
+      sizeName: "small",
+      width: "85px",
       onButtonClick: async () => {
-        let res = await store.withdrawPost(getCookie('user_id'), id);
+        let res = await store.withdrawPost(getCookie("user_id"), id);
         if (res.status && res.status === 203) {
           await this.getPosts();
         }
@@ -277,12 +277,12 @@ class MyJobs2 extends Component {
   ];
   savedButtons = (id) => [
     {
-      type: 'ghost',
-      text: 'Remove Post',
-      sizeName: 'small',
-      width: '85px',
+      type: "ghost",
+      text: "Remove Post",
+      sizeName: "small",
+      width: "85px",
       onButtonClick: async () => {
-        let res = await store.removePost(getCookie('user_id'), id);
+        let res = await store.removePost(getCookie("user_id"), id);
         if (res.status && res.status === 203) {
           await this.getSavedPosts();
         }
@@ -291,86 +291,86 @@ class MyJobs2 extends Component {
   ];
   pendingButtons = (id) => [
     {
-      type: 'primary',
-      text: 'Withdraw',
-      sizeName: 'small',
-      width: '100px',
+      type: "primary",
+      text: "Withdraw",
+      sizeName: "small",
+      width: "100px",
       onButtonClick: async () => {
-        let res = await store.withdrawPost(getCookie('user_id'), id);
+        let res = await store.withdrawPost(getCookie("user_id"), id);
         if (res.status && res.status === 203) {
           await this.getPosts();
         }
       },
     },
     {
-      type: 'ghost',
+      type: "ghost",
       disabled: true,
-      text: 'Pending...',
-      sizeName: 'small',
-      width: '100px',
+      text: "Pending...",
+      sizeName: "small",
+      width: "100px",
     },
   ];
   acceptedButtons = (userId, jobId) => [
     {
-      type: 'primary',
-      text: 'Start Internship',
-      sizeName: 'small',
-      width: '100px',
+      type: "primary",
+      text: "Start Internship",
+      sizeName: "small",
+      width: "150px",
       onButtonClick: async () => {
         await store.startInternship(userId, jobId);
-        window.location.pathname = '/myTasks';
+        window.location.pathname = "/myTasks";
       },
     },
   ];
 
   historyButtonsPassive = (pst) => [
     {
-      type: pst.isSuspended ? 'primary' : 'ghost',
-      text: pst.isSuspended ? 'Activate' : 'Suspend',
-      sizeName: 'small',
-      width: '85px',
+      type: pst.isSuspended ? "primary" : "ghost",
+      text: pst.isSuspended ? "Activate" : "Suspend",
+      sizeName: "small",
+      width: "85px",
       onButtonClick: async () => {
-        if (pst.isSuspended) await store.updateStatusOfPost(pst.id, 'active');
-        else await store.updateStatusOfPost(pst.id, 'passive');
+        if (pst.isSuspended) await store.updateStatusOfPost(pst.id, "active");
+        else await store.updateStatusOfPost(pst.id, "passive");
         await this.getJobPosts();
       },
     },
   ];
   historyButtonsActive = (pst) => [
     {
-      type: pst.isSuspended ? 'primary' : 'ghost',
-      text: pst.isSuspended ? 'Activate' : 'Suspend',
-      sizeName: 'small',
-      width: '85px',
+      type: pst.isSuspended ? "primary" : "ghost",
+      text: pst.isSuspended ? "Activate" : "Suspend",
+      sizeName: "small",
+      width: "85px",
       onButtonClick: async () => {
-        if (pst.isSuspended) await store.updateStatusOfPost(pst.id, 'active');
-        else await store.updateStatusOfPost(pst.id, 'passive');
+        if (pst.isSuspended) await store.updateStatusOfPost(pst.id, "active");
+        else await store.updateStatusOfPost(pst.id, "passive");
         await this.getJobPosts();
       },
     },
     {
-      type: pst.isSuspended ? 'primary' : 'ghost',
-      text: pst.isStarted ? 'End Internship' : 'Start Internship',
-      sizeName: 'small',
-      width: '85px',
+      type: pst.isSuspended ? "primary" : "ghost",
+      text: pst.isStarted ? "End Internship" : "Start Internship",
+      sizeName: "small",
+      width: "85px",
       onButtonClick: async () => {
         if (pst.canStart && !pst.isStarted)
           return this.setState({
             error: {
-              title: 'Error Title Here',
+              title: "Error Title Here",
               description: "You can't do that!",
             },
           });
 
-        if (pst.isStarted) await store.updateStatusOfPost(pst.id, 'finish');
-        else await store.updateStatusOfPost(pst.id, 'start');
+        if (pst.isStarted) await store.updateStatusOfPost(pst.id, "finish");
+        else await store.updateStatusOfPost(pst.id, "start");
       },
     },
   ];
 
   onCreateClick = async () => {
     this.props.createModal({
-      header: 'Create Job',
+      header: "Create Job",
       content: this.renderCreatePostForm,
     });
   };
@@ -389,7 +389,7 @@ class MyJobs2 extends Component {
   };
 
   onCreateFormSubmit = async (payload) => {
-    const internshipLength = parseInt(payload.internshipLength.split(' ')[0]);
+    const internshipLength = parseInt(payload.internshipLength.split(" ")[0]);
     const addedDays = internshipLength * 7;
 
     const endDate = new Date(payload.startDate);
@@ -448,46 +448,51 @@ class MyJobs2 extends Component {
       processing,
       error,
     } = this.state;
-    let userType = getCookie('user');
+    let userType = getCookie("user");
 
     //
     const RedirectControl = this.redirectControl.bind(this);
     const cardText = (text) =>
-      this.state.redirected !== false ? 'please choose a job' : text;
+      this.state.redirected !== false ? "please choose a job" : text;
     console.log(jobsForTask);
     return (
-			<div className="pageWrapper">
-				<div className={"referrenceLetter"}>
-					<LoadingModal text="Loading" v-if={this.state.processing} />
-					<div class="container">
-						<div style={{ display: 'flex', justifyContent: 'center' }}>
-							<img className="referrenceLetter__image" src={image} alt="Tasks" />
-						</div>
-						<div className={"referrenceLetter__modal"}>
-							<div class="row">
-								<div class="col-md-12">
-									<div className={"referrenceLetter__header"}>Tasks </div>
-									<div className={"referrenceLetter__description"}>
-                  Welcome to the Interny Management System: iMS™. There is no ongoing internship process. Click to post an internship. 
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div className={"referrenceLetter__buttonWrapper"} >
-										<Button
-											type='secondary'
-											text='Learn More'
-											to={"/internyBusiness"} 
-											textClass='referrenceLetter__buttonWrapper__text'
-										/>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<FooterAlternative />
-			</div>
-		);
+      <div className="pageWrapper">
+        <div className={"referrenceLetter"}>
+          <LoadingModal text="Loading" v-if={this.state.processing} />
+          <div class="container">
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <img
+                className="referrenceLetter__image"
+                src={image}
+                alt="Tasks"
+              />
+            </div>
+            <div className={"referrenceLetter__modal"}>
+              <div class="row">
+                <div class="col-md-12">
+                  <div className={"referrenceLetter__header"}>Tasks </div>
+                  <div className={"referrenceLetter__description"}>
+                    Welcome to the Interny Management System: iMS™. There is no
+                    ongoing internship process. Click to post an internship.
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div className={"referrenceLetter__buttonWrapper"}>
+                    <Button
+                      type="secondary"
+                      text="Learn More"
+                      to={"/internyBusiness"}
+                      textClass="referrenceLetter__buttonWrapper__text"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <FooterAlternative />
+      </div>
+    );
     /*
     return (
 		<div className={"MyJobs"}>

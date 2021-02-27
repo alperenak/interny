@@ -151,15 +151,25 @@ class Home extends Component {
                   key={i}
                   posts={[
                     {
-                      location: "California/USA",
+                      location:
+                        i === 0
+                          ? "California/USA"
+                          : i === 1
+                          ? "London/UK "
+                          : "Rotterdam/NL  ",
                       date: "30 days ago",
                       header:
                         i === 0
-                          ? "Siemens AG - Sector 1"
+                          ? "Siemens AG"
                           : i === 1
-                          ? "Nanodems Corp. - Sector 2"
-                          : "Fikrimuhal - Sector 3",
-                      company: "Software Development Engineer",
+                          ? "Nanodems Corp."
+                          : "Fikrimuhal BV ",
+                      company:
+                        i === 0
+                          ? "Engineering and Manufacturing "
+                          : i === 1
+                          ? "Accountancy, Banking and Finance "
+                          : "Information Technology ",
                       image:
                         i === 0 ? siemens : i === 1 ? nanodems : fikrimuhal,
                       star: 5,
@@ -168,7 +178,7 @@ class Home extends Component {
                           ? "May 4ᵗʰ Week"
                           : i === 1
                           ? "April 4ᵗʰ Week"
-                          : "December 1ᵗʰ Week",
+                          : "May 1ᵗʰ Week",
                       buttons: [
                         {
                           type: "primary",
@@ -502,7 +512,7 @@ class Home extends Component {
                           type={"primary"}
                           text={t("landing_packages_details")}
                           sizeName={"default"}
-                          onButtonClick={() => alert("")}
+                          to="/howtointern"
                         />
                         <Button
                           v-if={!this.state.pri1}
@@ -510,6 +520,7 @@ class Home extends Component {
                           text={t("landing_packages_details")}
                           onButtonClick={() => alert("")}
                           sizeName={"default"}
+                          to="/howtointern"
                         />
                       </div>
                     </div>
@@ -592,12 +603,14 @@ class Home extends Component {
                           type={"primary"}
                           text={t("landing_packages_details")}
                           sizeName={"default"}
+                          to="/howtointern"
                         />
                         <Button
                           v-if={!this.state.pri2}
                           type={"ghost"}
                           text={t("landing_packages_details")}
                           sizeName={"default"}
+                          to="/howtointern"
                         />
                       </div>
                     </div>
@@ -667,12 +680,14 @@ class Home extends Component {
                           type={"primary"}
                           text={t("landing_packages_details")}
                           sizeName={"default"}
+                          to="/howtointern"
                         />
                         <Button
                           v-if={!this.state.pri3}
                           type={"ghost"}
                           text={t("landing_packages_details")}
                           sizeName={"default"}
+                          to="/howtointern"
                         />
                       </div>
                     </div>

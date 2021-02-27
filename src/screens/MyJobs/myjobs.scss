@@ -1,101 +1,108 @@
-@import '../../helpers/responsiveBreakpointsMixins.scss';
-.jobCreateForm{
-	.labelDescription{
-		display: none!important;
-	}
-	.selectWrapper label{
-		font-size: 18px;
-		font-weight: normal;
-font-stretch: normal;
-font-style: normal;
-line-height: 1.22;
-letter-spacing: normal;
-text-align: left;
-color: #2c3f58;
-padding: 0 1px;
-	}
+@import "../../helpers/responsiveBreakpointsMixins.scss";
+.jobCreateForm {
+  .labelDescription {
+    display: none !important;
+  }
+  .selectWrapper label {
+    font-size: 18px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.22;
+    letter-spacing: normal;
+    text-align: left;
+    color: #2c3f58;
+    padding: 0 1px;
+  }
 }
-.jobPost{
-	padding: 16px 32px;
-	border: 1px solid #efefef;
-	border-radius: 12px;
+.jobPost {
+  border: 1px solid #efefef;
+  border-radius: 12px;
 }
-.jobPost2{
-	border:0;
+.jobPost2 {
+  border: 0;
+}
+.responsiveRow {
+  display: flex;
+  @include large {
+    flex-direction: column;
+  }
+}
+.responsiveCard {
+  max-width: 770px;
+  @include large {
+    margin: 25px 0;
+  }
 }
 .MyJobs {
-	.jobPost{
-		background-color: white!important;
-	}
-	padding:80px;
-	margin-bottom:80px;
-	&__listButtonContainer {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
+  .jobPost {
+    background-color: white !important;
+  }
+  padding: 80px;
+  margin-bottom: 80px;
+  &__listButtonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-	&__modal_wrapper{
-		background-color: #00000079;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		z-index: 15151;
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100vw;
-		height: 100vh;
+  &__modal_wrapper {
+    background-color: #00000079;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 15151;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
 
-		&__modal{
-			width: 500px;
-			height: 300px;
-			background-color: white;
-			border: 1px #00000079 solid;
-			border-radius: 4px;
-			text-align: center;
+    &__modal {
+      width: 500px;
+      height: 300px;
+      background-color: white;
+      border: 1px #00000079 solid;
+      border-radius: 4px;
+      text-align: center;
 
+      & .title {
+        color: #e1525f;
+        font-weight: 700;
+        font-size: 2rem;
+        padding: 25px 0;
+        border-bottom: 1px #969ca2 solid;
+      }
 
+      & .description {
+        margin: 25px;
+        color: #71767a;
+        font-weight: 500;
+        letter-spacing: 0.7px;
+      }
 
-			& .title{
-				color: #E1525F;
-				font-weight: 700;
-				font-size: 2rem;
-				padding: 25px 0;
-				border-bottom: 1px #969CA2 solid;
-			}
+      & .button_wrapper {
+        position: relative;
+        top: 75px;
+        & button {
+          cursor: pointer;
+          font-weight: 700;
+          font-size: medium;
+          color: #e1525f;
+          border-radius: 4px;
+          width: 30%;
+          border: #e1525f 1px solid;
+          height: 32px;
+          padding: 8px 0;
+          background-color: transparent;
+          transition: 0.15s ease-in-out;
 
-			& .description{
-				margin: 25px;
-				color: #71767a;
-				font-weight: 500;
-				letter-spacing: 0.7px;
-			}
-
-			& .button_wrapper{
-				position: relative;
-				top: 75px;
-				& button{
-					cursor: pointer;
-					font-weight: 700;
-					font-size: medium;
-					color: #E1525F;
-					border-radius: 4px;
-					width: 30%;
-					border: #E1525F 1px solid;
-					height: 32px;
-					padding: 8px 0;
-					background-color: transparent;
-					transition: 0.15s ease-in-out;
-
-					&:hover{
-
-					background-color: #E1525F;
-					color: #fff;
-					}
-				}
-			}
-		}
-	}
+          &:hover {
+            background-color: #e1525f;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
 }

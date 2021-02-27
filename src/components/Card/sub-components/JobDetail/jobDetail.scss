@@ -1,100 +1,100 @@
 .jobDetail2 {
-	position: relative;
-	border: 1px solid #efefef;
-	border-radius: 12px;
-	background-color: white;
-	padding: 16px 32px;
-	&__postHeader {
-		font-family: "Sofia Pro Bold";
-		font-size: calc(2px + 15px);
-		font-weight: bolder;
-		font-stretch: normal;
-		font-style: normal;
-		letter-spacing: 0.3px;
-		color: #2c3f58;
-		&__right{
-			display: flex;
-		    flex-direction: column;
-		    align-items: flex-end;
-		}
-	}
-	&__postDate {
-		font-size: calc(2px + 12px);
-		font-weight: lighter;
-		font-stretch: normal;
-		font-style: normal;
-		letter-spacing: -0.24px;
-		color: #949494;
-		margin-right: 6px;
-	}
-	&__postCompany {
-		display: flex;
-		font-size: calc(2px + 13px);
-		margin: 4px 0 0;
-		font-weight: normal;
-		font-stretch: normal;
-		font-style: normal;
-		letter-spacing: -0.28px;
-		color: #2c567e;
+  position: relative;
+  border: 1px solid #efefef;
+  border-radius: 12px;
+  background-color: white;
+  padding: 16px 32px;
+  &__postHeader {
+    font-family: "Sofia Pro Bold";
+    font-size: calc(2px + 15px);
+    font-weight: bolder;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: 0.3px;
+    color: #2c3f58;
+    &__right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+  }
+  &__postDate {
+    font-size: calc(2px + 12px);
+    font-weight: lighter;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.24px;
+    color: #949494;
+    margin-right: 6px;
+  }
+  &__postCompany {
+    display: flex;
+    font-size: calc(2px + 13px);
+    margin: 4px 0 0;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.28px;
+    color: #2c567e;
 
-		& img {
-			height: 18px;
-			width: 11px;
-			margin-right: 4px;
-		}
-	}
-	&__postDescription {
-		font-family: "Sofia Pro Bold";
-		margin: 35px 0 5px;
-		font-size: calc(2px + 13px);
-		font-weight: normal;
-		font-stretch: normal;
-		font-style: normal;
-		letter-spacing: -0.24px;
-		color: #484848;
+    & img {
+      height: 18px;
+      width: 11px;
+      margin-right: 4px;
     }
-	&__postNote {
-		display: flex;
-		margin: 12px 0 20px;
-		font-size: calc(2px + 13px);
-		font-weight: normal;
-		font-stretch: normal;
-		font-style: normal;
-		letter-spacing: -0.24px;
-		color: #484848;
+  }
+  &__postDescription {
+    font-family: "Sofia Pro Bold";
+    margin: 35px 0 5px;
+    font-size: calc(2px + 13px);
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.24px;
+    color: #484848;
+  }
+  &__postNote {
+    display: flex;
+    margin: 12px 0 20px;
+    font-size: calc(2px + 13px);
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.24px;
+    color: #484848;
+  }
+  &__infoSection {
+    display: flex;
+    flex-direction: column;
+    margin: 12px 0 20px;
+    &__title {
+      font-size: calc(2px + 13px);
+      font-family: "Sofia Pro Bold";
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      letter-spacing: -0.24px;
+      color: #484848;
+      padding-bottom: 5px;
+      margin-bottom: 5px;
     }
-	&__infoSection {
-		display: flex;
-		flex-direction: column;
-		margin: 12px 0 20px;
-		&__title {
-			font-size: calc(2px + 13px);
-			font-family: "Sofia Pro Bold";
-			font-weight: normal;
-			font-stretch: normal;
-			font-style: normal;
-			letter-spacing: -0.24px;
-			color: #484848;
-			padding-bottom: 5px;
-			margin-bottom: 5px;
-		}
-		&__value {
-			font-size: calc(2px + 11px);
-			font-family: "Sofia Pro";
-			font-weight: normal;
-			font-stretch: normal;
-			font-style: normal;
-			letter-spacing: -0.24px;
-			color: #646464;
-		}
+    &__value {
+      font-size: calc(2px + 11px);
+      font-family: "Sofia Pro";
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      letter-spacing: -0.24px;
+      color: #646464;
     }
+  }
   & .postButton {
     display: flex;
     flex-direction: column;
     align-self: start;
     justify-content: center;
     margin-top: 20px;
-    width: fit-content;
+    width: 300px;
     height: fit-content;
     grid-column: span 1;
     grid-row: span 10;
