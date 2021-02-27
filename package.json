@@ -19,6 +19,8 @@
     "babel-plugin-minify-dead-code-elimination": "^0.5.1",
     "babel-plugin-react-directives": "1.1.1",
     "beauty-stars": "^1.1.0",
+    "cors": "^2.8.5",
+    "express-static-gzip": "^2.0.7",
     "css-loader": "^3.6.0",
     "express": "latest",
     "file-loader": "^6.0.0",
