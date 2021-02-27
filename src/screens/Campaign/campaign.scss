@@ -1,5 +1,17 @@
 @import "../../helpers/responsiveBreakpointsMixins.scss";
 
+.accordion {
+  width: 100%;
+  background-color: #f6f8fa;
+  padding: 5rem 10rem;
+}
+.internyUseCounter {
+  font-size: 36px;
+  color: #2b4970;
+  font-family: "Sofia Pro Bold";
+  padding: 3rem 0 2rem 0;
+}
+
 .Campaign {
   display: flex;
   justify-content: center;
@@ -50,7 +62,6 @@
     }
     & .campaignRow {
       display: flex;
-      margin: 100px 0;
       @include medium {
         flex-direction: column;
       }

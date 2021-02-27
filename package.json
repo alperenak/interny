@@ -22,6 +22,7 @@
     "css-loader": "^3.6.0",
     "express": "latest",
     "file-loader": "^6.0.0",
+    "flip-counter": "^0.5.3",
     "html2canvas": "^1.0.0-rc.7",
     "i18next": "^19.8.7",
     "i18next-browser-languagedetector": "^6.0.1",

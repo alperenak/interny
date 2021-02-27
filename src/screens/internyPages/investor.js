@@ -57,7 +57,7 @@ class InvestorPage extends Component {
   };
 
   handleContactFormData = (formData) => {
-    console.log("Contact form data: ", formData);
+    window.location.href = `mailto:help@interny.net?subject=Konuyu giriniz&body=Adı:${formData.name} Soyadı:${formData.surname} Numara:${formData.phone} \n Mesaj:${formData.message}`;
   };
 
   render() {

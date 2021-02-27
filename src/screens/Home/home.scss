@@ -1,13 +1,21 @@
 @import "../../helpers/responsiveBreakpointsMixins.scss";
+.CounterWrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
 .SummerInternshipButtonWrapper {
   width: 100%;
   height: 100%;
   position: absolute;
+  z-index: 2;
   top: 0;
   left: 0;
+  flex-direction: column;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   @include small {
     justify-content: center;
     align-items: flex-end;
@@ -43,6 +51,15 @@
   width: 100%;
   height: 234px;
   background-image: url("../../assets/campaign_header.png");
+
+  & .CampaignFilter {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: rgba($color: #000000, $alpha: 0.2);
+  }
   @include medium {
     justify-content: flex-end;
   }

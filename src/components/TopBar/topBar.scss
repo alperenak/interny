@@ -18,6 +18,25 @@
     right: -5px;
   }
 }
+.userTopbar {
+  @include medium {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  & span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  & p {
+    margin: 0;
+    @include medium {
+      text-align: center;
+    }
+  }
+}
+
 .topBar {
   position: fixed;
   top: 0;
@@ -45,6 +64,8 @@
 
   &__fullScreen {
     width: 100%;
+    display: flex;
+    justify-content: space-around;
   }
 
   &__logo {
@@ -284,5 +305,8 @@
     &__scroll {
       font-family: "Sofia Pro Bold";
     }
+  }
+  & .marginLeft {
+    margin: 0 0 0 20px;
   }
 }

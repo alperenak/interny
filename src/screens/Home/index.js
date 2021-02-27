@@ -39,6 +39,7 @@ import hiwTwo from "../../icons/hiw-two.png";
 import hiwThree from "../../icons/hiw-three.png";
 import hiwFour from "../../icons/hiw-four.png";
 import { withNamespaces } from "react-i18next";
+import Counter from "../../components/Counter/counter";
 
 const INTERN_COMMENTS = [
   {
@@ -197,7 +198,11 @@ class Home extends Component {
             </div>
           </div>
         </div>
+        <div className="CounterWrapper">
+          <Counter countDown={new Date(2021, 6, 15)} />
+        </div>
         <div className="CampaignBranding">
+          <div className="CampaignFilter" />
           {/* <div className="CampaignBrandingTitle">Summer Internship</div> */}
           <div className="SummerInternshipButtonWrapper">
             <Link to="/campaign">
