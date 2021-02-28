@@ -64,18 +64,28 @@ const index = () => {
           const stripe = await stripePromise;
           let userId = getCookie("user_id");
           let quantity = JSON.parse(localStorage.getItem("quantity"));
+          let payload = [];
+          payload.push({
+            package: packageId,
+            quantity: quantity,
+          });
+          if (
+            localStorage.getItem("languageSupport") &&
+            JSON.parse(localStorage.getItem("languageSupport"))
+          )
+            payload.push({
+              package: "prod_J1fkGeBJA25Aw",
+              quantity: localStorage.getItem("languageQuantity")
+                ? JSON.parse(localStorage.getItem("languageQuantity"))
+                : 1,
+            });
           const response = fetch(
             `https://interny-backend-prod.herokuapp.com/payment/intern/${userId}`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
-                packages: [
-                  {
-                    package: packageId,
-                    quantity: quantity,
-                  },
-                ],
+                packages: payload,
               }),
             }
           )

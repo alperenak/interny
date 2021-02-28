@@ -188,9 +188,7 @@ class JobDetail extends Component {
                       Begin Period
                     </div>
                     <div className={"jobDetail2__infoSection__value"}>
-                      {pst.startDate && pst.endDate
-                        ? `${pst.startDate} - ${pst.endDate}`
-                        : pst.startDate || pst.endDate}
+                      {pst?.startPeriod}
                     </div>
                   </div>
                 </div>

@@ -54,7 +54,7 @@ class CampaignCard extends React.Component {
             );
             localStorage.setItem(
               "cartItems",
-              JSON.stringify("prod_IzbtUye5fy9r8g")
+              JSON.stringify("prod_IzeL4l7pc0xsD3")
             );
           }}
         >

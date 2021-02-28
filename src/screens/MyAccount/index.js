@@ -289,14 +289,44 @@ class myAccountWrapper extends Component {
           }}
           placeholder={"Sectors"}
           externalSource={[
-            { key: "energy", value: "Energy" },
-            { key: "it", value: "IT" },
-            { key: "agency", value: "Agency" },
+            {
+              key: "Accountancy, Banking and Finance",
+              value: "Accountancy, Banking and Finance",
+            },
+            {
+              key: "Business, Consulting and Management",
+              value: "Business, Consulting and Management",
+            },
+            {
+              key: "Creative Arts and Design",
+              value: " Creative Arts and Design",
+            },
+            { key: "Energy and Utilities", value: " Energy and Utilities" },
+            {
+              key: " Engineering and Manufacturing",
+              value: " Engineering and Manufacturing",
+            },
+            {
+              key: "Environment and Agriculture",
+              value: "Environment and Agriculture",
+            },
+            { key: "Information Technology", value: "Information Technology" },
+            {
+              key: "Marketing, Advertising and PR",
+              value: "Marketing, Advertising and PR",
+            },
+            { key: "Media and Internet", value: " Media and Internet" },
+            { key: "Recruitment and HR", value: "Recruitment and HR" },
+            { key: "Retail", value: "Retail" },
+            { key: "Sales", value: "Sales" },
+            { key: "Education", value: "Education" },
+            { key: "Other", value: "Other" },
           ]}
         />
       </>
     );
   }
+
   renderModalContent(title, value) {
     return (
       <Input
@@ -462,7 +492,6 @@ class myAccountWrapper extends Component {
     return re.test(email);
   }
   render() {
-    console.log(this.state.testA);
     let { user } = this.props;
     let { alertData, alertboxIsActive } = this.context;
     console.log(alertData, alertboxIsActive);
@@ -475,7 +504,7 @@ class myAccountWrapper extends Component {
     if (user?.Internship?.dayLeft <= 0) {
       duration = 0;
     }
-    console.log(this.context.alertData);
+    console.log(user);
     return (
       <div style={{ "background-color": "#f6f8fa" }}>
         {processing && <LoadingModal text={"Loading..."} />}
@@ -535,6 +564,41 @@ class myAccountWrapper extends Component {
                       </div>
                     </Card>
                     <div class="myAccountWrapper__spacer"></div>
+                  </div>
+                  <div class="col-xl-12 col-lg-12 col-md-6 myAccountWrapper__photoMargin">
+                    <div className="mt-4">
+                      <Card
+                        header={{ text: "Packages", position: "start" }}
+                        type={"photo"}
+                      >
+                        <div className="packageTitle">Competency</div>
+                        <p>
+                          Avaible competency:{" "}
+                          {user.CompetencyPackage?.availableCompetency}
+                        </p>
+                        <div className="packageTitle">Intern</div>
+                        <p>
+                          Avaible weeks: {user.InternPackage?.availableWeeks}
+                        </p>
+                        {!user.LanguagePackage?.availableSupport && (
+                          <p>
+                            Language support:{" "}
+                            {!user.InternPackage?.languageSupport
+                              ? "none"
+                              : user.InternPackage?.languageSupport}
+                          </p>
+                        )}
+                        {user.LanguagePackage?.availableSupport && (
+                          <>
+                            <div className="packageTitle">Language Support</div>
+                            <p>
+                              Avaible Support:{" "}
+                              {user.LanguagePackage?.availableSupport}
+                            </p>
+                          </>
+                        )}
+                      </Card>
+                    </div>
                   </div>
                   <div class="col-xl-12 col-lg-12 col-md-6 myAccountWrapper__internship__margin myAccountWrapper__mobileMargin">
                     <Card v-if={user?.Internship} type={"photo"}>

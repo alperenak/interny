@@ -27,8 +27,10 @@ class MyJobs extends Component {
   state = {
     langs: [
       { name: "English", id: "en" },
-      { name: "Italian", id: "it" },
-      ,
+      { name: "French", id: "it" },
+      { name: "German", id: "it" },
+      { name: "Portuguese", id: "it" },
+      { name: "Spanish", id: "it" },
       { name: "Turkish", id: "tr" },
     ],
     compents: [
@@ -627,25 +629,41 @@ class MyJobs extends Component {
               }}
               placeholder={"Select begin period"}
               externalSource={[
-                { key: "Jan1", value: "January - 4st Week" },
-                { key: "May2", value: "May – 2nd Week" },
-                { key: "June3", value: "June – 3rd Week" },
-                { key: "Oct4", value: "October – 4th Week" },
+                { key: "Apr", value: "April – 1st Week" },
+                { key: "Jan1", value: "April – 2nd Week" },
+                { key: "Jan1", value: "April – 3rd Week" },
+                { key: "Jan1", value: "April – 4th Week" },
+                { key: "Jan1", value: "May – 1st Week" },
+                { key: "Jan1", value: "May – 2nd Week" },
+                { key: "Jan1", value: "May – 3rd Week" },
+                { key: "Jan1", value: "May – 4th Week" },
               ]}
             />
           </div>
           <div class="col-md-6">
             <Input
-              type={"text"}
-              id={"industry"}
-              placeholder={"Quota"}
-              size={"full"}
-              labelDescription={"Enter an quota"}
-              defaultValue={this.state.quota}
-              onChange={(value) => {
-                this.setState({ quota: value });
-              }}
+              type={"select"}
+              id={"internType"}
               label={"Quota"}
+              size={"full"}
+              labelDescription={"Choose one below"}
+              defaultValue={this.state.quota}
+              onChange={(value, slValue) => {
+                this.setState({ quota: slValue.value });
+              }}
+              placeholder={"Quota"}
+              externalSource={[
+                { key: "1", value: "1" },
+                { key: "2", value: "2" },
+                { key: "3", value: "3" },
+                { key: "4", value: "4" },
+                { key: "5", value: "5" },
+                { key: "6", value: "6" },
+                { key: "7", value: "7" },
+                { key: "8", value: "8" },
+                { key: "9", value: "9" },
+                { key: "10", value: "10" },
+              ]}
             />
           </div>
         </div>

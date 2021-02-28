@@ -12,6 +12,14 @@ import { getCookie } from "../../../../utils/cookie";
 import Input from "../../../Input";
 
 class CartItems extends Component {
+  state = {
+    quantity: 1,
+    languageSupport:
+      localStorage.getItem("languageSupport") &&
+      JSON.parse(localStorage.getItem("languageSupport"))
+        ? localStorage.getItem("languageSupport")
+        : false,
+  };
   renderPostButtons(buttons) {
     return (
       <div className={`${"postButton"}`}>
@@ -63,13 +71,11 @@ class CartItems extends Component {
                 </div>
               )}
               <div class={pst.images ? "col-md-6" : "col-md-12"}>
-                <Link to={link} className={"postHeaderWrapper"}>
+                <div className={"postHeaderWrapper"}>
                   <div className={"postHeader"}>{pst.name}</div>
-                </Link>
-                <Link to={link} className={"postCompany"}>
-                  {pst.description}
-                </Link>
-                <a
+                </div>
+                <div className={"postCompany"}>{pst.description}</div>
+                {/* <a
                   href="#"
                   onClick={() => selectJob(pst.id)}
                   v-if={pst.location}
@@ -78,9 +84,42 @@ class CartItems extends Component {
                   <img src={locationIcon} alt={"location"} />
                   {pst.location}
                 </a>
-                <Link to={link} className={"postNote"}>
-                  {pst.note}
-                </Link>
+                <Link className={"postNote"}>{pst.note}</Link> */}
+                <div>
+                  {pst.name && pst.name.includes("SUMMER") && pst.images && (
+                    <div class="form-check mt-2">
+                      <input
+                        checked={this.state.languageSupport ? true : false}
+                        class={`form-check-input`}
+                        type="checkbox"
+                        onClick={(e) => {
+                          localStorage.setItem(
+                            "languageSupport",
+                            e.target.checked
+                          );
+                          this.setState({ languageSupport: e.target.checked });
+                        }}
+                        value=""
+                        id="defaultCheck1"
+                      />
+                      <label class="form-check-label" for="defaultCheck1">
+                        English Support (+ $19.99)
+                      </label>
+                    </div>
+                  )}
+                  {pst.images &&
+                    localStorage.getItem("languageSupport") !== "false" && (
+                      <Input
+                        type={"text"}
+                        id={"quantity"}
+                        placeholder={"Quantity"}
+                        size={"full"}
+                        onChange={(value) => {
+                          localStorage.setItem("languageQuantity", value);
+                        }}
+                      />
+                    )}
+                </div>
               </div>
               <div
                 class={pst.images ? "col-md-3" : "col-md-12"}
@@ -94,17 +133,20 @@ class CartItems extends Component {
                 {pst.buttons && !pst.image ? (
                   this.renderPostButtons(pst.buttons)
                 ) : (
-                  <Input
-                    type={"text"}
-                    id={"quantity"}
-                    placeholder={"Quantity"}
-                    size={"full"}
-                    defaultValue="1"
-                    onChange={(value) => {
-                      localStorage.setItem("quantity", value);
-                    }}
-                    label={"Quantity"}
-                  />
+                  <>
+                    <Input
+                      type={"text"}
+                      id={"quantity"}
+                      placeholder={"Quantity"}
+                      defaultValue={this.state.quantity}
+                      size={"full"}
+                      onChange={(value) => {
+                        localStorage.setItem("quantity", value);
+                        this.setState({ quantity: value });
+                      }}
+                      label={"Quantity"}
+                    />
+                  </>
                 )}
               </div>
             </div>
