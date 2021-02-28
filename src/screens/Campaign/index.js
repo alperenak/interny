@@ -11,14 +11,14 @@ import Accordion from "../../components/Accordion";
 import Footer from "../../components/Footer";
 import i18n from "../../i18n";
 
-import CountriesEN from "../../assets/countries.jpeg";
-import CountriesTR from "../../assets/ulke.jpeg";
-import SectorsEN from "../../assets/sectors.jpeg";
-import SectorsTR from "../../assets/sektor.jpeg";
-import InternshipEN from "../../assets/internships.jpeg";
-import InternshipTR from "../../assets/staj.jpeg";
-import CompaniesEN from "../../assets/companies.jpeg";
-import CompaniesTR from "../../assets/sirket.jpeg";
+import CountriesEN from "../../assets/countries.png";
+import CountriesTR from "../../assets/ulke.png";
+import SectorsEN from "../../assets/sectors.png";
+import SectorsTR from "../../assets/sektor.png";
+import InternshipEN from "../../assets/internships.png";
+import InternshipTR from "../../assets/staj.png";
+import CompaniesEN from "../../assets/companies.png";
+import CompaniesTR from "../../assets/sirket.png";
 
 class Campaign extends React.Component {
   componentDidMount() {}
