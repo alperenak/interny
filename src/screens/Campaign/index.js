@@ -86,7 +86,7 @@ class Campaign extends React.Component {
       <>
         <div className="Campaign">
           <div className="CampaignWrapper">
-            <div className="CampaignBranding">
+            <div className="CampaignBranding1">
               <div className="CampaignBrandingTitle">
                 {t("campaign_header_title")}
               </div>
@@ -191,7 +191,7 @@ class Campaign extends React.Component {
               })}
             </div>
             <div style={{ textAlign: "center", marginBottom: 25 }} className="">
-              Detaylı bilgi için:{" "}
+              {t("campaign_info")}
               <Link
                 onClick={() => {
                   window.location.href = "mailto:info@interny.net";
