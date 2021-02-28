@@ -1,65 +1,111 @@
-@import '../../helpers/responsiveBreakpointsMixins.scss';
+@import "../../helpers/responsiveBreakpointsMixins.scss";
+.buyPackageWrapper {
+  display: block;
+  width: 142px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cartIconWrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0;
+}
+.cartIcon {
+  margin: 0 10px;
+  display: flex;
+  width: 30px;
+  position: relative;
+  & .cartItemCount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: rgba(249, 112, 80, 0.9);
+    border-radius: 50%;
+    position: absolute;
+    font-size: 14px;
+    width: 18px;
+    height: 18px;
+    bottom: -5px;
+    right: -5px;
+  }
+}
+.userTopbar {
+  @include medium {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  & span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  & p {
+    margin: 0;
+    @include medium {
+      text-align: center;
+    }
+  }
+}
 
-.TopBar {
+.topBar {
   position: fixed;
   top: 0;
   right: 0;
-  background-color: #f0f2fc;;
-  width: calc(100% - 80px);
-  height: 82px;
+  background-color: #f6f8fa;
+  width: 100%;
+  height: 88px;
   z-index: 12;
   box-shadow: none;
-
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -webkit-user-select: none;
-  padding: 0px 127px 0px 138px;
 
-
-  &.scroll{
-  background-color: white;
-  -webkit-box-shadow: 0 3px 4px 0 rgba(215, 219, 252, 0.55);
-  -moz-box-shadow: 0 3px 4px 0 rgba(215, 219, 252, 0.55);
-  box-shadow: 0 3px 4px 0 rgba(215, 219, 252, 0.55);
-  transition: .5s;
+  &__rightSide {
+    display: flex;
+    justify-content: flex-end;
   }
 
-  &.fullScreen {
+  &__scroll {
+    background-color: white;
+    -webkit-box-shadow: 0 3px 4px 0 rgba(215, 219, 252, 0.55);
+    -moz-box-shadow: 0 3px 4px 0 rgba(215, 219, 252, 0.55);
+    box-shadow: 0 3px 4px 0 rgba(215, 219, 252, 0.55);
+    transition: 0.5s;
+  }
+
+  &__fullScreen {
     width: 100%;
+    display: flex;
+    justify-content: space-around;
   }
 
-  & .logo {
+  &__logo {
     cursor: pointer;
-    padding: 0 20px;
-
     & img {
       height: 40px;
 
       @include small {
         height: 32px;
       }
-
     }
   }
 
-  & .hamburgerMenu {
+  &__hamburgerMenu {
     display: none;
 
     @include medium {
       display: block;
       margin-right: 24px;
-
-      & .hamburgerMenuIcon {
+      &__hamburgerMenuIcon {
         width: 24px;
         cursor: pointer;
       }
     }
 
-    & .hamburgerLinks {
+    &__hamburgerLinks {
       display: flex;
       flex-direction: column;
       width: 200px;
@@ -73,37 +119,38 @@
         align-items: center;
         width: 100%;
         margin: 24px 0px;
-
-
         & a {
-          color: #2c3f58
+          color: #2c3f58;
         }
       }
     }
 
-    & .hamburgerButtons {
+    &__hamburgerButtons {
       width: 176px;
       height: 300px;
       margin-right: auto;
       margin-left: auto;
     }
 
-    & .hamburgerAccountName {
-      margin-top: 96px;
+    &__hamburgerAccountName {
+      margin-top: 25px;
       margin-bottom: 48px;
       width: 210px;
       margin-left: auto;
       margin-right: auto;
+      &__userName {
+        font-family: "Sofia Pro Bold";
+      }
     }
 
-    & .hamburgerAccountTools {
+    &__hamburgerAccountTools {
       display: flex;
       justify-content: space-between;
       width: 280px;
       margin-left: auto;
       margin-right: auto;
 
-      & .img {
+      &__img {
         position: relative;
         display: flex;
         cursor: pointer;
@@ -152,38 +199,45 @@
 
           &.bell {
             right: -84px;
-
           }
         }
-        &>img {
-          width:20px;
-		  height:20px;
+        & > img {
+          width: 20px;
+          height: 20px;
         }
+      }
+    }
+    &__dropdownContainer {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &__dropdown {
+        position: absolute;
+        top: 48px;
+        left: 0;
       }
     }
   }
 
-
-  & .links {
+  &__links {
     display: flex;
     align-items: center;
-    padding: 0 20px;
-
     @include medium {
-      display: none
+      display: none;
     }
 
-    & .userName {
+    &__userName {
       font-family: "Sofia Pro Bold";
     }
 
-    & .dropdownContainer {
+    &__dropdownContainer {
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
 
-      & .dropdown {
+      &__dropdown {
         position: absolute;
         top: 48px;
         left: 0;
@@ -228,46 +282,45 @@
         cursor: default;
       }
 
-      &>img {
+      & > img {
         width: 20px;
-		height:20px;
+        height: 20px;
       }
     }
 
-    &>div {
+    & > div {
       cursor: pointer;
       margin: 0 20px;
-      font-family: "Sofia Pro";
+      font-family: "Sofia Pro Bold";
       font-weight: 100;
-      font-size: calc(2px + 12px);
+      font-size: 16px;
       color: #264870;
 
       &.packages:hover {
         text-decoration: underline;
       }
 
-      &>a {
-        font-family: "Sofia Pro";
+      & > a {
+        font-family: "Sofia Pro Bold";
         font-weight: 100;
-        font-size: calc(2px + 12px);
+        font-size: calc(16px);
         color: #264870;
 
         &:hover {
           text-decoration: underline;
         }
       }
-
     }
 
-    & .nonscroll{
+    &__nonscroll {
       font-family: "Sofia Pro Bold";
     }
 
-    & .scroll{
-      font-family: "Sofia Pro";
+    &__scroll {
+      font-family: "Sofia Pro Bold";
     }
-
-
-
+  }
+  & .marginLeft {
+    margin: 0 0 0 20px;
   }
 }

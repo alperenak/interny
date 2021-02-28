@@ -10,11 +10,11 @@ export default class Compose extends Component {
   };
   render() {
     return (
-      <div className={styles["compose"]}>
+      <div className={"composee"}>
         <Input
           type="text"
           size={"compose"}
-          className={styles["compose-input"]}
+          className={"compose-input"}
           placeholder="Type a message"
           priorValue={this.state.value}
           priority={true}

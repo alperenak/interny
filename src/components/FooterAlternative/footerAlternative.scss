@@ -1,40 +1,16 @@
 @import '../../helpers/responsiveBreakpointsMixins.scss';
 
-.footerSection {
-  width: 100vw!important;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: start;
-  padding: 64px 228px 0;
-  width: calc(100%);
-  background-color: #EFF2FC;
+.footerSection2 {
+	width: 100%;
+	padding-top:20px;
+	padding-bottom: 20px;
+	background-color: #f6f8fa;
+    &__options {
 
-  @include medium {
-    padding: 64px 0px 0;
-  }
-
-
-    & .options {
-      display: flex;
-      align-items: center;
-      display: flex;
-      justify-content: center;
       width: 100%;
-        
-      @include large {
-        width: 65%;
-      }
-
-      @include medium {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      & .links{
+	  display: flex;
+	  justify-content: flex-end;
+      &__links{
           flex-direction: row;
 
           @include medium {
@@ -54,9 +30,6 @@
         }
       }
 
-      @include large {
-        width: 65%;
-      }
 
       @include medium {
         flex-direction: column;
@@ -114,17 +87,23 @@
 
 
 
-  & .stroke {
+  &__stroke {
     height: 1px;
     background-color: black;
     width: 100%;
     margin: 40px 0 20px;
   }
-
-  & .rights {
-    width: 100%;
+  	&__followUs {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+
+    & img {
+  	width: 15px;
+  	margin: 0 20px;
+    }
+  }
+  &__rights {
+    width: 100%;
     font-family: "Sofia Pro";
     font-size: calc(2px + 12px);
     color: black;
@@ -132,22 +111,6 @@
     line-height: 1.5em;
     letter-spacing: 0.1px;
     margin-bottom: 20px;
-
-    @include medium {
-      text-align: center;
-    }
-
-    & .followUs {
-      display: flex;
-      justify-content: center;
-
-      & img {
-        width: 15px;
-        margin: 0 20px;
-      }
-    }
-
-
-
+	text-align: center;
   }
 }

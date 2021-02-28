@@ -28,8 +28,8 @@ class Checkbox extends Component {
     } = this.props;
     return (
       <div
-        className={`${styles.boxWrapper} ${
-          disabled ? styles.disabled : ""
+        className={`${"boxWrapper"} ${
+          disabled ? "disabled" : ""
         } ${className}`}
       >
         <input
@@ -44,7 +44,7 @@ class Checkbox extends Component {
         />
         <label v-if={label} htmlFor={'checkbox'}>
           {label}
-          <p className={styles.clickable} onClick={onClick}>
+          <p className={"clickable"} onClick={onClick}>
             {clickable}
           </p>
         </label>

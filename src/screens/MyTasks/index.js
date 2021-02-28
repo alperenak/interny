@@ -21,6 +21,15 @@ import Button from "../../components/Button";
 // Intern list
 import InternList from "../../components/InternList";
 import errors from "../../utils/errorTexts";
+import WFA from "../../components/WFA";
+
+import "../ReferrenceLetter/referrenceLetter.scss";
+
+// Components
+import FooterAlternative from "../../components/FooterAlternative";
+
+// Assets
+import image from "../../assets/intern-ims_wait.png";
 
 class MyTasks extends Component {
   state = {
@@ -44,6 +53,7 @@ class MyTasks extends Component {
     searchResults: [],
     loading: false,
     allCheck: false,
+    activeTab: "todo",
   };
 
   async componentDidMount() {
@@ -51,7 +61,7 @@ class MyTasks extends Component {
 
     if (this.props.selectedJobID == null && userType === "employer")
       this.props.history.push({
-        pathname: "/myjobs",
+        pathname: "/jobs",
         state: {
           redirectInfo: {
             redirected: true,
@@ -166,13 +176,13 @@ class MyTasks extends Component {
 
     if (renderFor === "name")
       return Members.map((val, index) => (
-        <span key={index} className={styles.assigneeName}>
+        <span key={index} className={"assigneeName"}>
           {val.name} {val.surname} {index + 1 !== Members.length && ", "}
         </span>
       ));
     else if (renderFor === "avatar")
       return Members.map((val, index) => (
-        <div className={styles.userImage} key={index}>
+        <div className={"userImage"} key={index}>
           <img src={val.avatar} alt={"image"} />
         </div>
       ));
@@ -180,7 +190,7 @@ class MyTasks extends Component {
       return Members.map((val, index) => (
         <span
           key={index}
-          className={style.userIn}
+          className={"TaskDetail__userIn"}
           title={`${val.name} ${val.surname}`}
         >
           <img src={val.avatar} key={index} alt={"image"} />
@@ -188,22 +198,75 @@ class MyTasks extends Component {
       ));
     else return <></>;
   }
-
+  renderNDAContent() {
+    return (
+      <div class="ndaContent">
+        İşi üstünüze alabilmek için <a href="#">Gizlilik Sözleşmesini</a>{" "}
+        onaylamanız gerekmektedir.
+      </div>
+    );
+  }
+  renderNDAButtons = (item) => [
+    {
+      type: "primary",
+      text: "Onayla",
+      sizeName: "default",
+      onButtonClick: (key) => this.acceptTodoTask(item),
+    },
+  ];
   onTaskClick = (item) => {
     const userType = getCookie("user");
+    if (item.status == "To Do") {
+      if (userType == "intern") {
+        this.props.createModal({
+          header: `İş Onayı`,
+          content: () => this.renderNDAContent(),
+          buttons: this.renderNDAButtons(item),
+        });
+      } else {
+        this.props.createModal({
+          header: item.title,
+          size: "large",
+          backgroundColor: "#F4F5F7",
+          content: () => this.renderModalContent(item, userType),
+        });
+      }
+    } else {
+      this.props.createModal({
+        header: item.title,
+        size: "large",
+        backgroundColor: "#F4F5F7",
+        content: () => this.renderModalContent(item, userType),
+      });
+    }
+  };
+  async acceptTodoTask(item) {
+    let user = getCookie("user");
+    const userType = getCookie("user");
+    if (user === "intern") {
+      let userId = getCookie("user_id");
+      await store.moveInternTask(userId, {
+        taskId: item.id,
+        status: "in_progress",
+      });
+    } else {
+      await store.moveEmployerTask({ taskId: item.id, status: "in_progress" });
+    }
+    await this.getTasks();
     this.props.createModal({
       header: item.title,
       size: "large",
       backgroundColor: "#F4F5F7",
       content: () => this.renderModalContent(item, userType),
     });
-  };
-
+  }
   renderModalContent(item, userType) {
     return (
       <TaskDetail
+        createModal={this.props.createModal}
         user={this.props.user}
         userType={userType}
+        resetTask={this.getTasks}
         labelClass={this.state.taskLabelClass}
         userId={getCookie("user_id")}
         item={item}
@@ -216,36 +279,23 @@ class MyTasks extends Component {
     let items = this.state[itemsKey];
     return items.map((item, i) => {
       return (
-        <div
-          key={i}
-          draggable
-          onDragStart={() => this.onDragItemStart(item, itemsKey)}
-          className={styles.taskItem}
-          onClick={() => this.onTaskClick(item)}
-        >
-          <Card
-            RenderMembers={this.renderMembers}
-            labelClass={this.state.taskLabelClass}
-            type={"task"}
-            item={item}
-            onEditClick={async () => await this.onEditClick(item)}
-          />
+        <div key={i} class="col-xl-4 col-lg-4 col-md-6">
+          <div className={"taskItem"} onClick={() => this.onTaskClick(item)}>
+            <Card
+              RenderMembers={this.renderMembers}
+              labelClass={this.state.taskLabelClass}
+              type={"task"}
+              item={item}
+              onEditClick={async () => await this.onEditClick(item)}
+            />
+          </div>
         </div>
       );
     });
   }
 
   renderSection(title, itemsKey) {
-    return (
-      <div
-        onDrop={async () => await this.onDropItem(itemsKey)}
-        onDragOver={(e) => this.onDragOver(e)}
-        className={`${styles.gridItem} ${styles[itemsKey]}`}
-      >
-        <div className={styles.sectionHeader}>{title}</div>
-        {this.renderSectionItem(itemsKey)}
-      </div>
-    );
+    return <div class="row">{this.renderSectionItem(itemsKey)}</div>;
   }
 
   setSelecedInternsForMultiSelect(selecedInternsForMultiSelect) {
@@ -273,10 +323,10 @@ class MyTasks extends Component {
 
   renderCreateTaskForm = (items) => {
     return (
-      <div className={styles.formWrapper}>
+      <div className={"formWrapper"}>
         {items.map((item, i) => {
           return (
-            <div key={item.key + i} className={styles[item.key]}>
+            <div key={item.key + i} className={item.key}>
               <Input
                 label={item.label}
                 labelDescription={item.labelDescription}
@@ -304,17 +354,17 @@ class MyTasks extends Component {
             </div>
           );
         })}
-        <div className={styles.formButtons}>{this.renderFormButtons()}</div>
+        <div className={"formButtons"}>{this.renderFormButtons()}</div>
       </div>
     );
   };
 
   renderEditTaskForm = (items) => {
     return (
-      <div className={styles.formWrapper}>
+      <div className={"formWrapper"}>
         {items.map((item, i) => {
           return (
-            <div key={item.key + i} className={styles[item.key]}>
+            <div key={item.key + i} className={item.key}>
               <Input
                 label={item.label}
                 labelDescription={item.labelDescription}
@@ -336,7 +386,7 @@ class MyTasks extends Component {
             </div>
           );
         })}
-        <div className={styles.formButtons}>{this.renderFormButtons(true)}</div>
+        <div className={"formButtons"}>{this.renderFormButtons(true)}</div>
       </div>
     );
   };
@@ -515,37 +565,84 @@ class MyTasks extends Component {
 
   render() {
     const user = getCookie("user");
-    return (
-      <>
-        <InternList
-          userType={user}
-          selectedInterns={this.state.selectedInterns}
-          internList={
-            this.state.searchResults.length > 0
-              ? this.state.searchResults
-              : this.state.internList
-          }
-          loading={this.state.loading}
-          allCheck={this.state.allCheck}
-          toggleAllCheck={this.toggleAllCheck.bind(this)}
-          toggleIntern={this.toggleIntern.bind(this)}
-          searchInInternList={this.searchInInternList.bind(this)}
-        />
-        <div className={styles.MyTasks}>
-          {this.renderSection("To Do", "to_do")}
-          {this.renderSection("In Progress", "in_progress")}
-          {this.renderSection("In Test", "in_test")}
-          {this.renderSection("Done", "done")}
-          {user === "employer" && (
-            <div
-              onClick={() => this.onCreateClick()}
-              className={styles.createIcon}
-            >
-              <img src={createIcon} alt={"icon"} />
+    /*
+        return (
+            <div class="MyTasks">
+				<div class="container">
+	                <InternList
+	                    userType={user}
+	                    selectedInterns={this.state.selectedInterns}
+	                    internList={this.state.searchResults.length > 0 ? this.state.searchResults : this.state.internList}
+	                    loading={this.state.loading}
+	                    allCheck={this.state.allCheck}
+	                    toggleAllCheck={this.toggleAllCheck.bind(this)}
+	                    toggleIntern={this.toggleIntern.bind(this)}
+	                    searchInInternList={this.searchInInternList.bind(this)}
+	                />
+					<div class="taskTabs">
+						<ul class="nav nav-tabs">
+							<li class={this.state.activeTab == "todo" ? ("active taskTabs__tab"):("taskTabs__tab")}><a data-toggle="tab" href="#todo" onClick={() => this.setState({activeTab:"todo"})}>To Do</a></li>
+							<li class={this.state.activeTab == "progress" ? ("active taskTabs__tab"):("taskTabs__tab")}><a data-toggle="tab" href="#progress" onClick={() => this.setState({activeTab:"progress"})}>In Progress</a></li>
+							<li class={this.state.activeTab == "test" ? ("active taskTabs__tab"):("taskTabs__tab")}><a data-toggle="tab" href="#test" onClick={() => this.setState({activeTab:"test"})}>In Test</a></li>
+							<li class={this.state.activeTab == "done" ? ("active taskTabs__tab"):("taskTabs__tab")}><a data-toggle="tab" href="#done" onClick={() => this.setState({activeTab:"done"})}>Done</a></li>
+						</ul>
+					</div>
+					<div class="tab-content">
+						<div id="todo"  class={this.state.activeTab == "todo" ? ("active tab-pane"):("tab-pane")}>
+							{this.renderSection('To Do', 'to_do')}
+						</div>
+						<div id="progress"  class={this.state.activeTab == "progress" ? ("active tab-pane"):("tab-pane")}>
+							{this.renderSection('In Progress', 'in_progress')}
+						</div>
+						<div id="test"  class={this.state.activeTab == "test" ? ("active tab-pane"):("tab-pane")}>
+							{this.renderSection('In Test', 'in_test')}
+						</div>
+						<div id="done"  class={this.state.activeTab == "done" ? ("active tab-pane"):("tab-pane")}>
+							{this.renderSection('Done', 'done')}
+						</div>
+					</div>
+            		{user === 'employer' && <div onClick={() => this.onCreateClick()} className={"createIcon"}><img src={createIcon} alt={'icon'} /></div>}
+				</div>
             </div>
-          )}
+        );
+        */
+    return (
+      <div className="pageWrapper">
+        <div className={"referrenceLetter"}>
+          <LoadingModal text="Loading" v-if={this.state.processing} />
+          <div class="container">
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <img
+                className="referrenceLetter__image"
+                src={image}
+                alt="My Tasks"
+              />
+            </div>
+            <div className={"referrenceLetter__modal"}>
+              <div class="row">
+                <div class="col-md-12">
+                  <div className={"referrenceLetter__header"}>My Tasks</div>
+                  <div className={"referrenceLetter__description"}>
+                    Welcome to the Interny Management System: iMS™. You do not
+                    have a task assignment yet. Click to apply for internships.
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div className={"referrenceLetter__buttonWrapper"}>
+                    <Button
+                      type="secondary"
+                      text="Learn More"
+                      to={"/internyInterns"}
+                      textClass="referrenceLetter__buttonWrapper__text"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </>
+        <FooterAlternative />
+      </div>
     );
   }
 }

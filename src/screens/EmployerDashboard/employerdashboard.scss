@@ -1,73 +1,62 @@
 @import "../../helpers/responsiveBreakpointsMixins.scss";
 
-.Dashboard {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-
-  @include large {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  & .tableContainer {
+.dashboard {
+  margin-top: 80px;
+  margin-bottom: 80px;
+  &__tableContainer {
     overflow: auto;
     width: 100%;
-    height: 100%;
+    height: 85%;
+  }
+  &__rowContainer {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+    padding: 10px;
+  }
+  &__taskCardContainer {
+    padding: 16px 32px;
+    border: 1px solid #efefef;
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+  &__avatar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 1);
+    -moz-box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 1);
+    box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 1);
+    margin-right: 20px;
+    overflow: hidden;
 
-    & .rowContainer {
-      display: flex;
-      justify-content: start;
-      align-items: center;
-      margin-bottom: 10px;
-      cursor: pointer;
-      padding: 10px;
-
-      & .avatar {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 30px;
-        height: 30px;
-        border-radius: 4px;
-        -webkit-box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 1);
-        -moz-box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 1);
-        box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 1);
-        margin-right: 20px;
-        overflow: hidden;
-
-        & img {
-          width: 100%;
-        }
-      }
-
-      & .internName {
-        font-family: "Sofia Pro Bold";
-        text-align: center;
-        font-size: calc(2px + 12px);
-        color: #2c3f58;
-      }
+    & img {
+      width: 100%;
     }
   }
-
-  & .projectsContainer {
+  &__internName {
+    font-family: "Sofia Pro Bold";
+    text-align: center;
+    font-size: calc(2px + 12px);
+    color: #2c3f58;
   }
 
-  & .numericCardContainer {
-    display: grid;
-    grid-template-columns: 33% 33% 33%;
-    grid-row: span 2;
-
-    & .numericDataContainer {
-      font-family: "Sofia Pro Bold";
-      text-align: center;
-      font-size: calc(2px + 26px);
-      color: #2c3f58;
-    }
+  &__numericDataContainer {
+    font-family: "Sofia Pro Bold";
+    text-align: center;
+    font-size: calc(2px + 26px);
+    color: #2c3f58;
   }
 
-  & .applicationContainer {
-    width: 100%;
+  &__applicationContainer {
+    padding: 16px 32px;
+    border: 1px solid #efefef;
+    border-radius: 12px;
   }
 }

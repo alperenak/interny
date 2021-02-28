@@ -1,6 +1,6 @@
 @import '../../helpers/responsiveBreakpointsMixins.scss';
 
-.container{
+.containerr{
   display: flex;
   flex-wrap: nowrap;
   min-height: 50px;
@@ -38,7 +38,7 @@
       @include small{
         width: 70%;
       }
-      
+
       letter-spacing: -1px;
       outline: none;
       border: none;
@@ -47,14 +47,14 @@
       transition: .4s all ease-in-out;
       box-shadow: 0 0 5px 1px rgba($color: #000000, $alpha: 0.05);
     }
-    & .searchInput:focus, 
+    & .searchInput:focus,
     & .searchInput:active{
       width: 200px;
       @include small{
         width: calc(100% - 40px);
       }
     }
-    
+
   }
 
   & .AllInternsButtonContainer{
@@ -83,7 +83,7 @@
       @include small{
         width: 100%;
       }
-      
+
       letter-spacing: -1px;
       outline: none;
       border: none;
@@ -120,8 +120,8 @@
       width: 100%;
       margin: 5px 0;
     }
-    -ms-overflow-style: none; 
-      scrollbar-width: none; 
+    -ms-overflow-style: none;
+      scrollbar-width: none;
       &::-webkit-scrollbar{
         display: none;
       }
@@ -135,7 +135,7 @@
       align-items: center;
       border-radius: 7px;
       background-color: #ebecf0;
-      
+
 
       & .internImage {
         height: 40px;
@@ -175,7 +175,7 @@
         }
       }
     }
-    
+
   }
 
 }

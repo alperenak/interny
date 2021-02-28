@@ -1,16 +1,16 @@
 import languages from '../../utils/languages';
 
 export const formItems = (formItems) => {
-  let internLevel = [
-    { key: 'newlyGraduated', value: 'Newly Graduated', selected: false },
-    { key: 'universityStudent', value: 'University Student', selected: false },
-  ];
+	let internLevel = [
+		{ key: 'newlyGraduated', value: 'Newly Graduated', selected: false },
+		{ key: 'universityStudent', value: 'University Student', selected: false },
+	];
 
-  let internshipLength = [
-    { key: '4', value: '4 weeks', selected: false },
-    { key: '8', value: '8 weeks', selected: false },
-    { key: '12', value: '12 weeks', selected: false },
-  ];
+	let internshipLength = [
+		{ key: '4', value: '4 weeks', selected: false },
+		{ key: '8', value: '8 weeks', selected: false },
+		{ key: '12', value: '12 weeks', selected: false },
+	];
 
   let applicationsTypes = [
     { key: 'local', value: 'Local', selected: false },

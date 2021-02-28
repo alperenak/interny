@@ -5,7 +5,10 @@ import styles from './taskdetail.scss';
 import SendCommentShortcut from '../SendCommentShortcut'
 import Activity from '../Activity'
 import store from '../../store';
-
+import { getCookie } from "../../utils/cookie";
+import Input from "../Input";
+import editIcon from '../../icons/note-outlined-symbol-blue.svg';
+import Button from "../../components/Button";
 class TaskDetail extends Component {
 
     state = {
@@ -20,13 +23,16 @@ class TaskDetail extends Component {
         commentOpen: false,
         commentLoading: false,
         commentText: '',
-        commentSelectedFiles: []
+        commentSelectedFiles: [],
+		statusEdit:false
     }
 
     async getItemInfo() {
         const { userType = 'intern', userId = '' } = this.props;
         let detail = {};
-
+		this.setState({
+			item:this.props.item
+		})
         const wfaQuestions = await store.getWFAForTask(this.props.item.id);
         if (userType === 'employer')
             detail = await store.getTaskDetailEmployer(this.props.item.id);
@@ -161,25 +167,11 @@ class TaskDetail extends Component {
         }
 
         const Master = ({ children }) => {
-            if (!this.state.doRate && !isEvaluated)
-                return (
-                    <div className={styles.doRateArea}>
-                        <div className={styles.doRateAreaString}>
-                            <span>do you want to rate this task?</span>
-                        </div>
-                        <div className={styles.doRateAreaButtons}>
-                            <button type={'button'} className={styles.doRateAreaButtonGreen} onClick={() => this.setState({ doRate: true })}>
-                                yes, i'll do
-                            </button>
-                        </div>
-                    </div>
-                );
-            else
-                return (
-                    <div className={styles.questionsContainer}>
-                        {children}
-                    </div>
-                );
+			return (
+				<div className={"questionsContainer"}>
+					{children}
+				</div>
+			);
         }
 
         const Rates = ({ item }) => {
@@ -187,7 +179,7 @@ class TaskDetail extends Component {
                 (v, i) => (
                     <span
                         onClick={!isEvaluated ? () => changeRate(item, v) : () => { }}
-                        className={item.rate >= v ? styles.pointActive : ''}
+                        className={item.rate >= v ? "pointActive" : ''}
                         key={i}>
                         {v}
                     </span>
@@ -197,12 +189,12 @@ class TaskDetail extends Component {
 
         const Child = ({ item }) => {
             return (
-                <div className={styles.questionArea}>
-                    <div className={styles.questionTitle}>
+                <div className={"questionArea"}>
+                    <div className={"questionTitle"}>
                         <span>{item.question}</span>
                     </div>
-                    <div className={styles.questionRateArea}>
-                        <div className={styles.questionRate}>
+                    <div className={"questionRateArea"}>
+                        <div className={"questionRate"}>
                             <Rates item={item} />
                         </div>
                     </div>
@@ -236,20 +228,20 @@ class TaskDetail extends Component {
 
         const buttonClassNameGenerator = () => {
             const rate = calcRateAverage('', true, 0);
-            let className = styles.questionsSubmitButton;
+            let className = "questionsSubmitButton";
 
             if (rate < 2) {
                 // red
-                className += ` ${styles.questionSubmitButtonRed}`;
+                className += ` ${"questionSubmitButtonRed"}`;
             } else if (rate < 3) {
                 // orange
-                className += ` ${styles.questionSubmitButtonOrange}`;
+                className += ` ${"questionSubmitButtonOrange"}`;
             } else if (rate < 4) {
                 // light green
-                className += ` ${styles.questionSubmitButtonLightGreen}`;
+                className += ` ${"questionSubmitButtonLightGreen"}`;
             } else if (rate < 5) {
                 //green
-                className += ` ${styles.questionSubmitButtonGreen}`;
+                className += ` ${"questionSubmitButtonGreen"}`;
             }
 
             return className;
@@ -275,7 +267,66 @@ class TaskDetail extends Component {
         await store.deleteComment(this.props.item.id, payload);
         this.getItemInfo();
     }
+	renderFileButtons = (item) => [
+      {
+        type: "primary",
+        text: "Yükle",
+        sizeName: "default",
+        onButtonClick: (key) => this.acceptTestTask(item),
+      },
+    ];
+	async acceptTestTask(item){
+		let user = getCookie('user');
+		const userType = getCookie('user');
+		item.status = "Test";
+		if (user === 'intern') {
+			let userId = getCookie('user_id');
+			await store.moveInternTask(userId, { taskId: item.id, status: "in_test" });
+		} else {
+			await store.moveEmployerTask({ taskId: item.id, status: "in_test" });
+		}
+		this.setState({
+			statusEdit:false,
+			item:item
+		})
+		await this.props.resetTask();
+		document.getElementById("modalWrapper__closeIcon").click();
+	}
+	renderFileContent(){
+		return(
+			<div class="fileContent">
+				<input type="file" />
+			</div>
+		);
+	}
+	async changeStatus(item,value){
 
+		let user = getCookie('user');
+		const userType = getCookie('user');
+		item.status = value;
+
+		if(value == "test"){
+			document.getElementById("modalWrapper__closeIcon").click();
+			this.props.createModal({
+			  header: `Dosya Yükle`,
+			  content: () => this.renderFileContent(),
+			  buttons: this.renderFileButtons(item),
+			});
+		}else{
+			if (user === 'intern') {
+	            let userId = getCookie('user_id');
+	            await store.moveInternTask(userId, { taskId: item.id, status: value });
+	        } else {
+	            await store.moveEmployerTask({ taskId: item.id, status: value });
+	        }
+			this.setState({
+				statusEdit:false,
+				item:item
+			})
+	        await this.props.resetTask();
+		}
+
+	}
     setCommentMode(commentMode = 'CREATE') {
 
         if (!(
@@ -290,14 +341,104 @@ class TaskDetail extends Component {
 
     renderLogsAndComments() {
         return (
-            <div className={styles.logsArea}>
-                <div className={styles.logsHeader}>
-                    <h3>Logs</h3>
-                    <button type={'button'} className={styles.logsOpenButton} onClick={() => this.setState({ showLogs: !this.state.showLogs })}>
-                        {this.state.showLogs ? 'Hide Details' : 'Show Details'}
-                    </button>
+            <div className={"TaskDetail__logsArea"}>
+
+                <Activity
+                    items={this.state.item.activity}
+                    user={this.props.user}
+                    userType={this.props.userType}
+                    setterText={(commentText) => { this.setState({ commentText }) }}
+                    deleteComment={this.deleteComment.bind(this)}
+                    setSelectedFiles={(commentSelectedFiles) => this.setState({ commentSelectedFiles })}
+                    commentMode={this.state.commentMode}
+                    selectedId={this.state.selectedCommentId}
+
+                    setSelectedId={(selectedCommentId) => { this.setState({ selectedCommentId }) }}
+                    setCommentMode={this.setCommentMode.bind(this)}
+                    showLogs={this.state.showLogs}
+					showLogFunc={() => this.setState({ showLogs: !this.state.showLogs })}
+				/>
+            </div>
+        );
+    }
+
+    render() {
+        let { item, RenderMembers } = this.props;
+        const RenderWFA = this.renderWFA.bind(this);
+        const RenderLogsAndComments = this.renderLogsAndComments.bind(this);
+        const labelClassName = `labelStyle${this.props.labelClass[item.label.toLowerCase()]}`;
+		const selectItems = [
+			{ key: "to_do", value: "To Do" },
+			{ key: "in_progress", value: "In Progress" },
+			{ key: "test", value: "Test" },
+		];
+		if(getCookie('user') != 'intern'){
+			selectItems.push({
+				key:'done',value:'Done'
+			})
+		}
+        return (
+            <div className={"TaskDetail"}>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="TaskDetail__header">
+							<div class="TaskDetail__header__infoDiv">
+								<span><b>Assignee:</b></span>
+								<div class="TaskDetail__header__avatarDiv">
+									<RenderMembers renderFor='avatarFromDetail' style={styles} {...this.props} />
+								</div>
+							</div>
+							{this.state.item.status =="In Test" && getCookie('user') != 'intern' ? (
+								<Button
+									type={"ghost"}
+									text={"Done"}
+									sizeName={"small"}
+									width={"115px"}
+									onButtonClick={() => this.changeStatus(this.state.item,"done")}
+								/>
+							):(
+								<div class="TaskDetail__header__infoDiv">
+									{this.state.item.status  == "In Progress" ? (
+										<Button
+											type={"ghost"}
+											text={"Send for Approval"}
+											sizeName={"small"}
+											width={"115px"}
+											onButtonClick={() => this.changeStatus(this.state.item,"test")}
+										/>
+									):(
+										<>
+											<span><b>List:</b></span>
+											<a class="status" href="javascript:void(0);">{this.state.item.status}</a>
+										</>
+									)}
+
+								</div>
+							)}
+
+
+							<div class="TaskDetail__header__infoDiv">
+								<span><b>Type:</b></span>
+								<span className={"label"}>{item.label}</span>
+							</div>
+							<div class="TaskDetail__header__infoDiv">
+								<span><b>Deadline:</b></span>
+								<span class="deadline">{(new Date(item.deadline)).toLocaleDateString()}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+                <div className={"taskDetailGroup"}>
+                    <div className={"taskDetailTitle"}>
+                        <h3>Description</h3>
+                    </div>
+                    <div className={"taskDetailContent"}>
+                        <span>
+                            {item.description}
+                        </span>
+                    </div>
                 </div>
-                <SendCommentShortcut
+				<SendCommentShortcut
                     open={this.state.commentOpen}
                     setOpen={(commentOpen) => this.setState({ commentOpen })}
                     textA={this.state.commentText}
@@ -311,60 +452,8 @@ class TaskDetail extends Component {
                     commentMode={this.state.commentMode}
                     setCommentMode={this.setCommentMode.bind(this)}
                     user={this.props.user}
-                    taskId={this.props.item.id} />
-                <Activity
-                    items={this.state.item.activity}
-                    user={this.props.user}
-                    userType={this.props.userType}
-                    setterText={(commentText) => { this.setState({ commentText }) }}
-                    deleteComment={this.deleteComment.bind(this)}
-                    setSelectedFiles={(commentSelectedFiles) => this.setState({ commentSelectedFiles })}
-                    commentMode={this.state.commentMode}
-                    selectedId={this.state.selectedCommentId}
-                    setSelectedId={(selectedCommentId) => { this.setState({ selectedCommentId }) }}
-                    setCommentMode={this.setCommentMode.bind(this)}
-                    showLogs={this.state.showLogs} />
-            </div>
-        );
-    }
-
-    render() {
-        let { item, RenderMembers } = this.props;
-        const RenderWFA = this.renderWFA.bind(this);
-        const RenderLogsAndComments = this.renderLogsAndComments.bind(this);
-        const labelClassName = `labelStyle${this.props.labelClass[item.label.toLowerCase()]}`;
-
-        return (
-            <div className={styles.TaskDetail}>
-                <div className={`${styles.in} ${styles.inStretch}`}>
-                    <div>
-                        <RenderMembers renderFor='avatarFromDetail' style={styles} {...this.props} />
-                    </div>
-                </div>
-                <div className={styles.in}>
-                    <div>
-                        <b>in</b>
-                        <span>{item.status}</span>
-                    </div>
-                    <div>
-                        <b>label</b>
-                        <span className={styles[labelClassName]}>{item.label}</span>
-                    </div>
-                    <div>
-                        <b>deadline</b>
-                        <span>{(new Date(item.deadline)).toLocaleDateString()}</span>
-                    </div>
-                </div>
-                <div className={styles.taskDetailGroup}>
-                    <div className={styles.taskDetailTitle}>
-                        <h3>Description</h3>
-                    </div>
-                    <div className={styles.taskDetailContent}>
-                        <span>
-                            {item.description}
-                        </span>
-                    </div>
-                </div>
+                    taskId={this.props.item.id}
+				/>
                 <RenderLogsAndComments />
                 <RenderWFA />
             </div>

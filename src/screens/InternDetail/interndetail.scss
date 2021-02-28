@@ -1,402 +1,258 @@
 @import '../../helpers/responsiveBreakpointsMixins.scss';
 
-.InternDetail {
-  display: grid;
-  grid-template-columns: 35% 35%;
-  justify-content: center;
+.internDetailWrapper {
+	margin-top: 80px;
+	margin-bottom: 50px;
+	&__internInfo {
+		width: 100%;
 
-  @include x-large {
-    grid-template-columns: 40% 40%;
-    justify-content: center;
-  }
-  @include large {
-    grid-template-columns: 40% 40%;
-  }
-  @include medium {
-    grid-template-columns: auto;
-  }
-  @include small {
-    grid-template-columns: auto;
-  }
+		&__userImage {
+			position: relative;
+			grid-area: image;
+			display: flex;
+			overflow: hidden;
+			justify-content: center;
+			align-items: center;
+			width: 104px;
+			height: 104px;
+			border-radius: 32px;
+			border: 1px solid #eee;
+			margin-right: 20px;
+			-webkit-box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 0.1);
+			-moz-box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 0.1);
+			box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 0.1);
 
-  & .internInfo {
-    width: 100%;
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    grid-template-columns: 124px 60%;
-    grid-template-areas:
-            'image name'
-            'image email'
-            'image phone'
-            'image gradStatus'
-            'image location';
+			@include x-large {
+				width: 104px;
+				height: 104px;
+			}
+			@include large {
+				width: 104px;
+				height: 104px;
+			}
+			@include medium {
+				width: 84px;
+				height: 84px;
+			}
+			@include small {
+				width: 84px;
+				height: 84px;
+			}
 
-    @include x-large {
-      grid-template-areas:
-              'image name'
-              'image email'
-              'image phone'
-              'image gradStatus'
-              'image location';
-    }
-    @include large {
-      grid-template-areas:
-              'image name'
-              'image email'
-              'image phone'
-              'image gradStatus'
-              'image location';
-    }
-    @include medium {
-      grid-template-columns: auto;
-      grid-template-areas:
-              'image'
-              'name'
-              'email'
-              'phone'
-              'gradStatus'
-              'location';
-    }
-    @include small {
-      grid-template-areas:
-              'image image'
-              'name name'
-              'email email'
-              'phone phone'
-              'gradStatus gradStatus'
-              'location location';
-    }
-    & .userImage {
-      position: relative;
-      grid-area: image;
-      display: flex;
-      overflow: hidden;
-      justify-content: center;
-      align-items: center;
-      width: 104px;
-      height: 104px;
-      border-radius: 32px;
-      border: 1px solid #eee;
-      margin-right: 20px;
-      -webkit-box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 0.1);
-      -moz-box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 0.1);
-      box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 0.1);
+			& .statusCircle {
+				position: absolute;
+				top: -5px;
+				right: -5px;
+				width: 24px;
+				height: 24px;
+				border-radius: 50%;
+				border: 2px solid #fff;
 
-      @include x-large {
-        width: 104px;
-        height: 104px;
-      }
-      @include large {
-        width: 104px;
-        height: 104px;
-      }
-      @include medium {
-        width: 84px;
-        height: 84px;
-      }
-      @include small {
-        width: 84px;
-        height: 84px;
-      }
+				&.active {
+					background-color: green;
+				}
 
-      & .statusCircle {
-        position: absolute;
-        top: -5px;
-        right: -5px;
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        border: 2px solid #fff;
+				&.passive {
+					background-color: grey;
+				}
+			}
 
-        &.active {
-          background-color: green;
-        }
+			& img {
+				width: 100%;
+				height: 100%;
+			}
+		}
+		&__name {
+			font-family: "Sofia Pro Bold";
+			font-size: calc(2px + 18px);
+			color: #2c3f58;
+			margin-bottom: 10px;
 
-        &.passive {
-          background-color: grey;
-        }
-      }
+		}
+		&__infoFields {
+			font-family: "Sofia Pro";
+			font-size: calc(2px + 12px);
 
-      & img {
-        width: 100%;
-        height: 100%;
-      }
-    }
-    & .name {
-      grid-area: name;
-      font-family: "Sofia Pro Bold";
-      font-size: calc(2px + 18px);
-      color: #2c3f58;
-      margin-bottom: 10px;
-      @include small {
-        font-size: calc(2px + 14px);
-      }
-    }
-    & .infoFields {
-      display: grid;
-      grid-template-columns: 50% 50%;
-      font-family: "Sofia Pro";
-      font-size: calc(2px + 12px);
-      @include small {
-        font-size: calc(2px + 8px);
-      }
-      & span {
-        color: #646464;
-        &.value {
-          color: #2c567e;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          white-space: nowrap;
-        }
-      }
-      &.email {
-        grid-area: email;
-      }
-      &.phone {
-        grid-area: phone;
-      }
-      &.gradStatus {
-        grid-area: gradStatus;
-      }
-      &.location {
-        grid-area: location;
-      }
-    }
-  }
+			& span {
+				color: #646464;
+				&.value {
+					margin-left: 10px;
+					color: #2c567e;
+					text-overflow: ellipsis;
+					overflow: hidden;
+					white-space: nowrap;
+				}
+			}
+		}
+	}
 
-  & .internship {
-    width: 100%;
-    @include x-large {
-    }
-    @include large {
-    }
-    @include medium {
-    }
-    @include small {
-    }
-    & .internshipHeader {
-      font-family: "Sofia Pro Bold";
-      font-size: calc(2px + 18px);
-      color: #2c3f58;
-      margin-bottom: 10px;
-      @include small {
-        font-size: calc(2px + 14px);
-      }
-    }
-    & .internshipField {
-      display: grid;
-      grid-template-columns: 50% 50%;
-      font-family: "Sofia Pro";
-      font-size: calc(2px + 12px);
-      align-items: center;
-      @include small {
-        font-size: calc(2px + 8px);
-      }
-      & span {
-        color: #646464;
-        &.value {
-          color: #2c567e;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          white-space: nowrap;
-        }
-      }
-      & .bar {
-        position: relative;
-        width: 100%;
-        border-radius: 2px;
-        height: 10px;
-        background-color: #eeeeee;
-        & .duration {
-          position: absolute;
-          left: 0;
-          width: 100%;
-          border-radius: 2px;
-          height: 10px;
-          background-image: -webkit-gradient(linear, left top, right bottom, color-stop(10%, #2c3f58), to(#6588b5));
-          background-image: linear-gradient(#2c3f58 10%, #6588b5);
-        }
-      }
-    }
+	&__internship {
+		width: 100%;
+		&__internshipHeader {
+			font-family: "Sofia Pro Bold";
+			font-size: calc(2px + 18px);
+			color: #2c3f58;
+			margin-bottom: 10px;
 
-  }
+		}
+		&__internshipField {
+			font-family: "Sofia Pro";
+			font-size: calc(2px + 12px);
+			align-items: center;
+			display: flex;
 
-  & .university {
-    width: 100%;
-    @include x-large {
-    }
-    @include large {
-    }
-    @include medium {
-    }
-    @include small {
-    }
-    & .uniHeader {
-      font-family: "Sofia Pro Bold";
-      font-size: calc(2px + 18px);
-      color: #2c3f58;
-      margin-bottom: 10px;
-      @include small {
-        font-size: calc(2px + 14px);
-      }
-    }
-    & .uniField {
-      display: grid;
-      grid-template-columns: 50% 50%;
-      font-family: "Sofia Pro";
-      font-size: calc(2px + 12px);
-      align-items: center;
-      @include small {
-        font-size: calc(2px + 5px);
-      }
-      & span {
-        color: #646464;
-        &.value {
-          color: #2c567e;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          white-space: nowrap;
-        }
-      }
-      & .bar {
-        position: relative;
-        width: 100%;
-        border-radius: 2px;
-        height: 10px;
-        background-color: #eeeeee;
-        & .duration {
-          position: absolute;
-          left: 0;
-          width: 100%;
-          border-radius: 2px;
-          height: 10px;
-          background-image: -webkit-gradient(linear, left top, right bottom, color-stop(10%, #2c3f58), to(#6588b5));
-          background-image: linear-gradient(#2c3f58 10%, #6588b5);
-        }
-      }
-    }
+			& span {
+				color: #646464;
+				&.value {
+					color: #2c567e;
+					text-overflow: ellipsis;
+					overflow: hidden;
+					white-space: nowrap;
+					margin-left:10px;
+				}
+			}
+			& .bar {
+				position: relative;
+				width: 100%;
+				border-radius: 2px;
+				height: 10px;
+				background-color: #eeeeee;
+				margin-left:10px;
+				& .duration {
+					position: absolute;
+					left: 0;
+					width: 70%;
+					border-radius: 2px;
+					height: 10px;
+					background-image: -webkit-gradient(linear, left top, right bottom, color-stop(10%, #2c3f58), to(#6588b5));
+					background-image: linear-gradient(#2c3f58 10%, #6588b5);
+				}
+			}
+		}
 
-  }
+	}
+	&__employer {
+		width: 100%;
 
-  & .employer {
-    width: 100%;
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    grid-template-columns: 124px 60%;
-    grid-template-areas:
-            'image name'
-            'image empNum';
+		&__empImage {
+			position: relative;
+			grid-area: image;
+			display: flex;
+			overflow: hidden;
+			justify-content: center;
+			align-items: center;
+			width: 104px;
+			height: 104px;
+			border-radius: 32px;
+			border: 1px solid #eee;
+			margin-right: 20px;
+			-webkit-box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 0.1);
+			-moz-box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 0.1);
+			box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 0.1);
 
-    @include x-large {
-      grid-template-areas:
-              'image name'
-              'image empNum';
-    }
-    @include large {
-      grid-template-areas:
-              'image name'
-              'image empNum';
-    }
-    @include medium {
-      grid-template-columns: auto;
-      grid-template-areas:
-              'image'
-              'name'
-              'empNum';
-    }
-    @include small {
-      grid-template-areas:
-              'image'
-              'name'
-              'empNum';
-    }
-    & .empImage {
-      position: relative;
-      grid-area: image;
-      display: flex;
-      overflow: hidden;
-      justify-content: center;
-      align-items: center;
-      width: 104px;
-      height: 104px;
-      border-radius: 32px;
-      border: 1px solid #eee;
-      margin-right: 20px;
-      -webkit-box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 0.1);
-      -moz-box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 0.1);
-      box-shadow: 0px 0px 6px 0px rgba(43, 73, 112, 0.1);
+			@include x-large {
+				width: 104px;
+				height: 104px;
+			}
+			@include large {
+				width: 104px;
+				height: 104px;
+			}
+			@include medium {
+				width: 84px;
+				height: 84px;
+			}
+			@include small {
+				width: 84px;
+				height: 84px;
+			}
 
-      @include x-large {
-        width: 104px;
-        height: 104px;
-      }
-      @include large {
-        width: 104px;
-        height: 104px;
-      }
-      @include medium {
-        width: 84px;
-        height: 84px;
-      }
-      @include small {
-        width: 84px;
-        height: 84px;
-      }
+			& .statusCircle {
+				position: absolute;
+				top: -5px;
+				right: -5px;
+				width: 24px;
+				height: 24px;
+				border-radius: 50%;
+				border: 2px solid #fff;
 
-      & .statusCircle {
-        position: absolute;
-        top: -5px;
-        right: -5px;
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        border: 2px solid #fff;
+				&.active {
+					background-color: green;
+				}
 
-        &.active {
-          background-color: green;
-        }
+				&.passive {
+					background-color: grey;
+				}
+			}
 
-        &.passive {
-          background-color: grey;
-        }
-      }
+			& img {
+				width: 100%;
+			}
+		}
+		&__name {
+			font-family: "Sofia Pro Bold";
+			font-size: calc(2px + 18px);
+			color: #2c3f58;
+			margin-bottom: 10px;
 
-      & img {
-        width: 100%;
-      }
-    }
-    & .name {
-      grid-area: name;
-      font-family: "Sofia Pro Bold";
-      font-size: calc(2px + 18px);
-      color: #2c3f58;
-      margin-bottom: 10px;
-      @include small {
-        font-size: calc(2px + 14px);
-      }
-    }
-    & .infoFields {
-      display: grid;
-      grid-template-columns: 50% 50%;
-      font-family: "Sofia Pro";
-      font-size: calc(2px + 12px);
-      @include small {
-        font-size: calc(2px + 8px);
-      }
-      & span {
-        color: #646464;
-        &.value {
-          color: #2c567e;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          white-space: nowrap;
-        }
-      }
-      &.empNum {
-        grid-area: empNum;
-      }
-    }
-  }
+		}
+		&__infoFields {
+			font-family: "Sofia Pro";
+			font-size: calc(2px + 12px);
+
+			& span {
+				color: #646464;
+				&.value {
+					color: #2c567e;
+					text-overflow: ellipsis;
+					overflow: hidden;
+					white-space: nowrap;
+				}
+			}
+		}
+	}
+	&__university {
+		width: 100%;
+
+		&__uniHeader {
+			font-family: "Sofia Pro Bold";
+			font-size: calc(2px + 18px);
+			color: #2c3f58;
+			margin-bottom: 10px;
+
+		}
+		&__uniField {
+
+			font-family: "Sofia Pro";
+			font-size: calc(2px + 12px);
+			align-items: center;
+
+			& span {
+				color: #646464;
+				&.value {
+					color: #2c567e;
+					text-overflow: ellipsis;
+					overflow: hidden;
+					white-space: nowrap;
+					margin-left:10px;
+				}
+			}
+			& .bar {
+				position: relative;
+				width: 100%;
+				border-radius: 2px;
+				height: 10px;
+				background-color: #eeeeee;
+				& .duration {
+					position: absolute;
+					left: 0;
+					width: 100%;
+					border-radius: 2px;
+					height: 10px;
+					background-image: -webkit-gradient(linear, left top, right bottom, color-stop(10%, #2c3f58), to(#6588b5));
+					background-image: linear-gradient(#2c3f58 10%, #6588b5);
+				}
+			}
+		}
+	}
 }

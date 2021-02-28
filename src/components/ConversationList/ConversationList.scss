@@ -1,78 +1,70 @@
 @import '../../helpers/responsiveBreakpointsMixins.scss';
 
-.conversation-list {
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  background-color: #EFF2FC;
+.conversationList {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	background-color: #EFF2FC;
 
 
-  & .conversation-list__list {
-    overflow: auto;
-    height: 400px;
-
-
-    &::-webkit-scrollbar {
-      width: 7px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: #f1f1f1;
-      border-radius: 10px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: #e5e5e4;
-      border-radius: 10px;
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-      background: rgb(156, 156, 156);
-    }
-  }
+	&__list {
+		overflow: scroll;
+		overflow-x: hidden;
+		height: 100%;
+		&::-webkit-scrollbar {
+			width: 7px;
+		}
+		&::-webkit-scrollbar-track {
+			background: #f1f1f1;
+			border-radius: 10px;
+		}
+		&::-webkit-scrollbar-thumb {
+			background: #e5e5e4;
+			border-radius: 10px;
+		}
+		&::-webkit-scrollbar-thumb:hover {
+			background: rgb(156, 156, 156);
+		}
+	}
 }
 
-.toolbar__user-info {
-  margin-top: 7.5px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  padding-right: 24px;
+.toolbarUserInfo {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding:20px;
+	background-color: white;
+	height: 72px;
+	border-bottom: 1px solid #eeeef1;
+	@include medium {
+		height: 72px;
+	}
+	&__username {
+		@include medium {
+			font-size:12px;
+		}
+	}
+	&__avatar {
+		width: 50px;
+		object-fit: cover;
+		margin-right: 15px;
+		border-radius: 10%;
 
-  @include medium {
-    height: 72px;
-  }
+		@include medium {
+			width: 50px;
+			height: 50px;
+			border: solid 3px rgb(189, 189, 189);
+			border-radius: 50%;
+			padding: 0;
+		}
+	}
 
-  & .toolbar__user-avatar {
-    width: 50px;
-    object-fit: cover;
-    margin-right: 15px;
-    border-radius: 10%;
-
-    @include medium {
-      width: 50px;
-      height: 50px;
-      border: solid 3px rgb(189, 189, 189);
-      border-radius: 50%;
-      padding: 0;
-    }
-  }
-
-  & .toolbar__forward-icon {
-    display: none;
-
-    @include medium {
-      display: flex;
-      width: 24px;
-    }
-  }
-}
-
-.toolbar__username {
-  @include medium {
-    display: none;
-    ;
-  }
+	& .toolbar__forward-icon {
+		display: none;
+		@include medium {
+			display: flex;
+			width: 24px;
+		}
+	}
 }

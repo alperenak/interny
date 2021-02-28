@@ -9,11 +9,11 @@ export class AllInterns extends Component {
       type: 'button',
       onClick: toggleAllCheck,
       title: allCheck ? 'Uncheck all interns' : 'Check all interns',
-      className: allCheck ? styles.AllInternsButtonChecked : '',
+      className: allCheck ? "AllInternsButtonChecked" : '',
     };
 
     return (
-      <div className={styles.AllInternsButtonContainer}>
+      <div className={"AllInternsButtonContainer"}>
         <button {...buttonProps}>
           {allCheck ? 'Uncheck' : 'Check'}
         </button>

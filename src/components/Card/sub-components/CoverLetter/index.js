@@ -3,7 +3,7 @@ import React, { Component } from "react";
 /*** Components ***/
 import Input from "../../../Input";
 import Button from "../../../Button";
-
+import CKEditor from "react-ckeditor-component";
 /*** Icons ***/
 import downArrow from "../../../../icons/chevron-down-outline.svg";
 
@@ -44,7 +44,7 @@ class CoverLetter extends Component {
 
   onClickAccordionOpener = () => {
     this.setState({
-      accordion_opened: this.state.accordion_opened == "" ? styles.active : "",
+      accordion_opened: this.state.accordion_opened == "" ? "active" : "",
       editMode:
         this.state.accordion_opened && this.state.editMode ? true : false,
     });
@@ -59,15 +59,14 @@ class CoverLetter extends Component {
     let { buttons } = this.state;
     return (
       <>
-        <Input
-          v-if={coverLetter}
-          type={"textarea"}
-          size={"large"}
-          defaultValue={coverLetter?.text}
-          onChange={onChange}
-          disabled={disabled}
-        />
-        <div v-if={showButtons} className={styles.buttonContainer}>
+		<CKEditor
+			activeClass="p10"
+			content={coverLetter?.text}
+			events={{
+				"change": onChange
+			}}
+		/>
+        <div v-if={showButtons} className={"buttonContainer"}>
           <Button
             v-for={(btn, i) in buttons}
             key={i}
@@ -84,12 +83,8 @@ class CoverLetter extends Component {
 
   renderEditSection = () => {
     return (
-      <div className={styles.editSection}>
-        <textarea
-          className={styles.input}
-          defaultValue={this.props.coverLetter?.text}
-          disabled={true}
-        ></textarea>
+      <div className={"editSection"}>
+        <div dangerouslySetInnerHTML={{ __html: this.props.coverLetter?.text }} />
         <Button
           type={"secondary"}
           disabled={false}
@@ -101,30 +96,29 @@ class CoverLetter extends Component {
     );
   };
 
-  render() {
-    return (
-      <div className={`${styles.coverLetterWrapper}`}>
-        <div
-          className={`${styles.accordion_wrapper} ${this.state.accordion_opened}`}
-        >
-          {this.state.editMode
-            ? this.renderEditMode()
-            : this.renderEditSection()}
-        </div>
-
-        <div
-          className={`${styles.accordion_button} `}
-          onClick={this.onClickAccordionOpener}
-        >
-          <img
-            className={`${this.state.accordion_opened}`}
-            src={downArrow}
-            alt=""
-          />
-        </div>
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div className={`${"coverLetterWrapper"}`}>
+				<div
+				className={`${"accordion_wrapper"} ${this.state.accordion_opened}`}
+				>
+					{this.state.editMode
+					? this.renderEditMode()
+					: this.renderEditSection()}
+				</div>
+				<div
+				className={`${"accordion_button"} `}
+				onClick={this.onClickAccordionOpener}
+				>
+					<img
+						className={`${this.state.accordion_opened}`}
+						src={downArrow}
+						alt=""
+					/>
+				</div>
+			</div>
+		);
+	}
 }
 
 export default CoverLetter;

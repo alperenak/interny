@@ -9,7 +9,7 @@ import Input from "../../../Input";
 import EditForm from "./editForm";
 import store from "../../../../store";
 import addIcon from "../../../../icons/add-circular-outlined-black-button.svg";
-
+import removeIconBlue from '../../../../icons/minus-circular-button.svg';
 class Education extends Component {
     state = {
         activeEditForms: [],
@@ -36,11 +36,15 @@ class Education extends Component {
         let {activeEditForms, isCreateFormActive} = this.state;
 
         return (
-            <div className={styles.Container}>
-                <div className={styles.section}>
-                    <div className={styles.sectionTitle}>
+            <div className={"subContainer"}>
+                <div className={"subContainer__section"}>
+                    <div className={"subContainer__sectionTitle"}>
                         Education
-                        <img className={styles.plusIcon} src={addIconBlue} alt={'icon'} onClick={() => this.setState({isCreateFormActive: true})}/>
+						{this.state.isCreateFormActive ? (
+							<img className={"plusIcon"} src={removeIconBlue} alt={'icon'} onClick={() => this.setState({isCreateFormActive: !this.state.isCreateFormActive})} />
+						):(
+							<img className={"plusIcon"} src={addIconBlue} alt={'icon'} onClick={() => this.setState({isCreateFormActive: !this.state.isCreateFormActive})} />
+						)}
                     </div>
                     <div v-if={education.length === 0 && !isCreateFormActive} style={{ marginBottom: '24px' }}>
                         <Button
@@ -69,28 +73,28 @@ class Education extends Component {
                         return (
                             <Fragment>
                                 <EditForm v-if={activeEditForms.includes(item.id)} object={item} cv_id={this.props.file.id} onCancel={this.onFormCanceled} />
-                                <div v-else key={j} className={styles.item}>
-                                    <div v-if={item.image} className={styles.itemImage}>
+                                <div v-else key={j} className={"subContainer__item"}>
+                                    <div v-if={item.image} className={"subContainer__itemImage"}>
                                         <img src={item.image} alt={'image'}/>
                                     </div>
                                     <div className={styles.itemDetail}>
-                                        <div v-if={item.title} className={styles.itemTitle}>
+                                        <div v-if={item.title} className={"subContainer__itemTitle"}>
                                             {`${item.level} - ${item.title}`}
                                         </div>
-                                        <div v-if={item.institution} className={styles.itemLocation}>
+                                        <div v-if={item.institution} className={"subContainer__itemLocation"}>
                                             {item.institution}
                                         </div>
-                                        <div v-if={location} className={styles.itemLocation}>
+                                        <div v-if={location} className={"subContainer__itemLocation"}>
                                             {location}
                                         </div>
-                                        <div v-if={item.endDate || item.startDate} className={styles.itemDate}>
+                                        <div v-if={item.endDate || item.startDate} className={"subContainer__itemDate"}>
                                             {date}
                                         </div>
                                     </div>
-                                    <div className={styles.buttonsContainer}>
+                                    <div className={"subContainer__buttonsContainer"}>
                                         <Button
                                             type={'ghost'}
-                                            text={'Edit'}
+                                            text={''}
                                             icon={editIconBlue}
                                             sizeName={'small'}
                                             iconPosition={'left'}

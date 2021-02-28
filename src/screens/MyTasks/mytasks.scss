@@ -1,30 +1,57 @@
 @import "../../helpers/responsiveBreakpointsMixins.scss";
+.ndaContent{
+	font-size: 16px;
+	color: #264870;
+	a{
+		color: #264870;
+		font-family: "Sofia Pro Bold";
+		font-size: 16px;
+	}
+}
+.taskTabs{
+	display: flex;
+    flex-direction: row;
+    align-items: stretch;
+	margin-bottom:50px;
+    padding: 10px;
+    border-radius: 50px;
+    border: 1px solid #e9ecef;
+    z-index: 7;
+	ul{
+		width: 100%;
+		border:0!important;
+	}
+	&__tab{
+		margin: 0;
+	    font-size: 1rem;
+	    font-weight: 300;
+	    padding: 0;
+	    height: 50px;
+	    line-height: 50px;
+	    flex: 1 1;
+	    text-align: center;
+	    position: relative;
+		border-radius: 50px;
+		a{
+			color: #264870;
+			font-family: "Sofia Pro Bold";
+			font-size: 16px;
+			@include small{
+				font-size:13px;
+			}
+		}
+		&.active{
+			background-color: #264870;
+			a{
+				color:white;
+			}
 
-
+		}
+	}
+}
 .MyTasks {
-    position: relative;
-    display: flex;
-    text-align: center;
-    border: 1px solid #eee;
-    border-top: none;
-    height: 100%;
-    width: fit-content;
-    overflow: auto;
-    margin: 0 auto;
-
-    @include x-large {
-        width: 100%;
-    }
-    @include large {
-        width: 100%;
-    }
-    @include medium {
-        width: 100%;
-    }
-    @include small {
-        width: 100%;
-    }
-
+	margin-bottom:80px;
+	margin-top:80px;
     & .gridItem {
         display: flex;
         flex-direction: column;

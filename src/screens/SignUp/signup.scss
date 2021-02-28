@@ -1,12 +1,8 @@
-.signup {
-    display: flex;
-    position: absolute;
+.auth {
+	display: flex;
     width: 100%;
-    height: calc(100% -80px);
-    left: 0;
-    top: 80px;
-}
-
-.myFlex{
-    flex-direction: row;
+	border-radius: 10px;
+	justify-content: center;
+	margin-bottom:40px;
+	margin-top:40px;
 }

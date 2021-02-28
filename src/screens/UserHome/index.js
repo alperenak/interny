@@ -92,24 +92,29 @@ class UserHome extends Component {
     render() {
         let {posts, totalCount} = this.state;
         return (
-            <div className={styles.UserHome}>
+            <div className={"userHome"}>
                 <SearchSection />
-                <Card
-                    v-for={(pst, i) in posts}
-                    key={i}
-                    type={'jobPost'}
-                    posts={pst}
-                />
-                <div className={styles.buttonContainer}>
-                    <Button
-                        v-if={totalCount > posts.length}
-                        type={'ghost'}
-                        text={'Load More'}
-                        sizeName={'small'}
-                        onButtonClick={() => this.onLoadMore()}
-                        width={'160px'}
-                    />
-                </div>
+				<div class="container">
+					<div class="row">
+						<Card
+		                    v-for={(pst, i) in posts}
+		                    key={i}
+		                    type={'jobPost'}
+		                    posts={pst}
+		                />
+		                <div className={"userHome__buttonContainer"}>
+		                    <Button
+		                        v-if={totalCount > posts.length}
+		                        type={'ghost'}
+		                        text={'Load More'}
+		                        sizeName={'small'}
+		                        onButtonClick={() => this.onLoadMore()}
+		                        width={'160px'}
+		                    />
+		                </div>
+					</div>
+				</div>
+
                 <Footer/>
             </div>
         );

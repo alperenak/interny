@@ -8,9 +8,12 @@ class LoadingModal extends Component {
     state = {}
     render() {
         return ReactDOM.createPortal(
-            <div className={styles.wrapper}>
-                <div className={styles.iconWrapper}><img src={loadingIcon} alt="" /></div>
-                <div className={styles.text}>{this.props.text}</div>
+            <div className={"loadingWrapper"}>
+				<div class="la-ball-triangle-path">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
             </div>
             , document.getElementById('modal')
         );

@@ -1,12 +1,17 @@
 .login {
     display: flex;
-    position: absolute;
     width: 100%;
-    height: calc(100% - 80px);
-    left: 0;
-    top: 80px;
+	border-radius: 10px;
+	justify-content: center;
 }
 
-.myFlex{
-    flex-direction: row;
+.loginWrapper{
+	display: flex;
+	align-items: center;
+	background-color: #f6f8fa;
+	flex: 1;
+	padding: 1rem 0;
+}
+.footerSection2{
+	background-color: #f6f8fa;
 }

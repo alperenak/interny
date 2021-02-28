@@ -24,19 +24,27 @@ class EditForm extends Component {
         let {editObject} = this.state;
         let {object} = this.props;
         return (
-            <div className={`${styles.editForm} ${styles[this.props.type]}`}>
-                <Input
-                    label={'Title'}
-                    type={'textarea'}
-                    size={'full'}
-                    placeholder={'Enter additional info'}
-                    defaultValue={editObject?.additional ? editObject.additional : ''}
-                    onChange={(value) => this.setState({ editObject: {...editObject, additional: value} })}
-                />
-                <div className={styles.formButtons}>
-                    <Button text={'Save'} type={'secondary'} sizeName={'default'} onButtonClick={async () => await this.onSaveClick()} />
-                    <Button text={'Cancel'} type={'ghost'} sizeName={'default'} onButtonClick={() => this.props.onCancel(object.id)} />
-                </div>
+            <div className={`${"cvEditForm"} ${this.props.type}`}>
+				<div class="row">
+					<div class="col-md-12">
+						<Input
+		                    label={'Title'}
+		                    type={'textarea'}
+		                    size={'full'}
+		                    placeholder={'Enter additional info'}
+		                    defaultValue={editObject?.additional ? editObject.additional : ''}
+		                    onChange={(value) => this.setState({ editObject: {...editObject, additional: value} })}
+		                />
+					</div>
+					<div class="col-md-12">
+						<div className={"cvEditForm__formButtons"}>
+		                    <Button text={'Save'} type={'secondary'} sizeName={'default'} onButtonClick={async () => await this.onSaveClick()} />
+		                    <Button text={'Cancel'} type={'ghost'} sizeName={'default'} onButtonClick={() => this.props.onCancel(object.id)} />
+		                </div>
+					</div>
+				</div>
+
+
             </div>
         );
     }

@@ -7,6 +7,8 @@ import Card from "../../index";
 
 /*** Utils ***/
 import store from '../../../../store';
+import ToolkitProvider from 'react-bootstrap-table2-toolkit';
+import defstyles from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.css';
 
 /*** Styles ***/
 import styles from './intern.scss';
@@ -101,33 +103,33 @@ class Intern extends Component {
         }
 
         return (
-            <div className={styles.Intern}>
-                <div className={styles.cardWrapper}>
-                    <div className={styles.photoContainer}>
+            <div className={"Intern"}>
+                <div className={"cardWrapper"}>
+                    <div className={"photoContainer"}>
                         <img src={application.Intern.avatar} alt={'image'}/>
                     </div>
-                    <div className={styles.infoWrapper}>
-                        <Link to={''} className={styles.internName}>
+                    <div className={"infoWrapper"}>
+                        <Link to={''} className={"internName"}>
                             {application.Intern.name} {application.Intern.surname}
                         </Link>
-                        <div className={styles.detailButtons}>
+                        <div className={"detailButtons"}>
                             <div
                                 onClick={() => this.setState({cvVisibility: !cvVisibility, coverLetterVisibility: false})}
-                                className={styles.detailButton}
+                                className={"detailButton"}
                             >
                                 <img src={CVIcon} alt={'icon'}/>
                                 <div>Curriculum vitae</div>
                             </div>
                             <div
                                 onClick={() => this.setState({cvVisibility: false, coverLetterVisibility: !coverLetterVisibility})}
-                                className={styles.detailButton}
+                                className={"detailButton"}
                             >
                                 <img src={coverLetterIcon} alt={'icon'}/>
                                 <div>Cover Letter</div>
                             </div>
                         </div>
                     </div>
-                    <div className={styles.buttonContainer}>
+                    <div className={"buttonContainer"}>
                         <Button
                             type={'primary'}
                             text={primaryButtonText}
@@ -144,7 +146,7 @@ class Intern extends Component {
                         />
                     </div>
                 </div>
-                <div className={styles.CVs}>
+                <div className={"CVs"}>
                     <Card
                         v-if={cvVisibility}
                         type={'section'}
@@ -152,7 +154,7 @@ class Intern extends Component {
                         header={{text: section.header, position: 'center'}}
                     />
                 </div>
-                <div className={styles.CoverLettersWrapper}>
+                <div className={"CoverLettersWrapper"}>
                     <Card
                         type={'coverLetter'}
                         v-if={coverLetterVisibility}

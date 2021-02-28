@@ -13,36 +13,65 @@ let store = {
       location,
       country,
       city,
-      employee_min,
-      employee_max,
+      empNum,
       intern_type,
-      duration,
-      intern_quota_min,
-      intern_quota_max,
-      rate_min,
-      rate_max,
-      industry,
+	  quota,
+	  rate,
+	  industry,
+	  begin_period,
+	  salary,
+	  appType,
+	  languages,
+	  gpa,
+	  duration,
     } = payload;
-
-    let query = `keyword=${encodeURIComponent(
-      keyword
-    )}&location=${encodeURIComponent(location)}&country=${encodeURIComponent(
-      country
-    )}&city=${encodeURIComponent(city)}&employee_min=${encodeURIComponent(
-      employee_min
-    )}&employee_max=${encodeURIComponent(
-      employee_max
-    )}&intern_type=${encodeURIComponent(
-      intern_type
-    )}&duration=${encodeURIComponent(
-      duration
-    )}&intern_quota_min=${encodeURIComponent(
-      intern_quota_min
-    )}&intern_quota_max=${encodeURIComponent(
-      intern_quota_max
-    )}&rate_min=${encodeURIComponent(rate_min)}&rate_max=${encodeURIComponent(
-      rate_max
-    )}&industry=${encodeURIComponent(industry)}`;
+	let query = "";
+	if(typeof keyword !== "undefined"){
+		query += "keyword=" + encodeURIComponent(keyword) + "&";
+	}
+	if(typeof location !== "undefined"){
+		query += "location=" +encodeURIComponent(location) + "&";
+	}
+	if(typeof country !== "undefined"){
+		query += "country=" + encodeURIComponent(country) + "&";
+	}
+	if(typeof city !== "undefined"){
+		query += "city=" + encodeURIComponent(city) + "&";
+	}
+	if(typeof empNum !== "undefined"){
+		query += "empNum=" + encodeURIComponent(empNum) + "&";
+	}
+	if(typeof intern_type !== "undefined"){
+		query += "intern_type=" + encodeURIComponent(intern_type) + "&";
+	}
+	if(typeof quota !== "undefined"){
+		query += "quota=" + encodeURIComponent(quota) + "&";
+	}
+	if(typeof rate !== "undefined"){
+		query += "rate=" + encodeURIComponent(rate) + "&";
+	}
+	if(typeof industry !== "undefined"){
+		query += "industry=" + encodeURIComponent(industry) + "&";
+	}
+	if(typeof begin_period !== "undefined"){
+		query += "begin_period=" + encodeURIComponent(begin_period) + "&";
+	}
+	if(typeof languages !== "undefined"){
+		query += "languages=" + encodeURIComponent(languages) + "&";
+	}
+	if(typeof gpa !== "undefined"){
+		query += "gpa=" + encodeURIComponent(gpa) + "&";
+	}
+	if(typeof duration !== "undefined"){
+		query += "duration=" + encodeURIComponent(duration) + "&";
+	}
+	if(typeof salary !== "undefined"){
+		query += "salary=" + encodeURIComponent(salary) + "&";
+	}
+	if(typeof appType !== "undefined"){
+		query += "appType=" + encodeURIComponent(appType) + "&";
+	}
+    console.log(query);
 
     let tokenCookieName = "token";
     let baseUrl = config.baseUrl;
@@ -183,18 +212,17 @@ let store = {
       errorMessageBuilder
     );
   },
-  async editIntern(id, { field, value }) {
+  async editIntern(id, type,data) {
+
     let baseUrl = config.baseUrl;
-    let path = `/intern/${id}/${field}`;
+    let path = `/intern/${id}/`;
     let tokenCookieName = "token";
-    let payload = {
-      [field]: value,
-    };
+
     return await http.makePutRequest(
       path,
       baseUrl,
       tokenCookieName,
-      payload,
+      data,
       errorMessageBuilder
     );
   },
@@ -209,18 +237,16 @@ let store = {
       errorMessageBuilder
     );
   },
-  async editEmployer(id, { field, value }) {
+  async editEmployer(id, type,data) {
     let baseUrl = config.baseUrl;
-    let path = `/employer/${id}/${field}`;
+    let path = `/employer/${id}/`;
     let tokenCookieName = "token";
-    let payload = {
-      [field]: value,
-    };
+
     return await http.makePutRequest(
       path,
       baseUrl,
       tokenCookieName,
-      payload,
+      data,
       errorMessageBuilder
     );
   },
@@ -760,6 +786,44 @@ let store = {
     let baseUrl = config.baseUrl;
     let path = `/intern/${internId}/task/${id}`;
     let tokenCookieName = "token";
+    return await http.makeGetRequest(
+      path,
+      baseUrl,
+      tokenCookieName,
+      errorMessageBuilder
+    );
+  },
+  async getLinkCode(id) {
+    let baseUrl = config.baseUrl;
+    let path = `/referral/share`;
+    let tokenCookieName = "token";
+    return await http.makeGetRequest(
+      path,
+      baseUrl,
+      tokenCookieName,
+      errorMessageBuilder
+    );
+  },
+  async sendEmailRef(email) {
+    let baseUrl = config.baseUrl;
+    let path = `/referral/share`;
+    let tokenCookieName = "token";
+	var payload = {
+		email:email
+	}
+    return await http.makePostRequest(
+      path,
+      baseUrl,
+      tokenCookieName,
+	  payload,
+      errorMessageBuilder
+    );
+  },
+  async sendRefCode(email) {
+    let baseUrl = config.baseUrl;
+    let path = `/referral/use?code=` + email;
+    let tokenCookieName = "token";
+
     return await http.makeGetRequest(
       path,
       baseUrl,

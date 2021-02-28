@@ -63,37 +63,34 @@ class UpdatePassword extends Component {
     };
 
     render() {
-        return ReactDOM.createPortal(
-            <div className={styles.outer}>
-                <div className={styles.modal}>
-                    <div className={styles.header}>Update Password</div>
-                    <div className={styles.description}>
-                        Enter new password associated with your Interny account.
-                    </div>
+        return (
+            <div className="pageWrapper updatePassword">
+                <div className="header">Update Password</div>
+                <div className="description">
+                    Enter new password associated with your Interny account.
+                </div>
 
-                    <div className={styles.input_wrapper}>
-                        <Input
-                            label={'New Password'}
-                            type="password"
-                            size={'large'}
-                            placeholder="Enter new password"
-                            onChange={v => this.setState({ value: v })}
-                        />
-                        <Input
-                            label={'Confirm Password'}
-                            type="password"
-                            size={'large'}
-                            placeholder="Enter new password"
-                            onChange={v => this.setState({ confirmValue: v })}
-                            errorList={this.state.errorList}
-                        />
-                        <div className={styles.button}>
-                            <Button text={'Save Password'} type={'secondary'} onButtonClick={this.onClick} />
-                        </div>
+                <div className="input_wrapper">
+                    <Input
+                        label={'New Password'}
+                        type="password"
+                        size={'large'}
+                        placeholder="Enter new password"
+                        onChange={v => this.setState({ value: v })}
+                    />
+                    <Input
+                        label={'Confirm Password'}
+                        type="password"
+                        size={'large'}
+                        placeholder="Enter new password"
+                        onChange={v => this.setState({ confirmValue: v })}
+                        errorList={this.state.errorList}
+                    />
+                    <div className="button">
+                        <Button text={'Save Password'} type={'secondary'} onButtonClick={this.onClick}/>
                     </div>
                 </div>
-            </div>,
-            document.getElementById("modal")
+            </div>
         );
     }
 }

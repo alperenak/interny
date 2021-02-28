@@ -1,100 +1,97 @@
-.ProfileSection {
-  background-color: #EFF2FC;
-  margin-bottom: 30px;
-  padding: 24px 0 12px;
+.profileSectionCV {
+	background-color: #EFF2FC;
+	margin-bottom: 30px;
+	padding: 24px 0 12px;
 
-  & .name {
-    padding: 0 32px;
-    font-family: "Sofia Pro Bold";
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: calc(2px + 16px);
-    color: #2c3f58;
-    margin-bottom: 8px;
+	&__name {
+		padding: 0 32px;
+		font-family: "Sofia Pro Bold";
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-size: calc(2px + 16px);
+		color: #2c3f58;
+		margin-bottom: 8px;
+	}
+	&__buttonsContainer {
+		display: flex;
+		& .viewButton{
+			appearance: button;
+			-webkit-writing-mode: horizontal-tb !important;
+			text-rendering: auto;
+			color: -internal-light-dark(black, white);
+			letter-spacing: normal;
+			word-spacing: normal;
+			text-transform: none;
+			text-indent: 0px;
+			text-shadow: none;
+			display: inline-block;
+			text-align: center;
+			align-items: flex-start;
+			cursor: default;
+			background-color: -internal-light-dark(rgb(239, 239, 239), rgb(59, 59, 59));
+			box-sizing: border-box;
+			margin: 0em;
+			font: 400 13.3333px Arial;
+			padding: 1px 6px;
+			border-width: 2px;
+			border-style: outset;
+			border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+			border-image: initial;
+			border-radius: 12px;
+			box-sizing: unset;
+			border: none;
+			font-weight: normal;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			margin: 6px;
+			font-family: "Sofia Pro";
+			background-color: white;
+			color: #2c3f58;
+			border: solid 1px #ddd;
+			padding: 8px 24px;
+			font-size: 12px;
+		}
 
-    & .buttonsContainer {
-      display: flex;
-
-
-      & .viewButton{
-        appearance: button;
-        -webkit-writing-mode: horizontal-tb !important;
-        text-rendering: auto;
-        color: -internal-light-dark(black, white);
-        letter-spacing: normal;
-        word-spacing: normal;
-        text-transform: none;
-        text-indent: 0px;
-        text-shadow: none;
-        display: inline-block;
-        text-align: center;
-        align-items: flex-start;
-        cursor: default;
-        background-color: -internal-light-dark(rgb(239, 239, 239), rgb(59, 59, 59));
-        box-sizing: border-box;
-        margin: 0em;
-        font: 400 13.3333px Arial;
-        padding: 1px 6px;
-        border-width: 2px;
-        border-style: outset;
-        border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
-        border-image: initial;
-        border-radius: 12px;
-        box-sizing: unset;
-        border: none;
-        font-weight: normal;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        margin: 6px;
-        font-family: "Sofia Pro";
-        background-color: white;
-        color: #2c3f58;
-        border: solid 1px #ddd;
-        padding: 8px 24px;
-        font-size: 12px;
-      }
-
-      & .viewButton:hover{
-        background-color: #e8e8e8;
-      }
-    }
-  }
-  & .title {
-    padding: 0 32px;
-    font-size: calc(2px + 15px);
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    letter-spacing: -0.28px;
-    color: #484848;
-    margin-bottom: 8px;
-  }
-  & .location {
-    padding: 0 32px;
-    font-size: calc(2px + 13px);
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    letter-spacing: -0.28px;
-    color: #646464;
-    margin-bottom: 8px;
-  }
-  & .mail {
-    padding: 0 32px;
-    font-size: calc(2px + 13px);
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    letter-spacing: -0.28px;
-    color: #646464;
-    margin-bottom: 8px;
-  }
-  & .summary {
-    padding: 16px 0 0;
-  }
+		& .viewButton:hover{
+			background-color: #e8e8e8;
+		}
+	}
+	&__title {
+		padding: 0 32px;
+		font-size: calc(2px + 15px);
+		font-weight: normal;
+		font-stretch: normal;
+		font-style: normal;
+		letter-spacing: -0.28px;
+		color: #484848;
+		margin-bottom: 8px;
+	}
+	&__location {
+		padding: 0 32px;
+		font-size: calc(2px + 13px);
+		font-weight: normal;
+		font-stretch: normal;
+		font-style: normal;
+		letter-spacing: -0.28px;
+		color: #646464;
+		margin-bottom: 8px;
+	}
+	&__mail {
+		padding: 0 32px;
+		font-size: calc(2px + 13px);
+		font-weight: normal;
+		font-stretch: normal;
+		font-style: normal;
+		letter-spacing: -0.28px;
+		color: #646464;
+		margin-bottom: 8px;
+	}
+	&__summary {
+		padding: 16px 0 0;
+	}
 }
 
 .editForm {

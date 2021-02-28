@@ -7,6 +7,7 @@ import addIconBlue from "../../../../icons/add-circular-outlined-button.svg";
 import EditForm from "./editForm";
 import store from "../../../../store";
 import addIcon from "../../../../icons/add-circular-outlined-black-button.svg";
+import removeIconBlue from '../../../../icons/minus-circular-button.svg';
 
 class Skills extends Component {
     state = {
@@ -32,11 +33,15 @@ class Skills extends Component {
         let {skills} = this.props.file;
         let {activeEditForms, isCreateFormActive} = this.state;
         return (
-            <div className={styles.Container}>
-                <div className={styles.section}>
-                    <div className={styles.sectionTitle}>
+            <div className={"subContainer"}>
+                <div className={"subContainer__section"}>
+                    <div className={"subContainer__sectionTitle"}>
                         Skills
-                        <img className={styles.plusIcon} src={addIconBlue} alt={'icon'} onClick={() => this.setState({isCreateFormActive: true})} />
+						{this.state.isCreateFormActive ? (
+							<img className={"plusIcon"} src={removeIconBlue} alt={'icon'} onClick={() => this.setState({isCreateFormActive: !this.state.isCreateFormActive})} />
+						):(
+							<img className={"plusIcon"} src={addIconBlue} alt={'icon'} onClick={() => this.setState({isCreateFormActive: !this.state.isCreateFormActive})} />
+						)}
                     </div>
                     <div v-if={skills.length === 0 && !isCreateFormActive} style={{ marginBottom: '24px' }}>
                         <Button
@@ -53,14 +58,14 @@ class Skills extends Component {
                         return (
                             <Fragment>
                                 <EditForm v-if={activeEditForms.includes(item.id)} object={item} cv_id={this.props.file.id} onCancel={this.onFormCanceled} />
-                                <div v-else key={j} className={styles.item}>
-                                    <div className={styles.itemDetail}>
-                                        <div v-if={item.title} className={styles.itemTitle}>{item.title}</div>
+                                <div v-else key={j} className={"subContainer__item"}>
+                                    <div className={"subContainer__itemDetail"}>
+                                        <div v-if={item.title} className={"subContainer__itemTitle"}>{item.title}</div>
                                     </div>
-                                    <div className={styles.buttonsContainer}>
+                                    <div className={"subContainer__buttonsContainer"}>
                                         <Button
                                             type={'ghost'}
-                                            text={'Edit'}
+                                            text={''}
                                             icon={editIconBlue}
                                             sizeName={'small'}
                                             iconPosition={'left'}

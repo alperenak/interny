@@ -1,0 +1,119 @@
+@import "../../../../helpers/responsiveBreakpointsMixins.scss";
+
+.campaignCardContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  & .campaignTitle {
+    font-family: "Sofia Pro Bold";
+    margin-top: 110px;
+    width: 100%;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    @include small {
+      margin-top: 55px;
+      font-size: 18px;
+    }
+  }
+  & .campaignDetailSection {
+    display: flex;
+    width: 100%;
+    margin-top: 15px;
+    height: 130px;
+  }
+  & .campaignDiscountPart {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    & .campaignDiscountPercentSection {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      white-space: pre-line;
+      & .campaignDiscountPercent {
+        text-align: center;
+        color: #dd5454;
+        font-family: "Sofia Pro Bold";
+        font-size: 28px;
+        @include small {
+          font-size: 20px;
+        }
+        line-height: 24px;
+        & span {
+          font-size: 36px;
+
+          @include small {
+            font-size: 28px;
+          }
+        }
+      }
+    }
+    & .campaignDiscountCostSection {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      & .campaignDiscountCost {
+        font-family: "Sofia Pro Bold";
+        font-size: 28px;
+        line-height: 38px;
+        @include small {
+          font-size: 20px;
+        }
+      }
+      & .campaignDiscountCostDetail {
+        font-size: 12px;
+        line-height: 5px;
+        margin-left: 15px;
+        @include small {
+          font-size: 10px;
+          margin-left: 25px;
+        }
+      }
+    }
+  }
+  & .campaignDetailPart {
+    flex: 1;
+    & .campaignDetailPartItem {
+      white-space: pre-line;
+      font-size: 14px;
+      @include x-small {
+        font-size: 12px;
+      }
+    }
+  }
+  & .campaignPackageImage {
+    position: absolute;
+    top: -45%;
+  }
+  & .campaignBuyButton {
+    border: solid 2px;
+    border-radius: 25px;
+    padding: 2px 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    margin-top: auto;
+    margin-bottom: auto;
+    cursor: pointer;
+    @include small {
+      padding: 2px 52px;
+      font-size: 14px;
+    }
+    &:hover {
+      background: #dd5454;
+      color: white;
+      border: solid 2px #dd5454;
+    }
+  }
+}

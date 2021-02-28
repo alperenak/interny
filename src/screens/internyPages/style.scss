@@ -1,0 +1,60 @@
+@import "../../helpers/responsiveBreakpointsMixins.scss";
+
+.internyPage{
+	padding-bottom:80px;
+	background-color: #f6f8fa;
+	&__why{
+		margin-top: 80px;
+		margin-bottom:80px;
+		&__title{
+			text-align: center;
+			margin-bottom:60px;
+			span{
+				font-family: "Sofia Pro Bold";
+	    		font-size: 20px;
+	    		color: #2c3f58;
+	    		text-align: center;
+			}
+		}
+		&__desc{
+			text-align: justify;
+		}
+	}
+	&__step{
+		align-items: center;
+		margin-bottom:0px;
+		&__title{
+			margin-bottom:20px;
+			span{
+				font-family: "Sofia Pro Bold";
+	    		font-size: 20px;
+	    		color: #2c3f58;
+			}
+		}
+		&__p{
+			text-align: justify;
+		}
+	}
+	&__twoBox{
+		margin-top:80px;
+	}
+	&__box{
+		span{
+			font-family: "Sofia Pro Bold";
+			font-size: 20px;
+			color: #2c3f58;
+		}
+		p{
+			margin-top:20px;
+		}
+	}
+	&__reports{
+		margin-top:80px;
+	}
+}
+
+.headerBackground{
+	@include medium{
+		background-image: none!important;
+	}
+}

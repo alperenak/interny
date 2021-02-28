@@ -1,3 +1,129 @@
+.cvShow{
+	.profileButton{
+		display: none;
+	}
+	.plusIcon{
+		display: none;
+	}
+	.subContainer__buttonsContainer{
+		display: none;
+	}
+	.statusCircle{
+		display: none!important;
+	}
+	.btn.link{
+		display: none;
+	}
+}
+
+.cvTitle{
+	font-family: "Sofia Pro Bold";
+	font-size: calc(2px + 24px);
+	color: #2c3f58;
+	margin-bottom:30px;
+}
+
+.stepTitle{
+	font-family: "Sofia Pro";
+	font-size: calc(2px + 15px);
+	color: #2c3f58;
+}
+
+.cvListBox{
+	width: 100%;
+	padding-left:40px;
+	padding-right: 40px;
+	padding-bottom: 30px;
+	padding-top: 30px;
+	border: 1px solid #efefef;
+	border-radius: 12px;
+	background: white;
+	margin-top: 30px;
+	&__title{
+		font-family: "Sofia Pro Bold";
+		font-size: 18px;
+		color: #2c3f58;
+	}
+}
+.cvRightBox{
+
+	width: 100%;
+	padding-left:40px;
+	padding-right: 40px;
+	padding-bottom: 30px;
+	border: 1px solid #efefef;
+	border-radius: 12px;
+	background: white;
+
+	&__link{
+		font-family: "Sofia Pro Bold";
+		font-size: calc(2px + 15px);
+		font-weight: bolder;
+		font-stretch: normal;
+		font-style: normal;
+		letter-spacing: 0.3px;
+		color: #2c3f58;
+	}
+	&__linkActive{
+		font-family: "Sofia Pro Bold";
+		font-size: calc(2px + 15px);
+		font-weight: bolder;
+		font-stretch: normal;
+		font-style: normal;
+		letter-spacing: 0.3px;
+		color: #0056b3;
+	}
+	&__linkWrapper{
+		border-bottom:1px solid #e0e2f1;
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		padding-top: 30px;
+		padding-bottom:30px;
+		span{
+			font-family: "Sofia Pro";
+			font-size: 13px;
+			color:#8d8d8d;
+		}
+	}
+	&__linkInfo{
+		display: flex;
+		flex-direction: column;
+	}
+	&__button{
+		border:1px solid #e0e2f1;
+		border-radius:10px;
+		width: 45px;
+		height:45px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	&__deleteLink{
+		font-family: "Sofia Pro";
+		font-size: 13px;
+		color:#2c3f58;
+		text-decoration: underline!important;
+	}
+	&__radio{
+
+		label{
+			font-family: "Sofia Pro Bold";
+			font-size: 15px;
+			color:#2c3f58;
+			margin-left:10px;
+		}
+		p{
+			font-family: "Sofia Pro";
+			font-size: 13px;
+			color:#8d8d8d;
+			margin-top:10px;
+		}
+	}
+}
+
 .CVs {
   width: 100%;
 }
@@ -56,13 +182,47 @@
 	justify-content: space-between;
 	align-items: center;
 }
-.cvrow_title{
-	font-family: "Sofia Pro Bold";
-font-size: calc(2px + 15px);
-font-weight: bolder;
-font-stretch: normal;
-font-style: normal;
-letter-spacing: 0.3px;
-color: #2c3f58;
-grid-column: span 2;
+
+
+.cvDetail{
+	padding-top:80px;
+	padding-bottom: 80px;
+	background-color: #f6f8fa;
+	&__profileSection {
+	 	margin-bottom:30px;
+	}
+	.profileButton{
+		display: none!important;
+	}
+	.statusCircle{
+		display: none!important;
+	}
+}
+
+.cvList{
+	margin-top:80px;
+	margin-bottom: 80px;
+	&__cvrow{
+		position: relative;
+		padding: 16px 32px;
+		margin-bottom:25px;
+		border: 1px solid #efefef;
+		border-radius: 12px;
+		background: white;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	&__cvrow_title{
+		font-family: "Sofia Pro Bold";
+		font-size: calc(2px + 15px);
+		font-weight: bolder;
+		font-stretch: normal;
+		font-style: normal;
+		letter-spacing: 0.3px;
+		color: #2c3f58;
+	}
+	&__profileSection {
+	 	margin-bottom:30px;
+	}
 }

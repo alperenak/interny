@@ -5,7 +5,6 @@
 }
 
 .App {
-  background-color: #eff2fc;
   // width: calc(100% - 208px);
   // height: calc(100% - 144px);
   // padding: 112px 64px 32px 144px;
@@ -18,7 +17,7 @@
     //   padding: 112px 5% 32px 5%;
     // }
     &.paddingTop {
-      padding-top: 112px;
+      padding-top: 82px;
     }
   }
 
@@ -72,36 +71,14 @@
     -webkit-text-fill-color: #2c3f58 !important;
   }
 }
-::-webkit-scrollbar {
-  width: 11px;
-  height: 11px;
+
+.bold {
+  font-weight: bold;
+  font-family: "Sofia Pro Bold";
 }
-::-webkit-scrollbar-button {
-  width: 3px;
-  height: 3px;
-}
-::-webkit-scrollbar-thumb {
-  background: #2c3f58;
-  border: 0px none #ffffff;
-  border-radius: 50px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #253346;
-}
-::-webkit-scrollbar-thumb:active {
-  background: #1d2734;
-}
-::-webkit-scrollbar-track {
-  background: #c2c2c2;
-  border: 0px none #ffffff;
-  border-radius: 50px;
-}
-::-webkit-scrollbar-track:hover {
-  background: #c2c2c2;
-}
-::-webkit-scrollbar-track:active {
-  background: #d6d6d6;
-}
-::-webkit-scrollbar-corner {
-  background: transparent;
+
+.pageWrapper {
+  min-height: calc(100vh - 88px);
+  display: flex;
+  flex-direction: column;
 }

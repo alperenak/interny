@@ -47,9 +47,6 @@ let webpackConfig = {
                     'style-loader',
                     {
                         loader: 'css-loader',
-                        options: {
-                            modules: true,
-                        },
                     },
                 ]
             },
@@ -64,9 +61,6 @@ let webpackConfig = {
                     "style-loader",
                     {
                         loader: 'css-loader',
-                        options: {
-                            modules: true,
-                        },
                     },
                     "sass-loader"
                 ]

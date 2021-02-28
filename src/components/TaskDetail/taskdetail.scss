@@ -1,13 +1,115 @@
+@import '../../helpers/responsiveBreakpointsMixins';
+
+
 $active-color: #4CAF50;
 
 .TaskDetail {
-  margin-top: 30px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex: 1 1;
+	&__logsArea{
+		display: flex;
+		width: 100%;
+		flex-direction: column;
+
+		&__logsHeader{
+			display: flex;
+			width: 100%;
+			justify-content: space-between;
+			align-items: center;
+			& >h3{
+				font-size: 22px;
+				color: #172b4d;
+				margin: 5px 0;
+			}
+			& >button{
+				background-color: rgba(9,30,66,.04);
+				box-shadow: none;
+				border: none;
+				cursor: pointer;
+				border-radius: 5px;
+				padding: 12px 24px;
+				color: #172b4d;
+				outline:none;
+				&:hover{
+					background-color: rgba(9,30,66,.08);
+				}
+				&:active{
+					background-color: #e4f0f6;
+					color: #0079bf;
+				}
+			}
+		}
+		&__buttonDiv{
+			width: 100%;
+			display: flex;
+			justify-content: flex-end;
+		}
+		&__logsOpenButton{
+			background-color: rgba(9,30,66,0.04);
+		    box-shadow: none;
+		    border: none;
+		    cursor: pointer;
+		    border-radius: 5px;
+		    padding: 12px 24px;
+		    color: #172b4d;
+		    outline: none;
+			width: 160px;
+		}
+
+	}
+	&__header{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		margin-bottom: 20px;
+		@include small{
+			flex-direction: column;
+		}
+		&__infoDiv{
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			@include small{
+				margin-bottom:10px;
+			}
+			span{
+				&:first-child{
+					margin-right: 5px;
+					font-family: "Sofia Pro Bold";
+    				font-size: 14px;
+    				color: #2c3f58;
+				}
+			}
+			label{
+				display: none!important;
+			}
+			.labelDescription{
+				display: none!important;
+			}
+		}
+		&__avatarDiv{
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			margin-right: 7px;
+		}
+	}
+	&__userIn {
+	  width: 30px;
+	  height: 30px;
+	  padding: 0;
+	  border: none;
+	  border-radius: 250px;
+	  display: flex;
+	  flex-direction: row;
+	  align-items: center;
+	  &>img{
+		border-radius: 250px;
+		overflow: hidden;
+		width: 30px;
+		height: 30px;
+	  }
+	}
+
+
 
   & .title {
     font-family: "Sofia Pro Bold";
@@ -23,7 +125,7 @@ $active-color: #4CAF50;
     margin: 10px 0;
     flex-direction: row;
     flex-wrap: wrap;
-    
+
     &.inStretch{
       justify-content: stretch;
       &>*{
@@ -74,7 +176,7 @@ $active-color: #4CAF50;
           X red: #F44336
           X orange: #F44336
           X purple: #9C27B0
-          
+
         */
         &.labelStyleGreen{
           background-color: #4CAF50;
@@ -94,20 +196,8 @@ $active-color: #4CAF50;
         &.labelStylePurple{
           background-color: #9C27B0;
         }
-        
-        &.userIn {
-          width: 30px;
-          height: 30px;
-          padding: 0;
-          border: none;
-          border-radius: 250px;
-          &>img{
-            border-radius: 250px;
-            overflow: hidden;
-            width: 100%;
-            height: 100%;
-          }
-        }
+
+
       }
     }
   }
@@ -115,7 +205,7 @@ $active-color: #4CAF50;
   & .taskDetailGroup {
     justify-content: flex-start;
 
-    &, 
+    &,
     & .taskDetailTitle,
     & .taskDetailContent {
       flex-direction: column;
@@ -150,45 +240,7 @@ $active-color: #4CAF50;
 
   }
 
-  & .logsArea{
-    display: flex;
-    width: 100%;
-    flex-direction: column;
 
-    & .logsHeader{
-      display: flex;
-      width: 100%;
-      justify-content: space-between;
-      align-items: center;
-
-      & >h3{
-        font-size: 22px;
-        color: #172b4d;
-        margin: 5px 0;
-      }
-
-      & >button{
-        background-color: rgba(9,30,66,.04);
-        box-shadow: none;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-        padding: 12px 24px;
-        color: #172b4d;
-        outline:none;
-
-        &:hover{
-          background-color: rgba(9,30,66,.08);
-        }
-        &:active{
-          background-color: #e4f0f6;
-          color: #0079bf;
-        }
-      }
-      
-    }
-
-  }
 
   & .doRateArea{
     margin: 10px 0;
@@ -206,7 +258,7 @@ $active-color: #4CAF50;
 
       & > button{
         cursor: pointer;
-      } 
+      }
 
       & .doRateAreaButtonGreen{
         display: flex;
@@ -345,9 +397,9 @@ $active-color: #4CAF50;
     color: #fff;
     width: 75px;
     border-radius: 4px;
-    font-size: calc(2px + 12px);
-    margin: 0 20px 10px;
+    font-size: 14px;
     text-align: center;
+	padding: 2px 5px;
   }
 
   & .description {
@@ -387,19 +439,25 @@ $active-color: #4CAF50;
   }
 
   & .status {
-    font-family: "Sofia Pro";
-    color: #2c3f58;
-    font-size: calc(2px + 10px);
-    margin: 0 20px 10px;
-    & span {
-      color: #646464;
-    }
+	  font-family: "Sofia Pro";
+      align-items: center;
+      justify-content: space-around;
+      display: flex;
+      color: #fff;
+      padding: 2px 5px;
+      background-color:#2196F3;
+      border-radius: 4px;
+      font-size: 14px;
+      text-align: center;
+
+      & img {
+        width: 14px;
+        margin-right: 5px;
+      }
   }
 
   & .deadline {
     font-family: "Sofia Pro";
-    position: absolute;
-    bottom: -75px;
     align-items: center;
     justify-content: space-around;
     display: flex;
@@ -408,8 +466,7 @@ $active-color: #4CAF50;
     padding: 2px 5px;
     background-color: #ff0000;
     border-radius: 4px;
-    font-size: calc(2px + 10px);
-    margin: 0 20px 10px;
+    font-size: 14px;
     text-align: center;
 
     & img {

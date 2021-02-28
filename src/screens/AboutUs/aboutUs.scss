@@ -1,8 +1,19 @@
+@import "../../helpers/responsiveBreakpointsMixins.scss";
+
 .aboutUs{
     margin-left: auto;
     margin-right: auto;
+
 }
 
 .myCarousel{
     margin-bottom: 7rem;
+}
+.aboutBg{
+	@include medium{
+		background-image: none!important;
+	}
+}
+#carouselExampleCaptions{
+	margin-bottom:70px;
 }

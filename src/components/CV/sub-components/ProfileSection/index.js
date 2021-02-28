@@ -41,10 +41,10 @@ class ProfileSection extends Component {
         }
         let location = country && city ? `${city} - ${country}` : (country ? `${country}` : city ? `${city}` : ``);
         return (
-            <div className={styles.ProfileSection}>
-                <div className={styles.name}>
+            <div className={"profileSectionCV"}>
+                <div className={"profileSection__name"}>
                     {file.name}
-                    <div className={styles.buttonsContainer}>
+                    <div className={"profileSection__buttonsContainer"}>
                         <Button
                             type={'ghost'}
                             text={'Delete CV'}
@@ -62,10 +62,10 @@ class ProfileSection extends Component {
                         />
                     </div>
                 </div>
-                <div className={styles.title}>{file.title}</div>
-                <div v-if={location} className={styles.location}>{location}</div>
-                <div className={styles.mail}>{file.email}</div>
-                <div v-if={!activeEditForm} className={styles.summary}>
+                <div className={"profileSection__title"}>{file.title}</div>
+                <div v-if={location} className={"profileSection__location"}>{location}</div>
+                <div className={"profileSection__mail"}>{file.email}</div>
+                <div v-if={!activeEditForm} className={"profileSection__summary"}>
                     <Button
                         v-if={file.summary}
                         type={'link'}

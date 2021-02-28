@@ -5,11 +5,16 @@ import { Link } from "react-router-dom";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 import Footer from "../../components/Footer";
-
+import OwlCarousel from "react-owl-carousel2";
+import InternComment from "../../components/InternComment";
 /*** Styles ***/
 import styles from "./home.scss";
 import homeCurve from "../../assets/home-curve.svg";
 /*** Icons ***/
+import cenkAvatar from "../../assets/cenkAvatar.png";
+import kateAvatar from "../../assets/kateAvatar.jpg";
+import samanAvatar from "../../assets/samanAvatar.png";
+
 import chaseBroke from "../../assets/chaseBroke.png";
 import steveAustin from "../../assets/steveAustin.png";
 import georgeBurgess from "../../assets/georgeBurgess.png";
@@ -24,14 +29,42 @@ import ingBankImage from "../../assets/ing-bank.png";
 import ingBankGrayImage from "../../assets/ing-bank gray.png";
 import unileverImage from "../../assets/unilever.png";
 import unileverGrayImage from "../../assets/unilevergray.png";
-import workingStudentImage from "../../assets/workingStudent.jpg";
+import workingStudentImage from "../../assets/workingStudent.png";
 import register from "../../icons/register.svg";
 import comp from "../../icons/comp.svg";
 import application from "../../icons/application.svg";
 import duties from "../../icons/duties.svg";
-import promotion from "../../icons/promotion.svg";
-import rightArrow from "../../icons/right-arrow.svg";
-import leftArrow from "../../icons/left-arrow.svg";
+import hiwOne from "../../icons/hiw-one.png";
+import hiwTwo from "../../icons/hiw-two.png";
+import hiwThree from "../../icons/hiw-three.png";
+import hiwFour from "../../icons/hiw-four.png";
+import { withNamespaces } from "react-i18next";
+import Counter from "../../components/Counter/counter";
+
+const INTERN_COMMENTS = [
+  {
+    avatar: cenkAvatar,
+    title: "CENK S.",
+    subTitle: "TR",
+    text: `I thought that I lost the opportunity to do an internship abroad due to the pandemic.
+		However, I registered with INTERNY and got the opportunity to do an internship at a technology company in the Netherlands.
+		Thank you.`,
+  },
+  {
+    avatar: kateAvatar,
+    title: "KATE L.",
+    subTitle: "USA",
+    text: `After completing my education, I wanted to do an internship in Europe for my personal development.
+		I completed my internship in the UK using INTERNY. Thanks to this, I gained experience outside the USA. I was very satisfied.`,
+  },
+  {
+    avatar: samanAvatar,
+    title: "SAMAN bA",
+    subTitle: "UAE",
+    text: `I easily had the opportunity to work for a company in Germany without any visa problems with INTERNY.
+		In this way, I had the opportunity to learn the working principles of German companies before going to Germany. Thank you so much.`,
+  },
+];
 
 class Home extends Component {
   state = {
@@ -60,59 +93,41 @@ class Home extends Component {
     pri3: false,
     slideCount: 0,
   };
-  renderSlide() {
-    return (
-      <>
-        <div className="carousel-item active">
-          <img
-            onClick={() => this.setState({ ing: ingBankImage })}
-            onMouseOver={() => this.setState({ ing: ingBankImage })}
-            onMouseLeave={() => this.setState({ ing: ingBankGrayImage })}
-            height={38}
-            src={this.state.ing}
-            alt={"image"}
-          />
-          <img
-            onClick={() => this.setState({ unilever: unileverImage })}
-            onMouseOver={() => this.setState({ unilever: unileverImage })}
-            onMouseLeave={() => this.setState({ unilever: unileverGrayImage })}
-            height={65}
-            src={this.state.unilever}
-            alt={"image"}
-          />
-          <img
-            onClick={() => this.setState({ allianz: allianzImage })}
-            onMouseOver={() => this.setState({ allianz: allianzImage })}
-            onMouseLeave={() => this.setState({ allianz: allianzGrayImage })}
-            height={35}
-            src={this.state.allianz}
-            alt={"image"}
-          />
-          <img
-            onClick={() => this.setState({ vodafone: vodafoneImage })}
-            onMouseOver={() => this.setState({ vodafone: vodafoneImage })}
-            onMouseLeave={() => this.setState({ vodafone: vodafoneGrayImage })}
-            height={62}
-            src={this.state.vodafone}
-            alt={"image"}
-          />
-        </div>
-      </>
-    );
-  }
+
+  componentDidMount() {}
   render() {
+    const options = {
+      items: 4,
+      nav: false,
+      dots: false,
+      autoplayTimeout: 2500,
+      rewind: true,
+      autoplay: true,
+      responsive: {
+        0: {
+          items: 1,
+        },
+        768: {
+          items: 4,
+        },
+      },
+    };
     let { items } = this.state;
+    const { t } = this.props;
+
     return (
-      <div className={styles.Home}>
-        <div className={styles.popularSearchSection}>
-          <div className={styles.popularSearchTitle}>Popular Searches</div>
-          <ul className={styles.cities}>
+      <div className={"home"}>
+        <div className={"home__popularSearchSection"}>
+          <div className={"home__popularSearchTitle"}>
+            {t("landing_popular_searches")}
+          </div>
+          <ul className={"home__cities"}>
             {this.state.cities.map((city, i) => {
               return (
                 <Link
                   to={`/search/null/${city}`}
                   key={"city" + i}
-                  className={styles.city}
+                  className={"home__cities__city"}
                 >
                   {city}
                 </Link>
@@ -120,352 +135,565 @@ class Home extends Component {
             })}
           </ul>
         </div>
-        <div className={styles.postsSection}>
-          <div className={styles.postsTitle}>
-            Find an Internship and Advance Your Career
-          </div>
-          <div className={styles.postsSubTitle}>
-            Each month, thousands of students get career opportunities via
-            Interny
-          </div>
-          <div className={styles.cards}>
-            <Card
-              v-for={(item, i) in items}
-              type={"jobPost"}
-              key={i}
-              posts={[
-                {
-                  date: "30 days ago",
-                  header:
-                    i === 0
-                      ? "Siemens AG"
-                      : i === 1
-                      ? "Nanodems Corp."
-                      : "Fikrimuhal",
-                  company: "Software Development Engineer",
-                  image: i === 0 ? siemens : i === 1 ? nanodems : fikrimuhal,
-                  buttons: [
+        <div className={"home__postsSection"}>
+          <div class="container">
+            <div className={"home__postsSection__postsTitle"}>
+              {t("landing_internships_list_title")}
+            </div>
+            <div className={"home__postsSection__postsSubTitle"}>
+              {t("landing_internships_list_definition")}
+            </div>
+            <div className={"home__postsSection__cards"}>
+              <div class="row">
+                <Card
+                  v-for={(item, i) in items}
+                  type={"jobPost"}
+                  key={i}
+                  posts={[
                     {
-                      type: "primary",
-                      text: "20 Days Internship",
-                      sizeName: "small",
-                      responsive: "post",
+                      location:
+                        i === 0
+                          ? "California/USA"
+                          : i === 1
+                          ? "London/UK "
+                          : "Rotterdam/NL  ",
+                      date: "30 days ago",
+                      header:
+                        i === 0
+                          ? "Siemens AG"
+                          : i === 1
+                          ? "Nanodems Corp."
+                          : "Fikrimuhal BV ",
+                      company:
+                        i === 0
+                          ? "Engineering and Manufacturing "
+                          : i === 1
+                          ? "Accountancy, Banking and Finance "
+                          : "Information Technology ",
+                      image:
+                        i === 0 ? siemens : i === 1 ? nanodems : fikrimuhal,
+                      star: 5,
+                      startTime:
+                        i === 0
+                          ? "May 4ᵗʰ Week"
+                          : i === 1
+                          ? "April 4ᵗʰ Week"
+                          : "May 1ᵗʰ Week",
+                      buttons: [
+                        {
+                          type: "primary",
+                          text:
+                            i === 0
+                              ? "4 Weeks"
+                              : i === 1
+                              ? "8 Weeks"
+                              : "12 Weeks",
+                          sizeName: "small",
+                          width: "120px",
+                          responsive: "post",
+                        },
+                      ],
                     },
-                  ],
-                  note:
-                    "Responsible for the design, coding, unit testing and documentation of software components and features. Build automation test framework. Work with the software engineering team to meet deliverables. ",
-                },
-              ]}
-            />
-          </div>
-          <div className={styles.discoverBtn}>
-            <Button
-              to={"/search"}
-              type={"ghost"}
-              text={"Discover"}
-              sizeName={"large"}
-            />
-          </div>
-        </div>
-
-        <div className={styles.companiesSection}>
-          <div className={styles.companiesTitle}>Outstanding Companies</div>
-          <div className={styles.companiesSubTitle}>
-            Each year, more than 400 million interns turn to INTERNY as
-            searching for internships
-          </div>
-          <div className={styles.companiesImages}>
-            <div
-              id="carouselExampleSlidesOnly"
-              class="carousel slide"
-              data-ride="carousel"
-              data-interval="5000"
-            >
-              <div className="carousel-inner">
-                <div
-                  className={`carousel-item active ${styles.outstandingCompaniesCard}`}
-                >
-                  <img
-                    onClick={() => this.setState({ ing: ingBankImage })}
-                    onMouseOver={() => this.setState({ ing: ingBankImage })}
-                    onMouseLeave={() =>
-                      this.setState({ ing: ingBankGrayImage })
-                    }
-                    height={38}
-                    src={this.state.ing}
-                    alt={"image"}
-                  />
-                  <img
-                    onClick={() => this.setState({ unilever: unileverImage })}
-                    onMouseOver={() =>
-                      this.setState({ unilever: unileverImage })
-                    }
-                    onMouseLeave={() =>
-                      this.setState({ unilever: unileverGrayImage })
-                    }
-                    height={65}
-                    src={this.state.unilever}
-                    alt={"image"}
-                  />
-                  <img
-                    onClick={() => this.setState({ allianz: allianzImage })}
-                    onMouseOver={() => this.setState({ allianz: allianzImage })}
-                    onMouseLeave={() =>
-                      this.setState({ allianz: allianzGrayImage })
-                    }
-                    height={35}
-                    src={this.state.allianz}
-                    alt={"image"}
-                  />
-                  <img
-                    onClick={() => this.setState({ vodafone: vodafoneImage })}
-                    onMouseOver={() =>
-                      this.setState({ vodafone: vodafoneImage })
-                    }
-                    onMouseLeave={() =>
-                      this.setState({ vodafone: vodafoneGrayImage })
-                    }
-                    height={62}
-                    src={this.state.vodafone}
-                    alt={"image"}
-                  />
-                </div>
-                <div
-                  className={`carousel-item ${styles.outstandingCompaniesCard}`}
-                >
-                  <img
-                    onClick={() => this.setState({ ing: ingBankImage })}
-                    onMouseOver={() => this.setState({ ing: ingBankImage })}
-                    onMouseLeave={() =>
-                      this.setState({ ing: ingBankGrayImage })
-                    }
-                    height={38}
-                    src={this.state.ing}
-                    alt={"image"}
-                  />
-                  <img
-                    onClick={() => this.setState({ unilever: unileverImage })}
-                    onMouseOver={() =>
-                      this.setState({ unilever: unileverImage })
-                    }
-                    onMouseLeave={() =>
-                      this.setState({ unilever: unileverGrayImage })
-                    }
-                    height={65}
-                    src={this.state.unilever}
-                    alt={"image"}
-                  />
-                  <img
-                    onClick={() => this.setState({ allianz: allianzImage })}
-                    onMouseOver={() => this.setState({ allianz: allianzImage })}
-                    onMouseLeave={() =>
-                      this.setState({ allianz: allianzGrayImage })
-                    }
-                    height={35}
-                    src={this.state.allianz}
-                    alt={"image"}
-                  />
-                  <img
-                    onClick={() => this.setState({ vodafone: vodafoneImage })}
-                    onMouseOver={() =>
-                      this.setState({ vodafone: vodafoneImage })
-                    }
-                    onMouseLeave={() =>
-                      this.setState({ vodafone: vodafoneGrayImage })
-                    }
-                    height={62}
-                    src={this.state.vodafone}
-                    alt={"image"}
-                  />
-                </div>
+                  ]}
+                />
               </div>
             </div>
+            <div className={"home__postsSection__discoverBtn"}>
+              <Button
+                to={"/search"}
+                type={"ghost"}
+                text={t("landing_internships_list_discover")}
+                sizeName={"large"}
+              />
+            </div>
           </div>
         </div>
-        <div className={styles.browseJobsSection}>
-          <div className={styles.jobsTitle}>
-            <div>
-              Apply here for any of the thousands of internships around the
-              world.
-            </div>
-            <Link to={"signup"} className={styles.prepareCv}>
-              Sign up!
+        <div className="CounterWrapper">
+          {/*   ==  <Counter countDown={new Date(2021, 6, 15)} />*/}
+        </div>
+        <div className="CampaignBranding">
+          {/* <div className="CampaignFilter" /> */}
+          {/* <div className="CampaignBrandingTitle">Summer Internship</div> */}
+          <div className="SummerInternshipButtonWrapper">
+            <Link to="/campaign">
+              <div className="SummerInternshipButton">
+                {t("landing_packages_competency_get_campaign")}
+              </div>
             </Link>
           </div>
-          <img src={workingStudentImage} alt={"image"} />
         </div>
-        <div className={styles.howItWorksSection}>
-          <div className={styles.howItWorksTitle}>How It Works</div>
-          <div className={styles.howItWorksSubTitle}>
-            Each year, more than 400 million interns turn to INTERNY as
-            searching for internships, making over thousands applications every
-            day.
+        <div className={"home__companiesSection"}>
+          <div class="container">
+            <div className={"home__companiesSection__companiesTitle"}>
+              {t("landing_outstanding_companies")}
+            </div>
+            <div className="home__companiesSection__companiesSubTitle">
+              {t("landing_outstanding_companies_text")}
+            </div>
+
+            <div className="home__companiesSection__companiesImages">
+              <OwlCarousel ref="car" options={options}>
+                <div class="item">
+                  <img
+                    onClick={() => this.setState({ ing: ingBankImage })}
+                    onMouseOver={() => this.setState({ ing: ingBankImage })}
+                    onMouseLeave={() =>
+                      this.setState({ ing: ingBankGrayImage })
+                    }
+                    height={38}
+                    src={this.state.ing}
+                    alt={"image"}
+                  />
+                </div>
+                <div class="item">
+                  <img
+                    onClick={() => this.setState({ unilever: unileverImage })}
+                    onMouseOver={() =>
+                      this.setState({ unilever: unileverImage })
+                    }
+                    onMouseLeave={() =>
+                      this.setState({ unilever: unileverGrayImage })
+                    }
+                    height={65}
+                    src={this.state.unilever}
+                    alt={"image"}
+                  />
+                </div>
+                <div class="item">
+                  <img
+                    onClick={() => this.setState({ allianz: allianzImage })}
+                    onMouseOver={() => this.setState({ allianz: allianzImage })}
+                    onMouseLeave={() =>
+                      this.setState({ allianz: allianzGrayImage })
+                    }
+                    height={35}
+                    src={this.state.allianz}
+                    alt={"image"}
+                  />
+                </div>
+                <div class="item">
+                  <img
+                    onClick={() => this.setState({ vodafone: vodafoneImage })}
+                    onMouseOver={() =>
+                      this.setState({ vodafone: vodafoneImage })
+                    }
+                    onMouseLeave={() =>
+                      this.setState({ vodafone: vodafoneGrayImage })
+                    }
+                    height={62}
+                    src={this.state.vodafone}
+                    alt={"image"}
+                  />
+                </div>
+                <div class="item">
+                  <img
+                    onClick={() => this.setState({ unilever: unileverImage })}
+                    onMouseOver={() =>
+                      this.setState({ unilever: unileverImage })
+                    }
+                    onMouseLeave={() =>
+                      this.setState({ unilever: unileverGrayImage })
+                    }
+                    height={65}
+                    src={this.state.unilever}
+                    alt={"image"}
+                  />
+                </div>
+                <div class="item">
+                  <img
+                    onClick={() => this.setState({ allianz: allianzImage })}
+                    onMouseOver={() => this.setState({ allianz: allianzImage })}
+                    onMouseLeave={() =>
+                      this.setState({ allianz: allianzGrayImage })
+                    }
+                    height={35}
+                    src={this.state.allianz}
+                    alt={"image"}
+                  />
+                </div>
+                <div class="item">
+                  <img
+                    onClick={() => this.setState({ vodafone: vodafoneImage })}
+                    onMouseOver={() =>
+                      this.setState({ vodafone: vodafoneImage })
+                    }
+                    onMouseLeave={() =>
+                      this.setState({ vodafone: vodafoneGrayImage })
+                    }
+                    height={62}
+                    src={this.state.vodafone}
+                    alt={"image"}
+                  />
+                </div>
+              </OwlCarousel>
+            </div>
           </div>
-          <div className={styles.divisions}>
-            <div style={{ marginTop: "45px" }} className={styles.division}>
-              <img className={styles.icon} src={register} />
-              <div className={styles.title}>Join & Apply</div>
-              <div className={styles.description}>
-                Sign up and buy the requested package. Then apply for the
-                internships for acceptance.
-              </div>
-            </div>
-            <div style={{ marginTop: "30px" }} className={styles.division}>
-              <img className={styles.icon} src={comp} />
-              <div className={styles.title}>Competency Analytics</div>
-              <div className={styles.description}>
-                Prove your competency to be the primary candidate of the company
-                you want to apply for. Use CA to determine and improve the
-                competency level if necessary.
-              </div>
-            </div>
-            <div style={{ marginTop: "15px" }} className={styles.division}>
-              <img className={styles.icon} src={application} />
-              <div className={styles.title}>Project Management System</div>
-              <div className={styles.description}>
-                Use PMS to manage tasks assigned for the internship and to
-                contact the company.
-              </div>
-            </div>
-            <div style={{ marginTop: "0px" }} className={styles.division}>
-              <img className={styles.icon} src={duties} />
-              <div className={styles.title}>Reference Letter</div>
-              <div className={styles.description}>
-                Complete the internship process and take your WFA report. If
-                you're over 60% successful according to the WFA, get your signed
-                reference letter.
+        </div>
+        <div
+          className={"home__browseJobsSection"}
+          style={{ "background-image": "url(" + workingStudentImage + ")" }}
+        >
+          <div class="container">
+            <div class="row">
+              <div className={"home__browseJobsSection__jobsTitle"}>
+                <div>{t("landing_on_image_text")}</div>
+                <Link to={"signup"} className={"prepareCv"}>
+                  {t("landing_on_image_signup")}
+                </Link>
               </div>
             </div>
           </div>
         </div>
-        <div className={styles.internsSaysSection}>
-          <div className={styles.internsSaysTitle}>
-            What Interns Say About Us
-          </div>
-          <div className={styles.internsSaysSubTitle}>
-            Thousands of university students and recent graduates easily found
-            internships they deserve anywhere in the world
-          </div>
-          <div className={styles.internsSaysImages}>
-            <img src={steveAustin} alt={"image"} />
-            <img className={styles.shadowed} src={chaseBroke} alt={"image"} />
-            <img src={georgeBurgess} alt={"image"} />
+        <div className={"home__howItWorksSection"}>
+          <div class="container">
+            <div className={"home__howItWorksSection__howItWorksTitle"}>
+              {t("landing_how_it_works")}
+            </div>
+            <div className={"home__howItWorksSection__howItWorksSubTitle"}>
+              {t("landing_how_it_works_definition")}
+            </div>
+            <div class="row home__howItWorksSection__row">
+              <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                <div
+                  className={"home__howItWorksSection__division boxAnimation2"}
+                >
+                  <img
+                    className={"home__howItWorksSection__division__topLeftIcon"}
+                    src={hiwOne}
+                  ></img>
+                  <div className={"home__howItWorksSection__division__title"}>
+                    {t("landing_how_it_works_card1_title")}
+                  </div>
+                  <div
+                    className={"home__howItWorksSection__division__description"}
+                  >
+                    {t("landing_how_it_works_card1_text")}
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                <div
+                  className={"home__howItWorksSection__division boxAnimation2"}
+                >
+                  <img
+                    className={"home__howItWorksSection__division__topLeftIcon"}
+                    src={hiwTwo}
+                  ></img>
+                  <div className={"home__howItWorksSection__division__title"}>
+                    {t("landing_how_it_works_card2_title")}
+                  </div>
+                  <div
+                    className={"home__howItWorksSection__division__description"}
+                  >
+                    {t("landing_how_it_works_card2_text")}
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                <div
+                  className={"home__howItWorksSection__division boxAnimation2"}
+                >
+                  <img
+                    className={"home__howItWorksSection__division__topLeftIcon"}
+                    src={hiwThree}
+                  ></img>
+                  <div className={"home__howItWorksSection__division__title"}>
+                    {t("landing_how_it_works_card3_title")}
+                  </div>
+                  <div
+                    className={"home__howItWorksSection__division__description"}
+                  >
+                    {t("landing_how_it_works_card3_text")}
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                <div
+                  className={"home__howItWorksSection__division boxAnimation2"}
+                >
+                  <img
+                    className={"home__howItWorksSection__division__topLeftIcon"}
+                    src={hiwFour}
+                  ></img>
+                  <div className={"home__howItWorksSection__division__title"}>
+                    {t("landing_how_it_works_card4_title")}
+                  </div>
+                  <div
+                    className={"home__howItWorksSection__division__description"}
+                  >
+                    {t("landing_how_it_works_card4_text")}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div id={"packages-section"} className={styles.packagesSection}>
-          <div className={styles.packagesTitle}>See the Intern Packages</div>
-          <div className={styles.packagesSubTitle}>
-            Click to see detail of packages
+        <div className={"home__internsSaysSection"}>
+          <div class="container">
+            <div className={"home__internsSaysSection__internsSaysTitle"}>
+              {t("landing_what_interns_say_title")}
+            </div>
+            <div className={"home__internsSaysSection__internsSaysSubTitle"}>
+              {t("landing_what_interns_say_text")}
+            </div>
+            <div class="row home__internsSaysSection__row">
+              {INTERN_COMMENTS.map((comment, index) => {
+                return (
+                  <div class="col-md-4 boxAnimation2" key={comment.title}>
+                    <InternComment
+                      card={index % 2 == 0}
+                      avatar={comment.avatar}
+                      title={comment.title}
+                      subTitle={comment.subTitle}
+                      text={comment.text}
+                    />
+                  </div>
+                );
+              })}
+            </div>
           </div>
-          <div className={styles.packagesCards}>
-            <div
-              onMouseLeave={() => this.setState({ pri1: false })}
-              onMouseOver={() => this.setState({ pri1: true })}
-              className={styles.frontier}
-            >
-              <Card type={"pricing"}>
-                <div className={styles.packageCard}>
-                  <div className={styles.headerDiv}>
-                    <div className={styles.packageTitle}>FREEMIUM</div>
-                    <div className={styles.packagePrice}>$0.00</div>
-                    <div className={styles.packagePaymentDate}>Per Month</div>
-                  </div>
-                  <div className={styles.stroke} />
-                  <div className={styles.descriptionDiv}>
-                    <div className={styles.packageDescription}>
-                      <div>Sign up!</div>
-                      <div>Create CV</div>
-                      <div>Search Internships</div>
-                    </div>
-                    <Button
-                      v-if={this.state.pri1}
-                      type={"primary"}
-                      text={"Buy Now"}
-                      sizeName={"default"}
-                    />
-                    <Button
-                      v-if={!this.state.pri1}
-                      type={"ghost"}
-                      text={"Buy Now"}
-                      sizeName={"default"}
-                    />
-                  </div>
-                </div>
-              </Card>
+        </div>
+        <div id={"packages-section"} className={"home__packagesSection"}>
+          <div class="container">
+            <div className={"home__packagesSection__packagesTitle"}>
+              {t("landing_see_intern_packages_title")}
             </div>
-            <div
-              onMouseLeave={() => this.setState({ pri2: false })}
-              onMouseOver={() => this.setState({ pri2: true })}
-              className={styles.frontier}
-            >
-              <Card type={"pricing"}>
-                <div className={styles.moneyGuarenteed}>
-                  {/* Money Back Guarenteed */}
-                </div>
-                <div className={styles.packageCardGuaranteed}>
-                  <div className={styles.headerDiv}>
-                    <div className={styles.packageTitle}>INTERN</div>
-                    <div className={styles.packagePrice}>$19,99</div>
-                    <div className={styles.packagePaymentDate}>Per Month</div>
-                  </div>
-                  <div className={styles.stroke} />
-                  <div className={styles.descriptionDiv}>
-                    <div className={styles.packageDescription}>
-                      <div>Apply for Internships</div>
-                      <div>PMS</div>
-                      <div>WFA Report</div>
-                      <div>Reference Letter</div>
-                    </div>
-                    <Button
-                      v-if={this.state.pri2}
-                      type={"primary"}
-                      text={"Buy Now"}
-                      sizeName={"default"}
-                    />
-                    <Button
-                      v-if={!this.state.pri2}
-                      type={"ghost"}
-                      text={"Buy Now"}
-                      sizeName={"default"}
-                    />
-                  </div>
-                </div>
-              </Card>
+            <div className={"home__packagesSection__packagesSubTitle"}>
+              {t("landing_see_intern_packages_text")}
             </div>
-            <div
-              onMouseLeave={() => this.setState({ pri3: false })}
-              onMouseOver={() => this.setState({ pri3: true })}
-              className={styles.frontier}
-            >
-              <Card type={"pricing"}>
-                <div className={styles.packageCard}>
-                  <div className={styles.headerDiv}>
-                    <div className={styles.packageTitle}>COMPETENCY</div>
-                    <div className={styles.packagePrice}>$9.99</div>
-                    <div className={styles.packagePaymentDate}>Per Month</div>
-                  </div>
-                  <div className={styles.stroke} />
-                  <div className={styles.descriptionDiv}>
-                    <div className={styles.packageDescription}>
-                      <div>Case Studies</div>
-                      <div>Competency Analytics</div>
-                      <div>Competency Report</div>
+            <div class="row home__packagesSection__row">
+              <div class="col-md-4">
+                <div
+                  onMouseLeave={() => this.setState({ pri1: false })}
+                  onMouseOver={() => this.setState({ pri1: true })}
+                  className={styles.frontier}
+                >
+                  <Card type={"pricing"}>
+                    <div className={"home__packagesSection__packageCard"}>
+                      <div
+                        className={
+                          "home__packagesSection__packageCard__headerDiv"
+                        }
+                      >
+                        <div
+                          className={
+                            "home__packagesSection__packageCard__packageTitle"
+                          }
+                        >
+                          {t("landing_packages_freemium_title")}
+                        </div>
+                        <div
+                          className={
+                            "home__packagesSection__packageCard__packagePrice"
+                          }
+                        >
+                          {t("landing_packages_freemium_price")}
+                        </div>
+                      </div>
+                      <div
+                        className={"home__packagesSection__packageCard__stroke"}
+                      />
+                      <div
+                        className={
+                          "home__packagesSection__packageCard__descriptionDiv"
+                        }
+                      >
+                        <div
+                          className={
+                            "home__packagesSection__packageCard__packageDescription"
+                          }
+                        >
+                          <div>{t("landing_packages_freemium_item1")}</div>
+                          <div>{t("landing_packages_freemium_item2")}</div>
+                          <div>{t("landing_packages_freemium_item3")}</div>
+                        </div>
+                        <Button
+                          v-if={this.state.pri1}
+                          type={"primary"}
+                          text={t("landing_packages_details")}
+                          sizeName={"default"}
+                          to="/howtointern"
+                        />
+                        <Button
+                          v-if={!this.state.pri1}
+                          type={"ghost"}
+                          text={t("landing_packages_details")}
+                          onButtonClick={() => alert("")}
+                          sizeName={"default"}
+                          to="/howtointern"
+                        />
+                      </div>
                     </div>
-                    <Button
-                      v-if={this.state.pri3}
-                      type={"primary"}
-                      text={"Buy Now"}
-                      sizeName={"default"}
-                    />
-                    <Button
-                      v-if={!this.state.pri3}
-                      type={"ghost"}
-                      text={"Buy Now"}
-                      sizeName={"default"}
-                    />
-                  </div>
+                  </Card>
                 </div>
-              </Card>
+              </div>
+              <div class="col-md-4">
+                <div
+                  onMouseLeave={() => this.setState({ pri2: false })}
+                  onMouseOver={() => this.setState({ pri2: true })}
+                  className={styles.frontier}
+                >
+                  <Card type={"pricing"}>
+                    <div className={"moneyGuarenteed"}>
+                      {/* Money Back Guarenteed */}
+                    </div>
+                    <div
+                      className={"home__packagesSection__packageCardGuaranteed"}
+                    >
+                      <div
+                        className={
+                          "home__packagesSection__packageCardGuaranteed__headerDiv"
+                        }
+                      >
+                        <div
+                          className={
+                            "home__packagesSection__packageCardGuaranteed__packageTitle"
+                          }
+                        >
+                          {t("landing_packages_intern_title")}
+                        </div>
+                        <div
+                          className={
+                            "home__packagesSection__packageCardGuaranteed__packagePrice"
+                          }
+                        >
+                          {t("landing_packages_intern_price")}
+                        </div>
+                        <div
+                          className={
+                            "home__packagesSection__packageCardGuaranteed__packagePaymentDate"
+                          }
+                        >
+                          {t("landing_packages_intern_info")}
+                        </div>
+                      </div>
+                      <div
+                        className={
+                          "home__packagesSection__packageCardGuaranteed__stroke"
+                        }
+                      />
+                      <div
+                        className={
+                          "home__packagesSection__packageCardGuaranteed__descriptionDiv"
+                        }
+                      >
+                        <div
+                          className={
+                            "home__packagesSection__packageCardGuaranteed__packageDescription"
+                          }
+                        >
+                          <div>{t("landing_packages_intern_item1")}</div>
+                          <div
+                            class="bold"
+                            data-toggle="tooltip"
+                            title="Interny Management System"
+                          >
+                            {t("landing_packages_intern_item2")}
+                          </div>
+                          <div
+                            data-toggle="tooltip"
+                            title="Workforce Analytics"
+                          >
+                            {t("landing_packages_intern_item3")}
+                          </div>
+                          <div>{t("landing_packages_intern_item4")}</div>
+                        </div>
+                        <Button
+                          v-if={this.state.pri2}
+                          type={"primary"}
+                          text={t("landing_packages_details")}
+                          sizeName={"default"}
+                          to="/howtointern"
+                        />
+                        <Button
+                          v-if={!this.state.pri2}
+                          type={"ghost"}
+                          text={t("landing_packages_details")}
+                          sizeName={"default"}
+                          to="/howtointern"
+                        />
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div
+                  onMouseLeave={() => this.setState({ pri3: false })}
+                  onMouseOver={() => this.setState({ pri3: true })}
+                  className={styles.frontier}
+                >
+                  <Card type={"pricing"}>
+                    <div className={"home__packagesSection__packageCard"}>
+                      <div
+                        className={
+                          "home__packagesSection__packageCard__headerDiv"
+                        }
+                      >
+                        <div
+                          className={
+                            "home__packagesSection__packageCard__packageTitle"
+                          }
+                        >
+                          {t("landing_packages_competency_title")}
+                        </div>
+                        <div
+                          className={
+                            "home__packagesSection__packageCard__packagePrice"
+                          }
+                        >
+                          {t("landing_packages_competency_price")}
+                        </div>
+                        <div
+                          className={
+                            "home__packagesSection__packageCard__packagePaymentDate"
+                          }
+                        >
+                          {t("landing_packages_competency_info")}
+                        </div>
+                      </div>
+                      <div
+                        className={"home__packagesSection__packageCard__stroke"}
+                      />
+                      <div
+                        className={
+                          "home__packagesSection__packageCard__descriptionDiv"
+                        }
+                      >
+                        <div
+                          className={
+                            "home__packagesSection__packageCard__packageDescription"
+                          }
+                        >
+                          <div
+                            class="bold"
+                            data-toggle="tooltip"
+                            title="Interny Competency Center"
+                          >
+                            {t("landing_packages_competency_item1")}
+                          </div>
+                          <div>{t("landing_packages_competency_item2")}</div>
+                          <div>{t("landing_packages_competency_item3")}</div>
+                        </div>
+                        <Button
+                          v-if={this.state.pri3}
+                          type={"primary"}
+                          text={t("landing_packages_details")}
+                          sizeName={"default"}
+                          to="/howtointern"
+                        />
+                        <Button
+                          v-if={!this.state.pri3}
+                          type={"ghost"}
+                          text={t("landing_packages_details")}
+                          sizeName={"default"}
+                          to="/howtointern"
+                        />
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -475,4 +703,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withNamespaces()(Home);
