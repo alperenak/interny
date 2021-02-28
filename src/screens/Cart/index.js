@@ -4,6 +4,7 @@ import Card from "../../components/Card";
 import store from "../../store";
 import { getCookie } from "../../utils/cookie";
 import { loadStripe } from "@stripe/stripe-js";
+import config from "../../../appConfig";
 
 const index = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -74,7 +75,7 @@ const index = () => {
             JSON.parse(localStorage.getItem("languageSupport"))
           )
             payload.push({
-              package: "prod_J1fkGeBJA25Aw",
+              package: config.packageIds.languagePackage,
               quantity: localStorage.getItem("languageQuantity")
                 ? JSON.parse(localStorage.getItem("languageQuantity"))
                 : 1,

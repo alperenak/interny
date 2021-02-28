@@ -1,4 +1,10 @@
 @import "../../helpers/responsiveBreakpointsMixins.scss";
+.buyPackageWrapper {
+  display: block;
+  width: 142px;
+  margin-left: auto;
+  margin-right: auto;
+}
 .cartIconWrapper {
   display: flex;
   width: 100%;
@@ -127,7 +133,7 @@
     }
 
     &__hamburgerAccountName {
-      margin-top: 96px;
+      margin-top: 25px;
       margin-bottom: 48px;
       width: 210px;
       margin-left: auto;

@@ -19,6 +19,7 @@ import InternshipEN from "../../assets/internships.png";
 import InternshipTR from "../../assets/staj.png";
 import CompaniesEN from "../../assets/companies.png";
 import CompaniesTR from "../../assets/sirket.png";
+import { Link } from "react-router-dom";
 
 class Campaign extends React.Component {
   componentDidMount() {}
@@ -188,6 +189,16 @@ class Campaign extends React.Component {
                   <Accordion title={data.question} content={data.answer} />
                 );
               })}
+            </div>
+            <div style={{ textAlign: "center", marginBottom: 25 }} className="">
+              Detaylı bilgi için:{" "}
+              <Link
+                onClick={() => {
+                  window.location.href = "mailto:info@interny.net";
+                }}
+              >
+                info@interny.net
+              </Link>
             </div>
           </div>
         </div>

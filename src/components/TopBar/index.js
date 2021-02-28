@@ -43,7 +43,7 @@ class TopBar extends Component {
 
   state = {
     scrollTop: 0,
-
+    buttonDisplay: false,
     pathname: "",
     isScrolled: false,
 
@@ -507,9 +507,11 @@ class TopBar extends Component {
     this.isSreenMatch()
       ? (document.getElementById("hamburger-menu").style.width = "100%")
       : (document.getElementById("hamburger-menu").style.width = "50%");
+    this.setState({ buttonDisplay: true });
   }
   closeHamburgerMenu() {
     document.getElementById("hamburger-menu").style.width = "0";
+    this.setState({ buttonDisplay: false });
   }
 
   handleScroll = () => {
@@ -637,6 +639,13 @@ class TopBar extends Component {
                           text={t("navbar_sign_up")}
                           onButtonClick={() => this.closeHamburgerMenu()}
                         />
+                        <Button
+                          type={"primary"}
+                          sizeName={"small"}
+                          text={"Buy Package"}
+                          to="/campaign"
+                          onButtonClick={() => this.closeHamburgerMenu()}
+                        />
                         <div className="cartIconWrapper">
                           <Link
                             to="/cart"
@@ -657,6 +666,20 @@ class TopBar extends Component {
                       </div>
                     </Fragment>
                     <Fragment v-else>
+                      <div
+                        v-if={this.state.buttonDisplay}
+                        className="buyPackageWrapper"
+                        style={{ marginTop: 100 }}
+                      >
+                        <Button
+                          type={"primary"}
+                          sizeName={"small"}
+                          text={"Buy Package"}
+                          to="/campaign"
+                          width="120px"
+                          onButtonClick={() => this.closeHamburgerMenu()}
+                        />
+                      </div>
                       <div
                         className={
                           "topBar__hamburgerMenu__hamburgerAccountName"
@@ -693,6 +716,13 @@ class TopBar extends Component {
                               ""
                             )}
                           </div>
+                          <div
+                            style={{
+                              position: "absolute",
+                              bottom: 15,
+                              left: 15,
+                            }}
+                          ></div>
                         </Link>
                       </div>
                     </Fragment>

@@ -21,6 +21,9 @@ class CartItems extends Component {
         ? localStorage.getItem("languageSupport")
         : false,
   };
+  componentDidMount() {
+    localStorage.setItem("quantity", 1);
+  }
   renderPostButtons(buttons) {
     return (
       <div className={`${"postButton"}`}>
@@ -105,7 +108,7 @@ class CartItems extends Component {
                         id="defaultCheck1"
                       />
                       <label class="form-check-label" for="defaultCheck1">
-                        English Support (+ $19.99)
+                        Language Support Service (+ $19.99)
                       </label>
                     </div>
                   )}
