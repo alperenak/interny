@@ -112,26 +112,29 @@ class LandingPageSearch extends Component {
     return res;
   };
 
-  fillPosts = (pst) => [
-    {
-      id: pst.id,
-      date: pst.startDate,
-      header: pst.Employer.legalName,
-      company: pst.position,
-      image: pst.Employer.logo,
-      location: `${pst.country.map((e) => e)}`,
-      buttons: [
-        {
-          type: "ghost",
-          text: pst.startDate,
-          sizeName: "small",
-          width: "85px",
-        },
-      ],
-      description: pst.description,
-      note: `987 ${t("search_post_view")}`,
-    },
-  ];
+  fillPosts = (pst) => {
+    const {t} = this.props;
+    return [
+      {
+        id: pst.id,
+        date: pst.startDate,
+        header: pst.Employer.legalName,
+        company: pst.position,
+        image: pst.Employer.logo,
+        location: `${pst.country.map((e) => e)}`,
+        buttons: [
+          {
+            type: "ghost",
+            text: pst.startDate,
+            sizeName: "small",
+            width: "85px",
+          },
+        ],
+        description: pst.description,
+        note: `987 ${t("search_post_view")}`,
+      },
+    ];
+  }
 
   onLoadMore = async () => {
     let { offset, limit } = this.state;
@@ -157,7 +160,6 @@ class LandingPageSearch extends Component {
       languages: this.state.prefLang,
       gpa: this.state.gpas,
       duration: this.state.length,
-      begin_period: this.state.begin_period,
     };
     let response = await store.advancedSearch(
       payload,
@@ -593,7 +595,6 @@ class LandingPageSearch extends Component {
                       languages: this.state.prefLang,
                       gpa: this.state.gpas,
                       duration: this.state.length,
-                      begin_period: this.state.begin_period,
                     };
                     let response = await store.advancedSearch(
                       payload,
