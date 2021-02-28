@@ -39,7 +39,7 @@ class DropDown extends Component {
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
-            onPress()?onPress():false
+            onPress() ? onPress() : false;
           }}
         >
           {externalData.length > 0 ? (

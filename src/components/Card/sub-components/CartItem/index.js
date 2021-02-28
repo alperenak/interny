@@ -10,6 +10,7 @@ import styles from "./cartItemCard.scss";
 import { Link } from "react-router-dom";
 import { getCookie } from "../../../../utils/cookie";
 import Input from "../../../Input";
+import { withNamespaces } from "react-i18next";
 
 class CartItems extends Component {
   state = {
@@ -55,6 +56,7 @@ class CartItems extends Component {
         props.is === false ? props.children : <></>,
     } = this.props;
     let link = getCookie("token") ? `/postdetail/${pst.id}` : "signup";
+    let { t } = this.props;
     return (
       <Fragment>
         <div className={`${multiple ? "multiplePost" : "singlePost"}`}>
@@ -107,7 +109,15 @@ class CartItems extends Component {
                       </label>
                     </div>
                   )}
-                  {pst.images &&
+                  {pst.images ? (
+                    <p style={{ fontSize: 12, paddingTop: 5 }}>
+                      {t("cart_note")}
+                    </p>
+                  ) : (
+                    ""
+                  )}
+
+                  {/* {pst.images &&
                     localStorage.getItem("languageSupport") !== "false" && (
                       <Input
                         type={"text"}
@@ -118,7 +128,7 @@ class CartItems extends Component {
                           localStorage.setItem("languageQuantity", value);
                         }}
                       />
-                    )}
+                    )} */}
                 </div>
               </div>
               <div
@@ -226,4 +236,4 @@ class CartItems extends Component {
   }
 }
 
-export default CartItems;
+export default withNamespaces()(CartItems);

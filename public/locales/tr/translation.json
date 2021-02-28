@@ -105,6 +105,8 @@
   "reference_letter_download": "İndir",
 
   "campaign_header_title": "Yaz Stajı",
+  "campaign_header_desc1": "Dünyanın ilk uzaktan online staj platformu INTERNY'e hoş geldiniz. Staj sürecinde ihtiyacınız olan her şeyi ve daha fazlasını bu platformda bulacaksınız. Bu platform, dünyanın herhangi bir yerinde, istediğiniz yerde ve zamanda herhangi bir şirkette stajınızı yapmanızı sağlamaktadır. Yapmanız gerekenler staj başvurusu yapmak, kabul almak ve verilen görevleri eksiksiz bir şekilde tamamlamaktır.",
+  "campaign_header_desc2": "Yaz Stajı kampanyası süresince, %60 indirimden yararlanabilirsiniz. Bu kampanya ile yaz stajınıza Haziran, Temmuz veya Ağustos aylarında başlamayı garanti altına almış olmaktasınız. 2021 yaz stajını aramanıza, kabul almakla uğraşmanıza gerek kalmamaktadır. Bunun için, kampanyaya dahil olan şirketlerin bulunduğu 18 ülkeden ve 11 ana sektörden size uygun olanları seçmeniz yeterli olacaktır. Sonuç olarak 2021 yaz stajınıza, dilediğiniz ülkede ve sektörde kesinlikle başlayacaksınız.",
   "campaign_header_subtitle": "Kampanya sürecinde neler olacak?",
   "campaign_get_internship_package_button": "Paketi Gör",
   "campaign_summer_internship_part_title": "Yaz Stajı Paketini Satın Alın",
@@ -127,6 +129,7 @@
   "campaign_package_card_campaign_details_item4": "⦁ Referans Metubu",
   "campaign_package_card_campaign_details_item5": "⦁ Dil Desteği Servisi \n (+ $19.99)",
 
+  "campaign_faqs_title": "Sıkça Sorulan Sorular",
   "campaign_faqs_question_between_date": "Yaz stajı, hangi tarihler arasında yapılmaktadır?",
   "campaign_faqs_answer_between_date": "2021 Yaz Stajı Kampanyası, Haziran, Temmuz ya da Ağustos ayları içerisinde başlamayı planladığınız stajınızı kapsamaktadır. Bu sayede, 2021 yılı yaz stajınızı şimdiden garanti altına almış olmaktasınız.",
   "campaign_faqs_question_starting_guaranteed": "Staja başlamak garanti mi?",
@@ -475,5 +478,7 @@
   "help_center_card_main_university": "ÜNİVERSİTE",
   "help_center_card_university_language": "DİL",
   "help_center_card_university_packages": "PAKETLER",
-  "help_center_card_university_other": "DİĞER?"
+  "help_center_card_university_other": "DİĞER?",
+
+  "cart_note": "Sektör, ülke ve staj başlangıç zamanı bilgisi için 2 hafta içerisinde mail adresinize form gönderilecektir."
 }

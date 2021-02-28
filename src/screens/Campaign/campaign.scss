@@ -1,5 +1,17 @@
 @import "../../helpers/responsiveBreakpointsMixins.scss";
-
+.imageCounter {
+  @include medium {
+    flex-direction: column;
+  }
+  img {
+    @include large {
+      width: 175px;
+    }
+    @include medium {
+      width: 200px;
+    }
+  }
+}
 .accordion {
   width: 100%;
   background-color: #f6f8fa;
@@ -38,7 +50,7 @@
     & .getPadding {
       padding: 0 2rem;
       @include small {
-        padding: 0;
+        padding: 0 1rem;
       }
     }
     & .CampaignBranding {

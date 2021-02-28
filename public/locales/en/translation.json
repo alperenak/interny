@@ -105,6 +105,8 @@
   "reference_letter_download": "Download",
 
   "campaign_header_title": "Summer Internship",
+  "campaign_header_desc1": "Welcome to INTERNY, the world's first remote online internship platform. You will find everything you need and more during the internship process on the platform. It allows you to do your internship at any company anywhere in the world, wherever and whenever you want. All you have to do is complete the assigned tasks thoroughly.",
+  "campaign_header_desc2": "You can benefit from a 60% discount with the Summer Internship campaign. With this campaign, you already guarantee to start your summer internship in June, July, or August. You don't need to look for a 2021 summer internship. It will be sufficient to choose any of the 18 countries and 11 main sectors. ",
   "campaign_header_subtitle": "What will happen during the campaign process?",
   "campaign_get_internship_package_button": "GET",
   "campaign_summer_internship_part_title": "Get Summer Internship Package",
@@ -127,6 +129,7 @@
   "campaign_package_card_campaign_details_item4": "⦁ Reference Letter",
   "campaign_package_card_campaign_details_item5": "⦁ Language Support Service \n (+ $19.99)",
 
+  "campaign_faqs_title": "Frequently Asked Questions for the Campaign",
   "campaign_faqs_question_between_date": "Between what dates will summer internships be held?",
   "campaign_faqs_answer_between_date": "The 2021 Summer Internship Campaign covers your internship that you plan to start in June, July, or August. In this way, you are already guaranteed to start your 2021 summer internship.",
   "campaign_faqs_question_starting_guaranteed": "Is starting an internship guaranteed?",
@@ -476,5 +479,7 @@
   "help_center_card_main_university": "UNIVERSITY",
   "help_center_card_university_language": "LANGUAGE",
   "help_center_card_university_packages": "PACKAGES",
-  "help_center_card_university_other": "OTHER"
+  "help_center_card_university_other": "OTHER",
+
+  "cart_note": " A form will be sent to your e-mail address within 2 weeks for the sector, country and internship start time information. "
 }

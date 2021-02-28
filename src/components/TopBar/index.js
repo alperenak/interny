@@ -447,7 +447,10 @@ class TopBar extends Component {
           <Card
             type={"dropDown"}
             iconName={iconName}
-            onPress={() => this.closeHamburgerMenu()}
+            onPress={() => {
+              this.closeHamburgerMenu();
+              this.onIconClick(iconName);
+            }}
             externalData={[
               ...this.state[
                 `${iconName === "user" ? userType : iconName}Source`

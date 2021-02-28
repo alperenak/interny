@@ -209,10 +209,10 @@ class Home extends Component {
           </div>
         </div>
         <div className="CounterWrapper">
-          <Counter countDown={new Date(2021, 6, 15)} />
+          {/*   ==  <Counter countDown={new Date(2021, 6, 15)} />*/}
         </div>
         <div className="CampaignBranding">
-          <div className="CampaignFilter" />
+          {/* <div className="CampaignFilter" /> */}
           {/* <div className="CampaignBrandingTitle">Summer Internship</div> */}
           <div className="SummerInternshipButtonWrapper">
             <Link to="/campaign">

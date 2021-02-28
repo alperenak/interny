@@ -9,6 +9,17 @@ import { withNamespaces } from "react-i18next";
 import FooterAlternative from "../../components/FooterAlternative";
 import Accordion from "../../components/Accordion";
 import Footer from "../../components/Footer";
+import i18n from "../../i18n";
+
+import CountriesEN from "../../assets/countries.jpeg";
+import CountriesTR from "../../assets/ulke.jpeg";
+import SectorsEN from "../../assets/sectors.jpeg";
+import SectorsTR from "../../assets/sektor.jpeg";
+import InternshipEN from "../../assets/internships.jpeg";
+import InternshipTR from "../../assets/staj.jpeg";
+import CompaniesEN from "../../assets/companies.jpeg";
+import CompaniesTR from "../../assets/sirket.jpeg";
+
 class Campaign extends React.Component {
   componentDidMount() {}
 
@@ -64,6 +75,12 @@ class Campaign extends React.Component {
         answer: this.props.t("campaign_faqs_answer_end_internship"),
       },
     ];
+    let ImagesCounter = [
+      i18n.language !== "tr" ? CountriesEN : CountriesTR,
+      i18n.language !== "tr" ? SectorsEN : SectorsTR,
+      i18n.language !== "tr" ? CompaniesEN : CompaniesTR,
+      i18n.language !== "tr" ? InternshipEN : InternshipTR,
+    ];
     return (
       <>
         <div className="Campaign">
@@ -73,38 +90,25 @@ class Campaign extends React.Component {
                 {t("campaign_header_title")}
               </div>
             </div>
-            <div className="d-flex align-items-center justify-content-center">
-              <div className="internyUseCounter">
-                18 <span>Ülke</span> 11
-                <span style={{ color: "#dd5454" }}> Sektör</span> 3 Bin
-                <span style={{ color: "rgba(249,112,80,0.9)" }}>
-                  {" "}
-                  Şirket
-                </span>{" "}
-                45 Bin
-                <span style={{ color: "rgb(105, 108, 255)" }} className="pink">
-                  {" "}
-                  Staj
-                </span>
+
+            <div
+              className="row align-items-start justify-content-start campaignRow"
+              style={{ marginTop: 56, marginBottom: 56 }}
+            >
+              <div className="flexOne getPadding">
+                {t("campaign_header_desc1")}
+              </div>
+              <div className="flexOne getPadding">
+                {t("campaign_header_desc2")}
               </div>
             </div>
-
-            <div className="row align-items-start justify-content-start campaignRow">
-              <div className="flexOne getPadding">
-                Welcome to INTERNY, the world's first remote online internship
-                platform. You will find everything you need and more during the
-                internship process on the platform. It allows you to do your
-                internship at any company anywhere in the world, wherever and
-                whenever you want. All you have to do is complete the assigned
-                tasks thoroughly.
-              </div>
-              <div className="flexOne getPadding">
-                You can benefit from a 60% discount with the Summer Internship
-                campaign. With this campaign, you already guarantee to start
-                your summer internship in June, July, or August. You don't need
-                to look for a 2021 summer internship. It will be sufficient to
-                choose any of the 18 countries and 11 main sectors.
-              </div>
+            <div className="d-flex align-items-center justify-content-center imageCounter">
+              {/* <div className="internyUseCounter">
+                
+              </div> */}
+              {ImagesCounter.map((item) => {
+                return <img src={item} width="200" alt="sad" />;
+              })}
             </div>
 
             <div
@@ -176,7 +180,7 @@ class Campaign extends React.Component {
               className="SummerIntershipTitle"
               style={{ textAlign: "center", marginTop: 100 }}
             >
-              {t("footer_faq")}
+              {t("campaign_faqs_title")}
             </h2>
             <div className="accordion">
               {intern.map((data, index) => {
