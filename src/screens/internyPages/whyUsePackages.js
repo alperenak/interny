@@ -5,6 +5,7 @@ import styles from "./style.scss";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 import { withNamespaces } from "react-i18next";
+import config from "../../../appConfig";
 
 class BusinessPackage extends Component {
   constructor(props) {
@@ -19,9 +20,15 @@ class BusinessPackage extends Component {
 
   addToCart = (buyingData) => {
     if (buyingData.id === "competency")
-      localStorage.setItem("cartItems", JSON.stringify("prod_Izc2wh6slRMxZj"));
+      localStorage.setItem(
+        "cartItems",
+        JSON.stringify(config.packageIds.competencyPackage)
+      );
     else if (buyingData.id === "intern")
-      localStorage.setItem("cartItems", JSON.stringify("prod_IzbtUye5fy9r8g"));
+      localStorage.setItem(
+        "cartItems",
+        JSON.stringify(config.packageIds.internPackage)
+      );
     localStorage.setItem("cartData", JSON.stringify(buyingData));
     localStorage.setItem("quantity", JSON.stringify(1));
   };

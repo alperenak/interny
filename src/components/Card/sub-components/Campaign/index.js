@@ -3,6 +3,7 @@ import styles from "./campaign.scss";
 import PackageBox from "../../../../assets/packagebox.png";
 import { Link } from "react-router-dom";
 import { withNamespaces } from "react-i18next";
+import config from "../../../../../appConfig";
 
 class CampaignCard extends React.Component {
   componentDidMount() {}
@@ -54,7 +55,7 @@ class CampaignCard extends React.Component {
             );
             localStorage.setItem(
               "cartItems",
-              JSON.stringify("prod_IzeL4l7pc0xsD3")
+              JSON.stringify(config.packageIds.summerInternPackage)
             );
           }}
         >
