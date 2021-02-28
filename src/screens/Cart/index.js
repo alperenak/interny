@@ -13,7 +13,7 @@ const index = () => {
   const [newData, setNewData] = useState([]);
   const [cartData, setCartData] = useState([]);
   const stripePromise = loadStripe(
-    "pk_test_51HbnvBEexm5jHOGxsnPBjTeexZZrnUKtEubUerAetv5O2Fljp44qfZrkAAhxrfjbZV5eQXXMu7MUFtRlGCOw1yYa00uN8yHFlW"
+    config.STRIPE_PUBLIC_KEY_PROD
   );
   console.log(cartItems);
   const quantityButtons = [
@@ -29,7 +29,7 @@ const index = () => {
   useEffect(() => {
     let packageId = JSON.parse(localStorage.getItem("cartItems"));
     const response = fetch(
-      `https://interny-backend-prod.herokuapp.com/payment/package/${packageId}`,
+      `${config.baseUrl}payment/package/${packageId}`,
       {
         method: "GET",
         headers: { "Content-Type": "application/json" },
@@ -81,7 +81,7 @@ const index = () => {
                 : 1,
             });
           const response = fetch(
-            `https://interny-backend-prod.herokuapp.com/payment/intern/${userId}`,
+            `${config.baseUrl}payment/intern/${userId}`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
