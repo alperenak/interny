@@ -1,7 +1,15 @@
 @import "../../helpers/responsiveBreakpointsMixins.scss";
+.cartIconWrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0;
+}
 .cartIcon {
   margin: 0 10px;
   display: flex;
+  width: 30px;
   position: relative;
   & .cartItemCount {
     display: flex;

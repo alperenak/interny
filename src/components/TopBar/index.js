@@ -634,6 +634,23 @@ class TopBar extends Component {
                           text={t("navbar_sign_up")}
                           onButtonClick={() => this.closeHamburgerMenu()}
                         />
+                        <div className="cartIconWrapper">
+                          <Link
+                            to="/cart"
+                            onClick={() => {
+                              this.closeHamburgerMenu();
+                            }}
+                          >
+                            <div className="cartIcon">
+                              <img width="30" height="30" src={CartIcon} />
+                              {localStorage.getItem("cartItems") ? (
+                                <div className="cartItemCount">1</div>
+                              ) : (
+                                ""
+                              )}
+                            </div>
+                          </Link>
+                        </div>
                       </div>
                     </Fragment>
                     <Fragment v-else>
@@ -661,6 +678,19 @@ class TopBar extends Component {
                         {this.renderIcon("mail", "mail")}
                         {this.renderIcon("bell", "bell")}
                         {this.renderIcon("user", "user")}
+                        <Link
+                          to="/cart"
+                          onClick={() => this.closeHamburgerMenu()}
+                        >
+                          <div className="cartIcon">
+                            <img width="30" height="30" src={CartIcon} />
+                            {localStorage.getItem("cartItems") ? (
+                              <div className="cartItemCount">1</div>
+                            ) : (
+                              ""
+                            )}
+                          </div>
+                        </Link>
                       </div>
                     </Fragment>
                   </SideBar>
