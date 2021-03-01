@@ -58,7 +58,7 @@ class CartItems extends Component {
       RedirectControl = (props) =>
         props.is === false ? props.children : <></>,
     } = this.props;
-    let link = getCookie("token") ? `/postdetail/${pst.id}` : "signup";
+    let link = getCookie("token") ? `/postdetail/${pst.id}` : "/signup";
     let { t } = this.props;
     return (
       <Fragment>
